@@ -1,0 +1,80 @@
+@charset "utf-8";
+/* CSS Document */
+
+/******营销团队******/
+.team_con{
+	width:696px;
+	height:auto;
+	overflow:hidden;}
+.team_con_aa{
+	width:212px;
+	height:250px;
+	float:left;
+	margin:0px 10px 23px 10px;}
+.team_con_aa_1{
+	width:204px;
+	height:204px;
+	border:1px solid #DAC479;
+	padding:3px 3px;}
+.team_con_aa_2{
+	width:212px;
+	height:33px;
+	line-height:33px;
+	padding-top:5px;
+	color:#333;
+	font-size:14px;
+	text-align:center;}
+.team_con_aa_2 a:link,.team_con_aa_2 a:visited{
+	color:#333;
+	text-decoration:none;}
+.team_con_aa_2 a:hover{
+	color:#000;
+	text-decoration:none;}
+	
+/******营销团队_aa******/
+.team_aa_left{
+	width:276px;
+	height:auto;
+	overflow:auto;
+	float:left;
+	margin-left:3px;
+	padding:3px 3px;
+	border:1px solid #DAC479;
+	margin-right:30px;}
+.team_aa_right{
+	width:379px;
+	height:auto;
+	overflow:hidden;
+	float:left;
+	margin-bottom:36px;
+	color:#333;}
+.team_aa_td{
+	width:284px;
+	height:110px;
+	background:url(../images/td_bg.jpg) no-repeat;
+	padding:5px 5px;}
+.td_aa{
+	width:283px;
+	height:100px;
+	border:none;
+	font-family:"微软雅黑";
+	color:#333;
+	font-size:12px;
+	left:24px;}
+.td_bb{
+	width:94px;
+	height:32px;
+	background:url(../images/anniu_01.jpg) no-repeat;
+	float:right;
+	text-align:center;
+	line-height:32px;
+	font-size:14px;
+	color:#7E6018;
+	margin-top:17px;
+	margin-right:10px;}
+.td_bb a{
+	display:block;
+	text-decoration:none;
+	color:#7E6018;}
+.td_bb a:hover{
+	color:#000;}
