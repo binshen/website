@@ -55,8 +55,13 @@ class Manage extends MY_Controller {
 	 *
 	 * ***************************************yaobin*******************************************************************
 	 */
+	public function list_new_house(){
+		$this->load->view('manage/list_new_house.php');
+	}
 	
-	
+	public function add_new_house(){
+		$this->load->view('manage/add_new_house.php');
+	}
 	
 	
 	

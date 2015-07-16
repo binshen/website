@@ -32,7 +32,7 @@ class Manage_model extends MY_Model
     {
         $login_id = $this->input->post('username');
         $passwd = $this->input->post('password');
-        $this->db->from($this->tables[3]);
+        $this->db->from('admin');
         $this->db->where('username', $login_id);
         $this->db->where('passwd', sha1($passwd));
         $rs = $this->db->get();
@@ -54,7 +54,7 @@ class Manage_model extends MY_Model
         $login_id = $this->input->post('username');
         $newpassword = $this->input->post('newpassword');
         
-		$rs=$this->db->where('username', $login_id)->update($this->tables[3], array('passwd'=>sha1($newpassword))); 
+		$rs=$this->db->where('username', $login_id)->update('admin', array('passwd'=>sha1($newpassword))); 
         if ($rs) {
             return 1;
         } else {
@@ -66,7 +66,37 @@ class Manage_model extends MY_Model
      *
      * ***************************************yaobin*******************************************************************
      */
-    
+	public function list_new_house(){
+		// 每页显示的记录条数，默认20条
+		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
+		$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
+		
+		//获得总记录数
+		$this->db->select('count(1) as num');
+		$this->db->from($this->tables[4]);
+		if($this->input->post('title'))
+			$this->db->like('title',$this->input->post('title'));
+		
+		$rs_total = $this->db->get()->row();
+		//总记录数
+		$data['countPage'] = $rs_total->num;
+		
+		$data['title'] = null;
+		//list
+		$this->db->select('*');
+		$this->db->from("{$this->tables[4]}");
+		if($this->input->post('title')){
+			$this->db->like('title',$this->input->post('title'));
+			$data['title'] = $this->input->post('title');
+		}
+		
+		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
+		$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
+		$data['res_list'] = $this->db->get()->result();
+		$data['pageNum'] = $pageNum;
+		$data['numPerPage'] = $numPerPage;
+		return $data;
+	}    
     
     
     
