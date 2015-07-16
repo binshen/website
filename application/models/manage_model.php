@@ -153,7 +153,9 @@ class Manage_model extends MY_Model
 		$this->db->insert('admin', $data);
 	}
 
-	
+	public function get_broker($id) {
+		return $this->db->get_where('admin', array('id' => $id))->row_array();
+	}
 }
 
 /* End of file manage_model.php */
