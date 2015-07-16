@@ -33,7 +33,7 @@
             				<td><?php echo $row->rel_name;?></td>
             				<td><?php echo $row->tel;?></td>
             				<td><?php echo $row->company_name;?></td>
-            				<td><?php echo $row->region_id;?></td>
+            				<td><?php echo $row->region_name;?></td>
             			</tr>
             <?php 
             		endforeach;

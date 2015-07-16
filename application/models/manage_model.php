@@ -136,6 +136,7 @@ class Manage_model extends MY_Model
 		$this->db->from('admin');
 		if($this->input->post('rel_name'))
 			$this->db->like('rel_name',$this->input->post('rel_name'));
+		$this->db->where('id >', 1);
 	
 		$rs_total = $this->db->get()->row();
 		//总记录数
@@ -143,13 +144,14 @@ class Manage_model extends MY_Model
 	
 		$data['rel_name'] = null;
 		//list
-		$this->db->select('*');
-		$this->db->from('admin');
+		$this->db->select('a.*, b.name AS region_name');
+		$this->db->from('admin a');
+		$this->db->join('house_region b', 'a.region_id = b.id', 'left');
 		if($this->input->post('rel_name')){
-			$this->db->like('rel_name',$this->input->post('rel_name'));
+			$this->db->like('a.rel_name',$this->input->post('rel_name'));
 			$data['rel_name'] = $this->input->post('rel_name');
 		}
-	
+		$this->db->where('a.id >', 1);
 		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
 		$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
 		$data['res_list'] = $this->db->get()->result();
