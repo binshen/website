@@ -109,6 +109,12 @@ class Sysconfig_model extends MY_Model
 //		$this->db->select('id,name,img')->from($this->tables[5])->order_by('order_num')->limit('8');
 //		return $this->db->get()->result_array();
 //	}
+
+	public function insert($arr,$short){
+		foreach($arr as $k=>$v){
+			$this->db->insert('xiaoqu',array('name'=>$v,'short'=>$short));
+		}
+	}
 	
 }
 

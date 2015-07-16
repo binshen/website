@@ -13,16 +13,6 @@ if (! defined('BASEPATH'))
  */
 class Manage_model extends MY_Model
 {
-	protected $tables = array(
-			'about',
-			'news_type',
-			'news',
-			'admin',
-			'scenery_pics_head',
-			'scenery_pics_detail'
-
-    );
-	
     public function __construct ()
     {
         parent::__construct();
@@ -72,44 +62,23 @@ class Manage_model extends MY_Model
         }
     }
     
-	
-
-	
-
-	/**
-     * 分页列出景点图片库
+    /**
+     *
+     * ***************************************yaobin*******************************************************************
      */
-	public function list_spots(){
-        // 每页显示的记录条数，默认20条
-        $numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
-        $pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
-        
-        //获得总记录数
-        $this->db->select('count(1) as num');
-        $this->db->from($this->tables[4]);
-    	if($this->input->post('title'))
-            $this->db->like('title',$this->input->post('title'));
-        
-        $rs_total = $this->db->get()->row();
-        //总记录数
-        $data['countPage'] = $rs_total->num;
-        
-		$data['title'] = null;
-        //list
-        $this->db->select('*');
-        $this->db->from("{$this->tables[4]}");
-        if($this->input->post('title')){
-        	$this->db->like('title',$this->input->post('title'));
-        	$data['title'] = $this->input->post('title');
-        }
-            
-        $this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
-        $this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
-        $data['res_list'] = $this->db->get()->result();
-        $data['pageNum'] = $pageNum;
-        $data['numPerPage'] = $numPerPage;
-        return $data;
-	}
+    
+    
+    
+    
+    
+    
+
+	
+
+    /**
+     *
+     * ***************************************shenbin*******************************************************************
+     */
 	
 
 	

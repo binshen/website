@@ -83,23 +83,25 @@ $(function(){
 
 				<div class="accordion" fillSpace="sidebar" >
 					<div class="accordionHeader">
-						<h2><span>Folder</span>项目管理</h2>
+						<h2><span>Folder</span>经纪人管理</h2>
 					</div>
 					<div class="accordionContent">
 						<ul class="tree">
-							<li><a href="<?php echo site_url('manage/list_project');?>" target="navTab" rel="list_project">项目管理</a></li>
+							<li><a href="<?php echo site_url('manage/list_broker');?>" target="navTab" rel="list_broker">经纪人列表</a></li>
 						</ul>
 					</div>
-					
-					
 					<div class="accordionHeader">
-						<h2><span>Folder</span>重要信息</h2>
+						<h2><span>Folder</span>房源管理</h2>
 					</div>
 					<div class="accordionContent">
 						<ul class="tree">
-							<li><a href="<?php echo site_url('manage/message');?>" target="navTab" rel="message">重要信息</a></li>
+							<li><a href="<?php echo site_url('manage/list_new_house');?>" target="navTab" rel="list_new_house">新房管理</a></li>
+							<li><a href="<?php echo site_url('manage/list_sd_house');?>" target="navTab" rel="list_sd_house">二手房管理</a></li>
 						</ul>
 					</div>
+					
+					
+					
 					
 					<div class="accordionHeader">
 						<h2><span>Folder</span>动态</h2>
