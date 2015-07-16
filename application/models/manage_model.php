@@ -120,22 +120,57 @@ class Manage_model extends MY_Model
 		return $data;
 	}
     
-    
-    
-    
 
-	
 
     /**
      *
      * ***************************************shenbin*******************************************************************
      */
+	public function list_broker(){
+		// 每页显示的记录条数，默认20条
+		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
+		$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
 	
+		//获得总记录数
+		$this->db->select('count(1) as num');
+		$this->db->from('admin');
+		if($this->input->post('rel_name'))
+			$this->db->like('rel_name',$this->input->post('rel_name'));
+	
+		$rs_total = $this->db->get()->row();
+		//总记录数
+		$data['countPage'] = $rs_total->num;
+	
+		$data['rel_name'] = null;
+		//list
+		$this->db->select('*');
+		$this->db->from('admin');
+		if($this->input->post('rel_name')){
+			$this->db->like('rel_name',$this->input->post('rel_name'));
+			$data['rel_name'] = $this->input->post('rel_name');
+		}
+	
+		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
+		$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
+		$data['res_list'] = $this->db->get()->result();
+		$data['pageNum'] = $pageNum;
+		$data['numPerPage'] = $numPerPage;
+		return $data;
+	}
 
-	
+	public function save_broker() {
+		$data = array(
+			'username' => $this->input->post('tel'),
+			'passwd' => sha1('888888'),
+			'tel' => $this->input->post('tel'),
+			'company_name' => $this->input->post('company_name'),
+			'rel_name' => $this->input->post('rel_name'),
+			'region_id' => $this->input->post('region_id')
+		);
+		$this->db->insert('admin', $data);
+	}
 
-	
+	public function get_broker($id) {
+		return $this->db->get_where('admin', array('id' => $id))->row_array();
+	}
 }
-
-/* End of file manage_model.php */
-/* Location: ./application/models/manage_model.php */
