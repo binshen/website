@@ -75,4 +75,16 @@ class Manage extends MY_Controller {
 	 *
 	 * ***************************************shenbin*******************************************************************
 	 */
+	public function list_broker(){
+		$data = $this->manage_model->list_broker();
+		$this->load->view('manage/list_broker.php', $data);
+	}
+	
+	public function add_broker(){
+		$this->load->view('manage/add_broker.php');
+	}
+	
+	public function save_broker() {
+		$this->manage_model->save_broker();
+	}
 }
