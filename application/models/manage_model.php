@@ -197,4 +197,8 @@ class Manage_model extends MY_Model
 	public function get_region_list() {
 		return $this->db->get('house_region')->result();
 	}
+	
+	public function get_admin_by_tel($tel) {
+		return $this->db->get_where('admin', array('tel' => $tel))->row_array();
+	}
 }

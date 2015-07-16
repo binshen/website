@@ -146,6 +146,14 @@ class Manage extends MY_Controller {
 	}
 	
 	public function save_broker() {
+		if(!$this->input->post('id')){
+			$tel = $this->input->post('tel');
+			$broker = $this->manage_model->get_admin_by_tel($tel);
+			if(!empty($broker)) {
+				form_submit_json("300", "手机号已经注册过");
+				return;
+			}
+		}
 		$ret = $this->manage_model->save_broker();
 		if($ret == 1){
 			form_submit_json("200", "操作成功", 'list_broker');
