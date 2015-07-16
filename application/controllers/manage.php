@@ -140,7 +140,9 @@ class Manage extends MY_Controller {
 	}
 	
 	public function add_broker() {
-		$this->load->view('manage/add_broker.php');
+		$data = array();
+		$data['region_list'] = $this->manage_model->get_region_list();
+		$this->load->view('manage/add_broker.php', $data);
 	}
 	
 	public function save_broker() {
@@ -154,6 +156,7 @@ class Manage extends MY_Controller {
 	
 	public function edit_broker($id) {
 		$data = $this->manage_model->get_broker($id);
+		$data['region_list'] = $this->manage_model->get_region_list();
 		$this->load->view('manage/add_broker.php', $data);
 	}
 	

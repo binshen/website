@@ -27,7 +27,19 @@
         		</dl>
         		<dl>
         			<dt>熟悉区域：</dt>
-        			<dd><input type="text" name="region_id" class="required" value="<?php if(!empty($region_id)) echo $region_id;?>" /></dd>
+        			<dd>
+        				<select name="region_id" class="required">
+        					<?php          
+				                if (!empty($region_list)):
+				            	    foreach ($region_list as $row):
+				            	    	$selected = $row->id == $region_id ? "selected" : "";          
+				            ?>
+        								<option value="<?php echo $row->id; ?>" <?php echo $selected; ?>><?php echo $row->name; ?></option>
+        					<?php 
+				            		endforeach;
+				            	endif;
+				            ?>
+        				</select>
         		</dl>
         	</fieldset>
         </div>

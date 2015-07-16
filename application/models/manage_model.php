@@ -167,7 +167,20 @@ class Manage_model extends MY_Model
 			'rel_name' => $this->input->post('rel_name'),
 			'region_id' => $this->input->post('region_id')
 		);
-		return $this->db->insert('admin', $data);
+		$this->db->trans_start();//--------开始事务
+		
+		if($this->input->post('id')){//修改
+			$this->db->where('id', $this->input->post('id'));
+			$this->db->update('admin', $data);
+		} else {
+			$this->db->insert('admin', $data);
+		}
+		$this->db->trans_complete();//------结束事务
+    	if ($this->db->trans_status() === FALSE) {
+    		return -1;
+    	} else {
+    		return 1;
+    	} 
 	}
 
 	public function get_broker($id) {
@@ -177,5 +190,9 @@ class Manage_model extends MY_Model
 	public function delete_broker($id) {
 		$this->db->where('id', $id);
 		return $this->db->delete('admin');
+	}
+	
+	public function get_region_list() {
+		return $this->db->get('house_region')->result();
 	}
 }
