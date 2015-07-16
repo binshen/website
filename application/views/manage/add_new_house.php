@@ -6,6 +6,22 @@
 <div class="pageContent">
     <form method="post" enctype="multipart/form-data" action="<?php echo site_url('manage/save_project');?>" class="pageForm required-validate" onsubmit="return iframeCallback(this, navTabAjaxDone);">
         <div class="pageFormContent" layoutH="55">
+        
+        
+        <fieldset>
+    	    <legend>图片预览</legend>
+    	    <dl class="nowrap">
+    	    	<dt>
+    	    		<input type="hidden" name="folder" value="<?php if(!empty($folder)) echo $folder;?>" id="folder">
+    	    		<a id="tpsc" href="<?php echo site_url('manage/add_pics/'.date('YmdHis'))?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
+    	    	</dt>
+    		</dl>
+    		<dl class="nowrap" id="append">
+    		
+    		</dl>
+    	</fieldset>
+        
+        
         	<fieldset>
         	<legend>注：图片建议上传尺寸为608px*430px,最大不超过1M</legend>
         	    <dl>
@@ -176,5 +192,99 @@ function change_file_name(){
 	$("#file_list").find('[type="file"]').each(function(index){
 		$(this).attr("name","userfile"+index);
 	});
+}
+</script>
+
+<script>
+$(function() {
+	folder = $("#folder",navTab.getCurrentPanel()).val();
+	if(folder != ''){
+		callbacktime(folder,-1);
+	}
+    $("#tpsc",navTab.getCurrentPanel())
+      .button()
+      .click(function( event ) {
+        event.preventDefault();
+      });
+    $('[name="desc[]"]').each(function(){
+        if($(this).val() != '请输入图片描述'){
+        	$(this).css('color','black');
+        }
+    });
+});
+
+function change_val_f(obj){
+	  $(obj).css('color','black');
+  	  if($(obj).val() =='请输入图片描述'){
+          $(obj).val("");           
+  	  } 
+}
+
+function change_val_b(obj){
+ 	 if ($(obj).val() == '') {
+         $(obj).val('请输入图片描述');
+         $(obj).css('color','#999');
+      }
+}
+
+function callbacktime(time,is_back){
+	id = $("[name='id']",navTab.getCurrentPanel()).val();
+	if (id == ''){
+		$("#folder",navTab.getCurrentPanel()).val(time);		
+	}
+	$.getJSON("<?php echo site_url('manage/get_pics')?>"+"/"+time + "?_=" +Math.random(),function(data){
+		html = '';
+		now_pic = [];
+		$("input[name='pic_short[]']").each(function(index){
+			now_pic[index] = $(this).val();
+		});
+		console.log(now_pic);
+		$.each(data.img,function(index,item){
+			path = "<?php echo base_url().'uploadfiles/pics/';?>"+data.time+"/"+item;
+			if($.inArray(item, now_pic) < 0){
+				html+='<dt style="width: 250px; position:relative; margin-top:20px">';
+				html+='<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; ">';
+				html+='<a href="javascript:void(0);" onclick="del_pic(this);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this);" style="text-decoration:none; color:#fff">设为封面</a></div>';
+				html+='<div class="fengmian"></div>';
+				html+='<img height="118" width="200" src="'+path +'" style="border:1px solid #666;"><input type="text" alt="text" size="31" class="textInput" name="desc[]" style="width:195px;height:20px;border:1px solid #999;font-size:12px;font-weight:lighter;outline:none;margin-top:5px;color:#999;" onfocus="change_val_f(this);" onblur="change_val_b(this);" value="请输入图片描述">';
+				html+='<input type="hidden" size="22" name="is_bg[]" value="0"><input type="hidden" size="22" name="pic_short[]" value="'+item+'"></dt>';
+			}
+		});
+		$("#append",navTab.getCurrentPanel()).append(html); 
+	});
+
+	//兼容chrome
+	var isChrome = navigator.userAgent.toLowerCase().match(/chrome/) != null;
+	if (isChrome)
+		event.returnValue=false;
+	
+}
+function set_bg(obj){
+	//将所有是否为封面都变成0，将封面图片删除
+	$(obj).parent().parent().parent().find('input:[name="is_bg[]"]').each(function(){
+		$(this).val('0');
+	});
+	$(".fengmian",navTab.getCurrentPanel()).html('');
+	
+	current_bg = $(obj).parent().parent().find('input:[name="is_bg[]"]');
+	current_bg.val('1');
+	html_img = '<img src="<?php echo base_url().'images/fengmian.png';?>" style=" position:absolute; top:0px;">';
+	$(obj).parent().parent().find('.fengmian').html(html_img);
+}
+function del_pic(obj){
+	id = $("[name='id']",navTab.getCurrentPanel()).val();
+	folder = $("[name='folder']",navTab.getCurrentPanel()).val();
+		current_pic = $(obj).parent().parent().find('input:[name="pic_short[]"]').val();
+		$.getJSON("<?php echo site_url('manage/del_pic')?>"+"/"+ folder + "/" + current_pic + "/" + id,function(data){
+			if(data.flag == 1){
+				$("#append",navTab.getCurrentPanel()).find('input[name="pic_short[]"]').each(function(){
+					if($(this).val() == data.pic){
+						$(this).parent().remove();
+					}
+				});
+			}else{
+				alertMsg.warn("删除图片失败，请清理图片缓存并刷新标签页");
+			}
+		});
 }
 </script>

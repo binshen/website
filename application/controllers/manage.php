@@ -35,14 +35,7 @@ class Manage extends MY_Controller {
 			}
 
 		}else{
-			//整理参数
-			$params_str = "";
-			if($params){
-				foreach ($params as $v){
-					$params_str = $params_str.$v.',';
-				}
-			}
-			$this->$method(substr($params_str,0,-1));
+			return call_user_func_array(array($this, $method), $params);
 		}
 	}
 
@@ -62,6 +55,81 @@ class Manage extends MY_Controller {
 	public function add_new_house(){
 		$this->load->view('manage/add_new_house.php');
 	}
+	
+	public function add_pics($time){
+		$data['time'] = $time;
+		$this->load->view('manage/add_pics.php',$data);
+	}
+	
+	public function save_pics($time){
+		if (is_readable('./././uploadfiles/pics/'.$time) == false) {
+			mkdir('./././uploadfiles/pics/'.$time);
+		}
+	
+		$path = './././uploadfiles/pics/'.$time;
+	
+		//设置缩小图片属性
+		$config_small['image_library'] = 'gd2';
+		$config_small['create_thumb'] = TRUE;
+		$config_small['quality'] = 80;
+		$config_small['maintain_ratio'] = TRUE; //保持图片比例
+		$config_small['new_image'] = $path;
+		$config_small['width'] = 801;
+		$config_small['height'] = 470;
+	
+		//设置原图限制
+		$config['upload_path'] = $path;
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		$config['max_size'] = '10000';
+		$config['encrypt_name'] = true;
+		$this->load->library('upload', $config);
+	
+		if($this->upload->do_upload()){
+			$data = $this->upload->data();//返回上传文件的所有相关信息的数组
+			$config_small['source_image'] = $data['full_path']; //文件路径带文件名
+			$this->image_lib->initialize($config_small);
+			$this->image_lib->resize();
+			form_submit_json("200", "操作成功", "");
+		}else{
+			form_submit_json("300", $this->upload->display_errors('<b>','</b>'));
+			exit;
+		}
+	}
+	
+
+	
+	//ajax获取图片信息
+	public function get_pics($time){
+		$path = './././uploadfiles/pics/'.$time;
+		$map = directory_map($path);
+		$data = array();
+		//整理图片名字，取缩略图片
+		foreach($map as $v){
+			if(substr(substr($v,0,strrpos($v,'.')),-5) == 'thumb'){
+				$data['img'][] = $v;
+			}
+		}
+		$data['time'] = $time;//文件夹名称
+		echo json_encode($data);
+	}
+	
+	//ajax删除图片
+	public function del_pic($folder,$pic,$id=null){
+		$data = $this->manage_model->del_pic($folder,$pic,$id);
+		echo json_encode($data);
+	}
+	
+	//清理不使用的图片数据
+	public function clear_pics(){
+		$rs = $this->manage_model->clear_pics();
+		if($rs === 1){
+			form_submit_json("200", "操作成功", "");
+		}else{
+			form_submit_json("300", $rs);
+		}
+	}
+	
+	
 	
 	
 	

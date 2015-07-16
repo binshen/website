@@ -26,6 +26,23 @@
 <script src="<?php echo base_url();?>dwz/xheditor/xheditor-1.2.1.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url();?>dwz/bin/dwz.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url();?>dwz/js/dwz.regional.zh.js" type="text/javascript"></script>
+<script src="<?php echo base_url();?>dwz/uploadify/scripts/jquery.uploadify.js" type="text/javascript"></script>
+
+<!--plupload start--------------------------------------------------------------------------->
+<link rel="stylesheet" href="<?php echo base_url();?>plupload/js/jquery.ui.plupload/css/jquery-ui-1.9.2.custom.min.css" type="text/css" />
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>-->
+<script src="<?php echo base_url();?>plupload/js/jquery-ui-1.9.2.custom.min.js"></script>
+
+<!-- Load plupload and all it's runtimes and finally the UI widget -->
+<link rel="stylesheet" href="<?php echo base_url();?>plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css" type="text/css" />
+
+
+<!-- production -->
+<script type="text/javascript" src="<?php echo base_url();?>plupload/js/plupload.full.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>plupload/js/zh_CN.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>plupload/js/jquery.ui.plupload/jquery.ui.plupload.js"></script>
+
+<!--plupload end---------------------------------------------------------------------------->
 
 
 <script type="text/javascript">

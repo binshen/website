@@ -98,6 +98,27 @@ class Manage_model extends MY_Model
 		return $data;
 	}    
     
+	
+	//ajax删除图片
+	public function del_pic($folder,$pic,$id){
+		//echo $id;die;
+		if($id){
+			$this->db->where('pic_short',$pic);
+			$this->db->delete('house_img');
+		}
+		if(@unlink('./././uploadfiles/pics/'.$folder.'/'.$pic)){
+			$data = array(
+					'flag'=>1,
+					'pic'=>$pic
+			);
+		}else{
+			$data = array(
+					'flag'=>1,
+					'pic'=>$pic
+			);
+		}
+		return $data;
+	}
     
     
     
