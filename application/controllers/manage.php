@@ -144,11 +144,25 @@ class Manage extends MY_Controller {
 	}
 	
 	public function save_broker() {
-		$this->manage_model->save_broker();
+		$ret = $this->manage_model->save_broker();
+		if($ret == 1){
+			form_submit_json("200", "操作成功", 'list_broker');
+		} else {
+			form_submit_json("300", "保存失败");
+		}
 	}
 	
 	public function edit_broker($id) {
 		$data = $this->manage_model->get_broker($id);
 		$this->load->view('manage/add_broker.php', $data);
+	}
+	
+	public function delete_broker($id) {
+		$ret = $this->manage_model->delete_broker($id);
+		if($ret == 1) {
+			form_submit_json("200", "操作成功", 'list_broker', '', '');
+		} else {
+			form_submit_json("300", "删除失败");
+		}
 	}
 }

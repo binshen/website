@@ -167,10 +167,15 @@ class Manage_model extends MY_Model
 			'rel_name' => $this->input->post('rel_name'),
 			'region_id' => $this->input->post('region_id')
 		);
-		$this->db->insert('admin', $data);
+		return $this->db->insert('admin', $data);
 	}
 
 	public function get_broker($id) {
 		return $this->db->get_where('admin', array('id' => $id))->row_array();
+	}
+	
+	public function delete_broker($id) {
+		$this->db->where('id', $id);
+		return $this->db->delete('admin');
 	}
 }
