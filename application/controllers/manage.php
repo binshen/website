@@ -304,4 +304,36 @@ class Manage extends MY_Controller {
 			form_submit_json("300", "删除失败");
 		}
 	}
+	
+	public function list_house_decoration() {
+		$data = $this->manage_model->list_house_decoration();
+		$this->load->view('manage/list_house_decoration.php', $data);
+	}
+	
+	public function add_house_decoration() {
+		$this->load->view('manage/add_house_decoration.php');
+	}
+	
+	public function save_house_decoration() {
+		$ret = $this->manage_model->save_house_decoration();
+		if($ret == 1){
+			form_submit_json("200", "操作成功", 'list_house_decoration');
+		} else {
+			form_submit_json("300", "保存失败");
+		}
+	}
+	
+	public function edit_house_decoration($id) {
+		$data = $this->manage_model->get_house_decoration($id);
+		$this->load->view('manage/add_house_decoration.php', $data);
+	}
+	
+	public function delete_house_decoration($id) {
+		$ret = $this->manage_model->delete_house_decoration($id);
+		if($ret == 1) {
+			form_submit_json("200", "操作成功", 'list_house_decoration', '', '');
+		} else {
+			form_submit_json("300", "删除失败");
+		}
+	}
 }

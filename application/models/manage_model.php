@@ -409,4 +409,56 @@ class Manage_model extends MY_Model
 		$this->db->where('id', $id);
 		return $this->db->delete('house_orientation');
 	}
+	
+	public function list_house_decoration(){
+		// 每页显示的记录条数，默认20条
+		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
+		$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
+	
+		//获得总记录数
+		$this->db->select('count(1) as num');
+		$this->db->from('house_decoration');
+	
+		$rs_total = $this->db->get()->row();
+		//总记录数
+		$data['countPage'] = $rs_total->num;
+	
+		//list
+		$this->db->select('*')->from('house_decoration');
+		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
+		$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
+		$data['res_list'] = $this->db->get()->result();
+		$data['pageNum'] = $pageNum;
+		$data['numPerPage'] = $numPerPage;
+		return $data;
+	}
+	
+	public function save_house_decoration() {
+		$data = array(
+				'name' => $this->input->post('name')
+		);
+		$this->db->trans_start();//--------开始事务
+	
+		if($this->input->post('id')){//修改
+			$this->db->where('id', $this->input->post('id'));
+			$this->db->update('house_decoration', $data);
+		} else {
+			$this->db->insert('house_decoration', $data);
+		}
+		$this->db->trans_complete();//------结束事务
+		if ($this->db->trans_status() === FALSE) {
+			return -1;
+		} else {
+			return 1;
+		}
+	}
+	
+	public function get_house_decoration($id) {
+		return $this->db->get_where('house_decoration', array('id' => $id))->row_array();
+	}
+	
+	public function delete_house_decoration($id) {
+		$this->db->where('id', $id);
+		return $this->db->delete('house_decoration');
+	}
 }
