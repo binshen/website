@@ -582,13 +582,12 @@ class Manage_model extends MY_Model
 	
 		$data['rel_name'] = null;
 		//list
-		$this->db->select('a.*, b.name AS region_name');
+		$this->db->select('a.*, b.name AS region_name, c.name AS style_name, d.name AS orientation_name, e.name AS decoration_name');
 		$this->db->from('house a');
 		$this->db->join('house_region b', 'a.region_id = b.id', 'left');
 		$this->db->join('house_style c', 'a.style_id = c.id', 'left');
 		$this->db->join('house_orientation d', 'a.region_id = d.id', 'left');
 		$this->db->join('house_decoration e', 'a.region_id = e.id', 'left');
-		$this->db->join('house_style f', 'a.style_id = f.id', 'left');
 		if($this->input->post('name')){
 			$this->db->like('a.name',$this->input->post('name'));
 			$data['rel_name'] = $this->input->post('name');
@@ -616,7 +615,7 @@ class Manage_model extends MY_Model
 			'room' => $this->input->post('room'),
 			'lounge' => $this->input->post('lounge'),
 			'toilet' => $this->input->post('toilet'),
-			'feature' => $this->input->post('feature'),
+			'feature' => implode(',', $this->input->post('feature')),
 			'orientation_id' => $this->input->post('orientation_id'),
 			'floor' => $this->input->post('floor'),
 			'total_floor' => $this->input->post('total_floor'),
