@@ -177,33 +177,65 @@ class Manage extends MY_Controller {
 		}
 	}
 	
-	public function list_feature() {
-		$data = $this->manage_model->list_feature();
-		$this->load->view('manage/list_feature.php', $data);
+	public function list_house_feature() {
+		$data = $this->manage_model->list_house_feature();
+		$this->load->view('manage/list_house_feature.php', $data);
 	}
 	
-	public function add_feature() {
-		$this->load->view('manage/add_feature.php');
+	public function add_house_feature() {
+		$this->load->view('manage/add_house_feature.php');
 	}
 	
-	public function save_feature() {
-		$ret = $this->manage_model->save_feature();
+	public function save_house_feature() {
+		$ret = $this->manage_model->save_house_feature();
 		if($ret == 1){
-			form_submit_json("200", "操作成功", 'list_feature');
+			form_submit_json("200", "操作成功", 'list_house_feature');
 		} else {
 			form_submit_json("300", "保存失败");
 		}
 	}
 	
-	public function edit_feature($id) {
-		$data = $this->manage_model->get_feature($id);
-		$this->load->view('manage/add_feature.php', $data);
+	public function edit_house_feature($id) {
+		$data = $this->manage_model->get_house_feature($id);
+		$this->load->view('manage/add_house_feature.php', $data);
 	}
 	
-	public function delete_feature($id) {
-		$ret = $this->manage_model->delete_feature($id);
+	public function delete_house_feature($id) {
+		$ret = $this->manage_model->delete_house_feature($id);
 		if($ret == 1) {
-			form_submit_json("200", "操作成功", 'list_feature', '', '');
+			form_submit_json("200", "操作成功", 'list_house_feature', '', '');
+		} else {
+			form_submit_json("300", "删除失败");
+		}
+	}
+	
+	public function list_house_style() {
+		$data = $this->manage_model->list_house_style();
+		$this->load->view('manage/list_house_style.php', $data);
+	}
+	
+	public function add_house_style() {
+		$this->load->view('manage/add_house_style.php');
+	}
+	
+	public function save_house_style() {
+		$ret = $this->manage_model->save_house_style();
+		if($ret == 1){
+			form_submit_json("200", "操作成功", 'list_house_style');
+		} else {
+			form_submit_json("300", "保存失败");
+		}
+	}
+	
+	public function edit_house_style($id) {
+		$data = $this->manage_model->get_house_style($id);
+		$this->load->view('manage/add_house_style.php', $data);
+	}
+	
+	public function delete_house_style($id) {
+		$ret = $this->manage_model->delete_house_style($id);
+		if($ret == 1) {
+			form_submit_json("200", "操作成功", 'list_house_style', '', '');
 		} else {
 			form_submit_json("300", "删除失败");
 		}

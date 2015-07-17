@@ -1,4 +1,4 @@
-<form id="pagerForm" method="post" action="<?php echo site_url('manage/list_feature')?>">
+<form id="pagerForm" method="post" action="<?php echo site_url('manage/list_house_style')?>">
 	<input type="hidden" name="pageNum" value="<?php echo $pageNum;?>" />
 	<input type="hidden" name="numPerPage" value="<?php echo $numPerPage;?>" />
 	<input type="hidden" name="orderField" value="<?php echo $this->input->post('orderField');?>" />
@@ -8,9 +8,9 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="<?php echo site_url('manage/add_feature')?>" target="dialog" rel="add_feature" title="新建"><span>新建</span></a></li>
-			<li><a class="delete" href="<?php echo site_url('manage/delete_feature')?>/{id}" target="ajaxTodo"  title="确定要删除？" warn="请选择一条记录"><span>删除</span></a></li>
-			<li><a class="edit" href="<?php echo site_url('manage/edit_feature/{id}')?>" target="dialog" rel="edit_feature" warn="请选择一条记录" title="查看"><span>查看</span></a></li>
+			<li><a class="add" href="<?php echo site_url('manage/add_house_style')?>" target="dialog" rel="add_house_style" title="新建"><span>新建</span></a></li>
+			<li><a class="delete" href="<?php echo site_url('manage/delete_house_style')?>/{id}" target="ajaxTodo"  title="确定要删除？" warn="请选择一条记录"><span>删除</span></a></li>
+			<li><a class="edit" href="<?php echo site_url('manage/edit_house_style/{id}')?>" target="dialog" rel="edit_house_style" warn="请选择一条记录" title="查看"><span>查看</span></a></li>
 		</ul>
 	</div>
 
