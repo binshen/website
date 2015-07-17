@@ -140,9 +140,33 @@ class Manage extends MY_Controller {
 	 *
 	 * ***************************************shenbin*******************************************************************
 	 */
+	/**
+	 * 二手房管理
+	 */
 	public function list_sd_house() {
 		$this->load->view('manage/list_sd_house.php');
 	}
+	
+	public function add_sd_house() {
+		$data['feature'] = $this->manage_model->get_feature();
+		$data['region_list'] = $this->manage_model->get_region_list();
+		$data['decoration_list'] = $this->manage_model->get_decoration_list();
+		$data['orientation_list'] = $this->manage_model->get_orientation_list();
+		$this->load->view('manage/add_sd_house.php',$data);
+	}
+	
+	public function save_sd_house() {
+		
+	}
+	
+	public function edit_sd_house($id) {
+		
+	}
+	
+	public function delete_sd_house($id) {
+		
+	}	
+	
 	
 	/**
 	 * 经纪人管理

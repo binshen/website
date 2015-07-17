@@ -525,4 +525,12 @@ class Manage_model extends MY_Model
 		$this->db->where('id', $id);
 		return $this->db->delete('xiaoqu');
 	}
+	
+	public function get_decoration_list() {
+		return $this->db->get('house_decoration')->result();
+	}
+	
+	public function get_orientation_list() {
+		return $this->db->get('house_orientation')->result();
+	}
 }
