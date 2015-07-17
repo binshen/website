@@ -140,6 +140,13 @@ class Manage extends MY_Controller {
 	 *
 	 * ***************************************shenbin*******************************************************************
 	 */
+	public function list_sd_house() {
+		$this->load->view('manage/list_sd_house.php');
+	}
+	
+	/**
+	 * 经纪人管理
+	 */
 	public function list_broker() {
 		$data = $this->manage_model->list_broker();
 		$this->load->view('manage/list_broker.php', $data);
@@ -178,6 +185,216 @@ class Manage extends MY_Controller {
 		$ret = $this->manage_model->delete_broker($id);
 		if($ret == 1) {
 			form_submit_json("200", "操作成功", 'list_broker', '', '');
+		} else {
+			form_submit_json("300", "删除失败");
+		}
+	}
+	
+	/**
+	 * 房源特色
+	 */
+	public function list_house_feature() {
+		$data = $this->manage_model->list_house_feature();
+		$this->load->view('manage/list_house_feature.php', $data);
+	}
+	
+	public function add_house_feature() {
+		$this->load->view('manage/add_house_feature.php');
+	}
+	
+	public function save_house_feature() {
+		$ret = $this->manage_model->save_house_feature();
+		if($ret == 1){
+			form_submit_json("200", "操作成功", 'list_house_feature');
+		} else {
+			form_submit_json("300", "保存失败");
+		}
+	}
+	
+	public function edit_house_feature($id) {
+		$data = $this->manage_model->get_house_feature($id);
+		$this->load->view('manage/add_house_feature.php', $data);
+	}
+	
+	public function delete_house_feature($id) {
+		$ret = $this->manage_model->delete_house_feature($id);
+		if($ret == 1) {
+			form_submit_json("200", "操作成功", 'list_house_feature', '', '');
+		} else {
+			form_submit_json("300", "删除失败");
+		}
+	}
+	
+	/**
+	 * 楼盘类型
+	 */
+	public function list_house_style() {
+		$data = $this->manage_model->list_house_style();
+		$this->load->view('manage/list_house_style.php', $data);
+	}
+	
+	public function add_house_style() {
+		$this->load->view('manage/add_house_style.php');
+	}
+	
+	public function save_house_style() {
+		$ret = $this->manage_model->save_house_style();
+		if($ret == 1){
+			form_submit_json("200", "操作成功", 'list_house_style');
+		} else {
+			form_submit_json("300", "保存失败");
+		}
+	}
+	
+	public function edit_house_style($id) {
+		$data = $this->manage_model->get_house_style($id);
+		$this->load->view('manage/add_house_style.php', $data);
+	}
+	
+	public function delete_house_style($id) {
+		$ret = $this->manage_model->delete_house_style($id);
+		if($ret == 1) {
+			form_submit_json("200", "操作成功", 'list_house_style', '', '');
+		} else {
+			form_submit_json("300", "删除失败");
+		}
+	}
+	
+	/**
+	 * 所在区域
+	 */
+	public function list_house_region() {
+		$data = $this->manage_model->list_house_region();
+		$this->load->view('manage/list_house_region.php', $data);
+	}
+	
+	public function add_house_region() {
+		$this->load->view('manage/add_house_region.php');
+	}
+	
+	public function save_house_region() {
+		$ret = $this->manage_model->save_house_region();
+		if($ret == 1){
+			form_submit_json("200", "操作成功", 'list_house_region');
+		} else {
+			form_submit_json("300", "保存失败");
+		}
+	}
+	
+	public function edit_house_region($id) {
+		$data = $this->manage_model->get_house_region($id);
+		$this->load->view('manage/add_house_region.php', $data);
+	}
+	
+	public function delete_house_region($id) {
+		$ret = $this->manage_model->delete_house_region($id);
+		if($ret == 1) {
+			form_submit_json("200", "操作成功", 'list_house_region', '', '');
+		} else {
+			form_submit_json("300", "删除失败");
+		}
+	}
+	
+	/**
+	 * 楼盘朝向
+	 */
+	public function list_house_orientation() {
+		$data = $this->manage_model->list_house_orientation();
+		$this->load->view('manage/list_house_orientation.php', $data);
+	}
+	
+	public function add_house_orientation() {
+		$this->load->view('manage/add_house_orientation.php');
+	}
+	
+	public function save_house_orientation() {
+		$ret = $this->manage_model->save_house_orientation();
+		if($ret == 1){
+			form_submit_json("200", "操作成功", 'list_house_orientation');
+		} else {
+			form_submit_json("300", "保存失败");
+		}
+	}
+	
+	public function edit_house_orientation($id) {
+		$data = $this->manage_model->get_house_orientation($id);
+		$this->load->view('manage/add_house_orientation.php', $data);
+	}
+	
+	public function delete_house_orientation($id) {
+		$ret = $this->manage_model->delete_house_orientation($id);
+		if($ret == 1) {
+			form_submit_json("200", "操作成功", 'list_house_orientation', '', '');
+		} else {
+			form_submit_json("300", "删除失败");
+		}
+	}
+	
+	/**
+	 * 装修状况
+	 */
+	public function list_house_decoration() {
+		$data = $this->manage_model->list_house_decoration();
+		$this->load->view('manage/list_house_decoration.php', $data);
+	}
+	
+	public function add_house_decoration() {
+		$this->load->view('manage/add_house_decoration.php');
+	}
+	
+	public function save_house_decoration() {
+		$ret = $this->manage_model->save_house_decoration();
+		if($ret == 1){
+			form_submit_json("200", "操作成功", 'list_house_decoration');
+		} else {
+			form_submit_json("300", "保存失败");
+		}
+	}
+	
+	public function edit_house_decoration($id) {
+		$data = $this->manage_model->get_house_decoration($id);
+		$this->load->view('manage/add_house_decoration.php', $data);
+	}
+	
+	public function delete_house_decoration($id) {
+		$ret = $this->manage_model->delete_house_decoration($id);
+		if($ret == 1) {
+			form_submit_json("200", "操作成功", 'list_house_decoration', '', '');
+		} else {
+			form_submit_json("300", "删除失败");
+		}
+	}
+	
+	/**
+	 * 小区信息
+	 */
+	public function list_xiaoqu() {
+		$data = $this->manage_model->list_xiaoqu();
+		$this->load->view('manage/list_xiaoqu.php', $data);
+	}
+	
+	public function add_xiaoqu() {
+		$this->load->view('manage/add_xiaoqu.php');
+	}
+	
+	public function save_xiaoqu() {
+		$ret = $this->manage_model->save_xiaoqu();
+		if($ret == 1){
+			form_submit_json("200", "操作成功", 'list_xiaoqu');
+		} else {
+			form_submit_json("300", "保存失败");
+		}
+	}
+	
+	public function edit_xiaoqu($id) {
+		$data = $this->manage_model->get_xiaoqu($id);
+		$this->load->view('manage/add_xiaoqu.php', $data);
+	}
+	
+	public function delete_xiaoqu($id) {
+		$ret = $this->manage_model->delete_xiaoqu($id);
+		if($ret == 1) {
+			form_submit_json("200", "操作成功", 'list_xiaoqu', '', '');
 		} else {
 			form_submit_json("300", "删除失败");
 		}
