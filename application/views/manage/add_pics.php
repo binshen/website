@@ -17,7 +17,7 @@
 $(document).ready(function() {
 	$("#uploader",$.pdialog.getCurrent()).plupload({
 		runtimes : 'html5,flash,silverlight',
-		url : "<?php echo site_url('manage/save_pics/'.$time);?>",
+		url : "<?php echo site_url('manage/save_pics/'.$time.'/'.$type_id);?>",
         max_file_size : '50mb',
         
         //chunk_size: '10mb',
@@ -32,8 +32,15 @@ $(document).ready(function() {
         file_data_name: 'userfile',
         // Specify what files to browse for
         filters : [
-            {title : "Image files", extensions : "jpg,gif,png"}
         ],
+
+        filters: {
+        	  mime_types : [ //只允许上传图片和zip文件
+        	  	{title : "Image files", extensions : "jpg,gif,png"}
+        	  ],
+        	  max_file_size : '1024kb', //最大只能上传400kb的文件
+        	  prevent_duplicates : true //不允许选取重复文件
+        },
  
         // Rename files by clicking on their titles
         rename: true,
@@ -67,7 +74,7 @@ function callBackToNavtab(){
 	if ($('#uploader').plupload('getFiles').length > 0) {
 		var time = $("#time",$.pdialog.getCurrent()).val();
 		$.pdialog.close('add_pics');
-		callbacktime(time,1);
+		callbacktime(time,1,<?php echo $type_id?>);
 	} else {
 		alertMsg.warn("请至少选择一个图片上传");
 	}

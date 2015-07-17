@@ -100,13 +100,13 @@ class Manage_model extends MY_Model
     
 	
 	//ajax删除图片
-	public function del_pic($folder,$pic,$id){
+	public function del_pic($folder,$type_id,$pic,$id){
 		//echo $id;die;
 		if($id){
 			$this->db->where('pic_short',$pic);
 			$this->db->delete('house_img');
 		}
-		if(@unlink('./././uploadfiles/pics/'.$folder.'/'.$pic)){
+		if(@unlink('./././uploadfiles/pics/'.$folder.'/'.$type_id.'/'.$pic)){
 			$data = array(
 					'flag'=>1,
 					'pic'=>$pic
@@ -116,6 +116,15 @@ class Manage_model extends MY_Model
 					'flag'=>1,
 					'pic'=>$pic
 			);
+		}
+		return $data;
+	}
+	
+	public function get_feature(){
+		$rs = $this->db->select()->from('feature')->get()->result_array();
+		$data = array();
+		foreach($rs as $k=>$v){
+			$data[$v['type_id']][] = $v['name'];
 		}
 		return $data;
 	}

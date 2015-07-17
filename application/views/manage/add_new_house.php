@@ -6,112 +6,192 @@
 <div class="pageContent">
     <form method="post" enctype="multipart/form-data" action="<?php echo site_url('manage/save_project');?>" class="pageForm required-validate" onsubmit="return iframeCallback(this, navTabAjaxDone);">
         <div class="pageFormContent" layoutH="55">
-        
+        <fieldset>
+        	<legend>基本信息</legend>
+        	    <dl>
+        			<dt>楼盘名称：</dt>
+        			<dd><input type="hidden" name="id" value="<?php if(!empty($id)) echo $id;?>"><input name="name" type="text" class="required" value="<?php if(!empty($name)) echo $name;?>" /></dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>优惠折扣：</dt>
+        			<dd><input name="discount" type="text" class="required" value="<?php if(!empty($discount)) echo $discount;?>" /></dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>均价：</dt>
+        			<dd><input name="unit_price" type="text" class="required" value="<?php if(!empty($unit_price)) echo $unit_price;?>" /></dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>开盘日期：</dt>
+        			<dd><input name="kp_date" type="text" class="required" value="<?php if(!empty($kp_date)) echo $kp_date;?>" /></dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>交房日期：</dt>
+        			<dd><input name="jf_date" type="text" class="required" value="<?php if(!empty($jf_date)) echo $jf_date;?>" /></dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>产权年限：</dt>
+        			<dd><input name="cq_limit" type="text" class="required" value="<?php if(!empty($cq_limit)) echo $cq_limit;?>" /></dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>所属商圈：</dt>
+        			<dd><input name="bs_area" type="text" class="required" value="<?php if(!empty($bs_area)) echo $bs_area;?>" /></dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>物业管理：</dt>
+        			<dd><input name="estate_mng" type="text" class="required" value="<?php if(!empty($estate_mng)) echo $estate_mng;?>" /></dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>物业费：</dt>
+        			<dd><input name="estate_price" type="text" class="required" value="<?php if(!empty($estate_price)) echo $estate_price;?>" /></dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>售楼地址：</dt>
+        			<dd><input name="sell_addr" type="text" class="required" value="<?php if(!empty($sell_addr)) echo $sell_addr;?>" /></dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>开发商：</dt>
+        			<dd><input name="developer" type="text" class="required" value="<?php if(!empty($developer)) echo $developer;?>" /></dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>开发商电话：</dt>
+        			<dd><input name="dev_photo" type="text" class="required" value="<?php if(!empty($dev_photo)) echo $dev_photo;?>" /></dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>物业类型：</dt>
+        			<dd><input name="estate_type" type="text" class="required" value="<?php if(!empty($estate_type)) echo $estate_type;?>" /></dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>容积率：</dt>
+        			<dd><input name="plot_rate" type="text" class="required" value="<?php if(!empty($plot_rate)) echo $plot_rate;?>" /></dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>绿化率：</dt>
+        			<dd><input name="greening_rate" type="text" class="required" value="<?php if(!empty($greening_rate)) echo $greening_rate;?>" /></dd>
+        		</dl>
+        		
+       	</fieldset>
+       	
+		<fieldset>
+    	    <legend>特色标签</legend>
+    	    <dl class="nowrap" id="feature_app">
+    		</dl>
+    		<dl class="nowrap">
+    			<div class="tabs" currentIndex="1" eventType="click">
+					<div class="tabsHeader">
+						<div class="tabsHeaderContent">
+							<ul>
+								<?php foreach($feature as $k=>$v):?>
+								<li><a href="javascript:;"><span>
+								<?php if($k == 1) echo '小区';?>
+								<?php if($k == 2) echo '户型';?>
+								<?php if($k == 3) echo '房屋结构';?>
+								<?php if($k == 4) echo '位置';?>
+								<?php if($k == 5) echo '装修';?>
+								<?php if($k == 6) echo '附加';?>
+								</span></a></li>
+								<?php endforeach;?>
+							</ul>
+						</div>
+					</div>
+					<div class="tabsContent" style="height:150px;">
+					<?php foreach($feature as $k=>$v):?>
+						<div>
+						<?php foreach($v as $kk=>$vv):?>
+						<a href="javascript:;" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" onclick="select_feature(this);">
+						<span class="ui-button-text"><?php echo $vv;?></span>
+						</a>
+						<?php endforeach;?>
+						</div>
+					<?php endforeach;?>
+					</div>
+						<div class="tabsFooter">
+							<div class="tabsFooterContent"></div>
+						</div>
+				</div>
+			</dl>
+    	</fieldset>
         
         <fieldset>
-    	    <legend>图片预览</legend>
+    	    <legend>效果图</legend>
     	    <dl class="nowrap">
     	    	<dt>
     	    		<input type="hidden" name="folder" value="<?php if(!empty($folder)) echo $folder;?>" id="folder">
-    	    		<a id="tpsc" href="<?php echo site_url('manage/add_pics/'.date('YmdHis'))?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
+    	    		<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.date('YmdHis').'/1')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
     	    	</dt>
     		</dl>
-    		<dl class="nowrap" id="append">
+    		<dl class="nowrap" id="append1">
+    		
+    		</dl>
+    	</fieldset>
+    	
+    	<fieldset>
+    	    <legend>规划图</legend>
+    	    <dl class="nowrap">
+    	    	<dt>
+    	    		<input type="hidden" name="folder" value="<?php if(!empty($folder)) echo $folder;?>" id="folder">
+    	    		<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.date('YmdHis').'/2')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
+    	    	</dt>
+    		</dl>
+    		<dl class="nowrap" id="append2">
+    		
+    		</dl>
+    	</fieldset>
+    	
+    	<fieldset>
+    	    <legend>样板间</legend>
+    	    <dl class="nowrap">
+    	    	<dt>
+    	    		<input type="hidden" name="folder" value="<?php if(!empty($folder)) echo $folder;?>" id="folder">
+    	    		<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.date('YmdHis').'/3')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
+    	    	</dt>
+    		</dl>
+    		<dl class="nowrap" id="append3">
+    		
+    		</dl>
+    	</fieldset>
+    	
+    	<fieldset>
+    	    <legend>实景图</legend>
+    	    <dl class="nowrap">
+    	    	<dt>
+    	    		<input type="hidden" name="folder" value="<?php if(!empty($folder)) echo $folder;?>" id="folder">
+    	    		<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.date('YmdHis').'/4')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
+    	    	</dt>
+    		</dl>
+    		<dl class="nowrap" id="append4">
+    		
+    		</dl>
+    	</fieldset>
+    	
+    	<fieldset>
+    	    <legend>配套图</legend>
+    	    <dl class="nowrap">
+    	    	<dt>
+    	    		<input type="hidden" name="folder" value="<?php if(!empty($folder)) echo $folder;?>" id="folder">
+    	    		<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.date('YmdHis').'/5')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
+    	    	</dt>
+    		</dl>
+    		<dl class="nowrap" id="append5">
     		
     		</dl>
     	</fieldset>
         
         
-        	<fieldset>
-        	<legend>注：图片建议上传尺寸为608px*430px,最大不超过1M</legend>
-        	    <dl>
-        			<dt>项目名称：</dt>
-        			<dd><input type="hidden" name="id" value="<?php if(!empty($id)) echo $id;?>"><input name="project" type="text" class="required" value="<?php if(!empty($project)) echo $project;?>" /></dd>
-        		</dl>
-        		<dl>
-        			<dt>照片：</dt>
-        			<dd>
-        			<div class="file-box">
-        			<input type="hidden" name="old_img" value="<?php if(!empty($pic)) echo $pic;?>" />
-    				<input type='text' id='textfield' class='txt' value="<?php if(!empty($pic)) echo $pic;?>" />  
-			 		<input type='button' class='btn' value='浏览...' />
-					<input type='file' name='imgfile' class='file' id='fileField'  onchange="document.getElementById('textfield').value=this.value" />
-					</div>
-        			</dd>
-        		</dl>
-				<?php if(!empty($pic)):?>
-        	    <dl class="nowrap">
-        			<dt>图片预览：</dt>
-        			<dd><img height="100px" src="<?php echo base_url().'uploadfiles/huxing/'.$pic;?>" /></dd>
-        		</dl>
-        	    <?php endif;?>
-        		<dl>
-        			<dt>报备有效期：</dt>
-        			<dd><input type="text" name="bb_valid" class="required number" value="<?php if(!empty($bb_valid)) echo $bb_valid;?>" />天</dd>
-        		</dl>
-        		<dl>
-        			<dt>签约有效期：</dt>
-        			<dd><input type="text" name="qy_valid" class="required number" value="<?php if(!empty($qy_valid)) echo $qy_valid;?>" />天</dd>
-        		</dl>
-        		
-        		<dl>
-        			<dt>均价：</dt>
-        			<dd><input type="text" name="price" class="required" value="<?php if(!empty($price)) echo $price;?>" /></dd>
-        		</dl>
-        		<dl>
-        			<dt>开盘时间：</dt>
-        			<dd><input type="text" name="kaipan" class="date required" value="<?php if(!empty($kaipan)) echo $kaipan;?>" readonly/><a class="inputDateButton" href="javascript:;">选择</a>
-        			</dd>
-        		</dl>
-        		
-        		<dl>
-        			<dt>开发商：</dt>
-        			<dd><input type="text" name="kaifa" class="required" value="<?php if(!empty($kaifa)) echo $kaifa;?>" /></dd>
-        		</dl>
-        		<dl>
-        			<dt>物业公司：</dt>
-        			<dd><input type="text" name="wuye_gongsi" class="required" value="<?php if(!empty($wuye_gongsi)) echo $wuye_gongsi;?>" /></dd>
-        		</dl>
-        		<dl>
-        			<dt>物业类型：</dt>
-        			<dd><input type="text" name="wuye_leixing" class="required" value="<?php if(!empty($wuye_leixing)) echo $wuye_leixing;?>" /></dd>
-        		</dl>
-        		<dl>
-        			<dt>建筑类型：</dt>
-        			<dd><input type="text" name="jianzhu_leixing" class="required" value="<?php if(!empty($jianzhu_leixing)) echo $jianzhu_leixing;?>" /></dd>
-        		</dl>
-        		<dl>
-        			<dt>建筑面积：</dt>
-        			<dd><input type="text" name="jianzhu_mianji" class="required" value="<?php if(!empty($jianzhu_mianji)) echo $jianzhu_mianji;?>" /></dd>
-        		</dl>
-        		<dl>
-        			<dt>装修情况：</dt>
-        			<dd><input type="text" name="zhuangxiu" class="required" value="<?php if(!empty($zhuangxiu)) echo $zhuangxiu;?>" /></dd>
-        		</dl>
-        		<dl>
-        			<dt>总户数：</dt>
-        			<dd><input type="text" name="hushu" class="required" value="<?php if(!empty($hushu)) echo $hushu;?>" /></dd>
-        		</dl>
-        		<dl>
-        			<dt>车位数：</dt>
-        			<dd><input type="text" name="chewei" class="required" value="<?php if(!empty($chewei)) echo $chewei;?>" /></dd>
-        		</dl>
-        		<dl>
-        			<dt>容积率：</dt>
-        			<dd><input type="text" name="rongji" class="required" value="<?php if(!empty($rongji)) echo $rongji;?>" /></dd>
-        		</dl>
-        		<dl>
-        			<dt>绿化率：</dt>
-        			<dd><input type="text" name="ludi" class="required" value="<?php if(!empty($ludi)) echo $ludi;?>" /></dd>
-        		</dl>
-        		<dl>
-        			<dt>物业费：</dt>
-        			<dd><input type="text" name="wuyefei" class="required" value="<?php if(!empty($wuyefei)) echo $wuyefei;?>" /></dd>
-        		</dl>
-        		
-        		
-        		
-        	</fieldset>
+        	
 			<fieldset>
 	    	    <legend>楼盘详情</legend>
 	    	    <dl class="nowrap">
@@ -201,7 +281,7 @@ $(function() {
 	if(folder != ''){
 		callbacktime(folder,-1);
 	}
-    $("#tpsc",navTab.getCurrentPanel())
+    $(".tpsc",navTab.getCurrentPanel())
       .button()
       .click(function( event ) {
         event.preventDefault();
@@ -227,30 +307,29 @@ function change_val_b(obj){
       }
 }
 
-function callbacktime(time,is_back){
+function callbacktime(time,is_back, type_id){
 	id = $("[name='id']",navTab.getCurrentPanel()).val();
 	if (id == ''){
 		$("#folder",navTab.getCurrentPanel()).val(time);		
 	}
-	$.getJSON("<?php echo site_url('manage/get_pics')?>"+"/"+time + "?_=" +Math.random(),function(data){
+	$.getJSON("<?php echo site_url('manage/get_pics')?>"+"/"+time + "/" + type_id + "?_=" +Math.random(),function(data){
 		html = '';
 		now_pic = [];
 		$("input[name='pic_short[]']").each(function(index){
 			now_pic[index] = $(this).val();
 		});
-		console.log(now_pic);
 		$.each(data.img,function(index,item){
-			path = "<?php echo base_url().'uploadfiles/pics/';?>"+data.time+"/"+item;
+			path = "<?php echo base_url().'uploadfiles/pics/';?>"+data.time + "/" + type_id +"/"+item;
 			if($.inArray(item, now_pic) < 0){
 				html+='<dt style="width: 250px; position:relative; margin-top:20px">';
 				html+='<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; ">';
-				html+='<a href="javascript:void(0);" onclick="del_pic(this);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this);" style="text-decoration:none; color:#fff">设为封面</a></div>';
+				html+='<a href="javascript:void(0);" onclick="del_pic(this,'+type_id+');" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this);" style="text-decoration:none; color:#fff">设为封面</a></div>';
 				html+='<div class="fengmian"></div>';
 				html+='<img height="118" width="200" src="'+path +'" style="border:1px solid #666;"><input type="text" alt="text" size="31" class="textInput" name="desc[]" style="width:195px;height:20px;border:1px solid #999;font-size:12px;font-weight:lighter;outline:none;margin-top:5px;color:#999;" onfocus="change_val_f(this);" onblur="change_val_b(this);" value="请输入图片描述">';
-				html+='<input type="hidden" size="22" name="is_bg[]" value="0"><input type="hidden" size="22" name="pic_short[]" value="'+item+'"></dt>';
+				html+='<input type="hidden" size="22" name="is_bg[]" value="0"><input type="hidden" size="22" name="pic_short'+type_id+'[]" value="'+item+'"></dt>';
 			}
 		});
-		$("#append",navTab.getCurrentPanel()).append(html); 
+		$("#append"+type_id,navTab.getCurrentPanel()).append(html); 
 	});
 
 	//兼容chrome
@@ -271,13 +350,13 @@ function set_bg(obj){
 	html_img = '<img src="<?php echo base_url().'images/fengmian.png';?>" style=" position:absolute; top:0px;">';
 	$(obj).parent().parent().find('.fengmian').html(html_img);
 }
-function del_pic(obj){
+function del_pic(obj,type_id){
 	id = $("[name='id']",navTab.getCurrentPanel()).val();
 	folder = $("[name='folder']",navTab.getCurrentPanel()).val();
 		current_pic = $(obj).parent().parent().find('input:[name="pic_short[]"]').val();
-		$.getJSON("<?php echo site_url('manage/del_pic')?>"+"/"+ folder + "/" + current_pic + "/" + id,function(data){
+		$.getJSON("<?php echo site_url('manage/del_pic')?>"+"/"+ folder + "/" + type_id + "/" + current_pic + "/" + id,function(data){
 			if(data.flag == 1){
-				$("#append",navTab.getCurrentPanel()).find('input[name="pic_short[]"]').each(function(){
+				$("#append"+type_id,navTab.getCurrentPanel()).find('input[name="pic_short[]"]').each(function(){
 					if($(this).val() == data.pic){
 						$(this).parent().remove();
 					}
@@ -286,5 +365,9 @@ function del_pic(obj){
 				alertMsg.warn("删除图片失败，请清理图片缓存并刷新标签页");
 			}
 		});
+}
+
+function select_feature(obj){
+	
 }
 </script>

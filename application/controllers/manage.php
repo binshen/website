@@ -53,20 +53,26 @@ class Manage extends MY_Controller {
 	}
 	
 	public function add_new_house(){
-		$this->load->view('manage/add_new_house.php');
+		$data['feature'] = $this->manage_model->get_feature();
+		$this->load->view('manage/add_new_house.php',$data);
 	}
 	
-	public function add_pics($time){
+	public function add_pics($time,$type_id){
 		$data['time'] = $time;
+		$data['type_id'] = $type_id;
 		$this->load->view('manage/add_pics.php',$data);
 	}
 	
-	public function save_pics($time){
+	public function save_pics($time,$type_id){
 		if (is_readable('./././uploadfiles/pics/'.$time) == false) {
 			mkdir('./././uploadfiles/pics/'.$time);
 		}
+		
+		if (is_readable('./././uploadfiles/pics/'.$time.'/'.$type_id) == false) {
+			mkdir('./././uploadfiles/pics/'.$time.'/'.$type_id);
+		}
 	
-		$path = './././uploadfiles/pics/'.$time;
+		$path = './././uploadfiles/pics/'.$time.'/'.$type_id;
 	
 		//设置缩小图片属性
 		$config_small['image_library'] = 'gd2';
@@ -99,8 +105,8 @@ class Manage extends MY_Controller {
 
 	
 	//ajax获取图片信息
-	public function get_pics($time){
-		$path = './././uploadfiles/pics/'.$time;
+	public function get_pics($time,$typ_id){
+		$path = './././uploadfiles/pics/'.$time.'/'.$typ_id;
 		$map = directory_map($path);
 		$data = array();
 		//整理图片名字，取缩略图片
@@ -114,8 +120,8 @@ class Manage extends MY_Controller {
 	}
 	
 	//ajax删除图片
-	public function del_pic($folder,$pic,$id=null){
-		$data = $this->manage_model->del_pic($folder,$pic,$id);
+	public function del_pic($folder,$type_id,$pic,$id=null){
+		$data = $this->manage_model->del_pic($folder,$type_id,$pic,$id);
 		echo json_encode($data);
 	}
 	
