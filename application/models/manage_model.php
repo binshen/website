@@ -106,17 +106,12 @@ class Manage_model extends MY_Model
 			$this->db->where('pic_short',$pic);
 			$this->db->delete('house_img');
 		}
-		if(@unlink('./././uploadfiles/pics/'.$folder.'/'.$type_id.'/'.$pic)){
-			$data = array(
-					'flag'=>1,
-					'pic'=>$pic
-			);
-		}else{
-			$data = array(
-					'flag'=>1,
-					'pic'=>$pic
-			);
-		}
+		@unlink('./././uploadfiles/pics/'.$folder.'/'.$type_id.'/'.$pic);
+		@unlink('./././uploadfiles/pics/'.$folder.'/'.$type_id.'/'.str_replace('_thumb', '', $pic));
+		$data = array(
+				'flag'=>1,
+				'pic'=>$pic
+		);
 		return $data;
 	}
 	
@@ -126,6 +121,37 @@ class Manage_model extends MY_Model
 		foreach($rs as $k=>$v){
 			$data[$v['type_id']][] = $v['name'];
 		}
+		return $data;
+	}
+	
+	public function list_xq_dialog(){
+		// 每页显示的记录条数，默认20条
+		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
+		$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
+	
+		//获得总记录数
+		$this->db->select('count(1) as num');
+		$this->db->from('xiaoqu');
+		if($this->input->post('jianpin'))
+			$this->db->like('jianpin',$this->input->post('jianpin'));
+	
+		$rs_total = $this->db->get()->row();
+		//总记录数
+		$data['countPage'] = $rs_total->num;
+	
+		$data['jianpin'] = null;
+		//list
+		$this->db->select();
+		$this->db->from('xiaoqu');
+		if($this->input->post('jianpin')){
+			$this->db->like('jianpin',$this->input->post('jianpin'));
+			$data['jianpin'] = $this->input->post('jianpin');
+		}
+		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
+		$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
+		$data['res_list'] = $this->db->get()->result();
+		$data['pageNum'] = $pageNum;
+		$data['numPerPage'] = $numPerPage;
 		return $data;
 	}
     

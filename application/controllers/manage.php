@@ -57,9 +57,12 @@ class Manage extends MY_Controller {
 		$this->load->view('manage/add_new_house.php',$data);
 	}
 	
-	public function add_pics($time,$type_id){
+	//$flag如果存在则是选择户型
+	public function add_pics($time,$type_id,$flag=null){
 		$data['time'] = $time;
 		$data['type_id'] = $type_id;
+		$data['flag'] = $flag;
+		
 		$this->load->view('manage/add_pics.php',$data);
 	}
 	
@@ -133,6 +136,12 @@ class Manage extends MY_Controller {
 		}else{
 			form_submit_json("300", $rs);
 		}
+	}
+	
+	public function list_xq_dialog(){
+		
+		$data = $this->manage_model->list_xq_dialog();
+		$this->load->view('manage/list_xq_dialog.php', $data);
 	}
 	
 
