@@ -621,7 +621,7 @@ class Manage_model extends MY_Model
 			'total_floor' => $this->input->post('total_floor'),
 			'decoration_id' => $this->input->post('decoration_id'),
 			'build_year' => $this->input->post('build_year'),
-			'broker_id' => $this->session->userdata('user')['id'],
+			'broker_id' => 1,//$this->session->userdata('user')['id'],
 			'description' => $this->input->post('description'),
 			'house_pic' => $this->input->post('house_pic'),
 			'longitude' => $this->input->post('longitude'),
@@ -630,11 +630,32 @@ class Manage_model extends MY_Model
 		$this->db->trans_start();//--------开始事务
 	
 		if($this->input->post('id')){//修改
-			$this->db->where('id', $this->input->post('id'));
+			$h_id = $this->input->post('id');
+			$this->db->where('id', $h_id);
 			$this->db->update('house', $data);
+			
+			$this->db->delete('house_img', array('h_id' => $h_id));
 		} else {
 			$this->db->insert('house', $data);
+			$h_id = $this->db->insert_id();
 		}
+		
+		$folder = $this->input->post('folder');
+		$desc = $this->input->post('desc');
+		$is_bg = $this->input->post('is_bg');
+		$pic_short1 = $this->input->post('pic_short1');
+		foreach ($pic_short1 as $idx => $pic) {
+			$pic_data = array(
+				'h_id' => $h_id,
+				'type_id' => 1,
+				'pic' => $folder . '/1/' . str_replace('_thumb', '', $pic),
+				'pic_short' => $folder . '/1/' . $pic,
+				'is_bg' => $is_bg[$idx],
+				'desc' => $desc[$idx]
+			);
+			$this->db->insert('house_img', $pic_data);
+		}
+		
 		$this->db->trans_complete();//------结束事务
 		if ($this->db->trans_status() === FALSE) {
 			return -1;

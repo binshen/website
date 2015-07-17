@@ -167,8 +167,12 @@ class Manage extends MY_Controller {
 	}
 	
 	public function save_sd_house() {
-		var_dump($_POST);
-		die;
+		$ret = $this->manage_model->save_sd_house();
+		if($ret == 1){
+			form_submit_json("200", "操作成功", 'list_sd_house');
+		} else {
+			form_submit_json("300", "保存失败");
+		}
 	}
 	
 	public function edit_sd_house($id) {
