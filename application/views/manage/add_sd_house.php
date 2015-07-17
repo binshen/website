@@ -33,7 +33,7 @@
         		<dl>
         			<dt>区域：</dt>
         			<dd>
-        				<select name="region_id" class="required">
+        				<select name="region_id" class="combox">
         					<?php          
 				                if (!empty($region_list)):
 				            	    foreach ($region_list as $row):
@@ -51,7 +51,7 @@
         		<dl>
         			<dt>房源类型：</dt>
         			<dd>
-        				<select name="style_id" class="required">
+        				<select name="style_id" class="combox">
         					<?php          
 				                if (!empty($style_list)):
 				            	    foreach ($style_list as $row):
@@ -84,7 +84,7 @@
         		<dl>
         			<dt>朝向：</dt>
         			<dd>
-        				<select name="orientation_id" class="required">
+        				<select name="orientation_id" class="combox">
         					<?php          
 				                if (!empty($orientation_list)):
 				            	    foreach ($orientation_list as $row):
@@ -114,7 +114,7 @@
         		<dl>
         			<dt>装修状况：</dt>
         			<dd>
-        				<select name="decoration_id" class="required">
+        				<select name="decoration_id" class="combox">
         					<?php          
 				                if (!empty($decoration_list)):
 				            	    foreach ($decoration_list as $row):
