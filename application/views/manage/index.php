@@ -100,6 +100,14 @@ $(function(){
 
 				<div class="accordion" fillSpace="sidebar" >
 					<div class="accordionHeader">
+						<h2><span>Folder</span>基础数据</h2>
+					</div>
+					<div class="accordionContent">
+						<ul class="tree">
+							<li><a href="<?php echo site_url('manage/list_feature');?>" target="navTab" rel="list_feature">房源特色</a></li>
+						</ul>
+					</div>
+					<div class="accordionHeader">
 						<h2><span>Folder</span>经纪人管理</h2>
 					</div>
 					<div class="accordionContent">

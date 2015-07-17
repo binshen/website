@@ -176,4 +176,36 @@ class Manage extends MY_Controller {
 			form_submit_json("300", "删除失败");
 		}
 	}
+	
+	public function list_feature() {
+		$data = $this->manage_model->list_feature();
+		$this->load->view('manage/list_feature.php', $data);
+	}
+	
+	public function add_feature() {
+		$this->load->view('manage/add_feature.php');
+	}
+	
+	public function save_feature() {
+		$ret = $this->manage_model->save_feature();
+		if($ret == 1){
+			form_submit_json("200", "操作成功", 'list_feature');
+		} else {
+			form_submit_json("300", "保存失败");
+		}
+	}
+	
+	public function edit_feature($id) {
+		$data = $this->manage_model->get_feature($id);
+		$this->load->view('manage/add_feature.php', $data);
+	}
+	
+	public function delete_feature($id) {
+		$ret = $this->manage_model->delete_feature($id);
+		if($ret == 1) {
+			form_submit_json("200", "操作成功", 'list_feature', '', '');
+		} else {
+			form_submit_json("300", "删除失败");
+		}
+	}
 }
