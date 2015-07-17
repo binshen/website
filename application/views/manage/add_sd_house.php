@@ -24,7 +24,10 @@
         		
         		<dl>
         			<dt>小区：</dt>
-        			<dd>鑫茂花园</dd>
+        			<dd><input name="xq_id" type="hidden" class="required" value="<?php if(!empty($xq_id)) echo $xq_id;?>" />
+        			<input type="text" name="xq_name" value="<?php if(!empty($xq_name)) echo $xq_name;?>" readonly>
+        			<a lookupgroup="" href="<?php echo site_url('manage/list_xq_dialog');?>" class="btnLook">查找带回</a>
+        			</dd>
         		</dl>
         		
         		<dl>

@@ -632,9 +632,9 @@ class Manage_model extends MY_Model
 	
 		if($this->input->post('id')){//修改
 			$this->db->where('id', $this->input->post('id'));
-			$this->db->update('admin', $data);
+			$this->db->update('house', $data);
 		} else {
-			$this->db->insert('admin', $data);
+			$this->db->insert('house', $data);
 		}
 		$this->db->trans_complete();//------结束事务
 		if ($this->db->trans_status() === FALSE) {
@@ -642,5 +642,14 @@ class Manage_model extends MY_Model
 		} else {
 			return 1;
 		}
+	}
+	
+	public function get_sd_house($id) {
+		return $this->db->get_where('house', array('id' => $id))->row_array();
+	}
+	
+	public function delete_sd_house($id) {
+		$this->db->where('id', $id);
+		return $this->db->delete('house');
 	}
 }
