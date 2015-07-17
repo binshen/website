@@ -158,7 +158,8 @@ class Manage extends MY_Controller {
 	}
 	
 	public function save_sd_house() {
-		
+		var_dump($_POST);
+		die;
 	}
 	
 	public function edit_sd_house($id) {
