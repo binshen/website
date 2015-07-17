@@ -46,33 +46,13 @@
         		</dl>
         		
         		<dl>
-        			<dt>总价：</dt>
-        			<dd><input name="total_price" type="text" class="required" value="<?php if(!empty($total_price)) echo $total_price;?>" /></dd>
-        		</dl>
-        		
-        		<dl>
-        			<dt>面积：</dt>
-        			<dd><input name="acreage" type="text" class="required" value="<?php if(!empty($acreage)) echo $acreage;?>" /></dd>
-        		</dl>
-        		
-        		<dl>
-        			<dt>所在楼层：</dt>
-        			<dd><input name="floor" type="text" class="required" value="<?php if(!empty($floor)) echo $floor;?>" /></dd>
-        		</dl>
-        		
-        		<dl>
-        			<dt>总楼层：</dt>
-        			<dd><input name="total_floor" type="text" class="required" value="<?php if(!empty($total_floor)) echo $total_floor;?>" /></dd>
-        		</dl>
-        		
-        		<dl>
-        			<dt>装修状况：</dt>
+        			<dt>房源类型：</dt>
         			<dd>
-        				<select name="region_id" class="required">
+        				<select name="style_id" class="required">
         					<?php          
-				                if (!empty($decoration_list)):
-				            	    foreach ($decoration_list as $row):
-				            	    	$selected = $row->id == $decoration_id ? "selected" : "";          
+				                if (!empty($style_list)):
+				            	    foreach ($style_list as $row):
+				            	    	$selected = $row->id == $style_id ? "selected" : "";          
 				            ?>
         								<option value="<?php echo $row->id; ?>" <?php echo $selected; ?>><?php echo $row->name; ?></option>
         					<?php 
@@ -82,16 +62,26 @@
         				</select>
         			</dd>
         		</dl>
+        		<dl>
+        			<dt></dt>
+        			<dd></dd>
+        		</dl>
         		
         		<dl>
-        			<dt>建造年代：</dt>
-        			<dd><input name="build_year" type="text" class="required" value="<?php if(!empty($build_year)) echo $build_year;?>" /></dd>
+        			<dt>总价：</dt>
+        			<dd><input name="total_price" type="text" class="required" value="<?php if(!empty($total_price)) echo $total_price;?>" /></dd>
         		</dl>
+        		
+        		<dl>
+        			<dt>面积：</dt>
+        			<dd><input name="acreage" type="text" class="required" value="<?php if(!empty($acreage)) echo $acreage;?>" /></dd>
+        		</dl>
+        		
         		
         		<dl>
         			<dt>朝向：</dt>
         			<dd>
-        				<select name="region_id" class="required">
+        				<select name="orientation_id" class="required">
         					<?php          
 				                if (!empty($orientation_list)):
 				            	    foreach ($orientation_list as $row):
@@ -116,6 +106,39 @@
         				<input name="toilet" type="text" class="required" value="<?php if(!empty($toilet)) echo $toilet;?>" style="width:26px"/>
         				<label style="width:12px;">卫</label>
         			</dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>装修状况：</dt>
+        			<dd>
+        				<select name="decoration_id" class="required">
+        					<?php          
+				                if (!empty($decoration_list)):
+				            	    foreach ($decoration_list as $row):
+				            	    	$selected = $row->id == $decoration_id ? "selected" : "";          
+				            ?>
+        								<option value="<?php echo $row->id; ?>" <?php echo $selected; ?>><?php echo $row->name; ?></option>
+        					<?php 
+				            		endforeach;
+				            	endif;
+				            ?>
+        				</select>
+        			</dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>建造年代：</dt>
+        			<dd><input name="build_year" type="text" class="required" value="<?php if(!empty($build_year)) echo $build_year;?>" /></dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>所在楼层：</dt>
+        			<dd><input name="floor" type="text" class="required" value="<?php if(!empty($floor)) echo $floor;?>" /></dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>总楼层：</dt>
+        			<dd><input name="total_floor" type="text" class="required" value="<?php if(!empty($total_floor)) echo $total_floor;?>" /></dd>
         		</dl>
         		
         		<dl>

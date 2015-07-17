@@ -526,6 +526,10 @@ class Manage_model extends MY_Model
 		return $this->db->delete('xiaoqu');
 	}
 	
+	public function get_style_list() {
+		return $this->db->get('house_style')->result();
+	}
+	
 	public function get_decoration_list() {
 		return $this->db->get('house_decoration')->result();
 	}
@@ -557,6 +561,7 @@ class Manage_model extends MY_Model
 		$this->db->join('house_style c', 'a.style_id = c.id', 'left');
 		$this->db->join('house_orientation d', 'a.region_id = d.id', 'left');
 		$this->db->join('house_decoration e', 'a.region_id = e.id', 'left');
+		$this->db->join('house_style f', 'a.style_id = f.id', 'left');
 		if($this->input->post('name')){
 			$this->db->like('a.name',$this->input->post('name'));
 			$data['rel_name'] = $this->input->post('name');
