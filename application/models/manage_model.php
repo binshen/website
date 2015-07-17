@@ -533,4 +533,40 @@ class Manage_model extends MY_Model
 	public function get_orientation_list() {
 		return $this->db->get('house_orientation')->result();
 	}
+	
+	public function list_sd_house(){
+		// 每页显示的记录条数，默认20条
+		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
+		$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
+	
+		//获得总记录数
+		$this->db->select('count(1) as num');
+		$this->db->from('house');
+		if($this->input->post('name'))
+			$this->db->like('name',$this->input->post('name'));
+	
+		$rs_total = $this->db->get()->row();
+		//总记录数
+		$data['countPage'] = $rs_total->num;
+	
+		$data['rel_name'] = null;
+		//list
+		$this->db->select('a.*, b.name AS region_name');
+		$this->db->from('house a');
+		$this->db->join('house_region b', 'a.region_id = b.id', 'left');
+		$this->db->join('house_style c', 'a.style_id = c.id', 'left');
+		$this->db->join('house_orientation d', 'a.region_id = d.id', 'left');
+		$this->db->join('house_decoration e', 'a.region_id = e.id', 'left');
+		if($this->input->post('name')){
+			$this->db->like('a.name',$this->input->post('name'));
+			$data['rel_name'] = $this->input->post('name');
+		}
+		
+		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
+		$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
+		$data['res_list'] = $this->db->get()->result();
+		$data['pageNum'] = $pageNum;
+		$data['numPerPage'] = $numPerPage;
+		return $data;
+	}
 }

@@ -7,8 +7,8 @@
     <form method="post" enctype="multipart/form-data" action="<?php echo site_url('manage/save_project');?>" class="pageForm required-validate" onsubmit="return iframeCallback(this, navTabAjaxDone);">
         <div class="pageFormContent" layoutH="55">
         <fieldset>
-        	<legend>基本信息</legend>
-        	    <dl>
+        	<legend class="topLegend">基本信息</legend>
+        	    <dl >
         			<dt>楼盘名称：</dt>
         			<dd>
         				<input type="hidden" name="id" value="<?php if(!empty($id)) echo $id;?>">
@@ -127,13 +127,6 @@
         			<dt>纬度：</dt>
         			<dd><input name="latitude" type="text" class="required" value="<?php if(!empty($latitude)) echo $latitude;?>" /></dd>
         		</dl>
-        		
-        		<!--  
-        		<dl>
-        			<dt>经纪人：</dt>
-        			<dd></dd>
-        		</dl>
-        		-->
         		
        	</fieldset>
        	
@@ -289,7 +282,7 @@ function callbacktime(time,is_back, type_id){
 	$.getJSON("<?php echo site_url('manage/get_pics')?>"+"/"+time + "/" + type_id + "?_=" +Math.random(),function(data){
 		html = '';
 		now_pic = [];
-		$("input[name='pic_short[]']").each(function(index){
+		$('input[name="pic_short'+type_id+'[]"]').each(function(index){
 			now_pic[index] = $(this).val();
 		});
 		$.each(data.img,function(index,item){
@@ -327,10 +320,10 @@ function set_bg(obj){
 function del_pic(obj,type_id){
 	id = $("[name='id']",navTab.getCurrentPanel()).val();
 	folder = $("[name='folder']",navTab.getCurrentPanel()).val();
-		current_pic = $(obj).parent().parent().find('input:[name="pic_short[]"]').val();
+		current_pic = $(obj).parent().parent().find('input:[name="pic_short'+type_id+'[]"]').val();
 		$.getJSON("<?php echo site_url('manage/del_pic')?>"+"/"+ folder + "/" + type_id + "/" + current_pic + "/" + id,function(data){
 			if(data.flag == 1){
-				$("#append"+type_id,navTab.getCurrentPanel()).find('input[name="pic_short[]"]').each(function(){
+				$("#append"+type_id,navTab.getCurrentPanel()).find('input[name="pic_short'+type_id+'[]"]').each(function(){
 					if($(this).val() == data.pic){
 						$(this).parent().remove();
 					}

@@ -144,7 +144,8 @@ class Manage extends MY_Controller {
 	 * 二手房管理
 	 */
 	public function list_sd_house() {
-		$this->load->view('manage/list_sd_house.php');
+		$data = $this->manage_model->list_sd_house();
+		$this->load->view('manage/list_sd_house.php', $data);
 	}
 	
 	public function add_sd_house() {
