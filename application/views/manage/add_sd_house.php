@@ -109,9 +109,12 @@
         		<dl>
         			<dt>户型：</dt>
         			<dd>
-        				<input name="room" type="text" class="required" value="<?php if(!empty($room)) echo $room;?>" style="width:30px"/>室
-        				<input name="lounge" type="text" class="required" value="<?php if(!empty($lounge)) echo $lounge;?>" style="width:30px"/>厅
-        				<input name="toilet" type="text" class="required" value="<?php if(!empty($toilet)) echo $toilet;?>" style="width:30px"/>卫
+        				<input name="room" type="text" class="required" value="<?php if(!empty($room)) echo $room;?>" style="width:26px"/>
+        				<label style="width:12px;">室</label>
+        				<input name="lounge" type="text" class="required" value="<?php if(!empty($lounge)) echo $lounge;?>" style="width:26px"/>
+        				<label style="width:12px;">厅</label>
+        				<input name="toilet" type="text" class="required" value="<?php if(!empty($toilet)) echo $toilet;?>" style="width:26px"/>
+        				<label style="width:12px;">卫</label>
         			</dd>
         		</dl>
         		
