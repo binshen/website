@@ -87,7 +87,8 @@
        	
 		<fieldset>
     	    <legend>特色标签</legend>
-    	    <dl class="nowrap" id="feature_app">
+    	    <dl class="nowrap" id="feature_app" style="height:35px;">
+    	    
     		</dl>
     		<dl class="nowrap">
     			<div class="tabs" currentIndex="1" eventType="click">
@@ -107,13 +108,11 @@
 							</ul>
 						</div>
 					</div>
-					<div class="tabsContent" style="height:150px;">
+					<div class="tabsContent" style="height:100px;">
 					<?php foreach($feature as $k=>$v):?>
 						<div>
 						<?php foreach($v as $kk=>$vv):?>
-						<a href="javascript:;" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" onclick="select_feature(this);">
-						<span class="ui-button-text"><?php echo $vv;?></span>
-						</a>
+						<a href="javascript:;" class="button feature" onclick="select_feature(this);" ><span><?php echo $vv;?></span></a>
 						<?php endforeach;?>
 						</div>
 					<?php endforeach;?>
@@ -368,6 +367,27 @@ function del_pic(obj,type_id){
 }
 
 function select_feature(obj){
-	
+	count = $('.feature_selected').length;
+	if(count >= 6){
+		alertMsg.warn("最多上传6个特色");
+		return false;
+	}
+	btn = '<a href="javascript:;" class="button feature_selected" onclick="del_feature(this);" ><input type="hidden" name="feature[]" value="'+$(obj).children().html()+'">'+$(obj).html()+'</a>';
+	$(obj).removeClass('button');
+	$(obj).addClass('buttonDisabled');
+	$(obj).removeAttr("onclick");
+	$('#feature_app').append(btn);
+}
+
+function del_feature(obj){
+	html = $(obj).find('span').html();
+	$('.feature').each(function(){
+		if($(this).find('span').html() == html){
+			$(obj).remove();
+			$(this).removeClass('buttonDisabled');
+			$(this).addClass('button');
+			$(this).attr("onclick",'select_feature(this)');
+		}
+	});
 }
 </script>
