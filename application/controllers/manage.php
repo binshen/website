@@ -336,4 +336,36 @@ class Manage extends MY_Controller {
 			form_submit_json("300", "删除失败");
 		}
 	}
+	
+	public function list_xiaoqu() {
+		$data = $this->manage_model->list_xiaoqu();
+		$this->load->view('manage/list_xiaoqu.php', $data);
+	}
+	
+	public function add_xiaoqu() {
+		$this->load->view('manage/add_xiaoqu.php');
+	}
+	
+	public function save_xiaoqu() {
+		$ret = $this->manage_model->save_xiaoqu();
+		if($ret == 1){
+			form_submit_json("200", "操作成功", 'list_xiaoqu');
+		} else {
+			form_submit_json("300", "保存失败");
+		}
+	}
+	
+	public function edit_xiaoqu($id) {
+		$data = $this->manage_model->get_xiaoqu($id);
+		$this->load->view('manage/add_xiaoqu.php', $data);
+	}
+	
+	public function delete_xiaoqu($id) {
+		$ret = $this->manage_model->delete_xiaoqu($id);
+		if($ret == 1) {
+			form_submit_json("200", "操作成功", 'list_xiaoqu', '', '');
+		} else {
+			form_submit_json("300", "删除失败");
+		}
+	}
 }
