@@ -4,10 +4,10 @@
 .file{ position:absolute; top:0; right:80px; height:24px; filter:alpha(opacity:0);opacity: 0;width:300px }
 </style>
 <div class="pageContent">
-    <form method="post" enctype="multipart/form-data" action="<?php echo site_url('manage/save_house_feature');?>" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+    <form method="post" enctype="multipart/form-data" action="<?php echo site_url('manage/save_house_region');?>" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
         <div class="pageFormContent" layoutH="55">
         	<fieldset>
-        	<legend>房源特色</legend>
+        	<legend>所在区域</legend>
         	    <dl>
         			<dt>名称：</dt>
         			<dd>

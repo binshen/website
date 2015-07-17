@@ -240,4 +240,36 @@ class Manage extends MY_Controller {
 			form_submit_json("300", "删除失败");
 		}
 	}
+	
+	public function list_house_region() {
+		$data = $this->manage_model->list_house_region();
+		$this->load->view('manage/list_house_region.php', $data);
+	}
+	
+	public function add_house_region() {
+		$this->load->view('manage/add_house_region.php');
+	}
+	
+	public function save_house_region() {
+		$ret = $this->manage_model->save_house_region();
+		if($ret == 1){
+			form_submit_json("200", "操作成功", 'list_house_region');
+		} else {
+			form_submit_json("300", "保存失败");
+		}
+	}
+	
+	public function edit_house_region($id) {
+		$data = $this->manage_model->get_house_region($id);
+		$this->load->view('manage/add_house_region.php', $data);
+	}
+	
+	public function delete_house_region($id) {
+		$ret = $this->manage_model->delete_house_region($id);
+		if($ret == 1) {
+			form_submit_json("200", "操作成功", 'list_house_region', '', '');
+		} else {
+			form_submit_json("300", "删除失败");
+		}
+	}
 }

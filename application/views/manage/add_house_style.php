@@ -7,9 +7,9 @@
     <form method="post" enctype="multipart/form-data" action="<?php echo site_url('manage/save_house_style');?>" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
         <div class="pageFormContent" layoutH="55">
         	<fieldset>
-        	<legend>房源特色信息</legend>
+        	<legend>楼盘类型</legend>
         	    <dl>
-        			<dt>特色名：</dt>
+        			<dt>名称：</dt>
         			<dd>
         				<input type="hidden" name="id" value="<?php if(!empty($id)) echo $id;?>">
         				<input name="name" type="text" class="required" value="<?php if(!empty($name)) echo $name;?>" />
