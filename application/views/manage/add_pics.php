@@ -74,7 +74,12 @@ function callBackToNavtab(){
 	if ($('#uploader').plupload('getFiles').length > 0) {
 		var time = $("#time",$.pdialog.getCurrent()).val();
 		$.pdialog.close('add_pics');
+		<?php if($flag):?>
+		callbacktime_huxing(time,1,<?php echo $type_id?>);//户型
+		<?php else: ?> 
 		callbacktime(time,1,<?php echo $type_id?>);
+		<?php endif;?>
+		
 	} else {
 		alertMsg.warn("请至少选择一个图片上传");
 	}

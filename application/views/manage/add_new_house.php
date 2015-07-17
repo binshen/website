@@ -14,6 +14,14 @@
         		</dl>
         		
         		<dl>
+        			<dt>小区：</dt>
+        			<dd><input name="xq_id" type="hidden" class="required" value="<?php if(!empty($xq_id)) echo $xq_id;?>" />
+        			<input type="text" name="xq_name" value="<?php if(!empty($xq_name)) echo $xq_name;?>" readonly>
+        			<a lookupgroup="" href="<?php echo site_url('manage/list_xq_dialog');?>" class="btnLook">查找带回</a>
+        			</dd>
+        		</dl>
+        		
+        		<dl>
         			<dt>优惠折扣：</dt>
         			<dd><input name="discount" type="text" class="required" value="<?php if(!empty($discount)) echo $discount;?>" /></dd>
         		</dl>
@@ -188,6 +196,18 @@
     		
     		</dl>
     	</fieldset>
+    	
+        <fieldset>
+    	    <legend>户型图</legend>
+    	    <dl class="nowrap">
+    	    	<dt>
+    	    		<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.date('YmdHis').'/6/1')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
+    	    	</dt>
+    		</dl>
+    		<dl class="nowrap" id="append6">
+    		
+    		</dl>
+    	</fieldset>
         
         
         	
@@ -197,37 +217,6 @@
 	    			<dd><textarea class="editor" name="remark" rows="22" cols="100" upImgExt="jpg,jpeg,gif,png"  tools="simple"><?php if(!empty($remark)) echo $remark;?></textarea></dd>
 	    		</dl>
     		</fieldset>
-    		<fieldset>
-				<table class="list nowrap itemDetail" addButton="添加户型" width="100%" >
-					<thead>
-						<tr>
-							<th type="text" width="80"name="huxing[]"  fieldClass="required" size="30">户型</th>
-							<th type="file_class" name="userfile#index#" size="10" >图片</th>
-							<th type="del" width="30">操作</th>
-						</tr>
-					</thead>
-					<tbody class="tbody" id="file_list">
-						<?php if(!empty($list)): 
-								foreach($list as $k=>$v):
-						?>
-						<tr class="unitBox" id="<?php echo "olda".$v->id;?>">
-							<td><input type="text" class="required" size='30' name="huxing[]" value="<?php echo $v->huxing?>"></td>
-							<td>
-								<input type="hidden" name="old_img_a[]" value="<?php echo $v->pic;?>" />
-			    				<input type='text' class='txt' name="view_pic" path="<?php echo base_url().'uploadfiles/huxing/'.$v->pic;?>" value="<?php echo $v->pic;?>" readonly/>  
-						 		<input type='button' class='btn' value='浏览...' onclick="fileBtnClick(this);" />
-								<input type='file' name='<?php echo 'userfile'.$k;?>' class='file' id='fileField'  onchange="change_pic(this);" />
-							</td>
-							<td><a class="btnDel" href="javascript:$('#olda<?php echo $v->id;?>').remove();void(0);"><span>删除</span></a></td>
-						</tr>
-						<?php 
-								endforeach;
-							endif;
-								
-						?>
-					</tbody>
-				</table>
-			</fieldset>
         </div>
         <div class="formBar">
     		<ul>
@@ -314,7 +303,7 @@ function callbacktime(time,is_back, type_id){
 	$.getJSON("<?php echo site_url('manage/get_pics')?>"+"/"+time + "/" + type_id + "?_=" +Math.random(),function(data){
 		html = '';
 		now_pic = [];
-		$("input[name='pic_short[]']").each(function(index){
+		$('input[name="pic_short'+type_id+'[]"]').each(function(index){
 			now_pic[index] = $(this).val();
 		});
 		$.each(data.img,function(index,item){
@@ -335,8 +324,40 @@ function callbacktime(time,is_back, type_id){
 	var isChrome = navigator.userAgent.toLowerCase().match(/chrome/) != null;
 	if (isChrome)
 		event.returnValue=false;
-	
 }
+
+//户型
+function callbacktime_huxing(time,is_back, type_id){
+	id = $("[name='id']",navTab.getCurrentPanel()).val();
+	if (id == ''){
+		$("#folder",navTab.getCurrentPanel()).val(time);		
+	}
+	$.getJSON("<?php echo site_url('manage/get_pics')?>"+"/"+time + "/" + type_id + "?_=" +Math.random(),function(data){
+		html = '';
+		$('input[name="pic_short'+type_id+'[]"]').each(function(index){
+			now_pic[index] = $(this).val();
+		});
+		console.log(now_pic);
+		$.each(data.img,function(index,item){
+			path = "<?php echo base_url().'uploadfiles/pics/';?>"+data.time + "/" + type_id +"/"+item;
+			if($.inArray(item, now_pic) < 0){
+				html+='<dt style="width: 250px; position:relative; margin-top:20px">';
+				html+='<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; ">';
+				html+='<a href="javascript:void(0);" onclick="del_pic(this,'+type_id+');" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this);" style="text-decoration:none; color:#fff">设为封面</a></div>';
+				html+='<div class="fengmian"></div>';
+				html+='<img height="118" width="200" src="'+path +'" style="border:1px solid #666;"><input type="text" name="room[]" size="4" required>室<input type="text" name="lounge[]" size="4" required>厅<input type="text" name="toilet[]" size="4" required>卫';
+				html+='<input type="hidden" name="pic_short'+type_id+'[]" value="'+item+'"></dt>';
+			}
+		});
+		$("#append"+type_id,navTab.getCurrentPanel()).append(html); 
+	});
+
+	//兼容chrome
+	var isChrome = navigator.userAgent.toLowerCase().match(/chrome/) != null;
+	if (isChrome)
+		event.returnValue=false;
+}
+
 function set_bg(obj){
 	//将所有是否为封面都变成0，将封面图片删除
 	$(obj).parent().parent().parent().find('input:[name="is_bg[]"]').each(function(){
@@ -352,10 +373,10 @@ function set_bg(obj){
 function del_pic(obj,type_id){
 	id = $("[name='id']",navTab.getCurrentPanel()).val();
 	folder = $("[name='folder']",navTab.getCurrentPanel()).val();
-		current_pic = $(obj).parent().parent().find('input:[name="pic_short[]"]').val();
+		current_pic = $(obj).parent().parent().find('input:[name="pic_short'+type_id+'[]"]').val();
 		$.getJSON("<?php echo site_url('manage/del_pic')?>"+"/"+ folder + "/" + type_id + "/" + current_pic + "/" + id,function(data){
 			if(data.flag == 1){
-				$("#append"+type_id,navTab.getCurrentPanel()).find('input[name="pic_short[]"]').each(function(){
+				$("#append"+type_id,navTab.getCurrentPanel()).find('input[name="pic_short'+type_id+'[]"]').each(function(){
 					if($(this).val() == data.pic){
 						$(this).parent().remove();
 					}
