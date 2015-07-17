@@ -487,7 +487,10 @@ class Manage_model extends MY_Model
 	
 	public function save_xiaoqu() {
 		$data = array(
-				'name' => $this->input->post('name')
+			'name' => $this->input->post('name'),
+			'short' => $this->input->post('short'),
+			'jianpin' => $this->input->post('jianpin'),
+			'address' => $this->input->post('address')
 		);
 		$this->db->trans_start();//--------开始事务
 	

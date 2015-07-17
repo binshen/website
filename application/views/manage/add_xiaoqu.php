@@ -4,7 +4,7 @@
 .file{ position:absolute; top:0; right:80px; height:24px; filter:alpha(opacity:0);opacity: 0;width:300px }
 </style>
 <div class="pageContent">
-    <form method="post" enctype="multipart/form-data" action="<?php echo site_url('manage/save_broker');?>" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+    <form method="post" enctype="multipart/form-data" action="<?php echo site_url('manage/save_xiaoqu');?>" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
         <div class="pageFormContent" layoutH="55">
         	<fieldset>
         	<legend>小区信息</legend>
@@ -18,7 +18,7 @@
         		<dl>
         			<dt>首字母：</dt>
         			<dd>
-        				<input name="tel" type="text" class="required" value="<?php if(!empty($tel)) echo $tel;?>" />
+        				<input name="short" type="text" class="required" value="<?php if(!empty($short)) echo $short;?>" />
         			</dd>
         		</dl>
         		<dl>
