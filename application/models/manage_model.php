@@ -37,7 +37,7 @@ class Manage_model extends MY_Model
         $this->db->where('passwd', sha1($passwd));
         $rs = $this->db->get();
         if ($rs->num_rows() > 0) {
-        	$user_info['user'] = $rs;
+        	$user_info['user_id'] = $rs['id'];
             $user_info['username'] = $this->input->post('username');
             $this->session->set_userdata($user_info);
             return true;
@@ -621,7 +621,7 @@ class Manage_model extends MY_Model
 			'total_floor' => $this->input->post('total_floor'),
 			'decoration_id' => $this->input->post('decoration_id'),
 			'build_year' => $this->input->post('build_year'),
-			'broker_id' => 1,//$this->session->userdata('user')['id'],
+			'broker_id' => $this->session->userdata('user_id'),
 			'description' => $this->input->post('description'),
 			'house_pic' => $this->input->post('house_pic'),
 			'longitude' => $this->input->post('longitude'),
