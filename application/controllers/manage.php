@@ -134,6 +134,13 @@ class Manage extends MY_Controller {
 	 *
 	 * ***************************************shenbin*******************************************************************
 	 */
+	public function list_sd_house() {
+		$this->load->view('manage/list_sd_house.php');
+	}
+	
+	/**
+	 * 经纪人管理
+	 */
 	public function list_broker() {
 		$data = $this->manage_model->list_broker();
 		$this->load->view('manage/list_broker.php', $data);
@@ -177,6 +184,9 @@ class Manage extends MY_Controller {
 		}
 	}
 	
+	/**
+	 * 房源特色
+	 */
 	public function list_house_feature() {
 		$data = $this->manage_model->list_house_feature();
 		$this->load->view('manage/list_house_feature.php', $data);
@@ -209,6 +219,9 @@ class Manage extends MY_Controller {
 		}
 	}
 	
+	/**
+	 * 楼盘类型
+	 */
 	public function list_house_style() {
 		$data = $this->manage_model->list_house_style();
 		$this->load->view('manage/list_house_style.php', $data);
@@ -241,6 +254,9 @@ class Manage extends MY_Controller {
 		}
 	}
 	
+	/**
+	 * 所在区域
+	 */
 	public function list_house_region() {
 		$data = $this->manage_model->list_house_region();
 		$this->load->view('manage/list_house_region.php', $data);
@@ -273,6 +289,9 @@ class Manage extends MY_Controller {
 		}
 	}
 	
+	/**
+	 * 楼盘朝向
+	 */
 	public function list_house_orientation() {
 		$data = $this->manage_model->list_house_orientation();
 		$this->load->view('manage/list_house_orientation.php', $data);
@@ -305,6 +324,9 @@ class Manage extends MY_Controller {
 		}
 	}
 	
+	/**
+	 * 装修状况
+	 */
 	public function list_house_decoration() {
 		$data = $this->manage_model->list_house_decoration();
 		$this->load->view('manage/list_house_decoration.php', $data);
@@ -337,6 +359,9 @@ class Manage extends MY_Controller {
 		}
 	}
 	
+	/**
+	 * 小区信息
+	 */
 	public function list_xiaoqu() {
 		$data = $this->manage_model->list_xiaoqu();
 		$this->load->view('manage/list_xiaoqu.php', $data);
