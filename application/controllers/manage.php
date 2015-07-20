@@ -49,7 +49,8 @@ class Manage extends MY_Controller {
 	 * ***************************************yaobin*******************************************************************
 	 */
 	public function list_new_house(){
-		$this->load->view('manage/list_new_house.php');
+		$data = $this->manage_model->list_new_house();
+		$this->load->view('manage/list_new_house.php',$data);
 	}
 	
 	public function add_new_house(){
@@ -146,8 +147,24 @@ class Manage extends MY_Controller {
 	
 	public function save_new_house(){
 		$rs = $this->manage_model->save_new_house();
-		
-		//var_dump($this->input->post());die;
+		if($rs == 1){
+			form_submit_json("200", "操作成功", 'list_new_house');
+		} else {
+			form_submit_json("300", "保存失败");
+		}
+	}
+	
+	public function get_new_house($id){
+		$data['main'] = $this->db->select()->from('house')->where('id',$id)->get()->row_array();
+		$data['pics'] = $this->db->select()->from('house_img')->where('h_id',$id)->get()->result_array();
+		$data['hx_pics'] = $this->db->select()->from('house_hold')->where('h_id',$id)->get()->result_array();
+		return $data;
+	}
+	
+	public function edit_new_house($id) {
+		$data = $this->manage_model->get_new_house($id);
+		$data['feature'] = $this->manage_model->get_feature();
+		$this->load->view('manage/add_new_house.php',$data);
 	}
 	
 

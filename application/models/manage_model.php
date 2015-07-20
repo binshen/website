@@ -37,7 +37,8 @@ class Manage_model extends MY_Model
         $this->db->where('passwd', sha1($passwd));
         $rs = $this->db->get();
         if ($rs->num_rows() > 0) {
-        	$user_info['user_id'] = $rs->id;
+        	$res = $rs->row();
+        	$user_info['user_id'] = $res->id;
             $user_info['username'] = $this->input->post('username');
             $this->session->set_userdata($user_info);
             return true;
@@ -71,24 +72,31 @@ class Manage_model extends MY_Model
 		// 每页显示的记录条数，默认20条
 		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
 		$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
-		
+	
 		//获得总记录数
 		$this->db->select('count(1) as num');
-		$this->db->from($this->tables[4]);
-		if($this->input->post('title'))
-			$this->db->like('title',$this->input->post('title'));
-		
+		$this->db->from('house');
+		$this->db->where('type_id','1');
+		if($this->input->post('name'))
+			$this->db->like('name',$this->input->post('name'));
+	
 		$rs_total = $this->db->get()->row();
 		//总记录数
 		$data['countPage'] = $rs_total->num;
-		
-		$data['title'] = null;
+	
+		$data['name'] = null;
 		//list
-		$this->db->select('*');
-		$this->db->from("{$this->tables[4]}");
-		if($this->input->post('title')){
-			$this->db->like('title',$this->input->post('title'));
-			$data['title'] = $this->input->post('title');
+		$this->db->select('a.*, b.name AS region_name, c.name AS style_name, d.name AS orientation_name, e.name AS decoration_name, f.name AS xiaoqu_name');
+		$this->db->from('house a');
+		$this->db->join('house_region b', 'a.region_id = b.id', 'left');
+		$this->db->join('house_style c', 'a.style_id = c.id', 'left');
+		$this->db->join('house_orientation d', 'a.region_id = d.id', 'left');
+		$this->db->join('house_decoration e', 'a.region_id = e.id', 'left');
+		$this->db->join('xiaoqu f', 'a.xq_id = f.id', 'left');
+		$this->db->where('type_id','1');
+		if($this->input->post('name')){
+			$this->db->like('a.name',$this->input->post('name'));
+			$data['name'] = $this->input->post('name');
 		}
 		
 		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
@@ -98,6 +106,8 @@ class Manage_model extends MY_Model
 		$data['numPerPage'] = $numPerPage;
 		return $data;
 	}    
+	
+	
     
 	
 	//ajax删除图片
@@ -157,12 +167,6 @@ class Manage_model extends MY_Model
 	}
 	
 	public function save_new_house(){
-		$pic_short1 = $this->input->post('pic_short1');
-		$pic_short2 = $this->input->post('pic_short2');
-		$pic_short3 = $this->input->post('pic_short3');
-		$pic_short4 = $this->input->post('pic_short4');
-		$pic_short5 = $this->input->post('pic_short5');
-		$pic_short6 = $this->input->post('pic_short6');
 		$data = array(
 			'name'=>$this->input->post('name'),				
 			'xq_id'=>$this->input->post('xq_id'),				
@@ -180,12 +184,68 @@ class Manage_model extends MY_Model
 			'estate_type'=>$this->input->post('estate_type'),
 			'plot_rate'=>$this->input->post('plot_rate'),
 			'greening_rate'=>$this->input->post('greening_rate'),
-			'feature'=>''			
+			'feature'=>'',
+			'type_id'=>1,
+			'folder'=>$this->input->post('folder'),
+			'bg_pic'=>$this->input->post('is_bg'),
+			'description'=>$this->input->post('description')
 		);
 		foreach($this->input->post('feature') as $v){
 			$data['feature'] = $data['feature'].$v.'|';
 		}
-		var_dump($data);die;
+		
+		$this->db->trans_start();//--------开始事务
+		
+		$this->db->insert('house',$data);
+		$h_id = $this->db->insert_id();
+		$data_line = array();
+		$data_hx = array();
+		
+		for($i=1;$i<=5;$i++){
+			if($this->input->post('pic_short'.$i)){
+				foreach($this->input->post('pic_short'.$i) as $k=>$v){
+					$data_line[] = array(
+						'h_id'=>$h_id,
+						'type_id'=>$i,
+						'pic'=>$this->str_replace('_thumb', '', $v),
+						'pic_short'=>$v,
+						'is_bg'=>1
+					);
+				}
+			}
+		}
+		$this->db->insert_batch('house_img', $data_line);
+		
+		$room = $this->input->post('room');
+		$lounge = $this->input->post('lounge');
+		$toilet = $this->input->post('toilet');
+		
+		foreach($this->input->post('pic_short6') as $k=>$v){
+			$data_hx[] = array(
+					'h_id'=>$h_id,
+					'pic'=>str_replace('_thumb', '', $v),
+					'pic_short'=>$v,
+					'room'=> $room[$k],
+					'lounge'=> $lounge[$k],
+					'toilet'=> $toilet[$k],
+			);
+		}
+		$this->db->insert_batch('house_hold', $data_hx);
+		
+		
+		$this->db->trans_complete();//------结束事务
+		if ($this->db->trans_status() === FALSE) {
+			return -1;
+		} else {
+			return 1;
+		}
+	}
+	
+	public function get_new_house($id){
+		$data = $this->db->select('a.*,b.name xq_name')->from('house a')->join('xiaoqu b','a.xq_id = b.id','left')->where('a.id',$id)->get()->row_array();
+		$data['pics'] = $this->db->select()->from('house_img')->where('h_id',$id)->get()->result();
+		$data['hx_pics'] = $this->db->select()->from('house_hold')->where('h_id',$id)->get()->result();
+		return $data;
 	}
     
 

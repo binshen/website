@@ -10,7 +10,11 @@
         	<legend>基本信息</legend>
         	    <dl>
         			<dt>楼盘名称：</dt>
-        			<dd><input type="hidden" name="id" value="<?php if(!empty($id)) echo $id;?>"><input name="name" type="text" class="required" value="<?php if(!empty($name)) echo $name;?>" /></dd>
+        			<dd>
+        			<input type="hidden" name="id" value="<?php if(!empty($id)) echo $id;?>">
+        			<input type="hidden" size="22" name="is_bg" value="<?php if(!empty($bg_pic)) echo $bg_pic;?>">
+        			<input name="name" type="text" class="required" value="<?php if(!empty($name)) echo $name;?>" />
+        			</dd>
         		</dl>
         		
         		<dl>
@@ -141,7 +145,22 @@
     	    	</dt>
     		</dl>
     		<dl class="nowrap" id="append1">
+    		<?php foreach($pics as $k=>$v):?>
+    		<?php if($v->type_id == '1'):?>
     		
+    		<dt style="width: 250px; position:relative; margin-top:20px">
+			<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; "><a href="javascript:void(0);" onclick="del_pic(this);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this,<?php echo $v->type_id?>);" style="text-decoration:none; color:#fff">设为封面</a></div>
+			    <div class="fengmian">
+			    <?php if($v->is_bg == '1'):?>
+			    <img src="<?php echo base_url().'images/fengmian.png';?>" style=" position:absolute; top:0px;">
+			    <?php endif;?>
+			    </div>
+				<img height="118" width="200" src="<?php echo base_url().'uploadfiles/pics/'.$folder.'/'.$v->type_id.'/'.$v->pic_short;?>" style="border:1px solid #666;">
+				<input type="hidden" size="22" name="pic_short1[]" class="pic_short" value="<?php echo $v->pic_short;?>">
+			</dt>
+    		
+    		<?php endif;?>
+    		<?php endforeach;?>
     		</dl>
     	</fieldset>
     	
@@ -149,12 +168,26 @@
     	    <legend>规划图</legend>
     	    <dl class="nowrap">
     	    	<dt>
-    	    		<input type="hidden" name="folder" value="<?php if(!empty($folder)) echo $folder;?>" id="folder">
     	    		<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.date('YmdHis').'/2')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
     	    	</dt>
     		</dl>
     		<dl class="nowrap" id="append2">
+    		<?php foreach($pics as $k=>$v):?>
+    		<?php if($v->type_id == '2'):?>
     		
+    		<dt style="width: 250px; position:relative; margin-top:20px">
+			<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; "><a href="javascript:void(0);" onclick="del_pic(this);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this,<?php echo $v->type_id?>);" style="text-decoration:none; color:#fff">设为封面</a></div>
+			    <div class="fengmian">
+			    <?php if($v->is_bg == '1'):?>
+			    <img src="<?php echo base_url().'images/fengmian.png';?>" style=" position:absolute; top:0px;">
+			    <?php endif;?>
+			    </div>
+				<img height="118" width="200" src="<?php echo base_url().'uploadfiles/pics/'.$folder.'/'.$v->type_id.'/'.$v->pic_short;?>" style="border:1px solid #666;">
+				<input type="hidden" size="22" name="pic_short2[]" class="pic_short" value="<?php echo $v->pic_short;?>">
+			</dt>
+    		
+    		<?php endif;?>
+    		<?php endforeach;?>
     		</dl>
     	</fieldset>
     	
@@ -162,12 +195,26 @@
     	    <legend>样板间</legend>
     	    <dl class="nowrap">
     	    	<dt>
-    	    		<input type="hidden" name="folder" value="<?php if(!empty($folder)) echo $folder;?>" id="folder">
     	    		<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.date('YmdHis').'/3')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
     	    	</dt>
     		</dl>
     		<dl class="nowrap" id="append3">
+    		<?php foreach($pics as $k=>$v):?>
+    		<?php if($v->type_id == '3'):?>
     		
+    		<dt style="width: 250px; position:relative; margin-top:20px">
+			<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; "><a href="javascript:void(0);" onclick="del_pic(this);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this,<?php echo $v->type_id?>);" style="text-decoration:none; color:#fff">设为封面</a></div>
+			    <div class="fengmian">
+			    <?php if($v->is_bg == '1'):?>
+			    <img src="<?php echo base_url().'images/fengmian.png';?>" style=" position:absolute; top:0px;">
+			    <?php endif;?>
+			    </div>
+				<img height="118" width="200" src="<?php echo base_url().'uploadfiles/pics/'.$folder.'/'.$v->type_id.'/'.$v->pic_short;?>" style="border:1px solid #666;">
+				<input type="hidden" size="22" name="pic_short3[]" class="pic_short" value="<?php echo $v->pic_short;?>">
+			</dt>
+    		
+    		<?php endif;?>
+    		<?php endforeach;?>
     		</dl>
     	</fieldset>
     	
@@ -175,12 +222,26 @@
     	    <legend>实景图</legend>
     	    <dl class="nowrap">
     	    	<dt>
-    	    		<input type="hidden" name="folder" value="<?php if(!empty($folder)) echo $folder;?>" id="folder">
     	    		<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.date('YmdHis').'/4')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
     	    	</dt>
     		</dl>
     		<dl class="nowrap" id="append4">
+    		<?php foreach($pics as $k=>$v):?>
+    		<?php if($v->type_id == '4'):?>
     		
+    		<dt style="width: 250px; position:relative; margin-top:20px">
+			<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; "><a href="javascript:void(0);" onclick="del_pic(this);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this,<?php echo $v->type_id?>);" style="text-decoration:none; color:#fff">设为封面</a></div>
+			    <div class="fengmian">
+			    <?php if($v->is_bg == '1'):?>
+			    <img src="<?php echo base_url().'images/fengmian.png';?>" style=" position:absolute; top:0px;">
+			    <?php endif;?>
+			    </div>
+				<img height="118" width="200" src="<?php echo base_url().'uploadfiles/pics/'.$folder.'/'.$v->type_id.'/'.$v->pic_short;?>" style="border:1px solid #666;">
+				<input type="hidden" size="22" name="pic_short4[]" class="pic_short" value="<?php echo $v->pic_short;?>">
+			</dt>
+    		
+    		<?php endif;?>
+    		<?php endforeach;?>
     		</dl>
     	</fieldset>
     	
@@ -188,12 +249,26 @@
     	    <legend>配套图</legend>
     	    <dl class="nowrap">
     	    	<dt>
-    	    		<input type="hidden" name="folder" value="<?php if(!empty($folder)) echo $folder;?>" id="folder">
     	    		<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.date('YmdHis').'/5')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
     	    	</dt>
     		</dl>
     		<dl class="nowrap" id="append5">
+    		<?php foreach($pics as $k=>$v):?>
+    		<?php if($v->type_id == '5'):?>
     		
+    		<dt style="width: 250px; position:relative; margin-top:20px">
+			<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; "><a href="javascript:void(0);" onclick="del_pic(this);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this,<?php echo $v->type_id?>);" style="text-decoration:none; color:#fff">设为封面</a></div>
+			    <div class="fengmian">
+			    <?php if($v->is_bg == '1'):?>
+			    <img src="<?php echo base_url().'images/fengmian.png';?>" style=" position:absolute; top:0px;">
+			    <?php endif;?>
+			    </div>
+				<img height="118" width="200" src="<?php echo base_url().'uploadfiles/pics/'.$folder.'/'.$v->type_id.'/'.$v->pic_short;?>" style="border:1px solid #666;">
+				<input type="hidden" size="22" name="pic_short5[]" class="pic_short" value="<?php echo $v->pic_short;?>">
+			</dt>
+    		
+    		<?php endif;?>
+    		<?php endforeach;?>
     		</dl>
     	</fieldset>
     	
@@ -205,7 +280,22 @@
     	    	</dt>
     		</dl>
     		<dl class="nowrap" id="append6">
+    		<?php foreach($pics as $k=>$v):?>
+    		<?php if($v->type_id == '6'):?>
     		
+    		<dt style="width: 250px; position:relative; margin-top:20px">
+			<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; "><a href="javascript:void(0);" onclick="del_pic(this);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+			    <div class="fengmian">
+			    <?php if($v->is_bg == '1'):?>
+			    <img src="<?php echo base_url().'images/fengmian.png';?>" style=" position:absolute; top:0px;">
+			    <?php endif;?>
+			    </div>
+				<img height="118" width="200" src="<?php echo base_url().'uploadfiles/pics/'.$folder.'/'.$v->type_id.'/'.$v->pic_short;?>" style="border:1px solid #666;">
+				<input type="hidden" size="22" name="pic_short6[]" class="pic_short" value="<?php echo $v->pic_short;?>">
+			</dt>
+    		
+    		<?php endif;?>
+    		<?php endforeach;?>
     		</dl>
     	</fieldset>
         
@@ -214,7 +304,7 @@
 			<fieldset>
 	    	    <legend>楼盘详情</legend>
 	    	    <dl class="nowrap">
-	    			<dd><textarea class="editor" name="remark" rows="22" cols="100" upImgExt="jpg,jpeg,gif,png"  tools="simple"><?php if(!empty($remark)) echo $remark;?></textarea></dd>
+	    			<dd><textarea class="editor" name="description" rows="22" cols="100" upImgExt="jpg,jpeg,gif,png"  tools="simple"><?php if(!empty($description)) echo $description;?></textarea></dd>
 	    		</dl>
     		</fieldset>
         </div>
@@ -288,10 +378,10 @@ function callbacktime(time,is_back, type_id){
 			if($.inArray(item, now_pic) < 0){
 				html+='<dt style="width: 250px; position:relative; margin-top:20px">';
 				html+='<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; ">';
-				html+='<a href="javascript:void(0);" onclick="del_pic(this,'+type_id+');" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this);" style="text-decoration:none; color:#fff">设为封面</a></div>';
+				html+='<a href="javascript:void(0);" onclick="del_pic(this,'+type_id+');" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this,'+type_id+');" style="text-decoration:none; color:#fff">设为封面</a></div>';
 				html+='<div class="fengmian"></div>';
 				html+='<img height="118" width="200" src="'+path +'" style="border:1px solid #666;">';
-				html+='<input type="hidden" size="22" name="is_bg[]" value="0"><input type="hidden" size="22" name="pic_short'+type_id+'[]" value="'+item+'"></dt>';
+				html+='<input type="hidden" size="22" name="pic_short'+type_id+'[]" value="'+item+'" class="pic_short"></dt>';
 			}
 		});
 		$("#append"+type_id,navTab.getCurrentPanel()).append(html); 
@@ -320,7 +410,7 @@ function callbacktime_huxing(time,is_back, type_id){
 			if($.inArray(item, now_pic) < 0){
 				html+='<dt style="width: 250px; position:relative; margin-top:20px">';
 				html+='<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; ">';
-				html+='<a href="javascript:void(0);" onclick="del_pic(this,'+type_id+');" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this);" style="text-decoration:none; color:#fff">设为封面</a></div>';
+				html+='<a href="javascript:void(0);" onclick="del_pic(this,'+type_id+');" style="text-decoration:none; color:#fff">删除</a></div>';
 				html+='<div class="fengmian"></div>';
 				html+='<img height="118" width="200" src="'+path +'" style="border:1px solid #666;"><input type="text" name="room[]" size="4" required>室<input type="text" name="lounge[]" size="4" required>厅<input type="text" name="toilet[]" size="4" required>卫';
 				html+='<input type="hidden" name="pic_short'+type_id+'[]" value="'+item+'"></dt>';
@@ -335,15 +425,16 @@ function callbacktime_huxing(time,is_back, type_id){
 		event.returnValue=false;
 }
 
-function set_bg(obj){
+function set_bg(obj,type_id){
+	pic = $("#folder",navTab.getCurrentPanel()).val() + '/' + type_id + '/' + $(obj).parent().parent().find('.pic_short').val();
 	//将所有是否为封面都变成0，将封面图片删除
-	$(obj).parent().parent().parent().find('input:[name="is_bg[]"]').each(function(){
-		$(this).val('0');
-	});
+/*	$(obj).parent().parent().parent().find('input:[name="is_bg[]"]').each(function(){
+		$(this).val('');
+	});*/
 	$(".fengmian",navTab.getCurrentPanel()).html('');
-	
-	current_bg = $(obj).parent().parent().find('input:[name="is_bg[]"]');
-	current_bg.val('1');
+	$("[name='is_bg']").val(pic);
+	//current_bg = $(obj).parent().parent().find('input:[name="is_bg[]"]');
+	//current_bg.val(pic);
 	html_img = '<img src="<?php echo base_url().'images/fengmian.png';?>" style=" position:absolute; top:0px;">';
 	$(obj).parent().parent().find('.fengmian').html(html_img);
 }
