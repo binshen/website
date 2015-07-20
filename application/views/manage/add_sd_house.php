@@ -219,7 +219,11 @@
     	    <legend>效果图</legend>
     	    <dl class="nowrap">
     	    	<dt>
-    	    		<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.date('YmdHis').'/1')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
+    	    		<?php if(empty($folder)):?>
+    	    			<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.date('YmdHis').'/1')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
+    	    		<?php else: ?>
+    	    			<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.$folder.'/1')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
+    	    		<?php endif; ?>
     	    		<input type="hidden" name="folder" value="<?php if(!empty($folder)) echo $folder;?>" id="folder">
     	    		<input type="hidden" name="is_bg" value="<?php if(!empty($bg_pic)) echo $bg_pic;?>" id="is_bg">
     	    	</dt>
