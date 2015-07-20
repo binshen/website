@@ -4,7 +4,7 @@
 .file{ position:absolute; top:0; right:80px; height:24px; filter:alpha(opacity:0);opacity: 0;width:300px }
 </style>
 <div class="pageContent">
-    <form method="post" enctype="multipart/form-data" action="<?php echo site_url('manage/save_project');?>" class="pageForm required-validate" onsubmit="return iframeCallback(this, navTabAjaxDone);">
+    <form method="post" enctype="multipart/form-data" action="<?php echo site_url('manage/save_new_house');?>" class="pageForm required-validate" onsubmit="return iframeCallback(this, navTabAjaxDone);">
         <div class="pageFormContent" layoutH="55">
         <fieldset>
         	<legend>基本信息</legend>
@@ -220,7 +220,7 @@
         </div>
         <div class="formBar">
     		<ul>
-    			<li><div class="buttonActive"><div class="buttonContent"><button type="submit" class="icon-save" onclick="change_file_name();">保存</button></div></div></li>
+    			<li><div class="buttonActive"><div class="buttonContent"><button type="submit" class="icon-save" >保存</button></div></div></li>
     			<li><div class="button"><div class="buttonContent"><button type="button" class="close icon-close">取消</button></div></div></li>
     		</ul>
         </div>
@@ -256,11 +256,6 @@ function change_pic(obj){
 	var val = $(obj).val();
 	$(obj).prev().prev().val(val);
 }
-function change_file_name(){
-	$("#file_list").find('[type="file"]').each(function(index){
-		$(this).attr("name","userfile"+index);
-	});
-}
 </script>
 
 <script>
@@ -274,26 +269,8 @@ $(function() {
       .click(function( event ) {
         event.preventDefault();
       });
-    $('[name="desc[]"]').each(function(){
-        if($(this).val() != '请输入图片描述'){
-        	$(this).css('color','black');
-        }
-    });
 });
 
-function change_val_f(obj){
-	  $(obj).css('color','black');
-  	  if($(obj).val() =='请输入图片描述'){
-          $(obj).val("");           
-  	  } 
-}
-
-function change_val_b(obj){
- 	 if ($(obj).val() == '') {
-         $(obj).val('请输入图片描述');
-         $(obj).css('color','#999');
-      }
-}
 
 function callbacktime(time,is_back, type_id){
 	id = $("[name='id']",navTab.getCurrentPanel()).val();
@@ -313,7 +290,7 @@ function callbacktime(time,is_back, type_id){
 				html+='<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; ">';
 				html+='<a href="javascript:void(0);" onclick="del_pic(this,'+type_id+');" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this);" style="text-decoration:none; color:#fff">设为封面</a></div>';
 				html+='<div class="fengmian"></div>';
-				html+='<img height="118" width="200" src="'+path +'" style="border:1px solid #666;"><input type="text" alt="text" size="31" class="textInput" name="desc[]" style="width:195px;height:20px;border:1px solid #999;font-size:12px;font-weight:lighter;outline:none;margin-top:5px;color:#999;" onfocus="change_val_f(this);" onblur="change_val_b(this);" value="请输入图片描述">';
+				html+='<img height="118" width="200" src="'+path +'" style="border:1px solid #666;">';
 				html+='<input type="hidden" size="22" name="is_bg[]" value="0"><input type="hidden" size="22" name="pic_short'+type_id+'[]" value="'+item+'"></dt>';
 			}
 		});

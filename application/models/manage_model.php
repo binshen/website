@@ -154,6 +154,38 @@ class Manage_model extends MY_Model
 		$data['numPerPage'] = $numPerPage;
 		return $data;
 	}
+	
+	public function save_new_house(){
+		$pic_short1 = $this->input->post('pic_short1');
+		$pic_short2 = $this->input->post('pic_short2');
+		$pic_short3 = $this->input->post('pic_short3');
+		$pic_short4 = $this->input->post('pic_short4');
+		$pic_short5 = $this->input->post('pic_short5');
+		$pic_short6 = $this->input->post('pic_short6');
+		$data = array(
+			'name'=>$this->input->post('name'),				
+			'xq_id'=>$this->input->post('xq_id'),				
+			'discount'=>$this->input->post('discount'),				
+			'unit_price'=>$this->input->post('unit_price'),
+			'kp_date'=>$this->input->post('kp_date'),
+			'jf_date'=>$this->input->post('jf_date'),
+			'cq_limit'=>$this->input->post('cq_limit'),
+			'bs_area'=>$this->input->post('bs_area'),
+			'estate_mng'=>$this->input->post('estate_mng'),
+			'estate_price'=>$this->input->post('estate_price'),	
+			'sell_addr'=>$this->input->post('sell_addr'),
+			'developer'=>$this->input->post('developer'),
+			'dev_photo'=>$this->input->post('dev_photo'),
+			'estate_type'=>$this->input->post('estate_type'),
+			'plot_rate'=>$this->input->post('plot_rate'),
+			'greening_rate'=>$this->input->post('greening_rate'),
+			'feature'=>''			
+		);
+		foreach($this->input->post('feature') as $v){
+			$data['feature'] = $data['feature'].$v.'|';
+		}
+		var_dump($data);die;
+	}
     
 
 

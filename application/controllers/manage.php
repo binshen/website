@@ -144,6 +144,12 @@ class Manage extends MY_Controller {
 		$this->load->view('manage/list_xq_dialog.php', $data);
 	}
 	
+	public function save_new_house(){
+		$rs = $this->manage_model->save_new_house();
+		
+		//var_dump($this->input->post());die;
+	}
+	
 
 	/**
 	 *
