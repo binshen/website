@@ -224,7 +224,27 @@
     	    	</dt>
     		</dl>
     		<dl class="nowrap" id="append1">
-    		
+    			<?php
+    				if(!empty($house_img)):
+						foreach ($house_img as $img):
+							$pic = "/uploadfiles/pics/" . $img['pic_short'];
+    						$pic_short = array_pop(explode('/', $img['pic_short']));
+    			?>
+    			<dt style="width: 250px; position:relative; margin-top:20px">
+    				<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; ">
+    					<a href="javascript:void(0);" onclick="del_pic(this,1);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    					<a href="javascript:void(0);" onclick="set_bg(this);" style="text-decoration:none; color:#fff">设为封面</a>
+    				</div>
+    				<div class="fengmian"></div>
+    				<img height="118" width="200" src="<?php echo $pic; ?>" style="border:1px solid #666;">
+    				<input type="text" alt="text" size="31" class="textInput" name="desc[]" style="width:195px;height:20px;border:1px solid #999;font-size:12px;font-weight:lighter;outline:none;margin-top:5px;color:#999;" onfocus="change_val_f(this);" onblur="change_val_b(this);" value="请输入图片描述">
+    				<input type="hidden" size="22" name="is_bg[]" value="0">
+    				<input type="hidden" size="22" name="pic_short1[]" value="<?php echo $pic_short; ?>">
+    			</dt>
+    			<?php
+    					endforeach;
+    				endif; 
+    			?>
     		</dl>
     	</fieldset>
     	

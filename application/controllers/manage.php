@@ -177,6 +177,7 @@ class Manage extends MY_Controller {
 	
 	public function edit_sd_house($id) {
 		$data = $this->manage_model->get_sd_house($id);
+		$data['house_img'] = $this->manage_model->get_upload_house_img($data['id']);
 		$data['feature_list'] = $this->manage_model->get_feature();
 		$data['style_list'] = $this->manage_model->get_style_list();
 		$data['region_list'] = $this->manage_model->get_region_list();

@@ -677,4 +677,8 @@ class Manage_model extends MY_Model
 		$this->db->where('id', $id);
 		return $this->db->delete('house');
 	}
+	
+	public function get_upload_house_img($h_id) {
+		return $this->db->get_where('house_img', array('h_id' => $h_id, 'type_id' => 1))->result_array();
+	}
 }
