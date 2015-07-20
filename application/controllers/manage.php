@@ -164,7 +164,7 @@ class Manage extends MY_Controller {
 	}
 	
 	public function add_sd_house() {
-		$data['feature'] = $this->manage_model->get_feature();
+		$data['feature_list'] = $this->manage_model->get_feature();
 		$data['style_list'] = $this->manage_model->get_style_list();
 		$data['region_list'] = $this->manage_model->get_region_list();
 		$data['decoration_list'] = $this->manage_model->get_decoration_list();
@@ -173,16 +173,33 @@ class Manage extends MY_Controller {
 	}
 	
 	public function save_sd_house() {
-		
+		$ret = $this->manage_model->save_sd_house();
+		if($ret == 1){
+			form_submit_json("200", "操作成功", 'list_sd_house');
+		} else {
+			form_submit_json("300", "保存失败");
+		}
 	}
 	
 	public function edit_sd_house($id) {
-		
+		$data = $this->manage_model->get_sd_house($id);
+		$data['house_img'] = $this->manage_model->get_upload_house_img($data['id']);
+		$data['feature_list'] = $this->manage_model->get_feature();
+		$data['style_list'] = $this->manage_model->get_style_list();
+		$data['region_list'] = $this->manage_model->get_region_list();
+		$data['decoration_list'] = $this->manage_model->get_decoration_list();
+		$data['orientation_list'] = $this->manage_model->get_orientation_list();
+		$this->load->view('manage/add_sd_house.php',$data);
 	}
 	
 	public function delete_sd_house($id) {
-		
-	}	
+		$ret = $this->manage_model->delete_sd_house($id);
+		if($ret == 1) {
+			form_submit_json("200", "操作成功", 'list_sd_house', '', '');
+		} else {
+			form_submit_json("300", "删除失败");
+		}	
+	}
 	
 	
 	/**

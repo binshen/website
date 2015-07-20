@@ -37,6 +37,7 @@ class Manage_model extends MY_Model
         $this->db->where('passwd', sha1($passwd));
         $rs = $this->db->get();
         if ($rs->num_rows() > 0) {
+        	$user_info['user_id'] = $rs->id;
             $user_info['username'] = $this->input->post('username');
             $this->session->set_userdata($user_info);
             return true;
@@ -398,7 +399,7 @@ class Manage_model extends MY_Model
 	
 	public function save_house_region() {
 		$data = array(
-				'name' => $this->input->post('name')
+			'name' => $this->input->post('name')
 		);
 		$this->db->trans_start();//--------开始事务
 	
@@ -450,7 +451,7 @@ class Manage_model extends MY_Model
 	
 	public function save_house_orientation() {
 		$data = array(
-				'name' => $this->input->post('name')
+			'name' => $this->input->post('name')
 		);
 		$this->db->trans_start();//--------开始事务
 	
@@ -502,7 +503,7 @@ class Manage_model extends MY_Model
 	
 	public function save_house_decoration() {
 		$data = array(
-				'name' => $this->input->post('name')
+			'name' => $this->input->post('name')
 		);
 		$this->db->trans_start();//--------开始事务
 	
@@ -613,13 +614,13 @@ class Manage_model extends MY_Model
 	
 		$data['rel_name'] = null;
 		//list
-		$this->db->select('a.*, b.name AS region_name');
+		$this->db->select('a.*, b.name AS region_name, c.name AS style_name, d.name AS orientation_name, e.name AS decoration_name, f.name AS xiaoqu_name');
 		$this->db->from('house a');
 		$this->db->join('house_region b', 'a.region_id = b.id', 'left');
 		$this->db->join('house_style c', 'a.style_id = c.id', 'left');
 		$this->db->join('house_orientation d', 'a.region_id = d.id', 'left');
 		$this->db->join('house_decoration e', 'a.region_id = e.id', 'left');
-		$this->db->join('house_style f', 'a.style_id = f.id', 'left');
+		$this->db->join('xiaoqu f', 'a.xq_id = f.id', 'left');
 		if($this->input->post('name')){
 			$this->db->like('a.name',$this->input->post('name'));
 			$data['rel_name'] = $this->input->post('name');
@@ -631,5 +632,85 @@ class Manage_model extends MY_Model
 		$data['pageNum'] = $pageNum;
 		$data['numPerPage'] = $numPerPage;
 		return $data;
+	}
+	
+	public function save_sd_house() {
+		$data = array(
+			'name' => $this->input->post('name'),
+			'sub_title' => $this->input->post('sub_title'),
+			'type_id' => $this->input->post('type_id'),
+			'xq_id' => $this->input->post('xq_id'),
+			'style_id' => $this->input->post('style_id'),
+			'region_id' => $this->input->post('region_id'),
+			'style_id' => $this->input->post('style_id'),
+			'total_price' => $this->input->post('total_price'),
+			'acreage' => $this->input->post('acreage'),
+			'room' => $this->input->post('room'),
+			'lounge' => $this->input->post('lounge'),
+			'toilet' => $this->input->post('toilet'),
+			'feature' => implode(',', $this->input->post('feature')),
+			'orientation_id' => $this->input->post('orientation_id'),
+			'floor' => $this->input->post('floor'),
+			'total_floor' => $this->input->post('total_floor'),
+			'decoration_id' => $this->input->post('decoration_id'),
+			'build_year' => $this->input->post('build_year'),
+			'broker_id' => $this->session->userdata('user_id'),
+			'description' => $this->input->post('description'),
+			'house_pic' => $this->input->post('house_pic'),
+			'longitude' => $this->input->post('longitude'),
+			'latitude' => $this->input->post('latitude')
+		);
+		$this->db->trans_start();//--------开始事务
+	
+		if($this->input->post('id')){//修改
+			$h_id = $this->input->post('id');
+			$this->db->where('id', $h_id);
+			$this->db->update('house', $data);
+			
+			$this->db->delete('house_img', array('h_id' => $h_id));
+		} else {
+			$this->db->insert('house', $data);
+			$h_id = $this->db->insert_id();
+		}
+		
+		$folder = $this->input->post('folder');
+		$desc = $this->input->post('desc');
+		$is_bg = $this->input->post('is_bg');
+		$pic_short1 = $this->input->post('pic_short1');
+		foreach ($pic_short1 as $idx => $pic) {
+			$pic_data = array(
+				'h_id' => $h_id,
+				'type_id' => 1,
+				'pic' => $folder . '/1/' . str_replace('_thumb', '', $pic),
+				'pic_short' => $folder . '/1/' . $pic,
+				'is_bg' => $is_bg[$idx],
+				'desc' => $desc[$idx]
+			);
+			$this->db->insert('house_img', $pic_data);
+		}
+		
+		$this->db->trans_complete();//------结束事务
+		if ($this->db->trans_status() === FALSE) {
+			return -1;
+		} else {
+			return 1;
+		}
+	}
+	
+	public function get_sd_house($id) {
+		$this->db->select('a.*, b.name AS xq_name');
+		$this->db->from('house a');
+		$this->db->join('xiaoqu b', 'a.xq_id = b.id', 'left');
+		$this->db->where('a.id', $id);
+		return $this->db->get()->row_array();
+	}
+	
+	public function delete_sd_house($id) {
+		$this->db->where('id', $id);
+		return $this->db->delete('house');
+	}
+	
+	public function get_upload_house_img($h_id) {
+		return $this->db->get_where('house_img', array('h_id' => $h_id, 'type_id' => 1))->result_array();
 	}
 }

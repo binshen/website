@@ -4,7 +4,7 @@
 .file{ position:absolute; top:0; right:80px; height:24px; filter:alpha(opacity:0);opacity: 0;width:300px }
 </style>
 <div class="pageContent">
-    <form method="post" enctype="multipart/form-data" action="<?php echo site_url('manage/save_project');?>" class="pageForm required-validate" onsubmit="return iframeCallback(this, navTabAjaxDone);">
+    <form method="post" enctype="multipart/form-data" action="<?php echo site_url('manage/save_sd_house');?>" class="pageForm required-validate" onsubmit="return iframeCallback(this, navTabAjaxDone);">
         <div class="pageFormContent" layoutH="55">
         <fieldset>
         	<legend class="topLegend">基本信息</legend>
@@ -24,13 +24,16 @@
         		
         		<dl>
         			<dt>小区：</dt>
-        			<dd>鑫茂花园</dd>
+        			<dd><input name="xq_id" type="hidden" class="required" value="<?php if(!empty($xq_id)) echo $xq_id;?>" />
+        			<input type="text" name="xq_name" value="<?php if(!empty($xq_name)) echo $xq_name;?>" readonly>
+        			<a lookupgroup="" href="<?php echo site_url('manage/list_xq_dialog');?>" class="btnLook">查找带回</a>
+        			</dd>
         		</dl>
         		
         		<dl>
         			<dt>区域：</dt>
         			<dd>
-        				<select name="region_id" class="required">
+        				<select name="region_id" class="combox">
         					<?php          
 				                if (!empty($region_list)):
 				            	    foreach ($region_list as $row):
@@ -48,7 +51,7 @@
         		<dl>
         			<dt>房源类型：</dt>
         			<dd>
-        				<select name="style_id" class="required">
+        				<select name="style_id" class="combox">
         					<?php          
 				                if (!empty($style_list)):
 				            	    foreach ($style_list as $row):
@@ -68,7 +71,7 @@
         		</dl>
         		
         		<dl>
-        			<dt>总价：</dt>
+        			<dt>总价(万元)：</dt>
         			<dd><input name="total_price" type="text" class="required" value="<?php if(!empty($total_price)) echo $total_price;?>" /></dd>
         		</dl>
         		
@@ -81,7 +84,7 @@
         		<dl>
         			<dt>朝向：</dt>
         			<dd>
-        				<select name="orientation_id" class="required">
+        				<select name="orientation_id" class="combox">
         					<?php          
 				                if (!empty($orientation_list)):
 				            	    foreach ($orientation_list as $row):
@@ -111,7 +114,7 @@
         		<dl>
         			<dt>装修状况：</dt>
         			<dd>
-        				<select name="decoration_id" class="required">
+        				<select name="decoration_id" class="combox">
         					<?php          
 				                if (!empty($decoration_list)):
 				            	    foreach ($decoration_list as $row):
@@ -156,14 +159,26 @@
 		<fieldset>
     	    <legend>特色标签</legend>
     	    <dl class="nowrap" id="feature_app" style="height:35px;">
-    	    
+    		<?php 
+    			if(!empty($feature)):
+    				$features = explode(',', $feature);
+    				foreach ($features as $feature):
+    		?>
+    			<a href="javascript:;" class="button feature_selected" onclick="del_feature(this);">
+    				<input type="hidden" name="feature[]" value="<?php echo $feature; ?>">
+    				<span><?php echo $feature; ?></span>
+    			</a>
+    		<?php
+    				endforeach;
+    			endif;	
+    		?>
     		</dl>
     		<dl class="nowrap">
     			<div class="tabs" currentIndex="1" eventType="click">
 					<div class="tabsHeader">
 						<div class="tabsHeaderContent">
 							<ul>
-								<?php foreach($feature as $k=>$v):?>
+								<?php foreach($feature_list as $k=>$v):?>
 								<li><a href="javascript:;"><span>
 								<?php if($k == 1) echo '小区';?>
 								<?php if($k == 2) echo '户型';?>
@@ -177,10 +192,18 @@
 						</div>
 					</div>
 					<div class="tabsContent" style="height:100px;">
-					<?php foreach($feature as $k=>$v):?>
+					<?php foreach($feature_list as $k=>$v):?>
 						<div>
 						<?php foreach($v as $kk=>$vv):?>
-						<a href="javascript:;" class="button feature" onclick="select_feature(this);" ><span><?php echo $vv;?></span></a>
+							<?php if(!empty($features) && in_array($vv, $features)): ?>
+								<a href="javascript:;" class="feature buttonDisabled" >
+									<span><?php echo $vv;?></span>
+								</a>
+							<?php else: ?>
+								<a href="javascript:;" class="button feature" onclick="select_feature(this);" >
+									<span><?php echo $vv;?></span>
+								</a>
+							<?php endif; ?>
 						<?php endforeach;?>
 						</div>
 					<?php endforeach;?>
@@ -196,13 +219,36 @@
     	    <legend>效果图</legend>
     	    <dl class="nowrap">
     	    	<dt>
-    	    		<input type="hidden" name="folder" value="<?php if(!empty($folder)) echo $folder;?>" id="folder">
     	    		<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.date('YmdHis').'/1')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
     	    	</dt>
     		</dl>
     		<dl class="nowrap" id="append1">
-    		
+    			<?php
+    				if(!empty($house_img)):
+						foreach ($house_img as $img):
+							$pic = "/uploadfiles/pics/" . $img['pic_short'];
+    						$pic_short = array_pop(explode('/', $img['pic_short']));
+    						$is_bg = $img['is_bg'];
+    						$desc = $img['desc'];
+    						$folder = current(explode('/', $img['pic_short']));
+    			?>
+    			<dt style="width: 250px; position:relative; margin-top:20px">
+    				<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; ">
+    					<a href="javascript:void(0);" onclick="del_pic(this,1);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    					<a href="javascript:void(0);" onclick="set_bg(this);" style="text-decoration:none; color:#fff">设为封面</a>
+    				</div>
+    				<div class="fengmian"></div>
+    				<img height="118" width="200" src="<?php echo $pic; ?>" style="border:1px solid #666;">
+    				<input type="text" alt="text" size="31" class="textInput" name="desc[]" style="width:195px;height:20px;border:1px solid #999;font-size:12px;font-weight:lighter;outline:none;margin-top:5px;color:#999;" onfocus="change_val_f(this);" onblur="change_val_b(this);" value="<?php echo $desc; ?>">
+    				<input type="hidden" size="22" name="is_bg[]" value="<?php echo $is_bg; ?>">
+    				<input type="hidden" size="22" name="pic_short1[]" value="<?php echo $pic_short; ?>">
+    			</dt>
+    			<?php
+    					endforeach;
+    				endif; 
+    			?>
     		</dl>
+    		<input type="hidden" name="folder" value="<?php if(!empty($folder)) echo $folder;?>" id="folder">
     	</fieldset>
     	
 		<fieldset>
