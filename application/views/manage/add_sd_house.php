@@ -221,7 +221,7 @@
     	    	<dt>
     	    		<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.date('YmdHis').'/1')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
     	    		<input type="hidden" name="folder" value="<?php if(!empty($folder)) echo $folder;?>" id="folder">
-    	    		<input type="hidden" name="bg_pic" value="<?php if(!empty($bg_pic)) echo $bg_pic;?>" id="bg_pic">
+    	    		<input type="hidden" name="is_bg" value="<?php if(!empty($bg_pic)) echo $bg_pic;?>" id="is_bg">
     	    	</dt>
     		</dl>
     		<dl class="nowrap" id="append1">
@@ -284,8 +284,8 @@ $(function() {
         event.preventDefault();
       });
 
-    a = $('[name="is_bg"]').val();
-    b = a.split("/");
+    var a = $('[name="is_bg"]').val();
+    var b = a.split("/");
     $('.pic_short').each(function(){
 		if($(this).val() == b[2]){
 			html_img = '<img src="<?php echo base_url().'images/fengmian.png';?>" style=" position:absolute; top:0px;">';

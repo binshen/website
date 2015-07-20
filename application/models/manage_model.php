@@ -719,7 +719,7 @@ class Manage_model extends MY_Model
 			'longitude' => $this->input->post('longitude'),
 			'latitude' => $this->input->post('latitude'),
 			'folder' => $this->input->post('folder'),
-			'bg_pic' => $this->input->post('bg_pic')
+			'bg_pic' => $this->input->post('is_bg')
 		);
 		$this->db->trans_start();//--------开始事务
 	
