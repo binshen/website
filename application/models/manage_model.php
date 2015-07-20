@@ -576,6 +576,7 @@ class Manage_model extends MY_Model
 		$this->db->from('house');
 		if($this->input->post('name'))
 			$this->db->like('name',$this->input->post('name'));
+		$this->db->where('type_id', 2);
 	
 		$rs_total = $this->db->get()->row();
 		//总记录数
@@ -594,6 +595,7 @@ class Manage_model extends MY_Model
 			$this->db->like('a.name',$this->input->post('name'));
 			$data['rel_name'] = $this->input->post('name');
 		}
+		$this->db->where('type_id', 2);
 		
 		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
 		$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
