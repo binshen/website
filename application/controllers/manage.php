@@ -158,7 +158,7 @@ class Manage extends MY_Controller {
 	}
 	
 	public function add_sd_house() {
-		$data['feature'] = $this->manage_model->get_feature();
+		$data['feature_list'] = $this->manage_model->get_feature();
 		$data['style_list'] = $this->manage_model->get_style_list();
 		$data['region_list'] = $this->manage_model->get_region_list();
 		$data['decoration_list'] = $this->manage_model->get_decoration_list();
@@ -177,7 +177,7 @@ class Manage extends MY_Controller {
 	
 	public function edit_sd_house($id) {
 		$data = $this->manage_model->get_sd_house($id);
-		$data['feature'] = $this->manage_model->get_feature();
+		$data['feature_list'] = $this->manage_model->get_feature();
 		$data['style_list'] = $this->manage_model->get_style_list();
 		$data['region_list'] = $this->manage_model->get_region_list();
 		$data['decoration_list'] = $this->manage_model->get_decoration_list();

@@ -71,7 +71,7 @@
         		</dl>
         		
         		<dl>
-        			<dt>总价：</dt>
+        			<dt>总价(万元)：</dt>
         			<dd><input name="total_price" type="text" class="required" value="<?php if(!empty($total_price)) echo $total_price;?>" /></dd>
         		</dl>
         		
@@ -159,14 +159,26 @@
 		<fieldset>
     	    <legend>特色标签</legend>
     	    <dl class="nowrap" id="feature_app" style="height:35px;">
-    	    
+    		<?php 
+    			if(!empty($feature)):
+    				$features = explode(',', $feature);
+    				foreach ($features as $feature):
+    		?>
+    			<a href="javascript:;" class="button feature_selected" onclick="del_feature(this);">
+    				<input type="hidden" name="feature[]" value="<?php echo $feature; ?>">
+    				<span><?php echo $feature; ?></span>
+    			</a>
+    		<?php
+    				endforeach;
+    			endif;	
+    		?>
     		</dl>
     		<dl class="nowrap">
     			<div class="tabs" currentIndex="1" eventType="click">
 					<div class="tabsHeader">
 						<div class="tabsHeaderContent">
 							<ul>
-								<?php foreach($feature as $k=>$v):?>
+								<?php foreach($feature_list as $k=>$v):?>
 								<li><a href="javascript:;"><span>
 								<?php if($k == 1) echo '小区';?>
 								<?php if($k == 2) echo '户型';?>
@@ -180,10 +192,18 @@
 						</div>
 					</div>
 					<div class="tabsContent" style="height:100px;">
-					<?php foreach($feature as $k=>$v):?>
+					<?php foreach($feature_list as $k=>$v):?>
 						<div>
 						<?php foreach($v as $kk=>$vv):?>
-						<a href="javascript:;" class="button feature" onclick="select_feature(this);" ><span><?php echo $vv;?></span></a>
+							<?php if(!empty($features) && in_array($vv, $features)): ?>
+								<a href="javascript:;" class="feature buttonDisabled" >
+									<span><?php echo $vv;?></span>
+								</a>
+							<?php else: ?>
+								<a href="javascript:;" class="button feature" onclick="select_feature(this);" >
+									<span><?php echo $vv;?></span>
+								</a>
+							<?php endif; ?>
 						<?php endforeach;?>
 						</div>
 					<?php endforeach;?>

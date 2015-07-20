@@ -666,7 +666,11 @@ class Manage_model extends MY_Model
 	}
 	
 	public function get_sd_house($id) {
-		return $this->db->get_where('house', array('id' => $id))->row_array();
+		$this->db->select('a.*, b.name AS xq_name');
+		$this->db->from('house a');
+		$this->db->join('xiaoqu b', 'a.xq_id = b.id', 'left');
+		$this->db->where('a.id', $id);
+		return $this->db->get()->row_array();
 	}
 	
 	public function delete_sd_house($id) {

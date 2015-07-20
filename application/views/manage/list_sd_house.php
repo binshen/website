@@ -11,7 +11,7 @@
 		<ul class="toolBar">
 			<li><a class="add" href="<?php echo site_url('manage/add_sd_house')?>" target="navTab" rel="add_sd_house" title="新建"><span>新建</span></a></li>
 			<li><a class="delete" href="<?php echo site_url('manage/delete_sd_house')?>/{id}" target="ajaxTodo"  title="确定要删除？" warn="请选择一条记录"><span>删除</span></a></li>
-			<li><a class="edit" href="<?php echo site_url('manage/edit_sd_house/{id}')?>" target="dialog" rel="edit_sd_house" warn="请选择一条记录" title="查看"><span>查看</span></a></li>
+			<li><a class="edit" href="<?php echo site_url('manage/edit_sd_house/{id}')?>" target="navTab" rel="edit_sd_house" warn="请选择一条记录" title="查看"><span>查看</span></a></li>
 		</ul>
 	</div>
 
