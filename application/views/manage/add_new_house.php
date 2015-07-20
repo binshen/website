@@ -100,14 +100,26 @@
 		<fieldset>
     	    <legend>特色标签</legend>
     	    <dl class="nowrap" id="feature_app" style="height:35px;">
-    	    
+    		<?php 
+    			if(!empty($feature)):
+    				$features = explode(',', $feature);
+    				foreach ($features as $feature):
+    		?>
+    			<a href="javascript:;" class="button feature_selected" onclick="del_feature(this);">
+    				<input type="hidden" name="feature[]" value="<?php echo $feature; ?>">
+    				<span><?php echo $feature; ?></span>
+    			</a>
+    		<?php
+    				endforeach;
+    			endif;	
+    		?>
     		</dl>
     		<dl class="nowrap">
     			<div class="tabs" currentIndex="1" eventType="click">
 					<div class="tabsHeader">
 						<div class="tabsHeaderContent">
 							<ul>
-								<?php foreach($feature as $k=>$v):?>
+								<?php foreach($feature_list as $k=>$v):?>
 								<li><a href="javascript:;"><span>
 								<?php if($k == 1) echo '小区';?>
 								<?php if($k == 2) echo '户型';?>
@@ -121,10 +133,18 @@
 						</div>
 					</div>
 					<div class="tabsContent" style="height:100px;">
-					<?php foreach($feature as $k=>$v):?>
+					<?php foreach($feature_list as $k=>$v):?>
 						<div>
 						<?php foreach($v as $kk=>$vv):?>
-						<a href="javascript:;" class="button feature" onclick="select_feature(this);" ><span><?php echo $vv;?></span></a>
+							<?php if(!empty($features) && in_array($vv, $features)): ?>
+								<a href="javascript:;" class="feature buttonDisabled" >
+									<span><?php echo $vv;?></span>
+								</a>
+							<?php else: ?>
+								<a href="javascript:;" class="button feature" onclick="select_feature(this);" >
+									<span><?php echo $vv;?></span>
+								</a>
+							<?php endif; ?>
 						<?php endforeach;?>
 						</div>
 					<?php endforeach;?>
@@ -151,9 +171,6 @@
     		<dt style="width: 250px; position:relative; margin-top:20px">
 			<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; "><a href="javascript:void(0);" onclick="del_pic(this);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this,<?php echo $v->type_id?>);" style="text-decoration:none; color:#fff">设为封面</a></div>
 			    <div class="fengmian">
-			    <?php if($v->is_bg == '1'):?>
-			    <img src="<?php echo base_url().'images/fengmian.png';?>" style=" position:absolute; top:0px;">
-			    <?php endif;?>
 			    </div>
 				<img height="118" width="200" src="<?php echo base_url().'uploadfiles/pics/'.$folder.'/'.$v->type_id.'/'.$v->pic_short;?>" style="border:1px solid #666;">
 				<input type="hidden" size="22" name="pic_short1[]" class="pic_short" value="<?php echo $v->pic_short;?>">
@@ -178,9 +195,6 @@
     		<dt style="width: 250px; position:relative; margin-top:20px">
 			<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; "><a href="javascript:void(0);" onclick="del_pic(this);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this,<?php echo $v->type_id?>);" style="text-decoration:none; color:#fff">设为封面</a></div>
 			    <div class="fengmian">
-			    <?php if($v->is_bg == '1'):?>
-			    <img src="<?php echo base_url().'images/fengmian.png';?>" style=" position:absolute; top:0px;">
-			    <?php endif;?>
 			    </div>
 				<img height="118" width="200" src="<?php echo base_url().'uploadfiles/pics/'.$folder.'/'.$v->type_id.'/'.$v->pic_short;?>" style="border:1px solid #666;">
 				<input type="hidden" size="22" name="pic_short2[]" class="pic_short" value="<?php echo $v->pic_short;?>">
@@ -205,9 +219,6 @@
     		<dt style="width: 250px; position:relative; margin-top:20px">
 			<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; "><a href="javascript:void(0);" onclick="del_pic(this);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this,<?php echo $v->type_id?>);" style="text-decoration:none; color:#fff">设为封面</a></div>
 			    <div class="fengmian">
-			    <?php if($v->is_bg == '1'):?>
-			    <img src="<?php echo base_url().'images/fengmian.png';?>" style=" position:absolute; top:0px;">
-			    <?php endif;?>
 			    </div>
 				<img height="118" width="200" src="<?php echo base_url().'uploadfiles/pics/'.$folder.'/'.$v->type_id.'/'.$v->pic_short;?>" style="border:1px solid #666;">
 				<input type="hidden" size="22" name="pic_short3[]" class="pic_short" value="<?php echo $v->pic_short;?>">
@@ -232,9 +243,6 @@
     		<dt style="width: 250px; position:relative; margin-top:20px">
 			<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; "><a href="javascript:void(0);" onclick="del_pic(this);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this,<?php echo $v->type_id?>);" style="text-decoration:none; color:#fff">设为封面</a></div>
 			    <div class="fengmian">
-			    <?php if($v->is_bg == '1'):?>
-			    <img src="<?php echo base_url().'images/fengmian.png';?>" style=" position:absolute; top:0px;">
-			    <?php endif;?>
 			    </div>
 				<img height="118" width="200" src="<?php echo base_url().'uploadfiles/pics/'.$folder.'/'.$v->type_id.'/'.$v->pic_short;?>" style="border:1px solid #666;">
 				<input type="hidden" size="22" name="pic_short4[]" class="pic_short" value="<?php echo $v->pic_short;?>">
@@ -259,9 +267,6 @@
     		<dt style="width: 250px; position:relative; margin-top:20px">
 			<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; "><a href="javascript:void(0);" onclick="del_pic(this);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this,<?php echo $v->type_id?>);" style="text-decoration:none; color:#fff">设为封面</a></div>
 			    <div class="fengmian">
-			    <?php if($v->is_bg == '1'):?>
-			    <img src="<?php echo base_url().'images/fengmian.png';?>" style=" position:absolute; top:0px;">
-			    <?php endif;?>
 			    </div>
 				<img height="118" width="200" src="<?php echo base_url().'uploadfiles/pics/'.$folder.'/'.$v->type_id.'/'.$v->pic_short;?>" style="border:1px solid #666;">
 				<input type="hidden" size="22" name="pic_short5[]" class="pic_short" value="<?php echo $v->pic_short;?>">
@@ -280,33 +285,26 @@
     	    	</dt>
     		</dl>
     		<dl class="nowrap" id="append6">
-    		<?php foreach($pics as $k=>$v):?>
-    		<?php if($v->type_id == '6'):?>
+    		<?php foreach($hx_pics as $k=>$v):?>
     		
     		<dt style="width: 250px; position:relative; margin-top:20px">
 			<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; "><a href="javascript:void(0);" onclick="del_pic(this);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;</div>
-			    <div class="fengmian">
-			    <?php if($v->is_bg == '1'):?>
-			    <img src="<?php echo base_url().'images/fengmian.png';?>" style=" position:absolute; top:0px;">
-			    <?php endif;?>
-			    </div>
-				<img height="118" width="200" src="<?php echo base_url().'uploadfiles/pics/'.$folder.'/'.$v->type_id.'/'.$v->pic_short;?>" style="border:1px solid #666;">
+				<img height="118" width="200" src="<?php echo base_url().'uploadfiles/pics/'.$folder.'/6/'.$v->pic_short;?>" style="border:1px solid #666;">
 				<input type="hidden" size="22" name="pic_short6[]" class="pic_short" value="<?php echo $v->pic_short;?>">
 			</dt>
     		
-    		<?php endif;?>
     		<?php endforeach;?>
     		</dl>
     	</fieldset>
         
         
         	
-			<fieldset>
-	    	    <legend>楼盘详情</legend>
-	    	    <dl class="nowrap">
-	    			<dd><textarea class="editor" name="description" rows="22" cols="100" upImgExt="jpg,jpeg,gif,png"  tools="simple"><?php if(!empty($description)) echo $description;?></textarea></dd>
+		<fieldset>
+    	    <legend>楼盘详情</legend>
+    	    <dl class="nowrap">
+    			<dd><textarea class="editor" name="description" rows="22" cols="100" upImgExt="jpg,jpeg,gif,png"  tools="simple"><?php if(!empty($description)) echo $description;?></textarea></dd>
 	    		</dl>
-    		</fieldset>
+    	</fieldset>
         </div>
         <div class="formBar">
     		<ul>
@@ -316,38 +314,6 @@
         </div>
 	</form>
 </div>
-<script>
-$(function(){
-	var x = 0;
-	var y = 0;
-	$('[name="view_pic"]').mouseover(function(e){
-		var path = $(this).attr('path');
-		var tooltip = "<div id='tooltip' style='position:absolute'><img src='"+path+"'/><\/div>"; //创建 div 元素
-		$("body").append(tooltip);	//把它追加到文档中						 
-		$("#tooltip")
-			.css({
-				"top": (e.pageY+y+10) + "px",
-				"left":  (e.pageX+x+10)  + "px"
-			}).show("fast");	  //设置x坐标和y坐标，并且显示
-    }).mouseout(function(){
-		$("#tooltip").remove();	 //移除 
-    }).mousemove(function(e){
-		$("#tooltip")
-		.css({
-			"top": (e.pageY+y) + "px",
-			"left":  (e.pageX+x)  + "px"
-		});
-});;
-});
-function fileBtnClick(obj){
-	$(obj).next().click();
-}
-function change_pic(obj){
-	var val = $(obj).val();
-	$(obj).prev().prev().val(val);
-}
-</script>
-
 <script>
 $(function() {
 	folder = $("#folder",navTab.getCurrentPanel()).val();
@@ -359,6 +325,18 @@ $(function() {
       .click(function( event ) {
         event.preventDefault();
       });
+
+    a = $('[name="is_bg"]').val();
+    b = a.split("/");
+    $('.pic_short').each(function(){
+		if($(this).val() == b[2]){
+			html_img = '<img src="<?php echo base_url().'images/fengmian.png';?>" style=" position:absolute; top:0px;">';
+			$(this).parent().find('.fengmian').html(html_img);
+		}
+		
+    });
+
+    
 });
 
 
@@ -404,7 +382,6 @@ function callbacktime_huxing(time,is_back, type_id){
 		$('input[name="pic_short'+type_id+'[]"]').each(function(index){
 			now_pic[index] = $(this).val();
 		});
-		console.log(now_pic);
 		$.each(data.img,function(index,item){
 			path = "<?php echo base_url().'uploadfiles/pics/';?>"+data.time + "/" + type_id +"/"+item;
 			if($.inArray(item, now_pic) < 0){

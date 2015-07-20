@@ -184,15 +184,12 @@ class Manage_model extends MY_Model
 			'estate_type'=>$this->input->post('estate_type'),
 			'plot_rate'=>$this->input->post('plot_rate'),
 			'greening_rate'=>$this->input->post('greening_rate'),
-			'feature'=>'',
+			'feature'=>implode(',', $this->input->post('feature')),
 			'type_id'=>1,
 			'folder'=>$this->input->post('folder'),
 			'bg_pic'=>$this->input->post('is_bg'),
 			'description'=>$this->input->post('description')
 		);
-		foreach($this->input->post('feature') as $v){
-			$data['feature'] = $data['feature'].$v.'|';
-		}
 		
 		$this->db->trans_start();//--------开始事务
 		
@@ -207,9 +204,8 @@ class Manage_model extends MY_Model
 					$data_line[] = array(
 						'h_id'=>$h_id,
 						'type_id'=>$i,
-						'pic'=>$this->str_replace('_thumb', '', $v),
-						'pic_short'=>$v,
-						'is_bg'=>1
+						'pic'=>str_replace('_thumb', '', $v),
+						'pic_short'=>$v
 					);
 				}
 			}

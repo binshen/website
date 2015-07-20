@@ -163,7 +163,7 @@ class Manage extends MY_Controller {
 	
 	public function edit_new_house($id) {
 		$data = $this->manage_model->get_new_house($id);
-		$data['feature'] = $this->manage_model->get_feature();
+		$data['feature_list'] = $this->manage_model->get_feature();
 		$this->load->view('manage/add_new_house.php',$data);
 	}
 	
