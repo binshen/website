@@ -231,7 +231,6 @@
 							$pic = "/uploadfiles/pics/" . $folder . "/1/" .$img['pic_short'];
     						$pic_short = $img['pic_short'];
     						$is_bg = $img['is_bg'];
-    						$desc = $img['desc'];
     			?>
     			<dt style="width: 250px; position:relative; margin-top:20px">
     				<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; ">
@@ -240,8 +239,6 @@
     				</div>
     				<div class="fengmian"></div>
     				<img height="118" width="200" src="<?php echo $pic; ?>" style="border:1px solid #666;">
-    				<input type="text" alt="text" size="31" value="<?php echo $desc; ?>" class="textInput" name="desc[]" style="width:195px;height:20px;border:1px solid #999;font-size:12px;font-weight:lighter;outline:none;margin-top:5px;color:#999;" onfocus="change_val_f(this);" onblur="change_val_b(this);" >
-    				<input type="hidden" size="22" name="is_bg[]" value="<?php echo $is_bg; ?>">
     				<input type="hidden" size="22" name="pic_short1[]" value="<?php echo $pic_short; ?>">
     			</dt>
     			<?php
@@ -276,43 +273,6 @@
 	</form>
 </div>
 <script>
-$(function(){
-	var x = 0;
-	var y = 0;
-	$('[name="view_pic"]').mouseover(function(e){
-		var path = $(this).attr('path');
-		var tooltip = "<div id='tooltip' style='position:absolute'><img src='"+path+"'/><\/div>"; //创建 div 元素
-		$("body").append(tooltip);	//把它追加到文档中						 
-		$("#tooltip")
-			.css({
-				"top": (e.pageY+y+10) + "px",
-				"left":  (e.pageX+x+10)  + "px"
-			}).show("fast");	  //设置x坐标和y坐标，并且显示
-    }).mouseout(function(){
-		$("#tooltip").remove();	 //移除 
-    }).mousemove(function(e){
-		$("#tooltip")
-		.css({
-			"top": (e.pageY+y) + "px",
-			"left":  (e.pageX+x)  + "px"
-		});
-});;
-});
-function fileBtnClick(obj){
-	$(obj).next().click();
-}
-function change_pic(obj){
-	var val = $(obj).val();
-	$(obj).prev().prev().val(val);
-}
-function change_file_name(){
-	$("#file_list").find('[type="file"]').each(function(index){
-		$(this).attr("name","userfile"+index);
-	});
-}
-</script>
-
-<script>
 $(function() {
 	folder = $("#folder",navTab.getCurrentPanel()).val();
 	if(folder != ''){
@@ -323,26 +283,17 @@ $(function() {
       .click(function( event ) {
         event.preventDefault();
       });
-    $('[name="desc[]"]').each(function(){
-        if($(this).val() != '请输入图片描述'){
-        	$(this).css('color','black');
-        }
+
+    a = $('[name="is_bg"]').val();
+    b = a.split("/");
+    $('.pic_short').each(function(){
+		if($(this).val() == b[2]){
+			html_img = '<img src="<?php echo base_url().'images/fengmian.png';?>" style=" position:absolute; top:0px;">';
+			$(this).parent().find('.fengmian').html(html_img);
+		}
+		
     });
 });
-
-function change_val_f(obj){
-	  $(obj).css('color','black');
-  	  if($(obj).val() =='请输入图片描述'){
-          $(obj).val("");           
-  	  } 
-}
-
-function change_val_b(obj){
- 	 if ($(obj).val() == '') {
-         $(obj).val('请输入图片描述');
-         $(obj).css('color','#999');
-      }
-}
 
 function callbacktime(time,is_back, type_id){
 	id = $("[name='id']",navTab.getCurrentPanel()).val();
@@ -362,8 +313,8 @@ function callbacktime(time,is_back, type_id){
 				html+='<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; ">';
 				html+='<a href="javascript:void(0);" onclick="del_pic(this,'+type_id+');" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this);" style="text-decoration:none; color:#fff">设为封面</a></div>';
 				html+='<div class="fengmian"></div>';
-				html+='<img height="118" width="200" src="'+path +'" style="border:1px solid #666;"><input type="text" alt="text" size="31" class="textInput" name="desc[]" style="width:195px;height:20px;border:1px solid #999;font-size:12px;font-weight:lighter;outline:none;margin-top:5px;color:#999;" onfocus="change_val_f(this);" onblur="change_val_b(this);" value="请输入图片描述">';
-				html+='<input type="hidden" size="22" name="is_bg[]" value="0"><input type="hidden" size="22" name="pic_short'+type_id+'[]" value="'+item+'"></dt>';
+				html+='<img height="118" width="200" src="'+path +'" style="border:1px solid #666;">';
+				html+='<input type="hidden" size="22" name="pic_short'+type_id+'[]" value="'+item+'"></dt>';
 			}
 		});
 		$("#append"+type_id,navTab.getCurrentPanel()).append(html); 
@@ -373,20 +324,16 @@ function callbacktime(time,is_back, type_id){
 	var isChrome = navigator.userAgent.toLowerCase().match(/chrome/) != null;
 	if (isChrome)
 		event.returnValue=false;
-	
 }
-function set_bg(obj){
-	//将所有是否为封面都变成0，将封面图片删除
-	$(obj).parent().parent().parent().find('input:[name="is_bg[]"]').each(function(){
-		$(this).val('0');
-	});
+
+function set_bg(obj,type_id){
+	pic = $("#folder",navTab.getCurrentPanel()).val() + '/' + type_id + '/' + $(obj).parent().parent().find('.pic_short').val();
 	$(".fengmian",navTab.getCurrentPanel()).html('');
-	
-	current_bg = $(obj).parent().parent().find('input:[name="is_bg[]"]');
-	current_bg.val('1');
+	$("[name='is_bg']").val(pic);
 	html_img = '<img src="<?php echo base_url().'images/fengmian.png';?>" style=" position:absolute; top:0px;">';
 	$(obj).parent().parent().find('.fengmian').html(html_img);
 }
+
 function del_pic(obj,type_id){
 	id = $("[name='id']",navTab.getCurrentPanel()).val();
 	folder = $("[name='folder']",navTab.getCurrentPanel()).val();

@@ -743,9 +743,7 @@ class Manage_model extends MY_Model
 				'h_id' => $h_id,
 				'type_id' => 1,
 				'pic' => str_replace('_thumb', '', $pic),
-				'pic_short' => $pic,
-				'is_bg' => $is_bg[$idx],
-				'desc' => $desc[$idx]
+				'pic_short' => $pic
 			);
 			$this->db->insert('house_img', $pic_data);
 		}
