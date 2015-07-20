@@ -8,6 +8,19 @@
         <div class="pageFormContent" layoutH="55">
         	<fieldset>
         	<legend>房源特色</legend>
+        		<dl>
+        			<dt>分类：</dt>
+        			<dd>
+        				<select name="type_id" class="combox">
+        					<option value="1" <?php if($type_id == "1"): ?>selected<?php endif; ?>>小区</option>
+        					<option value="2" <?php if($type_id == "2"): ?>selected<?php endif; ?>>户型</option>
+        					<option value="3" <?php if($type_id == "3"): ?>selected<?php endif; ?>>房屋结构</option>
+        					<option value="4" <?php if($type_id == "4"): ?>selected<?php endif; ?>>位置</option>
+        					<option value="5" <?php if($type_id == "5"): ?>selected<?php endif; ?>>装修</option>
+        					<option value="6" <?php if($type_id == "6"): ?>selected<?php endif; ?>>附加</option>
+        				</select>
+        			</dd>
+        		</dl>
         	    <dl>
         			<dt>名称：</dt>
         			<dd>

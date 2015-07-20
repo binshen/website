@@ -28,7 +28,7 @@
         		<dl>
         			<dt>熟悉区域：</dt>
         			<dd>
-        				<select name="region_id" class="required">
+        				<select name="region_id" class="combox">
         					<?php          
 				                if (!empty($region_list)):
 				            	    foreach ($region_list as $row):
