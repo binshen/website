@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2015-07-20 09:49:06
+<?php /* Smarty version Smarty-3.1.16, created on 2015-07-20 16:45:19
          compiled from "application\views\index.html" */ ?>
 <?php /*%%SmartyHeaderCode:1704555ac4f185d68d4-47063549%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fccbe5a2c354059ee96f11926e396c372e6921ef' => 
     array (
       0 => 'application\\views\\index.html',
-      1 => 1437356939,
+      1 => 1437381897,
       2 => 'file',
     ),
   ),
@@ -43,7 +43,7 @@ css/index.css" rel="stylesheet" type="text/css" />
    <!------------头部start-------------->
     <div class="header clearfix">
     	<h1 class="logo">
-        	<a href="" title="房猫">房猫</a>
+        	<a href="/" title="房猫">房猫</a>
         </h1>
         <div class="ks">
         	<form action="#" method="get">

@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * 后台画面控制器
+ * 站点首页控制器
  *
  * @package		app
  * @subpackage	core
