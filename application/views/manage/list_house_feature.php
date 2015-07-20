@@ -19,16 +19,26 @@
 		<thead>
 			<tr>
 				<th width="120">ID</th>
+				<th>分类</th>
 				<th>名称</th>
 			</tr>
 		</thead>
 		<tbody>
             <?php          
                 if (!empty($res_list)):
+                	$type = array(
+                		'1' => '小区',
+                		'2' => '户型',
+                		'3' => '房屋结构',
+                		'4' => '位置',
+                		'5' => '装修',
+                		'6' => '附加',
+                	);
             	    foreach ($res_list as $row):		               
             ?>		            
             			<tr target="id" rel=<?php echo $row->id; ?>>
             				<td><?php echo $row->id;?></td>
+            				<td><?php echo $type[$row->type_id];?></td>
             				<td><?php echo $row->name;?></td>
             			</tr>
             <?php 

@@ -337,14 +337,14 @@ class Manage_model extends MY_Model
 	
 		//获得总记录数
 		$this->db->select('count(1) as num');
-		$this->db->from('house_feature');
+		$this->db->from('feature');
 	
 		$rs_total = $this->db->get()->row();
 		//总记录数
 		$data['countPage'] = $rs_total->num;
 		
 		//list
-		$this->db->select('*')->from('house_feature');
+		$this->db->select('*')->from('feature');
 		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
 		$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
 		$data['res_list'] = $this->db->get()->result();
@@ -355,15 +355,16 @@ class Manage_model extends MY_Model
 	
 	public function save_house_feature() {
 		$data = array(
+			'type_id' => $this->input->post('type_id'),
 			'name' => $this->input->post('name')
 		);
 		$this->db->trans_start();//--------开始事务
 	
 		if($this->input->post('id')){//修改
 			$this->db->where('id', $this->input->post('id'));
-			$this->db->update('house_feature', $data);
+			$this->db->update('feature', $data);
 		} else {
-			$this->db->insert('house_feature', $data);
+			$this->db->insert('feature', $data);
 		}
 		$this->db->trans_complete();//------结束事务
 		if ($this->db->trans_status() === FALSE) {
@@ -374,12 +375,12 @@ class Manage_model extends MY_Model
 	}
 	
 	public function get_house_feature($id) {
-		return $this->db->get_where('house_feature', array('id' => $id))->row_array();
+		return $this->db->get_where('feature', array('id' => $id))->row_array();
 	}
 	
 	public function delete_house_feature($id) {
 		$this->db->where('id', $id);
-		return $this->db->delete('house_feature');
+		return $this->db->delete('feature');
 	}
 	
 	public function list_house_style(){
@@ -667,6 +668,7 @@ class Manage_model extends MY_Model
 		$this->db->from('house');
 		if($this->input->post('name'))
 			$this->db->like('name',$this->input->post('name'));
+		$this->db->where('type_id', 2);
 	
 		$rs_total = $this->db->get()->row();
 		//总记录数
@@ -685,6 +687,7 @@ class Manage_model extends MY_Model
 			$this->db->like('a.name',$this->input->post('name'));
 			$data['rel_name'] = $this->input->post('name');
 		}
+		$this->db->where('type_id', 2);
 		
 		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
 		$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
@@ -718,7 +721,9 @@ class Manage_model extends MY_Model
 			'description' => $this->input->post('description'),
 			'house_pic' => $this->input->post('house_pic'),
 			'longitude' => $this->input->post('longitude'),
-			'latitude' => $this->input->post('latitude')
+			'latitude' => $this->input->post('latitude'),
+			'folder' => $this->input->post('folder'),
+			'bg_pic' => $this->input->post('bg_pic')
 		);
 		$this->db->trans_start();//--------开始事务
 	
@@ -741,8 +746,8 @@ class Manage_model extends MY_Model
 			$pic_data = array(
 				'h_id' => $h_id,
 				'type_id' => 1,
-				'pic' => $folder . '/1/' . str_replace('_thumb', '', $pic),
-				'pic_short' => $folder . '/1/' . $pic,
+				'pic' => str_replace('_thumb', '', $pic),
+				'pic_short' => $pic,
 				'is_bg' => $is_bg[$idx],
 				'desc' => $desc[$idx]
 			);
