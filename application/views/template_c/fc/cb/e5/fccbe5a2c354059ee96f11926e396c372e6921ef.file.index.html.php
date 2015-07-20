@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2015-07-20 09:38:00
+<?php /* Smarty version Smarty-3.1.16, created on 2015-07-20 09:49:06
          compiled from "application\views\index.html" */ ?>
 <?php /*%%SmartyHeaderCode:1704555ac4f185d68d4-47063549%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fccbe5a2c354059ee96f11926e396c372e6921ef' => 
     array (
       0 => 'application\\views\\index.html',
-      1 => 1437356279,
+      1 => 1437356939,
       2 => 'file',
     ),
   ),
@@ -55,10 +55,6 @@ css/index.css" rel="stylesheet" type="text/css" />
                     <div class="ks-select-pop hidden">
 						<a href="javascript:" value="" target="_self" class="item">新房</a>
                         <a href="javascript:" value="product.shtml" target="_self" class="item current">二手房</a>
-                        <a href="javascript:" value="download.shtml" target="_self" class="item">学区房</a>
-                        <a href="javascript:" value="cms.shtml" target="_self" class="item">学区房</a>
-                        <a href="javascript:" value="photo.shtml" target="_self" class="item">学区房</a>
-                        <a href="javascript:" value="bbs.shtml" target="_self" class="item">学区房</a>
                     </div>
                 </div>
                 <div class="ks-input">

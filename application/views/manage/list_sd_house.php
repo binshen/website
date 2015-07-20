@@ -19,8 +19,16 @@
 	<table class="list" width="100%" targetType="navTab" asc="asc" desc="desc">
 		<thead>
 			<tr>
-				<th width="240" >标题</th>
-				<th>链接</th>
+				<th>楼盘</th>
+				<th>小区</th>
+				<th>区域</th>
+				<th>类型</th>
+				<th>户型</th>
+				<th>面积</th>
+				<th>总价</th>
+				<th>装修</th>
+				<th>朝向</th>
+				<th>建造年代</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -30,7 +38,15 @@
             ?>		            
             			<tr target="id" rel=<?php echo $row->id; ?>>
             				<td><?php echo $row->name;?></td>
-            				<td><?php echo $row->url;?></td>
+            				<td><?php echo $row->xiaoqu_name;?></td>
+            				<td><?php echo $row->region_name;?></td>
+            				<td><?php echo $row->style_name;?></td>
+            				<td><?php echo $row->room;?>室<?php echo $row->lounge;?>厅<?php echo $row->toilet;?>卫</td>
+            				<td><?php echo $row->acreage;?></td>
+            				<td><?php echo $row->total_price;?></td>
+            				<td><?php echo $row->decoration_name;?></td>
+            				<td><?php echo $row->orientation_name;?></td>
+            				<td><?php echo $row->build_year;?></td>
             			</tr>
             <?php 
             		endforeach;
