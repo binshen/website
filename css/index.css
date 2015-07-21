@@ -1,3 +1,4 @@
+@charset "utf-8";
 @import url('block/reset.css');
 @import url('block/other.css');
 @import url('block/common.css');
@@ -26,7 +27,7 @@
 
 .lay965{margin-top:1px;}
   
-/*-----------½¹µãÍ¼--------------*/
+/*-----------ç„¦ç‚¹å›¾--------------*/
 .focus-news{ width:515px; float:left; margin-right:5px;}
 .focusPic1{ margin-bottom:2px;  height:280px;}
 .focusPic{position:relative; width:515px; overflow:hidden;}
@@ -52,3 +53,5 @@
 .guideTxt{ height:90px;padding:0 5px;}
 .guide-tit{ padding:12px 0 5px; font-size:14px; line-height:24px;display:block; }
 .guide-link{ font-size:14px; }.guide-link a{ margin:0 5px;}
+
+

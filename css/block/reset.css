@@ -19,3 +19,4 @@ a:hover em,a:hover b, a:hover i, a:hover span {cursor:pointer;}
 .hidden{display:none;}
 .clearfix{*zoom:1}.clearfix:after{content:"\20";clear:both;height:0;display:block;overflow:hidden;}
 .fz14{font-size:14px;}.fz16{font-size:16px;}.fz20{font-size:20px;}
+.red{ color: #ff4400;}

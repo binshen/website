@@ -19,4 +19,14 @@ class House extends MY_Controller {
 	public function index() {
 		
 	}
+	
+	public function new_home_list() {
+		
+		$this->display('new_home_list.html');
+	}
+	
+	public function second_hand_list() {
+		
+		$this->display('second_hand_list.html');
+	}
 }
