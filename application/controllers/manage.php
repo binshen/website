@@ -296,8 +296,8 @@ class Manage extends MY_Controller {
 		$data['house_img'] = $this->manage_model->get_upload_house_img($data['id']);
 		$data['feature_list'] = $this->manage_model->get_feature();
 		$data['style_list'] = $this->manage_model->get_style_list();
-		if(!empty($data['style_list'])) {
-			$data['substyle_list'] = $this->manage_model->get_substyle_list_by_parent($data['style_list'][0]->id);
+		if(!empty($data['style_id'])) {
+			$data['substyle_list'] = $this->manage_model->get_substyle_list_by_parent($data['style_id']);
 		}
 		$data['region_list'] = $this->manage_model->get_region_list();
 		$data['decoration_list'] = $this->manage_model->get_decoration_list();

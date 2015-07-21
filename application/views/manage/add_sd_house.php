@@ -72,9 +72,9 @@
         					<?php          
 				                if (!empty($substyle_list)):
 				            	    foreach ($substyle_list as $row):
-				            	    	$selected = !empty($substyle_id) && $row->id == $substyle_id ? "selected" : "";          
+				            	    	$selected = !empty($substyle_id) && $row['id'] == $substyle_id ? "selected" : "";          
 				            ?>
-        								<option value="<?php echo $row->id; ?>" <?php echo $selected; ?>><?php echo $row->name; ?></option>
+        								<option value="<?php echo $row['id']; ?>" <?php echo $selected; ?>><?php echo $row['name']; ?></option>
         					<?php 
 				            		endforeach;
 				            	endif;
