@@ -54,7 +54,7 @@ class Manage extends MY_Controller {
 	}
 	
 	public function add_new_house(){
-		$data['feature'] = $this->manage_model->get_feature();
+		$data['feature_list'] = $this->manage_model->get_feature();
 		$this->load->view('manage/add_new_house.php',$data);
 	}
 	
@@ -165,6 +165,29 @@ class Manage extends MY_Controller {
 		$data = $this->manage_model->get_new_house($id);
 		$data['feature_list'] = $this->manage_model->get_feature();
 		$this->load->view('manage/add_new_house.php',$data);
+	}
+	
+	public function upload_pic(){
+		$path = './././uploadfiles/others/';
+		$path_out = '/uploadfiles/others/';
+		$msg = '';
+	
+		//设置原图限制
+		$config['upload_path'] = $path;
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		$config['max_size'] = '1000';
+		$config['encrypt_name'] = true;
+		$this->load->library('upload', $config);
+	
+		if($this->upload->do_upload('filedata')){
+			$data = $this->upload->data();
+			$targetPath = $path_out.$data['file_name'];
+			$msg="{'url':'".$targetPath."','localname':'','id':'1'}";
+			$err = '';
+		}else{
+			$err = $this->upload->display_errors();
+		}
+		echo "{'err':'".$err."','msg':".$msg."}";
 	}
 	
 

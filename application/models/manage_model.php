@@ -193,8 +193,21 @@ class Manage_model extends MY_Model
 		
 		$this->db->trans_start();//--------开始事务
 		
-		$this->db->insert('house',$data);
-		$h_id = $this->db->insert_id();
+		if($this->input->post('id')){//修改
+			$this->db->where('id',$this->input->post('id'));
+			$this->db->update('house',$data);
+			$h_id = $this->input->post('id');
+			
+			$this->db->where('h_id',$this->input->post('id'));
+			$this->db->delete('house_img');
+			
+			$this->db->where('h_id',$this->input->post('id'));
+			$this->db->delete('house_hold');
+		}else{//新增
+			$this->db->insert('house',$data);
+			$h_id = $this->db->insert_id();
+		}
+		
 		$data_line = array();
 		$data_hx = array();
 		

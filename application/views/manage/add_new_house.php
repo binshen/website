@@ -37,12 +37,16 @@
         		
         		<dl>
         			<dt>开盘日期：</dt>
-        			<dd><input name="kp_date" type="text" class="required" value="<?php if(!empty($kp_date)) echo $kp_date;?>" /></dd>
+        			<dd>
+        			<input type="text" name="kp_date" class="date required" dateFmt="yyyy-MM-dd" readonly="true" value="<?php if(!empty($kp_date)) echo $kp_date;?>">
+        			<a class="inputDateButton" href="javascript:;"></a>
         		</dl>
         		
         		<dl>
         			<dt>交房日期：</dt>
-        			<dd><input name="jf_date" type="text" class="required" value="<?php if(!empty($jf_date)) echo $jf_date;?>" /></dd>
+        			<dd>
+        			<input type="text" name="jf_date" class="date required" dateFmt="yyyy-MM-dd" readonly="true" value="<?php if(!empty($jf_date)) echo $jf_date;?>">
+        			<a class="inputDateButton" href="javascript:;"></a>
         		</dl>
         		
         		<dl>
@@ -161,10 +165,15 @@
     	    <dl class="nowrap">
     	    	<dt>
     	    		<input type="hidden" name="folder" value="<?php if(!empty($folder)) echo $folder;?>" id="folder">
+    	    		<?php if(!empty($folder)):?>
+    	    		<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.$folder.'/1')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
+    	    		<?php else:?>
     	    		<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.date('YmdHis').'/1')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
+    	    		<?php endif;?>
     	    	</dt>
     		</dl>
     		<dl class="nowrap" id="append1">
+    		<?php if(!empty($pics)):?>
     		<?php foreach($pics as $k=>$v):?>
     		<?php if($v->type_id == '1'):?>
     		
@@ -178,6 +187,7 @@
     		
     		<?php endif;?>
     		<?php endforeach;?>
+    		<?php endif;?>
     		</dl>
     	</fieldset>
     	
@@ -185,10 +195,15 @@
     	    <legend>规划图</legend>
     	    <dl class="nowrap">
     	    	<dt>
-    	    		<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.date('YmdHis').'/2')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
+    	    	<?php if(!empty($folder)):?>
+    	    	<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.$folder.'/2')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
+    	    	<?php else:?>
+    	    	<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.date('YmdHis').'/2')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
+    	    	<?php endif;?>
     	    	</dt>
     		</dl>
     		<dl class="nowrap" id="append2">
+    		<?php if(!empty($pics)):?>
     		<?php foreach($pics as $k=>$v):?>
     		<?php if($v->type_id == '2'):?>
     		
@@ -202,6 +217,7 @@
     		
     		<?php endif;?>
     		<?php endforeach;?>
+    		<?php endif;?>
     		</dl>
     	</fieldset>
     	
@@ -209,10 +225,15 @@
     	    <legend>样板间</legend>
     	    <dl class="nowrap">
     	    	<dt>
-    	    		<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.date('YmdHis').'/3')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
+    	    	<?php if(!empty($folder)):?>
+    	    	<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.$folder.'/3')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
+    	    	<?php else:?>
+    	    	<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.date('YmdHis').'/3')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
+    	    	<?php endif;?>
     	    	</dt>
     		</dl>
     		<dl class="nowrap" id="append3">
+    		<?php if(!empty($pics)):?>
     		<?php foreach($pics as $k=>$v):?>
     		<?php if($v->type_id == '3'):?>
     		
@@ -226,17 +247,21 @@
     		
     		<?php endif;?>
     		<?php endforeach;?>
+    		<?php endif;?>
     		</dl>
     	</fieldset>
     	
     	<fieldset>
     	    <legend>实景图</legend>
     	    <dl class="nowrap">
-    	    	<dt>
-    	    		<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.date('YmdHis').'/4')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
-    	    	</dt>
+    	    	<?php if(!empty($folder)):?>
+    	    	<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.$folder.'/4')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
+    	    	<?php else:?>
+    	    	<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.date('YmdHis').'/4')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
+    	    	<?php endif;?>
     		</dl>
     		<dl class="nowrap" id="append4">
+    		<?php if(!empty($pics)):?>
     		<?php foreach($pics as $k=>$v):?>
     		<?php if($v->type_id == '4'):?>
     		
@@ -250,6 +275,7 @@
     		
     		<?php endif;?>
     		<?php endforeach;?>
+    		<?php endif;?>
     		</dl>
     	</fieldset>
     	
@@ -257,10 +283,15 @@
     	    <legend>配套图</legend>
     	    <dl class="nowrap">
     	    	<dt>
+    	    		<?php if(!empty($folder)):?>
+    	    		<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.$folder.'/5')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
+    	    		<?php else:?>
     	    		<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.date('YmdHis').'/5')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
+    	    		<?php endif;?>
     	    	</dt>
     		</dl>
     		<dl class="nowrap" id="append5">
+    		<?php if(!empty($pics)):?>
     		<?php foreach($pics as $k=>$v):?>
     		<?php if($v->type_id == '5'):?>
     		
@@ -274,6 +305,7 @@
     		
     		<?php endif;?>
     		<?php endforeach;?>
+    		<?php endif;?>
     		</dl>
     	</fieldset>
     	
@@ -285,6 +317,7 @@
     	    	</dt>
     		</dl>
     		<dl class="nowrap" id="append6">
+    		<?php if(!empty($hx_pics)):?>
     		<?php foreach($hx_pics as $k=>$v):?>
     		
     		<dt style="width: 250px; position:relative; margin-top:20px">
@@ -294,6 +327,7 @@
 			</dt>
     		
     		<?php endforeach;?>
+    		<?php endif;?>
     		</dl>
     	</fieldset>
         
@@ -302,7 +336,7 @@
 		<fieldset>
     	    <legend>楼盘详情</legend>
     	    <dl class="nowrap">
-    			<dd><textarea class="editor" name="description" rows="22" cols="100" upImgExt="jpg,jpeg,gif,png"  tools="simple"><?php if(!empty($description)) echo $description;?></textarea></dd>
+    			<dd><textarea class="editor" name="description" rows="22" cols="100" upImgUrl="<?php echo site_url('manage/upload_pic')?>" upImgExt="jpg,jpeg,gif,png"  tools="simple"><?php if(!empty($description)) echo $description;?></textarea></dd>
 	    		</dl>
     	</fieldset>
         </div>
