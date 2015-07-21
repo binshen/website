@@ -732,7 +732,7 @@ class Manage_model extends MY_Model
 			'longitude' => $this->input->post('longitude'),
 			'latitude' => $this->input->post('latitude'),
 			'folder' => $this->input->post('folder'),
-			'bg_pic' => $this->input->post('bg_pic')
+			'bg_pic' => $this->input->post('is_bg')
 		);
 		$this->db->trans_start();//--------开始事务
 	
@@ -756,9 +756,7 @@ class Manage_model extends MY_Model
 				'h_id' => $h_id,
 				'type_id' => 1,
 				'pic' => str_replace('_thumb', '', $pic),
-				'pic_short' => $pic,
-				'is_bg' => $is_bg[$idx],
-				'desc' => $desc[$idx]
+				'pic_short' => $pic
 			);
 			$this->db->insert('house_img', $pic_data);
 		}
