@@ -819,6 +819,7 @@ class Manage_model extends MY_Model
 			'style_id' => $this->input->post('style_id'),
 			'region_id' => $this->input->post('region_id'),
 			'style_id' => $this->input->post('style_id'),
+			'substyle_id' => $this->input->post('substyle_id'),
 			'total_price' => $this->input->post('total_price'),
 			'acreage' => $this->input->post('acreage'),
 			'room' => $this->input->post('room'),
