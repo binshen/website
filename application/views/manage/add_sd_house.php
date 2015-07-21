@@ -37,7 +37,7 @@
         					<?php          
 				                if (!empty($region_list)):
 				            	    foreach ($region_list as $row):
-				            	    	$selected = $row->id == $region_id ? "selected" : "";          
+				            	    	$selected = !empty($region_id) && $row->id == $region_id ? "selected" : "";          
 				            ?>
         								<option value="<?php echo $row->id; ?>" <?php echo $selected; ?>><?php echo $row->name; ?></option>
         					<?php 
@@ -51,11 +51,11 @@
         		<dl>
         			<dt>房源类型：</dt>
         			<dd>
-        				<select name="style_id" class="combox">
+        				<select name="style_id" class="combox" id="selectStyle" ref="selectSubStyle" refUrl="/manage/get_substyle_list/{value}" >
         					<?php          
 				                if (!empty($style_list)):
 				            	    foreach ($style_list as $row):
-				            	    	$selected = $row->id == $style_id ? "selected" : "";          
+				            	    	$selected = !empty($style_id) && $row->id == $style_id ? "selected" : "";          
 				            ?>
         								<option value="<?php echo $row->id; ?>" <?php echo $selected; ?>><?php echo $row->name; ?></option>
         					<?php 
@@ -66,8 +66,21 @@
         			</dd>
         		</dl>
         		<dl>
-        			<dt></dt>
-        			<dd></dd>
+        			<dt>房源类型(二级)：</dt>
+        			<dd>
+        				<select name="substyle_id" class="combox" id="selectSubStyle">
+        					<?php          
+				                if (!empty($substyle_list)):
+				            	    foreach ($substyle_list as $row):
+				            	    	$selected = !empty($substyle_id) && $row->id == $substyle_id ? "selected" : "";          
+				            ?>
+        								<option value="<?php echo $row->id; ?>" <?php echo $selected; ?>><?php echo $row->name; ?></option>
+        					<?php 
+				            		endforeach;
+				            	endif;
+				            ?>
+        				</select>
+        			</dd>
         		</dl>
         		
         		<dl>
@@ -76,7 +89,7 @@
         		</dl>
         		
         		<dl>
-        			<dt>面积：</dt>
+        			<dt>面积(平方米)：</dt>
         			<dd><input name="acreage" type="text" class="required" value="<?php if(!empty($acreage)) echo $acreage;?>" /></dd>
         		</dl>
         		
@@ -88,7 +101,7 @@
         					<?php          
 				                if (!empty($orientation_list)):
 				            	    foreach ($orientation_list as $row):
-				            	    	$selected = $row->id == $orientation_id ? "selected" : "";          
+				            	    	$selected = !empty($orientation_id) && $row->id == $orientation_id ? "selected" : "";          
 				            ?>
         								<option value="<?php echo $row->id; ?>" <?php echo $selected; ?>><?php echo $row->name; ?></option>
         					<?php 
@@ -118,7 +131,7 @@
         					<?php          
 				                if (!empty($decoration_list)):
 				            	    foreach ($decoration_list as $row):
-				            	    	$selected = $row->id == $decoration_id ? "selected" : "";          
+				            	    	$selected = !empty($decoration_id) && $row->id == $decoration_id ? "selected" : "";          
 				            ?>
         								<option value="<?php echo $row->id; ?>" <?php echo $selected; ?>><?php echo $row->name; ?></option>
         					<?php 
@@ -295,7 +308,6 @@ $(function() {
 			html_img = '<img src="<?php echo base_url().'images/fengmian.png';?>" style=" position:absolute; top:0px;">';
 			$(this).parent().find('.fengmian').html(html_img);
 		}
-		
     });
 });
 

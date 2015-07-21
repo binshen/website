@@ -865,6 +865,10 @@ class Manage_model extends MY_Model
 		return $this->db->delete('house_substyle');
 	}
 	
+	public function get_substyle_list_by_parent($id) {
+		return $this->db->get_where('house_substyle', array('style_id' => $id))->result_array();
+	}
+	
 	//////////////////////////////////////////////////////////////////////////////////
 	public function get_all_xiaoqu_list() {
 		return $this->db->get('xiaoqu')->result_array();

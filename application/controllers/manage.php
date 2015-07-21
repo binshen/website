@@ -206,6 +206,9 @@ class Manage extends MY_Controller {
 	public function add_sd_house() {
 		$data['feature_list'] = $this->manage_model->get_feature();
 		$data['style_list'] = $this->manage_model->get_style_list();
+		if(!empty($data['style_list'])) {
+			$data['substyle_list'] = $this->manage_model->get_substyle_list_by_parent($data['style_list'][0]->id);
+		}
 		$data['region_list'] = $this->manage_model->get_region_list();
 		$data['decoration_list'] = $this->manage_model->get_decoration_list();
 		$data['orientation_list'] = $this->manage_model->get_orientation_list();
@@ -226,6 +229,9 @@ class Manage extends MY_Controller {
 		$data['house_img'] = $this->manage_model->get_upload_house_img($data['id']);
 		$data['feature_list'] = $this->manage_model->get_feature();
 		$data['style_list'] = $this->manage_model->get_style_list();
+		if(!empty($data['style_list'])) {
+			$data['substyle_list'] = $this->manage_model->get_substyle_list_by_parent($data['style_list'][0]->id);
+		}
 		$data['region_list'] = $this->manage_model->get_region_list();
 		$data['decoration_list'] = $this->manage_model->get_decoration_list();
 		$data['orientation_list'] = $this->manage_model->get_orientation_list();
@@ -240,7 +246,6 @@ class Manage extends MY_Controller {
 			form_submit_json("300", "删除失败");
 		}	
 	}
-	
 	
 	/**
 	 * 经纪人管理
@@ -396,6 +401,15 @@ class Manage extends MY_Controller {
 		}
 	}
 	
+	public function get_substyle_list($id) {
+		$data = $this->manage_model->get_substyle_list_by_parent($id);
+		$subStyle = array();
+		foreach ($data as $s) {
+			$subStyle[] = array($s['id'], $s['name']);
+		}
+		echo json_encode($subStyle);
+		die;
+	}
 	
 	/**
 	 * 所在区域
