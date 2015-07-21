@@ -785,4 +785,14 @@ class Manage_model extends MY_Model
 	public function get_upload_house_img($h_id) {
 		return $this->db->get_where('house_img', array('h_id' => $h_id, 'type_id' => 1))->result_array();
 	}
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	public function get_all_xiaoqu_list() {
+		return $this->db->get('xiaoqu')->result_array();
+	}
+	
+	public function update_xiaoqu_jianpin($data) {
+		$this->db->where('id', $data['id']);
+		$this->db->update('xiaoqu', $data);
+	}
 }
