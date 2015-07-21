@@ -256,14 +256,14 @@
 		<fieldset>
     	    <legend>房源描述</legend>
     	    <dl class="nowrap">
-    			<dd><textarea class="editor" name="description" rows="22" cols="100" upImgExt="jpg,jpeg,gif,png"  tools="simple"><?php if(!empty($description)) echo $description;?></textarea></dd>
+    			<dd><textarea class="editor" name="description" rows="22" cols="100" upImgUrl="<?php echo site_url('manage/upload_pic')?>" upImgExt="jpg,jpeg,gif,png"  tools="simple"><?php if(!empty($description)) echo $description;?></textarea></dd>
     		</dl>
     	</fieldset>
     	
     	<fieldset>
     	    <legend>房源图片</legend>
     	    <dl class="nowrap">
-    			<dd><textarea class="editor" name="house_pic" rows="22" cols="100" upImgExt="jpg,jpeg,gif,png"  tools="simple"><?php if(!empty($house_pic)) echo $house_pic;?></textarea></dd>
+    			<dd><textarea class="editor" name="house_pic" rows="22" cols="100" upImgUrl="<?php echo site_url('manage/upload_pic')?>" upImgExt="jpg,jpeg,gif,png"  tools="simple"><?php if(!empty($house_pic)) echo $house_pic;?></textarea></dd>
     		</dl>
     	</fieldset>
     		
