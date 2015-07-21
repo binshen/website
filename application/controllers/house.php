@@ -20,9 +20,9 @@ class House extends MY_Controller {
 		
 	}
 	
-	public function new_home_list() {
+	public function new_house_list() {
 		
-		$this->display('new_home_list.html');
+		$this->display('new_house_list.html');
 	}
 	
 	public function second_hand_list() {

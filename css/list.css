@@ -35,8 +35,10 @@
 
 /*结果列表*/
 .serchL{width: 865px; float: left;}
-.houselist{margin-bottom:20px;}
-.houselist li{padding:20px 0; position: relative; border-bottom: 1px solid #f0f0f0; cursor: pointer; overflow:hidden; zoom:1;}
+.houselist{margin-bottom:20px; overflow:hidden;zoom:1;}
+.houselist li,.houselist .houseli{padding:20px 0; position: relative; border-bottom: 1px solid #f0f0f0; cursor: pointer; overflow:hidden; zoom:1;}
+.houselist .over-bg{ background: #f9f9f9;}
+.houselist .houseli,.houselist .last{border: none;}
 .houselist li img{ float: left; width: 205px; }
 .housedetail{padding-left: 20px; float: left;}
 .house-tit{margin-bottom: 8px; font-size: 16px; color: #554d46; line-height:24px;}
@@ -48,7 +50,7 @@
 .houselist .house-other-info span,.houselist .house-other-info em{margin-right: 10px;} 
 .house-tel{ padding-left:22px; font-size: 16px;background: url(../images/icon3_1.png) no-repeat -25px -200px;}
 .housearea{padding-top: 50px; position: absolute; top:0; right:100px;width:75px; font-size: 16px; }
-.houseprice{ position: absolute; top:0; right: 0; width: 85px; font-size: 14px; padding-top:45px; text-indent: 0.5em; line-height: 20px; text-align: right;}
+.houseprice{ position: absolute; top:0; right: 10px; width: 85px; font-size: 14px; padding-top:45px; text-indent: 0.5em; line-height: 20px; text-align: right;}
 .houseprice .red{padding-right:5px;font-size: 26px; color:#de3438;}
 .ave-price{ font-size: 12px;}
 
@@ -72,11 +74,14 @@
 .a-reco-link .house-state span{margin-right: 8px;}
 
 /*新房*/
-.newhouselist li img{ float: left; width: 190px; }
+.newhouselist {margin-bottom: 10px;}
+.newhouselist li img,.houselist .houseli img{ float: left; width: 190px; }
 .newhouselist .house-address,.newhouselist .house-other-info{margin:0; line-height: 22px;}
 .newhouselist .house-dynamic{margin-top: 8px;}
 .newhouselist .house-dynamic .red{ color: #ff7542;margin-right: 10px; font-size: 13px;}
-.newhouselist .houseprice{ width: 200px;}
+.newhouselist .houseprice{ width: 200px;right: 25px;}
 .newhouselist .houseprice .red{ color: #ff6600;}
 
-.newhouselist .house-tel{ position:absolute;top:160px; width: 160px; right: 10px; background: none; font-size: 12px; color: #c5c3c3; text-align: right;}
+.newhouselist .house-tel{ position:absolute;top:155px; width: 160px; right: 25px; background: none; font-size: 12px; color: #c5c3c3; text-align: right;}
+
+.newhouse-tit{ padding:0 20px;height: 42px; line-height: 42px; border: 1px solid #ddd;border-top:2px solid #ff7542; font-size: 14px; }
