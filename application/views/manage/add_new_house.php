@@ -26,6 +26,42 @@
         		</dl>
         		
         		<dl>
+        			<dt>区域：</dt>
+        			<dd>
+        				<select name="region_id" class="combox">
+        					<?php          
+				                if (!empty($region_list)):
+				            	    foreach ($region_list as $row):
+				            	    	$selected = $row->id == $region_id ? "selected" : "";          
+				            ?>
+        								<option value="<?php echo $row->id; ?>" <?php echo $selected; ?>><?php echo $row->name; ?></option>
+        					<?php 
+				            		endforeach;
+				            	endif;
+				            ?>
+        				</select>
+        			</dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>房源类型：</dt>
+        			<dd>
+        				<select name="style_id" class="combox">
+        					<?php          
+				                if (!empty($style_list)):
+				            	    foreach ($style_list as $row):
+				            	    	$selected = $row->id == $style_id ? "selected" : "";          
+				            ?>
+        								<option value="<?php echo $row->id; ?>" <?php echo $selected; ?>><?php echo $row->name; ?></option>
+        					<?php 
+				            		endforeach;
+				            	endif;
+				            ?>
+        				</select>
+        			</dd>
+        		</dl>
+        		
+        		<dl>
         			<dt>优惠折扣：</dt>
         			<dd><input name="discount" type="text" class="required" value="<?php if(!empty($discount)) echo $discount;?>" /></dd>
         		</dl>

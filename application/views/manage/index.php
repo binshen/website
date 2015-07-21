@@ -135,7 +135,7 @@ $(function(){
 					
 					
 					<div class="accordionHeader">
-						<h2><span>Folder</span>动态</h2>
+						<h2><span>Folder</span>最新动态</h2>
 					</div>
 					<div class="accordionContent">
 						<ul class="tree">
