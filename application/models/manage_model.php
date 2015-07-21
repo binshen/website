@@ -188,7 +188,9 @@ class Manage_model extends MY_Model
 			'type_id'=>1,
 			'folder'=>$this->input->post('folder'),
 			'bg_pic'=>$this->input->post('is_bg'),
-			'description'=>$this->input->post('description')
+			'description'=>$this->input->post('description'),
+			'region_id'=>$this->input->post('region_id'),
+			'style_id'=>$this->input->post('style_id'),
 		);
 		
 		$this->db->trans_start();//--------开始事务
@@ -254,6 +256,86 @@ class Manage_model extends MY_Model
 		$data = $this->db->select('a.*,b.name xq_name')->from('house a')->join('xiaoqu b','a.xq_id = b.id','left')->where('a.id',$id)->get()->row_array();
 		$data['pics'] = $this->db->select()->from('house_img')->where('h_id',$id)->get()->result();
 		$data['hx_pics'] = $this->db->select()->from('house_hold')->where('h_id',$id)->get()->result();
+		return $data;
+	}
+	
+	/**
+	 * 分页列出新闻类别
+	 */
+	public function list_news(){
+		// 每页显示的记录条数，默认20条
+		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
+		$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
+	
+		//获得总记录数
+		$this->db->select('count(1) as num');
+		$this->db->from('news');
+		if($this->input->post('title'))
+			$this->db->like('title',$this->input->post('title'));
+		if($this->input->post('type_id'))
+			$this->db->where('type_id',$this->input->post('type_id'));
+	
+		$rs_total = $this->db->get()->row();
+		//总记录数
+		$data['countPage'] = $rs_total->num;
+	
+		$data['title'] = null;
+		//list
+		$this->db->select('a.*,b.name xq_name');
+		$this->db->from('news a');
+		$this->db->join('xiaoqu b','a.xq_id=b.id','left');
+		if($this->input->post('title')){
+			$this->db->like('title',$this->input->post('title'));
+		}
+	
+		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
+		$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'cdate', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'asc');
+		$data['res_list'] = $this->db->get()->result();
+		$data['pageNum'] = $pageNum;
+		$data['numPerPage'] = $numPerPage;
+		return $data;
+	}
+	
+	/**
+	 * 保存新闻
+	 */
+	public function save_news($data){
+		$this->db->trans_start();
+		if($this->input->post('id')){//修改
+			$this->db->where('id', $this->input->post('id'));
+			$this->db->update('news', $data);
+		}else{//新增
+			$data['cdate'] = date('Y-m-d H:i:s',time());
+			$this->db->insert('news', $data);
+		}
+		$this->db->trans_complete();
+		if ($this->db->trans_status() === FALSE) {
+			return $this->db_error;
+		} else {
+			return 1;
+		}
+	}
+	
+	/**
+	 * 删除新闻类别
+	 */
+	public function delete_news($id){
+		$data = $this->get_news($id);
+		$rs = $this->db->delete('news', array('id' => $id));
+		if($rs){
+			@unlink('./././uploadfiles/news/'.$data['img']);//del old img
+			return 1;
+		}else{
+			return $this->db_error;
+		}
+	}
+	
+	/**
+	 * 获取新闻详情
+	 */
+	public function get_news($id){
+		$this->db->select('a.*,b.name xq_name')->from('news a')->join('xiaoqu b','a.xq_id=b.id','left')->where('a.id', $id);
+		$data = $this->db->get()->row_array();
 		return $data;
 	}
     
