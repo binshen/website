@@ -426,6 +426,45 @@ class Manage extends MY_Controller {
 	}
 	
 	/**
+	 * 楼盘类型（二级）
+	 */
+	public function list_house_substyle() {
+		$data = $this->manage_model->list_house_substyle();
+		$this->load->view('manage/list_house_substyle.php', $data);
+	}
+	
+	public function add_house_substyle() {
+		$data = array();
+		$data['style_list'] = $this->manage_model->get_style_list();
+		$this->load->view('manage/add_house_substyle.php', $data);
+	}
+	
+	public function save_house_substyle() {
+		$ret = $this->manage_model->save_house_substyle();
+		if($ret == 1){
+			form_submit_json("200", "操作成功", 'list_house_substyle');
+		} else {
+			form_submit_json("300", "保存失败");
+		}
+	}
+	
+	public function edit_house_substyle($id) {
+		$data = $this->manage_model->get_house_substyle($id);
+		$data['style_list'] = $this->manage_model->get_style_list();
+		$this->load->view('manage/add_house_substyle.php', $data);
+	}
+	
+	public function delete_house_substyle($id) {
+		$ret = $this->manage_model->delete_house_substyle($id);
+		if($ret == 1) {
+			form_submit_json("200", "操作成功", 'list_house_substyle', '', '');
+		} else {
+			form_submit_json("300", "删除失败");
+		}
+	}
+	
+	
+	/**
 	 * 所在区域
 	 */
 	public function list_house_region() {

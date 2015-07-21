@@ -106,6 +106,7 @@ $(function(){
 						<ul class="tree">
 							<li><a href="<?php echo site_url('manage/list_xiaoqu');?>" target="navTab" rel="list_xiaoqu">小区信息</a></li>
 							<li><a href="<?php echo site_url('manage/list_house_style');?>" target="navTab" rel="list_house_style">楼盘类型</a></li>
+							<li><a href="<?php echo site_url('manage/list_house_substyle');?>" target="navTab" rel="list_house_substyle">楼盘类型(二级)</a></li>
 							<li><a href="<?php echo site_url('manage/list_house_region');?>" target="navTab" rel="list_house_region">所在区域</a></li>
 							<li><a href="<?php echo site_url('manage/list_house_orientation');?>" target="navTab" rel="list_house_orientation">楼盘朝向</a></li>
 							<li><a href="<?php echo site_url('manage/list_house_decoration');?>" target="navTab" rel="list_house_decoration">装修状况</a></li>

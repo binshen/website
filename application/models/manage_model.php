@@ -345,6 +345,9 @@ class Manage_model extends MY_Model
      *
      * ***************************************shenbin*******************************************************************
      */
+	/**
+	 * 经纪人管理
+	 */
 	public function list_broker(){
 		// 每页显示的记录条数，默认20条
 		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
@@ -421,6 +424,9 @@ class Manage_model extends MY_Model
 		return $this->db->get_where('admin', array('tel' => $tel))->row_array();
 	}
 	
+	/**
+	 * 房源特色
+	 */
 	public function list_house_feature(){
 		// 每页显示的记录条数，默认20条
 		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
@@ -474,6 +480,9 @@ class Manage_model extends MY_Model
 		return $this->db->delete('feature');
 	}
 	
+	/**
+	 * 楼盘类型
+	 */
 	public function list_house_style(){
 		// 每页显示的记录条数，默认20条
 		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
@@ -526,6 +535,9 @@ class Manage_model extends MY_Model
 		return $this->db->delete('house_style');
 	}
 	
+	/**
+	 * 所在区域
+	 */
 	public function list_house_region(){
 		// 每页显示的记录条数，默认20条
 		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
@@ -630,6 +642,9 @@ class Manage_model extends MY_Model
 		return $this->db->delete('house_orientation');
 	}
 	
+	/**
+	 * 装修状况
+	 */
 	public function list_house_decoration(){
 		// 每页显示的记录条数，默认20条
 		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
@@ -682,6 +697,9 @@ class Manage_model extends MY_Model
 		return $this->db->delete('house_decoration');
 	}
 	
+	/**
+	 * 小区信息
+	 */
 	public function list_xiaoqu(){
 		// 每页显示的记录条数，默认20条
 		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
@@ -749,6 +767,9 @@ class Manage_model extends MY_Model
 		return $this->db->get('house_orientation')->result();
 	}
 	
+	/**
+	 * 二手房信息
+	 */
 	public function list_sd_house(){
 		// 每页显示的记录条数，默认20条
 		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
@@ -787,6 +808,7 @@ class Manage_model extends MY_Model
 		$data['numPerPage'] = $numPerPage;
 		return $data;
 	}
+	
 	
 	public function save_sd_house() {
 		$data = array(
@@ -866,5 +888,72 @@ class Manage_model extends MY_Model
 	
 	public function get_upload_house_img($h_id) {
 		return $this->db->get_where('house_img', array('h_id' => $h_id, 'type_id' => 1))->result_array();
+	}
+	
+	/**
+	 * 楼盘类型（二级）
+	 */
+	public function list_house_substyle(){
+		// 每页显示的记录条数，默认20条
+		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
+		$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
+	
+		//获得总记录数
+		$this->db->select('count(1) as num');
+		$this->db->from('house_substyle');
+	
+		$rs_total = $this->db->get()->row();
+		//总记录数
+		$data['countPage'] = $rs_total->num;
+	
+		//list
+		$this->db->select('a.*, b.name AS style_name')->from('house_substyle a');
+		$this->db->join('house_style b', 'a.style_id = b.id', 'left');
+		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
+		$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
+		$data['res_list'] = $this->db->get()->result();
+		$data['pageNum'] = $pageNum;
+		$data['numPerPage'] = $numPerPage;
+		return $data;
+	}
+	
+	public function save_house_substyle() {
+		$data = array(
+			'style_id' => $this->input->post('style_id'),
+			'name' => $this->input->post('name')
+		);
+		$this->db->trans_start();//--------开始事务
+	
+		if($this->input->post('id')){//修改
+			$this->db->where('id', $this->input->post('id'));
+			$this->db->update('house_substyle', $data);
+		} else {
+			$this->db->insert('house_substyle', $data);
+		}
+		$this->db->trans_complete();//------结束事务
+		if ($this->db->trans_status() === FALSE) {
+			return -1;
+		} else {
+			return 1;
+		}
+	}
+	
+	public function get_house_substyle($id) {
+		return $this->db->get_where('house_substyle', array('id' => $id))->row_array();
+	}
+	
+	public function delete_house_substyle($id) {
+		$this->db->where('id', $id);
+		return $this->db->delete('house_substyle');
+	}
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	public function get_all_xiaoqu_list() {
+		return $this->db->get('xiaoqu')->result_array();
+	}
+	
+	public function update_xiaoqu_jianpin($data) {
+		$this->db->where('id', $data['id']);
+		$this->db->update('xiaoqu', $data);
 	}
 }
