@@ -14,6 +14,13 @@
         			<input name="title" type="text" class="required" value="<?php if(!empty($title)) echo $title;?>" />
         			</dd>
         		</dl>
+        		
+        		<dl>
+        			<dt>副标题：</dt>
+        			<dd>
+        			<input name="title2" type="text" value="<?php if(!empty($title2)) echo $title2;?>" />
+        			</dd>
+        		</dl>
         		<dl>
         			<dt>照片：</dt>
         			<dd>
@@ -48,6 +55,7 @@
 	        			<option value="2" <?php if(!empty($index_area) && $index_area == 2) echo 'selected="selected"';?>>区域2</option>
 	        			<option value="3" <?php if(!empty($index_area) && $index_area == 3) echo 'selected="selected"';?>>区域3</option>
 	        			<option value="4" <?php if(!empty($index_area) && $index_area == 4) echo 'selected="selected"';?>>区域4</option>
+	        			<option value="5" <?php if(!empty($index_area) && $index_area == 5) echo 'selected="selected"';?>>区域5</option>
         			</select>
         			</dd>
         		</dl>

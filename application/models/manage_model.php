@@ -205,6 +205,9 @@ class Manage_model extends MY_Model
 			
 			$this->db->where('h_id',$this->input->post('id'));
 			$this->db->delete('house_hold');
+			
+			$this->db->where('h_id',$this->input->post('id'));
+			$this->db->delete('price_trend');
 		}else{//新增
 			$this->db->insert('house',$data);
 			$h_id = $this->db->insert_id();
@@ -212,6 +215,8 @@ class Manage_model extends MY_Model
 		
 		$data_line = array();
 		$data_hx = array();
+		$data_price = array();
+		
 		
 		for($i=1;$i<=5;$i++){
 			if($this->input->post('pic_short'.$i)){
@@ -230,6 +235,8 @@ class Manage_model extends MY_Model
 		$room = $this->input->post('room');
 		$lounge = $this->input->post('lounge');
 		$toilet = $this->input->post('toilet');
+		$month = $this->input->post('month');
+		$price = $this->input->post('price');
 		
 		foreach($this->input->post('pic_short6') as $k=>$v){
 			$data_hx[] = array(
@@ -243,6 +250,16 @@ class Manage_model extends MY_Model
 		}
 		$this->db->insert_batch('house_hold', $data_hx);
 		
+		foreach($month as $k=>$v){
+			$data_price[] = array(
+				'h_id'=>$h_id,
+				'month'=>$v,
+				'price'=>$price[$k],
+				'region_id'=>$this->input->post('region_id'),
+			);
+		}
+		
+		$this->db->insert_batch('price_trend', $data_price);
 		
 		$this->db->trans_complete();//------结束事务
 		if ($this->db->trans_status() === FALSE) {
@@ -256,6 +273,7 @@ class Manage_model extends MY_Model
 		$data = $this->db->select('a.*,b.name xq_name')->from('house a')->join('xiaoqu b','a.xq_id = b.id','left')->where('a.id',$id)->get()->row_array();
 		$data['pics'] = $this->db->select()->from('house_img')->where('h_id',$id)->get()->result();
 		$data['hx_pics'] = $this->db->select()->from('house_hold')->where('h_id',$id)->get()->result();
+		$data['list'] = $this->db->select()->from('price_trend')->where('h_id',$id)->order_by('month','acs')->get()->result();
 		return $data;
 	}
 	

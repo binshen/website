@@ -375,6 +375,34 @@
     			<dd><textarea class="editor" name="description" rows="22" cols="100" upImgUrl="<?php echo site_url('manage/upload_pic')?>" upImgExt="jpg,jpeg,gif,png"  tools="simple"><?php if(!empty($description)) echo $description;?></textarea></dd>
 	    		</dl>
     	</fieldset>
+    	
+    	<fieldset>
+				<table class="list nowrap itemDetail" addButton="添加价格" width="100%" >
+					<thead>
+						<tr>
+							<th type="text" width="80" name="month[]"  fieldClass="required" size="30">月份</th>
+							<th type="file_class" name="price[]" fieldClass="required" size="10" >价格</th>
+							<th type="del" width="30">操作</th>
+						</tr>
+					</thead>
+					<tbody class="tbody" id="file_list">
+						<?php if(!empty($list)): 
+								foreach($list as $k=>$v):
+						?>
+						<tr class="unitBox" id="<?php echo "olda".$v->id;?>">
+							<td><input type="text" class="required" size='30' name="month[]" value="<?php echo $v->month?>"></td>
+							<td><input type="text" class="required" size='10' name="price[]" value="<?php echo $v->price?>"></td>
+							<td><a class="btnDel" href="javascript:$('#olda<?php echo $v->id;?>').remove();void(0);"><span>删除</span></a></td>
+						</tr>
+						<?php 
+								endforeach;
+							endif;
+								
+						?>
+					</tbody>
+				</table>
+			</fieldset>
+    	
         </div>
         <div class="formBar">
     		<ul>
