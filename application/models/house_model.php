@@ -25,7 +25,7 @@ class House_model extends MY_Model
 
     public function get_second_hand_list() {
     	// 每页显示的记录条数，默认20条
-    	$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 1;
+    	$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
     	$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
     	
     	//获得总记录数
@@ -40,12 +40,15 @@ class House_model extends MY_Model
     	
     	$data['rel_name'] = null;
     	//list
-    	$this->db->select('a.*');
+    	$this->db->select('a.*, b.name AS region_name, c.name AS orientation_name, d.name AS xq_name, d.address AS address, e.tel AS tel');
     	$this->db->from('house a');
     	$this->db->join('house_region b', 'a.region_id = b.id', 'left');
+    	$this->db->join('house_orientation c', 'a.orientation_id = c.id', 'left');
+    	$this->db->join('xiaoqu d', 'a.xq_id = d.id', 'left');
+    	$this->db->join('admin e', 'a.broker_id = e.id', 'left');
 		if($this->input->post('search_region'))
-     		$this->db->where('region_id',$this->input->post('search_region'));
-    	$this->db->where('type_id', 2);
+     		$this->db->where('a.region_id',$this->input->post('search_region'));
+    	$this->db->where('a.type_id', 2);
     	$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage);
     	$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
     	$data['res_list'] = $this->db->get()->result();
