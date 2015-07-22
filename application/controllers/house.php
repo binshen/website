@@ -54,6 +54,16 @@ class House extends MY_Controller {
 		$this->assign('search_style_list', $search_style_list);
 		
 		$data = $this->house_model->get_second_hand_list();
+		foreach ($data['res_list'] as &$d) {
+			$d->feature_list = explode(",", $d->feature);
+			$d->unit_price = intval($d->total_price / $d->acreage * 10000);
+			$region_id = $d->region_id;
+			if($region_id < 6) {
+				$d->region_fullname = "玉山镇-" . $d->region_name;
+			} else {
+				$d->region_fullname = $d->region_name . "-" . $d->region_name;
+			}
+		}
 		$this->assign('second_hand_list', $data);
 		
 		$pager = $this->pagination->getPageLink('/house/second_hand_list', $data['countPage'], $data['numPerPage']);
