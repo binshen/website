@@ -32,50 +32,103 @@
     <div class="item-list">
     	<div class="item-list-tit">房源</div>
         <div class="item-list-bdy">
-            <dl class="items">
-                <dt class="item-title">区域：</dt>
-                <dd class="elems-l">
-                    <div class="filter-item"><span>全部</span><a href='#' class='selected-item'>城中</a><a href='#' class=''>城东</a><a href='#' class=''>城南</a><a href='#' class=''>城西</a><a href='#' class=''>城北</a></div>
-                    <div class="filter-group">
-                        <a href='#' class=''>花桥镇</a><a href='#' class=''>陆家镇</a><a href='#' class=''>巴城镇</a><a href='#' class=''>张浦镇</a><a href='#' class=''>周市镇</a><a href='#' class=''>千灯镇</a><a href='#' class=''>淀山湖镇</a><a href='#' class=''>锦溪镇</a><a href='#' class=''>周庄镇</a>
-                    </div>
-                </dd>
-            </dl>
-            <dl class="items">
-                <dt class="item-title">类型：</dt>
-                <dd class="elems-l">
-                    <span class="selected-item">全部</span><a href='#' class=''>普通领导</a><a href='#' class=''>经济适用房</a><a href='#' class=''>商住楼</a><a href='#' class=''>酒店式公寓</a><a href='#' class=''>别墅</a><a href='#' class=''>写字楼</a><a href='#' class=''>商铺</a><a href='#' class=''>厂房</a>
-                </dd>
-            </dl>
-            <dl class="items">
-                <dt class="item-title">均价：</dt>
-                <dd class="elems-l">
-                    <span class="selected-item">全部</span><a href='#' class=''>5千以下</a><a href='#' class=''>5-6千</a><a href='#' class=''>6-7千</a><a href='#' class=''>8千</a><a href='#' class=''>8千-1万</a><a href='#' class=''>1-1.5万</a><a href='#' class=''> 1.5万以上</a>
-                </dd>
-            </dl>
-            <dl class="items">
-                <dt class="item-title">面积：</dt>
-                <dd class="elems-l">
-                    <span class="selected-item">全部</span><a href='#' class=''>50平米以下</a><a href='#' class=''>50-70平米</a><a href='#' class=''>90平米 </a><a href='#' class=''>90-120平米</a><a href='#' class=''>120-150平米 </a><a href='#' class=''>150-200平米</a><a href='#' class=''>200-300平米 </a><a href='#' class=''>300平米以上</a>
-                </dd>
-            </dl>
-            <dl class="items">
-                <dt class="item-title">房型：</dt>
-                <dd class="elems-l">
-                    <span class="selected-item">全部</span><a href='#' class=''>一室</a><a href='#' class=''>二室</a><a href='#' class=''> 三室</a><a href='#' class=''>四室</a><a href='#' class=''>五室</a><a href='#' class=''>五室以上</a>
-                </dd>
-            </dl>
-            <dl class="items borNo">
-                <dt class="item-title">特色：</dt>
-                <dd class="elems-l">
-                    <span class="selected-item">不限</span><a href='#' class=''>大型社区</a><a href='#' class=''>大型商超</a><a href='#' class=''>养老</a><a href='#' class=''>婚房/刚需</a><a href='#' class=''>低首付</a><a href='#' class=''>小换大</a><a href='#' class=''>小换大</a><a href='#' class=''>精装修</a><a href='#' class=''>公园周边</a><a href='#' class=''>幼儿园</a><a href='#' class=''>医院</a><a href='#' class=''>小户型</a><a href='#' class=''>投资</a><a href='#' class=''>高绿化</a><a href='#' class=''>名校周边</a><a href='#' class=''>小三房</a>
-                </dd>
-            </dl>
+        	<form action="/house/second_hand_list" method="POST" id="second_hand_list_form">
+        		<input type="hidden" id="search_region" name="search_region" value="{{$search_region}}">
+        		<input type="hidden" id="search_style" name="search_style" value="{{$search_style}}">
+        		<input type="hidden" id="search_price" name="search_price" value="{{$search_price}}">
+        		<input type="hidden" id="search_acreage" name="search_acreage" value="{{$search_acreage}}">
+        		<input type="hidden" id="search_type" name="search_type" value="{{$search_type}}">
+        		<input type="hidden" id="search_feature" name="search_feature" value="{{$search_feature}}">
+	            <dl class="items">
+	                <dt class="item-title">区域：</dt>
+	                <dd class="elems-l">
+	                    <div class="filter-item">
+	                    	<span onclick="change_region(0)" {{if empty($search_region)}}class='selected-item'{{/if}}>全部</span>
+	                    	<a href='javascript:void(0);' onclick="change_region(1)" {{if $search_region == 1}}class='selected-item'{{/if}}>城中</a>
+	                    	<a href='javascript:void(0);' onclick="change_region(2)" {{if $search_region == 2}}class='selected-item'{{/if}}>城东</a>
+	                    	<a href='javascript:void(0);' onclick="change_region(3)" {{if $search_region == 3}}class='selected-item'{{/if}}>城南</a>
+	                    	<a href='javascript:void(0);' onclick="change_region(4)" {{if $search_region == 4}}class='selected-item'{{/if}}>城西</a>
+	                    	<a href='javascript:void(0);' onclick="change_region(5)" {{if $search_region == 5}}class='selected-item'{{/if}}>城北</a>
+	                    </div>
+	                    <div class="filter-group">
+	                    	<a href='javascript:void(0);' onclick="change_region(6)" {{if $search_region == 6}}class='selected-item'{{/if}}>玉山镇</a>
+	                    	{{foreach from=$search_region_list item=item}}
+	                    		<a href='javascript:void(0);' onclick="change_region({{$item.id}})" {{if $search_region == $item.id}}class='selected-item'{{/if}}>{{$item.name}}</a>
+	                    	{{/foreach}}
+	                    </div>
+	                </dd>
+	            </dl>
+	            <dl class="items">
+	                <dt class="item-title">类型：</dt>
+	                <dd class="elems-l">
+	                    <span onclick="change_style(0)" {{if empty($search_style)}}class='selected-item'{{/if}}>全部</span>
+	                    {{foreach from=$search_style_list item=item}}
+                    		<a href='javascript:void(0);' onclick="change_style({{$item.id}})" {{if $search_style == $item.id}}class='selected-item'{{/if}}>{{$item.name}}</a>
+                    	{{/foreach}}
+	                </dd>
+	            </dl>
+	            <dl class="items">
+	                <dt class="item-title">售价：</dt>
+	                <dd class="elems-l">
+	                    <span onclick="change_price(0)" {{if empty($search_price)}}class='selected-item'{{/if}}>全部</span>
+	                    <a href='javascript:void(0);' onclick="change_price(1)" {{if $search_price == 1}}class='selected-item'{{/if}}>50万以下</a>
+	                    <a href='javascript:void(0);' onclick="change_price(2)" {{if $search_price == 2}}class='selected-item'{{/if}}>50-80万</a>
+	                    <a href='javascript:void(0);' onclick="change_price(3)" {{if $search_price == 3}}class='selected-item'{{/if}}>80-100万</a>
+	                    <a href='javascript:void(0);' onclick="change_price(4)" {{if $search_price == 4}}class='selected-item'{{/if}}>100-120万</a>
+	                    <a href='javascript:void(0);' onclick="change_price(5)" {{if $search_price == 5}}class='selected-item'{{/if}}>120-150万</a>
+	                    <a href='javascript:void(0);' onclick="change_price(6)" {{if $search_price == 6}}class='selected-item'{{/if}}>150-200万</a>
+	                    <a href='javascript:void(0);' onclick="change_price(7)" {{if $search_price == 7}}class='selected-item'{{/if}}>200-250万</a>
+	                    <a href='javascript:void(0);' onclick="change_price(8)" {{if $search_price == 8}}class='selected-item'{{/if}}>250-300万</a>
+	                    <a href='javascript:void(0);' onclick="change_price(9)" {{if $search_price == 9}}class='selected-item'{{/if}}>300-500万</a>
+	                    <a href='javascript:void(0);' onclick="change_price(10)" {{if $search_price == 10}}class='selected-item'{{/if}}>500万以上</a>
+	                </dd>
+	            </dl>
+	            <dl class="items">
+	                <dt class="item-title">面积：</dt>
+	                <dd class="elems-l">
+	                    <span onclick="change_acreage(0)" {{if empty($search_acreage)}}class='selected-item'{{/if}}>全部</span>
+	                    <a href='javascript:void(0);' onclick="change_acreage(1)" {{if $search_acreage == 1}}class='selected-item'{{/if}}>50平米以下</a>
+	                    <a href='javascript:void(0);' onclick="change_acreage(2)" {{if $search_acreage == 2}}class='selected-item'{{/if}}>50-70平米</a>
+	                    <a href='javascript:void(0);' onclick="change_acreage(3)" {{if $search_acreage == 3}}class='selected-item'{{/if}}>90平米 </a>
+	                    <a href='javascript:void(0);' onclick="change_acreage(4)" {{if $search_acreage == 4}}class='selected-item'{{/if}}>90-120平米</a>
+	                    <a href='javascript:void(0);' onclick="change_acreage(5)" {{if $search_acreage == 5}}class='selected-item'{{/if}}>120-150平米 </a>
+	                    <a href='javascript:void(0);' onclick="change_acreage(6)" {{if $search_acreage == 6}}class='selected-item'{{/if}}>150-200平米</a>
+	                    <a href='javascript:void(0);' onclick="change_acreage(7)" {{if $search_acreage == 7}}class='selected-item'{{/if}}>200-300平米 </a>
+	                    <a href='javascript:void(0);' onclick="change_acreage(8)" {{if $search_acreage == 8}}class='selected-item'{{/if}}>300平米以上</a>
+	                </dd>
+	            </dl>
+	            <dl class="items">
+	                <dt class="item-title">房型：</dt>
+	                <dd class="elems-l">
+	                    <span onclick="change_type(0)" {{if empty($search_type)}}class='selected-item'{{/if}}>全部</span>
+	                    <a href='javascript:void(0);' onclick="change_type(1)" {{if $search_type == 1}}class='selected-item'{{/if}}>一室</a>
+	                    <a href='javascript:void(0);' onclick="change_type(2)" {{if $search_type == 2}}class='selected-item'{{/if}}>二室</a>
+	                    <a href='javascript:void(0);' onclick="change_type(3)" {{if $search_type == 3}}class='selected-item'{{/if}}> 三室</a>
+	                    <a href='javascript:void(0);' onclick="change_type(4)" {{if $search_type == 4}}class='selected-item'{{/if}}>四室</a>
+	                    <a href='javascript:void(0);' onclick="change_type(5)" {{if $search_type == 5}}class='selected-item'{{/if}}>五室</a>
+	                    <a href='javascript:void(0);' onclick="change_type(6)" {{if $search_type == 6}}class='selected-item'{{/if}}>五室以上</a>
+	                </dd>
+	            </dl>
+	            <dl class="items borNo">
+	                <dt class="item-title">特色：</dt>
+	                <dd class="elems-l">
+	                    <span onclick="change_feature(0)" {{if empty($search_feature)}}class='selected-item'{{/if}}>不限</span>
+	                    <a href='javascript:void(0);' onclick="change_feature(78)" {{if $search_feature == 78}}class='selected-item'{{/if}}>婚房首选</a>
+	                    <a href='javascript:void(0);' onclick="change_feature(15)" {{if $search_feature == 15}}class='selected-item'{{/if}}>主卧朝南</a>
+	                    <a href='javascript:void(0);' onclick="change_feature(12)" {{if $search_feature == 12}}class='selected-item'{{/if}}>学区房</a>
+	                    <a href='javascript:void(0);' onclick="change_feature(6)" {{if $search_feature == 6}}class='selected-item'{{/if}}>交通便利</a>
+	                    <a href='javascript:void(0);' onclick="change_feature(20)" {{if $search_feature == 20}}class='selected-item'{{/if}}>南北通透</a>
+	                    <a href='javascript:void(0);' onclick="change_feature(28)" {{if $search_feature == 28}}class='selected-item'{{/if}}>双阳台</a>
+	                    <a href='javascript:void(0);' onclick="change_feature(49)" {{if $search_feature == 49}}class='selected-item'{{/if}}>小区中心位置 </a>
+	                    <a href='javascript:void(0);' onclick="change_feature(12)" {{if $search_feature == 12}}class='selected-item'{{/if}}>投资首选</a>
+	                </dd>
+	            </dl>
+            </form>
         </div>
     </div>
     <div class="sortby">
         <span class="sort-con">
-            排序： <a href="#" class="fst cur">默认排序</a><a href="#" class="selected-down">单价</a><!-- <a  href="#" class="selected-up">价格</a> --><a href="#" class="down">关注度</a>
+            排序： <a href="#" class="fst cur">默认排序</a><a href="#" class="selected-down">单价</a><a href="#" class="down">关注度</a>
         </span>
         <div class="sort-res">
             <span class="res-txt">共找到 <em class="red">7586</em> 套房源</span>
@@ -247,12 +300,44 @@
 {include file="footer.html"}
 
 <script>
-$('.houselist li').mouseenter(function(){
-    $('.houselist li').removeClass('over-bg');
-    $(this).addClass('over-bg');
-}).mouseleave(function(){
-    $('.houselist li').removeClass('over-bg');
+$(function() {
+	$('.houselist li').mouseenter(function(){
+	    $('.houselist li').removeClass('over-bg');
+	    $(this).addClass('over-bg');
+	}).mouseleave(function(){
+	    $('.houselist li').removeClass('over-bg');
+	});
 });
+
+function change_region(v) {
+	$("#search_region").val(v);
+	$("#second_hand_list_form").submit();
+}
+
+function change_style(v) {
+	$("#search_style").val(v);
+	$("#second_hand_list_form").submit();
+}
+
+function change_price(v) {
+	$("#search_price").val(v);
+	$("#second_hand_list_form").submit();
+}
+
+function change_acreage(v) {
+	$("#search_acreage").val(v);
+	$("#second_hand_list_form").submit();
+}
+
+function change_type(v) {
+	$("#search_type").val(v);
+	$("#second_hand_list_form").submit();
+}
+
+function change_feature(v) {
+	$("#search_feature").val(v);
+	$("#second_hand_list_form").submit();
+}
 </script>
 </body>
 </html>
