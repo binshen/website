@@ -235,6 +235,7 @@ class Manage_model extends MY_Model
 		$room = $this->input->post('room');
 		$lounge = $this->input->post('lounge');
 		$toilet = $this->input->post('toilet');
+		$area = $this->input->post('area');
 		$month = $this->input->post('month');
 		$price = $this->input->post('price');
 		
@@ -246,6 +247,7 @@ class Manage_model extends MY_Model
 					'room'=> $room[$k],
 					'lounge'=> $lounge[$k],
 					'toilet'=> $toilet[$k],
+					'area'=> $area[$k],
 			);
 		}
 		$this->db->insert_batch('house_hold', $data_hx);

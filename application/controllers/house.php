@@ -29,6 +29,12 @@ class House extends MY_Controller {
 		$search_style_list = $this->house_model->get_search_style_list();
 		$this->assign('search_style_list', $search_style_list);
 		
+		$data = $this->house_model->get_new_house_list();
+		$this->assign('new_house_list', $data);
+		
+		$pager = $this->pagination->getPageLink('/house/new_house_list', $data['countPage'], $data['numPerPage']);
+		$this->assign('pager', $pager);
+		
 		$this->assign('search_region', $this->input->post('search_region'));
 		$this->assign('search_style', $this->input->post('search_style'));
 		$this->assign('search_price', $this->input->post('search_price'));

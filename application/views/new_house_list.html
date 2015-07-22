@@ -32,7 +32,7 @@
     <div class="item-list">
     	<div class="item-list-tit">房源</div>
         <div class="item-list-bdy">
-        	<form action="/house/new_house_list" method="POST" id="new_house_list_form">
+        	<form action="/house/second_hand_list" method="POST" id="second_hand_list_form">
         		<input type="hidden" id="search_region" name="search_region" value="{{$search_region}}">
         		<input type="hidden" id="search_style" name="search_style" value="{{$search_style}}">
         		<input type="hidden" id="search_price" name="search_price" value="{{$search_price}}">
@@ -68,14 +68,14 @@
 	                </dd>
 	            </dl>
 	            <dl class="items">
-	                <dt class="item-title">均价：</dt>
+	                <dt class="item-title">售价：</dt>
 	                <dd class="elems-l">
 	                    <span onclick="change_search('price', 0)" {{if empty($search_price)}}class='selected-item'{{/if}} style="cursor:pointer">全部</span>
 	                    <a href='javascript:void(0);' onclick="change_search('price', 1)" {{if $search_price == 1}}class='selected-item'{{/if}}>5千以下</a>
 	                    <a href='javascript:void(0);' onclick="change_search('price', 2)" {{if $search_price == 2}}class='selected-item'{{/if}}>5-6千</a>
 	                    <a href='javascript:void(0);' onclick="change_search('price', 3)" {{if $search_price == 3}}class='selected-item'{{/if}}>6-7千</a>
 	                    <a href='javascript:void(0);' onclick="change_search('price', 4)" {{if $search_price == 4}}class='selected-item'{{/if}}>7-8千</a>
-	                    <a href='javascript:void(0);' onclick="change_search('price', 5)" {{if $search_price == 5}}class='selected-item'{{/if}}>8千-1万</a>
+	                    <a href='javascript:void(0);' onclick="change_search('price', 5)" {{if $search_price == 5}}class='selected-item'{{/if}}>8-1万</a>
 	                    <a href='javascript:void(0);' onclick="change_search('price', 6)" {{if $search_price == 6}}class='selected-item'{{/if}}>1-1.5万</a>
 	                    <a href='javascript:void(0);' onclick="change_search('price', 7)" {{if $search_price == 7}}class='selected-item'{{/if}}>1.5万以上</a>
 	                </dd>
