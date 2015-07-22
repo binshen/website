@@ -140,126 +140,42 @@
     <div class="houserchres clearfix">
         <div class="serchL">
             <ul class="houselist">
-                <li>
-                    <img src="http://dummyimage.com/205x135/000/fff">
-                    <div class="housedetail">
-                        <div class="house-tit">
-                            <a href="#">稀缺大平层，好房难求，正气户型，绝佳楼层，另有多套3房</a>
-                        </div>
-                        <div class="house-state">
-                            <span class="cur">综合体</span>
-                            <span>精装修</span>
-                            <span>学区房</span>
-                        </div>
-                        <div class="house-address">
-                            外滩印象花园   [玉山-城南 开发区庆丰东路555号]
-                        </div>
-                        <div class="house-other-info">
-                            <span>2室1厅</span><em>|</em><span>4/11层</span><em>|</em>
-                            <span>南北向</span><em>|</em><span>建筑年代：2008</span>
-                        </div>
-                        <div class="house-tel">
-                            400-750-8888 转 66564
-                        </div>
-
-                    </div>
-                    <div class="housearea">
-                       90m² 
-                    </div>
-                    <div class="houseprice">
-                        <em class="red">53</em>万<br /><em class="ave-price">5638元/m²</em>
-                    </div>
-                </li>
-                <li>
-                    <img src="http://dummyimage.com/205x135/000/fff">
-                    <div class="housedetail">
-                        <div class="house-tit">
-                            <a href="#">稀缺大平层，好房难求，正气户型，绝佳楼层，另有多套3房</a>
-                        </div>
-                        <div class="house-state">
-                            <span class="cur">在售</span>
-                            <span>现房</span>
-                            <span>小户型</span>
-                        </div>
-                        <div class="house-address">
-                            外滩印象花园   [玉山-城南 开发区庆丰东路555号]
-                        </div>
-                        <div class="house-other-info">
-                            <span>2室1厅</span><em>|</em><span>4/11层</span><em>|</em><span>南北向</span><em>|</em><span>建筑年代：2008</span>
-                        </div>
-                        <div class="house-tel">
-                            400-750-8888 转 66564
-                        </div>
-
-                    </div>
-                    <div class="housearea">
-                       90m² 
-                    </div>
-                    <div class="houseprice">
-                        <em class="red">53</em>万<br /><em class="ave-price">5638元/m²</em>
-                    </div>
-                </li>
-                <li>
-                    <img src="http://dummyimage.com/205x135/000/fff">
-                    <div class="housedetail">
-                        <div class="house-tit">
-                            <a href="#">稀缺大平层，好房难求，正气户型，绝佳楼层，另有多套3房</a>
-                        </div>
-                        <div class="house-state">
-                            <span class="cur">在售</span>
-                            <span>现房</span>
-                            <span>小户型</span>
-                        </div>
-                        <div class="house-address">
-                            外滩印象花园   [玉山-城南 开发区庆丰东路555号]
-                        </div>
-                        <div class="house-other-info">
-                            <span>2室1厅</span><em>|</em><span>4/11层</span><em>|</em>
-                            <span>南北向</span><em>|</em><span>建筑年代：2008</span>
-                        </div>
-                        <div class="house-tel">
-                            400-750-8888 转 66564
-                        </div>
-
-                    </div>
-                    <div class="housearea">
-                       90m² 
-                    </div>
-                    <div class="houseprice">
-                        <em class="red">53</em>万<br /><em class="ave-price">5638元/m²</em>
-                    </div>
-                </li>
-                <li>
-                    <img src="http://dummyimage.com/205x135/000/fff">
-                    <div class="housedetail">
-                        <div class="house-tit">
-                            <a href="#">稀缺大平层，好房难求，正气户型，绝佳楼层，另有多套3房</a>
-                        </div>
-                        <div class="house-state">
-                            <span class="cur">在售</span>
-                            <span>现房</span>
-                            <span>小户型</span>
-                        </div>
-                        <div class="house-address">
-                            外滩印象花园   [玉山-城南 开发区庆丰东路555号]
-                        </div>
-                        <div class="house-other-info">
-                            <span>2室1厅</span><em>|</em><span>4/11层</span><em>|</em><span>南北向</span><em>|</em><span>建筑年代：2008</span>
-                        </div>
-                        <div class="house-tel">
-                            400-750-8888 转 66564
-                        </div>
-
-                    </div>
-                    <div class="housearea">
-                       90m² 
-                    </div>
-                    <div class="houseprice">
-                        <em class="red">53</em>万<br /><em class="ave-price">5638元/m²</em>
-                    </div>
-                </li>
+            	{{foreach from=$second_hand_list.res_list item=item}}
+	                <li>
+	                    <img src="http://dummyimage.com/205x135/000/fff">
+	                    <div class="housedetail">
+	                        <div class="house-tit">
+	                            <a href="#">稀缺大平层，好房难求，正气户型，绝佳楼层，另有多套3房</a>
+	                        </div>
+	                        <div class="house-state">
+	                            <span class="cur">综合体</span>
+	                            <span>精装修</span>
+	                            <span>学区房</span>
+	                        </div>
+	                        <div class="house-address">
+	                           	 外滩印象花园   [玉山-城南 开发区庆丰东路555号]
+	                        </div>
+	                        <div class="house-other-info">
+	                            <span>2室1厅</span><em>|</em><span>4/11层</span><em>|</em>
+	                            <span>南北向</span><em>|</em><span>建筑年代：2008</span>
+	                        </div>
+	                        <div class="house-tel">
+	                            400-750-8888 转 66564
+	                        </div>
+	                    </div>
+	                    <div class="housearea">
+	                       90m²
+	                    </div>
+	                    <div class="houseprice">
+	                        <em class="red">53</em>万<br /><em class="ave-price">5638元/m²</em>
+	                    </div>
+	                </li>
+                {{/foreach}}
             </ul>
+            
             <div class="paging">
+            	{{$pager}}
+            <!--
                 <i class="iPre">&lt;上一页</i>
                 <i class="curr">1</i>
                 <a href="">2</a>
@@ -268,6 +184,7 @@
                 <a href="">5</a>
                 <i class="aDotted">...</i>
                 <a href="" class="iPre">下一页&gt;</a>
+            -->
             </div>
         </div>
         <div class="serchR">
@@ -307,6 +224,8 @@ $(function() {
 	}).mouseleave(function(){
 	    $('.houselist li').removeClass('over-bg');
 	});
+	
+	$('.ks-select em').html("二手房");
 });
 
 function change_search(t, v) {
