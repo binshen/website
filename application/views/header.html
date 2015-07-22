@@ -16,10 +16,6 @@
                     <div class="ks-select-pop hidden">
 						<a href="javascript:" value="" target="_self" class="item">新房</a>
                         <a href="javascript:" value="product.shtml" target="_self" class="item current">二手房</a>
-                        <a href="javascript:" value="download.shtml" target="_self" class="item">学区房</a>
-                        <a href="javascript:" value="cms.shtml" target="_self" class="item">学区房</a>
-                        <a href="javascript:" value="photo.shtml" target="_self" class="item">学区房</a>
-                        <a href="javascript:" value="bbs.shtml" target="_self" class="item">学区房</a>
                     </div>
                 </div>
                 <div class="ks-input">
@@ -40,3 +36,19 @@
         </div>
     </div>
     <!--------------头部end---------------->
+    
+<script type="text/javascript">
+$(function(){
+	//快搜左侧下拉
+	$('.ks-select').mouseenter(function(){
+		$('.ks-select-pop').show();
+	}).mouseleave(function(){
+		$('.ks-select-pop').hide();
+	});
+	$('.ks-select-pop a').click(function(){
+		$('.ks-select-pop a').removeClass('current');
+		$(this).addClass('current');
+		$('.ks-select em').html($(this).html());
+	});
+});
+</script>    
