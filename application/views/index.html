@@ -170,19 +170,15 @@
                         <a href="javascript:void(0)" class="prev" onClick="focusPic1.prev()" ></a>
                         <a href="javascript:void(0)" class="next" onClick="focusPic1.next()"></a> 
                          <ul>
-                            <li style="display:block"><a href="" target="_blank"><img src="http://dummyimage.com/515x280/000/fff" width="515" height="280" /></a></li>
-                            <li><a href="" target="_blank"><img src="http://dummyimage.com/515x280/000/fff" width="515" height="280" /></a></li>
-                            <li><a href="" target="_blank"><img src="http://dummyimage.com/515x280/000/fff" width="515" height="280" /></a></li>
-                            <li><a href="" target="_blank"><img src="http://dummyimage.com/515x280/000/fff" width="515" height="280" /></a></li>
-                            <li><a href="" target="_blank"><img src="http://dummyimage.com/515x280/000/fff" width="515" height="280" /></a></li>
+                         {{foreach from=$news1 item=row}}
+                         <li><a href="#" target="_blank"><img src="/uploadfiles/news/{{$row.pic}}" width="515" height="280" /></a></li>
+                         {{/foreach}}
                          </ul>
                     </div>
                      <div class="control" id ="slide01_control">
-                        <i class="toc"></i>
-                        <i class="toc"></i>
-                        <i class="toc"></i>
-                        <i class="toc"></i>
-                        <i class="toc"></i>
+                     	 {{foreach from=$news1 item=row}}
+                         <i class="toc"></i>
+                         {{/foreach}}
                      </div>
                 </div>
                 <div class="focusPic focusPic2">
@@ -191,18 +187,18 @@
                         <a href="javascript:void(0)" class="next" onClick="focusPic2.next()"></a> 
                          <div class="slide">
                          	<ul class="pics">
-                                <li style="display:block">
-                                    <a href="" target="_blank" class="aPic aPicW128"><img src="http://dummyimage.com/128x195/000/fff" width="128" height="195" /><i class="iTit"><em class="fz14">街区商铺59万起</em><br />吃货天堂-昆城广场</i></a>
-                                    <a href="" target="_blank" class="aPic aPicW128"><img src="http://dummyimage.com/128x195/000/fff" width="128" height="195" /><i class="iTit"><em class="fz14">街区商铺59万起</em><br />吃货天堂-昆城广场</i></a>
-                                    <a href="" target="_blank" class="aPic aPicW128"><img src="http://dummyimage.com/128x195/000/fff" width="128" height="195" /><i class="iTit"><em class="fz14">街区商铺59万起</em><br />吃货天堂-昆城广场</i></a>
-                                    <a href="" target="_blank" class="aPic aPicW128" style="margin-right:0;"><img src="http://dummyimage.com/128x195/000/fff" width="128" height="195" /><i class="iTit"><em class="fz14">街区商铺59万起</em><br />吃货天堂-昆城广场</i></a>
-                               </li>
-                               <li>
-                                    <a href="" target="_blank" class="aPic aPicW128"><img src="http://dummyimage.com/128x195/000/fff" width="128" height="195" /><i class="iTit"><em class="fz14">街区商铺59万起</em><br />吃货天堂-昆城广场</i></a>
-                                    <a href="" target="_blank" class="aPic aPicW128"><img src="http://dummyimage.com/128x195/000/fff" width="128" height="195" /><i class="iTit"><em class="fz14">街区商铺59万起</em><br />吃货天堂-昆城广场</i></a>
-                                    <a href="" target="_blank" class="aPic aPicW128"><img src="http://dummyimage.com/128x195/000/fff" width="128" height="195" /><i class="iTit"><em class="fz14">街区商铺59万起</em><br />吃货天堂-昆城广场</i></a>
-                                    <a href="" target="_blank" class="aPic aPicW128" style="margin-right:0;"><img src="http://dummyimage.com/128x195/000/fff" width="128" height="195" /><i class="iTit"><em class="fz14">街区商铺59万起</em><br />吃货天堂-昆城广场</i></a>
-                               </li>
+                         	{{foreach from=$news2 item=row key=k}}
+	                         	{{if $k==0 or $k ==4 or $k==8 }}
+	                         	<li>
+	                         	<a href="#" target="_blank" class="aPic aPicW128"><img src="/uploadfiles/news/{{$row.pic}}" width="128" height="195" /><i class="iTit"><em class="fz14">{{$row.title}}</em><br />{{$row.title2}}</i></a>
+                         	    {{else if $k==3 or $k ==7 or $k==11 }}
+                         	    <a href="#" target="_blank" class="aPic aPicW128"><img src="/uploadfiles/news/{{$row.pic}}" width="128" height="195" /><i class="iTit"><em class="fz14">{{$row.title}}</em><br />{{$row.title2}}</i></a>
+                         	    </li>
+                         	    {{else}}
+                         	    <a href="#" target="_blank" class="aPic aPicW128"><img src="/uploadfiles/news/{{$row.pic}}" width="128" height="195" /><i class="iTit"><em class="fz14">{{$row.title}}</em><br />{{$row.title2}}</i></a>
+                         	    {{/if}}
+                                
+                            {{/foreach}}
                            </ul>
                         </div>
                     </div>
@@ -210,18 +206,18 @@
              </div>  
              <div class="newsPic">
              	<div class="newPic-top clearfix">
-             		<a href="" target="_blank" class="aWid170"><img src="http://dummyimage.com/170x280/000/fff" width="170" height="280" /></a>
+             		<a href="" target="_blank" class="aWid170"><img src="/uploadfiles/news/{{$news3.pic}}" width="170" height="280" /></a>
                     <div class="hotGuide">
                         <div class="guideTxt">
                             <span class="guide-tit"><a href="" target="_blank">《昆山楼市》杂志6-7刊抢先看&gt;</a></span>
                             <p class="guide-link"><a href="" target="_blank">市场行情</a><a href="" target="_blank">特别策划</a><a href="" target="_blank">名盘鉴赏</a><br /><a href="" target="_blank">楼市前线</a><a href="" target="_blank">楼相百态</a><a href="" target="_blank">独家调查</a></p>
                         </div>
-                    	<a href="" target="_blank" class="aPic aPicW270"><img src="http://dummyimage.com/270x190/ccc/fff" width="270" height="190" /><i class="iTit"><em class="fz20">街区商铺59万起</em><br />吃货天堂-昆城广场</i></a>
+                    	<a href="" target="_blank" class="aPic aPicW270"><img src="/uploadfiles/news/{{$news3.pic}}" width="270" height="190" /><i class="iTit"><em class="fz20">街区商铺59万起</em><br />吃货天堂-昆城广场</i></a>
                     </div>
                 </div>
                 <div class="newPic-btm clearfix">
-                	<a href="" target="_blank" class="aWid170"><img src="http://dummyimage.com/170x195/000/fff" width="170" height="195" /></a>
-                    <a href="" target="_blank" class="aPic aPicW270"><img src="http://dummyimage.com/270x190/ccc/fff" width="270" height="195" /><i class="iTit"><em class="fz20">街区商铺59万起</em><br />吃货天堂-昆城广场</i></a>
+                	<a href="" target="_blank" class="aWid170"><img src="/uploadfiles/news/{{$news3.pic}}" width="170" height="195" /></a>
+                    <a href="" target="_blank" class="aPic aPicW270"><img src="/uploadfiles/news/{{$news3.pic}}" width="270" height="195" /><i class="iTit"><em class="fz20">街区商铺59万起</em><br />吃货天堂-昆城广场</i></a>
                 </div>
              </div>      
         </div>
@@ -253,7 +249,7 @@ $(function(){
   	});
  	window.focusPic2 = new Slide.scroll({
 		target: $( '#slide02 .slide li' ),
-		width: 515,
+		width: 516,
 		autoPlay: true
 	});
    	$('.focusPic').mouseenter(function(){
