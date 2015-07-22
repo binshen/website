@@ -6,51 +6,12 @@
 <meta name="keywords" content="房猫,昆山" />
 <meta name="description" content="" />
 <link href="{{$base_url}}css/list.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/jquery-1.8.3.min.js" ></script>
 </head>
 <body>
 <div class="wraper">
-   <!------------广告start-------------->
-	<div class="ivy-1180"><img src="http://dummyimage.com/1180x80/000/fff" alt="" width="1180" height="80" /></div>
-   <!------------广告end---------------->
-   <!------------头部start-------------->
-    <div class="header clearfix">
-    	<h1 class="logo">
-        	<a href="" title="房猫">房猫</a>
-        </h1>
-        <div class="ks">
-        	<form action="#" method="get">
-            	<div class="ks-select">
-                	<span class="item">
-                    	<em>新房</em>
-                        <i class="trag1"></i>
-                    </span>
-                    <div class="ks-select-pop hidden">
-						<a href="javascript:" value="" target="_self" class="item">新房</a>
-                        <a href="javascript:" value="product.shtml" target="_self" class="item current">二手房</a>
-                        <a href="javascript:" value="download.shtml" target="_self" class="item">学区房</a>
-                        <a href="javascript:" value="cms.shtml" target="_self" class="item">学区房</a>
-                        <a href="javascript:" value="photo.shtml" target="_self" class="item">学区房</a>
-                        <a href="javascript:" value="bbs.shtml" target="_self" class="item">学区房</a>
-                    </div>
-                </div>
-                <div class="ks-input">
-                	<div class="ks-label">
-                		<input type="text" name="question" class="ks-q focus" value="" />
-                        <div class="ks-pop hidden">
-                        	<ul>
-                            	<li><span>10000结果</span>周市</li>
-                                <li><span>1300结果</span>陆家镇</li>
-                                <li><span>10000结果</span>陆家镇</li>
-                                <li><span>10000结果</span>陆家镇</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <input type="submit" class="ks-submit" value="搜索" />
-                </div>
-            </form>
-        </div>
-    </div>
-    <!--------------头部end---------------->
+   {include file="header.html"}
+   
     <!--------------头部导航start---------------->
     <div class="gobal-nav">
     	<span class="nav-search"><em>搜索分类</em><i class="trag2 trag1-gray-t"></i></span>
@@ -283,42 +244,8 @@
         </div>
     </div>
 </div>
-<div class="footer">
-	<div class="ft-inner">
-        <ul class="ul-ft clearfix">
-            <li>
-                <span class="f-tit">优质房源</span>
-                <a href="#" target="_blank">特惠楼盘</a><br />
-                <a href="#" target="_blank">品牌地产合作</a><br />
-                <a href="#" target="_blank">专业服务团队</a>
-            </li>
-            <li>
-                <span class="f-tit">使用帮助</span>
-                <a href="#" target="_blank">帮助中心</a><br />
-                <a href="#" target="_blank">注册常见问题</a>
-            </li>
-            <li>
-                <span class="f-tit">特色服务</span>
-                <a href="#" target="_blank">房猫独家</a><br />
-                <a href="#" target="_blank">优惠楼盘</a>
-            </li>
-            <li>
-                <span class="f-tit f-tit-ewm">房猫微店</span>
-                <a href="#" target="_blank"><img src="{{$base_url}}images/erweima.jpg" alt="" width="80" height="87" /></a>
-            </li>
-            <li>
-                <span class="f-tit">联系我们</span>
-                <p>客服热线<br />
-              <strong class="fz16">0512-36699066</strong><br />（9:00-17:30）国定节假日除外<br />平台合作：<strong class="fz14">0512-36699066</strong></p>
-            </li>
-        </ul>	
-        <div class="copyright clearfix">
-        	<a href="" class="f_logo"></a>
-            <p class="ftr-p">&copy;2015 Funmall Co., Ltd. All rights reserved. 备案号：苏CP备13003602号-2</p>
-        </div>
-  </div>
-</div>
-<script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
+{include file="footer.html"}
+
 <script>
 $('.houselist li').mouseenter(function(){
     $('.houselist li').removeClass('over-bg');

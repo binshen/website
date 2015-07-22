@@ -27,6 +27,14 @@ class House extends MY_Controller {
 	
 	public function second_hand_list() {
 		
+		
+		$this->assign('', '');
+		$this->assign('', '');
+		$this->assign('', '');
+		$this->assign('', '');
+		$this->assign('', '');
+		$this->assign('', '');
+		
 		$this->display('second_hand_list.html');
 	}
 }
