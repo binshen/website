@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2015-07-21 14:54:06
+<?php /* Smarty version Smarty-3.1.16, created on 2015-07-22 13:07:24
          compiled from "application\views\index.html" */ ?>
 <?php /*%%SmartyHeaderCode:1704555ac4f185d68d4-47063549%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fccbe5a2c354059ee96f11926e396c372e6921ef' => 
     array (
       0 => 'application\\views\\index.html',
-      1 => 1437461469,
+      1 => 1437541633,
       2 => 'file',
     ),
   ),
@@ -33,48 +33,18 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <link href="<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
 <?php $_tmp1=ob_get_clean();?><?php echo $_tmp1;?>
 css/index.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
+<?php $_tmp2=ob_get_clean();?><?php echo $_tmp2;?>
+js/jquery-1.8.3.min.js" ></script>
+<script type="text/javascript" src="<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
+<?php $_tmp3=ob_get_clean();?><?php echo $_tmp3;?>
+js/dpl-jquery.slide.js"></script>
 </head>
-
 <body>
 <div class="wraper">
-   <!------------广告start-------------->
-	<div class="ivy-1180"><img src="http://dummyimage.com/1180x80/000/fff" alt="" width="1180" height="80" /></div>
-   <!------------广告end---------------->
-   <!------------头部start-------------->
-    <div class="header clearfix">
-    	<h1 class="logo">
-        	<a href="/" title="房猫">房猫</a>
-        </h1>
-        <div class="ks">
-        	<form action="#" method="get">
-            	<div class="ks-select">
-                	<span class="item">
-                    	<em>新房</em>
-                        <i class="trag1"></i>
-                    </span>
-                    <div class="ks-select-pop hidden">
-						<a href="javascript:" value="" target="_self" class="item">新房</a>
-                        <a href="javascript:" value="product.shtml" target="_self" class="item current">二手房</a>
-                    </div>
-                </div>
-                <div class="ks-input">
-                	<div class="ks-label">
-                		<input type="text" name="question" class="ks-q focus" value="" />
-                        <div class="ks-pop hidden">
-                        	<ul>
-                            	<li><span>10000结果</span>周市</li>
-                                <li><span>1300结果</span>陆家镇</li>
-                                <li><span>10000结果</span>陆家镇</li>
-                                <li><span>10000结果</span>陆家镇</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <input type="submit" class="ks-submit" value="搜索" />
-                </div>
-            </form>
-        </div>
-    </div>
-    <!--------------头部end---------------->
+   <?php echo $_smarty_tpl->getSubTemplate ("header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
+   
     <!--------------头部导航start---------------->
     <div class="gobal-nav">
     	<span class="nav-search"><em>搜索分类</em><i class="trag2 trag1-gray-t"></i></span>
@@ -289,58 +259,11 @@ css/index.css" rel="stylesheet" type="text/css" />
         </div>
     </div>
 </div>
-<div class="footer">
-	<div class="ft-inner">
-        <ul class="ul-ft clearfix">
-            <li>
-                <span class="f-tit">优质房源</span>
-                <a href="#" target="_blank">特惠楼盘</a><br />
-                <a href="#" target="_blank">品牌地产合作</a><br />
-                <a href="#" target="_blank">专业服务团队</a>
-            </li>
-            <li>
-                <span class="f-tit">使用帮助</span>
-                <a href="#" target="_blank">帮助中心</a><br />
-                <a href="#" target="_blank">注册常见问题</a>
-            </li>
-            <li>
-                <span class="f-tit">特色服务</span>
-                <a href="#" target="_blank">房猫独家</a><br />
-                <a href="#" target="_blank">优惠楼盘</a>
-            </li>
-            <li>
-                <span class="f-tit f-tit-ewm">房猫微店</span>
-                <a href="#" target="_blank"><img src="images/erweima.jpg" alt="" width="80" height="87" /></a>
-            </li>
-            <li>
-                <span class="f-tit">联系我们</span>
-                <p>客服热线<br />
-              <strong class="fz16">0512-36699066</strong><br />（9:00-17:30）国定节假日除外<br />平台合作：<strong class="fz14">0512-36699066</strong></p>
-            </li>
-        </ul>	
-        <div class="copyright clearfix">
-        	<a href="" class="f_logo"></a>
-            <p class="ftr-p">&copy;2015 Funmall Co., Ltd. All rights reserved. 备案号：苏CP备13003602号-2</p>
-        </div>
-  </div>
-</div>
-<script type="text/javascript" src="<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
-<?php $_tmp2=ob_get_clean();?><?php echo $_tmp2;?>
-js/jquery-1.8.3.min.js" ></script>
-<script src="http://js.3conline.com/min/temp/v1/dpl-jquery.slide.js"></script>
+<?php echo $_smarty_tpl->getSubTemplate ("footer.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
+
 <script>
 $(function(){
-	//快搜左侧下拉
-	$('.ks-select').mouseenter(function(){
-		$('.ks-select-pop').show();
-	}).mouseleave(function(){
-		$('.ks-select-pop').hide();
-	});
-	$('.ks-select-pop a').click(function(){
-		$('.ks-select-pop a').removeClass('current');
-		$(this).addClass('current');
-		$('.ks-select em').html($(this).html());
-	});
 	//左侧搜索分类
 	$('.index-nav li').mouseenter(function(){
 		var ind = $(this).index();
