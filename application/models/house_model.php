@@ -35,6 +35,7 @@ class House_model extends MY_Model
     	$this->db->join('house_orientation c', 'a.orientation_id = c.id', 'left');
     	$this->db->join('xiaoqu d', 'a.xq_id = d.id', 'left');
     	$this->db->join('admin e', 'a.broker_id = e.id', 'left');
+    	$this->db->join('house_substyle f', 'a.substyle_id = f.id', 'left');
     	if($this->input->post('search_region')) {
     		$search_region = intval($this->input->post('search_region'));
     		if($search_region == 6) {
@@ -126,12 +127,13 @@ class House_model extends MY_Model
     	
     	$data['rel_name'] = null;
     	//list
-    	$this->db->select('a.*, b.name AS region_name, c.name AS orientation_name, d.name AS xq_name, d.address AS address, e.tel AS tel');
+    	$this->db->select('a.*, b.name AS region_name, c.name AS orientation_name, d.name AS xq_name, d.address AS address, e.tel AS tel, f.name AS style_name');
     	$this->db->from('house a');
     	$this->db->join('house_region b', 'a.region_id = b.id', 'left');
     	$this->db->join('house_orientation c', 'a.orientation_id = c.id', 'left');
     	$this->db->join('xiaoqu d', 'a.xq_id = d.id', 'left');
     	$this->db->join('admin e', 'a.broker_id = e.id', 'left');
+    	$this->db->join('house_substyle f', 'a.substyle_id = f.id', 'left');
    	 	if($this->input->post('search_region')) {
      		$search_region = intval($this->input->post('search_region'));
      		if($search_region == 6) {
@@ -244,7 +246,7 @@ class House_model extends MY_Model
     	$this->db->join('house_orientation c', 'a.orientation_id = c.id', 'left');
     	$this->db->join('xiaoqu d', 'a.xq_id = d.id', 'left');
     	$this->db->join('admin e', 'a.broker_id = e.id', 'left');
-    	$this->db->join('house_style f', 'a.substyle_id = f.id', 'left');
+    	$this->db->join('house_substyle f', 'a.substyle_id = f.id', 'left');
     	$this->db->join('house_region g', 'e.region_id = g.id', 'left');
     	$this->db->where('a.type_id', 2);
     	return $this->db->where('a.id', $id)->get()->row_array();
