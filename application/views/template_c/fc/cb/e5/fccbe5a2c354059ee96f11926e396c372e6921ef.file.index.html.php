@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2015-07-22 13:07:24
+<?php /* Smarty version Smarty-3.1.16, created on 2015-07-23 09:20:11
          compiled from "application\views\index.html" */ ?>
 <?php /*%%SmartyHeaderCode:1704555ac4f185d68d4-47063549%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fccbe5a2c354059ee96f11926e396c372e6921ef' => 
     array (
       0 => 'application\\views\\index.html',
-      1 => 1437541633,
+      1 => 1437550476,
       2 => 'file',
     ),
   ),
@@ -20,6 +20,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'variables' => 
   array (
     'base_url' => 0,
+    'news1' => 0,
+    'row' => 0,
+    'news2' => 0,
+    'k' => 0,
+    'news3' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -202,19 +207,29 @@ js/dpl-jquery.slide.js"></script>
                         <a href="javascript:void(0)" class="prev" onClick="focusPic1.prev()" ></a>
                         <a href="javascript:void(0)" class="next" onClick="focusPic1.next()"></a> 
                          <ul>
-                            <li style="display:block"><a href="" target="_blank"><img src="http://dummyimage.com/515x280/000/fff" width="515" height="280" /></a></li>
-                            <li><a href="" target="_blank"><img src="http://dummyimage.com/515x280/000/fff" width="515" height="280" /></a></li>
-                            <li><a href="" target="_blank"><img src="http://dummyimage.com/515x280/000/fff" width="515" height="280" /></a></li>
-                            <li><a href="" target="_blank"><img src="http://dummyimage.com/515x280/000/fff" width="515" height="280" /></a></li>
-                            <li><a href="" target="_blank"><img src="http://dummyimage.com/515x280/000/fff" width="515" height="280" /></a></li>
+                         <?php ob_start();?><?php  $_smarty_tpl->tpl_vars['row'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['row']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['news1']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['row']->key => $_smarty_tpl->tpl_vars['row']->value) {
+$_smarty_tpl->tpl_vars['row']->_loop = true;
+?><?php $_tmp4=ob_get_clean();?><?php echo $_tmp4;?>
+
+                         <li><a href="#" target="_blank"><img src="/uploadfiles/news/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['pic'];?>
+<?php $_tmp5=ob_get_clean();?><?php echo $_tmp5;?>
+" width="515" height="280" /></a></li>
+                         <?php ob_start();?><?php } ?><?php $_tmp6=ob_get_clean();?><?php echo $_tmp6;?>
+
                          </ul>
                     </div>
                      <div class="control" id ="slide01_control">
-                        <i class="toc"></i>
-                        <i class="toc"></i>
-                        <i class="toc"></i>
-                        <i class="toc"></i>
-                        <i class="toc"></i>
+                     	 <?php ob_start();?><?php  $_smarty_tpl->tpl_vars['row'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['row']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['news1']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['row']->key => $_smarty_tpl->tpl_vars['row']->value) {
+$_smarty_tpl->tpl_vars['row']->_loop = true;
+?><?php $_tmp7=ob_get_clean();?><?php echo $_tmp7;?>
+
+                         <i class="toc"></i>
+                         <?php ob_start();?><?php } ?><?php $_tmp8=ob_get_clean();?><?php echo $_tmp8;?>
+
                      </div>
                 </div>
                 <div class="focusPic focusPic2">
@@ -223,18 +238,48 @@ js/dpl-jquery.slide.js"></script>
                         <a href="javascript:void(0)" class="next" onClick="focusPic2.next()"></a> 
                          <div class="slide">
                          	<ul class="pics">
-                                <li style="display:block">
-                                    <a href="" target="_blank" class="aPic aPicW128"><img src="http://dummyimage.com/128x195/000/fff" width="128" height="195" /><i class="iTit"><em class="fz14">街区商铺59万起</em><br />吃货天堂-昆城广场</i></a>
-                                    <a href="" target="_blank" class="aPic aPicW128"><img src="http://dummyimage.com/128x195/000/fff" width="128" height="195" /><i class="iTit"><em class="fz14">街区商铺59万起</em><br />吃货天堂-昆城广场</i></a>
-                                    <a href="" target="_blank" class="aPic aPicW128"><img src="http://dummyimage.com/128x195/000/fff" width="128" height="195" /><i class="iTit"><em class="fz14">街区商铺59万起</em><br />吃货天堂-昆城广场</i></a>
-                                    <a href="" target="_blank" class="aPic aPicW128" style="margin-right:0;"><img src="http://dummyimage.com/128x195/000/fff" width="128" height="195" /><i class="iTit"><em class="fz14">街区商铺59万起</em><br />吃货天堂-昆城广场</i></a>
-                               </li>
-                               <li>
-                                    <a href="" target="_blank" class="aPic aPicW128"><img src="http://dummyimage.com/128x195/000/fff" width="128" height="195" /><i class="iTit"><em class="fz14">街区商铺59万起</em><br />吃货天堂-昆城广场</i></a>
-                                    <a href="" target="_blank" class="aPic aPicW128"><img src="http://dummyimage.com/128x195/000/fff" width="128" height="195" /><i class="iTit"><em class="fz14">街区商铺59万起</em><br />吃货天堂-昆城广场</i></a>
-                                    <a href="" target="_blank" class="aPic aPicW128"><img src="http://dummyimage.com/128x195/000/fff" width="128" height="195" /><i class="iTit"><em class="fz14">街区商铺59万起</em><br />吃货天堂-昆城广场</i></a>
-                                    <a href="" target="_blank" class="aPic aPicW128" style="margin-right:0;"><img src="http://dummyimage.com/128x195/000/fff" width="128" height="195" /><i class="iTit"><em class="fz14">街区商铺59万起</em><br />吃货天堂-昆城广场</i></a>
-                               </li>
+                         	<?php ob_start();?><?php  $_smarty_tpl->tpl_vars['row'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['row']->_loop = false;
+ $_smarty_tpl->tpl_vars['k'] = new Smarty_Variable;
+ $_from = $_smarty_tpl->tpl_vars['news2']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['row']->key => $_smarty_tpl->tpl_vars['row']->value) {
+$_smarty_tpl->tpl_vars['row']->_loop = true;
+ $_smarty_tpl->tpl_vars['k']->value = $_smarty_tpl->tpl_vars['row']->key;
+?><?php $_tmp9=ob_get_clean();?><?php echo $_tmp9;?>
+
+	                         	<?php ob_start();?><?php if ($_smarty_tpl->tpl_vars['k']->value==0||$_smarty_tpl->tpl_vars['k']->value==4||$_smarty_tpl->tpl_vars['k']->value==8) {?><?php $_tmp10=ob_get_clean();?><?php echo $_tmp10;?>
+
+	                         	<li>
+	                         	<a href="#" target="_blank" class="aPic aPicW128"><img src="/uploadfiles/news/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['pic'];?>
+<?php $_tmp11=ob_get_clean();?><?php echo $_tmp11;?>
+" width="128" height="195" /><i class="iTit"><em class="fz14"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+<?php $_tmp12=ob_get_clean();?><?php echo $_tmp12;?>
+</em><br /><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['title2'];?>
+<?php $_tmp13=ob_get_clean();?><?php echo $_tmp13;?>
+</i></a>
+                         	    <?php ob_start();?><?php } elseif ($_smarty_tpl->tpl_vars['k']->value==3||$_smarty_tpl->tpl_vars['k']->value==7||$_smarty_tpl->tpl_vars['k']->value==11) {?><?php $_tmp14=ob_get_clean();?><?php echo $_tmp14;?>
+
+                         	    <a href="#" target="_blank" class="aPic aPicW128"><img src="/uploadfiles/news/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['pic'];?>
+<?php $_tmp15=ob_get_clean();?><?php echo $_tmp15;?>
+" width="128" height="195" /><i class="iTit"><em class="fz14"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+<?php $_tmp16=ob_get_clean();?><?php echo $_tmp16;?>
+</em><br /><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['title2'];?>
+<?php $_tmp17=ob_get_clean();?><?php echo $_tmp17;?>
+</i></a>
+                         	    </li>
+                         	    <?php ob_start();?><?php } else { ?><?php $_tmp18=ob_get_clean();?><?php echo $_tmp18;?>
+
+                         	    <a href="#" target="_blank" class="aPic aPicW128"><img src="/uploadfiles/news/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['pic'];?>
+<?php $_tmp19=ob_get_clean();?><?php echo $_tmp19;?>
+" width="128" height="195" /><i class="iTit"><em class="fz14"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+<?php $_tmp20=ob_get_clean();?><?php echo $_tmp20;?>
+</em><br /><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['title2'];?>
+<?php $_tmp21=ob_get_clean();?><?php echo $_tmp21;?>
+</i></a>
+                         	    <?php ob_start();?><?php }?><?php $_tmp22=ob_get_clean();?><?php echo $_tmp22;?>
+
+                                
+                            <?php ob_start();?><?php } ?><?php $_tmp23=ob_get_clean();?><?php echo $_tmp23;?>
+
                            </ul>
                         </div>
                     </div>
@@ -242,18 +287,26 @@ js/dpl-jquery.slide.js"></script>
              </div>  
              <div class="newsPic">
              	<div class="newPic-top clearfix">
-             		<a href="" target="_blank" class="aWid170"><img src="http://dummyimage.com/170x280/000/fff" width="170" height="280" /></a>
+             		<a href="" target="_blank" class="aWid170"><img src="/uploadfiles/news/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['news3']->value['pic'];?>
+<?php $_tmp24=ob_get_clean();?><?php echo $_tmp24;?>
+" width="170" height="280" /></a>
                     <div class="hotGuide">
                         <div class="guideTxt">
                             <span class="guide-tit"><a href="" target="_blank">《昆山楼市》杂志6-7刊抢先看&gt;</a></span>
                             <p class="guide-link"><a href="" target="_blank">市场行情</a><a href="" target="_blank">特别策划</a><a href="" target="_blank">名盘鉴赏</a><br /><a href="" target="_blank">楼市前线</a><a href="" target="_blank">楼相百态</a><a href="" target="_blank">独家调查</a></p>
                         </div>
-                    	<a href="" target="_blank" class="aPic aPicW270"><img src="http://dummyimage.com/270x190/ccc/fff" width="270" height="190" /><i class="iTit"><em class="fz20">街区商铺59万起</em><br />吃货天堂-昆城广场</i></a>
+                    	<a href="" target="_blank" class="aPic aPicW270"><img src="/uploadfiles/news/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['news3']->value['pic'];?>
+<?php $_tmp25=ob_get_clean();?><?php echo $_tmp25;?>
+" width="270" height="190" /><i class="iTit"><em class="fz20">街区商铺59万起</em><br />吃货天堂-昆城广场</i></a>
                     </div>
                 </div>
                 <div class="newPic-btm clearfix">
-                	<a href="" target="_blank" class="aWid170"><img src="http://dummyimage.com/170x195/000/fff" width="170" height="195" /></a>
-                    <a href="" target="_blank" class="aPic aPicW270"><img src="http://dummyimage.com/270x190/ccc/fff" width="270" height="195" /><i class="iTit"><em class="fz20">街区商铺59万起</em><br />吃货天堂-昆城广场</i></a>
+                	<a href="" target="_blank" class="aWid170"><img src="/uploadfiles/news/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['news3']->value['pic'];?>
+<?php $_tmp26=ob_get_clean();?><?php echo $_tmp26;?>
+" width="170" height="195" /></a>
+                    <a href="" target="_blank" class="aPic aPicW270"><img src="/uploadfiles/news/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['news3']->value['pic'];?>
+<?php $_tmp27=ob_get_clean();?><?php echo $_tmp27;?>
+" width="270" height="195" /><i class="iTit"><em class="fz20">街区商铺59万起</em><br />吃货天堂-昆城广场</i></a>
                 </div>
              </div>      
         </div>
@@ -286,7 +339,7 @@ $(function(){
   	});
  	window.focusPic2 = new Slide.scroll({
 		target: $( '#slide02 .slide li' ),
-		width: 515,
+		width: 516,
 		autoPlay: true
 	});
    	$('.focusPic').mouseenter(function(){

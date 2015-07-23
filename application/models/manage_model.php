@@ -851,11 +851,13 @@ class Manage_model extends MY_Model
 			'total_floor' => $this->input->post('total_floor'),
 			'decoration_id' => $this->input->post('decoration_id'),
 			'build_year' => $this->input->post('build_year'),
+			'estate_price' => $this->input->post('estate_price'),
+			'facility' => $this->input->post('facility'),
 			'broker_id' => $this->session->userdata('user_id'),
 			'description' => $this->input->post('description'),
 			'house_pic' => $this->input->post('house_pic'),
-			'longitude' => $this->input->post('longitude'),
-			'latitude' => $this->input->post('latitude'),
+//			'longitude' => $this->input->post('longitude'),
+//			'latitude' => $this->input->post('latitude'),
 			'folder' => $this->input->post('folder'),
 			'bg_pic' => $this->input->post('is_bg')
 		);

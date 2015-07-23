@@ -91,6 +91,7 @@ class House extends MY_Controller {
 		$pager = $this->pagination->getPageLink('/house/second_hand_list', $data['countPage'], $data['numPerPage']);
 		$this->assign('pager', $pager);
 		
+		$this->assign('search_text', $this->input->post('search_text'));
 		$this->assign('search_region', $this->input->post('search_region'));
 		$this->assign('search_style', $this->input->post('search_style'));
 		$this->assign('search_price', $this->input->post('search_price'));
@@ -98,6 +99,24 @@ class House extends MY_Controller {
 		$this->assign('search_type', $this->input->post('search_type'));
 		$this->assign('search_feature', $this->input->post('search_feature'));
 		
+		$this->assign('search_order', $this->input->post('search_order') ? $this->input->post('search_order') : 1);
+		$this->assign('order_price_dir', $this->input->post('order_price_dir') ? $this->input->post('order_price_dir') : 1);
+		
 		$this->display('second_hand_list.html');
+	}
+	
+	public function second_hand_detail($id) {
+		
+		$house = $this->house_model->get_second_hand_detail($id);
+		$house['feature_list'] = explode(",", $house['feature']);
+		$house['unit_price'] = intval($house['total_price'] / $house['acreage'] * 10000);
+		$house['first_pay'] = intval($house['total_price'] * 0.3);
+		
+		$broker_house_count = $this->house_model->get_broker_house_count($house['broker_id']);
+		$house['broker_house_count'] = $broker_house_count;
+		
+		$this->assign('house', $house);
+		
+		$this->display('second_hand_detail.html');
 	}
 }

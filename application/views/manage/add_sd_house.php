@@ -9,7 +9,7 @@
         <fieldset>
         	<legend class="topLegend">基本信息</legend>
         	    <dl >
-        			<dt>楼盘名称：</dt>
+        			<dt>楼盘名称(标题)：</dt>
         			<dd>
         				<input type="hidden" name="id" value="<?php if(!empty($id)) echo $id;?>">
         				<input type="hidden" name="type_id" value="2">
@@ -158,6 +158,16 @@
         		</dl>
         		
         		<dl>
+        			<dt>物业费(元/平方米)：</dt>
+        			<dd><input name="estate_price" type="text" class="required" value="<?php if(!empty($estate_price)) echo $estate_price;?>" /></dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>配套设施：</dt>
+        			<dd><input name="facility" type="text" class="required" value="<?php if(!empty($facility)) echo $facility;?>" /></dd>
+        		</dl>
+<!--  
+        		<dl>
         			<dt>经度：</dt>
         			<dd><input name="longitude" type="text" class="required" value="<?php if(!empty($longitude)) echo $longitude;?>" /></dd>
         		</dl>
@@ -166,7 +176,7 @@
         			<dt>纬度：</dt>
         			<dd><input name="latitude" type="text" class="required" value="<?php if(!empty($latitude)) echo $latitude;?>" /></dd>
         		</dl>
-        		
+-->
        	</fieldset>
        	
 		<fieldset>

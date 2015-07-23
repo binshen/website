@@ -67,4 +67,4 @@ transition:transform .2s; -webkit-transform-origin:center 20%; transform-origin:
 .user-info a{margin-right:5px; color:#ff6600;}
 .login-logo{margin:8px 5px 0 0; float:left;background:url(../../images/icon3_1.png) no-repeat; width:13px; height:15px; background-position:-21px -156px; overflow:hidden;}
 
-
+.over-bg{ background: #f2f2f2;}
