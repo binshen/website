@@ -235,6 +235,11 @@ $(function() {
 	$("#btnSearchText").click(function(event) {
 		event.preventDefault();
 		$("#search_text").val($("#question").val());
+		if($(".ks-select-pop").find(".current").text() == "二手房") {
+			$("#second_hand_detail_form").attr('action', '/house/second_hand_list');
+		} else {
+			$("#second_hand_detail_form").attr('action', '/house/new_house_list');
+		}
 		$("#second_hand_list_form").submit();
 	});
 	
