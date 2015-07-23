@@ -333,8 +333,7 @@
     		
     		<dt style="width: 250px; position:relative; margin-top:20px">
 			<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; "><a href="javascript:void(0);" onclick="del_pic(this);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this,<?php echo $v->type_id?>);" style="text-decoration:none; color:#fff">设为封面</a></div>
-			    <div class="fengmian">
-			    </div>
+			    
 				<img height="118" width="200" src="<?php echo base_url().'uploadfiles/pics/'.$folder.'/'.$v->type_id.'/'.$v->pic_short;?>" style="border:1px solid #666;">
 				<input type="hidden" size="22" name="pic_short5[]" class="pic_short" value="<?php echo $v->pic_short;?>">
 			</dt>
@@ -358,7 +357,10 @@
     		
     		<dt style="width: 250px; position:relative; margin-top:20px">
 			<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; "><a href="javascript:void(0);" onclick="del_pic(this);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;</div>
-				<img height="118" width="200" src="<?php echo base_url().'uploadfiles/pics/'.$folder.'/6/'.$v->pic_short;?>" style="border:1px solid #666;">
+				<div class="fengmian">
+			    </div>
+				<img height="118" width="200" src="<?php echo base_url().'uploadfiles/pics/'.$folder.'/6/'.$v->pic_short;?>" style="border:1px solid #666;"><br/>
+				<input type="text" name="room[]" size="1" value="<?php echo $v->room;?>" required><label style="width:10px;">室</label><input type="text" name="lounge[]" value="<?php echo $v->lounge;?>" size="1" required><label style="width:10px;">厅</label><input type="text" name="toilet[]" value="<?php echo $v->toilet;?>" size="1" required><label style="width:10px;">卫</label><input type="text" name="area[]"  value="<?php echo $v->area;?>" size="1" required><label style="width:10px;">㎡</label>
 				<input type="hidden" size="22" name="pic_short6[]" class="pic_short" value="<?php echo $v->pic_short;?>">
 			</dt>
     		
@@ -477,6 +479,7 @@ function callbacktime_huxing(time,is_back, type_id){
 	}
 	$.getJSON("<?php echo site_url('manage/get_pics')?>"+"/"+time + "/" + type_id + "?_=" +Math.random(),function(data){
 		html = '';
+		now_pic = [];
 		$('input[name="pic_short'+type_id+'[]"]').each(function(index){
 			now_pic[index] = $(this).val();
 		});
@@ -487,7 +490,7 @@ function callbacktime_huxing(time,is_back, type_id){
 				html+='<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; ">';
 				html+='<a href="javascript:void(0);" onclick="del_pic(this,'+type_id+');" style="text-decoration:none; color:#fff">删除</a></div>';
 				html+='<div class="fengmian"></div>';
-				html+='<img height="118" width="200" src="'+path +'" style="border:1px solid #666;"><input type="text" name="room[]" size="4" required>室<input type="text" name="lounge[]" size="4" required>厅<input type="text" name="toilet[]" size="4" required>卫';
+				html+='<img height="118" width="200" src="'+path +'" style="border:1px solid #666;"><br /><input type="text" name="room[]" size="1" required>室<input type="text" name="lounge[]" size="1" required>厅<input type="text" name="toilet[]" size="1" required>卫<input type="text" name="area[]" size="1" required>㎡';
 				html+='<input type="hidden" name="pic_short'+type_id+'[]" value="'+item+'"></dt>';
 			}
 		});

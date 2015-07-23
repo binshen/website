@@ -29,6 +29,21 @@ class House extends MY_Controller {
 		$search_style_list = $this->house_model->get_search_style_list();
 		$this->assign('search_style_list', $search_style_list);
 		
+		$data = $this->house_model->get_new_house_list();
+		foreach ($data['res_list'] as &$d) {
+			$d->feature_list = explode(",", $d->feature);
+			$region_id = $d->region_id;
+			if($region_id < 6) {
+				$d->region_fullname = "玉山镇-" . $d->region_name;
+			} else {
+				$d->region_fullname = $d->region_name . "-" . $d->region_name;
+			}
+		}
+		$this->assign('new_house_list', $data);
+		
+		$pager = $this->pagination->getPageLink('/house/new_house_list', $data['countPage'], $data['numPerPage']);
+		$this->assign('pager', $pager);
+		
 		$this->assign('search_region', $this->input->post('search_region'));
 		$this->assign('search_style', $this->input->post('search_style'));
 		$this->assign('search_price', $this->input->post('search_price'));
