@@ -91,4 +91,15 @@ class House extends MY_Controller {
 		
 		$this->display('second_hand_list.html');
 	}
+	
+	public function second_hand_detail($id) {
+		
+		$house = $this->house_model->get_second_hand_detail($id);
+		$house['feature_list'] = explode(",", $house['feature']);
+		$house['unit_price'] = intval($house['total_price'] / $house['acreage'] * 10000);
+		
+		$this->assign('house', $house);
+		
+		$this->display('second_hand_detail.html');
+	}
 }

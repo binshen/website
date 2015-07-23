@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>房猫</title>
+<meta name="keywords" content="房猫,昆山" />
+<meta name="description" content="" />
+<link href="{{$base_url}}css/detail.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{{$base_url}}js/jquery-1.8.3.min.js" ></script>
+<script type="text/javascript" src="{{$base_url}}js/dpl-jquery.slide.js" ></script>
+</head>
+<body>
+<div class="wraper">
+	{include file="header.html"}
+
+    <!--------------搜索列表start---------------->
+    <div class="p_crumbs">
+        <a href="" target="_blank">全部房源</a>&gt;<a href="" target="_blank">{{$house.region_name}}</a>&gt;<a href="" target="_blank">{{$house.xq_name}}</a>
+    </div>
+    <div class="housedetail">
+        <div class="house-d-top clearfix">
+            <div class="photoshow">
+                <div id="bigPic" class="tab">
+                    <ul>
+                        <li><img src="http://dummyimage.com/420x420/000/fff" alt="" width="420" height="420" /></li>
+                        <li><img src="http://dummyimage.com/420x420/ccc/fff" alt="" width="420" height="420" /></li>
+                        <li><img src="http://dummyimage.com/420x420/000/fff" alt="" width="420" height="420" /></li>
+                        <li><img src="http://dummyimage.com/420x420/000/fff" alt="" width="420" height="420" /></li>
+                    </ul>
+                </div>
+                <ul class="control" id ="pic_control">
+                    <li><img src="http://dummyimage.com/60x60/000/fff" alt="" width="60" height="60" /></li>
+                    <li><img src="http://dummyimage.com/60x60/000/fff" alt="" width="60" height="60" /></li>
+                    <li><img src="http://dummyimage.com/60x60/000/fff" alt="" width="60" height="60" /></li>
+                    <li><img src="http://dummyimage.com/60x60/000/fff" alt="" width="60" height="60" /></li>
+                    <li class="last"><img src="http://dummyimage.com/60x60/000/fff" alt="" width="60" height="60" /></li>
+                </ul> 
+            </div>
+            <div class="detail-txt">
+                <div class="d-p-txt1">{{$house.name}}</div>
+                <div class="d-p-txt2">{{$house.sub_title}}</div>
+                <div class="ev-prices">
+                    <span class="alwa-pr"><i class="color1">价格：</i>{{$house.unit_price}}元/m²</span> 
+                    <span class="sepc-pr"><i class="color1">本月均价：</i>{{$house.unit_price}}元/m²</span><br />
+                    <span class="sale-pr"><i class="color1">售 价：</i><i class="iNum">{{$house.total_price}}</i>万元</span>
+                </div>
+                <div class="d-other-info clearfix">
+                    <dl class="other-dl">
+                        <dt>首付：</dt>
+                        <dd>24万</dd>
+                        <dt>房 型：</dt>
+                        <dd>{{$house.room}}室{{$house.lounge}}厅</dd>
+                        <dt>装 修：</dt>
+                        <dd>普通装修</dd>
+                        <dt>楼 层：</dt>
+                        <dd>{{$house.floor}}/{{$house.total_floor}}层</dd>
+                    </dl>
+                    <dl class="other-dl">
+                        <dt>月 供：</dt>
+                        <dd>4140元</dd>
+                        <dt>面 积：</dt>
+                        <dd>{{$house.acreage}}㎡</dd>
+                        <dt>朝 向：</dt>
+                        <dd>{{$house.orientation_name}}</dd>
+                        <dt>所在小区：</dt>
+                        <dd class="color2">{{$house.xq_name}}  <a href="" target="_blank">[地图交通]</a></dd>
+                    </dl>
+                </div>
+                <div class="key-word">
+                	{{foreach from=$house.feature_list item=item}}
+            			<span>{{$item}}</span>
+                    {{/foreach}}
+                </div>
+                <div class="detail-tel">
+                     <em class="tel-icon"></em><em class="tel-txt">{{$house.tel}}</em>
+                </div>
+                <div class="d-other-info">
+                    <dl class="other-dl other-dl1">
+                        <dt>年 代：</dt>
+                        <dd>{{$house.xq_name}}年</dd>
+                        <dt>物业费：</dt>
+                        <dd>1.5元/月</dd>
+                        <dt>配套设施：</dt>
+                        <dd>煤气/天然气,电梯,车位/车库,露台,宽带 </dd>
+                        <dt>地址：</dt>
+                        <dd>{{$house.address|default:"地址不详"}} </dd>
+                    </dl>
+                    <dl class="other-dl other-dl2">
+                        <dt>类型：</dt>
+                        <dd>{{$house.style_name}}</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="house-d-title">
+            房源描述
+        </div>
+        <div class="house-d-by">
+            {{$house.description}}
+        </div>
+        <div class="house-d-title">
+            房源图片
+        </div>
+        <div class="house-d-by">
+            {{$house.house_pic}}
+        </div>
+        <div class="house-d-title">
+            小区地图
+        </div>
+        <div class="house-d-by">
+            {{$house.house_pic}}
+        </div>
+    </div>
+    <div class="house-d-fr">
+        <div class="agent-peo-info">
+            <div class="agent-head">
+                <img src="http://dummyimage.com/175x235/000/fff">
+            </div>
+            <div class="agent-position">
+                <p class="p-name"><em class="fz14">经纪人：{{$house.rel_name}}</em><br />
+                <em class="color666 fz10">顺达地产代理</em></p>
+                <p class="agent-icon">
+                    <i class="i_identifuy"></i>
+                    <i class="i_company_verify"></i>
+                </p>    
+                <p class="agent-num"><em class="color666">房源数：</em>127套</p>
+                <p class="agent-area">熟悉区域：{{$house.b_region_name}}</p>
+                <p class="agent-more-link"><a href="#" target="_blank">+查看店铺</a></p>
+                <p class="agent-tel"><em></em>{{$house.tel}}</p>
+                <p class="fz10">房屋买卖咨询，请致电我</p>
+            </div>
+        </div>
+        <div class="agent-reco-info">
+            <div class="a-r-title">————— 推荐小区 —————</div>
+            <div class="a-r-house">
+                <a href="" target="_blank"><img src="http://dummyimage.com/165x125/000/fff">
+                <p class="a-r-house-p"><i class="blue">天地华城赔本娄江双学区</i><br /><i class="red">55万</i><br /><i>1室2厅，66平米</i><br /><i>天地华城</i></p></a>
+            </div>
+            <div class="a-r-house">
+                <a href="" target="_blank"><img src="http://dummyimage.com/165x125/000/fff">
+                <p class="a-r-house-p"><i class="blue">天地华城赔本娄江双学区</i><br /><i class="red">55万</i><br /><i>1室2厅，66平米</i><br /><i>天地华城</i></p>
+                </a>
+            </div>
+        </div>
+        <div class="agent-reco-info">
+            <div class="a-r-title">————— 相似小区 —————</div>
+            <div class="a-r-house">
+                <a href="" target="_blank"><img src="http://dummyimage.com/165x125/000/fff">
+                <p class="a-r-house-p"><i class="blue">天地华城赔本娄江双学区</i><br /><i class="red">55万</i><br /><i>1室2厅，66平米</i><br /><i>天地华城</i></p></a>
+            </div>
+            <div class="a-r-house">
+                <a href="" target="_blank"><img src="http://dummyimage.com/165x125/000/fff">
+                <p class="a-r-house-p"><i class="blue">天地华城赔本娄江双学区</i><br /><i class="red">55万</i><br /><i>1室2厅，66平米</i><br /><i>天地华城</i></p></a>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="footer.html"}
+<script>
+$(function(){
+	//图片展示
+    new Slide({
+        target: $('#bigPic li'),
+        control: $('#pic_control li'),
+        type:'click'
+    });
+    $('.a-r-house').mouseenter(function(){
+        $(this).addClass('over-bg');
+    }).mouseleave(function(){
+        $(this).removeClass('over-bg');
+    });
+    
+    $('.ks-select em').html("二手房");
+})
+</script>
+</body>
+</html>
