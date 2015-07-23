@@ -33,12 +33,16 @@
     	<div class="item-list-tit">房源</div>
         <div class="item-list-bdy">
         	<form action="/house/second_hand_list" method="POST" id="second_hand_list_form">
+        		<input type="hidden" id="search_text" name="search_text" value="{{$search_text}}">
         		<input type="hidden" id="search_region" name="search_region" value="{{$search_region}}">
         		<input type="hidden" id="search_style" name="search_style" value="{{$search_style}}">
         		<input type="hidden" id="search_price" name="search_price" value="{{$search_price}}">
         		<input type="hidden" id="search_acreage" name="search_acreage" value="{{$search_acreage}}">
         		<input type="hidden" id="search_type" name="search_type" value="{{$search_type}}">
         		<input type="hidden" id="search_feature" name="search_feature" value="{{$search_feature}}">
+        		
+        		<input type="hidden" id="search_order" name="search_order" value="{{$search_order}}">
+        		<input type="hidden" id="order_price_dir" name="order_price_dir" value="{{$order_price_dir}}">
 	            <dl class="items">
 	                <dt class="item-title">区域：</dt>
 	                <dd class="elems-l">
@@ -128,7 +132,9 @@
     </div>
     <div class="sortby">
         <span class="sort-con">
-            排序： <a href="#" class="fst cur">默认排序</a><a href="#" class="selected-down">单价</a>
+            排序： <a href="javascript:void(0);" class="fst cur">默认排序</a>
+           <a href="javascript:void(0);" {{if $order_price_dir == 1}}class="selected-down"{{else}}class="selected-up"{{/if}} id="order_price">总价</a>
+           <!-- <a href="javascript:void(0);" class="down">关注度</a> -->
         </span>
         <div class="sort-res">
             <span class="res-txt">共找到 <em class="red">7586</em> 套房源</span>
@@ -226,7 +232,25 @@ $(function() {
 	    $('.houselist li').removeClass('over-bg');
 	});
 	
+	$("#btnSearchText").click(function(event) {
+		event.preventDefault();
+		$("#search_text").val($("#question").val());
+		$("#second_hand_list_form").submit();
+	});
+	
+	$("#order_price").click(function() {
+		$("#search_order").val(1);
+		var order_price_dir = $("#order_price_dir").val();
+		if(order_price_dir == 1) {
+			$("#order_price_dir").val(2);
+		} else {
+			$("#order_price_dir").val(1);
+		}
+		$("#second_hand_list_form").submit();
+	});
+	
 	$('.ks-select em').html("二手房");
+	$("#question").val('{{$search_text}}')
 });
 
 function change_search(t, v) {

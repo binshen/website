@@ -63,12 +63,16 @@ class House extends MY_Controller {
 		$pager = $this->pagination->getPageLink('/house/second_hand_list', $data['countPage'], $data['numPerPage']);
 		$this->assign('pager', $pager);
 		
+		$this->assign('search_text', $this->input->post('search_text'));
 		$this->assign('search_region', $this->input->post('search_region'));
 		$this->assign('search_style', $this->input->post('search_style'));
 		$this->assign('search_price', $this->input->post('search_price'));
 		$this->assign('search_acreage', $this->input->post('search_acreage'));
 		$this->assign('search_type', $this->input->post('search_type'));
 		$this->assign('search_feature', $this->input->post('search_feature'));
+		
+		$this->assign('search_order', $this->input->post('search_order') ? $this->input->post('search_order') : 1);
+		$this->assign('order_price_dir', $this->input->post('order_price_dir') ? $this->input->post('order_price_dir') : 1);
 		
 		$this->display('second_hand_list.html');
 	}
