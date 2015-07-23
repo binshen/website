@@ -81,20 +81,6 @@
 	                </dd>
 	            </dl>
 	            <dl class="items">
-	                <dt class="item-title">面积：</dt>
-	                <dd class="elems-l">
-	                    <span onclick="change_search('acreage', 0)" {{if empty($search_acreage)}}class='selected-item'{{/if}} style="cursor:pointer">全部</span>
-	                    <a href='javascript:void(0);' onclick="change_search('acreage', 1)" {{if $search_acreage == 1}}class='selected-item'{{/if}}>50平米以下</a>
-	                    <a href='javascript:void(0);' onclick="change_search('acreage', 2)" {{if $search_acreage == 2}}class='selected-item'{{/if}}>50-70平米</a>
-	                    <a href='javascript:void(0);' onclick="change_search('acreage', 3)" {{if $search_acreage == 3}}class='selected-item'{{/if}}>70-90平米 </a>
-	                    <a href='javascript:void(0);' onclick="change_search('acreage', 4)" {{if $search_acreage == 4}}class='selected-item'{{/if}}>90-120平米</a>
-	                    <a href='javascript:void(0);' onclick="change_search('acreage', 5)" {{if $search_acreage == 5}}class='selected-item'{{/if}}>120-150平米 </a>
-	                    <a href='javascript:void(0);' onclick="change_search('acreage', 6)" {{if $search_acreage == 6}}class='selected-item'{{/if}}>150-200平米</a>
-	                    <a href='javascript:void(0);' onclick="change_search('acreage', 7)" {{if $search_acreage == 7}}class='selected-item'{{/if}}>200-300平米 </a>
-	                    <a href='javascript:void(0);' onclick="change_search('acreage', 8)" {{if $search_acreage == 8}}class='selected-item'{{/if}}>300平米以上</a>
-	                </dd>
-	            </dl>
-	            <dl class="items">
 	                <dt class="item-title">房型：</dt>
 	                <dd class="elems-l">
 	                    <span onclick="change_search('type', 0)" {{if empty($search_type)}}class='selected-item'{{/if}} style="cursor:pointer">全部</span>
@@ -129,9 +115,6 @@
         </span>
         <div class="sort-res">
             <span class="res-txt">共找到 <em class="red">7586</em> 套房源</span>
-            <a href="#" class="nextpage">
-                下一页
-            </a>
         </div>
     </div>
     <div class="houserchres clearfix">
@@ -139,7 +122,8 @@
             <div class="houselist newhouselist">
                 {{foreach from=$new_house_list.res_list item=item}}
                 <div class="houseli">
-                    <img src="http://dummyimage.com/190x155/000/fff">
+                    <!-- <img src="http://dummyimage.com/190x155/000/fff"> -->
+                    <img src="/uploadfiles/pics/{{$item->bg_pic}}">
                     <div class="housedetail ">
                         <div class="house-tit">
                             <a href="#">
@@ -155,13 +139,18 @@
                             [{{$item->region_fullname}}] {{$item->address|default:"地址不详"}}
                         </div>
                         <div class="house-other-info">
-                            户型：<span>2室（2）</span><em>|</em><span>3室（2）</span>
+                            户型：
+                            {{foreach from = $rooms[$item->id] item=row key=k}}
+                            <span>{{$row['room']}}室（{{$row['count']}}）</span>{{if $k+1 lt $rooms[$item->id]|@count}}<em>|</em>{{/if}}
+                            {{/foreach}}
                         </div>
                         <div class="house-other-info">
                             最新开盘：{{$item->kp_date|date_format:"%Y年%m月%d日"}}
                         </div>
                         <div class="house-dynamic">
-                            <i class="red">动态</i> 69-130平高层房源总价92折优惠
+                        {{if isset($news[$item->xq_id])}}
+                            <i class="red">动态</i> {{$news[$item->xq_id][0]['title']}}
+                        {{/if}}
                         </div>
                     </div>
                     <div class="houseprice">
