@@ -147,7 +147,7 @@
         <div class="serchL">
             <ul class="houselist">
             	{{foreach from=$second_hand_list.res_list item=item}}
-	                <li>
+	                <li onclick="show_detail('{{$item->id}}')">
 	                    <img src="http://dummyimage.com/205x135/000/fff">
 	                    <div class="housedetail">
 	                        <div class="house-tit">
@@ -256,6 +256,11 @@ $(function() {
 function change_search(t, v) {
 	$("#search_" + t).val(v);
 	$("#second_hand_list_form").submit();
+}
+
+function show_detail(id) {
+	var url = '/house/second_hand_detail/' + id;
+	window.open(url);
 }
 </script>
 </body>
