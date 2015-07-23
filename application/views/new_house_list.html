@@ -32,7 +32,7 @@
     <div class="item-list">
     	<div class="item-list-tit">房源</div>
         <div class="item-list-bdy">
-        	<form action="/house/second_hand_list" method="POST" id="second_hand_list_form">
+        	<form action="/house/new_house_list" method="POST" id="new_house_list_form">
         		<input type="hidden" id="search_region" name="search_region" value="{{$search_region}}">
         		<input type="hidden" id="search_style" name="search_style" value="{{$search_style}}">
         		<input type="hidden" id="search_price" name="search_price" value="{{$search_price}}">
@@ -137,41 +137,55 @@
     <div class="houserchres clearfix">
         <div class="serchL">
             <div class="houselist newhouselist">
+                {{foreach from=$new_house_list.res_list item=item}}
                 <div class="houseli">
                     <img src="http://dummyimage.com/190x155/000/fff">
                     <div class="housedetail ">
                         <div class="house-tit">
                             <a href="#">
-                                昆城景苑
+                                {{$item->name}}
                             </a>
                         </div>
                         <div class="house-state">
-                            <span class="cur">在售</span>
-                            <span>现房</span>
-                            <span>小户型</span>
+                        {{foreach from=$item->feature_list key=key item=val}}
+                			<span {{if $key == 0}}class="cur"{{/if}}>{{$val}}</span>
+                        {{/foreach}}
                         </div>
                         <div class="house-address">
-                            [ 玉山 城南 ]  衡山路与人民南路两侧
+                            [{{$item->region_fullname}}] {{$item->address|default:"地址不详"}}
                         </div>
                         <div class="house-other-info">
                             户型：<span>2室（2）</span><em>|</em><span>3室（2）</span>
                         </div>
                         <div class="house-other-info">
-                            最新开盘：2014年10月26日
+                            最新开盘：{{$item->kp_date|date_format:"%Y年%m月%d日"}}
                         </div>
                         <div class="house-dynamic">
                             <i class="red">动态</i> 69-130平高层房源总价92折优惠
                         </div>
                     </div>
                     <div class="houseprice">
-                        均价<em class="red">13000</em>元/㎡<br />
+                        均价<em class="red">{{$item->unit_price}}</em>元/㎡<br />
                     </div>
                     <div class="house-tel">
-                        400-067-1259
+                        {{$item->dev_photo}}
                     </div> 
                 </div> 
+                {{/foreach}}
+                <div class="paging">
+            {{$pager}}
+<!--                <i class="iPre"><上一页</i>
+                <i class="curr">1</i>
+                <a href="">2</a>
+                <a href="">3</a>
+                <a href="">4</a>
+                <a href="">5</a>
+                <i class="aDotted">...</i>
+                <a href="" class="iPre">下一页></a> --> 
+            </div> 
             </div>
-            <div class="newhouse-tit">热门新盘推荐</div>
+            
+            <!-- <div class="newhouse-tit">热门新盘推荐</div>
             <ul class="houselist newhouselist">
                 <li>
                     <img src="http://dummyimage.com/190x155/000/fff">
@@ -272,17 +286,8 @@
                         400-067-1259
                     </div>  
                 </li>
-            </ul><!-- 
-            <div class="paging">
-                <i class="iPre"><上一页</i>
-                <i class="curr">1</i>
-                <a href="">2</a>
-                <a href="">3</a>
-                <a href="">4</a>
-                <a href="">5</a>
-                <i class="aDotted">...</i>
-                <a href="" class="iPre">下一页></a>
-            </div> -->
+            </ul>
+             -->
         </div>
         <div class="serchR">
             <div class="reco-tit">推荐楼盘</div>
