@@ -158,7 +158,7 @@
         		</dl>
         		
         		<dl>
-        			<dt>物业费：</dt>
+        			<dt>物业费(元/平方米)：</dt>
         			<dd><input name="estate_price" type="text" class="required" value="<?php if(!empty($estate_price)) echo $estate_price;?>" /></dd>
         		</dl>
         		
@@ -166,7 +166,7 @@
         			<dt>配套设施：</dt>
         			<dd><input name="facility" type="text" class="required" value="<?php if(!empty($facility)) echo $facility;?>" /></dd>
         		</dl>
-        		
+<!--  
         		<dl>
         			<dt>经度：</dt>
         			<dd><input name="longitude" type="text" class="required" value="<?php if(!empty($longitude)) echo $longitude;?>" /></dd>
@@ -176,7 +176,7 @@
         			<dt>纬度：</dt>
         			<dd><input name="latitude" type="text" class="required" value="<?php if(!empty($latitude)) echo $latitude;?>" /></dd>
         		</dl>
-        		
+-->
        	</fieldset>
        	
 		<fieldset>

@@ -240,7 +240,7 @@ class House_model extends MY_Model
 
     public function get_second_hand_detail($id) {
     	$this->db->select('a.*, b.name AS region_name, c.name AS orientation_name, d.name AS xq_name, d.address AS address, e.tel AS tel, f.name AS style_name');
-    	$this->db->select('e.rel_name, g.name AS b_region_name, h.name AS decoration_name');
+    	$this->db->select('e.rel_name, e.company_name, g.name AS b_region_name, h.name AS decoration_name, ');
     	$this->db->from('house a');
     	$this->db->join('house_region b', 'a.region_id = b.id', 'left');
     	$this->db->join('house_orientation c', 'a.orientation_id = c.id', 'left');

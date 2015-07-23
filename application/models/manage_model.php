@@ -856,8 +856,8 @@ class Manage_model extends MY_Model
 			'broker_id' => $this->session->userdata('user_id'),
 			'description' => $this->input->post('description'),
 			'house_pic' => $this->input->post('house_pic'),
-			'longitude' => $this->input->post('longitude'),
-			'latitude' => $this->input->post('latitude'),
+//			'longitude' => $this->input->post('longitude'),
+//			'latitude' => $this->input->post('latitude'),
 			'folder' => $this->input->post('folder'),
 			'bg_pic' => $this->input->post('is_bg')
 		);
