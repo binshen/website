@@ -123,7 +123,7 @@
                     <i class="i_identifuy"></i>
                     <i class="i_company_verify"></i>
                 </p>    
-                <p class="agent-num"><em class="color666">房源数：</em>127套</p>
+                <p class="agent-num"><em class="color666">房源数：</em>{{$house.broker_house_count}}套</p>
                 <p class="agent-area">熟悉区域：{{$house.b_region_name}}</p>
                 <p class="agent-more-link"><a href="#" target="_blank">+查看店铺</a></p>
                 <p class="agent-tel"><em></em>{{$house.tel}}</p>
@@ -157,7 +157,7 @@
 </div>
 {include file="footer.html"}
 <form action="/house/second_hand_list" method="POST" id="second_hand_detail_form">
-	<input type="hidden" id="search_text" name="search_text" value="{{$search_text}}">
+	<input type="hidden" id="search_text" name="search_text" value="{{$search_text|default:''}}">
 </form>
 <script>
 $(function(){

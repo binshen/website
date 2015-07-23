@@ -98,6 +98,10 @@ class House extends MY_Controller {
 		$house['feature_list'] = explode(",", $house['feature']);
 		$house['unit_price'] = intval($house['total_price'] / $house['acreage'] * 10000);
 		$house['first_pay'] = intval($house['total_price'] * 0.3);
+		
+		$broker_house_count = $this->house_model->get_broker_house_count($house['broker_id']);
+		$house['broker_house_count'] = $broker_house_count;
+		
 		$this->assign('house', $house);
 		
 		$this->display('second_hand_detail.html');

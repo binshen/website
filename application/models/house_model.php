@@ -253,6 +253,10 @@ class House_model extends MY_Model
     	return $this->db->where('a.id', $id)->get()->row_array();
     }
     
+    public function get_broker_house_count($broker_id) {
+    	return $this->db->get_where('house', array('broker_id' => $broker_id))->num_rows();
+    }
+    
     public function get_new_house_list() {
     	// 每页显示的记录条数，默认20条
     	$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
