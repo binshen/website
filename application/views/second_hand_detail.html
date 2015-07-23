@@ -47,11 +47,11 @@
                 <div class="d-other-info clearfix">
                     <dl class="other-dl">
                         <dt>首付：</dt>
-                        <dd>24万</dd>
+                        <dd>{{$house.first_pay}}万</dd>
                         <dt>房 型：</dt>
                         <dd>{{$house.room}}室{{$house.lounge}}厅</dd>
                         <dt>装 修：</dt>
-                        <dd>普通装修</dd>
+                        <dd>{{$house.decoration_name}}</dd>
                         <dt>楼 层：</dt>
                         <dd>{{$house.floor}}/{{$house.total_floor}}层</dd>
                     </dl>
@@ -79,9 +79,9 @@
                         <dt>年 代：</dt>
                         <dd>{{$house.xq_name}}年</dd>
                         <dt>物业费：</dt>
-                        <dd>1.5元/月</dd>
+                        <dd>{{$house.estate_price}}元/平米</dd>
                         <dt>配套设施：</dt>
-                        <dd>煤气/天然气,电梯,车位/车库,露台,宽带 </dd>
+                        <dd>{{$house.facility}} </dd>
                         <dt>地址：</dt>
                         <dd>{{$house.address|default:"地址不详"}} </dd>
                     </dl>

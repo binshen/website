@@ -9,7 +9,7 @@
         <fieldset>
         	<legend class="topLegend">基本信息</legend>
         	    <dl >
-        			<dt>楼盘名称：</dt>
+        			<dt>楼盘名称(标题)：</dt>
         			<dd>
         				<input type="hidden" name="id" value="<?php if(!empty($id)) echo $id;?>">
         				<input type="hidden" name="type_id" value="2">
@@ -155,6 +155,16 @@
         		<dl>
         			<dt>总楼层：</dt>
         			<dd><input name="total_floor" type="text" class="required" value="<?php if(!empty($total_floor)) echo $total_floor;?>" /></dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>物业费：</dt>
+        			<dd><input name="estate_price" type="text" class="required" value="<?php if(!empty($estate_price)) echo $estate_price;?>" /></dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>配套设施：</dt>
+        			<dd><input name="facility" type="text" class="required" value="<?php if(!empty($facility)) echo $facility;?>" /></dd>
         		</dl>
         		
         		<dl>
