@@ -511,5 +511,10 @@ class House_model extends MY_Model
    		$this->db->limit(3,0);
    		return $this->db->get()->result_array();
    	}
+   	
+   	public function get_new_house_price($id){
+   		$data['own_price'] = $this->db->select()->from('price_trend')->where('h_id',$id)->order_by('month','desc')->limit(12,0)->get()->result_array();
+   		return $data;
+   	}
     
 }

@@ -128,7 +128,9 @@ class House extends MY_Controller {
 		$house['feature_list'] = explode(",", $house['feature']);
 		$news = $this->house_model->get_house_news_row($house['xq_id']);
 		$pics = $this->house_model->get_new_house_pics($id);
+		$prices = $this->house_model->get_new_house_price($id);
 		$this->assign('huxing', $huxing);
+		$this->assign('prices', $prices);
 		$this->assign('house', $house);
 		$this->assign('pics', $pics);
 		$this->assign('news', $news);

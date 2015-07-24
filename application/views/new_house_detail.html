@@ -7,8 +7,6 @@
 <meta name="description" content="" />
 <link href="{{$base_url}}css/newdetail.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="{{$base_url}}js/jquery-1.8.3.min.js" ></script>
-<script type="text/javascript" src="{{$base_url}}js/dpl-jquery.slide.js" ></script>
-<script type="text/javascript" src="http://pages.aifcdn.com/js/Highcharts-3.0.0/js/highcharts2013.js"></script>
 </head>
 <body>
 <div class="wraper">
@@ -70,7 +68,7 @@
                     </dl>
                 </div>
                 <div class="detail-tel">
-                    <a href="#" class="appoint">预约看房</a>
+                    <a href="javascript:void(0)" class="btns-link appoint" id="Jappoint">预约看房</a>
                     <em class="tel-icon"></em><em class="tel-txt">{{$house['dev_photo']}}</em>                     
                 </div>
                 <p class="p-tips">最新政策、价格详情，敬请电话咨询售楼处</p>
@@ -89,7 +87,7 @@
                     </dl>
                     <dl class="other-dl">
                         <dt>交房时间</dt>
-                        <dd>{{$house['jf_date']|date_format:"%Y年%m月%d日"}}<a href="javascript:void(0)" class="toright"><i class="lp-icons-open"></i>开盘通知我</a></dd>
+                        <dd>{{$house['jf_date']|date_format:"%Y年%m月%d日"}}<a href="javascript:void(0)" class="toright" id="Jtoright"><i class="lp-icons-open"></i>开盘通知我</a></dd>
                         <dt>装修标准</dt>
                         <dd>{{$house['decoration_name']}}</dd>
                         <dt>所属商圈</dt>
@@ -222,9 +220,47 @@
     </div>
 
 </div>
+<!--预约看房-->
+<div class="notice-pop open-house-notice" id="JnoticePop">
+    <a href="javascript:void(0)" class="closeBtn"></a>
+    <div class="notice-tit">预约看房</div>
+    <p>请填写您的手机号码，以便置业顾问联系您看房。</p>
+    <label><em class="red">*</em>手机号码</label><input type="text" name="user-tel" placeholder="请输入您的手机号码"  class="user-tel" />
+    <a href="" class="btns-link">立即预约</a>
+</div>
+<!--开盘通知-->
+<div class="notice-pop open-house-subscribe" id="JsubPop">
+    <a href="javascript:void(0)" class="closeBtn"></a>
+    <div class="notice-tit">订阅信息</div>
+    <p>我们将为您保密个人信息！ 请填写您接受订阅的手机号码：</p>
+    <div class="subscribe-style">
+        <label><input type="checkbox" value="变价通知" />变价通知</label>
+        <label><input type="checkbox" value="优惠通知" />优惠通知</label>
+        <label><input type="checkbox" value="开盘通知" />开盘通知</label>
+        <label><input type="checkbox" value="看房通知" />看房通知</label>
+    </div>
+    <label><em class="red">*</em>手机号码</label><input type="text" name="user-tel" placeholder="请输入您的手机号码"  class="user-tel" />
+    <a href="" class="btns-link">立即订阅</a>
+</div>
+<script type="text/javascript" src="{{$base_url}}js/dpl-jquery.slide.js" ></script>
+<script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+<script type="text/javascript" src="{{$base_url}}js/jquery.blockUI.js"></script>
+<script type="text/javascript" src="{{$base_url}}js/drawdata.js"></script>
+
 {include file="footer.html"}
 <script>
 $(function(){
+    //快搜左侧下拉
+    $('.ks-select').mouseenter(function(){
+        $('.ks-select-pop').show();
+    }).mouseleave(function(){
+    	$('.ks-select-pop').hide();
+    });
+    $('.ks-select-pop a').click(function(){
+        $('.ks-select-pop a').removeClass('current');
+        $(this).addClass('current');
+        $('.ks-select em').html($(this).html());
+    });
 //图片展示
     new Slide({
         target: $('#bigPic .condiv'),
@@ -256,7 +292,88 @@ $(function(){
         width: 525,
         autoPlay: false
     });
-})
+//弹框
+    $('.closeBtn').click(function(){
+        $.unblockUI();  
+    });
+    $('#Jappoint').click(function(){
+        $.blockUI({
+            message: $('#JnoticePop'),
+            css:{ width:'auto',height:'auto',border:'none',cursor:'default',background:'none' }
+        });
+    });
+    $('#Jtoright').click(function(){
+        $.blockUI({
+            message: $('#JsubPop'),
+            css:{ width:'auto',height:'auto',border:'none',cursor:'default',background:'none' }
+        });
+    });
+		
+});
+
+$(function () {
+	var data1 = [];
+	var month = [];
+	{{foreach from=$prices['own_price'] item=row key=k}}
+	data1.push({{$row['price']}});
+	month.push(parseInt("{{$row['month']}}".substring(4,6))+'月');
+	{{/foreach}}
+	console.log(data1);
+    $('#price-charts').highcharts({
+		colors:['#62ab00','#bf5a2f','#578fd5'],
+        title: {
+            text: '',
+            x: -20 //center
+        },
+        subtitle: {
+            text: '',
+            x: -20
+        },
+        xAxis: {
+            categories: month
+        },
+        yAxis: {
+            title: {
+                text: ''
+            },
+			labels: {
+			formatter:function(){
+				return this.value;
+/*				  if(this.value <=10) { 
+					return "第一等级("+this.value+")";
+				  }else if(this.value >100 && this.value <=200) { 
+					return "第二等级("+this.value+")"; 
+				  }else { 
+					return "第三等级("+this.value+")";
+				  }*/
+				}
+			},
+			opposite:true,
+            plotLines: [{
+                value: 5,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: '元/m²'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+			name:'本楼盘',
+            data: data1
+        }, {
+			name:'城北均价',
+            data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+        }],
+		credits:false
+    });
+});
 </script>
 </body>
 </html>
