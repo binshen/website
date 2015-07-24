@@ -106,4 +106,9 @@ class House extends MY_Controller {
 		
 		$this->display('second_hand_detail.html');
 	}
+	
+	public function new_house_detail($id) {
+		
+		$this->display('new_house_detail.html');
+	}
 }

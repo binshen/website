@@ -3,8 +3,7 @@
 @import url('block/other.css');
 @import url('block/common.css');
 
-.p_crumbs{padding:15px 0;font-size: 14px;color: #aba6a6;}
-.p_crumbs a{margin:0 10px;color: #aba6a6; display: inline-block;}
+
 .housedetail{margin-bottom: 55px; width: 900px; float: left;}
 .house-d-top{margin-bottom: 55px;}
 .photoshow{width:420px; float: left;}

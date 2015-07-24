@@ -21,3 +21,5 @@ a:hover em,a:hover b, a:hover i, a:hover span {cursor:pointer;}
 .fz10{ font-size: 10px;transform:scale(0.875);}
 .fz14{font-size:14px;}.fz16{font-size:16px;}.fz20{font-size:20px;}
 .red{ color: #ff4400;}.blue{ color:#3388b4;}.color666{color: #666;}
+.mt10{margin-top: 10px;}
+.mb25{margin-bottom: 25px;}
