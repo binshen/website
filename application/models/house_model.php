@@ -262,6 +262,21 @@ class House_model extends MY_Model
     	$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
     	$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
     	
+    	if($this->input->post('search_type')) {
+    		$this->db->select('distinct(h_id)')->from('house_hold');
+    		$search_type = intval($this->input->post('search_type'));
+    		if($search_type > 5) {
+    			$this->db->where('room >', '5');
+    		} else {
+    			$this->db->where('room', $search_type);
+    		}
+    		$rs = $this->db->get()->result_array();
+    		$h_ids = array();
+    		foreach($rs as $v){
+    			$h_ids[] = $v['h_id'];
+    		}
+    	}
+    	
     	//获得总记录数
     	$this->db->select('count(1) as num');
     	$this->db->from('house');
@@ -276,38 +291,29 @@ class House_model extends MY_Model
      	if($this->input->post('search_style'))
      		$this->db->where('substyle_id',$this->input->post('search_style'));
      	
-     	if($this->input->post('search_price')){
-     		$search_price = intval($this->input->post('search_price'));
-     		if($search_price == 1) {
-     			$this->db->where('total_price <=', '50');
+    	if($this->input->post('search_price')){
+			$search_price = intval($this->input->post('search_price'));
+			if($search_price == 1) {
+     			$this->db->where('unit_price <', '5000');
      		} else if($search_price == 2) {
-     			$this->db->where('total_price >',  '50');
-     			$this->db->where('total_price <=', '80');
+     			$this->db->where('unit_price >=',  '5000');
+     			$this->db->where('unit_price <=', '6000');
      		} else if($search_price == 3) {
-     			$this->db->where('total_price >',  '80');
-     			$this->db->where('total_price <=', '100');
+     			$this->db->where('unit_price >=',  '6000');
+     			$this->db->where('unit_price <=', '7000');
      		} else if($search_price == 4) {
-     			$this->db->where('total_price >',  '100');
-     			$this->db->where('total_price <=', '120');
+     			$this->db->where('unit_price >=',  '7000');
+     			$this->db->where('unit_price <=', '8000');
      		} else if($search_price == 5) {
-     			$this->db->where('total_price >',  '120');
-     			$this->db->where('total_price <=', '150');
+     			$this->db->where('unit_price >=',  '8000');
+     			$this->db->where('unit_price <=', '10000');
      		} else if($search_price == 6) {
-     			$this->db->where('total_price >',  '150');
-     			$this->db->where('total_price <=', '200');
-     		} else if($search_price == 7) {
-     			$this->db->where('total_price >',  '200');
-     			$this->db->where('total_price <=', '250');
-     		} else if($search_price == 8) {
-     			$this->db->where('total_price >',  '250');
-     			$this->db->where('total_price <=', '300');
-     		} else if($search_price == 9) {
-     			$this->db->where('total_price >',  '300');
-     			$this->db->where('total_price <=', '500');
+     			$this->db->where('unit_price >=',  '10000');
+     			$this->db->where('unit_price <=', '15000');
      		} else if($search_price == 10) {
-     			$this->db->where('total_price >',  '500');
+     			$this->db->where('unit_price >',  '15000');
      		}
-     	}
+		}
      	if($this->input->post('search_acreage')) {
      		$search_acreage = intval($this->input->post('search_acreage'));
      		if($search_acreage == 1) {
@@ -335,12 +341,7 @@ class House_model extends MY_Model
      		}
      	}     	
      	if($this->input->post('search_type')) {
-     		$search_type = intval($this->input->post('search_type'));
-     		if($search_type > 5) {
-     			$this->db->where('room >', '5');
-     		} else {
-     			$this->db->where('room', $search_type);
-     		}
+     		$this->db->where_in('id', $h_ids);
      	}     		
      	if($this->input->post('search_feature'))
      		$this->db->like('feature', $this->input->post('search_feature'));
@@ -371,33 +372,24 @@ class House_model extends MY_Model
 		if($this->input->post('search_price')){
 			$search_price = intval($this->input->post('search_price'));
 			if($search_price == 1) {
-     			$this->db->where('a.total_price <=', '50');
+     			$this->db->where('a.unit_price <', '5000');
      		} else if($search_price == 2) {
-     			$this->db->where('a.total_price >',  '50');
-     			$this->db->where('a.total_price <=', '80');
+     			$this->db->where('a.unit_price >=',  '5000');
+     			$this->db->where('a.unit_price <=', '6000');
      		} else if($search_price == 3) {
-     			$this->db->where('a.total_price >',  '80');
-     			$this->db->where('a.total_price <=', '100');
+     			$this->db->where('a.unit_price >=',  '6000');
+     			$this->db->where('a.unit_price <=', '7000');
      		} else if($search_price == 4) {
-     			$this->db->where('a.total_price >',  '100');
-     			$this->db->where('a.total_price <=', '120');
+     			$this->db->where('a.unit_price >=',  '7000');
+     			$this->db->where('a.unit_price <=', '8000');
      		} else if($search_price == 5) {
-     			$this->db->where('a.total_price >',  '120');
-     			$this->db->where('a.total_price <=', '150');
+     			$this->db->where('a.unit_price >=',  '8000');
+     			$this->db->where('a.unit_price <=', '10000');
      		} else if($search_price == 6) {
-     			$this->db->where('a.total_price >',  '150');
-     			$this->db->where('a.total_price <=', '200');
-     		} else if($search_price == 7) {
-     			$this->db->where('a.total_price >',  '200');
-     			$this->db->where('a.total_price <=', '250');
-     		} else if($search_price == 8) {
-     			$this->db->where('a.total_price >',  '250');
-     			$this->db->where('a.total_price <=', '300');
-     		} else if($search_price == 9) {
-     			$this->db->where('a.total_price >',  '300');
-     			$this->db->where('a.total_price <=', '500');
+     			$this->db->where('a.unit_price >=',  '10000');
+     			$this->db->where('a.unit_price <=', '15000');
      		} else if($search_price == 10) {
-     			$this->db->where('a.total_price >',  '500');
+     			$this->db->where('a.unit_price >',  '15000');
      		}
 		}
 		if($this->input->post('search_acreage')) {
@@ -426,14 +418,9 @@ class House_model extends MY_Model
 				$this->db->where('a.acreage >',  '300');
 			}
 		}
-		if($this->input->post('search_type')) {
-			$search_type = intval($this->input->post('search_type'));
-			if($search_type > 5) {
-				$this->db->where('a.room >', '5');
-			} else {
-				$this->db->where('a.room', $search_type);
-			}
-		}
+    	if($this->input->post('search_type')) {
+     		$this->db->where_in('a.id', $h_ids);
+     	}  
 		if($this->input->post('search_feature'))
 			$this->db->like('feature', $this->input->post('search_feature'));
 		
@@ -443,6 +430,46 @@ class House_model extends MY_Model
     	$data['res_list'] = $this->db->get()->result();
     	$data['pageNum'] = $pageNum;
     	$data['numPerPage'] = $numPerPage;
+    	return $data;
+    }
+    
+    public function get_house_rooms($h_id){
+    	if(!$h_id)
+    		return null;
+    	$data = array();
+    	$room = $this->db->select('h_id,count(room) count,room')->from('house_hold')->where_in('h_id',$h_id)
+    	->group_by('h_id,room')->get()->result_array();
+    	foreach ($room as $k=>$v){
+    		$data[$v['h_id']][] = $v;
+    	}
+    	return $data;
+    }
+    
+    public function get_house_news($xq_id){
+    	if(!$xq_id)
+    		return null;
+    	$data = array();
+    	$sql = 'SELECT
+						*
+					FROM
+						(
+							SELECT
+								id,title,xq_id
+							FROM
+								news
+							WHERE
+								xq_id IN ('.implode(',', $xq_id).')
+							ORDER BY
+								xq_id,
+								cdate DESC
+						) a
+					GROUP BY
+						xq_id';
+    	$query = $this->db->query($sql);
+    	$news = $query->result_array();
+    	foreach ($news as $k=>$v){
+    		$data[$v['xq_id']][] = $v;
+    	}
     	return $data;
     }
     

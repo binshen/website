@@ -24,12 +24,17 @@ class House extends MY_Controller {
 	public function new_house_list() {
 		
 		$search_region_list = $this->house_model->get_search_region_list();
+		
+		//$search_region_list = $this->house_model->get_room_news();
 		$this->assign('search_region_list', $search_region_list);
 		
 		$search_style_list = $this->house_model->get_search_style_list();
 		$this->assign('search_style_list', $search_style_list);
 		
 		$data = $this->house_model->get_new_house_list();
+		$ids = array();
+		$xq_ids = array();
+		
 		foreach ($data['res_list'] as &$d) {
 			$d->feature_list = explode(",", $d->feature);
 			$region_id = $d->region_id;
@@ -38,7 +43,13 @@ class House extends MY_Controller {
 			} else {
 				$d->region_fullname = $d->region_name . "-" . $d->region_name;
 			}
+			$ids[] = $d->id;
+			$xq_ids[] = $d->xq_id;
 		}
+		$rooms = $this->house_model->get_house_rooms($ids);
+		$news = $this->house_model->get_house_news($xq_ids);
+		$this->assign('rooms', $rooms);
+		$this->assign('news', $news);
 		$this->assign('new_house_list', $data);
 		
 		$pager = $this->pagination->getPageLink('/house/new_house_list', $data['countPage'], $data['numPerPage']);
@@ -53,6 +64,8 @@ class House extends MY_Controller {
 		
 		$this->display('new_house_list.html');
 	}
+	
+
 	
 	public function second_hand_list() {
 		
