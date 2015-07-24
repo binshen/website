@@ -11,7 +11,6 @@
 <body>
 <div class="wraper">
 {include file="header.html"}
-
     <!--------------头部导航start---------------->
     <div class="gobal-nav">
     	<span class="nav-search"><em>搜索分类</em><i class="trag2 trag1-gray-t"></i></span>
@@ -39,6 +38,7 @@
         		<input type="hidden" id="search_acreage" name="search_acreage" value="{{$search_acreage}}">
         		<input type="hidden" id="search_type" name="search_type" value="{{$search_type}}">
         		<input type="hidden" id="search_feature" name="search_feature" value="{{$search_feature}}">
+        		<input type="hidden" id="search_orderby" name="search_orderby" value="{{$search_orderby}}">
 	            <dl class="items">
 	                <dt class="item-title">区域：</dt>
 	                <dd class="elems-l">
@@ -111,7 +111,7 @@
     </div>
     <div class="sortby">
         <span class="sort-con">
-            排序： <a href="#" class="fst cur">默认排序</a><a href="#" class="selected-down">单价</a>
+            排序： <a href='javascript:void(0);' onclick="change_search('orderby', '')" class="fst cur">默认排序</a><a href='javascript:void(0);' onclick="change_search('orderby', 'unit_price')" class="selected-down">单价</a>
         </span>
         <div class="sort-res">
             <span class="res-txt">共找到 <em class="red">7586</em> 套房源</span>

@@ -426,7 +426,7 @@ class House_model extends MY_Model
 		
     	$this->db->where('a.type_id', 1);
     	$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage);
-    	$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
+    	$this->db->order_by($this->input->post('search_orderby') ? $this->input->post('search_orderby') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
     	$data['res_list'] = $this->db->get()->result();
     	$data['pageNum'] = $pageNum;
     	$data['numPerPage'] = $numPerPage;
