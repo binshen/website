@@ -473,6 +473,20 @@ class House_model extends MY_Model
     	return $data;
     }
     
+    public function get_house_news_row($xq_id){
+    	$data = $this->db->select()->from('news')->where('xq_id',$xq_id)->order_by('cdate','desc')->get()->row_array();
+    	$data['content'] = mb_substr(strip_tags($data['content']),0,160,'utf-8');
+    	return $data;
+    }
+    
+    public function get_new_house_detail($id){
+    	$this->db->select('a.*,b.name decoration_name');
+    	$this->db->from('house a');
+    	$this->db->join('house_decoration b','a.decoration_id=b.id','left');
+    	$this->db->where('a.id',$id);
+    	return $this->db->get()->row_array();
+    }
+    
     public function get_search_region_list() {
     	return $this->db->get_where('house_region', array('id >' => 6))->result_array();
     }
@@ -480,4 +494,22 @@ class House_model extends MY_Model
     public function get_search_style_list() {
     	return $this->db->get_where('house_substyle')->result_array();
     }
+    
+    public function get_new_house_pics($id){
+    	$data = array();
+    	$rs = $this->db->select()->from('house_img')->where('h_id',$id)->order_by('type_id','acs')->get()->result_array();
+    	foreach($rs as $v){
+    		$data[$v['type_id']][] = $v;
+    	}
+    	return $data;
+    }
+    
+   	public function get_new_house_huxing($id){
+   		$this->db->select('a.*,b.name orientation_name')->from('house_hold a');
+   		$this->db->join('house_orientation b','a.orientation_id=b.id','left');
+   		$this->db->where('h_id',$id);
+   		$this->db->limit(3,0);
+   		return $this->db->get()->result_array();
+   	}
+    
 }

@@ -122,7 +122,17 @@ class House extends MY_Controller {
 	}
 	
 	public function new_house_detail($id) {
-		
+		$rooms = $this->house_model->get_house_rooms($id);
+		$house = $this->house_model->get_new_house_detail($id);
+		$huxing = $this->house_model->get_new_house_huxing($id);
+		$house['feature_list'] = explode(",", $house['feature']);
+		$news = $this->house_model->get_house_news_row($house['xq_id']);
+		$pics = $this->house_model->get_new_house_pics($id);
+		$this->assign('huxing', $huxing);
+		$this->assign('house', $house);
+		$this->assign('pics', $pics);
+		$this->assign('news', $news);
+		$this->assign('rooms', $rooms[$id]);
 		$this->display('new_house_detail.html');
 	}
 }

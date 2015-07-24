@@ -191,6 +191,13 @@ class Manage_model extends MY_Model
 			'description'=>$this->input->post('description'),
 			'region_id'=>$this->input->post('region_id'),
 			'style_id'=>$this->input->post('style_id'),
+				
+			'zd_area'=>$this->input->post('zd_area'),
+			'jz_area'=>$this->input->post('jz_area'),
+			'house_design'=>$this->input->post('house_design'),
+			'mian_hx'=>$this->input->post('mian_hx'),
+			'circle_line'=>$this->input->post('circle_line'),
+			'decoration_id'=>$this->input->post('decoration_id'),
 		);
 		
 		$this->db->trans_start();//--------开始事务
@@ -238,6 +245,8 @@ class Manage_model extends MY_Model
 		$area = $this->input->post('area');
 		$month = $this->input->post('month');
 		$price = $this->input->post('price');
+		$title = $this->input->post('title');
+		$orientation_id = $this->input->post('orientation_id');
 		
 		foreach($this->input->post('pic_short6') as $k=>$v){
 			$data_hx[] = array(
@@ -248,6 +257,8 @@ class Manage_model extends MY_Model
 					'lounge'=> $lounge[$k],
 					'toilet'=> $toilet[$k],
 					'area'=> $area[$k],
+					'title'=> $title[$k],
+					'orientation_id'=> $orientation_id[$k],
 			);
 		}
 		$this->db->insert_batch('house_hold', $data_hx);

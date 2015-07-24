@@ -57,6 +57,8 @@ class Manage extends MY_Controller {
 		$data['feature_list'] = $this->manage_model->get_feature();
 		$data['style_list'] = $this->manage_model->get_style_list();
 		$data['region_list'] = $this->manage_model->get_region_list();
+		$data['decoration_list'] = $this->manage_model->get_decoration_list();
+		$data['orientation_list'] = $this->manage_model->get_orientation_list();
 		$this->load->view('manage/add_new_house.php',$data);
 	}
 	
@@ -168,6 +170,8 @@ class Manage extends MY_Controller {
 		$data['feature_list'] = $this->manage_model->get_feature();
 		$data['style_list'] = $this->manage_model->get_style_list();
 		$data['region_list'] = $this->manage_model->get_region_list();
+		$data['decoration_list'] = $this->manage_model->get_decoration_list();
+		$data['orientation_list'] = $this->manage_model->get_orientation_list();
 		$this->load->view('manage/add_new_house.php',$data);
 	}
 	
