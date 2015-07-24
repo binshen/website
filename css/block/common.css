@@ -66,5 +66,7 @@ transition:transform .2s; -webkit-transform-origin:center 20%; transform-origin:
 .user-info{margin-top:7px; height:31px; line-height:31px; width:120px; float:right; font-size:14px;}
 .user-info a{margin-right:5px; color:#ff6600;}
 .login-logo{margin:8px 5px 0 0; float:left;background:url(../../images/icon3_1.png) no-repeat; width:13px; height:15px; background-position:-21px -156px; overflow:hidden;}
-
+/*面包屑*/
+.p_crumbs{padding:15px 0;font-size: 14px;color: #aba6a6;}
+.p_crumbs a{margin:0 10px;color: #aba6a6; display: inline-block;}
 .over-bg{ background: #f2f2f2;}
