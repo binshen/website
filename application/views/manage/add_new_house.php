@@ -46,13 +46,30 @@
         		<dl>
         			<dt>房源类型：</dt>
         			<dd>
-        				<select name="style_id" class="combox">
+        				<select name="style_id" class="combox" id="selectStyle" ref="selectSubStyle" refUrl="/manage/get_substyle_list/{value}" >
         					<?php          
 				                if (!empty($style_list)):
 				            	    foreach ($style_list as $row):
-				            	    	$selected = $row->id == $style_id ? "selected" : "";          
+				            	    	$selected = !empty($style_id) && $row->id == $style_id ? "selected" : "";          
 				            ?>
         								<option value="<?php echo $row->id; ?>" <?php echo $selected; ?>><?php echo $row->name; ?></option>
+        					<?php 
+				            		endforeach;
+				            	endif;
+				            ?>
+        				</select>
+        			</dd>
+        		</dl>
+        		<dl>
+        			<dt>房源类型(二级)：</dt>
+        			<dd>
+        				<select name="substyle_id" class="combox" id="selectSubStyle">
+        					<?php          
+				                if (!empty($substyle_list)):
+				            	    foreach ($substyle_list as $row):
+				            	    	$selected = !empty($substyle_id) && $row['id'] == $substyle_id ? "selected" : "";          
+				            ?>
+        								<option value="<?php echo $row['id']; ?>" <?php echo $selected; ?>><?php echo $row['name']; ?></option>
         					<?php 
 				            		endforeach;
 				            	endif;

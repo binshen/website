@@ -27,7 +27,7 @@
                             <div class="slide">
                                 <ul class="pics">
                                 {{foreach from=$row item=roww key=kk}}
-                                    <li {{if $kk == 0}}style="display:block"{{/if}}><a href="javascript:;" ><img src="/uploadfiles/pics/{{$house['folder']}}/{{$k}}/{{$roww['pic_short']}}" width="525" height="395" /></a></li>
+                                    <li {{if $kk == 0}}style="display:block"{{/if}}><a href="javascript:;" ><img src="/uploadfiles/pics/{{$house['folder']}}/{{$k}}/{{$roww['pic']}}" width="525" height="395" /></a></li>
                                 {{/foreach}}
                                 </ul>
                             </div>
@@ -132,29 +132,37 @@
                     <li class="self-flat">
                         <div class="name">
                             <i class="lp-icons home-ico"></i>
-                            <h4>本楼盘（住宅）</h4>
+                            <h4>本楼盘（{{$house['substyle_name']}}）</h4>
                         </div>
                         <div class="cost">
                             <span class="value">
                                 <strong>¥</strong>
-                                <em>27000</em>元/m²</span>
-                            <span class="ratio">比6月
-                                <i class="lp-icons equal-icon"></i>0.00%
+                                <em>{{$house['unit_price']}}</em>元/m²</span>
+                            <span class="ratio">比上月
+                            {{if $prices['own_proportion']}}
+                                <i class="lp-icons equal-icon"></i>{{$prices['own_proportion']}}%
+                            {{else}}
+                            	<i class="lp-icons equal-icon"></i>0.00%
+                            {{/if}}
                             </span>
                         </div>
                     </li>
                     <li class="vs-xin">
                         <div class="name">
                             <i class="lp-icons xin-ico"></i>
-                            <h4>马桥新房（住宅）</h4>
+                            <h4>{{$house['region_name']}}新房（{{$house['substyle_name']}}）</h4>
                         </div>
                         <div class="cost">
                             <span class="value">
                                 <strong>¥</strong>
-                                <em>25750</em>元/m²
+                                <em>{{assign var="n" value=$prices['avg_price']|@count - 1}}{{$prices['avg_price'][$n]['price']}}</em>元/m²
                             </span>
-                            <span class="ratio">比6月
-                                <i class="lp-icons equal-icon"></i>0.00%
+                            <span class="ratio">比上月
+                            {{if $prices['avg_proportion']}}
+                                <i class="lp-icons equal-icon"></i>{{$prices['avg_proportion']}}%
+                            {{else}}
+                           	 	<i class="lp-icons equal-icon"></i>0.00%
+                            {{/if}}
                             </span>
                         </div>
                     </li>
@@ -313,12 +321,16 @@ $(function(){
 
 $(function () {
 	var data1 = [];
+	var data2 = [];
 	var month = [];
 	{{foreach from=$prices['own_price'] item=row key=k}}
 	data1.push({{$row['price']}});
 	month.push(parseInt("{{$row['month']}}".substring(4,6))+'月');
 	{{/foreach}}
-	console.log(data1);
+	
+	{{foreach from=$prices['avg_price'] item=row key=k}}
+	data2.push({{$row['price']}});
+	{{/foreach}}
     $('#price-charts').highcharts({
 		colors:['#62ab00','#bf5a2f','#578fd5'],
         title: {
@@ -369,7 +381,7 @@ $(function () {
             data: data1
         }, {
 			name:'城北均价',
-            data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
+            data: data2
         }],
 		credits:false
     });

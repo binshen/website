@@ -191,13 +191,13 @@ class Manage_model extends MY_Model
 			'description'=>$this->input->post('description'),
 			'region_id'=>$this->input->post('region_id'),
 			'style_id'=>$this->input->post('style_id'),
-				
 			'zd_area'=>$this->input->post('zd_area'),
 			'jz_area'=>$this->input->post('jz_area'),
 			'house_design'=>$this->input->post('house_design'),
 			'mian_hx'=>$this->input->post('mian_hx'),
 			'circle_line'=>$this->input->post('circle_line'),
 			'decoration_id'=>$this->input->post('decoration_id'),
+			'substyle_id'=>$this->input->post('substyle_id'),
 		);
 		
 		$this->db->trans_start();//--------开始事务
@@ -269,6 +269,7 @@ class Manage_model extends MY_Model
 				'month'=>$v,
 				'price'=>$price[$k],
 				'region_id'=>$this->input->post('region_id'),
+				'substyle_id'=>$this->input->post('substyle_id'),
 			);
 		}
 		
