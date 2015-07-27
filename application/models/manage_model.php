@@ -421,7 +421,8 @@ class Manage_model extends MY_Model
 			'tel' => $this->input->post('tel'),
 			'company_name' => $this->input->post('company_name'),
 			'rel_name' => $this->input->post('rel_name'),
-			'region_id' => $this->input->post('region_id')
+			'region_id' => $this->input->post('region_id'),
+			'admin_group' => 2
 		);
 		$this->db->trans_start();//--------开始事务
 		
