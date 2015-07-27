@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2015-07-23 09:20:11
+<?php /* Smarty version Smarty-3.1.16, created on 2015-07-27 12:47:34
          compiled from "application\views\index.html" */ ?>
 <?php /*%%SmartyHeaderCode:1704555ac4f185d68d4-47063549%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fccbe5a2c354059ee96f11926e396c372e6921ef' => 
     array (
       0 => 'application\\views\\index.html',
-      1 => 1437550476,
+      1 => 1437972446,
       2 => 'file',
     ),
   ),
@@ -25,6 +25,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'news2' => 0,
     'k' => 0,
     'news3' => 0,
+    'search_text' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -314,7 +315,11 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
 </div>
 <?php echo $_smarty_tpl->getSubTemplate ("footer.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
-
+<form action="/house/second_hand_list" method="POST" id="funmall_index_form">
+	<input type="hidden" id="search_text" name="search_text" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_text']->value)===null||$tmp==='' ? '' : $tmp);?>
+<?php $_tmp28=ob_get_clean();?><?php echo $_tmp28;?>
+">
+</form>
 <script>
 $(function(){
 	//左侧搜索分类
@@ -346,6 +351,17 @@ $(function(){
 	   	$(this).addClass('slide-pic-hover');
    	}).mouseleave(function(){
 	   	$('.focusPic').removeClass('slide-pic-hover');
+	});
+   	
+   	$("#btnSearchText").click(function(event) {
+		event.preventDefault();
+		$("#search_text").val($("#question").val());
+		if($(".ks-select-pop").find(".current").text() == "二手房") {
+			$("#funmall_index_form").attr('action', '/house/second_hand_list');
+		} else {
+			$("#funmall_index_form").attr('action', '/house/new_house_list');
+		}
+		$("#funmall_index_form").submit();
 	});
 });
 </script>
