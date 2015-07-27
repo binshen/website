@@ -815,7 +815,10 @@ class Manage_model extends MY_Model
 		if($this->input->post('name'))
 			$this->db->like('name',$this->input->post('name'));
 		$this->db->where('type_id', 2);
-	
+		if($this->session->userdata('group_id') == 2) {
+			$this->db->where('broker_id', $this->session->userdata('user_id'));
+		}
+		
 		$rs_total = $this->db->get()->row();
 		//总记录数
 		$data['countPage'] = $rs_total->num;
@@ -834,6 +837,9 @@ class Manage_model extends MY_Model
 			$data['rel_name'] = $this->input->post('name');
 		}
 		$this->db->where('type_id', 2);
+		if($this->session->userdata('group_id') == 2) {
+			$this->db->where('broker_id', $this->session->userdata('user_id'));
+		}
 		
 		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
 		$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
