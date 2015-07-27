@@ -152,7 +152,7 @@
         		
         		<dl>
         			<dt>开发商电话：</dt>
-        			<dd><input name="dev_photo" type="text" class="required" value="<?php if(!empty($dev_photo)) echo $dev_photo;?>" /></dd>
+        			<dd><input name="dev_phono" type="text" class="required" value="<?php if(!empty($dev_phono)) echo $dev_phono;?>" /></dd>
         		</dl>
         		
         		<dl>

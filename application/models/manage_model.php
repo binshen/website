@@ -181,7 +181,7 @@ class Manage_model extends MY_Model
 			'estate_price'=>$this->input->post('estate_price'),	
 			'sell_addr'=>$this->input->post('sell_addr'),
 			'developer'=>$this->input->post('developer'),
-			'dev_photo'=>$this->input->post('dev_photo'),
+			'dev_phono'=>$this->input->post('dev_phono'),
 			'estate_type'=>$this->input->post('estate_type'),
 			'plot_rate'=>$this->input->post('plot_rate'),
 			'greening_rate'=>$this->input->post('greening_rate'),
