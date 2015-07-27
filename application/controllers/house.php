@@ -139,4 +139,18 @@ class House extends MY_Controller {
 		$this->assign('rooms', $rooms[$id]);
 		$this->display('new_house_detail.html');
 	}
+	
+	public function article_list($id){
+		$data = $this->house_model->get_article_list($id);
+		$this->assign('list', $data['list']);
+		$this->assign('tag', $data['tag']);
+		$this->display('article_list.html');
+	}
+	
+	public function article_detail($h_id,$id){
+		$data = $this->house_model->get_article_detail($h_id,$id);
+		$this->assign('detail', $data['detail']);
+		$this->assign('tag', $data['tag']);
+		$this->display('article_detail.html');
+	}
 }

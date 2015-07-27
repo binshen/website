@@ -13,7 +13,10 @@
    {include file="header.html"}
    
     <div class="p_crumbs">
-        <a href="" target="_blank">全部房源</a>&gt;<a href="" target="_blank">城西</a>&gt;<a>香榭水岸</a>
+    	<form action="/house/new_house_list" method="POST" >
+    	<input type="hidden" id="search_region" name="search_region" value="{{$house['region_id']}}">
+    	</form>
+        <a href="{{site_url url='house/new_house_list'}}" target="_blank">全部房源</a>&gt;<a href="javascript:$('form').submit();" >{{$house['region_name']}}</a>&gt;<a>{{$house['name']}}</a>
     </div>
     <div class="housedetail">
         <div class="new-house-bdy clearfix">
@@ -103,7 +106,7 @@
 <!-- 最新动态 -->
         <div class="new-house-title">
             <span class="mark">最新动态</span>
-            <span class="smark">查看全部>></span>
+            <span class="smark"><a href="{{site_url url='house/article_list'}}/{{$house['id']}}">查看全部>></a></span>
         </div>
         <div class="new-house-bdy">
             <div class="news-item clearfix">
@@ -112,7 +115,7 @@
                 </div>
                 <div class="news-txt">
                     <span class="s-tit">[动态] {{$news['title']}}</span>
-                    <p>{{$news['content']}}.. <a href="" target="_blank">详情>></a></p>
+                    <p>{{$news['content']}}.. <a href="{{site_url url='house/article_detail'}}/{{$house['id']}}/{{$news['id']}}" target="_blank">详情>></a></p>
                 </div>
             </div>
             <!-- <div class="news-txt">
@@ -140,7 +143,7 @@
                                 <em>{{$house['unit_price']}}</em>元/m²</span>
                             <span class="ratio">比上月
                             {{if $prices['own_proportion']}}
-                                <i class="lp-icons equal-icon"></i>{{$prices['own_proportion']}}%
+                                <i class="lp-icons {{if $prices['own_proportion'] == 0.00}}equal-icon{{else if $prices['own_proportion']  > 0}}rise-ico{{else}}fall-ico{{/if}}"></i>{{Abs($prices['own_proportion'])}}%
                             {{else}}
                             	<i class="lp-icons equal-icon"></i>0.00%
                             {{/if}}
@@ -159,7 +162,7 @@
                             </span>
                             <span class="ratio">比上月
                             {{if $prices['avg_proportion']}}
-                                <i class="lp-icons equal-icon"></i>{{$prices['avg_proportion']}}%
+                                <i class="lp-icons {{if $prices['avg_proportion'] == 0.00}}equal-icon{{else if $prices['avg_proportion']  > 0}}rise-ico{{else}}fall-ico{{/if}}"></i>{{Abs($prices['avg_proportion'])}}%
                             {{else}}
                            	 	<i class="lp-icons equal-icon"></i>0.00%
                             {{/if}}
