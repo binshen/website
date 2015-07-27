@@ -99,52 +99,65 @@ $(function(){
 				<div class="toggleCollapse"><h2>主菜单</h2><div>收缩</div></div>
 
 				<div class="accordion" fillSpace="sidebar" >
-					<div class="accordionHeader">
-						<h2><span>Folder</span>基础数据</h2>
-					</div>
-					<div class="accordionContent">
-						<ul class="tree">
-							<li><a href="<?php echo site_url('manage/list_xiaoqu');?>" target="navTab" rel="list_xiaoqu">小区信息</a></li>
-							<li><a href="<?php echo site_url('manage/list_house_style');?>" target="navTab" rel="list_house_style">楼盘类型</a></li>
-							<li><a href="<?php echo site_url('manage/list_house_substyle');?>" target="navTab" rel="list_house_substyle">楼盘类型(二级)</a></li>
-							<li><a href="<?php echo site_url('manage/list_house_region');?>" target="navTab" rel="list_house_region">所在区域</a></li>
-							<li><a href="<?php echo site_url('manage/list_house_orientation');?>" target="navTab" rel="list_house_orientation">楼盘朝向</a></li>
-							<li><a href="<?php echo site_url('manage/list_house_decoration');?>" target="navTab" rel="list_house_decoration">装修状况</a></li>
-							<li><a href="<?php echo site_url('manage/list_house_feature');?>" target="navTab" rel="list_house_feature">房源特色</a></li>
-						</ul>
-					</div>
-					<div class="accordionHeader">
-						<h2><span>Folder</span>经纪人管理</h2>
-					</div>
-					<div class="accordionContent">
-						<ul class="tree">
-							<li><a href="<?php echo site_url('manage/list_broker');?>" target="navTab" rel="list_broker">经纪人列表</a></li>
-						</ul>
-					</div>
-					<div class="accordionHeader">
-						<h2><span>Folder</span>房源管理</h2>
-					</div>
-					<div class="accordionContent">
-						<ul class="tree">
-							<li><a href="<?php echo site_url('manage/list_new_house');?>" target="navTab" rel="list_new_house">新房管理</a></li>
-							<li><a href="<?php echo site_url('manage/list_sd_house');?>" target="navTab" rel="list_sd_house">二手房管理</a></li>
-						</ul>
-					</div>
-					
-					
-					
-					
-					<div class="accordionHeader">
-						<h2><span>Folder</span>最新动态</h2>
-					</div>
-					<div class="accordionContent">
-						<ul class="tree">
-							<li><a href="<?php echo site_url('manage/list_news');?>" target="navTab" rel="list_news">动态列表</a></li>
-						</ul>
-					</div>
-
-				
-
+					<?php if($this->session->userdata('group_id') == 1): ?>
+						<div class="accordionHeader">
+							<h2><span>Folder</span>基础数据</h2>
+						</div>
+						<div class="accordionContent">
+							<ul class="tree">
+								<li><a href="<?php echo site_url('manage/list_xiaoqu');?>" target="navTab" rel="list_xiaoqu">小区信息</a></li>
+								<li><a href="<?php echo site_url('manage/list_house_style');?>" target="navTab" rel="list_house_style">楼盘类型</a></li>
+								<li><a href="<?php echo site_url('manage/list_house_substyle');?>" target="navTab" rel="list_house_substyle">楼盘类型(二级)</a></li>
+								<li><a href="<?php echo site_url('manage/list_house_region');?>" target="navTab" rel="list_house_region">所在区域</a></li>
+								<li><a href="<?php echo site_url('manage/list_house_orientation');?>" target="navTab" rel="list_house_orientation">楼盘朝向</a></li>
+								<li><a href="<?php echo site_url('manage/list_house_decoration');?>" target="navTab" rel="list_house_decoration">装修状况</a></li>
+								<li><a href="<?php echo site_url('manage/list_house_feature');?>" target="navTab" rel="list_house_feature">房源特色</a></li>
+							</ul>
+						</div>
+						<div class="accordionHeader">
+							<h2><span>Folder</span>经纪人管理</h2>
+						</div>
+						<div class="accordionContent">
+							<ul class="tree">
+								<li><a href="<?php echo site_url('manage/list_broker');?>" target="navTab" rel="list_broker">经纪人列表</a></li>
+							</ul>
+						</div>
+						<div class="accordionHeader">
+							<h2><span>Folder</span>房源管理</h2>
+						</div>
+						<div class="accordionContent">
+							<ul class="tree">
+								<li><a href="<?php echo site_url('manage/list_new_house');?>" target="navTab" rel="list_new_house">新房管理</a></li>
+								<li><a href="<?php echo site_url('manage/list_sd_house');?>" target="navTab" rel="list_sd_house">二手房管理</a></li>
+							</ul>
+						</div>
+						
+						<div class="accordionHeader">
+							<h2><span>Folder</span>最新动态</h2>
+						</div>
+						<div class="accordionContent">
+							<ul class="tree">
+								<li><a href="<?php echo site_url('manage/list_news');?>" target="navTab" rel="list_news">动态列表</a></li>
+							</ul>
+						</div>
+					<?php elseif($this->session->userdata('group_id') == 2): ?>
+						<div class="accordionHeader">
+							<h2><span>Folder</span>经纪人管理</h2>
+						</div>
+						<div class="accordionContent">
+							<ul class="tree">
+								<li><a href="<?php echo site_url('manage/list_broker');?>" target="navTab" rel="list_broker">经纪人列表</a></li>
+							</ul>
+						</div>
+						<div class="accordionHeader">
+							<h2><span>Folder</span>房源管理</h2>
+						</div>
+						<div class="accordionContent">
+							<ul class="tree">
+								<li><a href="<?php echo site_url('manage/list_sd_house');?>" target="navTab" rel="list_sd_house">二手房管理</a></li>
+							</ul>
+						</div>
+					<?php endif; ?>
 				</div>
 			</div>
 		</div>
