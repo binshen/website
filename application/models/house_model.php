@@ -426,7 +426,7 @@ class House_model extends MY_Model
 		
     	$this->db->where('a.type_id', 1);
     	$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage);
-    	$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
+    	$this->db->order_by($this->input->post('search_orderby') ? $this->input->post('search_orderby') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
     	$data['res_list'] = $this->db->get()->result();
     	$data['pageNum'] = $pageNum;
     	$data['numPerPage'] = $numPerPage;
@@ -473,6 +473,22 @@ class House_model extends MY_Model
     	return $data;
     }
     
+    public function get_house_news_row($xq_id){
+    	$data = $this->db->select()->from('news')->where('xq_id',$xq_id)->order_by('cdate','desc')->get()->row_array();
+    	$data['content'] = mb_substr(strip_tags($data['content']),0,160,'utf-8');
+    	return $data;
+    }
+    
+    public function get_new_house_detail($id){
+    	$this->db->select('a.*,b.name decoration_name,c.name substyle_name,d.name region_name');
+    	$this->db->from('house a');
+    	$this->db->join('house_decoration b','a.decoration_id=b.id','left');
+    	$this->db->join('house_substyle c','a.substyle_id=c.id','left');
+    	$this->db->join('house_region d','a.region_id=d.id','left');
+    	$this->db->where('a.id',$id);
+    	return $this->db->get()->row_array();
+    }
+    
     public function get_search_region_list() {
     	return $this->db->get_where('house_region', array('id >' => 6))->result_array();
     }
@@ -480,4 +496,58 @@ class House_model extends MY_Model
     public function get_search_style_list() {
     	return $this->db->get_where('house_substyle')->result_array();
     }
+    
+    public function get_new_house_pics($id){
+    	$data = array();
+    	$rs = $this->db->select()->from('house_img')->where('h_id',$id)->order_by('type_id','acs')->get()->result_array();
+    	foreach($rs as $v){
+    		$data[$v['type_id']][] = $v;
+    	}
+    	return $data;
+    }
+    
+   	public function get_new_house_huxing($id){
+   		$this->db->select('a.*,b.name orientation_name')->from('house_hold a');
+   		$this->db->join('house_orientation b','a.orientation_id=b.id','left');
+   		$this->db->where('h_id',$id);
+   		$this->db->limit(3,0);
+   		return $this->db->get()->result_array();
+   	}
+   	
+   	public function get_new_house_price($id,$region_id,$substyle_id){
+   		$data['own_price'] = $this->db->select()->from('price_trend')->where('h_id',$id)->order_by('month','acs')->limit(12,0)->get()->result_array();
+   		$months = array();
+   		foreach($data['own_price'] as $v){
+   			$months[] = $v['month'];
+   		}
+   		$data['avg_price'] = $this->db->select('CAST(avg(price) as SIGNED) price,month')->from('price_trend')
+   			->where_in('month',$months)->where('region_id',$region_id)->where('substyle_id',$substyle_id)
+   			->group_by('month')
+   			->order_by('month','acs')
+   			->get()->result_array();
+   		
+   		$count_own = count($data['own_price']);
+   		$count_avg = count($data['avg_price']);
+   		if($count_own > 2){
+   			$own_price = $data['own_price'][$count_own-1]['price'];
+   			$own_prev_price = $data['own_price'][$count_own-2]['price'];
+   			$own_proportion = round(($own_price-$own_prev_price)/$own_prev_price*100,2);
+   		}else{
+   			$own_proportion = '';
+   		}
+   		
+   		if($count_avg > 2){
+   			$avg_price = $data['avg_price'][$count_avg-1]['price'];
+   			$avg_prev_price = $data['avg_price'][$count_avg-2]['price'];
+   			$avg_proportion = round(($avg_price-$avg_prev_price)/$avg_prev_price*100,2);
+   		}else{
+   			$avg_proportion = '';
+   		}
+   		$data['own_proportion'] = $own_proportion;
+   		$data['avg_proportion'] = $avg_proportion;
+   		
+   		
+   		return $data;
+   	}
+    
 }

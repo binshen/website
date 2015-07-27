@@ -61,6 +61,7 @@ class House extends MY_Controller {
 		$this->assign('search_acreage', $this->input->post('search_acreage'));
 		$this->assign('search_type', $this->input->post('search_type'));
 		$this->assign('search_feature', $this->input->post('search_feature'));
+		$this->assign('search_orderby', $this->input->post('search_orderby'));
 		
 		$this->display('new_house_list.html');
 	}
@@ -121,7 +122,19 @@ class House extends MY_Controller {
 	}
 	
 	public function new_house_detail($id) {
-		
+		$rooms = $this->house_model->get_house_rooms($id);
+		$house = $this->house_model->get_new_house_detail($id);
+		$huxing = $this->house_model->get_new_house_huxing($id);
+		$house['feature_list'] = explode(",", $house['feature']);
+		$news = $this->house_model->get_house_news_row($house['xq_id']);
+		$pics = $this->house_model->get_new_house_pics($id);
+		$prices = $this->house_model->get_new_house_price($id,$house['region_id'],$house['substyle_id']);
+		$this->assign('huxing', $huxing);
+		$this->assign('prices', $prices);
+		$this->assign('house', $house);
+		$this->assign('pics', $pics);
+		$this->assign('news', $news);
+		$this->assign('rooms', $rooms[$id]);
 		$this->display('new_house_detail.html');
 	}
 }

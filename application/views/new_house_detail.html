@@ -7,156 +7,93 @@
 <meta name="description" content="" />
 <link href="{{$base_url}}css/newdetail.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="{{$base_url}}js/jquery-1.8.3.min.js" ></script>
-<script type="text/javascript" src="{{$base_url}}js/dpl-jquery.slide.js" ></script>
-<script type="text/javascript" src="http://pages.aifcdn.com/js/Highcharts-3.0.0/js/highcharts2013.js"></script>
 </head>
 <body>
 <div class="wraper">
    {include file="header.html"}
    
     <div class="p_crumbs">
-        <a href="" target="_blank">全部房源</a>&gt;<a href="" target="_blank">城西</a>&gt;<a href="" target="_blank">香榭水岸</a>
+        <a href="" target="_blank">全部房源</a>&gt;<a href="" target="_blank">城西</a>&gt;<a>香榭水岸</a>
     </div>
     <div class="housedetail">
         <div class="new-house-bdy clearfix">
             <div class="photoshow">
                 <div id="bigPic" class="tab">
+                {{foreach from=$pics item=row key=k}}
                     <div class="condiv">
-                        <div id="bigPic-show1" class="b-p-tab">
-                            <a href="javascript:void(0)" class="prev" onClick="bigPicShow1.prev()" ></a>
-                            <a href="javascript:void(0)" class="next" onClick="bigPicShow1.next()"></a> 
+                        <div id="bigPic-show{{$k}}" class="b-p-tab">
+                            <a href="javascript:void(0)" class="prev" onClick="bigPicShow{{$k}}.prev()" ></a>
+                            <a href="javascript:void(0)" class="next" onClick="bigPicShow{{$k}}.next()"></a> 
                             <div class="slide">
                                 <ul class="pics">
-                                    <li style="display:block"><a href="" target="_blank"><img src="http://dummyimage.com/525x395/ccc/fff" width="525" height="395" /></a></li>
-                                    <li><a href="" target="_blank"><img src="http://dummyimage.com/525x395/ddd/fff" width="525" height="395" /></a></li>
-                                    <li><a href="" target="_blank"><img src="http://dummyimage.com/525x395/eee/fff" width="525" height="395" /></a></li>
-                                    <li><a href="" target="_blank"><img src="http://dummyimage.com/525x395/000/fff" width="525" height="395" /></a></li>
-                                    <li><a href="" target="_blank"><img src="http://dummyimage.com/525x395/000/fff" width="525" height="395" /></a></li>
+                                {{foreach from=$row item=roww key=kk}}
+                                    <li {{if $kk == 0}}style="display:block"{{/if}}><a href="javascript:;" ><img src="/uploadfiles/pics/{{$house['folder']}}/{{$k}}/{{$roww['pic']}}" width="525" height="395" /></a></li>
+                                {{/foreach}}
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="condiv">
-                        <div id="bigPic-show2" class="b-p-tab">
-                            <a href="javascript:void(0)" class="prev" onClick="bigPicShow2.prev()" ></a>
-                            <a href="javascript:void(0)" class="next" onClick="bigPicShow2.next()"></a> 
-                            <div class="slide">
-                                <ul class="pics">
-                                    <li style="display:block"><a href="" target="_blank"><img src="http://dummyimage.com/525x395/ff7542/fff" width="525" height="395" /></a></li>
-                                    <li><a href="" target="_blank"><img src="http://dummyimage.com/525x395/ddd/fff" width="525" height="395" /></a></li>
-                                    <li><a href="" target="_blank"><img src="http://dummyimage.com/525x395/eee/fff" width="525" height="395" /></a></li>
-                                    <li><a href="" target="_blank"><img src="http://dummyimage.com/525x395/000/fff" width="525" height="395" /></a></li>
-                                    <li><a href="" target="_blank"><img src="http://dummyimage.com/525x395/000/fff" width="525" height="395" /></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="condiv">
-                        <div id="bigPic-show3" class="b-p-tab">
-                            <a href="javascript:void(0)" class="prev" onClick="bigPicShow3.prev()" ></a>
-                            <a href="javascript:void(0)" class="next" onClick="bigPicShow3.next()"></a> 
-                            <div class="slide">
-                                <ul class="pics">
-                                    <li style="display:block"><a href="" target="_blank"><img src="http://dummyimage.com/525x395/aec9f3/fff" width="525" height="395" /></a></li>
-                                    <li><a href="" target="_blank"><img src="http://dummyimage.com/525x395/ddd/fff" width="525" height="395" /></a></li>
-                                    <li><a href="" target="_blank"><img src="http://dummyimage.com/525x395/eee/fff" width="525" height="395" /></a></li>
-                                    <li><a href="" target="_blank"><img src="http://dummyimage.com/525x395/000/fff" width="525" height="395" /></a></li>
-                                    <li><a href="" target="_blank"><img src="http://dummyimage.com/525x395/000/fff" width="525" height="395" /></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="condiv">
-                        <div id="bigPic-show4" class="b-p-tab">
-                            <a href="javascript:void(0)" class="prev" onClick="bigPicShow4.prev()" ></a>
-                            <a href="javascript:void(0)" class="next" onClick="bigPicShow4.next()"></a> 
-                            <div class="slide">
-                                <ul class="pics">
-                                    <li style="display:block"><a href="" target="_blank"><img src="http://dummyimage.com/525x395/62ab00/fff" width="525" height="395" /></a></li>
-                                    <li><a href="" target="_blank"><img src="http://dummyimage.com/525x395/ddd/fff" width="525" height="395" /></a></li>
-                                    <li><a href="" target="_blank"><img src="http://dummyimage.com/525x395/eee/fff" width="525" height="395" /></a></li>
-                                    <li><a href="" target="_blank"><img src="http://dummyimage.com/525x395/000/fff" width="525" height="395" /></a></li>
-                                    <li><a href="" target="_blank"><img src="http://dummyimage.com/525x395/000/fff" width="525" height="395" /></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="condiv">
-                        <div id="bigPic-show5" class="b-p-tab">
-                            <a href="javascript:void(0)" class="prev" onClick="bigPicShow5.prev()" ></a>
-                            <a href="javascript:void(0)" class="next" onClick="bigPicShow5.next()"></a> 
-                            <div class="slide">
-                                <ul class="pics">
-                                    <li style="display:block"><a href="" target="_blank"><img src="http://dummyimage.com/525x395/fff401/fff" width="525" height="395" /></a></li>
-                                    <li><a href="" target="_blank"><img src="http://dummyimage.com/525x395/ddd/fff" width="525" height="395" /></a></li>
-                                    <li><a href="" target="_blank"><img src="http://dummyimage.com/525x395/eee/fff" width="525" height="395" /></a></li>
-                                    <li><a href="" target="_blank"><img src="http://dummyimage.com/525x395/000/fff" width="525" height="395" /></a></li>
-                                    <li><a href="" target="_blank"><img src="http://dummyimage.com/525x395/000/fff" width="525" height="395" /></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                 {{/foreach}}
                 </div>
                 <ul class="control" id ="pic_control">
-                    <li><img src="http://dummyimage.com/100x75/ccc/fff" alt="" width="100" height="75" /><i>效果图</i></li>
-                    <li><img src="http://dummyimage.com/100x75/ccc/fff" alt="" width="100" height="75" /><i>规划图</i></li>
-                    <li><img src="http://dummyimage.com/100x75/ccc/fff" alt="" width="100" height="75" /><i>样板间</i></li>
-                    <li><img src="http://dummyimage.com/100x75/ccc/fff" alt="" width="100" height="75" /><i>实景图</i></li>
-                    <li class="last"><img src="http://dummyimage.com/100x75/ccc/fff" alt="" width="100" height="75" /><i>配套图</i></li>
+                    <li><img src="/uploadfiles/pics/{{$house['folder']}}/1/{{$pics[1][0]['pic_short']}}" alt="" width="100" height="75" /><i>效果图</i></li>
+                    <li><img src="/uploadfiles/pics/{{$house['folder']}}/2/{{$pics[2][0]['pic_short']}}" alt="" width="100" height="75" /><i>规划图</i></li>
+                    <li><img src="/uploadfiles/pics/{{$house['folder']}}/3/{{$pics[3][0]['pic_short']}}" alt="" width="100" height="75" /><i>样板间</i></li>
+                    <li><img src="/uploadfiles/pics/{{$house['folder']}}/4/{{$pics[4][0]['pic_short']}}" alt="" width="100" height="75" /><i>实景图</i></li>
+                    <li class="last"><img src="/uploadfiles/pics/{{$house['folder']}}/5/{{$pics[5][0]['pic_short']}}" alt="" width="100" height="75" /><i>配套图</i></li>
                 </ul> 
             </div>
             <div class="detail-txt">
-                <div class="d-p-txt1">昆城景苑</div>
+                <div class="d-p-txt1">{{$house['name']}}</div>
                 <div class="key-word">
-                    <span class="cur">住户素质高</span>
-                    <span>交通便利</span>
-                    <span>学区房</span>
+                {{foreach from=$house['feature_list'] item=row key=k}}
+                    <span {{if $k==0}}class="cur"{{/if}}>{{$row}}</span>
+                {{/foreach}}
                 </div>
                 <div class="d-other-info mb25 clearfix">
                     <dl class="other-dl other-dl1">
                         <dt>参考售价</dt>
-                        <dd><em class="red">9077</em> 元/m²</dd>
+                        <dd><em class="red">{{$house['unit_price']}}</em> 元/m²</dd>
                         <dt>优惠折扣</dt>
-                        <dd>高层2万抵5万</dd>
+                        <dd>{{$house['discount']}}</dd>
                         <dt>楼盘户型</dt>
-                        <dd>二室（1），三室（4）  全部户型 </dd>
+                        <dd>
+                        {{foreach from = $rooms item=row key=k}}
+                        {{$row['room']}}室（{{$row['count']}}）{{if $k+1 lt $rooms|@count}},{{/if}}
+                        {{/foreach}}
+                        全部户型 
+                        </dd>
                         <dt>楼盘地址</dt>
                         <dd>衡山路与人民南路两侧<a href="" target="_blank" class="a-link">[地图交通]</a></dd>
                     </dl>
-                    <dl class="other-dl other-dl2">
-                        <dt>本月均价</dt>
-                        <dd>5800元/m² </dd>
-                    </dl>
                 </div>
                 <div class="detail-tel">
-                    <a href="#" class="appoint">预约看房</a>
-                    <em class="tel-icon"></em><em class="tel-txt">150 **** 2015</em>                     
+                    <a href="javascript:void(0)" class="btns-link appoint" id="Jappoint">预约看房</a>
+                    <em class="tel-icon"></em><em class="tel-txt">{{$house['dev_photo']}}</em>                     
                 </div>
                 <p class="p-tips">最新政策、价格详情，敬请电话咨询售楼处</p>
                 <div class="d-other-info clearfix">
                     <dl class="other-dl">
                         <dt>最新开盘</dt>
-                        <dd>2014年09月27日</dd>
+                        <dd>{{$house['kp_date']|date_format:"%Y年%m月%d日"}}</dd>
                         <dt>产权年限</dt>
-                        <dd>70年</dd>
+                        <dd>{{$house['cq_limit']}}</dd>
                         <dt>建筑类别</dt>
-                        <dd>住宅</dd>
+                        <dd>{{$house['discount']}}</dd>
                         <dt>物业管理</dt>
-                        <dd>世邦魏理仕物业公司</dd>
+                        <dd>{{$house['estate_mng']}}</dd>
                         <dt>开发商</dt>
-                        <dd>昆山港浩房地产发展有限公司</dd>
+                        <dd>{{$house['developer']}}</dd>
                     </dl>
                     <dl class="other-dl">
                         <dt>交房时间</dt>
-                        <dd>2016年04月30日<a href="javascript:void(0)" class="toright"><i class="lp-icons-open"></i>开盘通知我</a></dd>
+                        <dd>{{$house['jf_date']|date_format:"%Y年%m月%d日"}}<a href="javascript:void(0)" class="toright" id="Jtoright"><i class="lp-icons-open"></i>开盘通知我</a></dd>
                         <dt>装修标准</dt>
-                        <dd>装修标准</dd>
+                        <dd>{{$house['decoration_name']}}</dd>
                         <dt>所属商圈</dt>
-                        <dd>市中心</dd>
+                        <dd>{{$house['bs_area']}}</dd>
                         <dt>物 业 费</dt>
-                        <dd>2.90元/平方米·月</dd>
-                        <dt>售楼地址</dt>
-                        <dd>衡山路1500号</dd>
+                        <dd>{{$house['estate_price']}}元/平方米·月</dd>
                     </dl>
                 </div>
                 
@@ -171,17 +108,17 @@
         <div class="new-house-bdy">
             <div class="news-item clearfix">
                 <div class="news-img">
-                    <img src="http://dummyimage.com/120x70/ccc/fff" alt="" width="120" height="70" />
+                    <img src="/uploadfiles/news/{{$news.pic}}" alt="" width="120" height="70" />
                 </div>
                 <div class="news-txt">
-                    <span class="s-tit">[动态] 89—130㎡精装现房 首付15万起</span>
-                    <p>崇邦集团与中国平安旗下的平安普惠金融强强联手，在昆城景苑启动“平安15梦想家”置业计划，帮助在高成本生活压力下追求理想居所的年轻人提前完成置业梦。该计划将为客户提供一年最多15万的贷款，.. <a href="" target="_blank">详情>></a></p>
+                    <span class="s-tit">[动态] {{$news['title']}}</span>
+                    <p>{{$news['content']}}.. <a href="" target="_blank">详情>></a></p>
                 </div>
             </div>
-             <div class="news-txt">
+            <!-- <div class="news-txt">
                 <span class="s-tit">[动态] 89—130㎡精装现房 首付15万起</span>
                 <p>崇邦集团与中国平安旗下的平安普惠金融强强联手，在昆城景苑启动“平安15梦想家”置业计划，帮助在高成本生活压力下追求理想居所的年轻人提前完成置业梦。该计划将为客户提供一年最多15万的贷款，.. <a href="" target="_blank">详情>></a></p>
-            </div>           
+            </div>       -->    
         </div>
 <!-- 价格趋势 -->
         <div class="new-house-title">
@@ -195,29 +132,37 @@
                     <li class="self-flat">
                         <div class="name">
                             <i class="lp-icons home-ico"></i>
-                            <h4>本楼盘（住宅）</h4>
+                            <h4>本楼盘（{{$house['substyle_name']}}）</h4>
                         </div>
                         <div class="cost">
                             <span class="value">
                                 <strong>¥</strong>
-                                <em>27000</em>元/m²</span>
-                            <span class="ratio">比6月
-                                <i class="lp-icons equal-icon"></i>0.00%
+                                <em>{{$house['unit_price']}}</em>元/m²</span>
+                            <span class="ratio">比上月
+                            {{if $prices['own_proportion']}}
+                                <i class="lp-icons equal-icon"></i>{{$prices['own_proportion']}}%
+                            {{else}}
+                            	<i class="lp-icons equal-icon"></i>0.00%
+                            {{/if}}
                             </span>
                         </div>
                     </li>
                     <li class="vs-xin">
                         <div class="name">
                             <i class="lp-icons xin-ico"></i>
-                            <h4>马桥新房（住宅）</h4>
+                            <h4>{{$house['region_name']}}新房（{{$house['substyle_name']}}）</h4>
                         </div>
                         <div class="cost">
                             <span class="value">
                                 <strong>¥</strong>
-                                <em>25750</em>元/m²
+                                <em>{{assign var="n" value=$prices['avg_price']|@count - 1}}{{$prices['avg_price'][$n]['price']}}</em>元/m²
                             </span>
-                            <span class="ratio">比6月
-                                <i class="lp-icons equal-icon"></i>0.00%
+                            <span class="ratio">比上月
+                            {{if $prices['avg_proportion']}}
+                                <i class="lp-icons equal-icon"></i>{{$prices['avg_proportion']}}%
+                            {{else}}
+                           	 	<i class="lp-icons equal-icon"></i>0.00%
+                            {{/if}}
                             </span>
                         </div>
                     </li>
@@ -240,42 +185,35 @@
                 <dt>楼盘参数</dt>
                 <dd>
                     <ul class="clearfix">
-                        <li>总占地面积： 110000平米</li>
-                        <li>总建筑面积：360000平米</li>
-                        <li>建筑设计： ACO原构设计公司 </li>
-                        <li>主力户型： 2房、3房</li>
-                        <li>环线位置： 中环以内</li>
-                        <li>所属商圈： 市中心</li>
-                        <li>容 积 率： 3.00 <a href="" target="_blank">[容积率详情]</a> </li>
-                        <li>绿 化 率： 35% <a href="" target="_blank">[容积率详情]</a></li>
+                        <li>总占地面积： {{$house['zd_area']}}</li>
+                        <li>总建筑面积：{{$house['jz_area']}}</li>
+                        <li>建筑设计： {{$house['house_design']}} </li>
+                        <li>主力户型： {{$house['mian_hx']}}</li>
+                        <li>环线位置： {{$house['circle_line']}}</li>
+                        <li>所属商圈： {{$house['bs_area']}}</li>
+                        <li>容 积 率： {{$house['plot_rate']}} <a href="" target="_blank">[容积率详情]</a> </li>
+                        <li>绿 化 率： {{$house['greening_rate']}} <a href="" target="_blank">[容积率详情]</a></li>
                     </ul>
                 </dd>
                 <dt>楼盘综述</dt>
                 <dd>
-                    <p>昆城项目是由香港崇邦集团精心打造的集商业商业（昆城广场）、住宅（昆城景苑）和办公（昆城国贸）为一体的80万方城市综合体。 崇邦集团曾在上海先后成功打造了大宁国际、金桥国际、思南公馆、嘉亭荟等诸多城市综合体，这些项目均成为上海的地标性建筑和上海的新名片。       </p>
+                    <p>{{$house['description']}}</p>
                 </dd>
                 <dt>户型图</dt>
                 <dd>
-                    <p class="house-tip">2室（2） | 3室（2） |  <a href="" target="_blank">查看全部>></a></p>
+                    <p class="house-tip">
+                    {{foreach from = $rooms item=row key=k}}
+                        {{$row['room']}}室（{{$row['count']}}）{{if $k+1 lt $rooms|@count}}|{{/if}}
+                        {{/foreach}}
+                    <a href="" target="_blank">查看全部>></a></p>
                     <ul class="model-ul clearfix">
-                        <li>
-                            <img src="http://dummyimage.com/300x190/ccc/fff" alt="" width="300" height="190" />
-                            <p class="mt10">A户型， 2室2厅1卫， 约82.00平米，南北</p>
+                    	{{foreach from=$huxing item=row key=k}}
+                        <li {{if $k==2}}class="mr0"{{/if}}>
+                            <img src="/uploadfiles/pics/{{$house['folder']}}/6/{{$row['pic_short']}}" alt="" width="300" height="190" />
+                            <p class="mt10">{{$row['title']}}， {{$row['room']}}室{{$row['lounge']}}厅{{$row['toilet']}}卫， 约{{$row['area']}}平米，{{$row['orientation_name']}}</p>
                             <p class="fz12">参考总价：<i class="red">124</i>万 参考首付：37万</p>
-                            <a href="" class="check-more-link">查看详情</a>
                         </li>
-                        <li>
-                            <img src="http://dummyimage.com/300x190/ccc/fff" alt="" width="300" height="190" />
-                            <p class="mt10">A户型， 2室2厅1卫， 约82.00平米，南北</p>
-                            <p class="fz12">参考总价：<i class="red">124</i>万 参考首付：37万</p>
-                            <a href="" class="check-more-link">查看详情</a>
-                        </li>
-                        <li class="mr0">
-                            <img src="http://dummyimage.com/300x190/ccc/fff" alt="" width="300" height="190" />
-                            <p class="mt10">A户型， 2室2厅1卫， 约82.00平米，南北</p>
-                            <p class="fz12">参考总价：<i class="red">124</i>万 参考首付：37万</p>
-                            <a href="" class="check-more-link">查看详情</a>
-                        </li>
+                        {{/foreach}}
 
                     </ul>
                 </dd>
@@ -290,9 +228,47 @@
     </div>
 
 </div>
+<!--预约看房-->
+<div class="notice-pop open-house-notice" id="JnoticePop">
+    <a href="javascript:void(0)" class="closeBtn"></a>
+    <div class="notice-tit">预约看房</div>
+    <p>请填写您的手机号码，以便置业顾问联系您看房。</p>
+    <label><em class="red">*</em>手机号码</label><input type="text" name="user-tel" placeholder="请输入您的手机号码"  class="user-tel" />
+    <a href="" class="btns-link">立即预约</a>
+</div>
+<!--开盘通知-->
+<div class="notice-pop open-house-subscribe" id="JsubPop">
+    <a href="javascript:void(0)" class="closeBtn"></a>
+    <div class="notice-tit">订阅信息</div>
+    <p>我们将为您保密个人信息！ 请填写您接受订阅的手机号码：</p>
+    <div class="subscribe-style">
+        <label><input type="checkbox" value="变价通知" />变价通知</label>
+        <label><input type="checkbox" value="优惠通知" />优惠通知</label>
+        <label><input type="checkbox" value="开盘通知" />开盘通知</label>
+        <label><input type="checkbox" value="看房通知" />看房通知</label>
+    </div>
+    <label><em class="red">*</em>手机号码</label><input type="text" name="user-tel" placeholder="请输入您的手机号码"  class="user-tel" />
+    <a href="" class="btns-link">立即订阅</a>
+</div>
+<script type="text/javascript" src="{{$base_url}}js/dpl-jquery.slide.js" ></script>
+<script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+<script type="text/javascript" src="{{$base_url}}js/jquery.blockUI.js"></script>
+<script type="text/javascript" src="{{$base_url}}js/drawdata.js"></script>
+
 {include file="footer.html"}
 <script>
 $(function(){
+    //快搜左侧下拉
+    $('.ks-select').mouseenter(function(){
+        $('.ks-select-pop').show();
+    }).mouseleave(function(){
+    	$('.ks-select-pop').hide();
+    });
+    $('.ks-select-pop a').click(function(){
+        $('.ks-select-pop a').removeClass('current');
+        $(this).addClass('current');
+        $('.ks-select em').html($(this).html());
+    });
 //图片展示
     new Slide({
         target: $('#bigPic .condiv'),
@@ -324,7 +300,92 @@ $(function(){
         width: 525,
         autoPlay: false
     });
-})
+//弹框
+    $('.closeBtn').click(function(){
+        $.unblockUI();  
+    });
+    $('#Jappoint').click(function(){
+        $.blockUI({
+            message: $('#JnoticePop'),
+            css:{ width:'auto',height:'auto',border:'none',cursor:'default',background:'none' }
+        });
+    });
+    $('#Jtoright').click(function(){
+        $.blockUI({
+            message: $('#JsubPop'),
+            css:{ width:'auto',height:'auto',border:'none',cursor:'default',background:'none' }
+        });
+    });
+		
+});
+
+$(function () {
+	var data1 = [];
+	var data2 = [];
+	var month = [];
+	{{foreach from=$prices['own_price'] item=row key=k}}
+	data1.push({{$row['price']}});
+	month.push(parseInt("{{$row['month']}}".substring(4,6))+'月');
+	{{/foreach}}
+	
+	{{foreach from=$prices['avg_price'] item=row key=k}}
+	data2.push({{$row['price']}});
+	{{/foreach}}
+    $('#price-charts').highcharts({
+		colors:['#62ab00','#bf5a2f','#578fd5'],
+        title: {
+            text: '',
+            x: -20 //center
+        },
+        subtitle: {
+            text: '',
+            x: -20
+        },
+        xAxis: {
+            categories: month
+        },
+        yAxis: {
+            title: {
+                text: ''
+            },
+			labels: {
+			formatter:function(){
+				return this.value;
+/*				  if(this.value <=10) { 
+					return "第一等级("+this.value+")";
+				  }else if(this.value >100 && this.value <=200) { 
+					return "第二等级("+this.value+")"; 
+				  }else { 
+					return "第三等级("+this.value+")";
+				  }*/
+				}
+			},
+			opposite:true,
+            plotLines: [{
+                value: 5,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: '元/m²'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+			name:'本楼盘',
+            data: data1
+        }, {
+			name:'城北均价',
+            data: data2
+        }],
+		credits:false
+    });
+});
 </script>
 </body>
 </html>

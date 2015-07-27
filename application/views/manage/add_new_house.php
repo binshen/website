@@ -46,13 +46,30 @@
         		<dl>
         			<dt>房源类型：</dt>
         			<dd>
-        				<select name="style_id" class="combox">
+        				<select name="style_id" class="combox" id="selectStyle" ref="selectSubStyle" refUrl="/manage/get_substyle_list/{value}" >
         					<?php          
 				                if (!empty($style_list)):
 				            	    foreach ($style_list as $row):
-				            	    	$selected = $row->id == $style_id ? "selected" : "";          
+				            	    	$selected = !empty($style_id) && $row->id == $style_id ? "selected" : "";          
 				            ?>
         								<option value="<?php echo $row->id; ?>" <?php echo $selected; ?>><?php echo $row->name; ?></option>
+        					<?php 
+				            		endforeach;
+				            	endif;
+				            ?>
+        				</select>
+        			</dd>
+        		</dl>
+        		<dl>
+        			<dt>房源类型(二级)：</dt>
+        			<dd>
+        				<select name="substyle_id" class="combox" id="selectSubStyle">
+        					<?php          
+				                if (!empty($substyle_list)):
+				            	    foreach ($substyle_list as $row):
+				            	    	$selected = !empty($substyle_id) && $row['id'] == $substyle_id ? "selected" : "";          
+				            ?>
+        								<option value="<?php echo $row['id']; ?>" <?php echo $selected; ?>><?php echo $row['name']; ?></option>
         					<?php 
 				            		endforeach;
 				            	endif;
@@ -88,6 +105,24 @@
         		<dl>
         			<dt>产权年限：</dt>
         			<dd><input name="cq_limit" type="text" class="required" value="<?php if(!empty($cq_limit)) echo $cq_limit;?>" /></dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>装修标准：</dt>
+        			<dd>
+        			<select class="combox" name="decoration_id">
+        			<?php          
+		                if (!empty($decoration_list)):
+		            	    foreach ($decoration_list as $row):
+		            	    	$selected = !empty($decoration_id) && $row->id == $decoration_id ? "selected" : "";          
+		            ?>
+        								<option value="<?php echo $row->id; ?>" <?php echo $selected; ?>><?php echo $row->name; ?></option>
+        					<?php 
+		            		endforeach;
+		            	endif;
+		            ?>
+        			</select>
+        			</dd>
         		</dl>
         		
         		<dl>
@@ -133,6 +168,31 @@
         		<dl>
         			<dt>绿化率：</dt>
         			<dd><input name="greening_rate" type="text" class="required" value="<?php if(!empty($greening_rate)) echo $greening_rate;?>" /></dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>占地面积：</dt>
+        			<dd><input name="zd_area" type="text" class="required" value="<?php if(!empty($zd_area)) echo $zd_area;?>" /></dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>建筑面积：</dt>
+        			<dd><input name="jz_area" type="text" class="required" value="<?php if(!empty($jz_area)) echo $jz_area;?>" /></dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>建筑设计：</dt>
+        			<dd><input name="house_design" type="text" class="required" value="<?php if(!empty($house_design)) echo $house_design;?>" /></dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>主力户型：</dt>
+        			<dd><input name="mian_hx" type="text" class="required" value="<?php if(!empty($mian_hx)) echo $mian_hx;?>" /></dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>环线位置：</dt>
+        			<dd><input name="circle_line" type="text" class="required" value="<?php if(!empty($circle_line)) echo $circle_line;?>" /></dd>
         		</dl>
         		
        	</fieldset>
@@ -214,7 +274,7 @@
     		<?php if($v->type_id == '1'):?>
     		
     		<dt style="width: 250px; position:relative; margin-top:20px">
-			<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; "><a href="javascript:void(0);" onclick="del_pic(this);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this,<?php echo $v->type_id?>);" style="text-decoration:none; color:#fff">设为封面</a></div>
+			<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; "><a href="javascript:void(0);" onclick="del_pic(this,1);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this,<?php echo $v->type_id?>);" style="text-decoration:none; color:#fff">设为封面</a></div>
 			    <div class="fengmian">
 			    </div>
 				<img height="118" width="200" src="<?php echo base_url().'uploadfiles/pics/'.$folder.'/'.$v->type_id.'/'.$v->pic_short;?>" style="border:1px solid #666;">
@@ -244,7 +304,7 @@
     		<?php if($v->type_id == '2'):?>
     		
     		<dt style="width: 250px; position:relative; margin-top:20px">
-			<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; "><a href="javascript:void(0);" onclick="del_pic(this);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this,<?php echo $v->type_id?>);" style="text-decoration:none; color:#fff">设为封面</a></div>
+			<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; "><a href="javascript:void(0);" onclick="del_pic(this,2);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this,<?php echo $v->type_id?>);" style="text-decoration:none; color:#fff">设为封面</a></div>
 			    <div class="fengmian">
 			    </div>
 				<img height="118" width="200" src="<?php echo base_url().'uploadfiles/pics/'.$folder.'/'.$v->type_id.'/'.$v->pic_short;?>" style="border:1px solid #666;">
@@ -274,7 +334,7 @@
     		<?php if($v->type_id == '3'):?>
     		
     		<dt style="width: 250px; position:relative; margin-top:20px">
-			<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; "><a href="javascript:void(0);" onclick="del_pic(this);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this,<?php echo $v->type_id?>);" style="text-decoration:none; color:#fff">设为封面</a></div>
+			<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; "><a href="javascript:void(0);" onclick="del_pic(this,3);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this,<?php echo $v->type_id?>);" style="text-decoration:none; color:#fff">设为封面</a></div>
 			    <div class="fengmian">
 			    </div>
 				<img height="118" width="200" src="<?php echo base_url().'uploadfiles/pics/'.$folder.'/'.$v->type_id.'/'.$v->pic_short;?>" style="border:1px solid #666;">
@@ -302,7 +362,7 @@
     		<?php if($v->type_id == '4'):?>
     		
     		<dt style="width: 250px; position:relative; margin-top:20px">
-			<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; "><a href="javascript:void(0);" onclick="del_pic(this);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this,<?php echo $v->type_id?>);" style="text-decoration:none; color:#fff">设为封面</a></div>
+			<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; "><a href="javascript:void(0);" onclick="del_pic(this,4);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this,<?php echo $v->type_id?>);" style="text-decoration:none; color:#fff">设为封面</a></div>
 			    <div class="fengmian">
 			    </div>
 				<img height="118" width="200" src="<?php echo base_url().'uploadfiles/pics/'.$folder.'/'.$v->type_id.'/'.$v->pic_short;?>" style="border:1px solid #666;">
@@ -332,7 +392,7 @@
     		<?php if($v->type_id == '5'):?>
     		
     		<dt style="width: 250px; position:relative; margin-top:20px">
-			<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; "><a href="javascript:void(0);" onclick="del_pic(this);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this,<?php echo $v->type_id?>);" style="text-decoration:none; color:#fff">设为封面</a></div>
+			<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; "><a href="javascript:void(0);" onclick="del_pic(this,5);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this,<?php echo $v->type_id?>);" style="text-decoration:none; color:#fff">设为封面</a></div>
 			    
 				<img height="118" width="200" src="<?php echo base_url().'uploadfiles/pics/'.$folder.'/'.$v->type_id.'/'.$v->pic_short;?>" style="border:1px solid #666;">
 				<input type="hidden" size="22" name="pic_short5[]" class="pic_short" value="<?php echo $v->pic_short;?>">
@@ -348,7 +408,11 @@
     	    <legend>户型图</legend>
     	    <dl class="nowrap">
     	    	<dt>
+    	    	<?php if(!empty($folder)):?>
+    	    		<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.$folder.'/6/1')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
+    	    		<?php else:?>
     	    		<a class="tpsc" href="<?php echo site_url('manage/add_pics/'.date('YmdHis').'/6/1')?>" target="dialog" rel="add_pics" title="图片选择" width="800" height="370" mask=true>图片上传</a>
+    	    		<?php endif;?>
     	    	</dt>
     		</dl>
     		<dl class="nowrap" id="append6">
@@ -356,11 +420,22 @@
     		<?php foreach($hx_pics as $k=>$v):?>
     		
     		<dt style="width: 250px; position:relative; margin-top:20px">
-			<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; "><a href="javascript:void(0);" onclick="del_pic(this);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+			<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; "><a href="javascript:void(0);" onclick="del_pic(this,6);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;</div>
 				<div class="fengmian">
 			    </div>
 				<img height="118" width="200" src="<?php echo base_url().'uploadfiles/pics/'.$folder.'/6/'.$v->pic_short;?>" style="border:1px solid #666;"><br/>
-				<input type="text" name="room[]" size="1" value="<?php echo $v->room;?>" required><label style="width:10px;">室</label><input type="text" name="lounge[]" value="<?php echo $v->lounge;?>" size="1" required><label style="width:10px;">厅</label><input type="text" name="toilet[]" value="<?php echo $v->toilet;?>" size="1" required><label style="width:10px;">卫</label><input type="text" name="area[]"  value="<?php echo $v->area;?>" size="1" required><label style="width:10px;">㎡</label>
+				<input type="text" name="room[]" size="1" value="<?php echo $v->room;?>" required><label style="width:10px;">室</label><input type="text" name="lounge[]" value="<?php echo $v->lounge;?>" size="1" required><label style="width:10px;">厅</label><input type="text" name="toilet[]" value="<?php echo $v->toilet;?>" size="1" required><label style="width:10px;">卫</label><input type="text" name="area[]"  value="<?php echo $v->area;?>" size="1" required><label style="width:10px;">㎡</label><br />
+				<select name="orientation_id[]" class="combox">
+        		<?php          
+	            	    foreach ($orientation_list as $row):
+	            	    	$selected = $row->id == $v->orientation_id ? "selected" : "";
+	            ?>
+        			<option value="<?php echo $row->id; ?>" <?php echo $selected; ?>><?php echo $row->name; ?></option>
+        		<?php 
+	            		endforeach;
+	            ?>
+        		</select>
+				<input type='text' name="title[]" value="<?php echo $v->title;?>" placeholder='简述'>
 				<input type="hidden" size="22" name="pic_short6[]" class="pic_short" value="<?php echo $v->pic_short;?>">
 			</dt>
     		
@@ -416,10 +491,10 @@
 </div>
 <script>
 $(function() {
-	folder = $("#folder",navTab.getCurrentPanel()).val();
+/*	folder = $("#folder",navTab.getCurrentPanel()).val();
 	if(folder != ''){
 		callbacktime(folder,-1);
-	}
+	}*/
     $(".tpsc",navTab.getCurrentPanel())
       .button()
       .click(function( event ) {
@@ -473,10 +548,15 @@ function callbacktime(time,is_back, type_id){
 
 //户型
 function callbacktime_huxing(time,is_back, type_id){
-	id = $("[name='id']",navTab.getCurrentPanel()).val();
-	if (id == ''){
-		$("#folder",navTab.getCurrentPanel()).val(time);		
-	}
+	var select_html = '<select name="orientation_id[]">'
+		<?php foreach ($orientation_list as $row):?>
+        select_html = select_html+'<option value="<?php echo $row->id; ?>" <?php echo $selected; ?>><?php echo $row->name; ?></option>'
+		<?php endforeach;?>
+		select_html = select_html+'</select>'
+		id = $("[name='id']",navTab.getCurrentPanel()).val();
+		if (id == ''){
+			$("#folder",navTab.getCurrentPanel()).val(time);		
+		}
 	$.getJSON("<?php echo site_url('manage/get_pics')?>"+"/"+time + "/" + type_id + "?_=" +Math.random(),function(data){
 		html = '';
 		now_pic = [];
@@ -491,7 +571,7 @@ function callbacktime_huxing(time,is_back, type_id){
 				html+='<a href="javascript:void(0);" onclick="del_pic(this,'+type_id+');" style="text-decoration:none; color:#fff">删除</a></div>';
 				html+='<div class="fengmian"></div>';
 				html+='<img height="118" width="200" src="'+path +'" style="border:1px solid #666;"><br /><input type="text" name="room[]" size="1" required>室<input type="text" name="lounge[]" size="1" required>厅<input type="text" name="toilet[]" size="1" required>卫<input type="text" name="area[]" size="1" required>㎡';
-				html+='<input type="hidden" name="pic_short'+type_id+'[]" value="'+item+'"></dt>';
+				html+='<input type="hidden" name="pic_short'+type_id+'[]" value="'+item+'"><br /><input type="text" name="title[]" placeholder="简述">'+select_html+'</dt>';
 			}
 		});
 		$("#append"+type_id,navTab.getCurrentPanel()).append(html); 

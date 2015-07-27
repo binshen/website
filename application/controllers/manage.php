@@ -56,7 +56,12 @@ class Manage extends MY_Controller {
 	public function add_new_house(){
 		$data['feature_list'] = $this->manage_model->get_feature();
 		$data['style_list'] = $this->manage_model->get_style_list();
+		if(!empty($data['style_list'])) {
+			$data['substyle_list'] = $this->manage_model->get_substyle_list_by_parent($data['style_list'][0]->id);
+		}
 		$data['region_list'] = $this->manage_model->get_region_list();
+		$data['decoration_list'] = $this->manage_model->get_decoration_list();
+		$data['orientation_list'] = $this->manage_model->get_orientation_list();
 		$this->load->view('manage/add_new_house.php',$data);
 	}
 	
@@ -86,8 +91,8 @@ class Manage extends MY_Controller {
 		$config_small['quality'] = 80;
 		$config_small['maintain_ratio'] = TRUE; //保持图片比例
 		$config_small['new_image'] = $path;
-		$config_small['width'] = 801;
-		$config_small['height'] = 470;
+		$config_small['width'] = 300;
+		$config_small['height'] = 190;
 	
 		//设置原图限制
 		$config['upload_path'] = $path;
@@ -167,7 +172,12 @@ class Manage extends MY_Controller {
 		$data = $this->manage_model->get_new_house($id);
 		$data['feature_list'] = $this->manage_model->get_feature();
 		$data['style_list'] = $this->manage_model->get_style_list();
+		if(!empty($data['style_id'])) {
+			$data['substyle_list'] = $this->manage_model->get_substyle_list_by_parent($data['style_id']);
+		}
 		$data['region_list'] = $this->manage_model->get_region_list();
+		$data['decoration_list'] = $this->manage_model->get_decoration_list();
+		$data['orientation_list'] = $this->manage_model->get_orientation_list();
 		$this->load->view('manage/add_new_house.php',$data);
 	}
 	
