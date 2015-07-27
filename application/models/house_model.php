@@ -359,7 +359,7 @@ class House_model extends MY_Model
     	
     	$data['rel_name'] = null;
     	//list
-    	$this->db->select('a.*, b.name AS region_name, c.name AS xq_name, c.address AS address, ');
+    	$this->db->select('a.*, b.name AS region_name, c.name AS xq_name, c.address AS address ');
     	$this->db->from('house a');
     	$this->db->join('house_region b', 'a.region_id = b.id', 'left');
     	$this->db->join('xiaoqu c', 'a.xq_id = c.id', 'left');
