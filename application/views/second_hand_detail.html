@@ -22,18 +22,15 @@
             <div class="photoshow">
                 <div id="bigPic" class="tab">
                     <ul>
-                        <li><img src="http://dummyimage.com/420x420/000/fff" alt="" width="420" height="420" /></li>
-                        <li><img src="http://dummyimage.com/420x420/ccc/fff" alt="" width="420" height="420" /></li>
-                        <li><img src="http://dummyimage.com/420x420/000/fff" alt="" width="420" height="420" /></li>
-                        <li><img src="http://dummyimage.com/420x420/000/fff" alt="" width="420" height="420" /></li>
+                        {{foreach from=$house.house_pics key=key item=item}}
+                        	<li><img src="{{$base_url}}uploadfiles/pics/{{$house.folder}}/1/{{$item.pic}}" alt="" width="420" height="420" /></li>
+            			{{/foreach}}
                     </ul>
                 </div>
                 <ul class="control" id ="pic_control">
-                    <li><img src="http://dummyimage.com/60x60/000/fff" alt="" width="60" height="60" /></li>
-                    <li><img src="http://dummyimage.com/60x60/000/fff" alt="" width="60" height="60" /></li>
-                    <li><img src="http://dummyimage.com/60x60/000/fff" alt="" width="60" height="60" /></li>
-                    <li><img src="http://dummyimage.com/60x60/000/fff" alt="" width="60" height="60" /></li>
-                    <li class="last"><img src="http://dummyimage.com/60x60/000/fff" alt="" width="60" height="60" /></li>
+                	{{foreach from=$house.house_pics key=key item=item}}
+            			<li {{if $key == 4}}class="last"{{/if}}><img src="{{$base_url}}uploadfiles/pics/{{$house.folder}}/1/{{$item.pic_short}}" alt="" width="60" height="60" /></li>
+                    {{/foreach}}
                 </ul> 
             </div>
             <div class="detail-txt">

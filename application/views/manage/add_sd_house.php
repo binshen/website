@@ -176,6 +176,14 @@
         			<dt>纬度：</dt>
         			<dd><input name="latitude" type="text" class="required" value="<?php if(!empty($latitude)) echo $latitude;?>" /></dd>
         		</dl>
+        		
+        		<dl>
+        			<dt>业务员：</dt>
+        			<dd><input name="broker_id" type="hidden" class="required" value="<?php if(!empty($broker_id)) echo $broker_id;?>" />
+        			<input type="text" name="broker_name" value="<?php if(!empty($broker_name)) echo $broker_name;?>" readonly>
+        			<a lookupgroup="" href="<?php echo site_url('manage/list_broker_dialog');?>" class="btnLook">查找带回</a>
+        			</dd>
+        		</dl>
 -->
        	</fieldset>
        	
@@ -257,16 +265,15 @@
 						foreach ($house_img as $img):
 							$pic = "/uploadfiles/pics/" . $folder . "/1/" .$img['pic_short'];
     						$pic_short = $img['pic_short'];
-    						$is_bg = $img['is_bg'];
     			?>
     			<dt style="width: 250px; position:relative; margin-top:20px">
     				<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; ">
     					<a href="javascript:void(0);" onclick="del_pic(this,1);" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    					<a href="javascript:void(0);" onclick="set_bg(this);" style="text-decoration:none; color:#fff">设为封面</a>
+    					<a href="javascript:void(0);" onclick="set_bg(this,1);" style="text-decoration:none; color:#fff">设为封面</a>
     				</div>
     				<div class="fengmian"></div>
     				<img height="118" width="200" src="<?php echo $pic; ?>" style="border:1px solid #666;">
-    				<input type="hidden" size="22" name="pic_short1[]" value="<?php echo $pic_short; ?>">
+    				<input type="hidden" size="22" name="pic_short1[]" class="pic_short" value="<?php echo $pic_short; ?>">
     			</dt>
     			<?php
     					endforeach;
@@ -293,13 +300,39 @@
         </div>
         <div class="formBar">
     		<ul>
-    			<li><div class="buttonActive"><div class="buttonContent"><button type="submit" class="icon-save" onclick="change_file_name();">保存</button></div></div></li>
+    			<li><div class="buttonActive"><div class="buttonContent"><button type="submit" class="icon-save" id="btn_submit_form">保存</button></div></div></li>
     			<li><div class="button"><div class="buttonContent"><button type="button" class="close icon-close">取消</button></div></div></li>
     		</ul>
         </div>
 	</form>
 </div>
 <script>
+
+function iframeCallback(form, callback){
+	var $form = $(form), $iframe = $("#callbackframe");
+	if(!$form.valid()) {return false;}
+
+	if($("#append1").children().length == 0) {
+		alertMsg.warn("请上传房源效果图");
+		return false;
+	}
+	var bg_pic = $("#is_bg").val();
+	if(bg_pic == "") {
+		alertMsg.warn("请选择房源图片封面");
+		return false;
+	}
+	
+	if ($iframe.size() == 0) {
+		$iframe = $("<iframe id='callbackframe' name='callbackframe' src='about:blank' style='display:none'></iframe>").appendTo("body");
+	}
+	if(!form.ajax) {
+		$form.append('<input type="hidden" name="ajax" value="1" />');
+	}
+	form.target = "callbackframe";
+	
+	_iframeResponse($iframe[0], callback || DWZ.ajaxDone);
+}
+
 $(function() {
 	folder = $("#folder",navTab.getCurrentPanel()).val();
 	if(folder != ''){
@@ -319,6 +352,10 @@ $(function() {
 			$(this).parent().find('.fengmian').html(html_img);
 		}
     });
+
+//     $("#btn_submit_form").click(function() {
+// 		alert("123123123");
+//     });
 });
 
 function callbacktime(time,is_back, type_id){

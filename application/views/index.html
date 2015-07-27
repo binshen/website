@@ -224,7 +224,9 @@
     </div>
 </div>
 {include file="footer.html"}
-
+<form action="/house/second_hand_list" method="POST" id="funmall_index_form">
+	<input type="hidden" id="search_text" name="search_text" value="{{$search_text|default:''}}">
+</form>
 <script>
 $(function(){
 	//左侧搜索分类
@@ -256,6 +258,17 @@ $(function(){
 	   	$(this).addClass('slide-pic-hover');
    	}).mouseleave(function(){
 	   	$('.focusPic').removeClass('slide-pic-hover');
+	});
+   	
+   	$("#btnSearchText").click(function(event) {
+		event.preventDefault();
+		$("#search_text").val($("#question").val());
+		if($(".ks-select-pop").find(".current").text() == "二手房") {
+			$("#funmall_index_form").attr('action', '/house/second_hand_list');
+		} else {
+			$("#funmall_index_form").attr('action', '/house/new_house_list');
+		}
+		$("#funmall_index_form").submit();
 	});
 });
 </script>
