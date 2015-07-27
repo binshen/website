@@ -141,6 +141,7 @@ $(function(){
 							</ul>
 						</div>
 					<?php elseif($this->session->userdata('group_id') == 2): ?>
+						<!--
 						<div class="accordionHeader">
 							<h2><span>Folder</span>经纪人管理</h2>
 						</div>
@@ -149,6 +150,7 @@ $(function(){
 								<li><a href="<?php echo site_url('manage/list_broker');?>" target="navTab" rel="list_broker">经纪人列表</a></li>
 							</ul>
 						</div>
+						-->
 						<div class="accordionHeader">
 							<h2><span>Folder</span>房源管理</h2>
 						</div>

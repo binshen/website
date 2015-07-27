@@ -176,6 +176,14 @@
         			<dt>纬度：</dt>
         			<dd><input name="latitude" type="text" class="required" value="<?php if(!empty($latitude)) echo $latitude;?>" /></dd>
         		</dl>
+        		
+        		<dl>
+        			<dt>业务员：</dt>
+        			<dd><input name="broker_id" type="hidden" class="required" value="<?php if(!empty($broker_id)) echo $broker_id;?>" />
+        			<input type="text" name="broker_name" value="<?php if(!empty($broker_name)) echo $broker_name;?>" readonly>
+        			<a lookupgroup="" href="<?php echo site_url('manage/list_broker_dialog');?>" class="btnLook">查找带回</a>
+        			</dd>
+        		</dl>
 -->
        	</fieldset>
        	

@@ -275,6 +275,12 @@ class Manage extends MY_Controller {
 	/**
 	 * 二手房管理
 	 */
+	public function list_broker_dialog(){
+	
+		$data = $this->manage_model->list_broker_dialog();
+		$this->load->view('manage/list_broker_dialog.php', $data);
+	}
+	
 	public function list_sd_house() {
 		$data = $this->manage_model->list_sd_house();
 		$this->load->view('manage/list_sd_house.php', $data);
