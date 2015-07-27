@@ -475,7 +475,7 @@ class House_model extends MY_Model
     
     public function get_house_news_row($xq_id){
     	$data = $this->db->select()->from('news')->where('xq_id',$xq_id)->order_by('cdate','desc')->get()->row_array();
-    	$data['content'] = mb_substr(strip_tags($data['content']),0,160,'utf-8');
+    	$data['content'] = mb_substr(strip_tags(str_replace(' ','',$data['content'])),0,160,'utf-8');
     	return $data;
     }
     
@@ -547,6 +547,23 @@ class House_model extends MY_Model
    		$data['avg_proportion'] = $avg_proportion;
    		
    		
+   		return $data;
+   	}
+   	
+   	public function get_article_list($id){
+   		
+   		$rs = $this->db->select('a.id,xq_id,b.name region_name,a.name,region_id')->from('house a')->join('house_region b','a.region_id=b.id','left')->where('a.id',$id)->get()->row_array();
+   		$data['tag'] = $rs;
+   		$data['list'] = $this->db->select()->from('news')->where('xq_id',$rs['xq_id'])->order_by('cdate','desc')->get()->result_array();
+   		foreach($data['list'] as $k=>$v){
+   			$data['list'][$k]['content'] = mb_substr(strip_tags(str_replace(' ','',$v['content'])),0,85,'utf-8');
+   		}
+   		return $data;
+   	}
+   	
+   	public function get_article_detail($h_id,$id){
+   		$data['tag'] = $this->db->select('a.id,xq_id,b.name region_name,a.name,region_id')->from('house a')->join('house_region b','a.region_id=b.id','left')->where('a.id',$h_id)->get()->row_array();
+   		$data['detail'] = $this->db->select()->from('news')->where('id',$id)->get()->row_array();
    		return $data;
    	}
     
