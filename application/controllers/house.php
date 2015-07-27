@@ -116,6 +116,8 @@ class House extends MY_Controller {
 		$broker_house_count = $this->house_model->get_broker_house_count($house['broker_id']);
 		$house['broker_house_count'] = $broker_house_count;
 		
+		$house['house_pics'] = $this->house_model->get_second_hand_house_pics($id);
+		
 		$this->assign('house', $house);
 		
 		$this->display('second_hand_detail.html');

@@ -433,6 +433,10 @@ class House_model extends MY_Model
     	return $data;
     }
     
+    public function get_second_hand_house_pics($id){
+    	return $this->db->select()->from('house_img')->where('h_id',$id)->order_by('id','desc')->limit(5)->get()->result_array();
+    }
+    
     public function get_house_rooms($h_id){
     	if(!$h_id)
     		return null;
