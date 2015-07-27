@@ -66,8 +66,6 @@ class House extends MY_Controller {
 		$this->display('new_house_list.html');
 	}
 	
-
-	
 	public function second_hand_list() {
 		
 		$search_region_list = $this->house_model->get_search_region_list();
@@ -79,7 +77,7 @@ class House extends MY_Controller {
 		$data = $this->house_model->get_second_hand_list();
 		foreach ($data['res_list'] as &$d) {
 			$d->feature_list = explode(",", $d->feature);
-			$d->unit_price = intval($d->total_price / $d->acreage * 10000);
+			$d->unit_price = intval($d->total_price * 10000 / $d->acreage);
 			$region_id = $d->region_id;
 			if($region_id < 6) {
 				$d->region_fullname = "玉山镇-" . $d->region_name;
@@ -106,12 +104,20 @@ class House extends MY_Controller {
 		$this->display('second_hand_list.html');
 	}
 	
+	private function get_monthly_payment($rate, $months, $amount) {
+		$v = 1 + ($rate / 12);
+		$t = -($months / 12) * 12;
+		$value = ($amount * ($rate / 12))/(1 - pow($v, $t));
+		return round($value, 2);
+	}
+	
 	public function second_hand_detail($id) {
 		
 		$house = $this->house_model->get_second_hand_detail($id);
 		$house['feature_list'] = explode(",", $house['feature']);
-		$house['unit_price'] = intval($house['total_price'] / $house['acreage'] * 10000);
+		$house['unit_price'] = intval($house['total_price'] * 10000 / $house['acreage']);
 		$house['first_pay'] = intval($house['total_price'] * 0.3);
+		$house['monthly_pay'] = $this->get_monthly_payment(0.054, 240, $house['total_price'] * 10000 * 0.7);
 		
 		$broker_house_count = $this->house_model->get_broker_house_count($house['broker_id']);
 		$house['broker_house_count'] = $broker_house_count;
