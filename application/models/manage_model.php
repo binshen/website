@@ -1033,4 +1033,16 @@ class Manage_model extends MY_Model
 		$this->db->where('id', $data['id']);
 		$this->db->update('xiaoqu', $data);
 	}
+	
+	public function add_broker_batch($data) {
+		
+		$this->db->trans_start();//--------开始事务
+		$this->db->insert_batch('admin', $data);
+		$this->db->trans_complete();//------结束事务
+		if ($this->db->trans_status() === FALSE) {
+			return -1;
+		} else {
+			return 1;
+		}
+	}
 }

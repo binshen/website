@@ -20,14 +20,71 @@ class Test extends MY_Controller {
 	
 	public function index() {
 		
-		$xq_list = $this->manage_model->get_all_xiaoqu_list();
-		foreach ($xq_list as $xq) {
-			$name =  str_replace("•","",$xq['name']);
-			//echo $xq['id'] . ": " . $this->encode($name) . '<br>';
-			$xq['jianpin'] = $this->encode($name);
-			$this->manage_model->update_xiaoqu_jianpin($xq);
+// 		$xq_list = $this->manage_model->get_all_xiaoqu_list();
+// 		foreach ($xq_list as $xq) {
+// 			$name =  str_replace("•","",$xq['name']);
+// 			//echo $xq['id'] . ": " . $this->encode($name) . '<br>';
+// 			$xq['jianpin'] = $this->encode($name);
+// 			$this->manage_model->update_xiaoqu_jianpin($xq);
+// 		}
+// 		die('DONE');
+
+		require_once (APPPATH . 'libraries/PHPExcel/PHPExcel.php');
+		
+		$PHPExcel = new \PHPExcel();
+		$PHPReader = new \PHPExcel_Reader_Excel2007();
+			
+		$file = 'E:/broker.xlsx';
+		
+		//为了可以读取所有版本Excel文件
+		if(!$PHPReader->canRead($file))
+		{
+			$PHPReader = new \PHPExcel_Reader_Excel5();
+			if(!$PHPReader->canRead($file))
+			{
+				echo '未发现Excel文件！';
+				return;
+			}
 		}
-		die('DONE');
+		
+		//不需要读取整个Excel文件而获取所有工作表数组的函数，感觉这个函数很有用，找了半天才找到
+		$sheetNames  = $PHPReader->listWorksheetNames($file);
+			
+		//读取Excel文件
+		$PHPExcel = $PHPReader->load($file);
+			
+		//获取工作表的数目
+		$sheetCount = $PHPExcel->getSheetCount();
+			
+		//选择第一个工作表
+		$currentSheet = $PHPExcel->getSheet(0);
+			
+		//取得一共有多少列
+		$allColumn = $currentSheet->getHighestColumn();
+			
+		//取得一共有多少行
+		$allRow = $currentSheet->getHighestRow();
+			
+		//循环读取数据，默认编码是utf8，这里转换成gbk输出
+		
+		$data = array();
+		for($currentRow = 2;$currentRow<=$allRow;$currentRow++)
+		{
+			$name = trim($currentSheet->getCell("A".$currentRow)->getValue());
+			$tel = trim($currentSheet->getCell("B".$currentRow)->getValue());
+			
+			$data[] = array(
+				'username' => $tel,
+				'passwd' => sha1('888888'),
+				'tel' => $tel,
+				'company_name' => "顺达地产",
+				'rel_name' => $name,
+				'region_id' => 6,
+				'admin_group' => 2
+			);
+		}
+		
+		$this->manage_model->add_broker_batch($data);
 	}
 	
 	
