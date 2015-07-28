@@ -336,7 +336,7 @@ function iframeCallback(form, callback){
 $(function() {
 	folder = $("#folder",navTab.getCurrentPanel()).val();
 	if(folder != ''){
-		callbacktime(folder,-1);
+		callbacktime(folder, -1, 1);
 	}
     $(".tpsc",navTab.getCurrentPanel())
       .button()
