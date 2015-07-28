@@ -56,7 +56,13 @@
                 <div class="d-other-info mb25 clearfix">
                     <dl class="other-dl other-dl1">
                         <dt>参考售价</dt>
-                        <dd><em class="red">{{$house['unit_price']}}</em> 元/m²</dd>
+                        <dd>
+                        {{if $house['unit_price'] == 0}}
+                        <em class="red">待定</em></dd>
+                        {{else}}
+                        <em class="red">{{$house['unit_price']}}</em> 元/m²</dd>
+                        {{/if}}
+                        
                         <dt>优惠折扣</dt>
                         <dd>{{$house['discount']}}</dd>
                         <dt>楼盘户型</dt>
@@ -104,6 +110,7 @@
             </div>
         </div>
 <!-- 最新动态 -->
+		{{if $news}}
         <div class="new-house-title">
             <span class="mark">最新动态</span>
             <span class="smark"><a href="{{site_url url='house/article_list'}}/{{$house['id']}}">查看全部>></a></span>
@@ -123,6 +130,7 @@
                 <p>崇邦集团与中国平安旗下的平安普惠金融强强联手，在昆城景苑启动“平安15梦想家”置业计划，帮助在高成本生活压力下追求理想居所的年轻人提前完成置业梦。该计划将为客户提供一年最多15万的贷款，.. <a href="" target="_blank">详情>></a></p>
             </div>       -->    
         </div>
+        {{/if}}
 <!-- 价格趋势 -->
         <div class="new-house-title">
             <span class="mark">价格趋势</span>
@@ -208,7 +216,7 @@
                     {{foreach from = $rooms item=row key=k}}
                         {{$row['room']}}室（{{$row['count']}}）{{if $k+1 lt $rooms|@count}}|{{/if}}
                         {{/foreach}}
-                    <a href="" target="_blank">查看全部>></a></p>
+                    <a href="{{site_url url='house/huxing_list'}}/{{$house['id']}}">查看全部>></a></p>
                     <ul class="model-ul clearfix">
                     	{{foreach from=$huxing item=row key=k}}
                         <li {{if $k==2}}class="mr0"{{/if}}>
@@ -383,7 +391,7 @@ $(function () {
 			name:'本楼盘',
             data: data1
         }, {
-			name:'城北均价',
+			name:'{{$house["region_name"]}}均价',
             data: data2
         }],
 		credits:false

@@ -37,12 +37,12 @@
     </div>
     <div class="door-model">
         <div class="model-tit">
-            昆城景苑
+            {{$tag['name']}}
         </div>
         <div class="choose-model">
-            <a href="" target="_blank" class="cur">全部户型（{{$huxing_list['countPage']}}）</a>|
+            <a href="{{site_url url='house/huxing_list'}}/{{$tag['id']}}" {{if $huxing_list['count'] == 'all'}}class="cur"{{/if}}>全部户型（{{$tag['count_huxing']}}）</a>|
             {{foreach from = $rooms item=row key=k}}
-            <a href="" target="_blank">{{$row['room']}}室户型（{{$row['count']}}）</a>{{if $k+1 lt $rooms|@count}}|{{/if}}
+            <a href="{{site_url url='house/huxing_list'}}/{{$tag['id']}}/{{$row['room']}}" {{if $huxing_list['count'] == $row['room']}}class="cur"{{/if}}>{{$row['room']}}室户型（{{$row['count']}}）</a>{{if $k+1 lt $rooms|@count}}|{{/if}}
             {{/foreach}}
         </div>
         <div class="model-s-tit">昆城景苑户型</div>

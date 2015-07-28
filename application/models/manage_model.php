@@ -200,6 +200,7 @@ class Manage_model extends MY_Model
 			'circle_line'=>$this->input->post('circle_line'),
 			'decoration_id'=>$this->input->post('decoration_id'),
 			'substyle_id'=>$this->input->post('substyle_id'),
+			'recommend'=>$this->input->post('recommend'),
 		);
 		
 		$this->db->trans_start();//--------开始事务
