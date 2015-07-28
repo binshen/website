@@ -336,7 +336,7 @@ function iframeCallback(form, callback){
 $(function() {
 	folder = $("#folder",navTab.getCurrentPanel()).val();
 	if(folder != ''){
-		callbacktime(folder,-1);
+		callbacktime(folder, -1, 1);
 	}
     $(".tpsc",navTab.getCurrentPanel())
       .button()
@@ -374,10 +374,10 @@ function callbacktime(time,is_back, type_id){
 			if($.inArray(item, now_pic) < 0){
 				html+='<dt style="width: 250px; position:relative; margin-top:20px">';
 				html+='<div style="position:absolute;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity:0.5;opacity:0.5; top:95px; width:200px; height:24px; line-height:24px; left:6px; background:#000; font-size:12px; font-family:宋体; font-weight:lighter; text-align:center; ">';
-				html+='<a href="javascript:void(0);" onclick="del_pic(this,'+type_id+');" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this);" style="text-decoration:none; color:#fff">设为封面</a></div>';
+				html+='<a href="javascript:void(0);" onclick="del_pic(this,'+type_id+');" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this, 1);" style="text-decoration:none; color:#fff">设为封面</a></div>';
 				html+='<div class="fengmian"></div>';
 				html+='<img height="118" width="200" src="'+path +'" style="border:1px solid #666;">';
-				html+='<input type="hidden" size="22" name="pic_short'+type_id+'[]" value="'+item+'"></dt>';
+				html+='<input type="hidden" size="22" name="pic_short'+type_id+'[]" class="pic_short" value="'+item+'"></dt>';
 			}
 		});
 		$("#append"+type_id,navTab.getCurrentPanel()).append(html); 

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2015-07-28 10:31:18
+<?php /* Smarty version Smarty-3.1.16, created on 2015-07-28 11:45:05
          compiled from "application\views\index.html" */ ?>
 <?php /*%%SmartyHeaderCode:1960755b6e9761cf065-27303114%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fccbe5a2c354059ee96f11926e396c372e6921ef' => 
     array (
       0 => 'application\\views\\index.html',
-      1 => 1437972446,
+      1 => 1438055103,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.16',
+  'unifunc' => 'content_55b6e9763ac4d7_80478668',
   'variables' => 
   array (
     'base_url' => 0,
@@ -26,8 +28,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'search_text' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.16',
-  'unifunc' => 'content_55b6e9763ac4d7_80478668',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_55b6e9763ac4d7_80478668')) {function content_55b6e9763ac4d7_80478668($_smarty_tpl) {?><!doctype html>
 <html>
@@ -72,16 +72,13 @@ js/dpl-jquery.slide.js"></script>
     	<div class="index-nav">
         	<ul class="ul-menu">
                 <li>
-                    <div class="category-menu-tit"><i class="i-menu-icon i-buy"></i><i class="i-menu">买房</i></div>
-                    
+                    <div class="category-menu-tit"><i class="i-menu-icon i-buy"></i><i class="i-menu" style="letter-spacing:0px">买新房</i></div>
                  </li>
                 <li>
-                    <div class="category-menu-tit"><i class="i-menu-icon i-sell"></i><i class="i-menu">卖房</i></div>
-                     
+                    <div class="category-menu-tit"><i class="i-menu-icon i-sell"></i><i class="i-menu" style="letter-spacing:0px">买二手房</i></div>
                 </li>
                 <li>
-                    <div class="category-menu-tit"><i class="i-menu-icon i-lease"></i><i class="i-menu">出租</i></div>
-                    
+                    <div class="category-menu-tit"><i class="i-menu-icon i-lease"></i><i class="i-menu">卖房</i></div>
                 </li>
                 <li class="last">
                     <div class="category-menu-tit"><i class="i-menu-icon i-renting"></i><i class="i-menu">租房</i></div>

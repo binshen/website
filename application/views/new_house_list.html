@@ -127,7 +127,7 @@
                 {{foreach from=$new_house_list.res_list item=item}}
                 <div class="houseli">
                     <!-- <img src="http://dummyimage.com/190x155/000/fff"> -->
-                    <img src="/uploadfiles/pics/{{$item->bg_pic}}">
+                    <img src="/uploadfiles/pics/{{$item->bg_pic}}" style="width:190px; height:155px;">
                     <div class="housedetail ">
                         <div class="house-tit">
                             <a href="{{site_url url='house/new_house_detail'}}/{{$item->id}}">

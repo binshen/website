@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="renderer" content="webkit" />
 <title>sdbb</title>
 
 <link href="<?php echo base_url();?>dwz/themes/default/style.css" rel="stylesheet" type="text/css" media="screen"/>
@@ -24,6 +25,7 @@
 <script src="<?php echo base_url();?>dwz/js/jquery.bgiframe.js" type="text/javascript"></script>
 
 <script src="<?php echo base_url();?>dwz/xheditor/xheditor-1.2.1.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url();?>dwz/xheditor/xheditor_lang/zh-cn.js" type="text/javascript"></script>
 <script src="<?php echo base_url();?>dwz/bin/dwz.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url();?>dwz/js/dwz.regional.zh.js" type="text/javascript"></script>
 <script src="<?php echo base_url();?>dwz/uploadify/scripts/jquery.uploadify.js" type="text/javascript"></script>
