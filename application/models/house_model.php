@@ -500,8 +500,12 @@ class House_model extends MY_Model
     
     public function get_house_news_row($xq_id){
     	$data = $this->db->select()->from('news')->where('xq_id',$xq_id)->order_by('cdate','desc')->get()->row_array();
-    	$data['content'] = mb_substr(strip_tags(str_replace(' ','',$data['content'])),0,160,'utf-8');
-    	return $data;
+    	if($data){
+    		$data['content'] = mb_substr(strip_tags(str_replace(' ','',$data['content'])),0,160,'utf-8');
+    		return $data;
+    	}else{
+    		return null;
+    	}
     }
     
     public function get_new_house_detail($id){
@@ -592,8 +596,13 @@ class House_model extends MY_Model
    		return $data;
    	}
    	
-   	public function get_huxing_list($h_id,$count,$pageNum=1){
-   		$rs = $this->db->select('a.id,xq_id,b.name region_name,a.name,region_id')->from('house a')->join('house_region b','a.region_id=b.id','left')->where('a.id',$h_id)->get()->row_array();
+   	public function get_huxing_list($h_id,$count,$pageNum){
+   		$rs = $this->db->select('a.id,xq_id,b.name region_name,a.name,region_id,count(c.id) count_huxing')->from('house a')
+   		->join('house_region b','a.region_id=b.id','left')
+   		->join('house_hold c','a.id=c.h_id','left')
+   		->where('a.id',$h_id)
+   		->group_by('c.h_id')
+   		->get()->row_array();
    		$data['tag'] = $rs;
    		$rs = $this->db->select('folder')->from('house')->where('id',$h_id)->get()->row();
    		$data['folder'] = $rs->folder;
@@ -606,19 +615,33 @@ class House_model extends MY_Model
    		$this->db->select('count(1) as num');
    		$this->db->from('house_hold');
    		$this->db->where('h_id', $h_id);
+   		if($count != 'all'){
+   			$this->db->where('room',$count);
+   		}
+   		
    		$rs_total = $this->db->get()->row();
    		//总记录数
    		$data['countPage'] = $rs_total->num;
-   		 
+   		$data['count'] = $count;
    		//list
    		$this->db->select();
    		$this->db->from('house_hold');
    		$this->db->where('h_id', $h_id);
+   		if($count != 'all'){
+   			$this->db->where('room',$count);
+   		}
    		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage);
    		$data['res_list'] = $this->db->get()->result();
    		$data['pageNum'] = $pageNum;
    		$data['numPerPage'] = $numPerPage;
    		return $data;
+   	}
+   	
+
+   	public function get_recommend_list(){
+   		$this->db->select('a.name name,unit_price,a.id id,feature,bg_pic,b.name region_name')->from('house a');
+   		$this->db->join('house_region b','a.region_id=b.id','left')->where('recommend','1')->limit(4,0);
+   		return $this->db->get()->result_array();
    	}
     
 }

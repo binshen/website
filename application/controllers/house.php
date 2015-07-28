@@ -48,8 +48,14 @@ class House extends MY_Controller {
 		}
 		$rooms = $this->house_model->get_house_rooms($ids);
 		$news = $this->house_model->get_house_news($xq_ids);
+		$recommend_list = $this->house_model->get_recommend_list();
+		foreach($recommend_list as $k=>$v){
+			$recommend_list[$k]['feature'] = explode(",", $v['feature']);
+		}
+		
 		$this->assign('rooms', $rooms);
 		$this->assign('news', $news);
+		$this->assign('recommend_list', $recommend_list);
 		$this->assign('new_house_list', $data);
 		
 		$pager = $this->pagination->getPageLink('/house/new_house_list', $data['countPage'], $data['numPerPage']);
@@ -169,12 +175,9 @@ class House extends MY_Controller {
 		$data = $this->house_model->get_huxing_list($h_id,$count,$pageNum);
 		$this->assign('huxing_list', $data);
 		$this->assign('tag', $data['tag']);
-		
-		
-		
 		$pager = $this->pagination->getPageLink('/house/huxing_list/'.$h_id.'/'.$count, $data['countPage'], $data['numPerPage'],5);
 		$this->assign('pager', $pager);
 		$this->display('huxing_list.html');
-		
 	}
+
 }
