@@ -7,7 +7,7 @@ class MY_Pagination extends CI_Pagination {
 		parent::__construct();
 	}
 	
-	function getPageLink($base_url, $total_rows, $per_page) {
+	function getPageLink($base_url, $total_rows, $per_page,$uri_segment=3) {
 		
 		$config['base_url'] = $base_url;
 		$config['total_rows'] = $total_rows;
@@ -24,6 +24,9 @@ class MY_Pagination extends CI_Pagination {
  		$config['next_link']      = '下一页&gt;';
  		$config['next_tag_open']  = '';
  		$config['next_tag_close'] = '';
+ 		
+ 		$config['uri_segment'] = $uri_segment;
+ 		
 		
   		$config['first_link'] = false;
   		$config['last_link'] = false;

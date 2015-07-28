@@ -30,14 +30,20 @@
     </div>
     <!--------------头部导航end---------------->
    <div class="p_crumbs">
-        <a href="" target="_blank">全部房源</a>&gt;<a href="" target="_blank">城西</a>&gt;<a href="" target="_blank">香榭水岸</a>
+       <form action="/house/new_house_list" method="POST" >
+    	<input type="hidden" id="search_region" name="search_region" value="{{$tag['region_id']}}">
+    	</form>
+        <a href="{{site_url url='house/new_house_list'}}" target="_blank">全部房源</a>&gt;<a href="javascript:$('form').submit();" >{{$tag['region_name']}}</a>&gt;<a href="{{site_url url='house/new_house_detail'}}/{{$tag['id']}}" >{{$tag['name']}}</a>
     </div>
     <div class="door-model">
         <div class="model-tit">
             昆城景苑
         </div>
         <div class="choose-model">
-            <a href="" target="_blank" class="cur">全部户型（13）</a>|<a href="" target="_blank">2室户型（10）</a>|<a href="" target="_blank">3室户型（10）</a>
+            <a href="" target="_blank" class="cur">全部户型（{{$huxing_list['countPage']}}）</a>|
+            {{foreach from = $rooms item=row key=k}}
+            <a href="" target="_blank">{{$row['room']}}室户型（{{$row['count']}}）</a>{{if $k+1 lt $rooms|@count}}|{{/if}}
+            {{/foreach}}
         </div>
         <div class="model-s-tit">昆城景苑户型</div>
         <ul class="model-ul clearfix">
