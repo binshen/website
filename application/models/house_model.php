@@ -570,5 +570,32 @@ class House_model extends MY_Model
    		$data['detail'] = $this->db->select()->from('news')->where('id',$id)->get()->row_array();
    		return $data;
    	}
+   	
+   	public function get_huxing_list($h_id,$count,$pageNum=1){
+   		$rs = $this->db->select('folder')->from('house')->where('id',$h_id)->get()->row();
+   		$data['folder'] = $rs->folder;
+   		
+   		// 每页显示的记录条数，默认20条
+   		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 1;
+   		//$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
+   		 
+   		//获得总记录数
+   		$this->db->select('count(1) as num');
+   		$this->db->from('house_hold');
+   		$this->db->where('h_id', $h_id);
+   		$rs_total = $this->db->get()->row();
+   		//总记录数
+   		$data['countPage'] = $rs_total->num;
+   		 
+   		//list
+   		$this->db->select();
+   		$this->db->from('house_hold');
+   		$this->db->where('h_id', $h_id);
+   		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage);
+   		$data['res_list'] = $this->db->get()->result();
+   		$data['pageNum'] = $pageNum;
+   		$data['numPerPage'] = $numPerPage;
+   		return $data;
+   	}
     
 }

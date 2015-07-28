@@ -153,4 +153,13 @@ class House extends MY_Controller {
 		$this->assign('tag', $data['tag']);
 		$this->display('article_detail.html');
 	}
+	
+	public function huxing_list($h_id,$count='all',$pageNum){
+		$data = $this->house_model->get_huxing_list($h_id,$count,$pageNum);
+		$this->assign('huxing_list', $data);
+		$pager = $this->pagination->getPageLink('/house/huxing_list/'.$h_id.'/'.$count, $data['countPage'], $data['numPerPage']);
+		$this->assign('pager', $pager);
+		$this->display('huxing_list.html');
+		
+	}
 }
