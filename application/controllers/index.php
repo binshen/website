@@ -34,9 +34,9 @@ class Index extends MY_Controller {
 			array('id' => 5, 'name' => '五室'),
 			array('id' => 6, 'name' => '五室以上')
 		));
-		$this->assign('style_list_3', $data['style_list_3']);
-		$this->assign('style_list_4', $data['style_list_4']);
-		$this->assign('style_list_5', $data['region_list']);
+		$this->assign('style_list_3', $data['style_list_2']);
+		$this->assign('style_list_4', $data['style_list_3']);
+		$this->assign('style_list_5', $data['style_list_4']);
 		$this->assign('style_list_6', array(
 			array('id' => 1, 'name' => '50㎡以下'),
 			array('id' => 2, 'name' => '50-70㎡'),
