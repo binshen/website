@@ -279,73 +279,79 @@ class House_model extends MY_Model
     	
     	//获得总记录数
     	$this->db->select('count(1) as num');
-    	$this->db->from('house');
+    	$this->db->from('house a');
+    	$this->db->join('house_region b', 'a.region_id = b.id', 'left');
+    	$this->db->join('xiaoqu d', 'a.xq_id = d.id', 'left');
      	if($this->input->post('search_region')) {
      		$search_region = intval($this->input->post('search_region'));
      		if($search_region == 6) {
-     			$this->db->where_in('region_id', array(1,2,3,4,5,6));
+     			$this->db->where_in('a.region_id', array(1,2,3,4,5,6));
      		} else {
-     			$this->db->where('region_id', $search_region);
+     			$this->db->where('a.region_id', $search_region);
      		}
     	}
      	if($this->input->post('search_style'))
-     		$this->db->where('substyle_id',$this->input->post('search_style'));
+     		$this->db->where('a.substyle_id',$this->input->post('search_style'));
      	
     	if($this->input->post('search_price')){
 			$search_price = intval($this->input->post('search_price'));
 			if($search_price == 1) {
-     			$this->db->where('unit_price <', '5000');
+     			$this->db->where('a.unit_price <', '5000');
      		} else if($search_price == 2) {
-     			$this->db->where('unit_price >=',  '5000');
-     			$this->db->where('unit_price <=', '6000');
+     			$this->db->where('a.unit_price >=',  '5000');
+     			$this->db->where('a.unit_price <=', '6000');
      		} else if($search_price == 3) {
-     			$this->db->where('unit_price >=',  '6000');
-     			$this->db->where('unit_price <=', '7000');
+     			$this->db->where('a.unit_price >=',  '6000');
+     			$this->db->where('a.unit_price <=', '7000');
      		} else if($search_price == 4) {
-     			$this->db->where('unit_price >=',  '7000');
-     			$this->db->where('unit_price <=', '8000');
+     			$this->db->where('a.unit_price >=',  '7000');
+     			$this->db->where('a.unit_price <=', '8000');
      		} else if($search_price == 5) {
-     			$this->db->where('unit_price >=',  '8000');
-     			$this->db->where('unit_price <=', '10000');
+     			$this->db->where('a.unit_price >=',  '8000');
+     			$this->db->where('a.unit_price <=', '10000');
      		} else if($search_price == 6) {
-     			$this->db->where('unit_price >=',  '10000');
-     			$this->db->where('unit_price <=', '15000');
+     			$this->db->where('a.unit_price >=',  '10000');
+     			$this->db->where('a.unit_price <=', '15000');
      		} else if($search_price == 10) {
-     			$this->db->where('unit_price >',  '15000');
+     			$this->db->where('a.unit_price >',  '15000');
      		}
 		}
      	if($this->input->post('search_acreage')) {
      		$search_acreage = intval($this->input->post('search_acreage'));
      		if($search_acreage == 1) {
-     			$this->db->where('acreage <=', '50');
+     			$this->db->where('a.acreage <=', '50');
      		} else if($search_acreage == 2) {
-     			$this->db->where('acreage >',  '50');
-     			$this->db->where('acreage <=', '70');
+     			$this->db->where('a.acreage >',  '50');
+     			$this->db->where('a.acreage <=', '70');
      		} else if($search_acreage == 3) {
-     			$this->db->where('acreage >',  '70');
-     			$this->db->where('acreage <=', '90');
+     			$this->db->where('a.acreage >',  '70');
+     			$this->db->where('a.acreage <=', '90');
      		} else if($search_acreage == 4) {
-     			$this->db->where('acreage >',  '90');
-     			$this->db->where('acreage <=', '120');
+     			$this->db->where('a.acreage >',  '90');
+     			$this->db->where('a.acreage <=', '120');
      		} else if($search_acreage == 5) {
-     			$this->db->where('acreage >',  '120');
-     			$this->db->where('acreage <=', '150');
+     			$this->db->where('a.acreage >',  '120');
+     			$this->db->where('a.acreage <=', '150');
      		} else if($search_acreage == 6) {
-     			$this->db->where('acreage >',  '150');
-     			$this->db->where('acreage <=', '200');
+     			$this->db->where('a.acreage >',  '150');
+     			$this->db->where('a.acreage <=', '200');
      		} else if($search_acreage == 7) {
-     			$this->db->where('acreage >',  '200');
-     			$this->db->where('acreage <=', '300');
+     			$this->db->where('a.acreage >',  '200');
+     			$this->db->where('a.acreage <=', '300');
      		} else if($search_acreage == 8) {
-     			$this->db->where('acreage >',  '300');
+     			$this->db->where('a.acreage >',  '300');
      		}
      	}     	
      	if($this->input->post('search_type')) {
-     		$this->db->where_in('id', $h_ids);
+     		$this->db->where_in('a.id', $h_ids);
      	}     		
      	if($this->input->post('search_feature'))
-     		$this->db->like('feature', $this->input->post('search_feature'));
-
+     		$this->db->like('a.feature', $this->input->post('search_feature'));
+     	if($this->input->post('search_text')) {
+     		$t = $this->input->post('search_text');
+     		$where = "(a.name LIKE '%" . $t . "%' OR a.sub_title LIKE '%" . $t . "%' OR b.name LIKE '%" . $t . "%' OR c.name LIKE '%" . $t . "%' OR d.name LIKE '%" . $t . "%')";
+     		$this->db->where($where);
+     	}
     	$this->db->where('type_id', 1);
     	$rs_total = $this->db->get()->row();
     	//总记录数
@@ -353,12 +359,10 @@ class House_model extends MY_Model
     	
     	$data['rel_name'] = null;
     	//list
-    	$this->db->select('a.*, b.name AS region_name, c.name AS orientation_name, d.name AS xq_name, d.address AS address, e.tel AS tel');
+    	$this->db->select('a.*, b.name AS region_name, c.name AS xq_name, c.address AS address ');
     	$this->db->from('house a');
     	$this->db->join('house_region b', 'a.region_id = b.id', 'left');
-    	$this->db->join('house_orientation c', 'a.orientation_id = c.id', 'left');
-    	$this->db->join('xiaoqu d', 'a.xq_id = d.id', 'left');
-    	$this->db->join('admin e', 'a.broker_id = e.id', 'left');
+    	$this->db->join('xiaoqu c', 'a.xq_id = c.id', 'left');
    	 	if($this->input->post('search_region')) {
      		$search_region = intval($this->input->post('search_region'));
      		if($search_region == 6) {
@@ -424,9 +428,26 @@ class House_model extends MY_Model
 		if($this->input->post('search_feature'))
 			$this->db->like('feature', $this->input->post('search_feature'));
 		
+		if($this->input->post('search_text')) {
+			$t = $this->input->post('search_text');
+			$where = "(a.name LIKE '%" . $t . "%' OR a.sub_title LIKE '%" . $t . "%' OR b.name LIKE '%" . $t . "%' OR d.name LIKE '%" . $t . "%')";
+			$this->db->where($where);
+		}
+		
     	$this->db->where('a.type_id', 1);
     	$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage);
-    	$this->db->order_by($this->input->post('search_orderby') ? $this->input->post('search_orderby') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
+    	
+    	$orderField = $this->input->post('search_order');
+    	if($orderField == 1) {
+    		$orderDirection = $this->input->post('order_price_dir');
+    		if($orderDirection == 1) {
+    			$this->db->order_by('a.unit_price', 'desc');
+    		} else {
+    			$this->db->order_by('a.unit_price', 'asc');
+    		}
+    	} else {
+    		$this->db->order_by('a.id', 'desc');
+    	}
     	$data['res_list'] = $this->db->get()->result();
     	$data['pageNum'] = $pageNum;
     	$data['numPerPage'] = $numPerPage;

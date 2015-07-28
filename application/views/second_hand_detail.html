@@ -54,13 +54,13 @@
                     </dl>
                     <dl class="other-dl">
                         <dt>月 供：</dt>
-                        <dd>4140元</dd>
+                        <dd>{{$house.monthly_pay}}元</dd>
                         <dt>面 积：</dt>
                         <dd>{{$house.acreage}}㎡</dd>
                         <dt>朝 向：</dt>
                         <dd>{{$house.orientation_name}}</dd>
                         <dt>所在小区：</dt>
-                        <dd class="color2">{{$house.xq_name}}  <a href="" target="_blank">[地图交通]</a></dd>
+                        <dd class="color2">{{$house.xq_name}}  <a href="#house_map_area" target="_self">[地图]</a></dd>
                     </dl>
                 </div>
                 <div class="key-word">
@@ -101,7 +101,7 @@
         <div class="house-d-by">
             {{$house.house_pic}}
         </div>
-        <div class="house-d-title">
+        <div class="house-d-title" id="house_map_area">
             小区地图
         </div>
         <div class="house-d-by">
