@@ -377,7 +377,7 @@ function callbacktime(time,is_back, type_id){
 				html+='<a href="javascript:void(0);" onclick="del_pic(this,'+type_id+');" style="text-decoration:none; color:#fff">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="set_bg(this, 1);" style="text-decoration:none; color:#fff">设为封面</a></div>';
 				html+='<div class="fengmian"></div>';
 				html+='<img height="118" width="200" src="'+path +'" style="border:1px solid #666;">';
-				html+='<input type="hidden" size="22" name="pic_short'+type_id+'[]" value="'+item+'"></dt>';
+				html+='<input type="hidden" size="22" name="pic_short'+type_id+'[]" class="pic_short" value="'+item+'"></dt>';
 			}
 		});
 		$("#append"+type_id,navTab.getCurrentPanel()).append(html); 
