@@ -145,7 +145,7 @@
             <ul class="houselist">
             	{{foreach from=$second_hand_list.res_list item=item}}
 	                <li onclick="show_detail('{{$item->id}}')">
-	                    <img src="{{$base_url}}uploadfiles/pics/{{$item->bg_pic}}">
+	                    <img src="{{$base_url}}uploadfiles/pics/{{$item->bg_pic}}" style="width:190px; height:155px;">
 	                    <div class="housedetail">
 	                        <div class="house-tit">
 	                            <a href="javascript:void(0);">{{$item->name}}</a>
