@@ -72,7 +72,7 @@ $(function(){
 				--><ul class="nav">
 				<li><a href="<?php echo base_url();?>" target="_black">前台首页</a></li>
 				<li><a href="<?php echo site_url('manage_login/change_pwd');?>" target="dialog" rel="chagepwd">密码修改</a></li>
-				<li>欢迎您：<?php echo $this->session->userdata('username');?></li>
+				<li>欢迎您：<?php echo $this->session->userdata('rel_name');?></li>
 				<li><a href="<?php echo site_url('manage_login/logout');?>">退出</a></li>
 				</ul>
 				<ul class="themeList" id="themeList">
