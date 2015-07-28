@@ -593,6 +593,8 @@ class House_model extends MY_Model
    	}
    	
    	public function get_huxing_list($h_id,$count,$pageNum=1){
+   		$rs = $this->db->select('a.id,xq_id,b.name region_name,a.name,region_id')->from('house a')->join('house_region b','a.region_id=b.id','left')->where('a.id',$h_id)->get()->row_array();
+   		$data['tag'] = $rs;
    		$rs = $this->db->select('folder')->from('house')->where('id',$h_id)->get()->row();
    		$data['folder'] = $rs->folder;
    		

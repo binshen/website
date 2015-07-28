@@ -163,10 +163,16 @@ class House extends MY_Controller {
 		$this->display('article_detail.html');
 	}
 	
-	public function huxing_list($h_id,$count='all',$pageNum){
+	public function huxing_list($h_id,$count='all',$pageNum=1){
+		$rooms = $this->house_model->get_house_rooms($h_id);
+		$this->assign('rooms', $rooms[$h_id]);
 		$data = $this->house_model->get_huxing_list($h_id,$count,$pageNum);
 		$this->assign('huxing_list', $data);
-		$pager = $this->pagination->getPageLink('/house/huxing_list/'.$h_id.'/'.$count, $data['countPage'], $data['numPerPage']);
+		$this->assign('tag', $data['tag']);
+		
+		
+		
+		$pager = $this->pagination->getPageLink('/house/huxing_list/'.$h_id.'/'.$count, $data['countPage'], $data['numPerPage'],5);
 		$this->assign('pager', $pager);
 		$this->display('huxing_list.html');
 		
