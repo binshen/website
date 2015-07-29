@@ -127,6 +127,7 @@
                 <p class="fz10">房屋买卖咨询，请致电我</p>
             </div>
         </div>
+        <!--
         <div class="agent-reco-info">
             <div class="a-r-title">————— 推荐小区 —————</div>
             <div class="a-r-house">
@@ -149,6 +150,22 @@
                 <a href="" target="_blank"><img src="http://dummyimage.com/165x125/000/fff">
                 <p class="a-r-house-p"><i class="blue">天地华城赔本娄江双学区</i><br /><i class="red">55万</i><br /><i>1室2厅，66平米</i><br /><i>天地华城</i></p></a>
             </div>
+        </div>
+        -->
+        <div class="agent-reco-info">
+            <div class="a-r-title">————— 推荐楼盘 —————</div>
+            {{foreach from=$recommend_list item=row}}
+	            <div class="a-r-house">
+	                <a href="{{site_url url='house/second_hand_detail'}}/{{$row['id']}}" target="_blank">
+	                	<img width="165" height="125" src="/uploadfiles/pics/{{$row['bg_pic']}}">
+	                	<p class="a-r-house-p">
+	                	<i class="blue">{{$row['name']|truncate:14:'...'}}</i><br />
+	                	<i class="red">售价：{{$row['total_price']}}万元</i><br />
+	                	<i>{{$row['room']}}室{{$row['lounge']}}厅，{{$row['acreage']}}平米</i><br />
+	                	<i>{{$row['xq_name']}}</i></p>
+	                </a>
+	            </div>
+	        {{/foreach}}
         </div>
     </div>
 </div>
