@@ -7,9 +7,9 @@
     <form method="post" enctype="multipart/form-data" action="<?php echo site_url('manage/save_rent_house');?>" class="pageForm required-validate" onsubmit="return iframeCallback(this, navTabAjaxDone);">
         <div class="pageFormContent" layoutH="55">
         <fieldset>
-        	<legend class="topLegend">基本信息</legend>
+        	<legend class="topLegend">租房基本信息</legend>
         	    <dl >
-        			<dt>楼盘名称(标题)：</dt>
+        			<dt>房源名称(标题)：</dt>
         			<dd>
         				<input type="hidden" name="id" value="<?php if(!empty($id)) echo $id;?>">
         				<input type="hidden" name="type_id" value="3">
