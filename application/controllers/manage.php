@@ -364,7 +364,7 @@ class Manage extends MY_Controller {
 	public function save_rent_house() {
 		$ret = $this->manage_model->save_rent_house();
 		if($ret == 1){
-			form_submit_json("200", "操作成功", 'list_sd_house');
+			form_submit_json("200", "操作成功", 'list_rent_house');
 		} else {
 			form_submit_json("300", "保存失败");
 		}
