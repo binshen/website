@@ -331,6 +331,80 @@ class Manage extends MY_Controller {
 	}
 	
 	/**
+	 * 租房管理
+	 */
+	public function list_rent_house() {
+		$data = $this->manage_model->list_rent_house();
+		$this->load->view('manage/list_rent_house.php', $data);
+	}
+	
+	public function add_rent_house() {
+		$data['feature_list'] = $this->manage_model->get_feature();
+		$data['style_list'] = $this->manage_model->get_style_list();
+		if(!empty($data['style_list'])) {
+			$data['substyle_list'] = $this->manage_model->get_substyle_list_by_parent($data['style_list'][0]->id);
+		}
+		$data['region_list'] = $this->manage_model->get_region_list();
+		$data['decoration_list'] = $this->manage_model->get_decoration_list();
+		$data['orientation_list'] = $this->manage_model->get_orientation_list();
+		
+		$data['rent_style_list'] = array(
+			(object)array('id' => 1, 'name' => '整租'),
+			(object)array('id' => 2, 'name' => '合租')
+		);
+		$data['rent_type_list'] = array(
+			(object)array('id' => 1, 'name' => '付三押一'),
+			(object)array('id' => 2, 'name' => '付二压一'),
+			(object)array('id' => 3, 'name' => '付一压一'),
+			(object)array('id' => 4, 'name' => '其他')
+		);
+		$this->load->view('manage/add_rent_house.php', $data);
+	}
+	
+	public function save_rent_house() {
+		$ret = $this->manage_model->save_rent_house();
+		if($ret == 1){
+			form_submit_json("200", "操作成功", 'list_sd_house');
+		} else {
+			form_submit_json("300", "保存失败");
+		}
+	}
+	
+	public function edit_rent_house($id) {
+		$data = $this->manage_model->get_rent_house($id);
+		$data['house_img'] = $this->manage_model->get_upload_house_img($data['id']);
+		$data['feature_list'] = $this->manage_model->get_feature();
+		$data['style_list'] = $this->manage_model->get_style_list();
+		if(!empty($data['style_id'])) {
+			$data['substyle_list'] = $this->manage_model->get_substyle_list_by_parent($data['style_id']);
+		}
+		$data['region_list'] = $this->manage_model->get_region_list();
+		$data['decoration_list'] = $this->manage_model->get_decoration_list();
+		$data['orientation_list'] = $this->manage_model->get_orientation_list();
+		
+		$data['rent_style_list'] = array(
+				(object)array('id' => 1, 'name' => '整租'),
+				(object)array('id' => 2, 'name' => '合租')
+		);
+		$data['rent_type_list'] = array(
+				(object)array('id' => 1, 'name' => '付三押一'),
+				(object)array('id' => 2, 'name' => '付二压一'),
+				(object)array('id' => 3, 'name' => '付一压一'),
+				(object)array('id' => 4, 'name' => '其他')
+		);
+		$this->load->view('manage/add_rent_house.php',$data);
+	}
+	
+	public function delete_rent_house($id) {
+		$ret = $this->manage_model->delete_rent_house($id);
+		if($ret == 1) {
+			form_submit_json("200", "操作成功", 'list_rent_house', '', '');
+		} else {
+			form_submit_json("300", "删除失败");
+		}
+	}
+	
+	/**
 	 * 经纪人管理
 	 */
 	public function list_broker() {

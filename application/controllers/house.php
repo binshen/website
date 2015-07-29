@@ -138,6 +138,15 @@ class House extends MY_Controller {
 		$this->display('second_hand_detail.html');
 	}
 	
+	
+	public function rent_house_list() {
+		
+	}
+	
+	public function rent_house_detail($id) {
+		
+	}
+	
 	public function new_house_detail($id) {
 		$rooms = $this->house_model->get_house_rooms($id);
 		$house = $this->house_model->get_new_house_detail($id);
