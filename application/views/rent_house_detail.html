@@ -15,7 +15,7 @@
 
     <!--------------搜索列表start---------------->
     <div class="p_crumbs">
-        <a href="{{site_url url='house/rent_house_list'}}" target="_blank">租房房源</a>&gt;<a href="javascript:$('form').submit();" target="_blank">{{$house.region_name}}</a>&gt;<a>{{$house.xq_name}}</a>
+        <a href="{{site_url url='house/rent_house_list'}}" target="_blank">租房房源</a>&gt;<a href="javascript:$('#rent_house_detail_form').submit();" target="_blank">{{$house.region_name}}</a>&gt;<a>{{$house.xq_name}}</a>
     </div>
     <div class="housedetail">
         <div class="house-d-top clearfix">
@@ -153,7 +153,7 @@
     </div>
 </div>
 {include file="footer.html"}
-<form action="/house/second_hand_list" method="POST" id="second_hand_detail_form">
+<form action="/house/rent_house_list" method="POST" id="rent_house_detail_form">
 	<input type="hidden" id="search_text" name="search_text" value="{{$search_text|default:''}}">
 	<input type="hidden" id="search_region" name="search_region" value="{{$house['region_id'|default:'']}}">
 </form>
@@ -175,13 +175,13 @@ $(function(){
 		event.preventDefault();
 		$("#search_text").val($("#question").val());
 		if($(".ks-select-pop").find(".current").text() == "二手房") {
-			$("#second_hand_detail_form").attr('action', '/house/second_hand_list');
+			$("#rent_house_detail_form").attr('action', '/house/second_hand_list');
 		} else if($(".ks-select-pop").find(".current").text() == "新房") {
-			$("#second_hand_detail_form").attr('action', '/house/new_house_list');
+			$("#rent_house_detail_form").attr('action', '/house/new_house_list');
 		} else {
-			$("#second_hand_detail_form").attr('action', '/house/rent_house_list');
+			$("#rent_house_detail_form").attr('action', '/house/rent_house_list');
 		}
-		$("#second_hand_detail_form").submit();
+		$("#rent_house_detail_form").submit();
 	});
     
     $('.ks-select em').html("租房");
