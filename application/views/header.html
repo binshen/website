@@ -40,6 +40,9 @@
         </div>
     </div>
     <!--------------头部end---------------->
+    <form method="POST" id="searchForm">
+    	<input type="hidden" id="search_text" name="search_text" value="{{$search_text|default:''}}">
+    </form>
     
 <script type="text/javascript">
 $(function(){
@@ -52,7 +55,22 @@ $(function(){
 	$('.ks-select-pop a').click(function(){
 		$('.ks-select-pop a').removeClass('current');
 		$(this).addClass('current');
-		$('.ks-select em').html($(this).html());
+		$('.ks-select em').text($(this).text());
+		$('.ks-select-pop').hide();
+	});
+	
+	$("#btnSearchText").click(function(event) {
+		event.preventDefault();
+		$("#search_text").val($("#question").val());
+		var current = $(".ks-select-pop").find(".current").text();
+		if(current == "二手房") {
+			$("#searchForm").attr('action', '/house/second_hand_list');
+		} else if(current == "新房") {
+			$("#searchForm").attr('action', '/house/new_house_list');
+		} else {
+			$("#searchForm").attr('action', '/house/rent_house_list');
+		}
+		$("#searchForm").submit();
 	});
 });
 </script>    

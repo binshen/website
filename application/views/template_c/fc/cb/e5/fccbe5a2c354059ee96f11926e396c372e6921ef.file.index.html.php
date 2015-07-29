@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2015-07-29 11:13:41
+<?php /* Smarty version Smarty-3.1.16, created on 2015-07-29 13:55:33
          compiled from "application\views\index.html" */ ?>
 <?php /*%%SmartyHeaderCode:1960755b6e9761cf065-27303114%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fccbe5a2c354059ee96f11926e396c372e6921ef' => 
     array (
       0 => 'application\\views\\index.html',
-      1 => 1438139617,
+      1 => 1438149329,
       2 => 'file',
     ),
   ),
@@ -33,7 +33,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'news2' => 0,
     'k' => 0,
     'news3' => 0,
-    'search_text' => 0,
     'search_region' => 0,
     'search_style' => 0,
     'search_price' => 0,
@@ -580,33 +579,30 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
 <?php echo $_smarty_tpl->getSubTemplate ("footer.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
 <form action="/house/second_hand_list" method="POST" id="funmall_index_form">
-	<input type="hidden" id="search_text" name="search_text" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_text']->value)===null||$tmp==='' ? '' : $tmp);?>
+	<input type="hidden" id="search_region" name="search_region" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_region']->value)===null||$tmp==='' ? '' : $tmp);?>
 <?php $_tmp112=ob_get_clean();?><?php echo $_tmp112;?>
 ">
-	<input type="hidden" id="search_region" name="search_region" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_region']->value)===null||$tmp==='' ? '' : $tmp);?>
+	<input type="hidden" id="search_style" name="search_style" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_style']->value)===null||$tmp==='' ? '' : $tmp);?>
 <?php $_tmp113=ob_get_clean();?><?php echo $_tmp113;?>
 ">
-	<input type="hidden" id="search_style" name="search_style" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_style']->value)===null||$tmp==='' ? '' : $tmp);?>
+	<input type="hidden" id="search_price" name="search_price" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_price']->value)===null||$tmp==='' ? '' : $tmp);?>
 <?php $_tmp114=ob_get_clean();?><?php echo $_tmp114;?>
 ">
-	<input type="hidden" id="search_price" name="search_price" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_price']->value)===null||$tmp==='' ? '' : $tmp);?>
+	<input type="hidden" id="search_acreage" name="search_acreage" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_acreage']->value)===null||$tmp==='' ? '' : $tmp);?>
 <?php $_tmp115=ob_get_clean();?><?php echo $_tmp115;?>
 ">
-	<input type="hidden" id="search_acreage" name="search_acreage" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_acreage']->value)===null||$tmp==='' ? '' : $tmp);?>
+	<input type="hidden" id="search_type" name="search_type" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_type']->value)===null||$tmp==='' ? '' : $tmp);?>
 <?php $_tmp116=ob_get_clean();?><?php echo $_tmp116;?>
 ">
-	<input type="hidden" id="search_type" name="search_type" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_type']->value)===null||$tmp==='' ? '' : $tmp);?>
-<?php $_tmp117=ob_get_clean();?><?php echo $_tmp117;?>
-">
 	<input type="hidden" id="search_feature" name="search_feature" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_feature']->value)===null||$tmp==='' ? '' : $tmp);?>
-<?php $_tmp118=ob_get_clean();?><?php echo $_tmp118;?>
+<?php $_tmp117=ob_get_clean();?><?php echo $_tmp117;?>
 ">
 	
 	<input type="hidden" id="search_order" name="search_order" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_order']->value)===null||$tmp==='' ? '' : $tmp);?>
-<?php $_tmp119=ob_get_clean();?><?php echo $_tmp119;?>
+<?php $_tmp118=ob_get_clean();?><?php echo $_tmp118;?>
 ">
 	<input type="hidden" id="order_price_dir" name="order_price_dir" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['order_price_dir']->value)===null||$tmp==='' ? '' : $tmp);?>
-<?php $_tmp120=ob_get_clean();?><?php echo $_tmp120;?>
+<?php $_tmp119=ob_get_clean();?><?php echo $_tmp119;?>
 ">
 </form>
 <script>
@@ -640,17 +636,6 @@ $(function(){
 	   	$(this).addClass('slide-pic-hover');
    	}).mouseleave(function(){
 	   	$('.focusPic').removeClass('slide-pic-hover');
-	});
-   	
-   	$("#btnSearchText").click(function(event) {
-		event.preventDefault();
-		$("#search_text").val($("#question").val());
-		if($(".ks-select-pop").find(".current").text() == "二手房") {
-			$("#funmall_index_form").attr('action', '/house/second_hand_list');
-		} else {
-			$("#funmall_index_form").attr('action', '/house/new_house_list');
-		}
-		$("#funmall_index_form").submit();
 	});
 });
 

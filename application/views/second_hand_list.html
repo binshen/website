@@ -33,7 +33,6 @@
     	<div class="item-list-tit">二手房房源</div>
         <div class="item-list-bdy">
         	<form action="/house/second_hand_list" method="POST" id="second_hand_list_form">
-        		<input type="hidden" id="search_text" name="search_text" value="{{$search_text}}">
         		<input type="hidden" id="search_region" name="search_region" value="{{$search_region}}">
         		<input type="hidden" id="search_style" name="search_style" value="{{$search_style}}">
         		<input type="hidden" id="search_price" name="search_price" value="{{$search_price}}">
@@ -229,17 +228,6 @@ $(function() {
 	    $('.houselist li').removeClass('over-bg');
 	});
 	
-	$("#btnSearchText").click(function(event) {
-		event.preventDefault();
-		$("#search_text").val($("#question").val());
-		if($(".ks-select-pop").find(".current").text() == "二手房") {
-			$("#second_hand_detail_form").attr('action', '/house/second_hand_list');
-		} else {
-			$("#second_hand_detail_form").attr('action', '/house/new_house_list');
-		}
-		$("#second_hand_list_form").submit();
-	});
-	
 	$("#order_price").click(function() {
 		$("#search_order").val(1);
 		var order_price_dir = $("#order_price_dir").val();
@@ -251,7 +239,7 @@ $(function() {
 		$("#second_hand_list_form").submit();
 	});
 	
-	$('.ks-select em').html("二手房");
+	$('.ks-select em').text("二手房");
 	$("#question").val('{{$search_text}}')
 });
 

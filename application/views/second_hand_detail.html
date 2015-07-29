@@ -154,7 +154,6 @@
 </div>
 {include file="footer.html"}
 <form action="/house/second_hand_list" method="POST" id="second_hand_detail_form">
-	<input type="hidden" id="search_text" name="search_text" value="{{$search_text|default:''}}">
 	<input type="hidden" id="search_region" name="search_region" value="{{$house['region_id']|default:''}}">
 </form>
 <script>
@@ -171,18 +170,7 @@ $(function(){
         $(this).removeClass('over-bg');
     });
     
-    $("#btnSearchText").click(function(event) {
-		event.preventDefault();
-		$("#search_text").val($("#question").val());
-		if($(".ks-select-pop").find(".current").text() == "二手房") {
-			$("#second_hand_detail_form").attr('action', '/house/second_hand_list');
-		} else {
-			$("#second_hand_detail_form").attr('action', '/house/new_house_list');
-		}
-		$("#second_hand_detail_form").submit();
-	});
-    
-    $('.ks-select em').html("二手房");
+    $('.ks-select em').text("二手房");
 })
 </script>
 </body>
