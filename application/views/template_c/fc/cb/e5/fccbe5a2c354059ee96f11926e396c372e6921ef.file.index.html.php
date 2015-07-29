@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2015-07-28 17:27:37
+<?php /* Smarty version Smarty-3.1.16, created on 2015-07-29 09:25:29
          compiled from "application\views\index.html" */ ?>
 <?php /*%%SmartyHeaderCode:1960755b6e9761cf065-27303114%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fccbe5a2c354059ee96f11926e396c372e6921ef' => 
     array (
       0 => 'application\\views\\index.html',
-      1 => 1438075651,
+      1 => 1438132997,
       2 => 'file',
     ),
   ),
@@ -34,10 +34,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'k' => 0,
     'news3' => 0,
     'search_text' => 0,
-    'search_style' => 0,
     'search_region' => 0,
+    'search_style' => 0,
+    'search_price' => 0,
     'search_acreage' => 0,
     'search_type' => 0,
+    'search_feature' => 0,
+    'search_order' => 0,
+    'order_price_dir' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -495,17 +499,30 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
 	<input type="hidden" id="search_text" name="search_text" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_text']->value)===null||$tmp==='' ? '' : $tmp);?>
 <?php $_tmp84=ob_get_clean();?><?php echo $_tmp84;?>
 ">
-	<input type="hidden" id="search_style" name="search_style" value="<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['search_style']->value;?>
+	<input type="hidden" id="search_region" name="search_region" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_region']->value)===null||$tmp==='' ? '' : $tmp);?>
 <?php $_tmp85=ob_get_clean();?><?php echo $_tmp85;?>
 ">
-	<input type="hidden" id="search_region" name="search_region" value="<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['search_region']->value;?>
+	<input type="hidden" id="search_style" name="search_style" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_style']->value)===null||$tmp==='' ? '' : $tmp);?>
 <?php $_tmp86=ob_get_clean();?><?php echo $_tmp86;?>
 ">
-	<input type="hidden" id="search_acreage" name="search_acreage" value="<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['search_acreage']->value;?>
+	<input type="hidden" id="search_price" name="search_price" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_price']->value)===null||$tmp==='' ? '' : $tmp);?>
 <?php $_tmp87=ob_get_clean();?><?php echo $_tmp87;?>
 ">
-	<input type="hidden" id="search_type" name="search_type" value="<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['search_type']->value;?>
+	<input type="hidden" id="search_acreage" name="search_acreage" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_acreage']->value)===null||$tmp==='' ? '' : $tmp);?>
 <?php $_tmp88=ob_get_clean();?><?php echo $_tmp88;?>
+">
+	<input type="hidden" id="search_type" name="search_type" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_type']->value)===null||$tmp==='' ? '' : $tmp);?>
+<?php $_tmp89=ob_get_clean();?><?php echo $_tmp89;?>
+">
+	<input type="hidden" id="search_feature" name="search_feature" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_feature']->value)===null||$tmp==='' ? '' : $tmp);?>
+<?php $_tmp90=ob_get_clean();?><?php echo $_tmp90;?>
+">
+	
+	<input type="hidden" id="search_order" name="search_order" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_order']->value)===null||$tmp==='' ? '' : $tmp);?>
+<?php $_tmp91=ob_get_clean();?><?php echo $_tmp91;?>
+">
+	<input type="hidden" id="order_price_dir" name="order_price_dir" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['order_price_dir']->value)===null||$tmp==='' ? '' : $tmp);?>
+<?php $_tmp92=ob_get_clean();?><?php echo $_tmp92;?>
 ">
 </form>
 <script>

@@ -158,7 +158,7 @@
         		</dl>
         		
         		<dl>
-        			<dt>物业费(元/平方米)：</dt>
+        			<dt>物业费(元/平米/月)：</dt>
         			<dd><input name="estate_price" type="text" class="required" value="<?php if(!empty($estate_price)) echo $estate_price;?>" /></dd>
         		</dl>
         		
