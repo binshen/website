@@ -40,8 +40,18 @@
         </div>
     </div>
     <!--------------头部end---------------->
-    <form method="POST" id="searchForm">
+    <form method="POST" id="searchHouseForm">
     	<input type="hidden" id="search_text" name="search_text" value="{{$search_text|default:''}}">
+    	
+    	<input type="hidden" id="search_region" name="search_region" value="{{$search_region|default:''}}">
+		<input type="hidden" id="search_style" name="search_style" value="{{$search_style|default:''}}">
+		<input type="hidden" id="search_price" name="search_price" value="{{$search_price|default:''}}">
+		<input type="hidden" id="search_acreage" name="search_acreage" value="{{$search_acreage|default:''}}">
+		<input type="hidden" id="search_type" name="search_type" value="{{$search_type|default:''}}">
+		<input type="hidden" id="search_feature" name="search_feature" value="{{$search_feature|default:''}}">
+		
+		<input type="hidden" id="search_order" name="search_order" value="{{$search_order|default:''}}">
+		<input type="hidden" id="order_price_dir" name="order_price_dir" value="{{$order_price_dir|default:''}}">
     </form>
     
 <script type="text/javascript">
@@ -64,13 +74,13 @@ $(function(){
 		$("#search_text").val($("#question").val());
 		var current = $(".ks-select-pop").find(".current").text();
 		if(current == "二手房") {
-			$("#searchForm").attr('action', '/house/second_hand_list');
+			$("#searchHouseForm").attr('action', '/house/second_hand_list');
 		} else if(current == "新房") {
-			$("#searchForm").attr('action', '/house/new_house_list');
+			$("#searchHouseForm").attr('action', '/house/new_house_list');
 		} else {
-			$("#searchForm").attr('action', '/house/rent_house_list');
+			$("#searchHouseForm").attr('action', '/house/rent_house_list');
 		}
-		$("#searchForm").submit();
+		$("#searchHouseForm").submit();
 	});
 });
 </script>    

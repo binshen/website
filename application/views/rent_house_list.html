@@ -33,15 +33,6 @@
     	<div class="item-list-tit">租房房源</div>
         <div class="item-list-bdy">
         	<form action="/house/second_hand_list" method="POST" id="second_hand_list_form">
-        		<input type="hidden" id="search_region" name="search_region" value="{{$search_region}}">
-        		<input type="hidden" id="search_style" name="search_style" value="{{$search_style}}">
-        		<input type="hidden" id="search_price" name="search_price" value="{{$search_price}}">
-        		<input type="hidden" id="search_acreage" name="search_acreage" value="{{$search_acreage}}">
-        		<input type="hidden" id="search_type" name="search_type" value="{{$search_type}}">
-        		<input type="hidden" id="search_feature" name="search_feature" value="{{$search_feature}}">
-        		
-        		<input type="hidden" id="search_order" name="search_order" value="{{$search_order}}">
-        		<input type="hidden" id="order_price_dir" name="order_price_dir" value="{{$order_price_dir}}">
 	            <dl class="items">
 	                <dt class="item-title">区域：</dt>
 	                <dd class="elems-l">
@@ -223,7 +214,7 @@ $(function() {
 		} else {
 			$("#order_price_dir").val(1);
 		}
-		$("#second_hand_list_form").submit();
+		$("#searchHouseForm").submit();
 	});
 	
 	$('.ks-select em').text("租房");
@@ -232,7 +223,7 @@ $(function() {
 
 function change_search(t, v) {
 	$("#search_" + t).val(v);
-	$("#second_hand_list_form").submit();
+	$("#searchHouseForm").submit();
 }
 
 function show_detail(id) {

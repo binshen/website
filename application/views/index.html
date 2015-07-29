@@ -262,17 +262,7 @@
     </div>
 </div>
 {include file="footer.html"}
-<form action="/house/second_hand_list" method="POST" id="funmall_index_form">
-	<input type="hidden" id="search_region" name="search_region" value="{{$search_region|default:''}}">
-	<input type="hidden" id="search_style" name="search_style" value="{{$search_style|default:''}}">
-	<input type="hidden" id="search_price" name="search_price" value="{{$search_price|default:''}}">
-	<input type="hidden" id="search_acreage" name="search_acreage" value="{{$search_acreage|default:''}}">
-	<input type="hidden" id="search_type" name="search_type" value="{{$search_type|default:''}}">
-	<input type="hidden" id="search_feature" name="search_feature" value="{{$search_feature|default:''}}">
-	
-	<input type="hidden" id="search_order" name="search_order" value="{{$search_order|default:''}}">
-	<input type="hidden" id="order_price_dir" name="order_price_dir" value="{{$order_price_dir|default:''}}">
-</form>
+
 <script>
 $(function(){
 	//左侧搜索分类
@@ -325,13 +315,13 @@ function redirect(t, s, k, v) {
 		$("#search_region").val(v);
 	}
 	if(t == 1) {
-		$("#funmall_index_form").attr('action', '/house/new_house_list');
+		$("#searchHouseForm").attr('action', '/house/new_house_list');
 	} else if(t == 2) {
-		$("#funmall_index_form").attr('action', '/house/second_hand_list');
+		$("#searchHouseForm").attr('action', '/house/second_hand_list');
 	} else {
-		$("#funmall_index_form").attr('action', '/house/rent_house_list');
+		$("#searchHouseForm").attr('action', '/house/rent_house_list');
 	}
-	$("#funmall_index_form").submit();
+	$("#searchHouseForm").submit();
 }
 </script>
 </body>
