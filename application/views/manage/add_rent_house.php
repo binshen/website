@@ -283,7 +283,7 @@
     	    		<input type="hidden" name="is_bg" value="<?php if(!empty($bg_pic)) echo $bg_pic;?>" id="is_bg">
     	    	</dt>
     		</dl>
-    		<dl class="nowrap" id="append1">
+    		<dl class="nowrap" id="imageSection">
     			<?php
     				if(!empty($house_img)):
 						foreach ($house_img as $img):
@@ -336,7 +336,7 @@ function iframeCallback(form, callback){
 	var $form = $(form), $iframe = $("#callbackframe");
 	if(!$form.valid()) {return false;}
 
-	if($("#append1").children().length == 0) {
+	if($("#imageSection").children().length == 0) {
 		alertMsg.warn("请上传房源效果图");
 		return false;
 	}
