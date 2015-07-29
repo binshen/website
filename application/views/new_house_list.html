@@ -125,12 +125,12 @@
         <div class="serchL">
             <div class="houselist newhouselist">
                 {{foreach from=$new_house_list.res_list item=item}}
-                <div class="houseli">
+                <div class="houseli" onclick="show_detail('{{$item->id}}')">
                     <!-- <img src="http://dummyimage.com/190x155/000/fff"> -->
                     <img src="/uploadfiles/pics/{{$item->bg_pic}}" style="width:190px; height:155px;">
                     <div class="housedetail ">
                         <div class="house-tit">
-                            <a href="{{site_url url='house/new_house_detail'}}/{{$item->id}}">
+                            <a href="javascript:void(0);">
                                 {{$item->name}}
                             </a>
                         </div>
@@ -348,6 +348,11 @@ $(function() {
 function change_search(t, v) {
 	$("#search_" + t).val(v);
 	$("#new_house_list_form").submit();
+}
+
+function show_detail(id) {
+	var url = '/house/new_house_detail/' + id;
+	window.open(url);
 }
 </script>
 </body>

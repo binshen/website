@@ -15,7 +15,7 @@
 
     <!--------------搜索列表start---------------->
     <div class="p_crumbs">
-        <a href="" target="_blank">全部房源</a>&gt;<a href="" target="_blank">{{$house.region_name}}</a>&gt;<a href="" target="_blank">{{$house.xq_name}}</a>
+        <a href="{{site_url url='house/second_hand_list'}}" target="_self">二手房房源</a>&gt;<a href="javascript:$('#second_hand_detail_form').submit();">{{$house.region_name}}</a>&gt;<a>{{$house.xq_name}}</a>
     </div>
     <div class="housedetail">
         <div class="house-d-top clearfix">
@@ -155,6 +155,7 @@
 {include file="footer.html"}
 <form action="/house/second_hand_list" method="POST" id="second_hand_detail_form">
 	<input type="hidden" id="search_text" name="search_text" value="{{$search_text|default:''}}">
+	<input type="hidden" id="search_region" name="search_region" value="{{$house['region_id']|default:''}}">
 </form>
 <script>
 $(function(){

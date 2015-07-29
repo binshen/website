@@ -15,7 +15,7 @@
 
     <!--------------搜索列表start---------------->
     <div class="p_crumbs">
-        <a href="" target="_blank">全部房源</a>&gt;<a href="" target="_blank">{{$house.region_name}}</a>&gt;<a href="" target="_blank">{{$house.xq_name}}</a>
+        <a href="{{site_url url='house/rent_house_list'}}" target="_blank">租房房源</a>&gt;<a href="javascript:$('form').submit();" target="_blank">{{$house.region_name}}</a>&gt;<a>{{$house.xq_name}}</a>
     </div>
     <div class="housedetail">
         <div class="house-d-top clearfix">
@@ -37,14 +37,14 @@
                 <div class="d-p-txt1">{{$house.name}}</div>
                 <div class="d-p-txt2">{{$house.sub_title}}</div>
                 <div class="ev-prices">
-                    <span class="alwa-pr"><i class="color1">价格：</i>{{$house.unit_price}}元/m²</span> 
-                    <span class="sepc-pr"><i class="color1">本月均价：</i>{{$house.unit_price}}元/m²</span><br />
-                    <span class="sale-pr"><i class="color1">售 价：</i><i class="iNum">{{$house.unit_price}}</i>万元</span>
+                	<span class="sale-pr"><i class="color1">租金：</i><i class="iNum">{{$house.unit_price}}</i>元/月</span><br />
+                    <span class="alwa-pr" style="width:160px;"><i class="color1">租赁方式：</i>{{$house.rent_style}}</span> 
+                    <span class="sepc-pr"><i class="color1">租金押付：</i>{{$house.rent_type}}</span>
                 </div>
                 <div class="d-other-info clearfix">
                     <dl class="other-dl">
-                        <dt>首付：</dt>
-                        <dd>{{$house.unit_price}}万</dd>
+                        <dt></dt>
+                        <dd></dd>
                         <dt>房 型：</dt>
                         <dd>{{$house.room}}室{{$house.lounge}}厅</dd>
                         <dt>装 修：</dt>
@@ -53,8 +53,8 @@
                         <dd>{{$house.floor}}/{{$house.total_floor}}层</dd>
                     </dl>
                     <dl class="other-dl">
-                        <dt>月 供：</dt>
-                        <dd>{{$house.unit_price}}元</dd>
+                        <dt></dt>
+                        <dd></dd>
                         <dt>面 积：</dt>
                         <dd>{{$house.acreage}}㎡</dd>
                         <dt>朝 向：</dt>
@@ -155,6 +155,7 @@
 {include file="footer.html"}
 <form action="/house/second_hand_list" method="POST" id="second_hand_detail_form">
 	<input type="hidden" id="search_text" name="search_text" value="{{$search_text|default:''}}">
+	<input type="hidden" id="search_region" name="search_region" value="{{$house['region_id'|default:'']}}">
 </form>
 <script>
 $(function(){

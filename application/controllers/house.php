@@ -18,7 +18,7 @@ class House extends MY_Controller {
 	}
 	
 	public function index() {
-		
+		redirect('/');
 	}
 	
 	public function new_house_list() {
@@ -186,9 +186,24 @@ class House extends MY_Controller {
 		
 		$house['house_pics'] = $this->house_model->get_second_hand_house_pics($id);
 		
+		$rent_type_id = $house['rent_style_id'];
+		$rent_style_id = $house['rent_style_id'];
+		$rent_style_list = array(
+			1 => '整租',
+			2 => '合租'
+		);
+		$rent_type_list = array(
+			1 => '付三押一',
+			2 => '付二押一',
+			3 => '付一押一',
+			4 => '其他'
+		);
+		$house['rent_style'] = $rent_style_list[$rent_style_id];
+		$house['rent_type'] = $rent_type_list[$rent_type_id];
+		
 		$this->assign('house', $house);
 		
-		$this->display('new_house_detail.html');
+		$this->display('rent_house_detail.html');
 	}
 	
 	public function new_house_detail($id) {
