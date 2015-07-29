@@ -171,26 +171,20 @@
         <div class="serchR">
             <div class="reco-tit">推荐楼盘</div>
             <div class="reco-bdy">
+                {{foreach from=$recommend_list item=row}}
                 <div class="a-reco-link">
-                    <img src="http://dummyimage.com/210x140/000/fff">
-                    <span class="reco-ad-info">[玉山]昆城景苑</span>
-                    <span class="reco-ad-info">均价 <i class="red">1300</i>元/m²</span>
+                    <a href="{{site_url url='house/new_house_detail'}}/{{$row['id']}}" target="_blank"><img width="210" height="140" src="/uploadfiles/pics/{{$row['bg_pic']}}"></a>
+                    <span class="reco-ad-info">[{{$row['region_name']}}]{{$row['name']}}</span>
+                    <span class="reco-ad-info">均价 <i class="red">{{$row['unit_price']}}</i>元/m²</span>
                     <div class="house-state">
-                        <span class="cur">精装修</span>
-                        <span>改善房</span>
-                        <span>综合体</span>
+                    	{{foreach from=$row['feature'] item=roww key=k}}
+                    	{{if $k < 2}}
+                        <span {{if $k==0}}class="cur"{{/if}}>{{$roww}}</span>
+                        {{/if}}
+                        {{/foreach}}
                     </div>
                 </div>
-                <div class="a-reco-link">
-                    <img src="http://dummyimage.com/210x140/000/fff">
-                    <span class="reco-ad-info">[玉山]昆城景苑</span>
-                    <span class="reco-ad-info">均价 <i class="red">1300</i>元/m²</span>
-                    <div class="house-state">
-                        <span class="cur">精装修</span>
-                        <span>改善房</span>
-                        <span>综合体</span>
-                    </div>
-                </div>
+            	{{/foreach}}
             </div>
         </div>
     </div>

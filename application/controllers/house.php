@@ -110,6 +110,12 @@ class House extends MY_Controller {
 		$this->assign('search_order', $this->input->post('search_order') ? $this->input->post('search_order') : 1);
 		$this->assign('order_price_dir', $this->input->post('order_price_dir') ? $this->input->post('order_price_dir') : 1);
 		
+		$recommend_list = $this->house_model->get_recommend_list();
+		foreach($recommend_list as $k=>$v){
+			$recommend_list[$k]['feature'] = explode(",", $v['feature']);
+		}
+		$this->assign('recommend_list', $recommend_list);
+		
 		$this->display('second_hand_list.html');
 	}
 	
@@ -172,6 +178,12 @@ class House extends MY_Controller {
 		
 		$this->assign('search_order', $this->input->post('search_order') ? $this->input->post('search_order') : 1);
 		$this->assign('order_price_dir', $this->input->post('order_price_dir') ? $this->input->post('order_price_dir') : 1);
+		
+		$recommend_list = $this->house_model->get_recommend_list();
+		foreach($recommend_list as $k=>$v){
+			$recommend_list[$k]['feature'] = explode(",", $v['feature']);
+		}
+		$this->assign('recommend_list', $recommend_list);
 		
 		$this->display('rent_house_list.html');
 	}
