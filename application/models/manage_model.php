@@ -1042,7 +1042,9 @@ class Manage_model extends MY_Model
 			'description' => $this->input->post('description'),
 			'house_pic' => $this->input->post('house_pic'),
 			'folder' => $this->input->post('folder'),
-			'bg_pic' => $this->input->post('is_bg')
+			'bg_pic' => $this->input->post('is_bg'),
+			'rent_style_id' => $this->input->post('rent_style_id'),
+			'rent_type_id' => $this->input->post('rent_type_id')
 		);
 		$this->db->trans_start();//--------开始事务
 	
