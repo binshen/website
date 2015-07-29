@@ -201,25 +201,14 @@
         			<dt>配套设施：</dt>
         			<dd><input name="facility" type="text" class="required" value="<?php if(!empty($facility)) echo $facility;?>" /></dd>
         		</dl>
-<!--  
-        		<dl>
-        			<dt>经度：</dt>
-        			<dd><input name="longitude" type="text" class="required" value="<?php if(!empty($longitude)) echo $longitude;?>" /></dd>
-        		</dl>
         		
-        		<dl>
-        			<dt>纬度：</dt>
-        			<dd><input name="latitude" type="text" class="required" value="<?php if(!empty($latitude)) echo $latitude;?>" /></dd>
+				<dl>
+        			<dt>是否推荐：</dt>
+        			<dd><select class="combox" name='recommend'>
+        			<option value="-1" <?php if(!empty($recommend) && $recommend == '-1') echo 'selected="selected";'?>>否</option>
+        			<option value="1" <?php if(!empty($recommend) && $recommend == '1') echo 'selected="selected";'?>>是</option>
+        			</select></dd>
         		</dl>
-        		
-        		<dl>
-        			<dt>业务员：</dt>
-        			<dd><input name="broker_id" type="hidden" class="required" value="<?php if(!empty($broker_id)) echo $broker_id;?>" />
-        			<input type="text" name="broker_name" value="<?php if(!empty($broker_name)) echo $broker_name;?>" readonly>
-        			<a lookupgroup="" href="<?php echo site_url('manage/list_broker_dialog');?>" class="btnLook">查找带回</a>
-        			</dd>
-        		</dl>
--->
        	</fieldset>
        	
 		<fieldset>

@@ -185,6 +185,14 @@
         			</dd>
         		</dl>
 -->
+        		<dl>
+        			<dt>是否推荐：</dt>
+        			<dd><select class="combox" name='recommend'>
+        			<option value="-1" <?php if(!empty($recommend) && $recommend == '-1') echo 'selected="selected";'?>>否</option>
+        			<option value="1" <?php if(!empty($recommend) && $recommend == '1') echo 'selected="selected";'?>>是</option>
+        			</select></dd>
+        		</dl>
+        		
        	</fieldset>
        	
 		<fieldset>

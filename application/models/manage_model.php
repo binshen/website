@@ -908,10 +908,9 @@ class Manage_model extends MY_Model
 			'broker_id' => $this->session->userdata('user_id'),
 			'description' => $this->input->post('description'),
 			'house_pic' => $this->input->post('house_pic'),
-//			'longitude' => $this->input->post('longitude'),
-//			'latitude' => $this->input->post('latitude'),
 			'folder' => $this->input->post('folder'),
-			'bg_pic' => $this->input->post('is_bg')
+			'bg_pic' => $this->input->post('is_bg'),
+			'recommend'=>$this->input->post('recommend')
 		);
 		$this->db->trans_start();//--------开始事务
 	
@@ -1044,7 +1043,8 @@ class Manage_model extends MY_Model
 			'folder' => $this->input->post('folder'),
 			'bg_pic' => $this->input->post('is_bg'),
 			'rent_style_id' => $this->input->post('rent_style_id'),
-			'rent_type_id' => $this->input->post('rent_type_id')
+			'rent_type_id' => $this->input->post('rent_type_id'),
+			'recommend'=>$this->input->post('recommend')
 		);
 		$this->db->trans_start();//--------开始事务
 	
