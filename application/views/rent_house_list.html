@@ -171,8 +171,8 @@
 	                       {{$item->acreage}}m²
 	                    </div>
 	                    <div class="houseprice">
-	                        <em class="red">{{$item->total_price}}</em>万<br /><em class="ave-price">{{$item->unit_price}}元/m²</em>
-	                    </div>
+                     	   租金<em class="red">{{$item->unit_price}}</em>元/月<br />
+                        {{/if}}
 	                </li>
                 {{/foreach}}
             </ul>
@@ -253,7 +253,7 @@ function change_search(t, v) {
 }
 
 function show_detail(id) {
-	var url = '/house/second_hand_detail/' + id;
+	var url = '/house/rent_house_detail/' + id;
 	window.open(url);
 }
 </script>

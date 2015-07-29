@@ -848,9 +848,9 @@ class House_model extends MY_Model
    		if($orderField == 1) {
    			$orderDirection = $this->input->post('order_price_dir');
    			if($orderDirection == 1) {
-   				$this->db->order_by('a.total_price', 'desc');
+   				$this->db->order_by('a.unit_price', 'desc');
    			} else {
-   				$this->db->order_by('a.total_price', 'asc');
+   				$this->db->order_by('a.unit_price', 'asc');
    			}
    		} else {
    			$this->db->order_by('a.id', 'desc');
