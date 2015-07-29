@@ -173,8 +173,8 @@
             <div class="reco-bdy">
                 {{foreach from=$recommend_list item=row}}
                 <div class="a-reco-link">
-                    <a href="{{site_url url='house/new_house_detail'}}/{{$row['id']}}" target="_blank"><img width="210" height="140" src="/uploadfiles/pics/{{$row['bg_pic']}}"></a>
-                    <span class="reco-ad-info">[{{$row['region_name']}}]{{$row['name']}}</span>
+                    <a href="{{site_url url='house/rent_house_detail'}}/{{$row['id']}}" target="_blank"><img width="210" height="140" src="/uploadfiles/pics/{{$row['bg_pic']}}"></a>
+                    <span class="reco-ad-info">[{{$row['region_name']}}]{{$row['name']|truncate:14:'...'}}</span>
                     <span class="reco-ad-info">均价 <i class="red">{{$row['unit_price']}}</i>元/m²</span>
                     <div class="house-state">
                     	{{foreach from=$row['feature'] item=roww key=k}}

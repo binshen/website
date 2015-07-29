@@ -876,4 +876,14 @@ class House_model extends MY_Model
    		$this->db->where('a.type_id', 3);
    		return $this->db->where('a.id', $id)->get()->row_array();
    	}
+   	
+   	public function get_recommended_house_list($type_id){
+   		$this->db->select('a.name, a.total_price, a.unit_price, a.id, a.feature, a.bg_pic, b.name AS region_name');
+   		$this->db->from('house a');
+   		$this->db->join('house_region b', 'a.region_id = b.id', 'left');
+   		$this->db->where('type_id', $type_id);
+   		$this->db->where('recommend', '1');
+   		$this->db->limit(4,0);
+   		return $this->db->get()->result_array();
+   	}
 }

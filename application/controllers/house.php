@@ -110,7 +110,7 @@ class House extends MY_Controller {
 		$this->assign('search_order', $this->input->post('search_order') ? $this->input->post('search_order') : 1);
 		$this->assign('order_price_dir', $this->input->post('order_price_dir') ? $this->input->post('order_price_dir') : 1);
 		
-		$recommend_list = $this->house_model->get_recommend_list();
+		$recommend_list = $this->house_model->get_recommended_house_list(2);
 		foreach($recommend_list as $k=>$v){
 			$recommend_list[$k]['feature'] = explode(",", $v['feature']);
 		}
@@ -140,6 +140,12 @@ class House extends MY_Controller {
 		$house['house_pics'] = $this->house_model->get_second_hand_house_pics($id);
 		
 		$this->assign('house', $house);
+		
+		$recommend_list = $this->house_model->get_recommended_house_list(2);
+		foreach($recommend_list as $k=>$v){
+			$recommend_list[$k]['feature'] = explode(",", $v['feature']);
+		}
+		$this->assign('recommend_list', $recommend_list);
 		
 		$this->display('second_hand_detail.html');
 	}
@@ -179,7 +185,7 @@ class House extends MY_Controller {
 		$this->assign('search_order', $this->input->post('search_order') ? $this->input->post('search_order') : 1);
 		$this->assign('order_price_dir', $this->input->post('order_price_dir') ? $this->input->post('order_price_dir') : 1);
 		
-		$recommend_list = $this->house_model->get_recommend_list();
+		$recommend_list = $this->house_model->get_recommended_house_list(3);
 		foreach($recommend_list as $k=>$v){
 			$recommend_list[$k]['feature'] = explode(",", $v['feature']);
 		}
@@ -214,6 +220,12 @@ class House extends MY_Controller {
 		$house['rent_type'] = $rent_type_list[$rent_type_id];
 		
 		$this->assign('house', $house);
+		
+		$recommend_list = $this->house_model->get_recommended_house_list(3);
+		foreach($recommend_list as $k=>$v){
+			$recommend_list[$k]['feature'] = explode(",", $v['feature']);
+		}
+		$this->assign('recommend_list', $recommend_list);
 		
 		$this->display('rent_house_detail.html');
 	}
