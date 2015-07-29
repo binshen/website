@@ -167,12 +167,9 @@
 	                            {{$item->tel}}
 	                        </div>
 	                    </div>
-	                    <div class="housearea">
-	                       {{$item->acreage}}m²
-	                    </div>
-	                    <div class="houseprice">
-                     	   租金<em class="red">{{$item->unit_price}}</em>元/月<br />
-                        {{/if}}
+	                    <div class="houseprice" style="width:180px">
+                     	   	租金 <em class="red">{{$item->unit_price}}</em>元/月<br />
+                        </div>
 	                </li>
                 {{/foreach}}
             </ul>

@@ -150,7 +150,6 @@ class House extends MY_Controller {
 		$data = $this->house_model->get_rent_house_list();
 		foreach ($data['res_list'] as &$d) {
 			$d->feature_list = explode(",", $d->feature);
-			$d->unit_price = intval($d->total_price * 10000 / $d->acreage);
 			$region_id = $d->region_id;
 			if($region_id < 6) {
 				$d->region_fullname = "玉山镇-" . $d->region_name;
