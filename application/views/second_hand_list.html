@@ -196,7 +196,7 @@
             	{{foreach from=$recommend_list item=row}}
                 <div class="a-reco-link">
                     <a href="{{site_url url='house/second_hand_detail'}}/{{$row['id']}}" target="_blank"><img width="210" height="140" src="/uploadfiles/pics/{{$row['bg_pic']}}"></a>
-                    <span class="reco-ad-info">[{{$row['region_name']}}]{{$row['name']|truncate:14:'...'}}</span>
+                    <span class="reco-ad-info">[{{$row['region_name']}}]{{$row['name']|escape:htmlall:'UTF-8'|truncate:14:'...'}}</span>
                     <span class="reco-ad-info">售价 <i class="red">{{$row['total_price']}}</i>万元</span>
                     <div class="house-state">
                     	{{foreach from=$row['feature'] item=roww key=k}}

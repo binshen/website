@@ -159,7 +159,7 @@
 	                <a href="{{site_url url='house/second_hand_detail'}}/{{$row['id']}}" target="_blank">
 	                	<img width="165" height="125" src="/uploadfiles/pics/{{$row['bg_pic']}}">
 	                	<p class="a-r-house-p">
-	                	<i class="blue">{{$row['name']|truncate:14:'...'}}</i><br />
+	                	<i class="blue">{{$row['name']|escape:htmlall:'UTF-8'|truncate:14:'...'}}</i><br />
 	                	<i class="red">售价：{{$row['total_price']}}万元</i><br />
 	                	<i>{{$row['room']}}室{{$row['lounge']}}厅，{{$row['acreage']}}平米</i><br />
 	                	<i>{{$row['xq_name']}}</i></p>
