@@ -89,7 +89,7 @@
         		</dl>
         		
         		<dl>
-        			<dt>面积(平方米)：</dt>
+        			<dt>面积(平米)：</dt>
         			<dd><input name="acreage" type="text" class="required" value="<?php if(!empty($acreage)) echo $acreage;?>" /></dd>
         		</dl>
         		

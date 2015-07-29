@@ -85,11 +85,11 @@
         		
         		<dl>
         			<dt>租金(元/月)：</dt>
-        			<dd><input name="total_price" type="text" class="required" value="<?php if(!empty($total_price)) echo $total_price;?>" /></dd>
+        			<dd><input name="unit_price" type="text" class="required" value="<?php if(!empty($unit_price)) echo $unit_price;?>" /></dd>
         		</dl>
         		
         		<dl>
-        			<dt>面积(平方米)：</dt>
+        			<dt>面积(平米)：</dt>
         			<dd><input name="acreage" type="text" class="required" value="<?php if(!empty($acreage)) echo $acreage;?>" /></dd>
         		</dl>
         		

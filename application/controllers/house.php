@@ -141,10 +141,55 @@ class House extends MY_Controller {
 	
 	public function rent_house_list() {
 		
+		$search_region_list = $this->house_model->get_search_region_list();
+		$this->assign('search_region_list', $search_region_list);
+		
+		$search_style_list = $this->house_model->get_search_style_list();
+		$this->assign('search_style_list', $search_style_list);
+		
+		$data = $this->house_model->get_rent_house_list();
+		foreach ($data['res_list'] as &$d) {
+			$d->feature_list = explode(",", $d->feature);
+			$d->unit_price = intval($d->total_price * 10000 / $d->acreage);
+			$region_id = $d->region_id;
+			if($region_id < 6) {
+				$d->region_fullname = "玉山镇-" . $d->region_name;
+			} else {
+				$d->region_fullname = $d->region_name . "-" . $d->region_name;
+			}
+		}
+		$this->assign('second_hand_list', $data);
+		
+		$pager = $this->pagination->getPageLink('/house/second_hand_list', $data['countPage'], $data['numPerPage']);
+		$this->assign('pager', $pager);
+		
+		$this->assign('search_text', $this->input->post('search_text'));
+		$this->assign('search_region', $this->input->post('search_region'));
+		$this->assign('search_style', $this->input->post('search_style'));
+		$this->assign('search_price', $this->input->post('search_price'));
+		$this->assign('search_acreage', $this->input->post('search_acreage'));
+		$this->assign('search_type', $this->input->post('search_type'));
+		$this->assign('search_feature', $this->input->post('search_feature'));
+		
+		$this->assign('search_order', $this->input->post('search_order') ? $this->input->post('search_order') : 1);
+		$this->assign('order_price_dir', $this->input->post('order_price_dir') ? $this->input->post('order_price_dir') : 1);
+		
+		$this->display('rent_house_list.html');
 	}
 	
 	public function rent_house_detail($id) {
 		
+		$house = $this->house_model->get_rent_house_detail($id);
+		$house['feature_list'] = explode(",", $house['feature']);
+		
+		$broker_house_count = $this->house_model->get_broker_house_count($house['broker_id']);
+		$house['broker_house_count'] = $broker_house_count;
+		
+		$house['house_pics'] = $this->house_model->get_second_hand_house_pics($id);
+		
+		$this->assign('house', $house);
+		
+		$this->display('new_house_detail.html');
 	}
 	
 	public function new_house_detail($id) {
