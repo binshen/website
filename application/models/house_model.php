@@ -743,7 +743,7 @@ class House_model extends MY_Model
    			$where = "(a.name LIKE '%" . $t . "%' OR a.sub_title LIKE '%" . $t . "%' OR b.name LIKE '%" . $t . "%' OR c.name LIKE '%" . $t . "%' OR d.name LIKE '%" . $t . "%')";
    			$this->db->where($where);
    		}
-   		$this->db->where('a.type_id', 2);
+   		$this->db->where('a.type_id', 3);
    		 
    		$rs_total = $this->db->get()->row();
    		//总记录数
@@ -841,7 +841,7 @@ class House_model extends MY_Model
    			$where = "(a.name LIKE '%" . $t . "%' OR a.sub_title LIKE '%" . $t . "%' OR b.name LIKE '%" . $t . "%' OR c.name LIKE '%" . $t . "%' OR d.name LIKE '%" . $t . "%')";
    			$this->db->where($where);
    		}
-   		$this->db->where('a.type_id', 2);
+   		$this->db->where('a.type_id', 3);
    		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage);
    		 
    		$orderField = $this->input->post('search_order');
@@ -873,7 +873,7 @@ class House_model extends MY_Model
    		$this->db->join('house_substyle f', 'a.substyle_id = f.id', 'left');
    		$this->db->join('house_region g', 'e.region_id = g.id', 'left');
    		$this->db->join('house_decoration h', 'a.decoration_id = h.id', 'left');
-   		$this->db->where('a.type_id', 2);
+   		$this->db->where('a.type_id', 3);
    		return $this->db->where('a.id', $id)->get()->row_array();
    	}
 }

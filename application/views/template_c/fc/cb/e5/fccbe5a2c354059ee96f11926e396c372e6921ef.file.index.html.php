@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2015-07-29 09:25:29
+<?php /* Smarty version Smarty-3.1.16, created on 2015-07-29 11:13:41
          compiled from "application\views\index.html" */ ?>
 <?php /*%%SmartyHeaderCode:1960755b6e9761cf065-27303114%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fccbe5a2c354059ee96f11926e396c372e6921ef' => 
     array (
       0 => 'application\\views\\index.html',
-      1 => 1438132997,
+      1 => 1438139617,
       2 => 'file',
     ),
   ),
@@ -355,29 +355,113 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
              <!----------------租房------------------->
              <div class="category-menu-content">
                 <div class="category-menu-line clearfix">
-                    <span class="category-menu-line-tit">写字楼</span>
-                    <p class="menu-link"><a href="" target="_blank">单纯性</a><a href="" target="_blank">商住型</a><a href="" target="_blank">双拼</a><a href="" target="_blank">综合性</a></p>
-                </div>
-                <div class="category-menu-line clearfix">
                     <span class="category-menu-line-tit">住宅</span>
-                    <p class="menu-link"><a href="" target="_blank">玉山</a><a href="" target="_blank">周市</a><a href="" target="_blank">巴城</a><a href="" target="_blank">张浦</a><a href="" target="_blank">陆家</a><a href="" target="_blank">花桥</a><a href="" target="_blank">千灯</a><a href="" target="_blank">周庄</a><br /><a href="" target="_blank">锦溪</a><a href="" target="_blank">淀山湖</a></p>
-                    <p class="menu-link menu-link-two"><a href="" target="_blank">一室</a><a href="" target="_blank">二室</a><a href="" target="_blank">三室</a><a href="" target="_blank">四室</a><a href="" target="_blank">五室</a><a href="" target="_blank">五室以上</a></p>
-                </div>
-                <div class="category-menu-line clearfix">
-                    <span class="category-menu-line-tit">别墅</span>
-                    <p class="menu-link"><a href="" target="_blank">独栋</a><a href="" target="_blank">联排</a><a href="" target="_blank">双拼</a><a href="" target="_blank">叠加</a></p>
+                    <p class="menu-link">
+                    	<?php ob_start();?><?php  $_smarty_tpl->tpl_vars['item'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['item']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['style_list_1']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value) {
+$_smarty_tpl->tpl_vars['item']->_loop = true;
+?><?php $_tmp60=ob_get_clean();?><?php echo $_tmp60;?>
+<a href="javascript:void(0);" onclick="redirect(3,1,1,'<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
+<?php $_tmp61=ob_get_clean();?><?php echo $_tmp61;?>
+');" target="_self"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
+<?php $_tmp62=ob_get_clean();?><?php echo $_tmp62;?>
+</a><?php ob_start();?><?php } ?><?php $_tmp63=ob_get_clean();?><?php echo $_tmp63;?>
+
+                    </p>
+                    <p class="menu-link menu-link-two">
+                    	<?php ob_start();?><?php  $_smarty_tpl->tpl_vars['item'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['item']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['style_list_2']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value) {
+$_smarty_tpl->tpl_vars['item']->_loop = true;
+?><?php $_tmp64=ob_get_clean();?><?php echo $_tmp64;?>
+<a href="javascript:void(0);" onclick="redirect(3,1,2,'<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
+<?php $_tmp65=ob_get_clean();?><?php echo $_tmp65;?>
+');" target="_self"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
+<?php $_tmp66=ob_get_clean();?><?php echo $_tmp66;?>
+</a><?php ob_start();?><?php } ?><?php $_tmp67=ob_get_clean();?><?php echo $_tmp67;?>
+</p>
+                    </p>
                 </div>
                 <div class="category-menu-line clearfix">
                     <span class="category-menu-line-tit">公寓</span>
-                    <p class="menu-link"><a href="" target="_blank">普通公寓 </a><a href="" target="_blank">商务公寓</a><a href="" target="_blank">双拼</a><a href="" target="_blank">酒店式公寓</a></p>
+                    <p class="menu-link">
+                    	<?php ob_start();?><?php  $_smarty_tpl->tpl_vars['item'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['item']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['style_list_3']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value) {
+$_smarty_tpl->tpl_vars['item']->_loop = true;
+?><?php $_tmp68=ob_get_clean();?><?php echo $_tmp68;?>
+<a href="javascript:void(0);" onclick="redirect(3,'<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
+<?php $_tmp69=ob_get_clean();?><?php echo $_tmp69;?>
+');" target="_self"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
+<?php $_tmp70=ob_get_clean();?><?php echo $_tmp70;?>
+</a><?php ob_start();?><?php } ?><?php $_tmp71=ob_get_clean();?><?php echo $_tmp71;?>
+
+                    </p>
+                </div>
+            	<div class="category-menu-line clearfix">
+                	<span class="category-menu-line-tit">别墅</span>
+                    <p class="menu-link">
+                    	<?php ob_start();?><?php  $_smarty_tpl->tpl_vars['item'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['item']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['style_list_4']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value) {
+$_smarty_tpl->tpl_vars['item']->_loop = true;
+?><?php $_tmp72=ob_get_clean();?><?php echo $_tmp72;?>
+<a href="javascript:void(0);" onclick="redirect(3,'<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
+<?php $_tmp73=ob_get_clean();?><?php echo $_tmp73;?>
+');" target="_self"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
+<?php $_tmp74=ob_get_clean();?><?php echo $_tmp74;?>
+</a><?php ob_start();?><?php } ?><?php $_tmp75=ob_get_clean();?><?php echo $_tmp75;?>
+
+                    </p>
+                </div>
+                <div class="category-menu-line clearfix">
+                    <span class="category-menu-line-tit">写字楼</span>
+                    <p class="menu-link">
+                    	<?php ob_start();?><?php  $_smarty_tpl->tpl_vars['item'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['item']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['style_list_5']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value) {
+$_smarty_tpl->tpl_vars['item']->_loop = true;
+?><?php $_tmp76=ob_get_clean();?><?php echo $_tmp76;?>
+<a href="javascript:void(0);" onclick="redirect(3,'<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
+<?php $_tmp77=ob_get_clean();?><?php echo $_tmp77;?>
+');" target="_self"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
+<?php $_tmp78=ob_get_clean();?><?php echo $_tmp78;?>
+</a><?php ob_start();?><?php } ?><?php $_tmp79=ob_get_clean();?><?php echo $_tmp79;?>
+
+                    </p>
                 </div>
                 <div class="category-menu-line clearfix">
                     <span class="category-menu-line-tit">商铺</span>
-                    <p class="menu-link"><a href="" target="_blank">30㎡以下</a><a href="" target="_blank">30-90㎡</a><a href="" target="_blank"> 90-180㎡</a><a href="" target="_blank">180㎡以上</a></p>
+                    <p class="menu-link">
+                    	<?php ob_start();?><?php  $_smarty_tpl->tpl_vars['item'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['item']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['style_list_6']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value) {
+$_smarty_tpl->tpl_vars['item']->_loop = true;
+?><?php $_tmp80=ob_get_clean();?><?php echo $_tmp80;?>
+<a href="javascript:void(0);" onclick="redirect(3,12,1,'<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
+<?php $_tmp81=ob_get_clean();?><?php echo $_tmp81;?>
+');" target="_self"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
+<?php $_tmp82=ob_get_clean();?><?php echo $_tmp82;?>
+</a><?php ob_start();?><?php } ?><?php $_tmp83=ob_get_clean();?><?php echo $_tmp83;?>
+
+                    </p>
                 </div>
                 <div class="category-menu-line clearfix">
                     <span class="category-menu-line-tit">厂房</span>
-                    <p class="menu-link"><a href="" target="_blank">玉山</a><a href="" target="_blank">周市</a><a href="" target="_blank">巴城</a><a href="" target="_blank">张浦</a><a href="" target="_blank">陆家</a><a href="" target="_blank">花桥</a><a href="" target="_blank">千灯</a><a href="" target="_blank">周庄</a><br /><a href="" target="_blank">锦溪</a><a href="" target="_blank">淀山湖</a></p>
+                    <p class="menu-link">
+                    	<?php ob_start();?><?php  $_smarty_tpl->tpl_vars['item'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['item']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['style_list_7']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value) {
+$_smarty_tpl->tpl_vars['item']->_loop = true;
+?><?php $_tmp84=ob_get_clean();?><?php echo $_tmp84;?>
+<a href="javascript:void(0);" onclick="redirect(1,13,1,'<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
+<?php $_tmp85=ob_get_clean();?><?php echo $_tmp85;?>
+');" target="_self"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
+<?php $_tmp86=ob_get_clean();?><?php echo $_tmp86;?>
+</a><?php ob_start();?><?php } ?><?php $_tmp87=ob_get_clean();?><?php echo $_tmp87;?>
+
+                    </p>
                 </div>
             </div>
 	</div>	
@@ -392,12 +476,12 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
  $_from = $_smarty_tpl->tpl_vars['news1']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['row']->key => $_smarty_tpl->tpl_vars['row']->value) {
 $_smarty_tpl->tpl_vars['row']->_loop = true;
-?><?php $_tmp60=ob_get_clean();?><?php echo $_tmp60;?>
+?><?php $_tmp88=ob_get_clean();?><?php echo $_tmp88;?>
 
                          <li><a href="#" target="_blank"><img src="/uploadfiles/news/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['pic'];?>
-<?php $_tmp61=ob_get_clean();?><?php echo $_tmp61;?>
+<?php $_tmp89=ob_get_clean();?><?php echo $_tmp89;?>
 " width="515" height="280" /></a></li>
-                         <?php ob_start();?><?php } ?><?php $_tmp62=ob_get_clean();?><?php echo $_tmp62;?>
+                         <?php ob_start();?><?php } ?><?php $_tmp90=ob_get_clean();?><?php echo $_tmp90;?>
 
                          </ul>
                     </div>
@@ -406,10 +490,10 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
  $_from = $_smarty_tpl->tpl_vars['news1']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['row']->key => $_smarty_tpl->tpl_vars['row']->value) {
 $_smarty_tpl->tpl_vars['row']->_loop = true;
-?><?php $_tmp63=ob_get_clean();?><?php echo $_tmp63;?>
+?><?php $_tmp91=ob_get_clean();?><?php echo $_tmp91;?>
 
                          <i class="toc"></i>
-                         <?php ob_start();?><?php } ?><?php $_tmp64=ob_get_clean();?><?php echo $_tmp64;?>
+                         <?php ob_start();?><?php } ?><?php $_tmp92=ob_get_clean();?><?php echo $_tmp92;?>
 
                      </div>
                 </div>
@@ -425,41 +509,41 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
 foreach ($_from as $_smarty_tpl->tpl_vars['row']->key => $_smarty_tpl->tpl_vars['row']->value) {
 $_smarty_tpl->tpl_vars['row']->_loop = true;
  $_smarty_tpl->tpl_vars['k']->value = $_smarty_tpl->tpl_vars['row']->key;
-?><?php $_tmp65=ob_get_clean();?><?php echo $_tmp65;?>
+?><?php $_tmp93=ob_get_clean();?><?php echo $_tmp93;?>
 
-	                         	<?php ob_start();?><?php if ($_smarty_tpl->tpl_vars['k']->value==0||$_smarty_tpl->tpl_vars['k']->value==4||$_smarty_tpl->tpl_vars['k']->value==8) {?><?php $_tmp66=ob_get_clean();?><?php echo $_tmp66;?>
+	                         	<?php ob_start();?><?php if ($_smarty_tpl->tpl_vars['k']->value==0||$_smarty_tpl->tpl_vars['k']->value==4||$_smarty_tpl->tpl_vars['k']->value==8) {?><?php $_tmp94=ob_get_clean();?><?php echo $_tmp94;?>
 
 	                         	<li>
 	                         	<a href="#" target="_blank" class="aPic aPicW128"><img src="/uploadfiles/news/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['pic'];?>
-<?php $_tmp67=ob_get_clean();?><?php echo $_tmp67;?>
+<?php $_tmp95=ob_get_clean();?><?php echo $_tmp95;?>
 " width="128" height="195" /><i class="iTit"><em class="fz14"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
-<?php $_tmp68=ob_get_clean();?><?php echo $_tmp68;?>
+<?php $_tmp96=ob_get_clean();?><?php echo $_tmp96;?>
 </em><br /><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['title2'];?>
-<?php $_tmp69=ob_get_clean();?><?php echo $_tmp69;?>
+<?php $_tmp97=ob_get_clean();?><?php echo $_tmp97;?>
 </i></a>
-                         	    <?php ob_start();?><?php } elseif ($_smarty_tpl->tpl_vars['k']->value==3||$_smarty_tpl->tpl_vars['k']->value==7||$_smarty_tpl->tpl_vars['k']->value==11) {?><?php $_tmp70=ob_get_clean();?><?php echo $_tmp70;?>
+                         	    <?php ob_start();?><?php } elseif ($_smarty_tpl->tpl_vars['k']->value==3||$_smarty_tpl->tpl_vars['k']->value==7||$_smarty_tpl->tpl_vars['k']->value==11) {?><?php $_tmp98=ob_get_clean();?><?php echo $_tmp98;?>
 
                          	    <a href="#" target="_blank" class="aPic aPicW128"><img src="/uploadfiles/news/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['pic'];?>
-<?php $_tmp71=ob_get_clean();?><?php echo $_tmp71;?>
+<?php $_tmp99=ob_get_clean();?><?php echo $_tmp99;?>
 " width="128" height="195" /><i class="iTit"><em class="fz14"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
-<?php $_tmp72=ob_get_clean();?><?php echo $_tmp72;?>
+<?php $_tmp100=ob_get_clean();?><?php echo $_tmp100;?>
 </em><br /><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['title2'];?>
-<?php $_tmp73=ob_get_clean();?><?php echo $_tmp73;?>
+<?php $_tmp101=ob_get_clean();?><?php echo $_tmp101;?>
 </i></a>
                          	    </li>
-                         	    <?php ob_start();?><?php } else { ?><?php $_tmp74=ob_get_clean();?><?php echo $_tmp74;?>
+                         	    <?php ob_start();?><?php } else { ?><?php $_tmp102=ob_get_clean();?><?php echo $_tmp102;?>
 
                          	    <a href="#" target="_blank" class="aPic aPicW128"><img src="/uploadfiles/news/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['pic'];?>
-<?php $_tmp75=ob_get_clean();?><?php echo $_tmp75;?>
+<?php $_tmp103=ob_get_clean();?><?php echo $_tmp103;?>
 " width="128" height="195" /><i class="iTit"><em class="fz14"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
-<?php $_tmp76=ob_get_clean();?><?php echo $_tmp76;?>
+<?php $_tmp104=ob_get_clean();?><?php echo $_tmp104;?>
 </em><br /><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['title2'];?>
-<?php $_tmp77=ob_get_clean();?><?php echo $_tmp77;?>
+<?php $_tmp105=ob_get_clean();?><?php echo $_tmp105;?>
 </i></a>
-                         	    <?php ob_start();?><?php }?><?php $_tmp78=ob_get_clean();?><?php echo $_tmp78;?>
+                         	    <?php ob_start();?><?php }?><?php $_tmp106=ob_get_clean();?><?php echo $_tmp106;?>
 
                                 
-                            <?php ob_start();?><?php } ?><?php $_tmp79=ob_get_clean();?><?php echo $_tmp79;?>
+                            <?php ob_start();?><?php } ?><?php $_tmp107=ob_get_clean();?><?php echo $_tmp107;?>
 
                            </ul>
                         </div>
@@ -469,7 +553,7 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
              <div class="newsPic">
              	<div class="newPic-top clearfix">
              		<a href="" target="_blank" class="aWid170"><img src="/uploadfiles/news/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['news3']->value['pic'];?>
-<?php $_tmp80=ob_get_clean();?><?php echo $_tmp80;?>
+<?php $_tmp108=ob_get_clean();?><?php echo $_tmp108;?>
 " width="170" height="280" /></a>
                     <div class="hotGuide">
                         <div class="guideTxt">
@@ -477,16 +561,16 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
                             <p class="guide-link"><a href="" target="_blank">市场行情</a><a href="" target="_blank">特别策划</a><a href="" target="_blank">名盘鉴赏</a><br /><a href="" target="_blank">楼市前线</a><a href="" target="_blank">楼相百态</a><a href="" target="_blank">独家调查</a></p>
                         </div>
                     	<a href="" target="_blank" class="aPic aPicW270"><img src="/uploadfiles/news/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['news3']->value['pic'];?>
-<?php $_tmp81=ob_get_clean();?><?php echo $_tmp81;?>
+<?php $_tmp109=ob_get_clean();?><?php echo $_tmp109;?>
 " width="270" height="190" /><i class="iTit"><em class="fz20">街区商铺59万起</em><br />吃货天堂-昆城广场</i></a>
                     </div>
                 </div>
                 <div class="newPic-btm clearfix">
                 	<a href="" target="_blank" class="aWid170"><img src="/uploadfiles/news/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['news3']->value['pic'];?>
-<?php $_tmp82=ob_get_clean();?><?php echo $_tmp82;?>
+<?php $_tmp110=ob_get_clean();?><?php echo $_tmp110;?>
 " width="170" height="195" /></a>
                     <a href="" target="_blank" class="aPic aPicW270"><img src="/uploadfiles/news/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['news3']->value['pic'];?>
-<?php $_tmp83=ob_get_clean();?><?php echo $_tmp83;?>
+<?php $_tmp111=ob_get_clean();?><?php echo $_tmp111;?>
 " width="270" height="195" /><i class="iTit"><em class="fz20">街区商铺59万起</em><br />吃货天堂-昆城广场</i></a>
                 </div>
              </div>      
@@ -497,32 +581,32 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
 
 <form action="/house/second_hand_list" method="POST" id="funmall_index_form">
 	<input type="hidden" id="search_text" name="search_text" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_text']->value)===null||$tmp==='' ? '' : $tmp);?>
-<?php $_tmp84=ob_get_clean();?><?php echo $_tmp84;?>
+<?php $_tmp112=ob_get_clean();?><?php echo $_tmp112;?>
 ">
 	<input type="hidden" id="search_region" name="search_region" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_region']->value)===null||$tmp==='' ? '' : $tmp);?>
-<?php $_tmp85=ob_get_clean();?><?php echo $_tmp85;?>
+<?php $_tmp113=ob_get_clean();?><?php echo $_tmp113;?>
 ">
 	<input type="hidden" id="search_style" name="search_style" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_style']->value)===null||$tmp==='' ? '' : $tmp);?>
-<?php $_tmp86=ob_get_clean();?><?php echo $_tmp86;?>
+<?php $_tmp114=ob_get_clean();?><?php echo $_tmp114;?>
 ">
 	<input type="hidden" id="search_price" name="search_price" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_price']->value)===null||$tmp==='' ? '' : $tmp);?>
-<?php $_tmp87=ob_get_clean();?><?php echo $_tmp87;?>
+<?php $_tmp115=ob_get_clean();?><?php echo $_tmp115;?>
 ">
 	<input type="hidden" id="search_acreage" name="search_acreage" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_acreage']->value)===null||$tmp==='' ? '' : $tmp);?>
-<?php $_tmp88=ob_get_clean();?><?php echo $_tmp88;?>
+<?php $_tmp116=ob_get_clean();?><?php echo $_tmp116;?>
 ">
 	<input type="hidden" id="search_type" name="search_type" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_type']->value)===null||$tmp==='' ? '' : $tmp);?>
-<?php $_tmp89=ob_get_clean();?><?php echo $_tmp89;?>
+<?php $_tmp117=ob_get_clean();?><?php echo $_tmp117;?>
 ">
 	<input type="hidden" id="search_feature" name="search_feature" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_feature']->value)===null||$tmp==='' ? '' : $tmp);?>
-<?php $_tmp90=ob_get_clean();?><?php echo $_tmp90;?>
+<?php $_tmp118=ob_get_clean();?><?php echo $_tmp118;?>
 ">
 	
 	<input type="hidden" id="search_order" name="search_order" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['search_order']->value)===null||$tmp==='' ? '' : $tmp);?>
-<?php $_tmp91=ob_get_clean();?><?php echo $_tmp91;?>
+<?php $_tmp119=ob_get_clean();?><?php echo $_tmp119;?>
 ">
 	<input type="hidden" id="order_price_dir" name="order_price_dir" value="<?php ob_start();?><?php echo (($tmp = @$_smarty_tpl->tpl_vars['order_price_dir']->value)===null||$tmp==='' ? '' : $tmp);?>
-<?php $_tmp92=ob_get_clean();?><?php echo $_tmp92;?>
+<?php $_tmp120=ob_get_clean();?><?php echo $_tmp120;?>
 ">
 </form>
 <script>
@@ -589,8 +673,10 @@ function redirect(t, s, k, v) {
 	}
 	if(t == 1) {
 		$("#funmall_index_form").attr('action', '/house/new_house_list');
-	} else {
+	} else if(t == 2) {
 		$("#funmall_index_form").attr('action', '/house/second_hand_list');
+	} else {
+		$("#funmall_index_form").attr('action', '/house/rent_house_list');
 	}
 	$("#funmall_index_form").submit();
 }
