@@ -44,6 +44,37 @@ class Sysconfig_model extends MY_Model
     	return $data;
     }
     
+    public function post_register(){
+    	$rs = $this->db->select('count(1) num')->from('users')->where('username',$this->input->post('username'))->get()->row();
+    	if($rs->num > 0){
+    		return -2;//用户名已经存在
+    	}
+    	$data = array(
+    		'username'=>$this->input->post('username'),
+    		'password'=>sha1($this->input->post('password')),
+    		'cdate'=>date('Y-m-d H:i:s',time())
+    	);
+    	$res = $this->db->insert('users',$data);
+    	if($res)
+    		return 1;
+    	else
+    		return -1;
+    }
+    
+    public function check_login(){
+    	$rs = $this->db->select()->from('users')
+    		->where('username',$this->input->post('username'))
+    		->where('password',sha1($this->input->post('password')))->get()->row();
+    	if($rs){
+    		$data['member_id'] = $rs->id;
+    		$data['member_username'] = $rs->username;
+    		$this->session->set_userdata($data);
+    		return 1;
+    	}else{
+    		return -1;
+    	}
+    }
+    
 }
 
 /* End of file sysconfig_model.php */

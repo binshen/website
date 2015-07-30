@@ -10,17 +10,26 @@
 .index-nav li .i-sell{background-position:0 -46px;}
 .index-nav li .i-lease{background-position:0 -92px;}
 .index-nav li .i-renting{background-position:0 -138px;}
-.index-nav li .i-menu{width:85px; height:46px;font-size:20px; letter-spacing:20px; line-height:46px;float:left; padding-right:10px; overflow:hidden;}
+.index-nav li .i-menu{width:85px; height:46px;font-size:20px; line-height:46px;float:left; padding-right:10px; overflow:hidden;}
 .index-nav .current .i-buy{background-position:-54px -46px;}
 .index-nav .current .i-sell{background-position:-54px -46px;}
 .index-nav .current .i-lease{background-position:-54px -92px;}
 .index-nav .current .i-renting{background-position:-54px -138px;}
+
 
 .index-nav li.last .category-menu-tit {border:none;}
 .index-nav li.current{ background:#fc7240; border-right:none; color:#fff;}
 .category-menu-content{position:absolute;top:0;left:212px;padding:25px 15px;width:370px; height:428px; background:#fff; display:none; filter:alpha(opacity=90); opacity:0.9;}
 .category-menu-line{margin-bottom:35px;}
 .category-menu-line .category-menu-line-tit{ font-size:16px; float:left;}
+.category-menu-dl dt{margin-right: 14px; width: 24px;height: 24px; float: left; background:#959595; color: #fff; text-align: center; line-height: 24px; border-radius: 4px;}
+.category-menu-dl dd{margin-bottom:25px;padding-left: 40px; color: #9d9d9d;}
+.category-menu-dl dd span{font-size:21px; color: #333;}
+
+.category-menu-dl{padding:30px 60px 0;}
+.publish-btn{margin:0 auto; width: 195px; height: 45px; display: block; border-radius: 5px; background: #ff6600; font-size: 20px; text-align: center; line-height: 45px; color: #fff;}
+.publish-btn:hover{ color: #fff;}
+.publish-btn em{width:22px; height:22px;display: inline-block; background: url(../images/icon3_1.png) no-repeat -128px 0; vertical-align: middle; margin-right: 5px;}
 .menu-link{padding-left:55px; font-size:14px;}
 .menu-link a{padding:0 5px;}
 .menu-link-two{margin-top:15px;}

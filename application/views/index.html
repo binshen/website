@@ -24,8 +24,14 @@
         </ul>
         <div class="user-info">
         	<em class="login-logo"></em>
-        	<a href="" target="_blank">登录</a>
-            <a href="" target="_blank">注册</a>
+        	{{if $member_username}}
+        	<a>{{$member_username}}</a>
+        	<a href="{{site_url url='login/logout'}}" >退出</a>
+        	{{else}}
+        	<a href="{{site_url url='login'}}">登录</a>
+            <a href="{{site_url url='register'}}" >注册</a>
+        	{/if}
+        	
         </div>
     </div>
     <!--------------头部导航end---------------->

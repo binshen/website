@@ -18,6 +18,11 @@ class MY_Controller extends CI_Controller
         parent::__construct();
         ini_set('date.timezone','Asia/Shanghai');
         $this->cismarty->assign('base_url',base_url());//url路径
+        if($this->session->userdata('member_username')){
+        	$this->cismarty->assign('member_username',$this->session->userdata('member_username'));
+        }else{
+        	$this->cismarty->assign('member_username','');
+        }
     }
     
 	//重载smarty方法assign
@@ -46,42 +51,51 @@ class MY_Controller extends CI_Controller
     	return $subs;
     }
     
-	/**
-     * 获取页码列表
-     * 例如<上一页>...56789<下一页>
-     * @param int $total 总页数
-     * @param int $current 当前页
-     * @param int $page_list_size 显示页码个数
-     * @return array 显示页码的数组
+    /**
+     * 提示信息
+     * @param varchar $message 提示信息
+     * @param varchar $url 跳转页面，如果为空则后退
+     * @param int $type 提示类型，1是自动关闭的提示框，2是错误提示框
      **/
-    public function get_page_list($total,$current,$page_list_size = '5')
-    {
-	    $page= array();
-		if($total<$page_list_size){
-			for($i=1;$i<=$total;$i++){
-				$page[]=$i;
-			}
-		}else{
-			if($current <= ceil($page_list_size/2)){
-			//当前页小于居中页码，则正常打印
-				for($i=1;$i<=$page_list_size;$i++){
-					$page[]=$i;
-				}
-				
-			}else if($current > ($total - ceil($page_list_size/2))){
-			//最后几页正常打印
-				for($i=0;$i<$page_list_size;$i++){
-					$page[]=$total-$i;
-				}
-				$page = array_reverse($page);
-			}else{
-				for($i=$current-floor($page_list_size/2);$i<=$current+floor($page_list_size/2);$i++){
-					$page[]=$i;
-				}
-			}
-		}
-		return $page;
+    public function show_message($message,$url=null,$type=1){
+    	if($url){
+    		$js = "location.href='".$url."';";
+    	}else{
+    		$js = "history.back();";
+    	}
+    
+    	if($type=='1'){
+    		echo "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+				<html xmlns='http://www.w3.org/1999/xhtml'>
+				<head>
+				<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+				<title>".$message."</title>
+				<script src='".base_url()."js/jquery.min.js'></script>
+				<link rel='stylesheet' href='".base_url()."css/easydialog.css'>
+				</head>
+				<body>
+				<script src='".base_url()."js/easydialog.min.js'></script>
+				<script>
+				var callFn = function(){
+				  ".$js."
+				};
+				easyDialog.open({
+					container : {
+						content : '".$message."'
+					},
+					autoClose : 1200,
+					callback : callFn
+			
+				});
+    
+				</script>
+				</body>
+				</html>";
+    	}
+    	exit;
     }
+    
+
 }
 
 /* End of file MY_Controller.php */
