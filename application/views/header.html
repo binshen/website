@@ -41,6 +41,7 @@
     </div>
     <!--------------头部end---------------->
     <form method="POST" id="searchHouseForm">
+    	<input type="hidden" id="search_key" name="search_key" value="{{$search_key|default:1}}">
     	<input type="hidden" id="search_text" name="search_text" value="{{$search_text|default:''}}">
     	
     	<input type="hidden" id="search_region" name="search_region" value="{{$search_region|default:''}}">
@@ -67,16 +68,23 @@ $(function(){
 		$(this).addClass('current');
 		$('.ks-select em').text($(this).text());
 		$('.ks-select-pop').hide();
+		if($(this).text() == '新房') {
+			$("#search_key").val(1);
+		} else if($(this).text() == '二手房') {
+			$("#search_key").val(2);
+		} else {
+			$("#search_key").val(3);
+		}
 	});
 	
 	$("#btnSearchText").click(function(event) {
 		event.preventDefault();
 		$("#search_text").val($("#question").val());
-		var current = $(".ks-select-pop").find(".current").text();
-		if(current == "二手房") {
-			$("#searchHouseForm").attr('action', '/house/second_hand_list');
-		} else if(current == "新房") {
+		var key = $("#search_key").val();
+		if(key == 1) {
 			$("#searchHouseForm").attr('action', '/house/new_house_list');
+		} else if(key == 2) {
+			$("#searchHouseForm").attr('action', '/house/second_hand_list');
 		} else {
 			$("#searchHouseForm").attr('action', '/house/rent_house_list');
 		}
