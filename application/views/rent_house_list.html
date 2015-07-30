@@ -30,18 +30,9 @@
     <!--------------头部导航end---------------->
     <!--------------搜索列表start---------------->
     <div class="item-list">
-    	<div class="item-list-tit">二手房房源</div>
+    	<div class="item-list-tit">租房房源</div>
         <div class="item-list-bdy">
         	<form action="/house/second_hand_list" method="POST" id="second_hand_list_form">
-        		<input type="hidden" id="search_region" name="search_region" value="{{$search_region}}">
-        		<input type="hidden" id="search_style" name="search_style" value="{{$search_style}}">
-        		<input type="hidden" id="search_price" name="search_price" value="{{$search_price}}">
-        		<input type="hidden" id="search_acreage" name="search_acreage" value="{{$search_acreage}}">
-        		<input type="hidden" id="search_type" name="search_type" value="{{$search_type}}">
-        		<input type="hidden" id="search_feature" name="search_feature" value="{{$search_feature}}">
-        		
-        		<input type="hidden" id="search_order" name="search_order" value="{{$search_order}}">
-        		<input type="hidden" id="order_price_dir" name="order_price_dir" value="{{$order_price_dir}}">
 	            <dl class="items">
 	                <dt class="item-title">区域：</dt>
 	                <dd class="elems-l">
@@ -166,38 +157,25 @@
 	                            {{$item->tel}}
 	                        </div>
 	                    </div>
-	                    <div class="housearea">
-	                       {{$item->acreage}}m²
-	                    </div>
-	                    <div class="houseprice">
-	                        <em class="red">{{$item->total_price}}</em>万<br /><em class="ave-price">{{$item->unit_price}}元/m²</em>
-	                    </div>
+	                    <div class="houseprice" style="width:180px">
+                     	   	租金 <em class="red">{{$item->unit_price}}</em>元/月<br />
+                        </div>
 	                </li>
                 {{/foreach}}
             </ul>
             
             <div class="paging">
             	{{$pager}}
-            <!--
-                <i class="iPre">&lt;上一页</i>
-                <i class="curr">1</i>
-                <a href="">2</a>
-                <a href="">3</a>
-                <a href="">4</a>
-                <a href="">5</a>
-                <i class="aDotted">...</i>
-                <a href="" class="iPre">下一页&gt;</a>
-            -->
             </div>
         </div>
         <div class="serchR">
             <div class="reco-tit">推荐楼盘</div>
             <div class="reco-bdy">
-            	{{foreach from=$recommend_list item=row}}
+                {{foreach from=$recommend_list item=row}}
                 <div class="a-reco-link">
-                    <a href="{{site_url url='house/second_hand_detail'}}/{{$row['id']}}" target="_blank"><img width="210" height="140" src="/uploadfiles/pics/{{$row['bg_pic']}}"></a>
+                    <a href="{{site_url url='house/rent_house_detail'}}/{{$row['id']}}" target="_blank"><img width="210" height="140" src="/uploadfiles/pics/{{$row['bg_pic']}}"></a>
                     <span class="reco-ad-info">[{{$row['region_name']}}]{{$row['name']|truncate_cn:22}}</span>
-                    <span class="reco-ad-info">售价 <i class="red">{{$row['total_price']}}</i>万元</span>
+                    <span class="reco-ad-info">均价 <i class="red">{{$row['unit_price']}}</i>元/m²</span>
                     <div class="house-state">
                     	{{foreach from=$row['feature'] item=roww key=k}}
                     	{{if $k < 2}}
@@ -233,7 +211,7 @@ $(function() {
 		$("#searchHouseForm").submit();
 	});
 	
-	$('.ks-select em').text("二手房");
+	$('.ks-select em').text("租房");
 	$("#question").val('{{$search_text}}')
 });
 
@@ -243,7 +221,7 @@ function change_search(t, v) {
 }
 
 function show_detail(id) {
-	var url = '/house/second_hand_detail/' + id;
+	var url = '/house/rent_house_detail/' + id;
 	window.open(url);
 }
 </script>

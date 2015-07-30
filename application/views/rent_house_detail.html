@@ -8,18 +8,18 @@
 <link href="{{$base_url}}css/detail.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="{{$base_url}}js/jquery-1.8.3.min.js" ></script>
 <script type="text/javascript" src="{{$base_url}}js/dpl-jquery.slide.js" ></script>
-</head>
 <style>
 #pic_control { width: 408px; }
 #pic_control .current{ border:1px solid #87be33; }
 </style>
+</head>
 <body>
 <div class="wraper">
 	{include file="header.html"}
 
     <!--------------搜索列表start---------------->
     <div class="p_crumbs">
-        <a href="{{site_url url='house/second_hand_list'}}" target="_self">二手房房源</a>&gt;<a href="javascript:$('#second_hand_detail_form').submit();">{{$house.region_name}}</a>&gt;<a>{{$house.xq_name}}</a>
+        <a href="{{site_url url='house/rent_house_list'}}" target="_blank">租房房源</a>&gt;<a href="javascript:$('#rent_house_detail_form').submit();" target="_blank">{{$house.region_name}}</a>&gt;<a>{{$house.xq_name}}</a>
     </div>
     <div class="housedetail">
         <div class="house-d-top clearfix">
@@ -41,14 +41,14 @@
                 <div class="d-p-txt1">{{$house.name}}</div>
                 <div class="d-p-txt2">{{$house.sub_title}}</div>
                 <div class="ev-prices">
-                    <span class="alwa-pr"><i class="color1">价格：</i>{{$house.unit_price}}元/m²</span> 
-                    <span class="sepc-pr"><i class="color1">本月均价：</i>{{$house.unit_price}}元/m²</span><br />
-                    <span class="sale-pr"><i class="color1">售 价：</i><i class="iNum">{{$house.total_price}}</i>万元</span>
+                	<span class="sale-pr"><i class="color1">租金：</i><i class="iNum">{{$house.unit_price}}</i>元/月</span><br />
+                    <span class="alwa-pr" style="width:160px;"><i class="color1">租赁方式：</i>{{$house.rent_style}}</span> 
+                    <span class="sepc-pr"><i class="color1">租金押付：</i>{{$house.rent_type}}</span>
                 </div>
                 <div class="d-other-info clearfix">
                     <dl class="other-dl">
-                        <dt>首付：</dt>
-                        <dd>{{$house.first_pay}}万</dd>
+                        <dt></dt>
+                        <dd></dd>
                         <dt>房 型：</dt>
                         <dd>{{$house.room}}室{{$house.lounge}}厅</dd>
                         <dt>装 修：</dt>
@@ -57,8 +57,8 @@
                         <dd>{{$house.floor}}/{{$house.total_floor}}层</dd>
                     </dl>
                     <dl class="other-dl">
-                        <dt>月 供：</dt>
-                        <dd>{{$house.monthly_pay}}元</dd>
+                        <dt></dt>
+                        <dd></dd>
                         <dt>面 积：</dt>
                         <dd>{{$house.acreage}}㎡</dd>
                         <dt>朝 向：</dt>
@@ -164,7 +164,7 @@
 	                	<img width="165" height="125" src="/uploadfiles/pics/{{$row['bg_pic']}}">
 	                	<p class="a-r-house-p">
 	                	<i class="blue">{{$row['name']|truncate_cn:26}}</i><br />
-	                	<i class="red">售价：{{$row['total_price']}}万元</i><br />
+	                	<i class="red">均价：{{$row['unit_price']}}元/㎡</i><br />
 	                	<i>{{$row['room']}}室{{$row['lounge']}}厅，{{$row['acreage']}}平米</i><br />
 	                	<i>{{$row['xq_name']}}</i></p>
 	                </a>
@@ -174,8 +174,8 @@
     </div>
 </div>
 {include file="footer.html"}
-<form action="/house/second_hand_list" method="POST" id="second_hand_detail_form">
-	<input type="hidden" id="search_region" name="search_region" value="{{$house['region_id']|default:''}}">
+<form action="/house/rent_house_list" method="POST" id="rent_house_detail_form">
+	<input type="hidden" id="search_region" name="search_region" value="{{$house['region_id'|default:'']}}">
 </form>
 <script>
 $(function(){
@@ -191,7 +191,7 @@ $(function(){
         $(this).removeClass('over-bg');
     });
     
-    $('.ks-select em').text("二手房");
+    $('.ks-select em').text("租房");
 })
 </script>
 </body>

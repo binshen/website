@@ -4,15 +4,15 @@
 .file{ position:absolute; top:0; right:80px; height:24px; filter:alpha(opacity:0);opacity: 0;width:300px }
 </style>
 <div class="pageContent">
-    <form method="post" enctype="multipart/form-data" action="<?php echo site_url('manage/save_sd_house');?>" class="pageForm required-validate" onsubmit="return iframeCallback(this, navTabAjaxDone);">
+    <form method="post" enctype="multipart/form-data" action="<?php echo site_url('manage/save_rent_house');?>" class="pageForm required-validate" onsubmit="return iframeCallback(this, navTabAjaxDone);">
         <div class="pageFormContent" layoutH="55">
         <fieldset>
-        	<legend class="topLegend">二手房基本信息</legend>
+        	<legend class="topLegend">租房基本信息</legend>
         	    <dl >
         			<dt>房源名称(标题)：</dt>
         			<dd>
         				<input type="hidden" name="id" value="<?php if(!empty($id)) echo $id;?>">
-        				<input type="hidden" name="type_id" value="2">
+        				<input type="hidden" name="type_id" value="3">
         				<input name="name" type="text" class="required" value="<?php if(!empty($name)) echo $name;?>" />
         			</dd>
         		</dl>
@@ -84,8 +84,8 @@
         		</dl>
         		
         		<dl>
-        			<dt>总价(万元)：</dt>
-        			<dd><input name="total_price" type="text" class="required" value="<?php if(!empty($total_price)) echo $total_price;?>" /></dd>
+        			<dt>租金(元/月)：</dt>
+        			<dd><input name="unit_price" type="text" class="required" value="<?php if(!empty($unit_price)) echo $unit_price;?>" /></dd>
         		</dl>
         		
         		<dl>
@@ -93,6 +93,41 @@
         			<dd><input name="acreage" type="text" class="required" value="<?php if(!empty($acreage)) echo $acreage;?>" /></dd>
         		</dl>
         		
+        		<dl>
+        			<dt>租赁方式：</dt>
+        			<dd>
+        				<select name="rent_style_id" class="combox">
+        					<?php          
+				                if (!empty($rent_style_list)):
+				            	    foreach ($rent_style_list as $row):
+				            	    	$selected = !empty($rent_style_id) && $row->id == $rent_style_id ? "selected" : "";          
+				            ?>
+        								<option value="<?php echo $row->id; ?>" <?php echo $selected; ?>><?php echo $row->name; ?></option>
+        					<?php 
+				            		endforeach;
+				            	endif;
+				            ?>
+        				</select>
+        			</dd>
+        		</dl>
+        		
+        		<dl>
+        			<dt>租金押付：</dt>
+        			<dd>
+        				<select name="rent_type_id" class="combox">
+        					<?php          
+				                if (!empty($rent_type_list)):
+				            	    foreach ($rent_type_list as $row):
+				            	    	$selected = !empty($rent_type_id) && $row->id == $rent_type_id ? "selected" : "";          
+				            ?>
+        								<option value="<?php echo $row->id; ?>" <?php echo $selected; ?>><?php echo $row->name; ?></option>
+        					<?php 
+				            		endforeach;
+				            	endif;
+				            ?>
+        				</select>
+        			</dd>
+        		</dl>
         		
         		<dl>
         			<dt>朝向：</dt>
@@ -166,33 +201,14 @@
         			<dt>配套设施：</dt>
         			<dd><input name="facility" type="text" class="required" value="<?php if(!empty($facility)) echo $facility;?>" /></dd>
         		</dl>
-<!--  
-        		<dl>
-        			<dt>经度：</dt>
-        			<dd><input name="longitude" type="text" class="required" value="<?php if(!empty($longitude)) echo $longitude;?>" /></dd>
-        		</dl>
         		
-        		<dl>
-        			<dt>纬度：</dt>
-        			<dd><input name="latitude" type="text" class="required" value="<?php if(!empty($latitude)) echo $latitude;?>" /></dd>
-        		</dl>
-        		
-        		<dl>
-        			<dt>业务员：</dt>
-        			<dd><input name="broker_id" type="hidden" class="required" value="<?php if(!empty($broker_id)) echo $broker_id;?>" />
-        			<input type="text" name="broker_name" value="<?php if(!empty($broker_name)) echo $broker_name;?>" readonly>
-        			<a lookupgroup="" href="<?php echo site_url('manage/list_broker_dialog');?>" class="btnLook">查找带回</a>
-        			</dd>
-        		</dl>
--->
-        		<dl>
+				<dl>
         			<dt>是否推荐：</dt>
         			<dd><select class="combox" name='recommend'>
         			<option value="-1" <?php if(!empty($recommend) && $recommend == '-1') echo 'selected="selected";'?>>否</option>
         			<option value="1" <?php if(!empty($recommend) && $recommend == '1') echo 'selected="selected";'?>>是</option>
         			</select></dd>
         		</dl>
-        		
        	</fieldset>
        	
 		<fieldset>

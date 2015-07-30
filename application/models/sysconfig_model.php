@@ -14,16 +14,6 @@ if (! defined('BASEPATH'))
  */
 class Sysconfig_model extends MY_Model
 {
-	protected $tables = array(
-            'product_type',
-			'about',
-			'news_type',
-			'contact',
-			'news',
-			'teams',
-			'team_type'
-
-    );
 	
     public function __construct ()
     {

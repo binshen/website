@@ -14,11 +14,23 @@ class House extends MY_Controller {
 	public function __construct() {
 		parent::__construct();
 
+		$this->assign('search_key', $this->input->post('search_key'));
+		$this->assign('search_text', $this->input->post('search_text'));
+		$this->assign('search_region', $this->input->post('search_region'));
+		$this->assign('search_style', $this->input->post('search_style'));
+		$this->assign('search_price', $this->input->post('search_price'));
+		$this->assign('search_acreage', $this->input->post('search_acreage'));
+		$this->assign('search_type', $this->input->post('search_type'));
+		$this->assign('search_feature', $this->input->post('search_feature'));
+		
+		$this->assign('search_order', $this->input->post('search_order') ? $this->input->post('search_order') : 1);
+		$this->assign('order_price_dir', $this->input->post('order_price_dir') ? $this->input->post('order_price_dir') : 1);
+		
 		$this->load->model('house_model');
 	}
 	
 	public function index() {
-		
+		redirect('/');
 	}
 	
 	public function new_house_list() {
@@ -60,17 +72,6 @@ class House extends MY_Controller {
 		
 		$pager = $this->pagination->getPageLink('/house/new_house_list', $data['countPage'], $data['numPerPage']);
 		$this->assign('pager', $pager);
-
-		$this->assign('search_text', $this->input->post('search_text'));
-		$this->assign('search_region', $this->input->post('search_region'));
-		$this->assign('search_style', $this->input->post('search_style'));
-		$this->assign('search_price', $this->input->post('search_price'));
-		$this->assign('search_acreage', $this->input->post('search_acreage'));
-		$this->assign('search_type', $this->input->post('search_type'));
-		$this->assign('search_feature', $this->input->post('search_feature'));
-		
-		$this->assign('search_order', $this->input->post('search_order') ? $this->input->post('search_order') : 1);
-		$this->assign('order_price_dir', $this->input->post('order_price_dir') ? $this->input->post('order_price_dir') : 1);
 		
 		$this->display('new_house_list.html');
 	}
@@ -99,16 +100,11 @@ class House extends MY_Controller {
 		$pager = $this->pagination->getPageLink('/house/second_hand_list', $data['countPage'], $data['numPerPage']);
 		$this->assign('pager', $pager);
 		
-		$this->assign('search_text', $this->input->post('search_text'));
-		$this->assign('search_region', $this->input->post('search_region'));
-		$this->assign('search_style', $this->input->post('search_style'));
-		$this->assign('search_price', $this->input->post('search_price'));
-		$this->assign('search_acreage', $this->input->post('search_acreage'));
-		$this->assign('search_type', $this->input->post('search_type'));
-		$this->assign('search_feature', $this->input->post('search_feature'));
-		
-		$this->assign('search_order', $this->input->post('search_order') ? $this->input->post('search_order') : 1);
-		$this->assign('order_price_dir', $this->input->post('order_price_dir') ? $this->input->post('order_price_dir') : 1);
+		$recommend_list = $this->house_model->get_recommended_house_list(2);
+		foreach($recommend_list as $k=>$v){
+			$recommend_list[$k]['feature'] = explode(",", $v['feature']);
+		}
+		$this->assign('recommend_list', $recommend_list);
 		
 		$this->display('second_hand_list.html');
 	}
@@ -135,7 +131,82 @@ class House extends MY_Controller {
 		
 		$this->assign('house', $house);
 		
+		$recommend_list = $this->house_model->get_recommended_house_list(2);
+		foreach($recommend_list as $k=>$v){
+			$recommend_list[$k]['feature'] = explode(",", $v['feature']);
+		}
+		$this->assign('recommend_list', $recommend_list);
+		
 		$this->display('second_hand_detail.html');
+	}
+	
+	
+	public function rent_house_list() {
+		
+		$search_region_list = $this->house_model->get_search_region_list();
+		$this->assign('search_region_list', $search_region_list);
+		
+		$search_style_list = $this->house_model->get_search_style_list();
+		$this->assign('search_style_list', $search_style_list);
+		
+		$data = $this->house_model->get_rent_house_list();
+		foreach ($data['res_list'] as &$d) {
+			$d->feature_list = explode(",", $d->feature);
+			$region_id = $d->region_id;
+			if($region_id < 6) {
+				$d->region_fullname = "玉山镇-" . $d->region_name;
+			} else {
+				$d->region_fullname = $d->region_name . "-" . $d->region_name;
+			}
+		}
+		$this->assign('second_hand_list', $data);
+		
+		$pager = $this->pagination->getPageLink('/house/second_hand_list', $data['countPage'], $data['numPerPage']);
+		$this->assign('pager', $pager);
+		
+		$recommend_list = $this->house_model->get_recommended_house_list(3);
+		foreach($recommend_list as $k=>$v){
+			$recommend_list[$k]['feature'] = explode(",", $v['feature']);
+		}
+		$this->assign('recommend_list', $recommend_list);
+		
+		$this->display('rent_house_list.html');
+	}
+	
+	public function rent_house_detail($id) {
+		
+		$house = $this->house_model->get_rent_house_detail($id);
+		$house['feature_list'] = explode(",", $house['feature']);
+		
+		$broker_house_count = $this->house_model->get_broker_house_count($house['broker_id']);
+		$house['broker_house_count'] = $broker_house_count;
+		
+		$house['house_pics'] = $this->house_model->get_second_hand_house_pics($id);
+		
+		$rent_type_id = $house['rent_style_id'];
+		$rent_style_id = $house['rent_style_id'];
+		$rent_style_list = array(
+			1 => '整租',
+			2 => '合租'
+		);
+		$rent_type_list = array(
+			1 => '付三押一',
+			2 => '付二押一',
+			3 => '付一押一',
+			4 => '其他'
+		);
+		$house['rent_style'] = $rent_style_list[$rent_style_id];
+		$house['rent_type'] = $rent_type_list[$rent_type_id];
+		
+		$this->assign('house', $house);
+		
+		$recommend_list = $this->house_model->get_recommended_house_list(3);
+		foreach($recommend_list as $k=>$v){
+			$recommend_list[$k]['feature'] = explode(",", $v['feature']);
+		}
+		$this->assign('recommend_list', $recommend_list);
+		
+		$this->display('rent_house_detail.html');
 	}
 	
 	public function new_house_detail($id) {

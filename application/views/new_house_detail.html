@@ -16,7 +16,7 @@
     	<form action="/house/new_house_list" method="POST" >
     	<input type="hidden" id="search_region" name="search_region" value="{{$house['region_id']}}">
     	</form>
-        <a href="{{site_url url='house/new_house_list'}}" target="_blank">全部房源</a>&gt;<a href="javascript:$('form').submit();" >{{$house['region_name']}}</a>&gt;<a>{{$house['name']}}</a>
+        <a href="{{site_url url='house/new_house_list'}}" target="_self">新房房源</a>&gt;<a href="javascript:$('form').submit();" >{{$house['region_name']}}</a>&gt;<a>{{$house['name']}}</a>
     </div>
     <div class="housedetail">
         <div class="new-house-bdy clearfix">
@@ -327,7 +327,7 @@ $(function(){
             css:{ width:'auto',height:'auto',border:'none',cursor:'default',background:'none' }
         });
     });
-		
+    $('.ks-select em').text("新房");	
 });
 
 $(function () {

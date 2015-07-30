@@ -29,19 +29,9 @@
     <!--------------头部导航end---------------->
     <!--------------搜索列表start---------------->
     <div class="item-list">
-    	<div class="item-list-tit">房源</div>
+    	<div class="item-list-tit">新房房源</div>
         <div class="item-list-bdy">
         	<form action="/house/new_house_list" method="POST" id="new_house_list_form">
-        		<input type="hidden" id="search_text" name="search_text" value="{{$search_text}}">
-        		<input type="hidden" id="search_region" name="search_region" value="{{$search_region}}">
-        		<input type="hidden" id="search_style" name="search_style" value="{{$search_style}}">
-        		<input type="hidden" id="search_price" name="search_price" value="{{$search_price}}">
-        		<input type="hidden" id="search_acreage" name="search_acreage" value="{{$search_acreage}}">
-        		<input type="hidden" id="search_type" name="search_type" value="{{$search_type}}">
-        		<input type="hidden" id="search_feature" name="search_feature" value="{{$search_feature}}">
-        		
-        		<input type="hidden" id="search_order" name="search_order" value="{{$search_order}}">
-        		<input type="hidden" id="order_price_dir" name="order_price_dir" value="{{$order_price_dir}}">
 	            <dl class="items">
 	                <dt class="item-title">区域：</dt>
 	                <dd class="elems-l">
@@ -125,12 +115,12 @@
         <div class="serchL">
             <div class="houselist newhouselist">
                 {{foreach from=$new_house_list.res_list item=item}}
-                <div class="houseli">
+                <div class="houseli" onclick="show_detail('{{$item->id}}')">
                     <!-- <img src="http://dummyimage.com/190x155/000/fff"> -->
                     <img src="/uploadfiles/pics/{{$item->bg_pic}}" style="width:190px; height:155px;">
                     <div class="housedetail ">
                         <div class="house-tit">
-                            <a href="{{site_url url='house/new_house_detail'}}/{{$item->id}}">
+                            <a href="javascript:void(0);">
                                 {{$item->name}}
                             </a>
                         </div>
@@ -319,17 +309,6 @@ $(function() {
 	    $('.houselist li').removeClass('over-bg');
 	});
 	
-	$("#btnSearchText").click(function(event) {
-		event.preventDefault();
-		$("#search_text").val($("#question").val());
-		if($(".ks-select-pop").find(".current").text() == "二手房") {
-			$("#new_house_list_form").attr('action', '/house/second_hand_list');
-		} else {
-			$("#new_house_list_form").attr('action', '/house/new_house_list');
-		}
-		$("#new_house_list_form").submit();
-	});
-	
 	$("#order_price").click(function() {
 		$("#search_order").val(1);
 		var order_price_dir = $("#order_price_dir").val();
@@ -338,16 +317,21 @@ $(function() {
 		} else {
 			$("#order_price_dir").val(1);
 		}
-		$("#new_house_list_form").submit();
+		$("#searchHouseForm").submit();
 	});
 	
-	$('.ks-select em').html("新房");
+	$('.ks-select em').text("新房");
 	$("#question").val('{{$search_text}}')
 });
 
 function change_search(t, v) {
 	$("#search_" + t).val(v);
-	$("#new_house_list_form").submit();
+	$("#searchHouseForm").submit();
+}
+
+function show_detail(id) {
+	var url = '/house/new_house_detail/' + id;
+	window.open(url);
 }
 </script>
 </body>
