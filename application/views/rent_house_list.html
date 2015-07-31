@@ -103,7 +103,7 @@
 	                    <a href='javascript:void(0);' onclick="change_search('type', 6)" {{if $search_type == 6}}class='selected-item'{{/if}}>五室以上</a>
 	                </dd>
 	            </dl>
-	            <dl class="items borNo">
+	            <dl class="items">
 	                <dt class="item-title">特色：</dt>
 	                <dd class="elems-l">
 	                    <span onclick="change_search('feature', 0)" {{if empty($search_feature)}}class='selected-item'{{/if}} style="cursor:pointer">不限</span>
@@ -115,6 +115,14 @@
 	                    <a href='javascript:void(0);' onclick="change_search('feature', '双阳台')" {{if $search_feature == '双阳台'}}class='selected-item'{{/if}}>双阳台</a>
 	                    <a href='javascript:void(0);' onclick="change_search('feature', '小区中心位置')" {{if $search_feature == '小区中心位置'}}class='selected-item'{{/if}}>小区中心位置 </a>
 	                    <a href='javascript:void(0);' onclick="change_search('feature', '投资首选')" {{if $search_feature == '投资首选'}}class='selected-item'{{/if}}>投资首选</a>
+	                </dd>
+	            </dl>
+	            <dl class="items borNo">
+	                <dt class="item-title">租赁：</dt>
+	                <dd class="elems-l">
+	                    <span onclick="change_search('rent_style', 0)" {{if empty($search_rent_style)}}class='selected-item'{{/if}} style="cursor:pointer">全部</span>
+	                    <a href='javascript:void(0);' onclick="change_search('rent_style', 1)" {{if $search_rent_style == 1}}class='selected-item'{{/if}}>整租</a>
+	                    <a href='javascript:void(0);' onclick="change_search('rent_style', 2)" {{if $search_rent_style == 2}}class='selected-item'{{/if}}>合租</a>
 	                </dd>
 	            </dl>
             </form>

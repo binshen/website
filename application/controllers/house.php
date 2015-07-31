@@ -22,6 +22,7 @@ class House extends MY_Controller {
 		$this->assign('search_acreage', $this->input->post('search_acreage'));
 		$this->assign('search_type', $this->input->post('search_type'));
 		$this->assign('search_feature', $this->input->post('search_feature'));
+		$this->assign('search_rent_style', $this->input->post('search_rent_style'));
 		
 		$this->assign('search_order', $this->input->post('search_order') ? $this->input->post('search_order') : 1);
 		$this->assign('order_price_dir', $this->input->post('order_price_dir') ? $this->input->post('order_price_dir') : 1);
