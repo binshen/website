@@ -7,6 +7,17 @@
 <meta name="description" content="" />
 <link href="{{$base_url}}css/newdetail.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="{{$base_url}}js/jquery-1.8.3.min.js" ></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=gDeY0HhjlQOvjMmGKKWHAtCb"></script>
+<script>
+var mapX ="120.66381";
+var mapY ="31.32096";
+var mapComm = "新城花园";
+var mapCommAddress = "";
+</script>
+<script type="text/javascript" src="{{$base_url}}js/map.js"></script>
+
+
+
 </head>
 <body>
 <div class="wraper">
@@ -234,7 +245,33 @@
             <span class="mark">楼盘地图</span>
         </div>
         <div class="new-house-bdy">
-            <img src="http://dummyimage.com/1138x320/ccc/fff" alt="" width="1138" height="320" />
+            <div id="detail-map" class="detail-map">
+            <div class="detail-map-main" id="bigmap"></div>
+            <div id="wrapper">
+            <!--demo1 end-->
+            <div class="box demo2">
+                <ul class="tab_menu">
+                    <li onclick="searchcondition('公交',this);" class="current tab-traffic-menu">交通</li>
+                    <li onclick="searchcondition('医疗',this);" class="tab-hospital-menu">医疗</li>
+                    <li onclick="searchcondition('学校',this);" class="tab-school-menu">教育</li>
+                    <li onclick="searchcondition('超市',this);" class="tab-trade-menu">商业</li>
+                </ul>
+                <div class="tab_box">
+                    <div class="hide tab_box_eq">
+                        <ul id="tab-traffic"><li class="tab-traffic"><b>数据正在加载中</b></li></ul>
+                    </div>
+                    <div class="hide tab_box_eq">
+                        <ul id="tab-hospital"><li class="tab-hospital"><b>数据正在加载中</b></li></ul>
+                    </div>
+                    <div class="hide tab_box_eq">
+                        <ul id="tab-school"><li class="tab-school"><b>数据正在加载中</b></li></ul>
+                    </div>
+                    <div class="hide tab_box_eq">
+                        <ul id="tab-trade"><li class="tab-trade"><b>数据正在加载中</b></li></ul>
+                    </div>
+                </div>
+            </div>
+            </div>
         </div>
     </div>
 

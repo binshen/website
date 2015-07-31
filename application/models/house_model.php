@@ -608,7 +608,7 @@ class House_model extends MY_Model
    		$data['folder'] = $rs->folder;
    		
    		// 每页显示的记录条数，默认20条
-   		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 1;
+   		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 9;
    		//$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
    		 
    		//获得总记录数
