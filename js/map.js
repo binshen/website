@@ -16,7 +16,7 @@ function initBigMap(div, point, condition, housetitle) {
 	var map = new BMap.Map(div);
 	window.map = map;
 	window.point = point;
-	map.centerAndZoom(point, 17);
+	map.centerAndZoom(point, 15);
 	map.enableScrollWheelZoom();
 	//searchcondition(condition);
 	$(".tab-traffic-menu").click();
