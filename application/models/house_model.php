@@ -113,7 +113,7 @@ class House_model extends MY_Model
     		}
     	}
     	if($this->input->post('search_feature'))
-    		$this->db->like('feature', $this->input->post('search_feature'));
+    		$this->db->like('a.feature', $this->input->post('search_feature'));
     	if($this->input->post('search_text')) {
     		$t = $this->input->post('search_text');
     		$where = "(a.name LIKE '%" . $t . "%' OR a.sub_title LIKE '%" . $t . "%' OR b.name LIKE '%" . $t . "%' OR c.name LIKE '%" . $t . "%' OR d.name LIKE '%" . $t . "%')";
@@ -211,7 +211,7 @@ class House_model extends MY_Model
 			}
 		}
 		if($this->input->post('search_feature'))
-			$this->db->like('feature', $this->input->post('search_feature'));
+			$this->db->like('a.feature', $this->input->post('search_feature'));
 		if($this->input->post('search_text')) {
 			$t = $this->input->post('search_text');
 			$where = "(a.name LIKE '%" . $t . "%' OR a.sub_title LIKE '%" . $t . "%' OR b.name LIKE '%" . $t . "%' OR c.name LIKE '%" . $t . "%' OR d.name LIKE '%" . $t . "%')";
@@ -737,8 +737,12 @@ class House_model extends MY_Model
    				$this->db->where('a.room', $search_type);
    			}
    		}
-   		if($this->input->post('search_feature'))
-   			$this->db->like('feature', $this->input->post('search_feature'));
+   		if($this->input->post('search_feature')) {
+   			$this->db->like('a.feature', $this->input->post('search_feature'));
+   		}
+   		if($this->input->post('search_rent_style')){
+   			$this->db->where('a.rent_style_id', $this->input->post('search_rent_style'));
+   		}
    		if($this->input->post('search_text')) {
    			$t = $this->input->post('search_text');
    			$where = "(a.name LIKE '%" . $t . "%' OR a.sub_title LIKE '%" . $t . "%' OR b.name LIKE '%" . $t . "%' OR c.name LIKE '%" . $t . "%' OR d.name LIKE '%" . $t . "%')";
@@ -835,8 +839,12 @@ class House_model extends MY_Model
    				$this->db->where('a.room', $search_type);
    			}
    		}
-   		if($this->input->post('search_feature'))
+   		if($this->input->post('search_feature')) {
    			$this->db->like('feature', $this->input->post('search_feature'));
+   		}
+   		if($this->input->post('search_rent_style')){
+   			$this->db->where('a.rent_style_id', $this->input->post('search_rent_style'));
+   		}
    		if($this->input->post('search_text')) {
    			$t = $this->input->post('search_text');
    			$where = "(a.name LIKE '%" . $t . "%' OR a.sub_title LIKE '%" . $t . "%' OR b.name LIKE '%" . $t . "%' OR c.name LIKE '%" . $t . "%' OR d.name LIKE '%" . $t . "%')";
