@@ -230,6 +230,6 @@ function addMarker(item, i,condition) {
     }
    // var txt = "银湖海岸城", mouseoverTxt = txt + " " + parseInt(Math.random() * 1000,10) + "套" ;
         
-    var myCompOverlay = new ComplexCustomOverlay(new BMap.Point(116.407845,39.914101), "银湖海岸城",mouseoverTxt);
+    //var myCompOverlay = new ComplexCustomOverlay(new BMap.Point(116.407845,39.914101), "银湖海岸城",mouseoverTxt);
 
-    mp.addOverlay(myCompOverlay);
+   // mp.addOverlay(myCompOverlay);
