@@ -128,7 +128,8 @@ class House extends MY_Controller {
 		$broker_house_count = $this->house_model->get_broker_house_count($house['broker_id']);
 		$house['broker_house_count'] = $broker_house_count;
 		
-		$house['house_pics'] = $this->house_model->get_second_hand_house_pics($id);
+		$house['house_pics_all'] = $this->house_model->get_second_hand_house_pics($id);
+		$house['house_pics'] = array_slice($house['house_pics_all'], 0, 5);
 		
 		$this->assign('house', $house);
 		
@@ -190,7 +191,8 @@ class House extends MY_Controller {
 		$broker_house_count = $this->house_model->get_broker_house_count($house['broker_id']);
 		$house['broker_house_count'] = $broker_house_count;
 		
-		$house['house_pics'] = $this->house_model->get_second_hand_house_pics($id);
+		$house['house_pics_all'] = $this->house_model->get_second_hand_house_pics($id);
+		$house['house_pics'] = array_slice($house['house_pics_all'], 0, 5);
 		
 		$rent_type_id = $house['rent_style_id'];
 		$rent_style_id = $house['rent_style_id'];
