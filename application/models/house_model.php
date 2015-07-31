@@ -509,11 +509,12 @@ class House_model extends MY_Model
     }
     
     public function get_new_house_detail($id){
-    	$this->db->select('a.*,b.name decoration_name,c.name substyle_name,d.name region_name');
+    	$this->db->select('a.*,b.name decoration_name,c.name substyle_name,d.name region_name,e.name xq_name,e.latitude,e.longitude');
     	$this->db->from('house a');
     	$this->db->join('house_decoration b','a.decoration_id=b.id','left');
     	$this->db->join('house_substyle c','a.substyle_id=c.id','left');
     	$this->db->join('house_region d','a.region_id=d.id','left');
+    	$this->db->join('xiaoqu e','a.xq_id=e.id','left');
     	$this->db->where('a.id',$id);
     	return $this->db->get()->row_array();
     }
@@ -887,4 +888,6 @@ class House_model extends MY_Model
    		$this->db->limit(4,0);
    		return $this->db->get()->result_array();
    	}
+   	
+
 }
