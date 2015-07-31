@@ -138,6 +138,9 @@ class House extends MY_Controller {
 		}
 		$this->assign('recommend_list', $recommend_list);
 		
+		$xy = $this->Convert_GCJ02_To_BD09($house['latitude'],$house['longitude']);
+		$this->assign('xy',$xy);
+		
 		$this->display('second_hand_detail.html');
 	}
 	
@@ -211,6 +214,9 @@ class House extends MY_Controller {
 			$recommend_list[$k]['feature'] = explode(",", $v['feature']);
 		}
 		$this->assign('recommend_list', $recommend_list);
+		
+		$xy = $this->Convert_GCJ02_To_BD09($house['latitude'],$house['longitude']);
+		$this->assign('xy',$xy);
 		
 		$this->display('rent_house_detail.html');
 	}
