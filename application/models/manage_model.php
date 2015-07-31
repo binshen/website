@@ -907,7 +907,7 @@ class Manage_model extends MY_Model
 			'facility' => $this->input->post('facility'),
 			'broker_id' => $this->session->userdata('user_id'),
 			'description' => $this->input->post('description'),
-			'house_pic' => $this->input->post('house_pic'),
+			//'house_pic' => $this->input->post('house_pic'),
 			'folder' => $this->input->post('folder'),
 			'bg_pic' => $this->input->post('is_bg'),
 			'recommend'=>$this->input->post('recommend')
@@ -1039,7 +1039,7 @@ class Manage_model extends MY_Model
 			'facility' => $this->input->post('facility'),
 			'broker_id' => $this->session->userdata('user_id'),
 			'description' => $this->input->post('description'),
-			'house_pic' => $this->input->post('house_pic'),
+			//'house_pic' => $this->input->post('house_pic'),
 			'folder' => $this->input->post('folder'),
 			'bg_pic' => $this->input->post('is_bg'),
 			'rent_style_id' => $this->input->post('rent_style_id'),
