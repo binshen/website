@@ -150,6 +150,10 @@ class House extends MY_Controller {
 		$this->assign('search_style_list', $search_style_list);
 		
 		$data = $this->house_model->get_rent_house_list();
+		$rent_style_list = array(
+			1 => '整租',
+			2 => '合租'
+		);
 		foreach ($data['res_list'] as &$d) {
 			$d->feature_list = explode(",", $d->feature);
 			$region_id = $d->region_id;
@@ -158,6 +162,7 @@ class House extends MY_Controller {
 			} else {
 				$d->region_fullname = $d->region_name . "-" . $d->region_name;
 			}
+			$d->rent_style = $rent_style_list[$d->rent_style_id];
 		}
 		$this->assign('second_hand_list', $data);
 		
