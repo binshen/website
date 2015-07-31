@@ -349,7 +349,7 @@ class House_model extends MY_Model
      		$this->db->like('a.feature', $this->input->post('search_feature'));
      	if($this->input->post('search_text')) {
      		$t = $this->input->post('search_text');
-     		$where = "(a.name LIKE '%" . $t . "%' OR a.sub_title LIKE '%" . $t . "%' OR b.name LIKE '%" . $t . "%' OR c.name LIKE '%" . $t . "%' OR d.name LIKE '%" . $t . "%')";
+     		$where = "(a.name LIKE '%" . $t . "%' OR a.sub_title LIKE '%" . $t . "%' OR b.name LIKE '%" . $t . "%' OR d.name LIKE '%" . $t . "%')";
      		$this->db->where($where);
      	}
     	$this->db->where('type_id', 1);
