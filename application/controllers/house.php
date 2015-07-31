@@ -220,6 +220,10 @@ class House extends MY_Controller {
 		$house = $this->house_model->get_new_house_detail($id);
 		$huxing = $this->house_model->get_new_house_huxing($id);
 		$house['feature_list'] = explode(",", $house['feature']);
+		
+		$xy = $this->Convert_GCJ02_To_BD09($house['latitude'],$house['longitude']);
+		$this->assign('xy',$xy);
+		
 		$news = $this->house_model->get_house_news_row($house['xq_id']);
 		$pics = $this->house_model->get_new_house_pics($id);
 		$prices = $this->house_model->get_new_house_price($id,$house['region_id'],$house['substyle_id']);

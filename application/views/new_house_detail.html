@@ -11,9 +11,9 @@
 <link href="{{$base_url}}css/map.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=gDeY0HhjlQOvjMmGKKWHAtCb"></script>
 <script>
-var mapX ="120.66381";
-var mapY ="31.32096";
-var mapComm = "新城花园";
+var mapX ="{{$xy['lng']}}";
+var mapY ="{{$xy['lat']}}";
+var mapComm = "{{$house['xq_name']}}";
 var mapCommAddress = "";
 </script>
 <script type="text/javascript" src="{{$base_url}}js/map.js"></script>

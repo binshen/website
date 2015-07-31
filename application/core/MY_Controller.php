@@ -95,6 +95,23 @@ class MY_Controller extends CI_Controller
     	exit;
     }
     
+    /**
+     * 中国正常GCJ02坐标---->百度地图BD09坐标
+     * 腾讯地图用的也是GCJ02坐标
+     * @param double $lat 纬度
+     * @param double $lng 经度
+     */
+    function Convert_GCJ02_To_BD09($lat,$lng){
+    	$x_pi = 3.14159265358979324 * 3000.0 / 180.0;
+    	$x = $lng;
+    	$y = $lat;
+    	$z =sqrt($x * $x + $y * $y) + 0.00002 * sin($y * $x_pi);
+    	$theta = atan2($y, $x) + 0.000003 * cos($x * $x_pi);
+    	$lng = $z * cos($theta) + 0.0065;
+    	$lat = $z * sin($theta) + 0.006;
+    	return array('lng'=>$lng,'lat'=>$lat);
+    }
+    
 
 }
 
