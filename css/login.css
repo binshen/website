@@ -14,8 +14,8 @@
 .input-box .onFocus,.register-content .onFocus{border-color: #74b9f0;-webkit-box-shadow:1px 1px 6px #dae7fd,-1px -1px 6px #dae7fd; -moz-box-shadow:1px 1px 6px #dae7fd,-1px -1px 6px #dae7fd;box-shadow:1px 1px 6px #dae7fd,-1px -1px 6px #dae7fd;}
 .input-box .error-bor,.register-content .error-bor{ border-color: #ff7f7f;}
 .error-tip,.register-content .error-tip{color: #ff7f7f;font-size: 12px; display: none;}
-.user-icon-name,.user-icon-pwd{border: 1px solid #dedede;border-right:0;width:35px; height: 35px; background: url(../images/icon3_1.png) no-repeat -56px -217px; float: left; vertical-align: middle;}
-.user-icon-pwd{background-position:-56px -254px;}
+.user-icon-name,.user-icon-pwd{border: 1px solid #dedede;border-right:0;width:35px; height: 35px; background: url(../images/icon3_1.png) no-repeat 0 -398px; float: left; vertical-align: middle;}
+.user-icon-pwd{background-position:0 -435px;}
 .account-name,.account-pwd{padding:9px;vertical-align: middle;border: 1px solid #dedede;border-left:0; width: 200px;}
 
 .account-other{font-size: 14px; color: #666; padding:0 35px; margin-bottom: 35px;}

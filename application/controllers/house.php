@@ -22,6 +22,7 @@ class House extends MY_Controller {
 		$this->assign('search_acreage', $this->input->post('search_acreage'));
 		$this->assign('search_type', $this->input->post('search_type'));
 		$this->assign('search_feature', $this->input->post('search_feature'));
+		$this->assign('search_rent_style', $this->input->post('search_rent_style'));
 		
 		$this->assign('search_order', $this->input->post('search_order') ? $this->input->post('search_order') : 1);
 		$this->assign('order_price_dir', $this->input->post('order_price_dir') ? $this->input->post('order_price_dir') : 1);
@@ -137,6 +138,9 @@ class House extends MY_Controller {
 		}
 		$this->assign('recommend_list', $recommend_list);
 		
+		$xy = $this->Convert_GCJ02_To_BD09($house['latitude'],$house['longitude']);
+		$this->assign('xy',$xy);
+		
 		$this->display('second_hand_detail.html');
 	}
 	
@@ -210,6 +214,9 @@ class House extends MY_Controller {
 			$recommend_list[$k]['feature'] = explode(",", $v['feature']);
 		}
 		$this->assign('recommend_list', $recommend_list);
+		
+		$xy = $this->Convert_GCJ02_To_BD09($house['latitude'],$house['longitude']);
+		$this->assign('xy',$xy);
 		
 		$this->display('rent_house_detail.html');
 	}

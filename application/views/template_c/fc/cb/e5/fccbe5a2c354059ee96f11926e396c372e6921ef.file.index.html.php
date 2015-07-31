@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2015-07-29 16:53:46
+<?php /* Smarty version Smarty-3.1.16, created on 2015-07-31 13:53:03
          compiled from "application\views\index.html" */ ?>
 <?php /*%%SmartyHeaderCode:1960755b6e9761cf065-27303114%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fccbe5a2c354059ee96f11926e396c372e6921ef' => 
     array (
       0 => 'application\\views\\index.html',
-      1 => 1438160018,
+      1 => 1438320813,
       2 => 'file',
     ),
   ),
@@ -20,6 +20,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'variables' => 
   array (
     'base_url' => 0,
+    'member_username' => 0,
     'style_list_1' => 0,
     'item' => 0,
     'style_list_2' => 0,
@@ -36,7 +37,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_55b6e9763ac4d7_80478668')) {function content_55b6e9763ac4d7_80478668($_smarty_tpl) {?><!doctype html>
+<?php if ($_valid && !is_callable('content_55b6e9763ac4d7_80478668')) {function content_55b6e9763ac4d7_80478668($_smarty_tpl) {?><?php if (!is_callable('smarty_function_site_url')) include 'C:\\Users\\bin.shen\\git\\website\\application\\libraries\\smarty\\plugins\\function.site_url.php';
+?><!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -69,8 +71,24 @@ js/dpl-jquery.slide.js"></script>
         </ul>
         <div class="user-info">
         	<em class="login-logo"></em>
-        	<a href="" target="_blank">登录</a>
-            <a href="" target="_blank">注册</a>
+        	<?php ob_start();?><?php if ($_smarty_tpl->tpl_vars['member_username']->value) {?><?php $_tmp4=ob_get_clean();?><?php echo $_tmp4;?>
+
+        	<a><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['member_username']->value;?>
+<?php $_tmp5=ob_get_clean();?><?php echo $_tmp5;?>
+</a>
+        	<a href="<?php ob_start();?><?php echo smarty_function_site_url(array('url'=>'login/logout'),$_smarty_tpl);?>
+<?php $_tmp6=ob_get_clean();?><?php echo $_tmp6;?>
+" >退出</a>
+        	<?php ob_start();?><?php } else { ?><?php $_tmp7=ob_get_clean();?><?php echo $_tmp7;?>
+
+        	<a href="<?php ob_start();?><?php echo smarty_function_site_url(array('url'=>'login'),$_smarty_tpl);?>
+<?php $_tmp8=ob_get_clean();?><?php echo $_tmp8;?>
+">登录</a>
+            <a href="<?php ob_start();?><?php echo smarty_function_site_url(array('url'=>'register'),$_smarty_tpl);?>
+<?php $_tmp9=ob_get_clean();?><?php echo $_tmp9;?>
+" >注册</a>
+        	<?php }?>
+        	
         </div>
     </div>
     <!--------------头部导航end---------------->
@@ -100,12 +118,12 @@ js/dpl-jquery.slide.js"></script>
  $_from = $_smarty_tpl->tpl_vars['style_list_1']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value) {
 $_smarty_tpl->tpl_vars['item']->_loop = true;
-?><?php $_tmp4=ob_get_clean();?><?php echo $_tmp4;?>
+?><?php $_tmp10=ob_get_clean();?><?php echo $_tmp10;?>
 <a href="javascript:void(0);" onclick="redirect(1,1,1,'<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-<?php $_tmp5=ob_get_clean();?><?php echo $_tmp5;?>
+<?php $_tmp11=ob_get_clean();?><?php echo $_tmp11;?>
 ');" target="_self" style="letter-spacing:1px"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
-<?php $_tmp6=ob_get_clean();?><?php echo $_tmp6;?>
-</a><?php ob_start();?><?php } ?><?php $_tmp7=ob_get_clean();?><?php echo $_tmp7;?>
+<?php $_tmp12=ob_get_clean();?><?php echo $_tmp12;?>
+</a><?php ob_start();?><?php } ?><?php $_tmp13=ob_get_clean();?><?php echo $_tmp13;?>
 
                     </p>
                     <p class="menu-link menu-link-two">
@@ -113,12 +131,12 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
  $_from = $_smarty_tpl->tpl_vars['style_list_2']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value) {
 $_smarty_tpl->tpl_vars['item']->_loop = true;
-?><?php $_tmp8=ob_get_clean();?><?php echo $_tmp8;?>
+?><?php $_tmp14=ob_get_clean();?><?php echo $_tmp14;?>
 <a href="javascript:void(0);" onclick="redirect(1,1,2,'<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-<?php $_tmp9=ob_get_clean();?><?php echo $_tmp9;?>
+<?php $_tmp15=ob_get_clean();?><?php echo $_tmp15;?>
 ');" target="_self"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
-<?php $_tmp10=ob_get_clean();?><?php echo $_tmp10;?>
-</a><?php ob_start();?><?php } ?><?php $_tmp11=ob_get_clean();?><?php echo $_tmp11;?>
+<?php $_tmp16=ob_get_clean();?><?php echo $_tmp16;?>
+</a><?php ob_start();?><?php } ?><?php $_tmp17=ob_get_clean();?><?php echo $_tmp17;?>
 </p>
                     </p>
                 </div>
@@ -129,12 +147,12 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
  $_from = $_smarty_tpl->tpl_vars['style_list_3']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value) {
 $_smarty_tpl->tpl_vars['item']->_loop = true;
-?><?php $_tmp12=ob_get_clean();?><?php echo $_tmp12;?>
+?><?php $_tmp18=ob_get_clean();?><?php echo $_tmp18;?>
 <a href="javascript:void(0);" onclick="redirect(1,'<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-<?php $_tmp13=ob_get_clean();?><?php echo $_tmp13;?>
+<?php $_tmp19=ob_get_clean();?><?php echo $_tmp19;?>
 ');" target="_self"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
-<?php $_tmp14=ob_get_clean();?><?php echo $_tmp14;?>
-</a><?php ob_start();?><?php } ?><?php $_tmp15=ob_get_clean();?><?php echo $_tmp15;?>
+<?php $_tmp20=ob_get_clean();?><?php echo $_tmp20;?>
+</a><?php ob_start();?><?php } ?><?php $_tmp21=ob_get_clean();?><?php echo $_tmp21;?>
 
                     </p>
                 </div>
@@ -145,12 +163,12 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
  $_from = $_smarty_tpl->tpl_vars['style_list_4']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value) {
 $_smarty_tpl->tpl_vars['item']->_loop = true;
-?><?php $_tmp16=ob_get_clean();?><?php echo $_tmp16;?>
+?><?php $_tmp22=ob_get_clean();?><?php echo $_tmp22;?>
 <a href="javascript:void(0);" onclick="redirect(1,'<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-<?php $_tmp17=ob_get_clean();?><?php echo $_tmp17;?>
+<?php $_tmp23=ob_get_clean();?><?php echo $_tmp23;?>
 ');" target="_self"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
-<?php $_tmp18=ob_get_clean();?><?php echo $_tmp18;?>
-</a><?php ob_start();?><?php } ?><?php $_tmp19=ob_get_clean();?><?php echo $_tmp19;?>
+<?php $_tmp24=ob_get_clean();?><?php echo $_tmp24;?>
+</a><?php ob_start();?><?php } ?><?php $_tmp25=ob_get_clean();?><?php echo $_tmp25;?>
 
                     </p>
                 </div>
@@ -161,12 +179,12 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
  $_from = $_smarty_tpl->tpl_vars['style_list_5']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value) {
 $_smarty_tpl->tpl_vars['item']->_loop = true;
-?><?php $_tmp20=ob_get_clean();?><?php echo $_tmp20;?>
+?><?php $_tmp26=ob_get_clean();?><?php echo $_tmp26;?>
 <a href="javascript:void(0);" onclick="redirect(1,'<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-<?php $_tmp21=ob_get_clean();?><?php echo $_tmp21;?>
+<?php $_tmp27=ob_get_clean();?><?php echo $_tmp27;?>
 ');" target="_self"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
-<?php $_tmp22=ob_get_clean();?><?php echo $_tmp22;?>
-</a><?php ob_start();?><?php } ?><?php $_tmp23=ob_get_clean();?><?php echo $_tmp23;?>
+<?php $_tmp28=ob_get_clean();?><?php echo $_tmp28;?>
+</a><?php ob_start();?><?php } ?><?php $_tmp29=ob_get_clean();?><?php echo $_tmp29;?>
 
                     </p>
                 </div>
@@ -177,12 +195,12 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
  $_from = $_smarty_tpl->tpl_vars['style_list_6']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value) {
 $_smarty_tpl->tpl_vars['item']->_loop = true;
-?><?php $_tmp24=ob_get_clean();?><?php echo $_tmp24;?>
+?><?php $_tmp30=ob_get_clean();?><?php echo $_tmp30;?>
 <a href="javascript:void(0);" onclick="redirect(1,12,1,'<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-<?php $_tmp25=ob_get_clean();?><?php echo $_tmp25;?>
+<?php $_tmp31=ob_get_clean();?><?php echo $_tmp31;?>
 ');" target="_self"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
-<?php $_tmp26=ob_get_clean();?><?php echo $_tmp26;?>
-</a><?php ob_start();?><?php } ?><?php $_tmp27=ob_get_clean();?><?php echo $_tmp27;?>
+<?php $_tmp32=ob_get_clean();?><?php echo $_tmp32;?>
+</a><?php ob_start();?><?php } ?><?php $_tmp33=ob_get_clean();?><?php echo $_tmp33;?>
 
                     </p>
                 </div>
@@ -193,12 +211,12 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
  $_from = $_smarty_tpl->tpl_vars['style_list_7']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value) {
 $_smarty_tpl->tpl_vars['item']->_loop = true;
-?><?php $_tmp28=ob_get_clean();?><?php echo $_tmp28;?>
+?><?php $_tmp34=ob_get_clean();?><?php echo $_tmp34;?>
 <a href="javascript:void(0);" onclick="redirect(1,13,1,'<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-<?php $_tmp29=ob_get_clean();?><?php echo $_tmp29;?>
+<?php $_tmp35=ob_get_clean();?><?php echo $_tmp35;?>
 ');" target="_self" style="letter-spacing:1px"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
-<?php $_tmp30=ob_get_clean();?><?php echo $_tmp30;?>
-</a><?php ob_start();?><?php } ?><?php $_tmp31=ob_get_clean();?><?php echo $_tmp31;?>
+<?php $_tmp36=ob_get_clean();?><?php echo $_tmp36;?>
+</a><?php ob_start();?><?php } ?><?php $_tmp37=ob_get_clean();?><?php echo $_tmp37;?>
 
                     </p>
                 </div>
@@ -212,12 +230,12 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
  $_from = $_smarty_tpl->tpl_vars['style_list_1']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value) {
 $_smarty_tpl->tpl_vars['item']->_loop = true;
-?><?php $_tmp32=ob_get_clean();?><?php echo $_tmp32;?>
+?><?php $_tmp38=ob_get_clean();?><?php echo $_tmp38;?>
 <a href="javascript:void(0);" onclick="redirect(2,1,1,'<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-<?php $_tmp33=ob_get_clean();?><?php echo $_tmp33;?>
+<?php $_tmp39=ob_get_clean();?><?php echo $_tmp39;?>
 ');" target="_self" style="letter-spacing:1px"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
-<?php $_tmp34=ob_get_clean();?><?php echo $_tmp34;?>
-</a><?php ob_start();?><?php } ?><?php $_tmp35=ob_get_clean();?><?php echo $_tmp35;?>
+<?php $_tmp40=ob_get_clean();?><?php echo $_tmp40;?>
+</a><?php ob_start();?><?php } ?><?php $_tmp41=ob_get_clean();?><?php echo $_tmp41;?>
 
                     </p>
                     <p class="menu-link menu-link-two">
@@ -225,12 +243,12 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
  $_from = $_smarty_tpl->tpl_vars['style_list_2']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value) {
 $_smarty_tpl->tpl_vars['item']->_loop = true;
-?><?php $_tmp36=ob_get_clean();?><?php echo $_tmp36;?>
+?><?php $_tmp42=ob_get_clean();?><?php echo $_tmp42;?>
 <a href="javascript:void(0);" onclick="redirect(2,1,2,'<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-<?php $_tmp37=ob_get_clean();?><?php echo $_tmp37;?>
+<?php $_tmp43=ob_get_clean();?><?php echo $_tmp43;?>
 ');" target="_self"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
-<?php $_tmp38=ob_get_clean();?><?php echo $_tmp38;?>
-</a><?php ob_start();?><?php } ?><?php $_tmp39=ob_get_clean();?><?php echo $_tmp39;?>
+<?php $_tmp44=ob_get_clean();?><?php echo $_tmp44;?>
+</a><?php ob_start();?><?php } ?><?php $_tmp45=ob_get_clean();?><?php echo $_tmp45;?>
 </p>
                     </p>
                 </div>
@@ -241,12 +259,12 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
  $_from = $_smarty_tpl->tpl_vars['style_list_3']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value) {
 $_smarty_tpl->tpl_vars['item']->_loop = true;
-?><?php $_tmp40=ob_get_clean();?><?php echo $_tmp40;?>
+?><?php $_tmp46=ob_get_clean();?><?php echo $_tmp46;?>
 <a href="javascript:void(0);" onclick="redirect(2,'<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-<?php $_tmp41=ob_get_clean();?><?php echo $_tmp41;?>
+<?php $_tmp47=ob_get_clean();?><?php echo $_tmp47;?>
 ');" target="_self"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
-<?php $_tmp42=ob_get_clean();?><?php echo $_tmp42;?>
-</a><?php ob_start();?><?php } ?><?php $_tmp43=ob_get_clean();?><?php echo $_tmp43;?>
+<?php $_tmp48=ob_get_clean();?><?php echo $_tmp48;?>
+</a><?php ob_start();?><?php } ?><?php $_tmp49=ob_get_clean();?><?php echo $_tmp49;?>
 
                     </p>
                 </div>
@@ -257,12 +275,12 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
  $_from = $_smarty_tpl->tpl_vars['style_list_4']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value) {
 $_smarty_tpl->tpl_vars['item']->_loop = true;
-?><?php $_tmp44=ob_get_clean();?><?php echo $_tmp44;?>
+?><?php $_tmp50=ob_get_clean();?><?php echo $_tmp50;?>
 <a href="javascript:void(0);" onclick="redirect(2,'<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-<?php $_tmp45=ob_get_clean();?><?php echo $_tmp45;?>
+<?php $_tmp51=ob_get_clean();?><?php echo $_tmp51;?>
 ');" target="_self"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
-<?php $_tmp46=ob_get_clean();?><?php echo $_tmp46;?>
-</a><?php ob_start();?><?php } ?><?php $_tmp47=ob_get_clean();?><?php echo $_tmp47;?>
+<?php $_tmp52=ob_get_clean();?><?php echo $_tmp52;?>
+</a><?php ob_start();?><?php } ?><?php $_tmp53=ob_get_clean();?><?php echo $_tmp53;?>
 
                     </p>
                 </div>
@@ -273,12 +291,12 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
  $_from = $_smarty_tpl->tpl_vars['style_list_5']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value) {
 $_smarty_tpl->tpl_vars['item']->_loop = true;
-?><?php $_tmp48=ob_get_clean();?><?php echo $_tmp48;?>
+?><?php $_tmp54=ob_get_clean();?><?php echo $_tmp54;?>
 <a href="javascript:void(0);" onclick="redirect(2,'<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-<?php $_tmp49=ob_get_clean();?><?php echo $_tmp49;?>
+<?php $_tmp55=ob_get_clean();?><?php echo $_tmp55;?>
 ');" target="_self"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
-<?php $_tmp50=ob_get_clean();?><?php echo $_tmp50;?>
-</a><?php ob_start();?><?php } ?><?php $_tmp51=ob_get_clean();?><?php echo $_tmp51;?>
+<?php $_tmp56=ob_get_clean();?><?php echo $_tmp56;?>
+</a><?php ob_start();?><?php } ?><?php $_tmp57=ob_get_clean();?><?php echo $_tmp57;?>
 
                     </p>
                 </div>
@@ -289,12 +307,12 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
  $_from = $_smarty_tpl->tpl_vars['style_list_6']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value) {
 $_smarty_tpl->tpl_vars['item']->_loop = true;
-?><?php $_tmp52=ob_get_clean();?><?php echo $_tmp52;?>
+?><?php $_tmp58=ob_get_clean();?><?php echo $_tmp58;?>
 <a href="javascript:void(0);" onclick="redirect(2,12,1,'<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-<?php $_tmp53=ob_get_clean();?><?php echo $_tmp53;?>
+<?php $_tmp59=ob_get_clean();?><?php echo $_tmp59;?>
 ');" target="_self"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
-<?php $_tmp54=ob_get_clean();?><?php echo $_tmp54;?>
-</a><?php ob_start();?><?php } ?><?php $_tmp55=ob_get_clean();?><?php echo $_tmp55;?>
+<?php $_tmp60=ob_get_clean();?><?php echo $_tmp60;?>
+</a><?php ob_start();?><?php } ?><?php $_tmp61=ob_get_clean();?><?php echo $_tmp61;?>
 
                     </p>
                 </div>
@@ -305,12 +323,12 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
  $_from = $_smarty_tpl->tpl_vars['style_list_7']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value) {
 $_smarty_tpl->tpl_vars['item']->_loop = true;
-?><?php $_tmp56=ob_get_clean();?><?php echo $_tmp56;?>
+?><?php $_tmp62=ob_get_clean();?><?php echo $_tmp62;?>
 <a href="javascript:void(0);" onclick="redirect(2,13,1,'<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-<?php $_tmp57=ob_get_clean();?><?php echo $_tmp57;?>
+<?php $_tmp63=ob_get_clean();?><?php echo $_tmp63;?>
 ');" target="_self" style="letter-spacing:1px"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
-<?php $_tmp58=ob_get_clean();?><?php echo $_tmp58;?>
-</a><?php ob_start();?><?php } ?><?php $_tmp59=ob_get_clean();?><?php echo $_tmp59;?>
+<?php $_tmp64=ob_get_clean();?><?php echo $_tmp64;?>
+</a><?php ob_start();?><?php } ?><?php $_tmp65=ob_get_clean();?><?php echo $_tmp65;?>
 
                     </p>
                 </div>
@@ -352,12 +370,12 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
  $_from = $_smarty_tpl->tpl_vars['style_list_1']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value) {
 $_smarty_tpl->tpl_vars['item']->_loop = true;
-?><?php $_tmp60=ob_get_clean();?><?php echo $_tmp60;?>
+?><?php $_tmp66=ob_get_clean();?><?php echo $_tmp66;?>
 <a href="javascript:void(0);" onclick="redirect(3,1,1,'<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-<?php $_tmp61=ob_get_clean();?><?php echo $_tmp61;?>
+<?php $_tmp67=ob_get_clean();?><?php echo $_tmp67;?>
 ');" target="_self" style="letter-spacing:1px"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
-<?php $_tmp62=ob_get_clean();?><?php echo $_tmp62;?>
-</a><?php ob_start();?><?php } ?><?php $_tmp63=ob_get_clean();?><?php echo $_tmp63;?>
+<?php $_tmp68=ob_get_clean();?><?php echo $_tmp68;?>
+</a><?php ob_start();?><?php } ?><?php $_tmp69=ob_get_clean();?><?php echo $_tmp69;?>
 
                     </p>
                     <p class="menu-link menu-link-two">
@@ -365,12 +383,12 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
  $_from = $_smarty_tpl->tpl_vars['style_list_2']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value) {
 $_smarty_tpl->tpl_vars['item']->_loop = true;
-?><?php $_tmp64=ob_get_clean();?><?php echo $_tmp64;?>
+?><?php $_tmp70=ob_get_clean();?><?php echo $_tmp70;?>
 <a href="javascript:void(0);" onclick="redirect(3,1,2,'<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-<?php $_tmp65=ob_get_clean();?><?php echo $_tmp65;?>
+<?php $_tmp71=ob_get_clean();?><?php echo $_tmp71;?>
 ');" target="_self"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
-<?php $_tmp66=ob_get_clean();?><?php echo $_tmp66;?>
-</a><?php ob_start();?><?php } ?><?php $_tmp67=ob_get_clean();?><?php echo $_tmp67;?>
+<?php $_tmp72=ob_get_clean();?><?php echo $_tmp72;?>
+</a><?php ob_start();?><?php } ?><?php $_tmp73=ob_get_clean();?><?php echo $_tmp73;?>
 </p>
                     </p>
                 </div>
@@ -381,12 +399,12 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
  $_from = $_smarty_tpl->tpl_vars['style_list_3']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value) {
 $_smarty_tpl->tpl_vars['item']->_loop = true;
-?><?php $_tmp68=ob_get_clean();?><?php echo $_tmp68;?>
+?><?php $_tmp74=ob_get_clean();?><?php echo $_tmp74;?>
 <a href="javascript:void(0);" onclick="redirect(3,'<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-<?php $_tmp69=ob_get_clean();?><?php echo $_tmp69;?>
+<?php $_tmp75=ob_get_clean();?><?php echo $_tmp75;?>
 ');" target="_self"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
-<?php $_tmp70=ob_get_clean();?><?php echo $_tmp70;?>
-</a><?php ob_start();?><?php } ?><?php $_tmp71=ob_get_clean();?><?php echo $_tmp71;?>
+<?php $_tmp76=ob_get_clean();?><?php echo $_tmp76;?>
+</a><?php ob_start();?><?php } ?><?php $_tmp77=ob_get_clean();?><?php echo $_tmp77;?>
 
                     </p>
                 </div>
@@ -397,12 +415,12 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
  $_from = $_smarty_tpl->tpl_vars['style_list_4']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value) {
 $_smarty_tpl->tpl_vars['item']->_loop = true;
-?><?php $_tmp72=ob_get_clean();?><?php echo $_tmp72;?>
+?><?php $_tmp78=ob_get_clean();?><?php echo $_tmp78;?>
 <a href="javascript:void(0);" onclick="redirect(3,'<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-<?php $_tmp73=ob_get_clean();?><?php echo $_tmp73;?>
+<?php $_tmp79=ob_get_clean();?><?php echo $_tmp79;?>
 ');" target="_self"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
-<?php $_tmp74=ob_get_clean();?><?php echo $_tmp74;?>
-</a><?php ob_start();?><?php } ?><?php $_tmp75=ob_get_clean();?><?php echo $_tmp75;?>
+<?php $_tmp80=ob_get_clean();?><?php echo $_tmp80;?>
+</a><?php ob_start();?><?php } ?><?php $_tmp81=ob_get_clean();?><?php echo $_tmp81;?>
 
                     </p>
                 </div>
@@ -413,12 +431,12 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
  $_from = $_smarty_tpl->tpl_vars['style_list_5']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value) {
 $_smarty_tpl->tpl_vars['item']->_loop = true;
-?><?php $_tmp76=ob_get_clean();?><?php echo $_tmp76;?>
+?><?php $_tmp82=ob_get_clean();?><?php echo $_tmp82;?>
 <a href="javascript:void(0);" onclick="redirect(3,'<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-<?php $_tmp77=ob_get_clean();?><?php echo $_tmp77;?>
+<?php $_tmp83=ob_get_clean();?><?php echo $_tmp83;?>
 ');" target="_self"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
-<?php $_tmp78=ob_get_clean();?><?php echo $_tmp78;?>
-</a><?php ob_start();?><?php } ?><?php $_tmp79=ob_get_clean();?><?php echo $_tmp79;?>
+<?php $_tmp84=ob_get_clean();?><?php echo $_tmp84;?>
+</a><?php ob_start();?><?php } ?><?php $_tmp85=ob_get_clean();?><?php echo $_tmp85;?>
 
                     </p>
                 </div>
@@ -429,12 +447,12 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
  $_from = $_smarty_tpl->tpl_vars['style_list_6']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value) {
 $_smarty_tpl->tpl_vars['item']->_loop = true;
-?><?php $_tmp80=ob_get_clean();?><?php echo $_tmp80;?>
+?><?php $_tmp86=ob_get_clean();?><?php echo $_tmp86;?>
 <a href="javascript:void(0);" onclick="redirect(3,12,1,'<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-<?php $_tmp81=ob_get_clean();?><?php echo $_tmp81;?>
+<?php $_tmp87=ob_get_clean();?><?php echo $_tmp87;?>
 ');" target="_self"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
-<?php $_tmp82=ob_get_clean();?><?php echo $_tmp82;?>
-</a><?php ob_start();?><?php } ?><?php $_tmp83=ob_get_clean();?><?php echo $_tmp83;?>
+<?php $_tmp88=ob_get_clean();?><?php echo $_tmp88;?>
+</a><?php ob_start();?><?php } ?><?php $_tmp89=ob_get_clean();?><?php echo $_tmp89;?>
 
                     </p>
                 </div>
@@ -445,12 +463,12 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
  $_from = $_smarty_tpl->tpl_vars['style_list_7']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value) {
 $_smarty_tpl->tpl_vars['item']->_loop = true;
-?><?php $_tmp84=ob_get_clean();?><?php echo $_tmp84;?>
+?><?php $_tmp90=ob_get_clean();?><?php echo $_tmp90;?>
 <a href="javascript:void(0);" onclick="redirect(3,13,1,'<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['id'];?>
-<?php $_tmp85=ob_get_clean();?><?php echo $_tmp85;?>
+<?php $_tmp91=ob_get_clean();?><?php echo $_tmp91;?>
 ');" target="_self" style="letter-spacing:1px"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['item']->value['name'];?>
-<?php $_tmp86=ob_get_clean();?><?php echo $_tmp86;?>
-</a><?php ob_start();?><?php } ?><?php $_tmp87=ob_get_clean();?><?php echo $_tmp87;?>
+<?php $_tmp92=ob_get_clean();?><?php echo $_tmp92;?>
+</a><?php ob_start();?><?php } ?><?php $_tmp93=ob_get_clean();?><?php echo $_tmp93;?>
 
                     </p>
                 </div>
@@ -467,12 +485,12 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
  $_from = $_smarty_tpl->tpl_vars['news1']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['row']->key => $_smarty_tpl->tpl_vars['row']->value) {
 $_smarty_tpl->tpl_vars['row']->_loop = true;
-?><?php $_tmp88=ob_get_clean();?><?php echo $_tmp88;?>
+?><?php $_tmp94=ob_get_clean();?><?php echo $_tmp94;?>
 
                          <li><a href="#" target="_blank"><img src="/uploadfiles/news/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['pic'];?>
-<?php $_tmp89=ob_get_clean();?><?php echo $_tmp89;?>
+<?php $_tmp95=ob_get_clean();?><?php echo $_tmp95;?>
 " width="515" height="280" /></a></li>
-                         <?php ob_start();?><?php } ?><?php $_tmp90=ob_get_clean();?><?php echo $_tmp90;?>
+                         <?php ob_start();?><?php } ?><?php $_tmp96=ob_get_clean();?><?php echo $_tmp96;?>
 
                          </ul>
                     </div>
@@ -481,10 +499,10 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
  $_from = $_smarty_tpl->tpl_vars['news1']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['row']->key => $_smarty_tpl->tpl_vars['row']->value) {
 $_smarty_tpl->tpl_vars['row']->_loop = true;
-?><?php $_tmp91=ob_get_clean();?><?php echo $_tmp91;?>
+?><?php $_tmp97=ob_get_clean();?><?php echo $_tmp97;?>
 
                          <i class="toc"></i>
-                         <?php ob_start();?><?php } ?><?php $_tmp92=ob_get_clean();?><?php echo $_tmp92;?>
+                         <?php ob_start();?><?php } ?><?php $_tmp98=ob_get_clean();?><?php echo $_tmp98;?>
 
                      </div>
                 </div>
@@ -500,41 +518,41 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
 foreach ($_from as $_smarty_tpl->tpl_vars['row']->key => $_smarty_tpl->tpl_vars['row']->value) {
 $_smarty_tpl->tpl_vars['row']->_loop = true;
  $_smarty_tpl->tpl_vars['k']->value = $_smarty_tpl->tpl_vars['row']->key;
-?><?php $_tmp93=ob_get_clean();?><?php echo $_tmp93;?>
+?><?php $_tmp99=ob_get_clean();?><?php echo $_tmp99;?>
 
-	                         	<?php ob_start();?><?php if ($_smarty_tpl->tpl_vars['k']->value==0||$_smarty_tpl->tpl_vars['k']->value==4||$_smarty_tpl->tpl_vars['k']->value==8) {?><?php $_tmp94=ob_get_clean();?><?php echo $_tmp94;?>
+	                         	<?php ob_start();?><?php if ($_smarty_tpl->tpl_vars['k']->value==0||$_smarty_tpl->tpl_vars['k']->value==4||$_smarty_tpl->tpl_vars['k']->value==8) {?><?php $_tmp100=ob_get_clean();?><?php echo $_tmp100;?>
 
 	                         	<li>
 	                         	<a href="#" target="_blank" class="aPic aPicW128"><img src="/uploadfiles/news/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['pic'];?>
-<?php $_tmp95=ob_get_clean();?><?php echo $_tmp95;?>
+<?php $_tmp101=ob_get_clean();?><?php echo $_tmp101;?>
 " width="128" height="195" /><i class="iTit"><em class="fz14"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
-<?php $_tmp96=ob_get_clean();?><?php echo $_tmp96;?>
+<?php $_tmp102=ob_get_clean();?><?php echo $_tmp102;?>
 </em><br /><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['title2'];?>
-<?php $_tmp97=ob_get_clean();?><?php echo $_tmp97;?>
+<?php $_tmp103=ob_get_clean();?><?php echo $_tmp103;?>
 </i></a>
-                         	    <?php ob_start();?><?php } elseif ($_smarty_tpl->tpl_vars['k']->value==3||$_smarty_tpl->tpl_vars['k']->value==7||$_smarty_tpl->tpl_vars['k']->value==11) {?><?php $_tmp98=ob_get_clean();?><?php echo $_tmp98;?>
+                         	    <?php ob_start();?><?php } elseif ($_smarty_tpl->tpl_vars['k']->value==3||$_smarty_tpl->tpl_vars['k']->value==7||$_smarty_tpl->tpl_vars['k']->value==11) {?><?php $_tmp104=ob_get_clean();?><?php echo $_tmp104;?>
 
                          	    <a href="#" target="_blank" class="aPic aPicW128"><img src="/uploadfiles/news/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['pic'];?>
-<?php $_tmp99=ob_get_clean();?><?php echo $_tmp99;?>
+<?php $_tmp105=ob_get_clean();?><?php echo $_tmp105;?>
 " width="128" height="195" /><i class="iTit"><em class="fz14"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
-<?php $_tmp100=ob_get_clean();?><?php echo $_tmp100;?>
+<?php $_tmp106=ob_get_clean();?><?php echo $_tmp106;?>
 </em><br /><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['title2'];?>
-<?php $_tmp101=ob_get_clean();?><?php echo $_tmp101;?>
+<?php $_tmp107=ob_get_clean();?><?php echo $_tmp107;?>
 </i></a>
                          	    </li>
-                         	    <?php ob_start();?><?php } else { ?><?php $_tmp102=ob_get_clean();?><?php echo $_tmp102;?>
+                         	    <?php ob_start();?><?php } else { ?><?php $_tmp108=ob_get_clean();?><?php echo $_tmp108;?>
 
                          	    <a href="#" target="_blank" class="aPic aPicW128"><img src="/uploadfiles/news/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['pic'];?>
-<?php $_tmp103=ob_get_clean();?><?php echo $_tmp103;?>
+<?php $_tmp109=ob_get_clean();?><?php echo $_tmp109;?>
 " width="128" height="195" /><i class="iTit"><em class="fz14"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
-<?php $_tmp104=ob_get_clean();?><?php echo $_tmp104;?>
+<?php $_tmp110=ob_get_clean();?><?php echo $_tmp110;?>
 </em><br /><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['title2'];?>
-<?php $_tmp105=ob_get_clean();?><?php echo $_tmp105;?>
+<?php $_tmp111=ob_get_clean();?><?php echo $_tmp111;?>
 </i></a>
-                         	    <?php ob_start();?><?php }?><?php $_tmp106=ob_get_clean();?><?php echo $_tmp106;?>
+                         	    <?php ob_start();?><?php }?><?php $_tmp112=ob_get_clean();?><?php echo $_tmp112;?>
 
                                 
-                            <?php ob_start();?><?php } ?><?php $_tmp107=ob_get_clean();?><?php echo $_tmp107;?>
+                            <?php ob_start();?><?php } ?><?php $_tmp113=ob_get_clean();?><?php echo $_tmp113;?>
 
                            </ul>
                         </div>
@@ -544,7 +562,7 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
              <div class="newsPic">
              	<div class="newPic-top clearfix">
              		<a href="" target="_blank" class="aWid170"><img src="/uploadfiles/news/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['news3']->value['pic'];?>
-<?php $_tmp108=ob_get_clean();?><?php echo $_tmp108;?>
+<?php $_tmp114=ob_get_clean();?><?php echo $_tmp114;?>
 " width="170" height="280" /></a>
                     <div class="hotGuide">
                         <div class="guideTxt">
@@ -552,16 +570,16 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
                             <p class="guide-link"><a href="" target="_blank">市场行情</a><a href="" target="_blank">特别策划</a><a href="" target="_blank">名盘鉴赏</a><br /><a href="" target="_blank">楼市前线</a><a href="" target="_blank">楼相百态</a><a href="" target="_blank">独家调查</a></p>
                         </div>
                     	<a href="" target="_blank" class="aPic aPicW270"><img src="/uploadfiles/news/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['news3']->value['pic'];?>
-<?php $_tmp109=ob_get_clean();?><?php echo $_tmp109;?>
+<?php $_tmp115=ob_get_clean();?><?php echo $_tmp115;?>
 " width="270" height="190" /><i class="iTit"><em class="fz20">街区商铺59万起</em><br />吃货天堂-昆城广场</i></a>
                     </div>
                 </div>
                 <div class="newPic-btm clearfix">
                 	<a href="" target="_blank" class="aWid170"><img src="/uploadfiles/news/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['news3']->value['pic'];?>
-<?php $_tmp110=ob_get_clean();?><?php echo $_tmp110;?>
+<?php $_tmp116=ob_get_clean();?><?php echo $_tmp116;?>
 " width="170" height="195" /></a>
                     <a href="" target="_blank" class="aPic aPicW270"><img src="/uploadfiles/news/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['news3']->value['pic'];?>
-<?php $_tmp111=ob_get_clean();?><?php echo $_tmp111;?>
+<?php $_tmp117=ob_get_clean();?><?php echo $_tmp117;?>
 " width="270" height="195" /><i class="iTit"><em class="fz20">街区商铺59万起</em><br />吃货天堂-昆城广场</i></a>
                 </div>
              </div>      
