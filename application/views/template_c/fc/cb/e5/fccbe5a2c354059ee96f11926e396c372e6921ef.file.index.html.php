@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2015-07-31 16:27:03
+<?php /* Smarty version Smarty-3.1.16, created on 2015-08-02 23:53:15
          compiled from "application\views\index.html" */ ?>
 <?php /*%%SmartyHeaderCode:1960755b6e9761cf065-27303114%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fccbe5a2c354059ee96f11926e396c372e6921ef' => 
     array (
       0 => 'application\\views\\index.html',
-      1 => 1438330930,
+      1 => 1438530022,
       2 => 'file',
     ),
   ),
@@ -303,33 +303,17 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
                     </p>
                 </div>
             </div>
-            <!----------------出租------------------->
+            <!----------------卖房------------------>
              <div class="category-menu-content">
-                <div class="category-menu-line clearfix">
-                    <span class="category-menu-line-tit">公寓</span>
-                    <p class="menu-link"><a href="" target="_blank">普通公寓 </a><a href="" target="_blank">商务公寓</a><a href="" target="_blank">双拼</a><a href="" target="_blank">酒店式公寓</a></p>
-                </div>
-                <div class="category-menu-line clearfix">
-                    <span class="category-menu-line-tit">住宅</span>
-                    <p class="menu-link"><a href="" target="_blank">玉山</a><a href="" target="_blank">周市</a><a href="" target="_blank">巴城</a><a href="" target="_blank">张浦</a><a href="" target="_blank">陆家</a><a href="" target="_blank">花桥</a><a href="" target="_blank">千灯</a><a href="" target="_blank">周庄</a><br /><a href="" target="_blank">锦溪</a><a href="" target="_blank">淀山湖</a></p>
-                    <p class="menu-link menu-link-two"><a href="" target="_blank">一室</a><a href="" target="_blank">二室</a><a href="" target="_blank">三室</a><a href="" target="_blank">四室</a><a href="" target="_blank">五室</a><a href="" target="_blank">五室以上</a></p>
-                </div>
-                <div class="category-menu-line clearfix">
-                    <span class="category-menu-line-tit">别墅</span>
-                    <p class="menu-link"><a href="" target="_blank">独栋</a><a href="" target="_blank">联排</a><a href="" target="_blank">双拼</a><a href="" target="_blank">叠加</a></p>
-                </div>
-                <div class="category-menu-line clearfix">
-                    <span class="category-menu-line-tit">写字楼</span>
-                    <p class="menu-link"><a href="" target="_blank">单纯性</a><a href="" target="_blank">商住型</a><a href="" target="_blank">双拼</a><a href="" target="_blank">综合性</a></p>
-                </div>
-                <div class="category-menu-line clearfix">
-                    <span class="category-menu-line-tit">商铺</span>
-                    <p class="menu-link"><a href="" target="_blank">30㎡以下</a><a href="" target="_blank">30-90㎡</a><a href="" target="_blank"> 90-180㎡</a><a href="" target="_blank">180㎡以上</a></p>
-                </div>
-                <div class="category-menu-line clearfix">
-                    <span class="category-menu-line-tit">厂房</span>
-                    <p class="menu-link"><a href="" target="_blank">玉山</a><a href="" target="_blank">周市</a><a href="" target="_blank">巴城</a><a href="" target="_blank">张浦</a><a href="" target="_blank">陆家</a><a href="" target="_blank">花桥</a><a href="" target="_blank">千灯</a><a href="" target="_blank">周庄</a><br /><a href="" target="_blank">锦溪</a><a href="" target="_blank">淀山湖</a></p>
-                </div>
+                <dl class="category-menu-dl">
+                    <dt>1</dt>
+                    <dd><span>在房猫发房</span><br />简单2步即可完成发布，方便快捷免费！</dd>
+                    <dt>2</dt>
+                    <dd><span>优质经纪人全程服务</span><br />简单2步即可完成发布，方便快捷免费！</dd>
+                    <dt>3</dt>
+                    <dd><span>大量买家</span><br />简单2步即可完成发布，方便快捷免费！</dd>
+                </dl>
+                <a href="" class="publish-btn"><em></em>免费发布房源</a>
             </div>
              <!----------------租房------------------->
              <div class="category-menu-content">

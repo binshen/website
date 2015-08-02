@@ -20,12 +20,13 @@
 		<thead>
 			<tr>
 				<th>楼盘</th>
+				<th>租赁方式</th>
 				<th>小区</th>
 				<th>区域</th>
 				<th>类型</th>
 				<th>户型</th>
 				<th>面积</th>
-				<th>总价</th>
+				<th>租金</th>
 				<th>装修</th>
 				<th>朝向</th>
 				<th>建造年代</th>
@@ -34,16 +35,21 @@
 		<tbody>
             <?php          
                 if (!empty($res_list)):
+	                $rent_style_list = array(
+	                	1 => '整租',
+	                	2 => '合租'
+	                );
             	    foreach ($res_list as $row):		               
             ?>		            
             			<tr target="id" rel=<?php echo $row->id; ?>>
             				<td><?php echo $row->name;?></td>
+            				<td><?php echo $rent_style_list[$row->rent_style_id];?></td>
             				<td><?php echo $row->xiaoqu_name;?></td>
             				<td><?php echo $row->region_name;?></td>
             				<td><?php echo $row->style_name;?></td>
             				<td><?php echo $row->room;?>室<?php echo $row->lounge;?>厅<?php echo $row->toilet;?>卫</td>
             				<td><?php echo $row->acreage;?></td>
-            				<td><?php echo $row->total_price;?></td>
+            				<td><?php echo $row->unit_price;?></td>
             				<td><?php echo $row->decoration_name;?></td>
             				<td><?php echo $row->orientation_name;?></td>
             				<td><?php echo $row->build_year;?></td>
