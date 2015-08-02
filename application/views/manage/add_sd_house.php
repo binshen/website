@@ -101,7 +101,8 @@
         					<?php          
 				                if (!empty($orientation_list)):
 				            	    foreach ($orientation_list as $row):
-				            	    	$selected = !empty($orientation_id) && $row->id == $orientation_id ? "selected" : "";          
+				            	    	$orientation_id = empty($orientation_id) ? 2 : $orientation_id;
+				            	    	$selected = $row->id == $orientation_id ? "selected" : "";          
 				            ?>
         								<option value="<?php echo $row->id; ?>" <?php echo $selected; ?>><?php echo $row->name; ?></option>
         					<?php 
