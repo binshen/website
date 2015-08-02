@@ -400,7 +400,7 @@ function callbacktime(time,is_back, type_id){
 				html+='<input type="hidden" size="22" name="pic_short'+type_id+'[]" class="pic_short" value="'+item+'"></dt>';
 			}
 		});
-		$("#append"+type_id,navTab.getCurrentPanel()).append(html); 
+		$("#imageSection",navTab.getCurrentPanel()).append(html); 
 	});
 
 	//兼容chrome
