@@ -26,11 +26,11 @@ class Sysconfig_model extends MY_Model
     }
     
     public function get_index_info(){
-    	$data['news1'] = $this->db->select('id,title,pic,title2')->from('news')->where('index_area','1')->order_by('cdate','desc')->limit(5,0)->get()->result_array();
-    	$data['news2'] = $this->db->select('id,title,pic,title2')->from('news')->where('index_area','2')->order_by('cdate','desc')->limit(12,0)->get()->result_array();
-    	$data['news3'] = $this->db->select('id,title,pic,title2')->from('news')->where('index_area','3')->order_by('cdate','desc')->get()->row_array();
-    	$data['news4'] = $this->db->select('id,title,pic,title2')->from('news')->where('index_area','4')->order_by('cdate','desc')->get()->row_array();
-    	$data['news5'] = $this->db->select('id,title,pic,title2')->from('news')->where('index_area','5')->order_by('cdate','desc')->limit(2,0)->get()->result_array();
+    	$data['news1'] = $this->db->select('id,title,pic,title2,xq_id')->from('news')->where('index_area','1')->order_by('cdate','desc')->limit(5,0)->get()->result_array();
+    	$data['news2'] = $this->db->select('id,title,pic,title2,xq_id')->from('news')->where('index_area','2')->order_by('cdate','desc')->limit(12,0)->get()->result_array();
+    	$data['news3'] = $this->db->select('id,title,pic,title2,xq_id')->from('news')->where('index_area','3')->order_by('cdate','desc')->get()->row_array();
+    	$data['news4'] = $this->db->select('id,title,pic,title2,xq_id')->from('news')->where('index_area','4')->order_by('cdate','desc')->get()->row_array();
+    	$data['news5'] = $this->db->select('id,title,pic,title2,xq_id')->from('news')->where('index_area','5')->order_by('cdate','desc')->limit(2,0)->get()->result_array();
     	$data['region_list'] = $this->db->select('id,name')->from('house_region')->get()->result_array();
     	$data['style_list_2'] = $this->db->select('id,name')->from('house_substyle')->where('style_id', 2)->get()->result_array();
     	$data['style_list_3'] = $this->db->select('id,name')->from('house_substyle')->where('style_id', 3)->get()->result_array();

@@ -591,8 +591,21 @@ class House_model extends MY_Model
    		return $data;
    	}
    	
-   	public function get_article_detail($h_id,$id){
-   		$data['tag'] = $this->db->select('a.id,xq_id,b.name region_name,a.name,region_id')->from('house a')->join('house_region b','a.region_id=b.id','left')->where('a.id',$h_id)->get()->row_array();
+   	public function get_article_detail($h_id,$id,$flag){
+   		if($flag){
+   			$rs = $this->db->select('id')->from('house')->where('xq_id',$h_id)->get()->row();
+   			if($rs){
+   				$h_id = $rs->id;
+   				$data['tag'] = $this->db->select('a.id,xq_id,b.name region_name,a.name,region_id')->from('house a')->join('house_region b','a.region_id=b.id','left')->where('a.id',$h_id)->get()->row_array();
+   			}else{
+   				$data['tag'] = '';
+   			}
+   			
+   		}else{
+   			$data['tag'] = $this->db->select('a.id,xq_id,b.name region_name,a.name,region_id')->from('house a')->join('house_region b','a.region_id=b.id','left')->where('a.id',$h_id)->get()->row_array();
+   		}
+   		
+   		
    		$data['detail'] = $this->db->select()->from('news')->where('id',$id)->get()->row_array();
    		return $data;
    	}

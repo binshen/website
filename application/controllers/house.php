@@ -251,8 +251,8 @@ class House extends MY_Controller {
 		$this->display('article_list.html');
 	}
 	
-	public function article_detail($h_id,$id){
-		$data = $this->house_model->get_article_detail($h_id,$id);
+	public function article_detail($h_id,$id,$flag=null){
+		$data = $this->house_model->get_article_detail($h_id,$id,$flag);
 		$this->assign('detail', $data['detail']);
 		$this->assign('tag', $data['tag']);
 		$this->display('article_detail.html');
