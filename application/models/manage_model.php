@@ -92,8 +92,8 @@ class Manage_model extends MY_Model
 		$this->db->from('house a');
 		$this->db->join('house_region b', 'a.region_id = b.id', 'left');
 		$this->db->join('house_style c', 'a.style_id = c.id', 'left');
-		$this->db->join('house_orientation d', 'a.region_id = d.id', 'left');
-		$this->db->join('house_decoration e', 'a.orientation_id = e.id', 'left');
+		$this->db->join('house_orientation d', 'a.orientation_id = d.id', 'left');
+		$this->db->join('house_decoration e', 'a.decoration_id = e.id', 'left');
 		$this->db->join('xiaoqu f', 'a.xq_id = f.id', 'left');
 		$this->db->where('type_id','1');
 		if($this->input->post('name')){
@@ -831,7 +831,7 @@ class Manage_model extends MY_Model
 		$this->db->from('house a');
 		$this->db->join('house_region b', 'a.region_id = b.id', 'left');
 		$this->db->join('house_style c', 'a.style_id = c.id', 'left');
-		$this->db->join('house_orientation d', 'a.region_id = d.id', 'left');
+		$this->db->join('house_orientation d', 'a.orientation_id = d.id', 'left');
 		$this->db->join('house_decoration e', 'a.decoration_id = e.id', 'left');
 		$this->db->join('xiaoqu f', 'a.xq_id = f.id', 'left');
 		if($this->input->post('name')){
@@ -994,8 +994,8 @@ class Manage_model extends MY_Model
 		$this->db->from('house a');
 		$this->db->join('house_region b', 'a.region_id = b.id', 'left');
 		$this->db->join('house_style c', 'a.style_id = c.id', 'left');
-		$this->db->join('house_orientation d', 'a.region_id = d.id', 'left');
-		$this->db->join('house_decoration e', 'a.orientation_id = e.id', 'left');
+		$this->db->join('house_orientation d', 'a.orientation_id = d.id', 'left');
+		$this->db->join('house_decoration e', 'a.decoration_id = e.id', 'left');
 		$this->db->join('xiaoqu f', 'a.xq_id = f.id', 'left');
 		if($this->input->post('name')){
 			$this->db->like('a.name',$this->input->post('name'));
