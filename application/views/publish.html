@@ -6,6 +6,8 @@
 <meta name="keywords" content="房猫,昆山" />
 <meta name="description" content="" />
 <link href="{{$base_url}}css/publish.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{{$base_url}}js/jquery-1.8.3.min.js" ></script>
+<!-- <script type="text/javascript" src="{{$base_url}}js/validform.js" ></script> -->
 </head>
 <body>
 <div class="wraper">
@@ -18,45 +20,24 @@
         <span class="fz34">免费发布房源</span><br />房猫值得你信赖，房猫帮你快速找到精准客户。
     </div>
     <div class="publishconer">
-    <form>
+    <form method="POST" action="/house/savePublish">
+    	<input type="hidden" name="type_id" value="" />
+    	<input type="hidden" name="rent_style_id" value="" />
+    	<input type="hidden" name="style_id" value="" />
+    	<input type="hidden" name="substyle_id" value="" />
+    	<input type="hidden" name="region_id" value="" />
+    	<input type="hidden" name="decoration_id" value="" />
+    	<input type="hidden" name="orientation_id" value="" />
+    	<input type="hidden" name="rent_type_id" value="" />
+    	
         <table cellpadding="0" cellspacing="0" border="0" class="publishtab">
             <tr class="fi-style">
                 <th width="200"><em class="red">*</em> 选择发布类型</th>
                 <td>
-                	<a href="javascript:void(0)" class="style selected">二手房<i class="icon ico-selected"></i></a>
-                	<a href="javascript:void(0)" class="style">整组<i class="icon ico-selected"></i></a>
-                	<a href="javascript:void(0)" class="style">合租<i class="icon ico-selected"></i></a>
+                	<a href="javascript:void(0)" class="_house_style style selected" key="1">二手房<i class="icon ico-selected"></i></a>
+                	<a href="javascript:void(0)" class="_house_style style" key="2">整组<i class="icon ico-selected"></i></a>
+                	<a href="javascript:void(0)" class="_house_style style" key="3">合租<i class="icon ico-selected"></i></a>
 				</td>
-            </tr>
-            <tr class="fi-style">
-                <th><em class="red">*</em> 房源类型</th>
-                <td>
-                <div class="simu-select-box" >
-                    <div class="select_position" id="selDistrict" style="z-index:11; float:left;">
-                        <span id="selDistrict_a"  class="selectbg" style="cursor: pointer;">请选择类型</span>
-                        <div class='showselectcon' id='selhouse_style1' style='position: absolute;top: 37px; left: 0; display:none;'>
-                            <a href="javascript:">二手房</a>
-                            <a href="javascript:">别墅</a>
-                            <a href="javascript:">公寓</a>
-                            <a href="javascript:">写字楼</a>
-                            <a href="javascript:">厂房</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="simu-select-box">
-                    <div class="select_position" id="selComarea" style="z-index:11; float:left;">
-                        <span id="selDistrict_a"  class="selectbg" style="cursor: pointer;">
-                        	请选择类型</span>
-                        <div class='showselectcon' id='selhouse_style2' style='position: absolute;
-                            top: 37px; left: 0;display:none;'>
-                            <a href="javascript:">独栋别墅</a>
-                            <a href="javascript:">联排别墅</a>
-                            <a href="javascript:">双拼别墅</a>
-                            <a href="javascript:">叠加别墅</a>
-                        </div>
-                    </div>
-                </div>
-                 </td>
             </tr>
             <tr class="fi-style">
                 <th><em class="red">*</em> 小区名称</th>
@@ -73,6 +54,50 @@
                      </div>
 				</td>
             </tr>
+            <tr class="fi-style">
+                <th><em class="red">*</em> 房源类型</th>
+                <td>
+                <div class="simu-select-box" >
+                    <div class="select_position" id="selDistrict" style="z-index:11; float:left;">
+                        <span id="selDistrict_a"  class="selectbg" style="cursor: pointer;">请选择类型</span>
+                        <div class='showselectcon' id='selhouse_style1' style='position: absolute;top: 37px; left: 0; display:none;'>
+                         	{{foreach from=$style_list item=item}}
+                         		<a href="javascript:" key="style_id" val="{{$item->id}}">{{$item->name}}</a>
+                         	{{/foreach}}
+                        </div>
+                    </div>
+                </div>
+                <div class="simu-select-box">
+                    <div class="select_position" id="selComarea" style="z-index:11; float:left;">
+                        <span id="selDistrict_a"  class="selectbg" style="cursor: pointer;">
+                        	请选择类型</span>
+                        <div class='showselectcon' id='selhouse_style2' style='position: absolute;
+                            top: 37px; left: 0;display:none;'>
+                           	{{foreach from=$substyle_list item=item}}
+                         		<a href="javascript:" key="substyle_id" val="{{$item.id}}">{{$item.name}}</a>
+                         	{{/foreach}}
+                        </div>
+                    </div>
+                </div>
+                 </td>
+            </tr>
+            
+            <tr class="fi-style">
+                <th><em class="red">*</em> 所在区域</th>
+                <td>
+                <div class="select_position" id="selComarea">
+                        <span id="selDistrict_a" class="selectbg" style="cursor: pointer;">
+                        	请选择区域</span>
+                        <div class='showselectcon' id='selhouse_style4' style='position: absolute;
+                            top: 37px; left: 0; display:none;'>
+                            {{foreach from=$region_list item=item}}
+                         		<a href="javascript:" key="region_id" val="{{$item->id}}">{{$item->name}}</a>
+                         	{{/foreach}}
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            
             <tr class="fi-style">
                 <th>楼栋号</th>
                 <td>
@@ -107,18 +132,16 @@
             </tr>
              <tr class="fi-style">
                 <th><em class="red">*</em> 建造年代</th>
-                <td><input name="input_houseyear" type="text" id="input_houseyear" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />
+                <td><input name="input_houseyear" type="text" id="input_houseyear" autocomplete="off" size="30" maxlength="4" class="txt" style="width: 70px;" value="" />
                  <span class="tip_error">请填写</span>
                 </td>
             </tr>
              <tr class="fi-style">
                 <th><em class="red">*</em> 装修程度</th>
                 <td class="decorate-degree">
-               <span><input type="radio" class="rblstFitment" id="rblstFitment_0" /><label for="rblstFitment_0">豪华装修</label></span>
-               <span><input type="radio" class="rblstFitment" id="rblstFitment_1" /><label for="rblstFitment_1">精装修</label></span>
-               <span><input type="radio" class="rblstFitment" id="rblstFitment_2" /><label for="rblstFitment_2">中等装修</label></span>
-               <span><input type="radio" class="rblstFitment" checked id="rblstFitment_3" /><label for="rblstFitment_3">简装修</label></span>
-               <span><input type="radio" class="rblstFitment" id="rblstFitment_4" /><label for="rblstFitment_4">毛坯</label></span>
+                	{{foreach from=$decoration_list item=item key=key}}
+                   		<span><input type="radio" name="decoration" class="rblstFitment" id="rblstFitment_{{$key}}" value="{{$item->id}}" /><label for="rblstFitment_{{$key}}">{{$item->name}}</label></span>
+                   	{{/foreach}}
                 </td>
             </tr>
             <tr class="fi-style">
@@ -129,29 +152,22 @@
                         	请选择朝向</span>
                         <div class='showselectcon' id='selhouse_style4' style='position: absolute;
                             top: 37px; left: 0; display:none;'>
-                            <a href="javascript:">东</a>
-                            <a href="javascript:">南</a>
-                            <a href="javascript:">西</a>
-                            <a href="javascript:">北</a>
-                            <a href="javascript:">东南</a>
-                            <a href="javascript:">西南</a>
-                            <a href="javascript:">东北</a>
-                            <a href="javascript:">西北</a>
-                            <a href="javascript:">南北</a>
-                            <a href="javascript:">东西</a>
+                            {{foreach from=$orientation_list item=item}}
+                         		<a href="javascript:" key="orientation_id" val="{{$item->id}}">{{$item->name}}</a>
+                         	{{/foreach}}
                         </div>
                     </div>
                 </td>
             </tr>
             <!--二手房-->
-            <tr class="fi-style">
+            <tr class="fi-style" id="sd_tr">
                 <th><em class="red">*</em> 期望售价</th>
                 <td><input name="input_expectprice" type="text" id="input_expectprice" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />万元
                 <span class="tip_error">请填写</span>
                 </td>
             </tr>
             <!--整租&合租-->
-            <!--<tr class="fi-style">
+            <tr class="fi-style" id="rent_tr" style="display:none">
                 <th><em class="red">*</em> 租金</th>
                 <td><input name="input_rent" type="text" id="input_rent" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />元
                 <span class="td-tit">租金押付</span> <div class="select_position" id="rentAndPay" style="z-index:11;">
@@ -159,18 +175,17 @@
                         	请选择</span>
                         <div class='showselectcon' style='position: absolute;
                             top: 37px; left: 0;display:none;'>
-                            <a href="javascript:">付三押一</a>
-                            <a href="javascript:">付二压一</a>
-                            <a href="javascript:">付一压一</a>
-                            <a href="javascript:">其他</a>
+                            {{foreach from=$rent_type_list item=item}}
+                         		<a href="javascript:" key="rent_type_id" val="{{$item->id}}">{{$item->name}}</a>
+                         	{{/foreach}}
                         </div>
                     </div>
                 <span class="tip_error">请填写</span>
                 </td>
-            </tr>-->
+            </tr>
             <tr class="fi-style">
                 <th><em class="red">*</em> 物业费</th>
-                <td><input name="input_manage_fee" type="text" id="input_manage_fee" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />万
+                <td><input name="input_manage_fee" type="text" id="input_manage_fee" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />月/平米/月
                 <span class="tip_error">请填写</span>
                 </td>
             </tr>
@@ -189,20 +204,23 @@
             <tr class="fi-style">
                 <th><em class="red">*</em> 上传图片</th>
                 <td class="other">
-                <div id="uploadImgcontainer">
-                    <div class="w_upload">
-                        <em class="iscover"></em>
-                        <a href="#" class="item-close"></a>
-                        <img src="http://dummyimage.com/100x75/000/fff" alt="" width="100" height="75" />
-                    </div>
-                    <div class="w_upload">
-                    	<a href="#" class="set-cover">设为封面</a>
-                        <img src="http://dummyimage.com/100x75/000/fff" alt="" width="100" height="75" />
-                    </div>
-
-                </div>
-                <!--<span class="uploading-btn"><em></em>上传图片</span>
-                <p class="upload-tips">支持多张上传，最多可以上传5张图片</p>--></td>
+	                <!--  
+		                <div id="uploadImgcontainer">
+		                    <div class="w_upload">
+		                        <em class="iscover"></em>
+		                        <a href="#" class="item-close"></a>
+		                        <img src="http://dummyimage.com/100x75/000/fff" alt="" width="100" height="75" />
+		                    </div>
+		                    <div class="w_upload">
+		                    	<a href="#" class="set-cover">设为封面</a>
+		                        <img src="http://dummyimage.com/100x75/000/fff" alt="" width="100" height="75" />
+		                    </div>
+		
+		                </div>
+	                -->
+	                <span class="uploading-btn"><em></em>上传图片</span>
+	                <p class="upload-tips">支持多张上传，最多可以上传5张图片</p>
+               	</td>
             </tr>
             <tr class="fi-style">
                 <th><em class="red">*</em> 房源描述</th>
@@ -228,14 +246,11 @@
                 <td><a href="" class="confirmpush-btn" >确定发布</a> </td>
             </tr>
         </table>
-	       
       </form>
     </div>
     <!--------------房源发布end-------------->
 </div>
 {include file="footer.html"}
-<script type="text/javascript" src="{{$base_url}}js/jquery-1.8.3.min.js" ></script>
-<script type="text/javascript" src="{{$base_url}}js/validform.js" ></script>
 <script>
 //模拟下拉
 $('.select_position').click(function(){
@@ -244,9 +259,50 @@ $('.select_position').click(function(){
 	$(this).mouseleave(function(){
 		thisChildObject.hide();
 	});
-})
+});
+
 $('.select_position .showselectcon a').click(function(){
+	$(this).parent().hide();
 	$(this).parent().prev('.selectbg').html($(this).html());
+	
+	var key = $(this).attr('key');
+	var val = $(this).attr('val');
+	$("#" + key).val(val);
+	
+	if(key == 'style_id') {
+		$.get('/house/get_substyle_list/' + val, function(data) {
+			var items = JSON.parse(data);
+			$("#selhouse_style2").empty();
+			for(var i in items) {
+				var data = items[i];
+				$("#selhouse_style2").append('<a href="javascript:" key="substyle_id" val="'+data.id+'" onclick="clickOption(this);">'+data.name+'</a>');
+			}
+		})
+	}
+});
+
+function clickOption(obj) {
+	$(obj).parent().hide();
+	$(obj).parent().prev('.selectbg').html($(obj).html());
+	
+	var key = $(obj).attr('key');
+	var val = $(obj).attr('val');
+	$("#" + key).val(val);
+}
+
+$(function() {
+	$("._house_style").click(function() {
+		$(this).siblings().removeClass('selected');
+		$(this).addClass('selected');
+		var val = $(this).attr('key')
+		if(val == 1) {
+			$("#sd_tr").show();
+			$("#rent_tr").hide();
+		} else {
+			$("#sd_tr").hide();
+			$("#rent_tr").show();
+		}
+	});
 });
 </script>
 </body>

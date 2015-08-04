@@ -28,6 +28,7 @@ class House extends MY_Controller {
 		$this->assign('order_price_dir', $this->input->post('order_price_dir') ? $this->input->post('order_price_dir') : 1);
 		
 		$this->load->model('house_model');
+		$this->load->model('manage_model');
 	}
 	
 	public function index() {
@@ -271,6 +272,39 @@ class House extends MY_Controller {
 
 	public function publish() {
 		
+		$region_list = $this->manage_model->get_region_list();
+		$decoration_list = $this->manage_model->get_decoration_list();
+		$orientation_list = $this->manage_model->get_orientation_list();
+		
+		$this->assign('region_list', $region_list);
+		$this->assign('decoration_list', $decoration_list);
+		$this->assign('orientation_list', $orientation_list);
+		
+		$style_list = $this->manage_model->get_style_list();
+		$substyle_list = $this->manage_model->get_substyle_list_by_parent(1);
+
+		$this->assign('style_list', $style_list);
+		$this->assign('substyle_list', $substyle_list);
+		
+		$rent_type_list = array(
+			(object)array('id' => 1, 'name' => '付三押一'),
+			(object)array('id' => 2, 'name' => '付二压一'),
+			(object)array('id' => 3, 'name' => '付一压一'),
+			(object)array('id' => 4, 'name' => '其他')
+		);
+		$this->assign('rent_type_list', $rent_type_list);
+		
 		$this->display('publish.html');
+	}
+	
+	public function savePublish() {
+		
+		
+	}
+	
+	public function get_substyle_list($id) {
+		$data = $this->manage_model->get_substyle_list_by_parent($id);
+		echo json_encode($data);
+		die;
 	}
 }
