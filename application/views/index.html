@@ -8,6 +8,8 @@
 <link href="{{$base_url}}css/index.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="{{$base_url}}js/jquery-1.8.3.min.js" ></script>
 <script type="text/javascript" src="{{$base_url}}js/dpl-jquery.slide.js"></script>
+<link href="{{$base_url}}js/layer/skin/layer.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{{$base_url}}js/layer/layer.js"></script>
 </head>
 <body>
 <div class="wraper">
@@ -127,7 +129,7 @@
                     <dt>3</dt>
                     <dd><span>大量买家</span><br />简单2步即可完成发布，方便快捷免费！</dd>
                 </dl>
-                <a href="" class="publish-btn"><em></em>免费发布房源</a>
+                <a href="javascript:void(0);" class="publish-btn" id="btnPublish"><em></em>免费发布房源</a>
             </div>
              <!----------------租房------------------->
              <div class="category-menu-content">
@@ -267,6 +269,14 @@ $(function(){
    	}).mouseleave(function(){
 	   	$('.focusPic').removeClass('slide-pic-hover');
 	});
+   	
+   	$("#btnPublish").click(function() {
+   		{{if $member_username}}
+   			document.location="/house/publish";
+        {{else}}
+        	layer.alert("发布房源请先登录！");
+        {/if}
+   	});
 });
 
 function redirect(t, s, k, v) {

@@ -269,4 +269,8 @@ class House extends MY_Controller {
 		$this->display('huxing_list.html');
 	}
 
+	public function publish() {
+		
+		$this->display('publish.html');
+	}
 }
