@@ -421,10 +421,10 @@ function set_bg(obj,type_id){
 function del_pic(obj,type_id){
 	id = $("[name='id']",navTab.getCurrentPanel()).val();
 	folder = $("[name='folder']",navTab.getCurrentPanel()).val();
-		current_pic = $(obj).parent().parent().find('input:[name="pic_short'+type_id+'[]"]').val();
+		current_pic = $(obj).parent().parent().find('input[name="pic_short'+type_id+'[]"]').val();
 		$.getJSON("<?php echo site_url('manage/del_pic')?>"+"/"+ folder + "/" + type_id + "/" + current_pic + "/" + id,function(data){
 			if(data.flag == 1){
-				$("#append"+type_id,navTab.getCurrentPanel()).find('input[name="pic_short'+type_id+'[]"]').each(function(){
+				$("#imageSection",navTab.getCurrentPanel()).find('input[name="pic_short'+type_id+'[]"]').each(function(){
 					if($(this).val() == data.pic){
 						$(this).parent().remove();
 					}

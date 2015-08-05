@@ -29,6 +29,9 @@ class House extends MY_Controller {
 		
 		$this->load->model('house_model');
 		$this->load->model('manage_model');
+		
+		$this->load->library('image_lib');
+		$this->load->helper('directory');
 	}
 	
 	public function index() {
@@ -314,5 +317,65 @@ class House extends MY_Controller {
 		die;
 	}
 	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public function save_pics($time){
+		if (is_readable('./././uploadfiles/pics/'.$time) == false) {
+			mkdir('./././uploadfiles/pics/'.$time);
+		}
 	
+		if (is_readable('./././uploadfiles/pics/'.$time.'/1') == false) {
+			mkdir('./././uploadfiles/pics/'.$time.'/1');
+		}
+	
+		$path = './././uploadfiles/pics/'.$time.'/1';
+	
+		//设置缩小图片属性
+		$config_small['image_library'] = 'gd2';
+		$config_small['create_thumb'] = TRUE;
+		$config_small['quality'] = 80;
+		$config_small['maintain_ratio'] = TRUE; //保持图片比例
+		$config_small['new_image'] = $path;
+		$config_small['width'] = 300;
+		$config_small['height'] = 190;
+	
+		//设置原图限制
+		$config['upload_path'] = $path;
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		$config['max_size'] = '10000';
+		$config['encrypt_name'] = true;
+		$this->load->library('upload', $config);
+	
+		if($this->upload->do_upload()){
+			$data = $this->upload->data();//返回上传文件的所有相关信息的数组
+			$config_small['source_image'] = $data['full_path']; //文件路径带文件名
+			$this->image_lib->initialize($config_small);
+			$this->image_lib->resize();
+			
+			echo 1;
+		}else{
+			echo -1;
+		}
+		exit;
+	}
+	
+	//ajax获取图片信息
+	public function get_pics($time){
+		$path = './././uploadfiles/pics/'.$time.'/1';
+		$map = directory_map($path);
+		$data = array();
+		//整理图片名字，取缩略图片
+		foreach($map as $v){
+			if(substr(substr($v,0,strrpos($v,'.')),-5) == 'thumb'){
+				$data['img'][] = $v;
+			}
+		}
+		$data['time'] = $time;//文件夹名称
+		echo json_encode($data);
+	}
+	
+	//ajax删除图片
+	public function del_pic($folder,$pic,$id=null){
+		$data = $this->manage_model->del_pic($folder,1,$pic,$id);
+		echo json_encode($data);
+	}
 }
