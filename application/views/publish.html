@@ -48,7 +48,6 @@
     	<input type="hidden" name="decoration_id" id="decoration_id" value="1" />
     	<input type="hidden" name="orientation_id" id="orientation_id" value="" />
     	<input type="hidden" name="rent_type_id" id="rent_type_id" value="" />
-    	
     	<input type="hidden" name="room" id="room" value="" />
     	<input type="hidden" name="lounge" id="lounge" value="" />
     	<input type="hidden" name="toilet" id="toilet" value="" />
@@ -129,7 +128,7 @@
                     </div>
                 </td>
             </tr>
-            
+            <!--  
             <tr class="fi-style">
                 <th>楼栋号</th>
                 <td>
@@ -138,6 +137,7 @@
                     <span id="sp_floornum" class="tip_ok span_floornum">不对外显示，仅为估价用</span>
                 </td>
             </tr>
+            -->
             <tr class="fi-style">
                 <th><em class="red">*</em> 户型</th>
                 <td>
@@ -195,22 +195,22 @@
             <tr class="fi-style">
                 <th><em class="red">*</em> 所在楼层</th>
                 <td>
-                	<input name="input_hnownum" type="text" id="input_hnownum" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />
+                	<input name="floor" type="text" id="floor" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />
                 	<span class="td-tit">总楼层</span>
-                	<input name="input_totalnum" type="text" id="input_totalnum" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />
+                	<input name="total_floor" type="text" id="total_floor" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />
                  	<span id="sp_hnownum" class="tip_ok" style="display:inline-block">(地下室请填负数)</span>
                  	<span id="sp_hnownum_error" class="tip_error">请填写所在楼层</span>
                 </td>
             </tr>
             <tr class="fi-style">
                 <th><em class="red">*</em> 面积</th>
-                <td><input name="input_housearea" type="text" id="input_housearea" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />平米
+                <td><input name="acreage" type="text" id="acreage" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />平米
                  <span id="sp_housearea" class="tip_ok">请填写整数</span>
                 </td>
             </tr>
              <tr class="fi-style">
                 <th><em class="red">*</em> 建造年代</th>
-                <td><input name="input_houseyear" type="text" id="input_houseyear" autocomplete="off" size="30" maxlength="4" class="txt" style="width: 70px;" value="" />年
+                <td><input name="build_year" type="text" id="build_year" autocomplete="off" size="30" maxlength="4" class="txt" style="width: 70px;" value="" />年
                  <span class="tip_error">请填写</span>
                 </td>
             </tr>
@@ -219,8 +219,8 @@
                 <td class="decorate-degree">
                 	{{foreach from=$decoration_list item=item key=key}}
                    		<span {{if $key==0}}style="padding-left:9px;"{{/if}}>
-                   			<input type="radio" name="decoration" class="rblstFitment" id="rblstFitment_{{$key}}" value="{{$item->id}}" {{if $key==0}}checked{{/if}}/>
-                   			<label for="rblstFitment_{{$key}}">{{$item->name}}</label>
+                   			<input type="radio" name="decoration" class="rblstFitment" id="decoration_{{$key}}" value="{{$item->id}}" {{if $key==0}}checked{{/if}}/>
+                   			<label for="rdecoration_{{$key}}">{{$item->name}}</label>
                    		</span>
                    	{{/foreach}}
                 </td>
@@ -243,14 +243,14 @@
             <!--二手房-->
             <tr class="fi-style" id="sd_tr">
                 <th><em class="red">*</em> 期望售价</th>
-                <td><input name="input_expectprice" type="text" id="input_expectprice" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />万元
+                <td><input name="total_price" type="text" id="total_price" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />万元
                 <span class="tip_error">请填写</span>
                 </td>
             </tr>
             <!--整租&合租-->
             <tr class="fi-style" id="rent_tr" style="display:none">
                 <th><em class="red">*</em> 租金</th>
-                <td><input name="input_rent" type="text" id="input_rent" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />元
+                <td><input name="unit_price" type="text" id="unit_price" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />元
                 <span class="td-tit">租金押付</span> <div class="select_position" id="rentAndPay" style="z-index:11;">
                         <span class="selectbg" style="cursor: pointer;">
                         	请选择</span>
@@ -266,19 +266,25 @@
             </tr>
             <tr class="fi-style">
                 <th><em class="red">*</em> 物业费</th>
-                <td><input name="input_manage_fee" type="text" id="input_manage_fee" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />元/平米/月
+                <td><input name="estate_price" type="text" id="estate_price" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />元/平米/月
                 <span class="tip_error">请填写</span>
                 </td>
             </tr>
             <tr class="fi-style">
                 <th><em class="red">*</em> 配套设施</th>
-                <td><input name="input_manage_fee" type="text" id="input_support_faci" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 300px;" value="" />
+                <td><input name="facility" type="text" id="facility" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 300px;" value="" />
                  <span class="tip_error">请填写</span>
                 </td>
             </tr>
             <tr class="fi-style">
                 <th><em class="red">*</em> 房源标题</th>
-                <td><input name="input_housing_tit" type="text" id="input_housing_tit" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 300px;" value="" />
+                <td><input name="name" type="text" id="name" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 300px;" value="" />
+                <span class="tip_error">请填写</span>
+                </td>
+            </tr>
+            <tr class="fi-style">
+                <th><em class="red">*</em> 副标题</th>
+                <td><input name="sub_title" type="text" id="sub_title" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 300px;" value="" />
                 <span class="tip_error">请填写</span>
                 </td>
             </tr>
@@ -416,10 +422,6 @@ $(function() {
 
 	$("#xiaoquSelect").combobox();
 	
-	$("#btnSubmit").click(function() {
-		$("#publishForm").submit();
-	});
-	
 	$("#fileUpload").click(function() {
 		var html = '<div id="uploader"><p>Your browser doesn\'t have Flash, Silverlight or HTML5 support.</p></div>';
 		easyDialog.open({
@@ -492,6 +494,51 @@ $(function() {
 			silverlight_xap_url : '{{$base_url}}plupload/js/Moxie.xap'
 		});
 	});
+	
+	$("#btnSubmit").click(function() {
+		var xiaoqu = $("#xiaoquSelect").val();
+		if(xiaoqu == "") {
+			FM_Alert('请选取小区');
+			return;
+		}
+		
+		var style_id = $("#style_id").val();
+		var substyle_id = $("#substyle_id").val();
+		if(style_id == "" || substyle_id == "") {
+			FM_Alert('请选择房源类型');
+			return;
+		}
+		
+		var region_id = $("#region_id").val();
+		if(region_id == "") {
+			FM_Alert('请选择所在区域');
+			return;
+		}
+		
+		var room = $("#room").val();
+		var lounge = $("#lounge").val();
+		var toilet = $("#toilet").val();
+		if(room == "" || lounge == "" || toilet == "") {
+			FM_Alert('请选择户型信息(室厅卫)');
+			return;
+		}
+		
+		var floor = $("#floor").val();
+		if(floor == "") {
+			FM_Alert('请输入所在楼层');
+			return;
+		}
+		
+		var total_floor = $("#total_floor").val();
+		if(total_floor == "") {
+			FM_Alert('请输入总楼层');
+			return;
+		}
+		
+		
+		
+		//$("#publishForm").submit();
+	});
 });
 
 function del_pic(obj) {
@@ -514,6 +561,10 @@ function set_bg(obj) {
 	
 	var pic = $("#folder").val() + '/1/' + $(obj).parent().find('.pic_short').val();
 	$("#is_bg").val(pic);
+}
+
+function FM_Alert(msg) {
+	easyDialog.open({ container : { content : msg }, autoClose : 2000 });
 }
 </script>
 </body>
