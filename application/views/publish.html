@@ -12,6 +12,9 @@
 <script src="{{$base_url}}dwz/xheditor/xheditor-1.2.1.min.js" type="text/javascript"></script>
 <script src="{{$base_url}}dwz/xheditor/xheditor_lang/zh-cn.js" type="text/javascript"></script>
 
+<link href="{{$base_url}}js/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+<script src="{{$base_url}}js/jquery-ui/jquery-ui.min.js"></script>
+
 </head>
 <body>
 <div class="wraper">
@@ -45,7 +48,9 @@
             </tr>
             <tr class="fi-style">
                 <th><em class="red">*</em> 小区名称</th>
-                <td> <div class="input_position" style="z-index:10;">
+                <td>
+                	<!--
+                	<div class="input_position" style="z-index:10;">
                         <input name="input_projname" type="text" id="input_projname" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 300px;" value="" placeholder="请输入小区名称" /><span class="sp_ok"></span><span id="sp_projname" class="tip_ok">如：香榭水岸 或 xxsa</span>
                         <span id="sp_projname_error" class="tip_error">请填写小区名称，并在下拉框中选择小区</span>
                         <div class='showselectcon' id='selhouse_style3' style='position: absolute;
@@ -56,6 +61,13 @@
                             <a href="javascript:">叠加别墅</a>
                         </div>
                      </div>
+                     -->
+                     <select name="xq_id" id="xiaoquSelect" style="padding-left:5px;">
+						<option value="">- 选择 -</option>
+						{{foreach from=$xiaoqu_list item=item}}
+							<option value="{{$item.id}}">{{$item.name}}</option>
+						{{/foreach}}
+					</select>
 				</td>
             </tr>
             <tr class="fi-style">
@@ -258,6 +270,8 @@
     <!--------------房源发布end-------------->
 </div>
 {include file="footer.html"}
+<link href="{{$base_url}}css/combox.css" rel="stylesheet" type="text/css" />
+<script src="{{$base_url}}js/combox.js"></script>
 <script>
 //模拟下拉
 $('.select_position').click(function(){
@@ -319,6 +333,8 @@ $(function() {
 		//keepValue:true,
 		//plugins:{}
 	});
+	
+	$("#xiaoquSelect").combobox();
 });
 </script>
 </body>

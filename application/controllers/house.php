@@ -294,6 +294,9 @@ class House extends MY_Controller {
 		);
 		$this->assign('rent_type_list', $rent_type_list);
 		
+		$xiaoqu_list = $this->house_model->list_xiaoqu();
+		$this->assign('xiaoqu_list', $xiaoqu_list);
+		
 		$this->display('publish.html');
 	}
 	

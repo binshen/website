@@ -910,5 +910,7 @@ class House_model extends MY_Model
    		return $this->db->get()->result_array();
    	}
    	
-
+	public function list_xiaoqu() {
+		return $this->db->select('id,name')->from('xiaoqu')->get()->result_array();
+	}
 }
