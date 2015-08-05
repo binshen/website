@@ -274,6 +274,7 @@
                 <th><em class="red">*</em> 上传图片</th>
                 <td class="other">
 	                <div id="uploadImgcontainer" class="clearfix">
+	                	<!--  
 	                    <div class="w_upload">
 	                        <em class="iscover"></em>
 	                        <a href="#" class="item-close"></a>
@@ -304,6 +305,7 @@
 	                    	<a href="#" class="item-close"></a>
 	                        <img src="http://dummyimage.com/100x75/000/fff" alt="" width="100" height="75" />
 	                    </div>
+	                    -->
 	                </div>
 	                <span class="uploading-btn"><em></em>上传图片</span>
                	</td>
@@ -311,7 +313,7 @@
             <tr class="fi-style">
                 <th><em class="red">*</em> 房源描述</th>
                 <td class="other">
-                    <textarea class="editor" id="description" name="description" rows="15" cols="100" upImgUrl="<?php echo site_url('manage/upload_pic')?>" upImgExt="jpg,jpeg,gif,png"  tools="simple"></textarea>
+                    <textarea id="description" name="description" rows="15" cols="100" upImgUrl="<?php echo site_url('manage/upload_pic')?>" upImgExt="jpg,jpeg,gif,png"  tools="Bold,Italic,Underline,Strikethrough,|,Align,List,|,Link,Img"></textarea>
                 </td>
             </tr>
             <tr class="fi-style">
@@ -394,15 +396,19 @@ $(function() {
 		}
 	});
 	
-	$('#description').xheditor(true,{
-		tools:'simple',
-		skin:'default',
-		upImgUrl:"<?php echo site_url('manage/upload_pic')?>",
+	$('#description').xheditor({
+		//upLinkUrl:"upload.php",
+		//upLinkExt:"zip,rar,txt",
+		upImgUrl:"/manage/upload_pic",
 		upImgExt:"jpg,jpeg,gif,png",
-		//keepValue:true,
-		//plugins:{}
+		upFlashExt:"swf",
+		//upMediaUrl:"upload.php",
+		tools:'Bold,Italic,Underline,Strikethrough,List,Link,Unlink,Img,Hr,Emot,Table,Source,Preview,Cut,Copy,Paste,Pastetext,Blocktag,Fullscreen',
+		//html5Upload:false,
+		cleanPaste:2,
+		height:'190'
 	});
-	
+
 	$("#xiaoquSelect").combobox();
 	
 	$("#btnSubmit").click(function() {
