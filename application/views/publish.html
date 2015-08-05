@@ -68,6 +68,7 @@
 							<option value="{{$item.id}}">{{$item.name}}</option>
 						{{/foreach}}
 					</select>
+					<span style="padding-left:40px;color:#999">请填写小区名称，并在下拉框中选择小区</span>
 				</td>
             </tr>
             <tr class="fi-style">
@@ -238,7 +239,6 @@
 		                </div>
 	                -->
 	                <span class="uploading-btn"><em></em>上传图片</span>
-	                <p class="upload-tips">支持多张上传，最多可以上传5张图片</p>
                	</td>
             </tr>
             <tr class="fi-style">
@@ -277,24 +277,19 @@
 <script src="{{$base_url}}js/combox.js"></script>
 <script>
 //模拟下拉
-$('.select_position').click(function(){
-	var thisChildObject = $(this).children(".showselectcon");
+$('.select_position span').click(function(){
+	var thisChildObject = $(this).parent().children(".showselectcon");
 	thisChildObject.show();
-	$(this).mouseleave(function(){
+	$(this).parent().mouseleave(function(){
 		thisChildObject.hide();
 	});
 });
 
 $('.select_position .showselectcon a').click(function(){
-	$(this).parent().hide();
-	$(this).parent().prev('.selectbg').html($(this).html());
-	
-	var key = $(this).attr('key');
-	var val = $(this).attr('val');
-	$("#" + key).val(val);
-	
-	if(key == 'style_id') {
-		$.get('/house/get_substyle_list/' + val, function(data) {
+	clickOption(this);
+
+	if($(this).attr('key') == 'style_id') {
+		$.get('/house/get_substyle_list/' + $(this).attr('val'), function(data) {
 			var items = JSON.parse(data);
 			$("#selhouse_style2").empty();
 			for(var i in items) {
