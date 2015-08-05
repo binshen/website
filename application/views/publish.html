@@ -15,6 +15,19 @@
 <link href="{{$base_url}}js/jquery-ui/jquery-ui.min.css" rel="stylesheet">
 <script src="{{$base_url}}js/jquery-ui/jquery-ui.min.js"></script>
 
+<!--plupload start--------------------------------------------------------------------------->
+<script src="{{$base_url}}plupload/js/jquery-ui-1.9.2.custom.min.js"></script>
+<!-- Load plupload and all it's runtimes and finally the UI widget -->
+<link rel="stylesheet" href="{{$base_url}}plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css" type="text/css" />
+<!-- production -->
+<script type="text/javascript" src="{{$base_url}}plupload/js/plupload.full.min.js"></script>
+<script type="text/javascript" src="{{$base_url}}plupload/js/zh_CN.js"></script>
+<script type="text/javascript" src="{{$base_url}}plupload/js/jquery.ui.plupload/jquery.ui.plupload.js"></script>
+<!--plupload end---------------------------------------------------------------------------->
+
+<link href="{{$base_url}}js/easydialog/easydialog.css" rel="stylesheet">
+<script src="{{$base_url}}js/easydialog/easydialog.min.js"></script>
+
 </head>
 <body>
 <div class="wraper">
@@ -307,7 +320,7 @@
 	                    </div>
 	                    -->
 	                </div>
-	                <span class="uploading-btn"><em></em>上传图片</span>
+	                <span class="uploading-btn layer_notice" id="fileUpload"><em></em>批量上传</span>
                	</td>
             </tr>
             <tr class="fi-style">
@@ -399,7 +412,7 @@ $(function() {
 	$('#description').xheditor({
 		//upLinkUrl:"upload.php",
 		//upLinkExt:"zip,rar,txt",
-		upImgUrl:"/manage/upload_pic",
+		upImgUrl:"/house/upload_pic",
 		upImgExt:"jpg,jpeg,gif,png",
 		upFlashExt:"swf",
 		//upMediaUrl:"upload.php",
@@ -414,7 +427,69 @@ $(function() {
 	$("#btnSubmit").click(function() {
 		$("#publishForm").submit();
 	});
+	
+	$("#fileUpload").click(function() {
+		/*
+		$.get('/house/add_pics', function(data){
+			
+		});
+		*/
+		var html = '<div id="uploader"><p>Your browser doesn\'t have Flash, Silverlight or HTML5 support.</p></div>';
+		easyDialog.open({
+			container : {
+			    header : '弹出层标题',
+			    content : html,
+			    yesFn : function() {
+			    	alert("123");
+			    },
+			    noFn : true
+			  }
+		});
+		$("#uploader").plupload({
+			runtimes : 'html5,flash,silverlight',
+			url : "/manage/save_pics/{{$time}}/1",
+	        max_file_size : '50mb',
+	        // Resize images on clientside if we can
+	        resize : {
+	            crop: true // crop to exact dimensions
+	        },
+	        file_data_name: 'userfile',
+	        // Specify what files to browse for
+	        filters : [],
+	        filters: {
+	        	mime_types : [{
+	        		title : "Image files", extensions : "jpg,gif,png"
+	        	}],
+	        	max_file_size : '1024kb', //最大只能上传400kb的文件
+	        	prevent_duplicates : true //不允许选取重复文件
+	        },
+	        // Rename files by clicking on their titles
+	        rename: true,
+	        // Sort files
+	        sortable: true,
+	        // Enable ability to drag'n'drop files onto the widget (currently only HTML5 supports that)
+	        dragdrop: true,
+	        // Views to activate
+	        views: {
+	            list: true,
+	            thumbs: true, // Show thumbs
+	            active: 'thumbs'
+	        },
+			// Flash settings
+			flash_swf_url : '{{$base_url}}plupload/js/Moxie.swf',
+			// Silverlight settings
+			silverlight_xap_url : '{{$base_url}}plupload/js/Moxie.xap'
+		});
+	});
 });
+
+var btnFn = function(){
+	alert( e.target );
+	return false;
+};
+
+
+
 </script>
 </body>
 </html>

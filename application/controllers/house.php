@@ -297,6 +297,8 @@ class House extends MY_Controller {
 		$xiaoqu_list = $this->house_model->list_xiaoqu();
 		$this->assign('xiaoqu_list', $xiaoqu_list);
 		
+		$this->assign('time', date('YmdHis'));
+		
 		$this->display('publish.html');
 	}
 	
@@ -311,4 +313,11 @@ class House extends MY_Controller {
 		echo json_encode($data);
 		die;
 	}
+	
+// 	public function add_pics(){
+		
+// 		$this->assign('time', date('YmdHis'));
+		
+// 		$this->load->view('upload.html');
+// 	}
 }
