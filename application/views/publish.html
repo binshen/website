@@ -148,7 +148,7 @@
             </tr>
              <tr class="fi-style">
                 <th><em class="red">*</em> 建造年代</th>
-                <td><input name="input_houseyear" type="text" id="input_houseyear" autocomplete="off" size="30" maxlength="4" class="txt" style="width: 70px;" value="" />
+                <td><input name="input_houseyear" type="text" id="input_houseyear" autocomplete="off" size="30" maxlength="4" class="txt" style="width: 70px;" value="" />年
                  <span class="tip_error">请填写</span>
                 </td>
             </tr>
@@ -156,7 +156,10 @@
                 <th><em class="red">*</em> 装修程度</th>
                 <td class="decorate-degree">
                 	{{foreach from=$decoration_list item=item key=key}}
-                   		<span><input type="radio" name="decoration" class="rblstFitment" id="rblstFitment_{{$key}}" value="{{$item->id}}" {{if key==0}}checked{{/if}}/><label for="rblstFitment_{{$key}}">{{$item->name}}</label></span>
+                   		<span {{if $key==0}}style="padding-left:9px;"{{/if}}>
+                   			<input type="radio" name="decoration" class="rblstFitment" id="rblstFitment_{{$key}}" value="{{$item->id}}" {{if $key==0}}checked{{/if}}/>
+                   			<label for="rblstFitment_{{$key}}">{{$item->name}}</label>
+                   		</span>
                    	{{/foreach}}
                 </td>
             </tr>
@@ -201,7 +204,7 @@
             </tr>
             <tr class="fi-style">
                 <th><em class="red">*</em> 物业费</th>
-                <td><input name="input_manage_fee" type="text" id="input_manage_fee" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />月/平米/月
+                <td><input name="input_manage_fee" type="text" id="input_manage_fee" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />元/平米/月
                 <span class="tip_error">请填写</span>
                 </td>
             </tr>
