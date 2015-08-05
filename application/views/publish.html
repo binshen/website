@@ -27,15 +27,19 @@
         <span class="fz34">免费发布房源</span><br />房猫值得你信赖，房猫帮你快速找到精准客户。
     </div>
     <div class="publishconer">
-    <form method="POST" action="/house/savePublish">
-    	<input type="hidden" name="type_id" value="" />
-    	<input type="hidden" name="rent_style_id" value="" />
-    	<input type="hidden" name="style_id" value="" />
-    	<input type="hidden" name="substyle_id" value="" />
-    	<input type="hidden" name="region_id" value="" />
-    	<input type="hidden" name="decoration_id" value="" />
-    	<input type="hidden" name="orientation_id" value="" />
-    	<input type="hidden" name="rent_type_id" value="" />
+    <form method="POST" action="/house/savePublish" id="publishForm">
+    	<input type="hidden" name="type_id" id="type_id" value="" />
+    	<input type="hidden" name="rent_style_id" id="rent_style_id" value="" />
+    	<input type="hidden" name="style_id" id="style_id" value="" />
+    	<input type="hidden" name="substyle_id" id="substyle_id" value="" />
+    	<input type="hidden" name="region_id" id="region_id" value="" />
+    	<input type="hidden" name="decoration_id" id="decoration_id" value="1" />
+    	<input type="hidden" name="orientation_id" id="orientation_id" value="" />
+    	<input type="hidden" name="rent_type_id" id="rent_type_id" value="" />
+    	
+    	<input type="hidden" name="room" id="room" value="" />
+    	<input type="hidden" name="lounge" id="lounge" value="" />
+    	<input type="hidden" name="toilet" id="toilet" value="" />
     	
         <table cellpadding="0" cellspacing="0" border="0" class="publishtab">
             <tr class="fi-style">
@@ -125,53 +129,55 @@
             <tr class="fi-style">
                 <th><em class="red">*</em> 户型</th>
                 <td>
-                	<div class="select_position" id="selRoom">
-                        <span id="selRoom" class="selectbg" style="cursor: pointer;">请选择</span>
-                        <div class='showselectcon' id='selroom' style='position: absolute; top: 37px; left: 0; display:none;'>
-                         	<a href="javascript:" key="room" val="1">1</a>
-                         	<a href="javascript:" key="room" val="2">2</a>
-                         	<a href="javascript:" key="room" val="3">3</a>
-                         	<a href="javascript:" key="room" val="4">4</a>
-                         	<a href="javascript:" key="room" val="5">5</a>
-                         	<a href="javascript:" key="room" val="6">6</a>
-                         	<a href="javascript:" key="room" val="7">7</a>
-                         	<a href="javascript:" key="room" val="8">8</a>
-                         	<a href="javascript:" key="room" val="9">9</a>
-                         	<a href="javascript:" key="room" val="10">10</a>
-                        </div>
-                    </div>室
-                    <div class="select_position" id="selRoom">
-                        <span id="selRoom" class="selectbg" style="cursor: pointer;">请选择</span>
-                        <div class='showselectcon' id='selroom' style='position: absolute; top: 37px; left: 0; display:none;'>
-                        	<a href="javascript:" key="room" val="0">0</a>
-                         	<a href="javascript:" key="room" val="1">1</a>
-                         	<a href="javascript:" key="room" val="2">2</a>
-                         	<a href="javascript:" key="room" val="3">3</a>
-                         	<a href="javascript:" key="room" val="4">4</a>
-                         	<a href="javascript:" key="room" val="5">5</a>
-                         	<a href="javascript:" key="room" val="6">6</a>
-                         	<a href="javascript:" key="room" val="7">7</a>
-                         	<a href="javascript:" key="room" val="8">8</a>
-                         	<a href="javascript:" key="room" val="9">9</a>
-                         	<a href="javascript:" key="room" val="10">10</a>
-                        </div>
-                    </div>厅
-                    <div class="select_position" id="selRoom">
-                        <span id="selRoom" class="selectbg" style="cursor: pointer;">请选择</span>
-                        <div class='showselectcon' id='selroom' style='position: absolute; top: 37px; left: 0; display:none;'>
-                        	<a href="javascript:" key="room" val="0">0</a>
-                         	<a href="javascript:" key="room" val="1">1</a>
-                         	<a href="javascript:" key="room" val="2">2</a>
-                         	<a href="javascript:" key="room" val="3">3</a>
-                         	<a href="javascript:" key="room" val="4">4</a>
-                         	<a href="javascript:" key="room" val="5">5</a>
-                         	<a href="javascript:" key="room" val="6">6</a>
-                         	<a href="javascript:" key="room" val="7">7</a>
-                         	<a href="javascript:" key="room" val="8">8</a>
-                         	<a href="javascript:" key="room" val="9">9</a>
-                         	<a href="javascript:" key="room" val="10">10</a>
-                        </div>
-                    </div>卫
+                	<div class="simu-select-box">
+                        <div class="select_position" id="" style="z-index:11; float:left;">
+                            <span id="selRoom"  class="selectbg selectbg1" style="cursor: pointer;"></span>
+                            <div class='showselectcon' id='' style='position: absolute; top: 37px; left: 0;display:none;'>
+                                <a href="javascript:" key="room" val="1">1</a>
+	                         	<a href="javascript:" key="room" val="2">2</a>
+	                         	<a href="javascript:" key="room" val="3">3</a>
+	                         	<a href="javascript:" key="room" val="4">4</a>
+	                         	<a href="javascript:" key="room" val="5">5</a>
+	                         	<a href="javascript:" key="room" val="6">6</a>
+	                         	<a href="javascript:" key="room" val="7">7</a>
+	                         	<a href="javascript:" key="room" val="8">8</a>
+	                         	<a href="javascript:" key="room" val="9">9</a>
+	                         	<a href="javascript:" key="room" val="10">10</a>
+                            </div>
+                        </div>室
+                        <div class="select_position" id="" style="z-index:11; float:left;">
+                            <span id="selLounge"  class="selectbg selectbg1" style="cursor: pointer;"></span>
+                            <div class='showselectcon' id='' style='position: absolute; top: 37px; left: 0;display:none;'>
+                                <a href="javascript:" key="room" val="0">0</a>
+	                         	<a href="javascript:" key="room" val="1">1</a>
+	                         	<a href="javascript:" key="room" val="2">2</a>
+	                         	<a href="javascript:" key="room" val="3">3</a>
+	                         	<a href="javascript:" key="room" val="4">4</a>
+	                         	<a href="javascript:" key="room" val="5">5</a>
+	                         	<a href="javascript:" key="room" val="6">6</a>
+	                         	<a href="javascript:" key="room" val="7">7</a>
+	                         	<a href="javascript:" key="room" val="8">8</a>
+	                         	<a href="javascript:" key="room" val="9">9</a>
+	                         	<a href="javascript:" key="room" val="10">10</a>
+                            </div>
+                        </div>厅
+                        <div class="select_position" id="" style="z-index:11; float:left;">
+                            <span id="selToilet"  class="selectbg selectbg1" style="cursor: pointer;"></span>
+                            <div class='showselectcon' id='' style='position: absolute; top: 37px; left: 0;display:none;'>
+                                <a href="javascript:" key="room" val="0">0</a>
+	                         	<a href="javascript:" key="room" val="1">1</a>
+	                         	<a href="javascript:" key="room" val="2">2</a>
+	                         	<a href="javascript:" key="room" val="3">3</a>
+	                         	<a href="javascript:" key="room" val="4">4</a>
+	                         	<a href="javascript:" key="room" val="5">5</a>
+	                         	<a href="javascript:" key="room" val="6">6</a>
+	                         	<a href="javascript:" key="room" val="7">7</a>
+	                         	<a href="javascript:" key="room" val="8">8</a>
+	                         	<a href="javascript:" key="room" val="9">9</a>
+	                         	<a href="javascript:" key="room" val="10">10</a>
+                            </div>
+                        </div>卫
+                    </div>
                 </td>
             </tr>
             <tr class="fi-style">
@@ -267,7 +273,7 @@
             <tr class="fi-style">
                 <th><em class="red">*</em> 上传图片</th>
                 <td class="other">
-	                <div id="uploadImgcontainer">
+	                <div id="uploadImgcontainer" class="clearfix">
 	                    <div class="w_upload">
 	                        <em class="iscover"></em>
 	                        <a href="#" class="item-close"></a>
@@ -275,22 +281,27 @@
 	                    </div>
 	                    <div class="w_upload">
 	                    	<a href="#" class="set-cover">设为封面</a>
+	                    	<a href="#" class="item-close"></a>
 	                        <img src="http://dummyimage.com/100x75/000/fff" alt="" width="100" height="75" />
 	                    </div>
 	                    <div class="w_upload">
 	                    	<a href="#" class="set-cover">设为封面</a>
+	                    	<a href="#" class="item-close"></a>
 	                        <img src="http://dummyimage.com/100x75/000/fff" alt="" width="100" height="75" />
 	                    </div>
 	                    <div class="w_upload">
 	                    	<a href="#" class="set-cover">设为封面</a>
+	                    	<a href="#" class="item-close"></a>
 	                        <img src="http://dummyimage.com/100x75/000/fff" alt="" width="100" height="75" />
 	                    </div>
 	                    <div class="w_upload">
 	                    	<a href="#" class="set-cover">设为封面</a>
+	                    	<a href="#" class="item-close"></a>
 	                        <img src="http://dummyimage.com/100x75/000/fff" alt="" width="100" height="75" />
 	                    </div>
 	                    <div class="w_upload">
 	                    	<a href="#" class="set-cover">设为封面</a>
+	                    	<a href="#" class="item-close"></a>
 	                        <img src="http://dummyimage.com/100x75/000/fff" alt="" width="100" height="75" />
 	                    </div>
 	                </div>
@@ -317,7 +328,7 @@
             </tr>
              <tr class="fi-style">
                 <th>&nbsp;</th>
-                <td><a href="" class="confirmpush-btn" >确定发布</a> </td>
+                <td><a href="javascript:void(0);" class="confirmpush-btn" id="btnSubmit">确定发布</a> </td>
             </tr>
         </table>
       </form>
@@ -365,13 +376,21 @@ $(function() {
 	$("._house_style").click(function() {
 		$(this).siblings().removeClass('selected');
 		$(this).addClass('selected');
-		var val = $(this).attr('key')
-		if(val == 1) {
+		var key = $(this).attr('key')
+		if(key == 1) {
 			$("#sd_tr").show();
 			$("#rent_tr").hide();
+			$("#type_id").val(1);
+			$("#rent_style_id").val("");
 		} else {
 			$("#sd_tr").hide();
 			$("#rent_tr").show();
+			$("#type_id").val(2);
+			if(key == 2) {
+				$("#rent_style_id").val(1);
+			} else {
+				$("#rent_style_id").val(2);
+			}
 		}
 	});
 	
@@ -385,6 +404,10 @@ $(function() {
 	});
 	
 	$("#xiaoquSelect").combobox();
+	
+	$("#btnSubmit").click(function() {
+		$("#publishForm").submit();
+	});
 });
 </script>
 </body>

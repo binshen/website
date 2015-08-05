@@ -302,7 +302,8 @@ class House extends MY_Controller {
 	
 	public function savePublish() {
 		
-		
+		var_dump($_POST);
+		die;
 	}
 	
 	public function get_substyle_list($id) {

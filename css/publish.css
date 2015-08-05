@@ -21,6 +21,8 @@
 .fi-style span.selectbg,.fi-style span.selectbg:link{color:#888;cursor:default;display:inline-block;height:37px;line-height:37px;overflow:hidden;padding-left:5px;text-decoration:none;width:114px;vertical-align:middle}
 .fi-style span.selectbg,.fi-style.selectbg:hover{background:url(../images/icon3_1.png) no-repeat 0 -503px;cursor:pointer;z-index:1}
 
+.fi-style span.selectbg1,.fi-style.selectbg1:hover{padding-left:10px;width:38px;  background:url(../images/icon3_1.png) no-repeat 0 -763px;cursor:pointer;z-index:1}
+
 .fi-style .txt{margin:0 10px;border:1px solid #b3b3b3;font-size:14px;padding:8px;vertical-align:middle;}
 
 .fi-style .select_position,.fi-style .input_position{margin:0 10px; position: relative; display: inline-block;}
@@ -38,7 +40,7 @@
 .decorate-degree span { width:90px; float:left;}
 .decorate-degree span label{padding:0 5px; vertical-align:2px; font-size:14px;}
 
-.uploading-btn{width:110px; height:40px; display:block; line-height:40px; background:#ff6600; border-radius:3px; color:#fff; text-align:center;}
+.uploading-btn{margin-top:10px;width:110px; height:40px; display:block; line-height:40px; background:#ff6600; border-radius:3px; color:#fff; text-align:center;}
 .uploading-btn em{margin-right:5px; width:22px; height:22px; display:inline-block; background:url(../images/icon3_1.png) no-repeat 0 -562px; vertical-align:middle;}
 
 .upload-tips{ font-size:16px; line-height:30px;}
@@ -57,7 +59,7 @@
 
 /*图片上传*/
 .uploadImgcontainer{}
-.w_upload{ position:relative; float:left; margin-right:20px;}
+.w_upload{ position:relative; float:left; margin:10px 20px 0 0;}
 .w_upload .iscover{ display:block; width:19px; height:25px; position:absolute; top:0;left:10px; background:url(../images/postimgupload.png) no-repeat;}
 
 .item-close{ display:block; width:16px; height:16px; background:url(../images/postimgupload.png) no-repeat 0 -34px; position:absolute;top:-8px;right:-8px;}
