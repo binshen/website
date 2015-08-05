@@ -543,7 +543,7 @@ $(function() {
 
 function del_pic(obj) {
 	var current_pic = $(obj).parent().find('input[name="pic_short[]"]').val();
-	$.getJSON("/house/del_pic/" + $("#folder").val() + "/1/" + current_pic + "/", function(data){
+	$.getJSON("/house/del_pic/" + $("#folder").val() + "/" + current_pic + "/", function(data){
 		if(data.flag == 1){
 			$(obj).parent().remove();
 		}else{
