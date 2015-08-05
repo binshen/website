@@ -353,6 +353,17 @@
 {include file="footer.html"}
 <link href="{{$base_url}}css/combox.css" rel="stylesheet" type="text/css" />
 <script src="{{$base_url}}js/combox.js"></script>
+
+<style type="text/css">
+.easyDialog_content {
+	width: 840px;
+}
+#easyDialogBox {
+	left:30% !important;
+	top:30% !important;
+}
+</style>
+
 <script>
 //模拟下拉
 $('.select_position span').click(function(){
@@ -429,18 +440,14 @@ $(function() {
 	});
 	
 	$("#fileUpload").click(function() {
-		/*
-		$.get('/house/add_pics', function(data){
-			
-		});
-		*/
+
 		var html = '<div id="uploader"><p>Your browser doesn\'t have Flash, Silverlight or HTML5 support.</p></div>';
 		easyDialog.open({
 			container : {
 			    header : '弹出层标题',
 			    content : html,
 			    yesFn : function() {
-			    	alert("123");
+			    	
 			    },
 			    noFn : true
 			  }

@@ -314,10 +314,5 @@ class House extends MY_Controller {
 		die;
 	}
 	
-// 	public function add_pics(){
-		
-// 		$this->assign('time', date('YmdHis'));
-		
-// 		$this->load->view('upload.html');
-// 	}
+	
 }
