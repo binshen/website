@@ -310,10 +310,10 @@ class House extends MY_Controller {
 		$this->display('publish.html');
 	}
 	
-	public function savePublish() {
+	public function save_publish() {
 
 		$this->house_model->save_publish();
-		redirect('/');
+		$this->show_message('房源发布成功',site_url('/'));
 	}
 	
 	public function get_substyle_list($id) {
