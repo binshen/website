@@ -314,6 +314,13 @@ class House extends MY_Controller {
 		$xiaoqu_list = $this->house_model->list_xiaoqu();
 		$this->assign('xiaoqu_list', $xiaoqu_list);
 		
+		$room_list = array(1,2,3,4,5,6,7,8,9,10);
+		$lounge_list = array(0,1,2,3,4,5,6,7,8,9,10);
+		$toilet_list = array(0,1,2,3,4,5,6,7,8,9,10);
+		$this->assign('room_list', $room_list);
+		$this->assign('lounge_list', $lounge_list);
+		$this->assign('toilet_list', $toilet_list);
+		
 		$this->assign('time', date('YmdHis'));
 		
 		$this->display('publish.html');

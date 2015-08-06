@@ -46,7 +46,7 @@
     	<input type="hidden" name="substyle_id" id="substyle_id" value="" />
     	<input type="hidden" name="region_id" id="region_id" value="" />
     	<input type="hidden" name="decoration_id" id="decoration_id" value="1" />
-    	<input type="hidden" name="orientation_id" id="orientation_id" value="1" />
+    	<input type="hidden" name="orientation_id" id="orientation_id" value="" />
     	<input type="hidden" name="rent_type_id" id="rent_type_id" value="" />
     	<input type="hidden" name="room" id="room" value="" />
     	<input type="hidden" name="lounge" id="lounge" value="" />
@@ -144,48 +144,25 @@
                         <div class="select_position" id="" style="z-index:11;">
                             <span id="selRoom"  class="selectbg selectbg1" style="cursor: pointer;"></span>
                             <div class='showselectcon' id='' style='position: absolute; top: 37px; left: 0;display:none;'>
-                                <a href="javascript:" key="room" val="1">1</a>
-	                         	<a href="javascript:" key="room" val="2">2</a>
-	                         	<a href="javascript:" key="room" val="3">3</a>
-	                         	<a href="javascript:" key="room" val="4">4</a>
-	                         	<a href="javascript:" key="room" val="5">5</a>
-	                         	<a href="javascript:" key="room" val="6">6</a>
-	                         	<a href="javascript:" key="room" val="7">7</a>
-	                         	<a href="javascript:" key="room" val="8">8</a>
-	                         	<a href="javascript:" key="room" val="9">9</a>
-	                         	<a href="javascript:" key="room" val="10">10</a>
+	                            {{foreach from=$room_list item=item}}
+	                         		<a href="javascript:" key="room" val="{{$item}}">{{$item}}</a>
+	                         	{{/foreach}}
                             </div>
                         </div>室
                         <div class="select_position" id="" style="z-index:11;">
                             <span id="selLounge"  class="selectbg selectbg1" style="cursor: pointer;"></span>
                             <div class='showselectcon' id='' style='position: absolute; top: 37px; left: 0;display:none;'>
-                                <a href="javascript:" key="lounge" val="0">0</a>
-	                         	<a href="javascript:" key="lounge" val="1">1</a>
-	                         	<a href="javascript:" key="lounge" val="2">2</a>
-	                         	<a href="javascript:" key="lounge" val="3">3</a>
-	                         	<a href="javascript:" key="lounge" val="4">4</a>
-	                         	<a href="javascript:" key="lounge" val="5">5</a>
-	                         	<a href="javascript:" key="lounge" val="6">6</a>
-	                         	<a href="javascript:" key="lounge" val="7">7</a>
-	                         	<a href="javascript:" key="lounge" val="8">8</a>
-	                         	<a href="javascript:" key="lounge" val="9">9</a>
-	                         	<a href="javascript:" key="lounge" val="10">10</a>
+                                {{foreach from=$lounge_list item=item}}
+	                         		<a href="javascript:" key="lounge" val="{{$item}}">{{$item}}</a>
+	                         	{{/foreach}}
                             </div>
                         </div>厅
                         <div class="select_position" id="" style="z-index:11;">
                             <span id="selToilet"  class="selectbg selectbg1" style="cursor: pointer;"></span>
                             <div class='showselectcon' id='' style='position: absolute; top: 37px; left: 0;display:none;'>
-                                <a href="javascript:" key="toilet" val="0">0</a>
-	                         	<a href="javascript:" key="toilet" val="1">1</a>
-	                         	<a href="javascript:" key="toilet" val="2">2</a>
-	                         	<a href="javascript:" key="toilet" val="3">3</a>
-	                         	<a href="javascript:" key="toilet" val="4">4</a>
-	                         	<a href="javascript:" key="toilet" val="5">5</a>
-	                         	<a href="javascript:" key="toilet" val="6">6</a>
-	                         	<a href="javascript:" key="toilet" val="7">7</a>
-	                         	<a href="javascript:" key="toilet" val="8">8</a>
-	                         	<a href="javascript:" key="toilet" val="9">9</a>
-	                         	<a href="javascript:" key="toilet" val="10">10</a>
+                            	{{foreach from=$toilet_list item=item}}
+	                         		<a href="javascript:" key="toilet" val="{{$item}}">{{$item}}</a>
+	                         	{{/foreach}}
                             </div>
                         </div>卫
                     </div>
@@ -661,7 +638,7 @@ $(function() {
 		}
 		
 		if(!isMobil(user_tel)) {
-			FM_Alert('输入联系电话不合法');
+			FM_Alert('联系电话格式不正确');
 			return;
 		}
 		
