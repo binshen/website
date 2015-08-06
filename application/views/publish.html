@@ -194,16 +194,16 @@
             <tr class="fi-style">
                 <th><em class="red">*</em> 所在楼层</th>
                 <td>
-                	<input name="floor" type="text" id="floor" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />
+                	<input name="floor" type="text" id="floor" autocomplete="off" size="30" maxlength="3" class="txt" style="width: 70px;" value="" />
                 	<span class="td-tit">总楼层</span>
-                	<input name="total_floor" type="text" id="total_floor" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />
+                	<input name="total_floor" type="text" id="total_floor" autocomplete="off" size="30" maxlength="3" class="txt" style="width: 70px;" value="" />
                  	<span id="sp_hnownum" class="tip_ok" style="display:inline-block">(地下室请填负数)</span>
                  	<span id="sp_hnownum_error" class="tip_error">请填写所在楼层</span>
                 </td>
             </tr>
             <tr class="fi-style">
                 <th><em class="red">*</em> 面积</th>
-                <td><input name="acreage" type="text" id="acreage" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />平米
+                <td><input name="acreage" type="text" id="acreage" autocomplete="off" size="30" maxlength="10" class="txt" style="width: 70px;" value="" />平米
                  <span id="sp_housearea" class="tip_ok">请填写整数</span>
                 </td>
             </tr>
@@ -240,14 +240,14 @@
             <!--二手房-->
             <tr class="fi-style" id="sd_tr">
                 <th><em class="red">*</em> 期望售价</th>
-                <td><input name="total_price" type="text" id="total_price" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />万元
+                <td><input name="total_price" type="text" id="total_price" autocomplete="off" size="30" maxlength="10" class="txt" style="width: 70px;" value="" />万元
                 <span class="tip_error">请填写</span>
                 </td>
             </tr>
             <!--整租&合租-->
             <tr class="fi-style" id="rent_tr" style="display:none">
                 <th><em class="red">*</em> 期望租金</th>
-                <td><input name="unit_price" type="text" id="unit_price" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />元/月
+                <td><input name="unit_price" type="text" id="unit_price" autocomplete="off" size="30" maxlength="10" class="txt" style="width: 70px;" value="" />元/月
                 <span class="td-tit">租金押付</span> <div class="select_position" id="rentAndPay" style="z-index:11;">
                         <span class="selectbg" style="cursor: pointer;">
                         	请选择</span>
@@ -263,25 +263,25 @@
             </tr>
             <tr class="fi-style">
                 <th><em class="red">*</em> 物业费</th>
-                <td><input name="estate_price" type="text" id="estate_price" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />元/平米/月
+                <td><input name="estate_price" type="text" id="estate_price" autocomplete="off" size="30" maxlength="10" class="txt" style="width: 70px;" value="" />元/平米/月
                 <span class="tip_error">请填写</span>
                 </td>
             </tr>
             <tr class="fi-style">
                 <th><em class="red">*</em> 配套设施</th>
-                <td><input name="facility" type="text" id="facility" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 300px;" value="" />
+                <td><input name="facility" type="text" id="facility" autocomplete="off" size="30" maxlength="200" class="txt" style="width: 300px;" value="" />
                  <span class="tip_error">请填写</span>
                 </td>
             </tr>
             <tr class="fi-style">
                 <th><em class="red">*</em> 房源标题</th>
-                <td><input name="name" type="text" id="name" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 300px;" value="" />
+                <td><input name="name" type="text" id="name" autocomplete="off" size="30" maxlength="200" class="txt" style="width: 300px;" value="" />
                 <span class="tip_error">请填写</span>
                 </td>
             </tr>
             <tr class="fi-style">
                 <th><em class="red">*</em> 房源副标题</th>
-                <td><input name="sub_title" type="text" id="sub_title" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 300px;" value="" />
+                <td><input name="sub_title" type="text" id="sub_title" autocomplete="off" size="30" maxlength="200" class="txt" style="width: 300px;" value="" />
                 <span class="tip_error">请填写</span>
                 </td>
             </tr>
