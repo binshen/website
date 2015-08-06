@@ -24,8 +24,13 @@
 <script type="text/javascript" src="{{$base_url}}plupload/js/jquery.ui.plupload/jquery.ui.plupload.js"></script>
 <!--plupload end---------------------------------------------------------------------------->
 
+<!--  
 <link href="{{$base_url}}js/easydialog/easydialog.css" rel="stylesheet">
 <script src="{{$base_url}}js/easydialog/easydialog.min.js"></script>
+-->
+
+<link href="{{$base_url}}js/layer/skin/layer.css" rel="stylesheet">
+<script src="{{$base_url}}js/layer/layer.js"></script>
 
 </head>
 <body>
@@ -315,16 +320,6 @@
 <link href="{{$base_url}}css/combox.css" rel="stylesheet" type="text/css" />
 <script src="{{$base_url}}js/combox.js"></script>
 
-<style type="text/css">
-.easyDialog_content {
-	width: 840px;
-}
-#easyDialogBox {
-	left:30% !important;
-	top:30% !important;
-}
-</style>
-
 <script>
 //模拟下拉
 $('.select_position span').click(function(){
@@ -357,6 +352,34 @@ function clickOption(obj) {
 	var key = $(obj).attr('key');
 	var val = $(obj).attr('val');
 	$("#" + key).val(val);
+}
+
+function uploadFile() {
+	if ($('#uploader').plupload('getFiles').length < 1) {
+		FM_Alert("请选择并上传房源图片");
+		return false;
+	} else {
+		$.getJSON("/house/get_pics/" + $("#folder").val() + "/1" + "?_=" + Math.random(), function(data){
+			var html = '';
+			var now_pic = [];
+			$('input[name="pic_short[]"]').each(function(index){
+				now_pic[index] = $(this).val();
+			});
+			$.each(data.img,function(index,item){
+				var path = "{{$base_url}}uploadfiles/pics/" + data.time + "/1/" + item;
+				if($.inArray(item, now_pic) < 0){
+					html+='<div class="w_upload">';
+					html+='<a href="javascript:void(0);" class="set-cover" onclick="set_bg(this);">设为封面</a>';
+					html+='<a href="javascript:void(0);" class="item-close" onclick="del_pic(this);"></a>';
+					html+='<img src="' + path + '" alt="" width="100" height="75" />';
+					html+='<input type="hidden" name="pic_short[]" class="pic_short" value="'+item+'">';
+					html+='</div>';
+				}
+			});
+			$("#uploadImgcontainer").append(html); 
+		});
+		return true;
+	}
 }
 
 $(function() {
@@ -398,40 +421,32 @@ $(function() {
 	
 	$("#fileUpload").click(function() {
 		var html = '<div id="uploader"><p>Your browser doesn\'t have Flash, Silverlight or HTML5 support.</p></div>';
+
+		layer.confirm(html, {
+			offset: ['100px', '400px'],
+			maxWidth: 600,
+		    btn: ['确定','取消'], //按钮
+		    shade: false //不显示遮罩
+		}, function(){
+			uploadFile();
+		    //layer.msg('的确很重要', { icon: 1 });
+		}, function(){
+		    //layer.msg('奇葩么么哒', { shift: 6 });
+		});
+		
+		/*
 		easyDialog.open({
 			container : {
 			    header : '上传图片',
 			    content : html,
 			    yesFn : function() {
-			    	if ($('#uploader').plupload('getFiles').length < 1) {
-			    		alert("at least one pic");
-			    		return false;
-			    	} else {
-			    		$.getJSON("/house/get_pics/" + $("#folder").val() + "/1" + "?_=" + Math.random(), function(data){
-			    			var html = '';
-			    			var now_pic = [];
-			    			$('input[name="pic_short[]"]').each(function(index){
-			    				now_pic[index] = $(this).val();
-			    			});
-			    			$.each(data.img,function(index,item){
-			    				var path = "{{$base_url}}uploadfiles/pics/" + data.time + "/1/" + item;
-			    				if($.inArray(item, now_pic) < 0){
-			    					html+='<div class="w_upload">';
-			    					html+='<a href="javascript:void(0);" class="set-cover" onclick="set_bg(this);">设为封面</a>';
-			    					html+='<a href="javascript:void(0);" class="item-close" onclick="del_pic(this);"></a>';
-			    					html+='<img src="' + path + '" alt="" width="100" height="75" />';
-			    					html+='<input type="hidden" name="pic_short[]" class="pic_short" value="'+item+'">';
-			    					html+='</div>';
-			    				}
-			    			});
-			    			$("#uploadImgcontainer").append(html); 
-			    		});
-			    		return true;
-			    	}
+			    	return uploadFile();
 			    },
 			    noFn : true
 			  }
 		});
+		*/
+		
 		$("#uploader").plupload({
 			runtimes : 'html5,flash,silverlight',
 			url : "/house/save_pics/" + $("#folder").val(),
@@ -642,7 +657,13 @@ $(function() {
 			return;
 		}
 		
-		$("#publishForm").submit();
+		layer.confirm("您确定要发布房源吗？", {
+		    btn: ['确定','取消'] //按钮
+		}, function(){
+			$("#publishForm").submit();
+		}, function(){
+			//TODO
+		});
 	});
 });
 
@@ -670,7 +691,7 @@ function set_bg(obj) {
 }
 
 function FM_Alert(msg) {
-	//easyDialog.open({ container : { content : msg }, autoClose : 1500 });
+	/*
 	easyDialog.open({
 	  	container : {
 	    	header : '错误提示',
@@ -679,6 +700,8 @@ function FM_Alert(msg) {
 	  	overlay : true,
 	  	autoClose : 1500
 	});
+	*/
+	layer.msg(msg, { icon: 5, time: 1500 });
 }
 
 function isMobil(s){
