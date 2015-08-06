@@ -518,7 +518,7 @@ $(function() {
 			return;
 		}
 		
-		if(!isInt(floor)) {
+		if(!isInt(Math.abs(floor))) {
 			FM_Alert('所在楼层格式不正确');
 			return;
 		}
