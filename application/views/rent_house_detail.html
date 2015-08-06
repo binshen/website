@@ -84,7 +84,14 @@ var mapCommAddress = "";
                     {{/foreach}}
                 </div>
                 <div class="detail-tel">
-                     <em class="tel-icon"></em><em class="tel-txt">{{$house.tel}}</em>
+                     <em class="tel-icon"></em>
+                     <em class="tel-txt">
+                     	{{if $house.broker_id > 0 }}
+                     		{{$house.tel}}
+                     	{{else}}
+                     		{{$house.user_tel}}
+                     	{{/if}}
+                     </em>
                 </div>
                 <div class="d-other-info">
                     <dl class="other-dl other-dl1">
@@ -166,8 +173,6 @@ var mapCommAddress = "";
 	                    <i class="i_company_verify"></i>
 	                </p>    
 	                <p class="agent-num"><em class="color666">房源数：</em>{{$house.broker_house_count}}套</p>
-	                <p class="agent-area">熟悉区域：{{$house.b_region_name}}</p>
-	                <p class="agent-more-link"><a href="#" target="_blank">+查看店铺</a></p>
 	                <p class="agent-tel"><em></em>{{$house.tel}}</p>
 	                <p class="fz10">房屋买卖咨询，请致电我</p>
 	            </div>
@@ -180,8 +185,6 @@ var mapCommAddress = "";
 	                    <i class="i_company_verify"></i>
 	                </p>    
 	                <p class="agent-num"><em class="color666">房源数：</em>1套</p>
-	                <p class="agent-area">熟悉区域：{{$house.region_name}}</p>
-	                <p class="agent-more-link"><a href="#" target="_blank">+查看店铺</a></p>
 	                <p class="agent-tel"><em></em>{{$house.user_tel}}</p>
 	                <p class="fz10">房屋买卖咨询，请致电我</p>
 	            </div>
