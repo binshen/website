@@ -129,8 +129,13 @@ class House extends MY_Controller {
 		$house['first_pay'] = intval($house['total_price'] * 0.3);
 		$house['monthly_pay'] = $this->get_monthly_payment(0.054, 240, $house['total_price'] * 10000 * 0.7);
 		
-		$broker_house_count = $this->house_model->get_broker_house_count($house['broker_id']);
-		$house['broker_house_count'] = $broker_house_count;
+		if(empty($house['broker_id']) && !empty($house['user_id'])) {
+			$house_count = $this->house_model->get_user_house_count($house['user_id']);
+		} else {
+			$house_count = $this->house_model->get_broker_house_count($house['broker_id']);
+		}
+		$house['house_count'] = $house_count;
+		
 		
 		$house['house_pics_all'] = $this->house_model->get_second_hand_house_pics($id);
 		$house['house_pics'] = array_slice($house['house_pics_all'], 0, 5);
@@ -192,8 +197,12 @@ class House extends MY_Controller {
 		$house = $this->house_model->get_rent_house_detail($id);
 		$house['feature_list'] = explode(",", $house['feature']);
 		
-		$broker_house_count = $this->house_model->get_broker_house_count($house['broker_id']);
-		$house['broker_house_count'] = $broker_house_count;
+		if(empty($house['broker_id']) && !empty($house['user_id'])) {
+			$house_count = $this->house_model->get_user_house_count($house['user_id']);
+		} else {
+			$house_count = $this->house_model->get_broker_house_count($house['broker_id']);
+		}
+		$house['house_count'] = $house_count;
 		
 		$house['house_pics_all'] = $this->house_model->get_second_hand_house_pics($id);
 		$house['house_pics'] = array_slice($house['house_pics_all'], 0, 5);
