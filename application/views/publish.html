@@ -40,13 +40,13 @@
     </div>
     <div class="publishconer">
     <form method="POST" action="/house/savePublish" id="publishForm">
-    	<input type="hidden" name="type_id" id="type_id" value="" />
+    	<input type="hidden" name="type_id" id="type_id" value="1" />
     	<input type="hidden" name="rent_style_id" id="rent_style_id" value="" />
     	<input type="hidden" name="style_id" id="style_id" value="" />
     	<input type="hidden" name="substyle_id" id="substyle_id" value="" />
     	<input type="hidden" name="region_id" id="region_id" value="" />
     	<input type="hidden" name="decoration_id" id="decoration_id" value="1" />
-    	<input type="hidden" name="orientation_id" id="orientation_id" value="" />
+    	<input type="hidden" name="orientation_id" id="orientation_id" value="1" />
     	<input type="hidden" name="rent_type_id" id="rent_type_id" value="" />
     	<input type="hidden" name="room" id="room" value="" />
     	<input type="hidden" name="lounge" id="lounge" value="" />
@@ -89,28 +89,27 @@
             <tr class="fi-style">
                 <th><em class="red">*</em> 房源类型</th>
                 <td>
-                <div class="simu-select-box" >
-                    <div class="select_position" id="selDistrict" style="z-index:11; float:left;">
-                        <span id="selDistrict_a"  class="selectbg" style="cursor: pointer;">请选择类型</span>
-                        <div class='showselectcon' id='selhouse_style1' style='position: absolute;top: 37px; left: 0; display:none;'>
-                         	{{foreach from=$style_list item=item}}
-                         		<a href="javascript:" key="style_id" val="{{$item->id}}">{{$item->name}}</a>
-                         	{{/foreach}}
-                        </div>
-                    </div>
-                </div>
-                <div class="simu-select-box">
-                    <div class="select_position" id="selComarea" style="z-index:11; float:left;">
-                        <span id="selDistrict_a"  class="selectbg" style="cursor: pointer;">
-                        	请选择类型</span>
-                        <div class='showselectcon' id='selhouse_style2' style='position: absolute;
-                            top: 37px; left: 0;display:none;'>
-                           	{{foreach from=$substyle_list item=item}}
-                         		<a href="javascript:" key="substyle_id" val="{{$item.id}}">{{$item.name}}</a>
-                         	{{/foreach}}
-                        </div>
-                    </div>
-                </div>
+	                <div class="simu-select-box" >
+	                    <div class="select_position" id="selDistrict" style="z-index:99; float:left;">
+	                        <span id="selDistrict_a"  class="selectbg" style="cursor: pointer;">请选择类型</span>
+	                        <div class='showselectcon' id='selhouse_style1' style='position: absolute; top: 37px; left: 0; display:none; z-index:999'>
+	                         	{{foreach from=$style_list item=item}}
+	                         		<a href="javascript:" key="style_id" val="{{$item->id}}">{{$item->name}}</a>
+	                         	{{/foreach}}
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="simu-select-box">
+	                    <div class="select_position" id="selComarea" style="z-index:99; float:left;">
+	                        <span id="selDistrict_a"  class="selectbg" style="cursor: pointer;">请选择类型</span>
+	                        <div class='showselectcon' id='selhouse_style2' style='position: absolute;
+	                            top: 37px; left: 0;display:none;'>
+	                           	{{foreach from=$substyle_list item=item}}
+	                         		<a href="javascript:" key="substyle_id" val="{{$item.id}}">{{$item.name}}</a>
+	                         	{{/foreach}}
+	                        </div>
+	                    </div>
+	                </div>
                  </td>
             </tr>
             
@@ -120,7 +119,7 @@
                 <div class="select_position" id="selComarea">
                         <span id="selDistrict_a" class="selectbg" style="cursor: pointer;">
                         	请选择区域</span>
-                        <div class='showselectcon' id='selhouse_style4' style='position: absolute; top: 37px; left: 0; display:none; z-index:9999'>
+                        <div class='showselectcon' id='selhouse_style4' style='position: absolute; top: 37px; left: 0; display:none; z-index:999'>
                             {{foreach from=$region_list item=item}}
                          		<a href="javascript:" key="region_id" val="{{$item->id}}">{{$item->name}}</a>
                          	{{/foreach}}
@@ -160,33 +159,33 @@
                         <div class="select_position" id="" style="z-index:11;">
                             <span id="selLounge"  class="selectbg selectbg1" style="cursor: pointer;"></span>
                             <div class='showselectcon' id='' style='position: absolute; top: 37px; left: 0;display:none;'>
-                                <a href="javascript:" key="room" val="0">0</a>
-	                         	<a href="javascript:" key="room" val="1">1</a>
-	                         	<a href="javascript:" key="room" val="2">2</a>
-	                         	<a href="javascript:" key="room" val="3">3</a>
-	                         	<a href="javascript:" key="room" val="4">4</a>
-	                         	<a href="javascript:" key="room" val="5">5</a>
-	                         	<a href="javascript:" key="room" val="6">6</a>
-	                         	<a href="javascript:" key="room" val="7">7</a>
-	                         	<a href="javascript:" key="room" val="8">8</a>
-	                         	<a href="javascript:" key="room" val="9">9</a>
-	                         	<a href="javascript:" key="room" val="10">10</a>
+                                <a href="javascript:" key="lounge" val="0">0</a>
+	                         	<a href="javascript:" key="lounge" val="1">1</a>
+	                         	<a href="javascript:" key="lounge" val="2">2</a>
+	                         	<a href="javascript:" key="lounge" val="3">3</a>
+	                         	<a href="javascript:" key="lounge" val="4">4</a>
+	                         	<a href="javascript:" key="lounge" val="5">5</a>
+	                         	<a href="javascript:" key="lounge" val="6">6</a>
+	                         	<a href="javascript:" key="lounge" val="7">7</a>
+	                         	<a href="javascript:" key="lounge" val="8">8</a>
+	                         	<a href="javascript:" key="lounge" val="9">9</a>
+	                         	<a href="javascript:" key="lounge" val="10">10</a>
                             </div>
                         </div>厅
                         <div class="select_position" id="" style="z-index:11;">
                             <span id="selToilet"  class="selectbg selectbg1" style="cursor: pointer;"></span>
                             <div class='showselectcon' id='' style='position: absolute; top: 37px; left: 0;display:none;'>
-                                <a href="javascript:" key="room" val="0">0</a>
-	                         	<a href="javascript:" key="room" val="1">1</a>
-	                         	<a href="javascript:" key="room" val="2">2</a>
-	                         	<a href="javascript:" key="room" val="3">3</a>
-	                         	<a href="javascript:" key="room" val="4">4</a>
-	                         	<a href="javascript:" key="room" val="5">5</a>
-	                         	<a href="javascript:" key="room" val="6">6</a>
-	                         	<a href="javascript:" key="room" val="7">7</a>
-	                         	<a href="javascript:" key="room" val="8">8</a>
-	                         	<a href="javascript:" key="room" val="9">9</a>
-	                         	<a href="javascript:" key="room" val="10">10</a>
+                                <a href="javascript:" key="toilet" val="0">0</a>
+	                         	<a href="javascript:" key="toilet" val="1">1</a>
+	                         	<a href="javascript:" key="toilet" val="2">2</a>
+	                         	<a href="javascript:" key="toilet" val="3">3</a>
+	                         	<a href="javascript:" key="toilet" val="4">4</a>
+	                         	<a href="javascript:" key="toilet" val="5">5</a>
+	                         	<a href="javascript:" key="toilet" val="6">6</a>
+	                         	<a href="javascript:" key="toilet" val="7">7</a>
+	                         	<a href="javascript:" key="toilet" val="8">8</a>
+	                         	<a href="javascript:" key="toilet" val="9">9</a>
+	                         	<a href="javascript:" key="toilet" val="10">10</a>
                             </div>
                         </div>卫
                     </div>
@@ -229,10 +228,8 @@
                 <th><em class="red">*</em> 朝向</th>
                 <td>
                		<div class="select_position" id="selComarea">
-                        <span id="selDistrict_a" class="selectbg" style="cursor: pointer;">
-                        	请选择朝向</span>
-                        <div class='showselectcon' id='selhouse_style4' style='position: absolute;
-                            top: 37px; left: 0; display:none;'>
+                        <span id="selDistrict_a" class="selectbg" style="cursor: pointer;">请选择朝向</span>
+                        <div class='showselectcon' id='selhouse_style4' style='position: absolute; top: 37px; left: 0; display:none;'>
                             {{foreach from=$orientation_list item=item}}
                          		<a href="javascript:" key="orientation_id" val="{{$item->id}}">{{$item->name}}</a>
                          	{{/foreach}}
@@ -573,12 +570,6 @@ $(function() {
 			}
 		}
 		
-		var rent_type_id = $("#rent_type_id").val();
-		if(rent_type_id == "") {
-			FM_Alert('请输入租金押付');
-			return;
-		}
-		
 		var estate_price = $("#estate_price").val();
 		if(estate_price == "") {
 			FM_Alert('请输入物业费');
@@ -611,7 +602,7 @@ $(function() {
 		
 		var bg_pic = $("#is_bg").val();
 		if(bg_pic == "") {
-			alertMsg.warn("请选择房源图片封面");
+			FM_Alert("请选择房源图片封面");
 			return false;
 		}
 		

@@ -312,6 +312,9 @@ class House extends MY_Controller {
 	
 	public function save_publish() {
 		
+		var_dump($_POST);
+		die;
+		
 		$this->house_model->save_publish();
 		redirect('/');
 	}
