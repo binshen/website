@@ -318,13 +318,13 @@
             </tr>
             <tr class="fi-style">
                 <th><em class="red">*</em> 姓名</th>
-                <td><input name="rel_name" type="text" id="rel_name" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 100px;" value="" />
+                <td><input name="user_name" type="text" id="user_name" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 100px;" value="" />
                  <span class="tip_error">请填写</span>
                  </td>
             </tr>
             <tr class="fi-style">
                 <th><em class="red">*</em> 联系电话</th>
-                <td><input name="tel" type="text" id="tel" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 200px;" value="" />
+                <td><input name="user_tel" type="text" id="user_tel" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 200px;" value="" />
                  <span class="tip_error">请填写</span>
                 </td>
             </tr>
@@ -393,12 +393,12 @@ $(function() {
 		if(key == 1) {
 			$("#sd_tr").show();
 			$("#rent_tr").hide();
-			$("#type_id").val(1);
+			$("#type_id").val(2);
 			$("#rent_style_id").val("");
 		} else {
 			$("#sd_tr").hide();
 			$("#rent_tr").show();
-			$("#type_id").val(2);
+			$("#type_id").val(3);
 			if(key == 2) {
 				$("#rent_style_id").val(1);
 			} else {
@@ -621,14 +621,14 @@ $(function() {
 			return;
 		}
 		
-		var rel_name = $("#rel_name").val();
-		if(rel_name == "") {
+		var user_name = $("#user_name").val();
+		if(user_name == "") {
 			FM_Alert('请输入姓名');
 			return;
 		}
 		
-		var tel = $("#tel").val();
-		if(tel == "") {
+		var user_tel = $("#user_tel").val();
+		if(user_tel == "") {
 			FM_Alert('请输入联系电话');
 			return;
 		}
