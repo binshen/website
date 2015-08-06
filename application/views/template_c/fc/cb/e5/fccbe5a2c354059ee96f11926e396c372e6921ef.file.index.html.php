@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2015-08-05 09:08:01
+<?php /* Smarty version Smarty-3.1.16, created on 2015-08-06 09:21:50
          compiled from "application\views\index.html" */ ?>
 <?php /*%%SmartyHeaderCode:1960755b6e9761cf065-27303114%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fccbe5a2c354059ee96f11926e396c372e6921ef' => 
     array (
       0 => 'application\\views\\index.html',
-      1 => 1438669495,
+      1 => 1438824077,
       2 => 'file',
     ),
   ),
@@ -35,7 +35,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'news3' => 0,
     'news5' => 0,
     'news4' => 0,
-    'member_username' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -56,12 +55,14 @@ js/jquery-1.8.3.min.js" ></script>
 <script type="text/javascript" src="<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
 <?php $_tmp3=ob_get_clean();?><?php echo $_tmp3;?>
 js/dpl-jquery.slide.js"></script>
+<!--
 <link href="<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
 <?php $_tmp4=ob_get_clean();?><?php echo $_tmp4;?>
 js/layer/skin/layer.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['base_url']->value;?>
 <?php $_tmp5=ob_get_clean();?><?php echo $_tmp5;?>
 js/layer/layer.js"></script>
+-->
 </head>
 <body>
 <div class="wraper">
@@ -644,13 +645,7 @@ $(function(){
 	});
    	
    	$("#btnPublish").click(function() {
-   		<?php ob_start();?><?php if ($_smarty_tpl->tpl_vars['member_username']->value) {?><?php $_tmp142=ob_get_clean();?><?php echo $_tmp142;?>
-
-   			document.location="/house/publish";
-        <?php ob_start();?><?php } else { ?><?php $_tmp143=ob_get_clean();?><?php echo $_tmp143;?>
-
-        	layer.alert("发布房源请先登录！");
-        <?php }?>
+   		document.location="/house/publish";
    	});
 });
 

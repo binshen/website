@@ -8,8 +8,10 @@
 <link href="{{$base_url}}css/index.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="{{$base_url}}js/jquery-1.8.3.min.js" ></script>
 <script type="text/javascript" src="{{$base_url}}js/dpl-jquery.slide.js"></script>
+<!--
 <link href="{{$base_url}}js/layer/skin/layer.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="{{$base_url}}js/layer/layer.js"></script>
+-->
 </head>
 <body>
 <div class="wraper">
@@ -271,11 +273,7 @@ $(function(){
 	});
    	
    	$("#btnPublish").click(function() {
-   		{{if $member_username}}
-   			document.location="/house/publish";
-        {{else}}
-        	layer.alert("发布房源请先登录！");
-        {/if}
+   		document.location="/house/publish";
    	});
 });
 

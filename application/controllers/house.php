@@ -275,6 +275,11 @@ class House extends MY_Controller {
 
 	public function publish() {
 		
+		$member_id = $this->session->userdata('member_id');
+		if(empty($member_id)) {
+			redirect('/login');
+		}
+		
 		$region_list = $this->manage_model->get_region_list();
 		$decoration_list = $this->manage_model->get_decoration_list();
 		$orientation_list = $this->manage_model->get_orientation_list();
