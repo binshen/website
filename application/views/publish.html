@@ -249,8 +249,8 @@
             </tr>
             <!--整租&合租-->
             <tr class="fi-style" id="rent_tr" style="display:none">
-                <th><em class="red">*</em> 租金</th>
-                <td><input name="unit_price" type="text" id="unit_price" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />元
+                <th><em class="red">*</em> 期望租金</th>
+                <td><input name="unit_price" type="text" id="unit_price" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />元/月
                 <span class="td-tit">租金押付</span> <div class="select_position" id="rentAndPay" style="z-index:11;">
                         <span class="selectbg" style="cursor: pointer;">
                         	请选择</span>
@@ -283,7 +283,7 @@
                 </td>
             </tr>
             <tr class="fi-style">
-                <th><em class="red">*</em> 副标题</th>
+                <th><em class="red">*</em> 房源副标题</th>
                 <td><input name="sub_title" type="text" id="sub_title" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 300px;" value="" />
                 <span class="tip_error">请填写</span>
                 </td>
@@ -318,13 +318,13 @@
             </tr>
             <tr class="fi-style">
                 <th><em class="red">*</em> 姓名</th>
-                <td><input name="input_username" type="text" id="input_username" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 100px;" value="" />
+                <td><input name="rel_name" type="text" id="rel_name" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 100px;" value="" />
                  <span class="tip_error">请填写</span>
                  </td>
             </tr>
             <tr class="fi-style">
                 <th><em class="red">*</em> 联系电话</th>
-                <td><input name="input_uertel" type="text" id="input_uertel" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 200px;" value="" />
+                <td><input name="tel" type="text" id="tel" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 200px;" value="" />
                  <span class="tip_error">请填写</span>
                 </td>
             </tr>
@@ -535,9 +535,105 @@ $(function() {
 			return;
 		}
 		
+		var acreage = $("#acreage").val();
+		if(acreage == "") {
+			FM_Alert('请输入面积');
+			return;
+		}
 		
+		var build_year = $("#build_year").val();
+		if(build_year == "") {
+			FM_Alert('请输入建造年代');
+			return;
+		}
 		
-		//$("#publishForm").submit();
+		var orientation_id = $("#orientation_id").val();
+		if(orientation_id == "") {
+			FM_Alert('请选择朝向');
+			return;
+		}
+		
+		var type_id = $("#type_id").val();
+		if(type_id == 1) {
+			var total_price = $("#total_price").val();
+			if(total_price == "") {
+				FM_Alert('请输入期望售价');
+				return;
+			}
+		} else {
+			var unit_price = $("#unit_price").val();
+			if(unit_price == "") {
+				FM_Alert('请输入期望租金');
+				return;
+			}
+			var rent_type_id = $("#rent_type_id").val();
+			if(rent_type_id == "") {
+				FM_Alert('请输入租金押付');
+				return;
+			}
+		}
+		
+		var rent_type_id = $("#rent_type_id").val();
+		if(rent_type_id == "") {
+			FM_Alert('请输入租金押付');
+			return;
+		}
+		
+		var estate_price = $("#estate_price").val();
+		if(estate_price == "") {
+			FM_Alert('请输入物业费');
+			return;
+		}
+		
+		var facility = $("#facility").val();
+		if(facility == "") {
+			FM_Alert('请输入配套设施');
+			return;
+		}
+		
+		var name = $("#name").val();
+		if(name == "") {
+			FM_Alert('请输入房源标题');
+			return;
+		}
+		
+		var sub_title = $("#sub_title").val();
+		if(sub_title == "") {
+			FM_Alert('请输入房源副标题');
+			return;
+		}
+		
+		var pic_length = $("#uploadImgcontainer").children(".w_upload").length;
+		if(pic_length < 1) {
+			FM_Alert('请上传房源图片');
+			return;
+		}
+		
+		var bg_pic = $("#is_bg").val();
+		if(bg_pic == "") {
+			alertMsg.warn("请选择房源图片封面");
+			return false;
+		}
+		
+		var description = $("#description").val();
+		if(description == "") {
+			FM_Alert('请输入房源描述');
+			return;
+		}
+		
+		var rel_name = $("#rel_name").val();
+		if(rel_name == "") {
+			FM_Alert('请输入姓名');
+			return;
+		}
+		
+		var tel = $("#tel").val();
+		if(tel == "") {
+			FM_Alert('请输入联系电话');
+			return;
+		}
+		
+		$("#publishForm").submit();
 	});
 });
 
