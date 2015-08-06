@@ -39,7 +39,7 @@
         <span class="fz34">免费发布房源</span><br />房猫值得你信赖，房猫帮你快速找到精准客户。
     </div>
     <div class="publishconer">
-    <form method="POST" action="/house/savePublish" id="publishForm">
+    <form method="POST" action="/house/save_publish" id="publishForm">
     	<input type="hidden" name="type_id" id="type_id" value="1" />
     	<input type="hidden" name="rent_style_id" id="rent_style_id" value="" />
     	<input type="hidden" name="style_id" id="style_id" value="" />
@@ -646,12 +646,20 @@ function set_bg(obj) {
 	$(obj).parent().prepend('<em class="iscover"></em>');
 	$(obj).parent().find('.set-cover').remove();
 	
-	var pic = $("#folder").val() + '/1/' + $(obj).parent().find('.pic_short').val();
+	var pic = $("#folder").val() + '/1/' + $(obj).parent().find('input[name="pic_short[]"]').val();
 	$("#is_bg").val(pic);
 }
 
 function FM_Alert(msg) {
-	easyDialog.open({ container : { content : msg }, autoClose : 2000 });
+	//easyDialog.open({ container : { content : msg }, autoClose : 1500 });
+	easyDialog.open({
+	  	container : {
+	    	header : '错误提示',
+	    	content : msg
+	  	},
+	  	overlay : true,
+	  	autoClose : 150000
+	});
 }
 </script>
 </body>

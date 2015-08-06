@@ -310,11 +310,8 @@ class House extends MY_Controller {
 		$this->display('publish.html');
 	}
 	
-	public function save_publish() {
-		
-		var_dump($_POST);
-		die;
-		
+	public function savePublish() {
+
 		$this->house_model->save_publish();
 		redirect('/');
 	}
