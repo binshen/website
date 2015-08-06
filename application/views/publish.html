@@ -492,10 +492,7 @@ $(function() {
 		});
 	});
 	
-	$("#btnSubmit").click(function() {
-		
-		
-		
+	$("#btnSubmit").click(function() {		
 		var xiaoqu = $("#xiaoquSelect").val();
 		if(xiaoqu == "") {
 			FM_Alert('请选取小区');
@@ -529,9 +526,19 @@ $(function() {
 			return;
 		}
 		
+		if(!isInt(floor)) {
+			FM_Alert('所在楼层格式不正确');
+			return;
+		}
+		
 		var total_floor = $("#total_floor").val();
 		if(total_floor == "") {
 			FM_Alert('请输入总楼层');
+			return;
+		}
+		
+		if(!isInt(total_floor)) {
+			FM_Alert('总楼层格式不正确');
 			return;
 		}
 		
@@ -541,9 +548,19 @@ $(function() {
 			return;
 		}
 		
+		if(!isFloat(acreage)) {
+			FM_Alert('面积格式不正确');
+			return;
+		}
+		
 		var build_year = $("#build_year").val();
 		if(build_year == "") {
 			FM_Alert('请输入建造年代');
+			return;
+		}
+		
+		if(!isInt(build_year)) {
+			FM_Alert('建造年代格式不正确');
 			return;
 		}
 		
@@ -560,12 +577,23 @@ $(function() {
 				FM_Alert('请输入期望售价');
 				return;
 			}
+			
+			if(!isFloat(total_price)) {
+				FM_Alert('期望售价格式不正确');
+				return;
+			}
 		} else {
 			var unit_price = $("#unit_price").val();
 			if(unit_price == "") {
 				FM_Alert('请输入期望租金');
 				return;
 			}
+			
+			if(!isFloat(unit_price)) {
+				FM_Alert('期望租金格式不正确');
+				return;
+			}
+			
 			var rent_type_id = $("#rent_type_id").val();
 			if(rent_type_id == "") {
 				FM_Alert('请输入租金押付');
@@ -576,6 +604,11 @@ $(function() {
 		var estate_price = $("#estate_price").val();
 		if(estate_price == "") {
 			FM_Alert('请输入物业费');
+			return;
+		}
+		
+		if(!isFloat(estate_price)) {
+			FM_Alert('物业费格式不正确');
 			return;
 		}
 		
@@ -627,6 +660,11 @@ $(function() {
 			return;
 		}
 		
+		if(!isMobil(user_tel)) {
+			FM_Alert('输入联系电话不合法');
+			return;
+		}
+		
 		$("#publishForm").submit();
 	});
 });
@@ -664,6 +702,31 @@ function FM_Alert(msg) {
 	  	overlay : true,
 	  	autoClose : 1500
 	});
+}
+
+function isMobil(s){
+    var patrn = /^(13[0-9]{9})|(14[0-9])|(18[0-9])|(15[0-9][0-9]{8})$/;
+    if (!patrn.exec(s)) return false
+    return true
+}
+
+function isInt(oNum){
+	if(!oNum) return false;
+	var strP=/^\d+$/;
+	if(!strP.test(oNum)) return false;
+	return true;
+}
+
+function isFloat(oNum) {
+	if(!oNum) return false;
+	var strP=/^\d+(\.\d+)?$/;
+	if(!strP.test(oNum)) return false;
+	try{
+		if(parseFloat(oNum)!=oNum) return false;
+	} catch(ex){
+		return false;
+	}
+	return true;
 }
 </script>
 </body>
