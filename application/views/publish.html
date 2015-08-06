@@ -40,7 +40,7 @@
     </div>
     <div class="publishconer">
     <form method="POST" action="/house/save_publish" id="publishForm">
-    	<input type="hidden" name="type_id" id="type_id" value="1" />
+    	<input type="hidden" name="type_id" id="type_id" value="2" />
     	<input type="hidden" name="rent_style_id" id="rent_style_id" value="" />
     	<input type="hidden" name="style_id" id="style_id" value="" />
     	<input type="hidden" name="substyle_id" id="substyle_id" value="" />
@@ -219,7 +219,7 @@
                 	{{foreach from=$decoration_list item=item key=key}}
                    		<span {{if $key==0}}style="padding-left:9px;"{{/if}}>
                    			<input type="radio" name="decoration" class="rblstFitment" id="decoration_{{$key}}" value="{{$item->id}}" {{if $key==0}}checked{{/if}}/>
-                   			<label for="rdecoration_{{$key}}">{{$item->name}}</label>
+                   			<label for="decoration_{{$key}}">{{$item->name}}</label>
                    		</span>
                    	{{/foreach}}
                 </td>
@@ -493,6 +493,9 @@ $(function() {
 	});
 	
 	$("#btnSubmit").click(function() {
+		
+		
+		
 		var xiaoqu = $("#xiaoquSelect").val();
 		if(xiaoqu == "") {
 			FM_Alert('请选取小区');
@@ -640,13 +643,14 @@ function del_pic(obj) {
 }
 
 function set_bg(obj) {
+	var current_pic = $(obj).parent().find('input[name="pic_short[]"]').val();
 	var iscover = $(obj).parent().siblings().find('.iscover');
 	iscover.parent().prepend('<a href="javascript:void(0);" class="set-cover" onclick="set_bg(this);">设为封面</a>');
 	iscover.remove();
 	$(obj).parent().prepend('<em class="iscover"></em>');
 	$(obj).parent().find('.set-cover').remove();
-	
-	var pic = $("#folder").val() + '/1/' + $(obj).parent().find('input[name="pic_short[]"]').val();
+
+	var pic = $("#folder").val() + '/1/' + current_pic;
 	$("#is_bg").val(pic);
 }
 
