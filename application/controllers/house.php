@@ -328,8 +328,17 @@ class House extends MY_Controller {
 	
 	public function save_publish() {
 
-		$this->house_model->save_publish();
-		$this->show_message('房源发布成功',site_url('/'));
+		$member_id = $this->session->userdata('member_id');
+		if(empty($member_id)) {
+			redirect('/login');
+		}
+		
+		$ret = $this->house_model->save_publish();
+		if($ret == 1) {
+			$this->display('publish_success.html');
+		} else {
+			$this->show_message('房源发布失败，请稍后再试',site_url('/house/publish'));
+		}
 	}
 	
 	public function get_substyle_list($id) {
