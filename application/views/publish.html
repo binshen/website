@@ -420,15 +420,16 @@ $(function() {
 	$("#xiaoquSelect").combobox();
 	
 	$("#fileUpload").click(function() {
-		var html = '<div id="uploader"><p>Your browser doesn\'t have Flash, Silverlight or HTML5 support.</p></div>';
+		var html = '<div id="uploader" style="width:750px;"><p>Your browser doesn\'t have Flash, Silverlight or HTML5 support.</p></div>';
 
-		layer.confirm(html, {
-			offset: ['100px', '400px'],
-			maxWidth: 600,
+		var layerIndex = layer.confirm(html, {
+			offset: ['100px', (document.body.offsetWidth - 800) / 2],
+			maxWidth: 800,
 		    btn: ['确定','取消'], //按钮
 		    shade: false //不显示遮罩
 		}, function(){
 			uploadFile();
+			layer.close(layerIndex);
 		    //layer.msg('的确很重要', { icon: 1 });
 		}, function(){
 		    //layer.msg('奇葩么么哒', { shift: 6 });
