@@ -258,12 +258,14 @@
             <tr class="fi-style">
                 <th><em class="red">*</em> 房源标题</th>
                 <td><input name="name" type="text" id="name" autocomplete="off" size="30" maxlength="200" class="txt" style="width: 300px;" value="" />
+                <span style="color:#999">可填写楼栋号,房号等相关信息</span>
                 <span class="tip_error">请填写</span>
                 </td>
             </tr>
             <tr class="fi-style">
                 <th><em class="red">*</em> 房源副标题</th>
                 <td><input name="sub_title" type="text" id="sub_title" autocomplete="off" size="30" maxlength="200" class="txt" style="width: 300px;" value="" />
+                <span style="color:#999">可填写房源特色,推荐理由等信息</span>
                 <span class="tip_error">请填写</span>
                 </td>
             </tr>
@@ -412,9 +414,9 @@ $(function() {
 		upFlashExt:"swf",
 		//upMediaUrl:"upload.php",
 		tools:'Bold,Italic,Underline,Strikethrough,List,Link,Unlink,Img,Hr,Emot,Table,Source,Preview,Cut,Copy,Paste,Pastetext,Blocktag,Fullscreen',
-		//html5Upload:false,
+		html5Upload:false,
 		cleanPaste:2,
-		height:'190'
+		height:'300'
 	});
 
 	$("#xiaoquSelect").combobox();
