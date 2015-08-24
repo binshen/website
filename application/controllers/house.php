@@ -91,7 +91,7 @@ class House extends MY_Controller {
 		
 		$data = $this->house_model->get_second_hand_list();
 		foreach ($data['res_list'] as &$d) {
-			$d->feature_list = explode(",", $d->feature);
+			$d->feature_list = empty($d->feature) ? array() : explode(",", $d->feature);
 			$d->unit_price = intval($d->total_price * 10000 / $d->acreage);
 			$region_id = $d->region_id;
 			if($region_id < 6) {
@@ -124,7 +124,7 @@ class House extends MY_Controller {
 	public function second_hand_detail($id) {
 		
 		$house = $this->house_model->get_second_hand_detail($id);
-		$house['feature_list'] = explode(",", $house['feature']);
+		$house['feature_list'] = empty($house['feature']) ? array() : explode(",", $house['feature']);
 		$house['unit_price'] = intval($house['total_price'] * 10000 / $house['acreage']);
 		$house['first_pay'] = intval($house['total_price'] * 0.3);
 		$house['monthly_pay'] = $this->get_monthly_payment(0.054, 240, $house['total_price'] * 10000 * 0.7);
@@ -169,7 +169,7 @@ class House extends MY_Controller {
 			2 => '合租'
 		);
 		foreach ($data['res_list'] as &$d) {
-			$d->feature_list = explode(",", $d->feature);
+			$d->feature_list = empty($d->feature) ? array() : explode(",", $d->feature);
 			$region_id = $d->region_id;
 			if($region_id < 6) {
 				$d->region_fullname = "玉山镇-" . $d->region_name;
@@ -195,7 +195,7 @@ class House extends MY_Controller {
 	public function rent_house_detail($id) {
 		
 		$house = $this->house_model->get_rent_house_detail($id);
-		$house['feature_list'] = explode(",", $house['feature']);
+		$house['feature_list'] = empty($house['feature']) ? array() : explode(",", $house['feature']);
 		
 		if(empty($house['broker_id']) && !empty($house['user_id'])) {
 			$house_count = $this->house_model->get_user_house_count($house['user_id']);
