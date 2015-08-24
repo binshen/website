@@ -347,7 +347,7 @@ class House_model extends MY_Model
      		}
      	}     	
      	if($this->input->post('search_type')) {
-     		$this->db->where_in('a.id', $h_ids);
+     		$this->db->where_in('a.id', $h_ids?$h_ids:'');
      	}     		
      	if($this->input->post('search_feature'))
      		$this->db->like('a.feature', $this->input->post('search_feature'));
@@ -427,7 +427,7 @@ class House_model extends MY_Model
 			}
 		}
     	if($this->input->post('search_type')) {
-     		$this->db->where_in('a.id', $h_ids);
+     		$this->db->where_in('a.id', $h_ids?$h_ids:'');
      	}  
 		if($this->input->post('search_feature'))
 			$this->db->like('feature', $this->input->post('search_feature'));
