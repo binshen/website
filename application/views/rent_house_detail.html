@@ -219,7 +219,7 @@ var mapCommAddress = "";
             <div class="a-r-title">————— 推荐楼盘 —————</div>
             {{foreach from=$recommend_list item=row}}
 	            <div class="a-r-house">
-	                <a href="{{site_url url='house/second_hand_detail'}}/{{$row['id']}}" target="_blank">
+	                <a href="{{site_url url='house/rent_house_detail'}}/{{$row['id']}}" target="_blank">
 	                	<img width="165" height="125" src="/uploadfiles/pics/{{$row['bg_pic']}}">
 	                	<p class="a-r-house-p">
 	                	<i class="blue">{{$row['name']|truncate_cn:26}}</i><br />
