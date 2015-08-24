@@ -257,6 +257,10 @@ class House_model extends MY_Model
     	return $this->db->get_where('house', array('broker_id' => $broker_id))->num_rows();
     }
     
+    public function get_user_house_count($user_id) {
+    	return $this->db->get_where('house', array('user_id' => $user_id))->num_rows();
+    }
+    
     public function get_new_house_list() {
     	// 每页显示的记录条数，默认20条
     	$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
@@ -912,5 +916,78 @@ class House_model extends MY_Model
    	
 	public function list_xiaoqu() {
 		return $this->db->select('id,name')->from('xiaoqu')->get()->result_array();
+	}
+	
+	public function save_publish() {
+		
+		$type_id = $this->input->post('type_id');
+		$data = array(
+			'name' => $this->input->post('name'),
+			'sub_title' => $this->input->post('sub_title'),
+			'type_id' => $type_id,
+			'xq_id' => $this->input->post('xq_id'),
+			'region_id' => $this->input->post('region_id'),
+			'style_id' => $this->input->post('style_id'),
+			'substyle_id' => $this->input->post('substyle_id'),
+			'acreage' => $this->input->post('acreage'),
+			'room' => $this->input->post('room'),
+			'lounge' => $this->input->post('lounge'),
+			'toilet' => $this->input->post('toilet'),
+			'feature' => @implode(',', $this->input->post('feature')),
+			'orientation_id' => $this->input->post('orientation_id'),
+			'floor' => $this->input->post('floor'),
+			'total_floor' => $this->input->post('total_floor'),
+			'decoration_id' => $this->input->post('decoration_id'),
+			'build_year' => $this->input->post('build_year'),
+			'estate_price' => $this->input->post('estate_price'),
+			'facility' => $this->input->post('facility'),
+			'description' => $this->input->post('description'),
+			'folder' => $this->input->post('folder'),
+			'bg_pic' => $this->input->post('is_bg'),
+			'user_name' => $this->input->post('user_name'),
+			'user_tel' => $this->input->post('user_tel'),
+			'user_id' => $this->session->userdata('member_id')
+		);
+		
+		if($type_id == 2) {
+			$data['total_price'] = $this->input->post('total_price');
+		} else {
+			$data['unit_price'] = $this->input->post('unit_price');
+			$data['rent_style_id'] = $this->input->post('rent_style_id');
+		}
+		
+		$this->db->trans_start();//--------开始事务
+	
+		if($this->input->post('id')){//修改
+			$h_id = $this->input->post('id');
+			$this->db->where('id', $h_id);
+			$this->db->update('house', $data);
+				
+			$this->db->delete('house_img', array('h_id' => $h_id));
+		} else {
+			$this->db->insert('house', $data);
+			$h_id = $this->db->insert_id();
+		}
+	
+		$folder = $this->input->post('folder');
+		$desc = $this->input->post('desc');
+		$is_bg = $this->input->post('is_bg');
+		$pic_short = $this->input->post('pic_short');
+		foreach ($pic_short as $idx => $pic) {
+			$pic_data = array(
+					'h_id' => $h_id,
+					'type_id' => 1,
+					'pic' => str_replace('_thumb', '', $pic),
+					'pic_short' => $pic
+			);
+			$this->db->insert('house_img', $pic_data);
+		}
+	
+		$this->db->trans_complete();//------结束事务
+		if ($this->db->trans_status() === FALSE) {
+			return -1;
+		} else {
+			return 1;
+		}
 	}
 }

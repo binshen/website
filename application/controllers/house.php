@@ -29,6 +29,9 @@ class House extends MY_Controller {
 		
 		$this->load->model('house_model');
 		$this->load->model('manage_model');
+		
+		$this->load->library('image_lib');
+		$this->load->helper('directory');
 	}
 	
 	public function index() {
@@ -126,8 +129,13 @@ class House extends MY_Controller {
 		$house['first_pay'] = intval($house['total_price'] * 0.3);
 		$house['monthly_pay'] = $this->get_monthly_payment(0.054, 240, $house['total_price'] * 10000 * 0.7);
 		
-		$broker_house_count = $this->house_model->get_broker_house_count($house['broker_id']);
-		$house['broker_house_count'] = $broker_house_count;
+		if(empty($house['broker_id']) && !empty($house['user_id'])) {
+			$house_count = $this->house_model->get_user_house_count($house['user_id']);
+		} else {
+			$house_count = $this->house_model->get_broker_house_count($house['broker_id']);
+		}
+		$house['house_count'] = $house_count;
+		
 		
 		$house['house_pics_all'] = $this->house_model->get_second_hand_house_pics($id);
 		$house['house_pics'] = array_slice($house['house_pics_all'], 0, 5);
@@ -189,8 +197,12 @@ class House extends MY_Controller {
 		$house = $this->house_model->get_rent_house_detail($id);
 		$house['feature_list'] = explode(",", $house['feature']);
 		
-		$broker_house_count = $this->house_model->get_broker_house_count($house['broker_id']);
-		$house['broker_house_count'] = $broker_house_count;
+		if(empty($house['broker_id']) && !empty($house['user_id'])) {
+			$house_count = $this->house_model->get_user_house_count($house['user_id']);
+		} else {
+			$house_count = $this->house_model->get_broker_house_count($house['broker_id']);
+		}
+		$house['house_count'] = $house_count;
 		
 		$house['house_pics_all'] = $this->house_model->get_second_hand_house_pics($id);
 		$house['house_pics'] = array_slice($house['house_pics_all'], 0, 5);
@@ -272,6 +284,11 @@ class House extends MY_Controller {
 
 	public function publish() {
 		
+		$member_id = $this->session->userdata('member_id');
+		if(empty($member_id)) {
+			redirect('/login');
+		}
+		
 		$region_list = $this->manage_model->get_region_list();
 		$decoration_list = $this->manage_model->get_decoration_list();
 		$orientation_list = $this->manage_model->get_orientation_list();
@@ -297,15 +314,31 @@ class House extends MY_Controller {
 		$xiaoqu_list = $this->house_model->list_xiaoqu();
 		$this->assign('xiaoqu_list', $xiaoqu_list);
 		
+		$room_list = array(1,2,3,4,5,6,7,8,9,10);
+		$lounge_list = array(0,1,2,3,4,5,6,7,8,9,10);
+		$toilet_list = array(0,1,2,3,4,5,6,7,8,9,10);
+		$this->assign('room_list', $room_list);
+		$this->assign('lounge_list', $lounge_list);
+		$this->assign('toilet_list', $toilet_list);
+		
 		$this->assign('time', date('YmdHis'));
 		
 		$this->display('publish.html');
 	}
 	
-	public function savePublish() {
+	public function save_publish() {
+
+		$member_id = $this->session->userdata('member_id');
+		if(empty($member_id)) {
+			redirect('/login');
+		}
 		
-		var_dump($_POST);
-		die;
+		$ret = $this->house_model->save_publish();
+		if($ret == 1) {
+			$this->display('publish_success.html');
+		} else {
+			$this->show_message('房源发布失败，请稍后再试',site_url('/house/publish'));
+		}
 	}
 	
 	public function get_substyle_list($id) {
@@ -314,10 +347,88 @@ class House extends MY_Controller {
 		die;
 	}
 	
-// 	public function add_pics(){
-		
-// 		$this->assign('time', date('YmdHis'));
-		
-// 		$this->load->view('upload.html');
-// 	}
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public function save_pics($time){
+		if (is_readable('./././uploadfiles/pics/'.$time) == false) {
+			mkdir('./././uploadfiles/pics/'.$time);
+		}
+	
+		if (is_readable('./././uploadfiles/pics/'.$time.'/1') == false) {
+			mkdir('./././uploadfiles/pics/'.$time.'/1');
+		}
+	
+		$path = './././uploadfiles/pics/'.$time.'/1';
+	
+		//设置缩小图片属性
+		$config_small['image_library'] = 'gd2';
+		$config_small['create_thumb'] = TRUE;
+		$config_small['quality'] = 80;
+		$config_small['maintain_ratio'] = TRUE; //保持图片比例
+		$config_small['new_image'] = $path;
+		$config_small['width'] = 300;
+		$config_small['height'] = 190;
+	
+		//设置原图限制
+		$config['upload_path'] = $path;
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		$config['max_size'] = '10000';
+		$config['encrypt_name'] = true;
+		$this->load->library('upload', $config);
+	
+		if($this->upload->do_upload()){
+			$data = $this->upload->data();//返回上传文件的所有相关信息的数组
+			$config_small['source_image'] = $data['full_path']; //文件路径带文件名
+			$this->image_lib->initialize($config_small);
+			$this->image_lib->resize();
+			
+			echo 1;
+		}else{
+			echo -1;
+		}
+		exit;
+	}
+	
+	//ajax获取图片信息
+	public function get_pics($time){
+		$path = './././uploadfiles/pics/'.$time.'/1';
+		$map = directory_map($path);
+		$data = array();
+		//整理图片名字，取缩略图片
+		foreach($map as $v){
+			if(substr(substr($v,0,strrpos($v,'.')),-5) == 'thumb'){
+				$data['img'][] = $v;
+			}
+		}
+		$data['time'] = $time;//文件夹名称
+		echo json_encode($data);
+	}
+	
+	//ajax删除图片
+	public function del_pic($folder,$pic,$id=null){
+		$data = $this->manage_model->del_pic($folder,1,$pic,$id);
+		echo json_encode($data);
+	}
+	
+	public function upload_pic(){
+		$path = './././uploadfiles/others/';
+		$path_out = '/uploadfiles/others/';
+		$msg = '';
+	
+		//设置原图限制
+		$config['upload_path'] = $path;
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		$config['max_size'] = '1000';
+		$config['encrypt_name'] = true;
+		$this->load->library('upload', $config);
+	
+		if($this->upload->do_upload('filedata')){
+			$data = $this->upload->data();
+			$targetPath = $path_out.$data['file_name'];
+			$msg="{'url':'".$targetPath."','localname':'','id':'1'}";
+			$err = '';
+		}else{
+			$err = $this->upload->display_errors();
+		}
+		echo "{'err':'".$err."','msg':".$msg."}";
+	}
 }

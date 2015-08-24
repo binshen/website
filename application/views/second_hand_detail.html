@@ -84,7 +84,14 @@ var mapCommAddress = "";
                     {{/foreach}}
                 </div>
                 <div class="detail-tel">
-                     <em class="tel-icon"></em><em class="tel-txt">{{$house.tel}}</em>
+                     <em class="tel-icon"></em>
+                     <em class="tel-txt">
+                     	{{if $house.broker_id > 0 }}
+                     		{{$house.tel}}
+                     	{{else}}
+                     		{{$house.user_tel}}
+                     	{{/if}}
+                     </em>
                 </div>
                 <div class="d-other-info">
                     <dl class="other-dl other-dl1">
@@ -155,21 +162,33 @@ var mapCommAddress = "";
     <div class="house-d-fr">
         <div class="agent-peo-info">
             <div class="agent-head">
-                <img src="http://dummyimage.com/175x235/000/fff">
+                <img src="{{$base_url}}images/headpic.jpg" style="width:165px; height:235px;">
             </div>
-            <div class="agent-position">
-                <p class="p-name"><em class="fz14">经纪人：{{$house.rel_name}}</em><br />
-                <em class="color666 fz10">{{$house.company_name}}</em></p>
-                <p class="agent-icon">
-                    <i class="i_identifuy"></i>
-                    <i class="i_company_verify"></i>
-                </p>    
-                <p class="agent-num"><em class="color666">房源数：</em>{{$house.broker_house_count}}套</p>
-                <p class="agent-area">熟悉区域：{{$house.b_region_name}}</p>
-                <p class="agent-more-link"><a href="#" target="_blank">+查看店铺</a></p>
-                <p class="agent-tel"><em></em>{{$house.tel}}</p>
-                <p class="fz10">房屋买卖咨询，请致电我</p>
-            </div>
+            {{if $house.broker_id > 0 }}
+	            <div class="agent-position">
+	                <p class="p-name"><em class="fz14">经纪人：{{$house.rel_name}}</em><br />
+	                <em class="color666 fz10">{{$house.company_name}}</em></p>
+	                <p class="agent-icon">
+	                    <i class="i_identifuy"></i>
+	                    <i class="i_company_verify"></i>
+	                </p>    
+	                <p class="agent-num"><em class="color666">房源数：</em>{{$house.house_count}}套</p>
+	                <p class="agent-tel"><em></em>{{$house.tel}}</p>
+	                <p class="fz10">房屋买卖咨询，请致电我</p>
+	            </div>
+	        {{else}}
+	        	<div class="agent-position">
+	                <p class="p-name"><em class="fz14">姓名：{{$house.user_name}}</em><br />
+	                <em class="color666 fz10">网站注册用户</em></p>
+	                <p class="agent-icon">
+	                    <i class="i_identifuy"></i>
+	                    <i class="i_company_verify"></i>
+	                </p>    
+	                <p class="agent-num"><em class="color666">房源数：</em>{{$house.house_count}}套</p>
+	                <p class="agent-tel"><em></em>{{$house.user_tel}}</p>
+	                <p class="fz10">房屋买卖咨询，请致电我</p>
+	            </div>
+	        {{/if}}
         </div>
         <!--
         <div class="agent-reco-info">

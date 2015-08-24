@@ -16,7 +16,6 @@
 <script src="{{$base_url}}js/jquery-ui/jquery-ui.min.js"></script>
 
 <!--plupload start--------------------------------------------------------------------------->
-<script src="{{$base_url}}plupload/js/jquery-ui-1.9.2.custom.min.js"></script>
 <!-- Load plupload and all it's runtimes and finally the UI widget -->
 <link rel="stylesheet" href="{{$base_url}}plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css" type="text/css" />
 <!-- production -->
@@ -25,8 +24,13 @@
 <script type="text/javascript" src="{{$base_url}}plupload/js/jquery.ui.plupload/jquery.ui.plupload.js"></script>
 <!--plupload end---------------------------------------------------------------------------->
 
+<!--  
 <link href="{{$base_url}}js/easydialog/easydialog.css" rel="stylesheet">
 <script src="{{$base_url}}js/easydialog/easydialog.min.js"></script>
+-->
+
+<link href="{{$base_url}}js/layer/skin/layer.css" rel="stylesheet">
+<script src="{{$base_url}}js/layer/layer.js"></script>
 
 </head>
 <body>
@@ -40,8 +44,8 @@
         <span class="fz34">免费发布房源</span><br />房猫值得你信赖，房猫帮你快速找到精准客户。
     </div>
     <div class="publishconer">
-    <form method="POST" action="/house/savePublish" id="publishForm">
-    	<input type="hidden" name="type_id" id="type_id" value="" />
+    <form method="POST" action="/house/save_publish" id="publishForm">
+    	<input type="hidden" name="type_id" id="type_id" value="2" />
     	<input type="hidden" name="rent_style_id" id="rent_style_id" value="" />
     	<input type="hidden" name="style_id" id="style_id" value="" />
     	<input type="hidden" name="substyle_id" id="substyle_id" value="" />
@@ -49,7 +53,6 @@
     	<input type="hidden" name="decoration_id" id="decoration_id" value="1" />
     	<input type="hidden" name="orientation_id" id="orientation_id" value="" />
     	<input type="hidden" name="rent_type_id" id="rent_type_id" value="" />
-    	
     	<input type="hidden" name="room" id="room" value="" />
     	<input type="hidden" name="lounge" id="lounge" value="" />
     	<input type="hidden" name="toilet" id="toilet" value="" />
@@ -68,7 +71,7 @@
                 <td>
                 	<!--
                 	<div class="input_position" style="z-index:10;">
-                        <input name="input_projname" type="text" id="input_projname" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 300px;" value="" placeholder="请输入小区名称" /><span class="sp_ok"></span><span id="sp_projname" class="tip_ok">如：香榭水岸 或 xxsa</span>
+                        <input name="input_projname" type="text" id="input_projname" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 300px;" value="" placeholder="请填写小区名称" /><span class="sp_ok"></span><span id="sp_projname" class="tip_ok">如：香榭水岸 或 xxsa</span>
                         <span id="sp_projname_error" class="tip_error">请填写小区名称，并在下拉框中选择小区</span>
                         <div class='showselectcon' id='selhouse_style3' style='position: absolute;
                             top: 37px; left: 0;display:none;'>
@@ -91,28 +94,27 @@
             <tr class="fi-style">
                 <th><em class="red">*</em> 房源类型</th>
                 <td>
-                <div class="simu-select-box" >
-                    <div class="select_position" id="selDistrict" style="z-index:11; float:left;">
-                        <span id="selDistrict_a"  class="selectbg" style="cursor: pointer;">请选择类型</span>
-                        <div class='showselectcon' id='selhouse_style1' style='position: absolute;top: 37px; left: 0; display:none;'>
-                         	{{foreach from=$style_list item=item}}
-                         		<a href="javascript:" key="style_id" val="{{$item->id}}">{{$item->name}}</a>
-                         	{{/foreach}}
-                        </div>
-                    </div>
-                </div>
-                <div class="simu-select-box">
-                    <div class="select_position" id="selComarea" style="z-index:11; float:left;">
-                        <span id="selDistrict_a"  class="selectbg" style="cursor: pointer;">
-                        	请选择类型</span>
-                        <div class='showselectcon' id='selhouse_style2' style='position: absolute;
-                            top: 37px; left: 0;display:none;'>
-                           	{{foreach from=$substyle_list item=item}}
-                         		<a href="javascript:" key="substyle_id" val="{{$item.id}}">{{$item.name}}</a>
-                         	{{/foreach}}
-                        </div>
-                    </div>
-                </div>
+	                <div class="simu-select-box" >
+	                    <div class="select_position" id="selDistrict" style="z-index:99; float:left;">
+	                        <span id="selDistrict_a"  class="selectbg" style="cursor: pointer;">请选择类型</span>
+	                        <div class='showselectcon' id='selhouse_style1' style='position: absolute; top: 37px; left: 0; display:none; z-index:999'>
+	                         	{{foreach from=$style_list item=item}}
+	                         		<a href="javascript:" key="style_id" val="{{$item->id}}">{{$item->name}}</a>
+	                         	{{/foreach}}
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="simu-select-box">
+	                    <div class="select_position" id="selComarea" style="z-index:99; float:left;">
+	                        <span id="selDistrict_a"  class="selectbg" style="cursor: pointer;">请选择类型</span>
+	                        <div class='showselectcon' id='selhouse_style2' style='position: absolute;
+	                            top: 37px; left: 0;display:none;'>
+	                           	{{foreach from=$substyle_list item=item}}
+	                         		<a href="javascript:" key="substyle_id" val="{{$item.id}}">{{$item.name}}</a>
+	                         	{{/foreach}}
+	                        </div>
+	                    </div>
+	                </div>
                  </td>
             </tr>
             
@@ -122,7 +124,7 @@
                 <div class="select_position" id="selComarea">
                         <span id="selDistrict_a" class="selectbg" style="cursor: pointer;">
                         	请选择区域</span>
-                        <div class='showselectcon' id='selhouse_style4' style='position: absolute; top: 37px; left: 0; display:none; z-index:9999'>
+                        <div class='showselectcon' id='selhouse_style4' style='position: absolute; top: 37px; left: 0; display:none; z-index:999'>
                             {{foreach from=$region_list item=item}}
                          		<a href="javascript:" key="region_id" val="{{$item->id}}">{{$item->name}}</a>
                          	{{/foreach}}
@@ -130,7 +132,7 @@
                     </div>
                 </td>
             </tr>
-            
+            <!--  
             <tr class="fi-style">
                 <th>楼栋号</th>
                 <td>
@@ -139,6 +141,7 @@
                     <span id="sp_floornum" class="tip_ok span_floornum">不对外显示，仅为估价用</span>
                 </td>
             </tr>
+            -->
             <tr class="fi-style">
                 <th><em class="red">*</em> 户型</th>
                 <td>
@@ -146,48 +149,25 @@
                         <div class="select_position" id="" style="z-index:11;">
                             <span id="selRoom"  class="selectbg selectbg1" style="cursor: pointer;"></span>
                             <div class='showselectcon' id='' style='position: absolute; top: 37px; left: 0;display:none;'>
-                                <a href="javascript:" key="room" val="1">1</a>
-	                         	<a href="javascript:" key="room" val="2">2</a>
-	                         	<a href="javascript:" key="room" val="3">3</a>
-	                         	<a href="javascript:" key="room" val="4">4</a>
-	                         	<a href="javascript:" key="room" val="5">5</a>
-	                         	<a href="javascript:" key="room" val="6">6</a>
-	                         	<a href="javascript:" key="room" val="7">7</a>
-	                         	<a href="javascript:" key="room" val="8">8</a>
-	                         	<a href="javascript:" key="room" val="9">9</a>
-	                         	<a href="javascript:" key="room" val="10">10</a>
+	                            {{foreach from=$room_list item=item}}
+	                         		<a href="javascript:" key="room" val="{{$item}}">{{$item}}</a>
+	                         	{{/foreach}}
                             </div>
                         </div>室
                         <div class="select_position" id="" style="z-index:11;">
                             <span id="selLounge"  class="selectbg selectbg1" style="cursor: pointer;"></span>
                             <div class='showselectcon' id='' style='position: absolute; top: 37px; left: 0;display:none;'>
-                                <a href="javascript:" key="room" val="0">0</a>
-	                         	<a href="javascript:" key="room" val="1">1</a>
-	                         	<a href="javascript:" key="room" val="2">2</a>
-	                         	<a href="javascript:" key="room" val="3">3</a>
-	                         	<a href="javascript:" key="room" val="4">4</a>
-	                         	<a href="javascript:" key="room" val="5">5</a>
-	                         	<a href="javascript:" key="room" val="6">6</a>
-	                         	<a href="javascript:" key="room" val="7">7</a>
-	                         	<a href="javascript:" key="room" val="8">8</a>
-	                         	<a href="javascript:" key="room" val="9">9</a>
-	                         	<a href="javascript:" key="room" val="10">10</a>
+                                {{foreach from=$lounge_list item=item}}
+	                         		<a href="javascript:" key="lounge" val="{{$item}}">{{$item}}</a>
+	                         	{{/foreach}}
                             </div>
                         </div>厅
                         <div class="select_position" id="" style="z-index:11;">
                             <span id="selToilet"  class="selectbg selectbg1" style="cursor: pointer;"></span>
                             <div class='showselectcon' id='' style='position: absolute; top: 37px; left: 0;display:none;'>
-                                <a href="javascript:" key="room" val="0">0</a>
-	                         	<a href="javascript:" key="room" val="1">1</a>
-	                         	<a href="javascript:" key="room" val="2">2</a>
-	                         	<a href="javascript:" key="room" val="3">3</a>
-	                         	<a href="javascript:" key="room" val="4">4</a>
-	                         	<a href="javascript:" key="room" val="5">5</a>
-	                         	<a href="javascript:" key="room" val="6">6</a>
-	                         	<a href="javascript:" key="room" val="7">7</a>
-	                         	<a href="javascript:" key="room" val="8">8</a>
-	                         	<a href="javascript:" key="room" val="9">9</a>
-	                         	<a href="javascript:" key="room" val="10">10</a>
+                            	{{foreach from=$toilet_list item=item}}
+	                         		<a href="javascript:" key="toilet" val="{{$item}}">{{$item}}</a>
+	                         	{{/foreach}}
                             </div>
                         </div>卫
                     </div>
@@ -196,22 +176,22 @@
             <tr class="fi-style">
                 <th><em class="red">*</em> 所在楼层</th>
                 <td>
-                	<input name="input_hnownum" type="text" id="input_hnownum" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />
-                	<span class="td-tit">总楼层</span>
-                	<input name="input_totalnum" type="text" id="input_totalnum" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />
+                	<input name="floor" type="text" id="floor" autocomplete="off" size="30" maxlength="3" class="txt" style="width: 70px;" value="" />
+                	<span class="td-tit" style="font-size: 13px; font-weight: bold;">总楼层</span>
+                	<input name="total_floor" type="text" id="total_floor" autocomplete="off" size="30" maxlength="3" class="txt" style="width: 70px;" value="" />
                  	<span id="sp_hnownum" class="tip_ok" style="display:inline-block">(地下室请填负数)</span>
                  	<span id="sp_hnownum_error" class="tip_error">请填写所在楼层</span>
                 </td>
             </tr>
             <tr class="fi-style">
                 <th><em class="red">*</em> 面积</th>
-                <td><input name="input_housearea" type="text" id="input_housearea" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />平米
+                <td><input name="acreage" type="text" id="acreage" autocomplete="off" size="30" maxlength="10" class="txt" style="width: 70px;" value="" />平米
                  <span id="sp_housearea" class="tip_ok">请填写整数</span>
                 </td>
             </tr>
              <tr class="fi-style">
                 <th><em class="red">*</em> 建造年代</th>
-                <td><input name="input_houseyear" type="text" id="input_houseyear" autocomplete="off" size="30" maxlength="4" class="txt" style="width: 70px;" value="" />年
+                <td><input name="build_year" type="text" id="build_year" autocomplete="off" size="30" maxlength="4" class="txt" style="width: 70px;" value="" />年
                  <span class="tip_error">请填写</span>
                 </td>
             </tr>
@@ -220,8 +200,8 @@
                 <td class="decorate-degree">
                 	{{foreach from=$decoration_list item=item key=key}}
                    		<span {{if $key==0}}style="padding-left:9px;"{{/if}}>
-                   			<input type="radio" name="decoration" class="rblstFitment" id="rblstFitment_{{$key}}" value="{{$item->id}}" {{if $key==0}}checked{{/if}}/>
-                   			<label for="rblstFitment_{{$key}}">{{$item->name}}</label>
+                   			<input type="radio" name="decoration" class="rblstFitment" id="decoration_{{$key}}" value="{{$item->id}}" {{if $key==0}}checked{{/if}}/>
+                   			<label for="decoration_{{$key}}">{{$item->name}}</label>
                    		</span>
                    	{{/foreach}}
                 </td>
@@ -230,10 +210,8 @@
                 <th><em class="red">*</em> 朝向</th>
                 <td>
                		<div class="select_position" id="selComarea">
-                        <span id="selDistrict_a" class="selectbg" style="cursor: pointer;">
-                        	请选择朝向</span>
-                        <div class='showselectcon' id='selhouse_style4' style='position: absolute;
-                            top: 37px; left: 0; display:none;'>
+                        <span id="selDistrict_a" class="selectbg" style="cursor: pointer;">请选择朝向</span>
+                        <div class='showselectcon' id='selhouse_style4' style='position: absolute; top: 37px; left: 0; display:none;'>
                             {{foreach from=$orientation_list item=item}}
                          		<a href="javascript:" key="orientation_id" val="{{$item->id}}">{{$item->name}}</a>
                          	{{/foreach}}
@@ -244,15 +222,15 @@
             <!--二手房-->
             <tr class="fi-style" id="sd_tr">
                 <th><em class="red">*</em> 期望售价</th>
-                <td><input name="input_expectprice" type="text" id="input_expectprice" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />万元
+                <td><input name="total_price" type="text" id="total_price" autocomplete="off" size="30" maxlength="10" class="txt" style="width: 70px;" value="" />万元
                 <span class="tip_error">请填写</span>
                 </td>
             </tr>
             <!--整租&合租-->
             <tr class="fi-style" id="rent_tr" style="display:none">
-                <th><em class="red">*</em> 租金</th>
-                <td><input name="input_rent" type="text" id="input_rent" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />元
-                <span class="td-tit">租金押付</span> <div class="select_position" id="rentAndPay" style="z-index:11;">
+                <th><em class="red">*</em> 期望租金</th>
+                <td><input name="unit_price" type="text" id="unit_price" autocomplete="off" size="30" maxlength="10" class="txt" style="width: 70px;" value="" />元/月
+                <span class="td-tit" style="font-size: 13px; font-weight: bold;">租金押付</span> <div class="select_position" id="rentAndPay" style="z-index:11;">
                         <span class="selectbg" style="cursor: pointer;">
                         	请选择</span>
                         <div class='showselectcon' style='position: absolute;
@@ -267,19 +245,27 @@
             </tr>
             <tr class="fi-style">
                 <th><em class="red">*</em> 物业费</th>
-                <td><input name="input_manage_fee" type="text" id="input_manage_fee" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 70px;" value="" />元/平米/月
+                <td><input name="estate_price" type="text" id="estate_price" autocomplete="off" size="30" maxlength="10" class="txt" style="width: 70px;" value="" />元/平米/月
                 <span class="tip_error">请填写</span>
                 </td>
             </tr>
             <tr class="fi-style">
                 <th><em class="red">*</em> 配套设施</th>
-                <td><input name="input_manage_fee" type="text" id="input_support_faci" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 300px;" value="" />
+                <td><input name="facility" type="text" id="facility" autocomplete="off" size="30" maxlength="200" class="txt" style="width: 300px;" value="" />
                  <span class="tip_error">请填写</span>
                 </td>
             </tr>
             <tr class="fi-style">
                 <th><em class="red">*</em> 房源标题</th>
-                <td><input name="input_housing_tit" type="text" id="input_housing_tit" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 300px;" value="" />
+                <td><input name="name" type="text" id="name" autocomplete="off" size="30" maxlength="200" class="txt" style="width: 300px;" value="" />
+                <span style="color:#999">可填写楼栋号,房号等相关信息</span>
+                <span class="tip_error">请填写</span>
+                </td>
+            </tr>
+            <tr class="fi-style">
+                <th><em class="red">*</em> 房源副标题</th>
+                <td><input name="sub_title" type="text" id="sub_title" autocomplete="off" size="30" maxlength="200" class="txt" style="width: 300px;" value="" />
+                <span style="color:#999">可填写房源特色,推荐理由等信息</span>
                 <span class="tip_error">请填写</span>
                 </td>
             </tr>
@@ -287,40 +273,22 @@
                 <th><em class="red">*</em> 上传图片</th>
                 <td class="other">
 	                <div id="uploadImgcontainer" class="clearfix">
-	                	<!--  
+	                	<!--
 	                    <div class="w_upload">
 	                        <em class="iscover"></em>
-	                        <a href="#" class="item-close"></a>
+	                        <a href="javascript:void(0);" class="item-close"></a>
 	                        <img src="http://dummyimage.com/100x75/000/fff" alt="" width="100" height="75" />
 	                    </div>
 	                    <div class="w_upload">
-	                    	<a href="#" class="set-cover">设为封面</a>
-	                    	<a href="#" class="item-close"></a>
-	                        <img src="http://dummyimage.com/100x75/000/fff" alt="" width="100" height="75" />
-	                    </div>
-	                    <div class="w_upload">
-	                    	<a href="#" class="set-cover">设为封面</a>
-	                    	<a href="#" class="item-close"></a>
-	                        <img src="http://dummyimage.com/100x75/000/fff" alt="" width="100" height="75" />
-	                    </div>
-	                    <div class="w_upload">
-	                    	<a href="#" class="set-cover">设为封面</a>
-	                    	<a href="#" class="item-close"></a>
-	                        <img src="http://dummyimage.com/100x75/000/fff" alt="" width="100" height="75" />
-	                    </div>
-	                    <div class="w_upload">
-	                    	<a href="#" class="set-cover">设为封面</a>
-	                    	<a href="#" class="item-close"></a>
-	                        <img src="http://dummyimage.com/100x75/000/fff" alt="" width="100" height="75" />
-	                    </div>
-	                    <div class="w_upload">
-	                    	<a href="#" class="set-cover">设为封面</a>
-	                    	<a href="#" class="item-close"></a>
+	                    	<a href="javascript:void(0);" class="set-cover" onclick="set_bg(this);">设为封面</a>
+	                    	<a href="javascript:void(0);" class="item-close"></a>
 	                        <img src="http://dummyimage.com/100x75/000/fff" alt="" width="100" height="75" />
 	                    </div>
 	                    -->
 	                </div>
 	                <span class="uploading-btn layer_notice" id="fileUpload"><em></em>批量上传</span>
+	                <input type="hidden" name="folder" value="{{$time}}" id="folder">
+    	    		<input type="hidden" name="is_bg" value="" id="is_bg">
                	</td>
             </tr>
             <tr class="fi-style">
@@ -331,13 +299,13 @@
             </tr>
             <tr class="fi-style">
                 <th><em class="red">*</em> 姓名</th>
-                <td><input name="input_username" type="text" id="input_username" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 100px;" value="" />
+                <td><input name="user_name" type="text" id="user_name" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 100px;" value="" />
                  <span class="tip_error">请填写</span>
                  </td>
             </tr>
             <tr class="fi-style">
                 <th><em class="red">*</em> 联系电话</th>
-                <td><input name="input_uertel" type="text" id="input_uertel" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 200px;" value="" />
+                <td><input name="user_tel" type="text" id="user_tel" autocomplete="off" size="30" maxlength="30" class="txt" style="width: 200px;" value="" />
                  <span class="tip_error">请填写</span>
                 </td>
             </tr>
@@ -353,6 +321,7 @@
 {include file="footer.html"}
 <link href="{{$base_url}}css/combox.css" rel="stylesheet" type="text/css" />
 <script src="{{$base_url}}js/combox.js"></script>
+
 <script>
 //模拟下拉
 $('.select_position span').click(function(){
@@ -387,6 +356,34 @@ function clickOption(obj) {
 	$("#" + key).val(val);
 }
 
+function uploadFile() {
+	if ($('#uploader').plupload('getFiles').length < 1) {
+		FM_Alert("请选择并上传房源图片");
+		return false;
+	} else {
+		$.getJSON("/house/get_pics/" + $("#folder").val() + "/1" + "?_=" + Math.random(), function(data){
+			var html = '';
+			var now_pic = [];
+			$('input[name="pic_short[]"]').each(function(index){
+				now_pic[index] = $(this).val();
+			});
+			$.each(data.img,function(index,item){
+				var path = "{{$base_url}}uploadfiles/pics/" + data.time + "/1/" + item;
+				if($.inArray(item, now_pic) < 0){
+					html+='<div class="w_upload">';
+					html+='<a href="javascript:void(0);" class="set-cover" onclick="set_bg(this);">设为封面</a>';
+					html+='<a href="javascript:void(0);" class="item-close" onclick="del_pic(this);"></a>';
+					html+='<img src="' + path + '" alt="" width="100" height="75" />';
+					html+='<input type="hidden" name="pic_short[]" class="pic_short" value="'+item+'">';
+					html+='</div>';
+				}
+			});
+			$("#uploadImgcontainer").append(html); 
+		});
+		return true;
+	}
+}
+
 $(function() {
 	$("._house_style").click(function() {
 		$(this).siblings().removeClass('selected');
@@ -395,12 +392,12 @@ $(function() {
 		if(key == 1) {
 			$("#sd_tr").show();
 			$("#rent_tr").hide();
-			$("#type_id").val(1);
+			$("#type_id").val(2);
 			$("#rent_style_id").val("");
 		} else {
 			$("#sd_tr").hide();
 			$("#rent_tr").show();
-			$("#type_id").val(2);
+			$("#type_id").val(3);
 			if(key == 2) {
 				$("#rent_style_id").val(1);
 			} else {
@@ -417,37 +414,45 @@ $(function() {
 		upFlashExt:"swf",
 		//upMediaUrl:"upload.php",
 		tools:'Bold,Italic,Underline,Strikethrough,List,Link,Unlink,Img,Hr,Emot,Table,Source,Preview,Cut,Copy,Paste,Pastetext,Blocktag,Fullscreen',
-		//html5Upload:false,
+		html5Upload:false,
 		cleanPaste:2,
-		height:'190'
+		height:'300'
 	});
 
 	$("#xiaoquSelect").combobox();
 	
-	$("#btnSubmit").click(function() {
-		$("#publishForm").submit();
-	});
-	
 	$("#fileUpload").click(function() {
-		/*
-		$.get('/house/add_pics', function(data){
-			
+		var html = '<div id="uploader" style="width:750px;"><p>Your browser doesn\'t have Flash, Silverlight or HTML5 support.</p></div>';
+
+		var layerIndex = layer.confirm(html, {
+			offset: ['100px', (document.body.offsetWidth - 800) / 2],
+			maxWidth: 800,
+		    btn: ['确定','取消'], //按钮
+		    shade: false //不显示遮罩
+		}, function(){
+			uploadFile();
+			layer.close(layerIndex);
+		    //layer.msg('的确很重要', { icon: 1 });
+		}, function(){
+		    //layer.msg('奇葩么么哒', { shift: 6 });
 		});
-		*/
-		var html = '<div id="uploader"><p>Your browser doesn\'t have Flash, Silverlight or HTML5 support.</p></div>';
+		
+		/*
 		easyDialog.open({
 			container : {
-			    header : '弹出层标题',
+			    header : '上传图片',
 			    content : html,
 			    yesFn : function() {
-			    	alert("123");
+			    	return uploadFile();
 			    },
 			    noFn : true
 			  }
 		});
+		*/
+		
 		$("#uploader").plupload({
 			runtimes : 'html5,flash,silverlight',
-			url : "/manage/save_pics/{{$time}}/1",
+			url : "/house/save_pics/" + $("#folder").val(),
 	        max_file_size : '50mb',
 	        // Resize images on clientside if we can
 	        resize : {
@@ -481,15 +486,247 @@ $(function() {
 			silverlight_xap_url : '{{$base_url}}plupload/js/Moxie.xap'
 		});
 	});
+	
+	$("#btnSubmit").click(function() {		
+		var xiaoqu = $("#xiaoquSelect").val();
+		if(xiaoqu == "") {
+			FM_Alert('请选取小区');
+			return;
+		}
+		
+		var style_id = $("#style_id").val();
+		var substyle_id = $("#substyle_id").val();
+		if(style_id == "" || substyle_id == "") {
+			FM_Alert('请选择房源类型');
+			return;
+		}
+		
+		var region_id = $("#region_id").val();
+		if(region_id == "") {
+			FM_Alert('请选择所在区域');
+			return;
+		}
+		
+		var room = $("#room").val();
+		var lounge = $("#lounge").val();
+		var toilet = $("#toilet").val();
+		if(room == "" || lounge == "" || toilet == "") {
+			FM_Alert('请选择户型信息(室厅卫)');
+			return;
+		}
+		
+		var floor = $("#floor").val();
+		if(floor == "") {
+			FM_Alert('请填写所在楼层');
+			return;
+		}
+		
+		if(!isInt(Math.abs(floor))) {
+			FM_Alert('所在楼层格式不正确');
+			return;
+		}
+		
+		var total_floor = $("#total_floor").val();
+		if(total_floor == "") {
+			FM_Alert('请填写总楼层');
+			return;
+		}
+		
+		if(!isInt(total_floor)) {
+			FM_Alert('总楼层格式不正确');
+			return;
+		}
+		
+		var acreage = $("#acreage").val();
+		if(acreage == "") {
+			FM_Alert('请填写面积');
+			return;
+		}
+		
+		if(!isFloat(acreage)) {
+			FM_Alert('面积格式不正确');
+			return;
+		}
+		
+		var build_year = $("#build_year").val();
+		if(build_year == "") {
+			FM_Alert('请填写建造年代');
+			return;
+		}
+		
+		if(!isInt(build_year) || build_year.length != 4) {
+			FM_Alert('建造年代格式不正确');
+			return;
+		}
+		
+		var orientation_id = $("#orientation_id").val();
+		if(orientation_id == "") {
+			FM_Alert('请选择朝向');
+			return;
+		}
+		
+		var type_id = $("#type_id").val();
+		if(type_id == 2) {
+			var total_price = $("#total_price").val();
+			if(total_price == "") {
+				FM_Alert('请填写期望售价');
+				return;
+			}
+			
+			if(!isFloat(total_price)) {
+				FM_Alert('期望售价格式不正确');
+				return;
+			}
+		} else {
+			var unit_price = $("#unit_price").val();
+			if(unit_price == "") {
+				FM_Alert('请填写期望租金');
+				return;
+			}
+			
+			if(!isFloat(unit_price)) {
+				FM_Alert('期望租金格式不正确');
+				return;
+			}
+			
+			var rent_type_id = $("#rent_type_id").val();
+			if(rent_type_id == "") {
+				FM_Alert('请填写租金押付');
+				return;
+			}
+		}
+		
+		var estate_price = $("#estate_price").val();
+		if(estate_price == "") {
+			FM_Alert('请填写物业费');
+			return;
+		}
+		
+		if(!isFloat(estate_price)) {
+			FM_Alert('物业费格式不正确');
+			return;
+		}
+		
+		var facility = $("#facility").val();
+		if(facility == "") {
+			FM_Alert('请填写配套设施');
+			return;
+		}
+		
+		var name = $("#name").val();
+		if(name == "") {
+			FM_Alert('请填写房源标题');
+			return;
+		}
+		
+		var sub_title = $("#sub_title").val();
+		if(sub_title == "") {
+			FM_Alert('请填写房源副标题');
+			return;
+		}
+		
+		var pic_length = $("#uploadImgcontainer").children(".w_upload").length;
+		if(pic_length < 1) {
+			FM_Alert('请上传房源图片');
+			return;
+		}
+		
+		var bg_pic = $("#is_bg").val();
+		if(bg_pic == "") {
+			FM_Alert("请设置房源图片封面");
+			return false;
+		}
+		
+		var description = $("#description").val();
+		if(description == "") {
+			FM_Alert('请填写房源描述');
+			return;
+		}
+		
+		var user_name = $("#user_name").val();
+		if(user_name == "") {
+			FM_Alert('请填写姓名');
+			return;
+		}
+		
+		var user_tel = $("#user_tel").val();
+		if(user_tel == "") {
+			FM_Alert('请填写联系电话');
+			return;
+		}
+		
+		{literal}
+		if(!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(user_tel))) {
+			FM_Alert('联系电话格式不正确');
+			return;
+		}
+		{/literal}
+		
+		layer.confirm("您确定要发布房源吗？", {
+		    btn: ['确定','取消'] //按钮
+		}, function(){
+			$("#publishForm").submit();
+		}, function(){
+			//TODO
+		});
+	});
 });
 
-var btnFn = function(){
-	alert( e.target );
-	return false;
-};
+function del_pic(obj) {
+	var current_pic = $(obj).parent().find('input[name="pic_short[]"]').val();
+	$.getJSON("/house/del_pic/" + $("#folder").val() + "/" + current_pic + "/", function(data){
+		if(data.flag == 1){
+			$(obj).parent().remove();
+		}else{
+			alert("删除图片失败，请清理图片缓存并刷新标签页");
+		}
+	});
+}
 
+function set_bg(obj) {
+	var current_pic = $(obj).parent().find('input[name="pic_short[]"]').val();
+	var iscover = $(obj).parent().siblings().find('.iscover');
+	iscover.parent().prepend('<a href="javascript:void(0);" class="set-cover" onclick="set_bg(this);">设为封面</a>');
+	iscover.remove();
+	$(obj).parent().prepend('<em class="iscover"></em>');
+	$(obj).parent().find('.set-cover').remove();
 
+	var pic = $("#folder").val() + '/1/' + current_pic;
+	$("#is_bg").val(pic);
+}
 
+function FM_Alert(msg) {
+	/*
+	easyDialog.open({
+	  	container : {
+	    	header : '错误提示',
+	    	content : msg
+	  	},
+	  	overlay : true,
+	  	autoClose : 1500
+	});
+	*/
+	layer.msg(msg, { icon: 2, time: 1500 });
+}
+
+function isInt(oNum){
+	if(!oNum) return false;
+	var strP=/^\d+$/;
+	if(!strP.test(oNum)) return false;
+	return true;
+}
+
+function isFloat(oNum) {
+	if(!oNum) return false;
+	var strP=/^\d+(\.\d+)?$/;
+	if(!strP.test(oNum)) return false;
+	try{
+		if(parseFloat(oNum)!=oNum) return false;
+	} catch(ex){
+		return false;
+	}
+	return true;
+}
 </script>
 </body>
 </html>

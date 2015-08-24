@@ -66,3 +66,8 @@
 .item-close:hover{ background-position:0 -50px;}
 .w_upload .set-cover{ height:24px; background:#4c4c4c; display:block; width:100%; text-align:center; color:#fff; position:absolute;top:51px; cursor:pointer;}
 .w_upload .set-cover:hover{ opacity:0.8;}
+
+/*发布成功页*/
+.publish-suc{margin:116px auto 0; width: 345px;}
+
+.publish-suc p{padding: 25px 0 0 105px; font-size: 18px;}
