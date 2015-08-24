@@ -342,7 +342,7 @@ class House_model extends MY_Model
      			$this->db->where('a.acreage >',  '300');
      		}
      	}     	
-     	if($this->input->post('search_type')) {
+     	if($this->input->post('search_type') && $h_ids) {
      		$this->db->where_in('a.id', $h_ids);
      	}     		
      	if($this->input->post('search_feature'))
