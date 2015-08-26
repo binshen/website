@@ -1169,4 +1169,62 @@ class Manage_model extends MY_Model
 			return 1;
 		}
 	}
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	//  经纪人接口
+	//////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * 公司信息
+	 */
+	public function list_company(){
+		// 每页显示的记录条数，默认20条
+		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
+		$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
+	
+		//获得总记录数
+		$this->db->select('count(1) as num');
+		$this->db->from('company');
+	
+		$rs_total = $this->db->get()->row();
+		//总记录数
+		$data['countPage'] = $rs_total->num;
+	
+		//list
+		$this->db->select('*')->from('company');
+		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
+		$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
+		$data['res_list'] = $this->db->get()->result();
+		$data['pageNum'] = $pageNum;
+		$data['numPerPage'] = $numPerPage;
+		return $data;
+	}
+	
+	public function save_company() {
+		$data = array(
+			'name' => $this->input->post('name')
+		);
+		$this->db->trans_start();//--------开始事务
+	
+		if($this->input->post('id')){//修改
+			$this->db->where('id', $this->input->post('id'));
+			$this->db->update('company', $data);
+		} else {
+			$this->db->insert('company', $data);
+		}
+		$this->db->trans_complete();//------结束事务
+		if ($this->db->trans_status() === FALSE) {
+			return -1;
+		} else {
+			return 1;
+		}
+	}
+	
+	public function get_company($id) {
+		return $this->db->get_where('company', array('id' => $id))->row_array();
+	}
+	
+	public function delete_company($id) {
+		$this->db->where('id', $id);
+		return $this->db->delete('company');
+	}
 }

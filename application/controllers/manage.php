@@ -707,4 +707,39 @@ class Manage extends MY_Controller {
 			form_submit_json("300", "删除失败");
 		}
 	}
+	
+	/**
+	 * 公司信息
+	 */
+	public function list_company() {
+		$data = $this->manage_model->list_company();
+		$this->load->view('manage/list_company.php', $data);
+	}
+	
+	public function add_company() {
+		$this->load->view('manage/add_company.php');
+	}
+	
+	public function save_company() {
+		$ret = $this->manage_model->save_company();
+		if($ret == 1){
+			form_submit_json("200", "操作成功", 'list_company');
+		} else {
+			form_submit_json("300", "保存失败");
+		}
+	}
+	
+	public function edit_company($id) {
+		$data = $this->manage_model->get_company($id);
+		$this->load->view('manage/add_company.php', $data);
+	}
+	
+	public function delete_company($id) {
+		$ret = $this->manage_model->delete_company($id);
+		if($ret == 1) {
+			form_submit_json("200", "操作成功", 'list_company', '', '');
+		} else {
+			form_submit_json("300", "删除失败");
+		}
+	}
 }
