@@ -115,7 +115,7 @@ var mapCommAddress = "";
             房源描述
         </div>
         <div class="house-d-by">
-            {{$house.description}}
+            {{$house.description|htmlspecialchars_decode}}
         </div>
         <div class="house-d-title">
             房源图片

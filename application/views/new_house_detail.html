@@ -219,7 +219,7 @@ var mapCommAddress = "";
                 </dd>
                 <dt>楼盘综述</dt>
                 <dd>
-                    <p>{{$house['description']}}</p>
+                    <p>{{$house['description']|htmlspecialchars_decode}}</p>
                 </dd>
                 <dt>户型图</dt>
                 <dd>
