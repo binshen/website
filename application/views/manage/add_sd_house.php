@@ -165,7 +165,7 @@
         		
         		<dl>
         			<dt>配套设施：</dt>
-        			<dd><input name="facility" type="text" class="required" value="<?php if(!empty($facility)) echo $facility;?>" /></dd>
+        			<dd><input name="facility" type="text" value="<?php if(!empty($facility)) echo $facility;?>" /></dd>
         		</dl>
 <!--  
         		<dl>
