@@ -107,6 +107,8 @@ $(function(){
 						</div>
 						<div class="accordionContent">
 							<ul class="tree">
+								<li><a href="<?php echo site_url('manage/list_company');?>" target="navTab" rel="list_company">公司管理</a></li>
+								<li><a href="<?php echo site_url('manage/list_subsidiary');?>" target="navTab" rel="list_subsidiary">分店管理</a></li>
 								<li><a href="<?php echo site_url('manage/list_xiaoqu');?>" target="navTab" rel="list_xiaoqu">小区信息</a></li>
 								<li><a href="<?php echo site_url('manage/list_house_style');?>" target="navTab" rel="list_house_style">楼盘类型</a></li>
 								<li><a href="<?php echo site_url('manage/list_house_substyle');?>" target="navTab" rel="list_house_substyle">楼盘类型(二级)</a></li>
