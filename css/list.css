@@ -55,7 +55,7 @@
 .ave-price{ font-size: 12px;}
 
 /*分页*/
-.paging{margin: 0 auto;width: 375px;}
+.paging{margin: 0 auto;width: 500px;}
 .paging i,.paging a{ float: left; vertical-align: top; background: #fff; margin-left:2px; color: #3d3d3d; border: 1px solid #ccc;  width: 35px; height: 35px; 
 	line-height: 35px;text-align: center; font-size: 14px;}
 .paging .iPre{width: 68px; color: #ccc; border: 1px solid #ccc;}

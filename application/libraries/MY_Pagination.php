@@ -28,8 +28,15 @@ class MY_Pagination extends CI_Pagination {
  		$config['uri_segment'] = $uri_segment;
  		
 		
-  		$config['first_link'] = false;
-  		$config['last_link'] = false;
+//   		$config['first_link'] = false;
+//   		$config['last_link'] = false;
+ 		$config['first_link']      = '&lt;&lt;首页';
+ 		$config['first_tag_open']  = '';
+ 		$config['first_tag_close'] = '';
+ 		$config['last_link']      = '尾页&gt;&gt;';
+ 		$config['last_tag_open']  = '';
+ 		$config['last_tag_close'] = '';
+ 		
 		
 		$this->initialize($config);
 		
@@ -149,7 +156,7 @@ class MY_Pagination extends CI_Pagination {
 		if  ($this->first_link !== FALSE AND $this->cur_page > ($this->num_links + 1))
 		{
 			$first_url = ($this->first_url == '') ? $this->base_url : $this->first_url;
-			$output .= $this->first_tag_open.'<a '.$this->anchor_class.'href="'.$first_url.'">'.$this->first_link.'</a>'.$this->first_tag_close;
+			$output .= $this->first_tag_open.'<a '.$this->anchor_class.'href="'.$first_url.'" ' . $anchorClass . '>'.$this->first_link.'</a>'.$this->first_tag_close;
 		}
 
 		// Render the "previous" link
@@ -242,7 +249,7 @@ class MY_Pagination extends CI_Pagination {
 			{
 				$i = (($num_pages * $this->per_page) - $this->per_page);
 			}
-			$output .= $this->last_tag_open.'<a '.$this->anchor_class.'href="'.$this->base_url.$this->prefix.$i.$this->suffix.'">'.$this->last_link.'</a>'.$this->last_tag_close;
+			$output .= $this->last_tag_open.'<a '.$this->anchor_class.'href="'.$this->base_url.$this->prefix.$i.$this->suffix.'" ' . $anchorClass . '>'.$this->last_link.'</a>'.$this->last_tag_close;
 		}
 
 		// Kill double slashes.  Note: Sometimes we can end up with a double slash
