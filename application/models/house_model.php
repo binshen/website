@@ -229,6 +229,7 @@ class House_model extends MY_Model
     			$this->db->order_by('a.total_price', 'asc');
     		}
     	} else {
+    		$this->db->order_by('refresh_time', 'desc');
     		$this->db->order_by('a.id', 'desc');
     	}
     	
