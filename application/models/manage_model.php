@@ -422,7 +422,8 @@ class Manage_model extends MY_Model
 			'username' => $this->input->post('tel'),
 			'passwd' => sha1('888888'),
 			'tel' => $this->input->post('tel'),
-			'company_name' => $this->input->post('company_name'),
+			'company_id' => $this->input->post('company_id'),
+			'subsidiary_id' => $this->input->post('subsidiary_id'),
 			'rel_name' => $this->input->post('rel_name'),
 			'region_id' => $this->input->post('region_id'),
 			'admin_group' => 2
@@ -1288,5 +1289,9 @@ class Manage_model extends MY_Model
 	
 	public function get_company_list() {
 		return $this->db->get('company')->result();
+	}
+	
+	public function get_subsidiary_list_by_company($id) {
+		return $this->db->get_where('subsidiary', array('company_id' => $id))->result_array();
 	}
 }

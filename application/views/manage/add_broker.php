@@ -23,8 +23,39 @@
         		</dl>
         		<dl>
         			<dt>所属公司：</dt>
-        			<dd><input type="text" name="company_name" class="required" value="<?php if(!empty($company_name)) echo $company_name;?>" /></dd>
+        			<dd>
+        				<select name="company_id" class="combox" id="selectCompany" ref="selectSubSidiary" refUrl="/manage/get_subsidiary_list/{value}" >
+        					<?php          
+				                if (!empty($company_list)):
+				            	    foreach ($company_list as $row):
+				            	    	$selected = !empty($company_id) && $row->id == $company_id ? "selected" : "";          
+				            ?>
+        								<option value="<?php echo $row->id; ?>" <?php echo $selected; ?>><?php echo $row->name; ?></option>
+        					<?php 
+				            		endforeach;
+				            	endif;
+				            ?>
+        				</select>
+        			</dd>
         		</dl>
+        		<dl>
+        			<dt>所属分店：</dt>
+        			<dd>
+        				<select name="subsidiary_id" class="combox" id="selectSubSidiary">
+        					<?php          
+				                if (!empty($subsidiary_list)):
+				            	    foreach ($subsidiary_list as $row):
+				            	    	$selected = !empty($subsidiary_id) && $row['id'] == $subsidiary_id ? "selected" : "";          
+				            ?>
+        								<option value="<?php echo $row['id']; ?>" <?php echo $selected; ?>><?php echo $row['name']; ?></option>
+        					<?php 
+				            		endforeach;
+				            	endif;
+				            ?>
+        				</select>
+        			</dd>
+        		</dl>
+        		
         		<dl>
         			<dt>熟悉区域：</dt>
         			<dd>

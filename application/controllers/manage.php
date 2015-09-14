@@ -415,6 +415,10 @@ class Manage extends MY_Controller {
 	public function add_broker() {
 		$data = array();
 		$data['region_list'] = $this->manage_model->get_region_list();
+		$data['company_list'] = $this->manage_model->get_company_list();
+		if(!empty($data['company_list'])) {
+			$data['subsidiary_list'] = $this->manage_model->get_subsidiary_list_by_company($data['company_list'][0]->id);
+		}
 		$this->load->view('manage/add_broker.php', $data);
 	}
 	
@@ -438,6 +442,8 @@ class Manage extends MY_Controller {
 	public function edit_broker($id) {
 		$data = $this->manage_model->get_broker($id);
 		$data['region_list'] = $this->manage_model->get_region_list();
+		$data['company_list'] = $this->manage_model->get_company_list();
+		$data['subsidiary_list'] = $this->manage_model->get_subsidiary_list_by_company($data['company_id']);
 		$this->load->view('manage/add_broker.php', $data);
 	}
 	
@@ -448,6 +454,16 @@ class Manage extends MY_Controller {
 		} else {
 			form_submit_json("300", "删除失败");
 		}
+	}
+	
+	public function get_subsidiary_list($id) {
+		$data = $this->manage_model->get_subsidiary_list_by_company($id);
+		$subSidiary = array();
+		foreach ($data as $s) {
+			$subSidiary[] = array($s['id'], $s['name']);
+		}
+		echo json_encode($subSidiary);
+		die;
 	}
 	
 	/**
