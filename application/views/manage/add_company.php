@@ -15,6 +15,24 @@
         				<input name="name" type="text" class="required" value="<?php if(!empty($name)) echo $name;?>" />
         			</dd>
         		</dl>
+        		<dl>
+        			<dt>可开分店数：</dt>
+        			<dd>
+        				<input name="company_count" type="text" class="required" value="<?php if(!empty($company_count)) echo $company_count;?>" />
+        			</dd>
+        		</dl>
+        		<dl>
+        			<dt>可开业务员数：</dt>
+        			<dd>
+        				<input name="broker_count" type="text" class="required" value="<?php if(!empty($broker_count)) echo $broker_count;?>" />
+        			</dd>
+        		</dl>
+        		<dl>
+        			<dt>可添加二手房数：</dt>
+        			<dd>
+        				<input name="house_count" type="text" class="required" value="<?php if(!empty($house_count)) echo $house_count;?>" />
+        			</dd>
+        		</dl>
         	</fieldset>
         </div>
         <div class="formBar">

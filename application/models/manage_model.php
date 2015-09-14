@@ -426,8 +426,28 @@ class Manage_model extends MY_Model
 			'subsidiary_id' => $this->input->post('subsidiary_id'),
 			'rel_name' => $this->input->post('rel_name'),
 			'region_id' => $this->input->post('region_id'),
+			'house_count' => $this->input->post('house_count'),
 			'admin_group' => 2
 		);
+		
+		$res = $this->db->select('house_count,broker_count')->from('subsidiary')->where('id',$this->input->post('subsidiary_id'))->get()->row();
+		$house_count = $res->house_count;
+		$broker_count = $res->broker_count;
+		
+		$this->db->select('sum(house_count) house_count')->from('admin')->where('subsidiary_id',$this->input->post('subsidiary_id'));
+		if($this->input->post('id'))
+			$this->db->where('id !=',$this->input->post('id'));
+		$rs = $this->db->get()->row();
+		if($rs->house_count + $this->input->post('house_count') > $house_count)
+			return -2;
+			
+		$this->db->select('count(1) broker_count')->from('admin')->where('subsidiary_id',$this->input->post('subsidiary_id'));
+		if($this->input->post('id'))
+			$this->db->where('id !=',$this->input->post('id'));
+		$rs = $this->db->get()->row();
+		if($rs->broker_count + 1 > $broker_count)
+			return -3;
+		
 		$this->db->trans_start();//--------开始事务
 		
 		if($this->input->post('id')){//修改
@@ -1202,7 +1222,10 @@ class Manage_model extends MY_Model
 	
 	public function save_company() {
 		$data = array(
-			'name' => $this->input->post('name')
+			'name' => $this->input->post('name'),
+			'company_count' => $this->input->post('company_count'),
+			'broker_count' => $this->input->post('broker_count'),
+			'house_count' => $this->input->post('house_count')
 		);
 		$this->db->trans_start();//--------开始事务
 	
@@ -1258,10 +1281,42 @@ class Manage_model extends MY_Model
 	}
 	
 	public function save_subsidiary() {
+		$res = $this->db->select('company_count,house_count,broker_count')->from('company')->where('id',$this->input->post('company_id'))->get()->row();
+		$company_count = $res->company_count;
+		$house_count = $res->house_count;
+		$broker_count = $res->broker_count;
+		
+		$this->db->select('count(1) num')->from('subsidiary');
+		$this->db->where('company_id',$this->input->post('company_id'));
+		if($this->input->post('id'))
+			$this->db->where('id !=',$this->input->post('id'));
+		$rs = $this->db->get()->row();
+		
+		if($rs->num + 1 > $company_count){
+			return -2;
+		}
+		
 		$data = array(
 			'company_id' => $this->input->post('company_id'),
-			'name' => $this->input->post('name')
+			'name' => $this->input->post('name'),
+			'house_count' => $this->input->post('house_count'),
+			'broker_count' => $this->input->post('broker_count')
 		);
+		
+		$this->db->select('sum(house_count) house_count')->from('subsidiary')->where('company_id',$this->input->post('company_id'));
+		if($this->input->post('id'))
+			$this->db->where('id !=',$this->input->post('id'));
+		$rs = $this->db->get()->row();
+		if($rs->house_count + $this->input->post('house_count') > $house_count)
+			return -3;
+			
+		$this->db->select('sum(broker_count) broker_count')->from('subsidiary')->where('company_id',$this->input->post('company_id'));
+		if($this->input->post('id'))
+			$this->db->where('id !=',$this->input->post('id'));
+		$rs = $this->db->get()->row();
+		if($rs->broker_count + $this->input->post('broker_count') > $broker_count)
+			return -4;
+		
 		$this->db->trans_start();//--------开始事务
 	
 		if($this->input->post('id')){//修改

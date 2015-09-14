@@ -55,6 +55,12 @@
         				</select>
         			</dd>
         		</dl>
+        		<dl>
+        			<dt>可发布二手房数：</dt>
+        			<dd>
+        				<input name="house_count" type="text" class="required" value="<?php if(!empty($house_count)) echo $house_count;?>" />
+        			</dd>
+        		</dl>
         		
         		<dl>
         			<dt>熟悉区域：</dt>
