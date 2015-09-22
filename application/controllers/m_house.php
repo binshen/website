@@ -19,10 +19,17 @@ class M_house extends MY_Controller {
 		$style_list = $this->house_model->get_search_style_list();
 		$this->assign('style_list', $style_list);
 		
+		$house_list = $this->house_model->get_m_house_list();
+		$this->assign('house_list', $house_list);
+		
 		$this->display('mobile/list.html');
 	}
 	
-	public function view_detail() {
+	public function view_detail($hid) {
+		
+		$house_detail = $this->house_model->get_m_house_detail($hid);
+		$this->assign('house', $house_detail);
+		
 		$this->display('mobile/details.html');
 	}
 	
