@@ -29,6 +29,10 @@ class M_house extends MY_Controller {
 		
 		$house = $this->house_model->get_m_house_detail($hid);
 		$house['unit_price'] = intval($house['total_price'] * 10000 / $house['acreage']);
+		
+		$house['house_pics_all'] = $this->house_model->get_second_hand_house_pics($hid);
+		$house['house_pics'] = array_slice($house['house_pics_all'], 0, 5);
+		$house['house_pics_rest'] = array_slice($house['house_pics_all'], 6, 5);
 		$this->assign('house', $house);
 		
 		$this->display('mobile/details.html');
