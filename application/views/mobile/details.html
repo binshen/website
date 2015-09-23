@@ -38,7 +38,7 @@
               <dt>学区：</dt>
               <dd>永平小学 </dd>
               <dt>地址：</dt>
-              <dd>{{$item->region_fullname}} {{$item->address|default:"地址不详"}} </dd>
+              <dd>{{$house.region_name}} {{$house.address|default:"地址不详"}} </dd>
             </dl>
             <dl class="d-dl d-house-info">  
               <dt>面积：</dt>
@@ -53,10 +53,11 @@
         </div>
         <div class="d-part1">
             <span class="touxiang"><img src="http://dummyimage.com/80x100/000/fff"></span>
-            <p class="peo-intro"><i class="name">王先生</i><br /><i class="color-999"><em class="am-icon-check-circle"></em>顺达地产门店</i><br /><i class="tel">电话咨询   <em class="tel-num">134****5169</em></i></p>
+            <p class="peo-intro"><i class="name">{{$house.rel_name}}</i><br /><i class="color-999"><em class="am-icon-check-circle"></em>{{$house.company_name}}</i><br /><i class="tel">电话咨询   <em class="tel-num">{{$house.tel}}</em></i></p>
         </div>
         <div class="d-part1">
             <i class="info-tit color-999">详细描述</i>
+            <!--
             <p>小区概况：<br />
 博威黄金海岸，小区物业管理到位，绿化率高，城北中环边上最高档住宅，紧挨万达商业广场，东海海鲜城，大宁生活中心，配套完善，毗邻中环高架，青阳路，长江路，交通便利。<br />
 主力户型：<br />
@@ -64,16 +65,18 @@
 3房 114、120、139、141、151、158㎡；<br />
 4房 198㎡，大4房223㎡。<br />
 实现“三个5分钟”：<br />步行5分钟到达万达广场、卜蜂莲花、肯德基、潮歌音乐会所等大型卖场；5分钟到达市中心三大公园享受市区最好的生态环境。30分钟即可享受昆沪同城。</p>
+			-->
+			{{$house.description}}
         </div>
         <div class="d-part1">
            <i class="info-tit color-999">房源信息</i>
            <dl class="d-dl d-house-info">
                 <dt>装 修:</dt>
-                <dd>毛坯</dd>
+                <dd>{{$house.decoration_name}}</dd>
                 <dt>物业费:</dt>
-                <dd>4.35元/平米</dd>
+                <dd>{{$house.estate_price}}元/平米</dd>
                 <dt>配套设施:</dt>
-                <dd></dd>
+                <dd>{{$house.facility}}</dd>
            </dl> 
            <dl class="d-dl d-house-info">
                 <dt>类型:</dt>
