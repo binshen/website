@@ -11,8 +11,8 @@
 </head>
 <body style=" background:#f5f2f0;">
     <div class="g-head">
-        <i class="am-icon-chevron-left"></i>
-        博威黄金海岸
+        <a href="/m_house/view_list"><i class="am-icon-chevron-left"></i></a>
+        {{$house.xq_name}}
     </div>
     <div class="g-doc">
         <div class="pic-focus">
@@ -28,8 +28,8 @@
             </div>
         </div>
         <div class="d-part1">
-            <p class="d-tit">周市 博威黄金海岸 1室1厅 62平米 85万<br /><span class="color-999">2015/7/25 (10小时前更新）</span></p>
-            <p class="d-p1">{{$house.total_price}}万元/套 <span>( 5227元/ ㎡)</span></p>
+            <p class="d-tit">{{$house.region_name}} {{$house.xq_name}} {{$house.room}}室{{$house.lounge}}厅 {{$house.acreage}}平米 {{$house.total_price}}万<br /><span class="color-999">2015/7/25 (10小时前更新）</span></p>
+            <p class="d-p1">{{$house.total_price}}万元/套 <span>( {{$house.unit_price}}元/ ㎡)</span></p>
             <dl class="d-dl d-house-info">
               <dt>户型：</dt>
               <dd>{{$house.room}}室{{$house.lounge}}厅{{$house.toilet}}卫</dd>
@@ -45,7 +45,7 @@
               <dd>{{$house.acreage}}平米</dd>
               <dt>年代：</dt>
               <dd>{{$house.build_year}}年</dd>
-              <dt>特色：</dt>
+              <dt>朝向：</dt>
               <dd>{{$house.orientation_name}} </dd>
             </dl>
             <div class="clear"></div>  
@@ -80,7 +80,7 @@
            </dl> 
            <dl class="d-dl d-house-info">
                 <dt>类型:</dt>
-                <dd>独栋别墅</dd>
+                <dd>{{$house.style_name}}</dd>
            </dl>
            <div class="clear"></div>
             <div class="house-show-pic">
