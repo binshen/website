@@ -9,6 +9,7 @@ class M_house extends MY_Controller {
 	}
 	
 	public function index() {
+		$this->display('mobile/index.html');
 	}
 	
 	public function view_list() {
