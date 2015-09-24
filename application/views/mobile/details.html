@@ -60,15 +60,6 @@
         </div>
         <div class="d-part1">
             <i class="info-tit color-999">详细描述</i>
-            <!--
-            <p>小区概况：<br />
-博威黄金海岸，小区物业管理到位，绿化率高，城北中环边上最高档住宅，紧挨万达商业广场，东海海鲜城，大宁生活中心，配套完善，毗邻中环高架，青阳路，长江路，交通便利。<br />
-主力户型：<br />
-2房 88.50、89、91.93、101㎡；<br />
-3房 114、120、139、141、151、158㎡；<br />
-4房 198㎡，大4房223㎡。<br />
-实现“三个5分钟”：<br />步行5分钟到达万达广场、卜蜂莲花、肯德基、潮歌音乐会所等大型卖场；5分钟到达市中心三大公园享受市区最好的生态环境。30分钟即可享受昆沪同城。</p>
-			-->
 			{{$house.description}}
         </div>
         <div class="d-part1">
@@ -97,57 +88,18 @@
         </div>
         <div class="d-part1" style="margin-bottom:50px;">
             <i class="info-tit color-999">位置及周边</i>
-            <p class="zblink"><a href="" target="_blank">地址:<span class="color-999"><i class="am-icon-angle-right"></i>花集路</span></a></p> 
-            <!--
-            <div class="map">
-                <img src="http://dummyimage.com/330x130/000/fff">
-            </div>
-            <dl class="d-dl">
-                <dt>银行：</dt>
-                <dd>中国银行ATM、中国银行24小时自助银行、
-                   昆山农村商业银行ATM、中国工商银</dd>
-                <dt>医院：</dt>
-                <dd>长海医院、博爱医院、女子医院</dd>
-                <dt>大学：</dt>
-                <dd>无</dd>
-                <dt>高中：</dt>
-                <dd>裕元实验、国际学校、城北中学、城北小学
-</dd>
-                <dt>幼儿园：</dt>
-                <dd>博顿幼儿园、大德世家幼儿园、光大幼儿园、
-                 金澄幼儿园</dd>
-                <dt>超市：</dt>
-                <dd>易初莲花、长江购物广场、港龙城市商业广场</dd>
-                <dt>邮局：</dt>
-                <dd>新镇邮政支局</dd>
-                <dt>其他：</dt>
-                <dd>周市新镇农贸市场、山东水果蔬菜、联发水</dd>
-            </dl>
-            -->
+            <p class="zblink"><a href="" target="_blank">地址:<span class="color-999"><i class="am-icon-angle-right"></i>{{$house.address}}</span></a></p> 
             <div class="house-d-by">
 	            <div id="detail-map" class="detail-map">
-		            <div class="detail-map-main" id="bigmap" style="width:860px;"></div>
+		            <div class="detail-map-main" id="bigmap" style="width:300px;"></div>
 		            <div id="wrapper">
-		            <!--demo1 end-->
 		            <div class="box demo2">
 		                <ul class="tab_menu">
 		                    <li onclick="searchcondition('公交',this);" class="current tab-traffic-menu">交通</li>
-		                    <li onclick="searchcondition('医疗',this);" class="tab-hospital-menu">医疗</li>
-		                    <li onclick="searchcondition('学校',this);" class="tab-school-menu">教育</li>
-		                    <li onclick="searchcondition('超市',this);" class="tab-trade-menu">商业</li>
 		                </ul>
 		                <div class="tab_box">
 		                    <div class="hide tab_box_eq">
 		                        <ul id="tab-traffic"><li class="tab-traffic"><b>数据正在加载中</b></li></ul>
-		                    </div>
-		                    <div class="hide tab_box_eq">
-		                        <ul id="tab-hospital"><li class="tab-hospital"><b>数据正在加载中</b></li></ul>
-		                    </div>
-		                    <div class="hide tab_box_eq">
-		                        <ul id="tab-school"><li class="tab-school"><b>数据正在加载中</b></li></ul>
-		                    </div>
-		                    <div class="hide tab_box_eq">
-		                        <ul id="tab-trade"><li class="tab-trade"><b>数据正在加载中</b></li></ul>
 		                    </div>
 		                </div>
 		            </div>
@@ -188,7 +140,7 @@
 	var mapComm = "{{$house.xq_name}}";
 	var mapCommAddress = "";
 	</script>
-	<script type="text/javascript" src="{{$base_url}}js/map.js"></script>
+	<script type="text/javascript" src="{{$base_url}}js/map_mobile.js"></script>
     <script type="text/javascript">
     function $$(a){
     	return(typeof a=="object")?a:document.getElementById(a);
