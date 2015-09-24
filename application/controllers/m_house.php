@@ -33,8 +33,8 @@ class M_house extends MY_Controller {
 		
 		if(!empty($house['refresh_time'])) {
 			$house['refresh_date'] = date('Y-m-d', strtotime($house['refresh_time']));
-			$datetime1 = date_create($house['refresh_date']);
-			$datetime2 = date_create(date('Y-m-d'));
+			$datetime1 = date_create($house['refresh_time']);
+			$datetime2 = date_create(date('Y-m-d H:i:s'));
 			$interval = date_diff($datetime1, $datetime2);
 			$house['hours'] = $interval->days * 24 + $interval->h;
 		} else {
