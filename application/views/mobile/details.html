@@ -19,11 +19,8 @@
             <div class="m-slider">
                 <div class="m-slider-pic" id="J_slideWrap">
                     <ul class="">
-                    {{foreach from=$house.house_pics key=key item=item}}
-	                	<li><img src="http://dummyimage.com/645x430/000/fff"></li>
-	                	<!--  
+                    {{foreach from=$house.house_pics key=key item=item}} 
 	                    <li><img src="{{$base_url}}uploadfiles/pics/{{$house.folder}}/1/{{$item.pic}}" width="645" height="430" /></li>
-	                    -->
 	         		{{/foreach}}
                     </ul>
                 </div>
@@ -79,10 +76,7 @@
            <div class="clear"></div>
             <div class="house-show-pic">
                 {{foreach from=$house.house_pics_rest key=key item=item}}
-                	<img src="http://dummyimage.com/645x430/000/fff">
-                	<!--  
                     <img src="{{$base_url}}uploadfiles/pics/{{$house.folder}}/1/{{$item.pic}}" width="645" height="430" />
-                    -->
          		{{/foreach}}
             </div>
         </div>
