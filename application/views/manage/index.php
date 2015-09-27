@@ -138,6 +138,15 @@ $(function(){
 						</div>
 						
 						<div class="accordionHeader">
+							<h2><span>Folder</span>专题管理</h2>
+						</div>
+						<div class="accordionContent">
+							<ul class="tree">
+								<li><a href="<?php echo site_url('manage/list_term');?>" target="navTab" rel="list_term">专题管理</a></li>
+							</ul>
+						</div>
+						
+						<div class="accordionHeader">
 							<h2><span>Folder</span>最新动态</h2>
 						</div>
 						<div class="accordionContent">

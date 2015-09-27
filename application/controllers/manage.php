@@ -806,4 +806,66 @@ class Manage extends MY_Controller {
 			form_submit_json("300", "删除失败");
 		}
 	}
+	
+	
+	public function list_term(){
+		$data = $this->manage_model->list_term();
+		$this->load->view('manage/list_term.php',$data);
+	}
+	
+	public function add_term(){
+		$this->load->view('manage/add_term.php');
+	}
+	
+	public function delete_term($id){
+		$rs = $this->manage_model->delete_term($id);
+		if ($rs === 1) {
+			form_submit_json("200", "操作成功", "list_term", "", "");
+		} else {
+			form_submit_json("300", $rs);
+		}
+	}
+	
+	public function edit_term($id){
+		$data = $this->manage_model->get_term($id);
+		$this->load->view('manage/add_term.php',$data);
+	}
+	
+	public function save_term(){
+		if($_FILES["userfile"]['name'] and $this->input->post('old_img')){//修改上传的图片，需要先删除原来的图片
+			@unlink('./././uploadfiles/news/'.$this->input->post('old_img'));//del old img
+		}else if(!$_FILES["userfile"]['name'] and !$this->input->post('old_img')){//未上传图片
+			form_submit_json("300", "请添加图片");exit;
+		}
+	
+		if(!$_FILES["userfile"]['name'] and $this->input->post('old_img')){//不修改图片信息
+			$data = $this->input->post();
+			unset($data['ajax']);
+			unset($data['old_img']);
+			$rs = $this->manage_model->save_term($data);
+		}else{
+			$config['upload_path'] = './././uploadfiles/news';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$config['max_size'] = '1000';
+			$config['encrypt_name'] = true;
+			$this->load->library('upload', $config);
+			if($this->upload->do_upload()){
+				$img_info = $this->upload->data();
+				$data = $this->input->post();
+				$data['pic'] = $img_info['file_name'];
+				unset($data['ajax']);
+				unset($data['old_img']);
+				$rs = $this->manage_model->save_term($data);
+			}else{
+				form_submit_json("300", $this->upload->display_errors('<b>','</b>'));
+				exit;
+			}
+		}
+	
+		if ($rs === 1) {
+			form_submit_json("200", "操作成功", "list_term");
+		} else {
+			form_submit_json("300", $rs);
+		}
+	}
 }

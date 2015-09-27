@@ -1349,4 +1349,70 @@ class Manage_model extends MY_Model
 	public function get_subsidiary_list_by_company($id) {
 		return $this->db->get_where('subsidiary', array('company_id' => $id))->result_array();
 	}
+	
+
+	public function list_term(){
+		// 每页显示的记录条数，默认20条
+		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
+		$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
+	
+		//获得总记录数
+		$this->db->select('count(1) as num');
+		$this->db->from('term');
+		if($this->input->post('name'))
+			$this->db->like('name',$this->input->post('name'));
+	
+		$rs_total = $this->db->get()->row();
+		//总记录数
+		$data['countPage'] = $rs_total->num;
+	
+		$data['name'] = null;
+		//list
+		$this->db->select('*');
+		$this->db->from('term');
+		if($this->input->post('name')){
+			$this->db->like('name',$this->input->post('name'));
+		}
+	
+		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
+		$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'created', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'asc');
+		$data['res_list'] = $this->db->get()->result();
+		$data['pageNum'] = $pageNum;
+		$data['numPerPage'] = $numPerPage;
+		return $data;
+	}
+
+	public function save_term($data){
+		$this->db->trans_start();
+		if($this->input->post('id')){//修改
+			$this->db->where('id', $this->input->post('id'));
+			$this->db->update('term', $data);
+		}else{//新增
+			$data['created'] = date('Y-m-d H:i:s',time());
+			$this->db->insert('term', $data);
+		}
+		$this->db->trans_complete();
+		if ($this->db->trans_status() === FALSE) {
+			return $this->db_error;
+		} else {
+			return 1;
+		}
+	}
+
+	public function delete_term($id){
+		$data = $this->get_term($id);
+		$rs = $this->db->delete('term', array('id' => $id));
+		if($rs){
+			@unlink('./././uploadfiles/term/'.$data['img']);//del old img
+			return 1;
+		}else{
+			return $this->db_error;
+		}
+	}
+
+	public function get_term($id){
+		$this->db->from('term a')->where('id', $id);
+		$data = $this->db->get()->row_array();
+		return $data;
+	}
 }
