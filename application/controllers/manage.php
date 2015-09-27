@@ -833,7 +833,7 @@ class Manage extends MY_Controller {
 	
 	public function save_term(){
 		if($_FILES["userfile"]['name'] and $this->input->post('old_img')){//修改上传的图片，需要先删除原来的图片
-			@unlink('./././uploadfiles/news/'.$this->input->post('old_img'));//del old img
+			@unlink('./././uploadfiles/term/'.$this->input->post('old_img'));//del old img
 		}else if(!$_FILES["userfile"]['name'] and !$this->input->post('old_img')){//未上传图片
 			form_submit_json("300", "请添加图片");exit;
 		}
@@ -844,7 +844,7 @@ class Manage extends MY_Controller {
 			unset($data['old_img']);
 			$rs = $this->manage_model->save_term($data);
 		}else{
-			$config['upload_path'] = './././uploadfiles/news';
+			$config['upload_path'] = './././uploadfiles/term';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
 			$config['max_size'] = '1000';
 			$config['encrypt_name'] = true;

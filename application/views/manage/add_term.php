@@ -35,7 +35,7 @@
 				
         	    <dl class="nowrap">
         			<dt>图片预览：</dt>
-        			<dd id="img"><?php if(!empty($pic)):?><img height="100px" src="<?php echo base_url().'uploadfiles/news/'.$pic;?>" /><?php endif;?></dd>
+        			<dd id="img"><?php if(!empty($pic)):?><img height="100px" src="<?php echo base_url().'uploadfiles/term/'.$pic;?>" /><?php endif;?></dd>
         		</dl>     	
         	</fieldset>
 			
