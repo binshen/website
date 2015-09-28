@@ -19,39 +19,39 @@
         <div id="m-btn-filter">
             <div class="sort sort4 sort-bg-white sort-pop">
                 <ul>
-                    <li id="btnRegion" data-action="region" class="m-btn current">
+                    <li id="btnRegion" data-action="region" class="m-btn {{if !empty($search_region)}}current{{/if}}">
                         <a>
-                            <span>区域</span>
+                            <span>{{$search_region_name}}</span>
                             <i></i>
                         </a>
                     </li>
-                    <li id="btnStyle" data-action="style" class="m-btn">
+                    <li id="btnStyle" data-action="style" class="m-btn {{if !empty($search_style)}}current{{/if}}"">
                         <a>
-                            <span>类型</span>
+                            <span>{{$search_style_name}}</span>
                             <i></i>
                         </a>
                     </li>
-                    <li id="btnPrice" data-action="price" class="m-btn">
+                    <li id="btnPrice" data-action="price" class="m-btn {{if !empty($search_price)}}current{{/if}}"">
                         <a>
-                            <span>售价</span>
+                            <span>{{$search_price_name}}</span>
                             <i></i>
                         </a>
                     </li>
-                    <li id="btnArea" data-action="area" class="m-btn">
+                    <li id="btnArea" data-action="area" class="m-btn {{if !empty($search_acreage)}}current{{/if}}"">
                         <a>
-                            <span>面积</span>
+                            <span>{{$search_acreage_name}}</span>
                             <i></i>
                         </a>
                     </li>
-                    <li id="btnType" data-action="type" class="m-btn">
+                    <li id="btnType" data-action="type" class="m-btn {{if !empty($search_type)}}current{{/if}}"">
                         <a>
-                            <span>户型</span>
+                            <span>{{$search_type_name}}</span>
                             <i></i>
                         </a>
                     </li>
-                    <li id="btnFeature" data-action="feature" class="m-btn">
+                    <li id="btnFeature" data-action="feature" class="m-btn {{if !empty($search_feature)}}current{{/if}}"">
                         <a>
-                            <span>特色</span>
+                            <span>{{$search_feature_name}}</span>
                             <i></i>
                         </a>
                     </li>
@@ -59,77 +59,77 @@
             </div>
             <div class="wrap">
                 <div class="sort-clear">
-                    <a href="/xuanchegongju" class="btn-clear"><i class="am-icon-trash"></i>清除条件</a>
+                    <a href="javascript:void(0);" onclick="clear_all_search()" class="btn-clear"><i class="am-icon-trash"></i>清除条件</a>
                 </div>
             </div>
         </div>
         <div id="m-filter-mask" class="leftmask leftmask3" style="display: none;"></div>
         <div id="m-filter-price-leftPopup" class="leftPopup region" data-back="leftmask3" style="z-index: 999;">
             <ul class="first-list first-list-style">
-            	<li><a href="javascript:void(0);">不限</a></li>
+            	<li><a href="javascript:void(0);" onclick="change_search('region', 0)">不限</a></li>
             	{{foreach from=$region_list item=item}}
-                <li><a href="javascript:void(0);">{{$item.name}}</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('region', {{$item.id}})">{{$item.name}}</a></li>
                 {{/foreach}}
             </ul>
         </div>
         <div id="m-filter-level-leftPopup" class="leftPopup style" data-back="leftmask3" style="z-index: 999;">
             <ul class="first-list">
-                <li><a href="javascript:void(0);">不限</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('style', 0)">不限</a></li>
                 {{foreach from=$style_list item=item}}
-                <li><a href="javascript:void(0);">{{$item.name}}</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('style', {{$item.id}})">{{$item.name}}</a></li>
                 {{/foreach}}
             </ul>
         </div>
         <div id="m-filter-body-leftPopup" class="leftPopup price" data-back="leftmask3" style="z-index: 999;">
             <ul class="first-list">
-                <li><a href="javascript:void(0);">不限</a></li>
-                <li><a href="javascript:void(0);">50万以下</a></li>
-                <li><a href="javascript:void(0);">50-80万</a></li>
-                <li><a href="javascript:void(0);">80-100万</a></li>
-                <li><a href="javascript:void(0);">100-120万</a></li>
-                <li><a href="javascript:void(0);">120-150万</a></li>
-                <li><a href="javascript:void(0);">150-200万</a></li>
-                <li><a href="javascript:void(0);">200-250万</a></li>
-                <li><a href="javascript:void(0);">250-300万</a></li>
-                <li><a href="javascript:void(0);">300-500万</a></li>
-                <li><a href="javascript:void(0);">500万以上</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('price', 0)">不限</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('price', 1)">50万以下</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('price', 2)">50-80万</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('price', 3)">80-100万</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('price', 4)">100-120万</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('price', 5)">120-150万</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('price', 6)">150-200万</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('price', 7)">200-250万</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('price', 8)">250-300万</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('price', 9)">300-500万</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('price', 10)">500万以上</a></li>
             </ul>
         </div>
         <div id="m-filter-condition-leftPopup" class="leftPopup area" data-back="leftmask3" style="z-index: 999;">
             <ul class="first-list rp">
-                <li><a href="javascript:void(0);">不限</a></li>
-                <li><a href="javascript:void(0);">50平以下</a></li>
-                <li><a href="javascript:void(0);">50-70平</a></li>
-                <li><a href="javascript:void(0);">70-90平</a></li>
-                <li><a href="javascript:void(0);">90-120平</a></li>
-                <li><a href="javascript:void(0);">120-150平</a></li>
-                <li><a href="javascript:void(0);">150-200平</a></li>
-                <li><a href="javascript:void(0);">200-300平</a></li>
-                <li><a href="javascript:void(0);">300平以上</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('acreage', 0)">不限</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('acreage', 1)">50平以下</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('acreage', 2)">50-70平</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('acreage', 3)">70-90平</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('acreage', 4)">90-120平</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('acreage', 5)">120-150平</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('acreage', 6)">150-200平</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('acreage', 7)">200-300平</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('acreage', 8)">300平以上</a></li>
             </ul>
         </div>
         <div id="m-filter-brandtype-leftPopup" class="leftPopup type" data-back="leftmask3" style="z-index: 999;">
             <ul class="first-list rp">
-                <li><a href="javascript:void(0);">不限</a></li>
-                <li><a href="javascript:void(0);">一室</a></li>
-                <li><a href="javascript:void(0);">二室</a></li>
-                <li><a href="javascript:void(0);">三室</a></li>
-                <li><a href="javascript:void(0);">四室</a></li>
-                <li><a href="javascript:void(0);">五室</a></li>
-                <li><a href="javascript:void(0);">五室以上</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('type', 0)">不限</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('type', 1)">一室</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('type', 2)">二室</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('type', 3)">三室</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('type', 4)">四室</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('type', 5)">五室</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('type', 6)">五室以上</a></li>
             </ul>
         </div>
         <div id="m-filter-trans-leftPopup" class="leftPopup feature" data-back="leftmask3" style="z-index: 999;">
             <ul class="first-list rp">
-                <li><a href="javascript:void(0);">不限</a></li>
-                <li><a href="javascript:void(0);">婚房首选</a></li>
-                <li><a href="javascript:void(0);">主卧朝南</a></li>
-                <li><a href="javascript:void(0);">学区房</a></li>
-                <li><a href="javascript:void(0);">交通便利</a></li>
-                <li><a href="javascript:void(0);">南北通透</a></li>
-                <li><a href="javascript:void(0);">双阳台</a></li>
-                <li><a href="javascript:void(0);">小区中心位置</a></li>
-                <li><a href="javascript:void(0);">投资首选</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('feature', '0')">不限</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('feature', '婚房首选')">婚房首选</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('feature', '主卧朝南')">主卧朝南</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('feature', '学区房')">学区房</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('feature', '交通便利')">交通便利</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('feature', '南北通透')">南北通透</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('feature', '双阳台')">双阳台</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('feature', '小区中心位置')">小区中心位置</a></li>
+                <li><a href="javascript:void(0);" onclick="change_search('feature', '投资首选')">投资首选</a></li>
             </ul>
         </div>
         
@@ -174,6 +174,15 @@
     <div class="pageRightMenu">
         <span class="top-button" id="amz-go-top"><i class="am-icon-chevron-up"></i></span>
     </div>
+    <form method="POST" id="houseListForm">
+    	<input type="hidden" id="term_id" name="term_id" value="{{$term_id}}">
+    	<input type="hidden" id="search_region" name="search_region" value="{{$search_region|default:''}}">
+		<input type="hidden" id="search_style" name="search_style" value="{{$search_style|default:''}}">
+		<input type="hidden" id="search_price" name="search_price" value="{{$search_price|default:''}}">
+		<input type="hidden" id="search_acreage" name="search_acreage" value="{{$search_acreage|default:''}}">
+		<input type="hidden" id="search_type" name="search_type" value="{{$search_type|default:''}}">
+		<input type="hidden" id="search_feature" name="search_feature" value="{{$search_feature|default:''}}">
+    </form>
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/jquery.scrollLoading.js"></script>
 <script type="text/javascript" src="/static/js/selectcartool.js"></script>
@@ -194,6 +203,21 @@
         $('#m-filter-mask').hide();
         $('body').css('overflow','inherit');
     });
+    function change_search(t, v) {
+    	$("#search_" + t).val(v);
+    	$("#houseListForm").attr('action', '/m_house/view_list/{{$term_id}}')
+    	$("#houseListForm").submit();
+    }
+    function clear_all_search() {
+    	$("#search_region").val("");
+    	$("#search_style").val("");
+    	$("#search_price").val("");
+    	$("#search_acreage").val("");
+    	$("#search_type").val("");
+    	$("#search_feature").val("");
+    	$("#houseListForm").attr('action', '/m_house/view_list/{{$term_id}}')
+    	$("#houseListForm").submit();
+    }
 </script>
 </body>
 </html>
