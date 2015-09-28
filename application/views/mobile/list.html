@@ -141,38 +141,15 @@
             </span>
         </div>
         <ul class="house-list">
-        	<a href="/m_house/view_detail">
+        	{{foreach from=$house_list.res_list key=key item=item}}
+        	<a href="/m_house/view_detail/{{$item.id}}">
 	            <li><img data-url="http://dummyimage.com/325x310/000/fff" src="images/default1.gif" alt="'" class="scrollLoading">
-	                <p class="h-t1">城北 博威黄金海岸 大四房</p>
-	                <p class="h-t2">2室1厅   |   4/11层   |   南北向 </p>
-	                <p class="h-t4"><span class="price">￥<i>85万</i> </span><span class="area">89㎡</span></p>
+	                <p class="h-t1">{{$item.region_name}} {{$item.xq_name}}</p>
+	                <p class="h-t2">{{$item.room}}室{{$item.lounge}}厅   |   {{$item.floor}}/{{$item.total_floor}}层   |   {{$item.orientation_name}} </p>
+	                <p class="h-t4"><span class="price">￥<i>{{$item.total_price}}万</i> </span><span class="area">{{$item.acreage}}㎡</span></p>
 	            </li>
             </a>
-            <li><img data-url="http://dummyimage.com/325x310/000/fff" src="images/default1.gif" alt="'" class="scrollLoading">
-                <p class="h-t1">城北 博威黄金海岸 大四房</p>
-                <p class="h-t2">2室1厅   |   4/11层   |   南北向 </p>
-                <p class="h-t4"><span class="price">￥<i>85万</i> </span><span class="area">89㎡</span></p>
-            </li>
-            <li><img data-url="http://dummyimage.com/325x310/000/fff" src="images/default1.gif" alt="'" class="scrollLoading">
-                <p class="h-t1">城北 博威黄金海岸 大四房</p>
-                <p class="h-t2">2室1厅   |   4/11层   |   南北向 </p>
-                <p class="h-t4"><span class="price">￥<i>85万</i> </span><span class="area">89㎡</span></p>
-            </li>
-            <li><img data-url="http://dummyimage.com/325x310/000/fff" src="images/default1.gif" alt="'" class="scrollLoading">
-                <p class="h-t1">城北 博威黄金海岸 大四房</p>
-                <p class="h-t2">2室1厅   |   4/11层   |   南北向 </p>
-                <p class="h-t4"><span class="price">￥<i>85万</i> </span><span class="area">89㎡</span></p>
-            </li>
-            <li><img data-url="http://dummyimage.com/325x310/000/fff" src="images/default1.gif" alt="'" class="scrollLoading">
-                <p class="h-t1">城北 博威黄金海岸 大四房</p>
-                <p class="h-t2">2室1厅   |   4/11层   |   南北向 </p>
-                <p class="h-t4"><span class="price">￥<i>85万</i> </span><span class="area">89㎡</span></p>
-            </li>
-            <li><img data-url="http://dummyimage.com/325x310/000/fff" src="images/default1.gif" alt="'" class="scrollLoading">
-                <p class="h-t1">城北 博威黄金海岸 大四房</p>
-                <p class="h-t2">2室1厅   |   4/11层   |   南北向 </p>
-                <p class="h-t4"><span class="price">￥<i>85万</i> </span><span class="area">89㎡</span></p>
-            </li>
+            {{/foreach}}
         </ul>
         <!-- 分页start -->
         <div class="m-pages">

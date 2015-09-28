@@ -24,7 +24,7 @@ class M_house extends MY_Controller {
 		$style_list = $this->house_model->get_search_style_list();
 		$this->assign('style_list', $style_list);
 		
-		$house_list = $this->house_model->get_m_house_list();
+		$house_list = $this->house_model->get_m_house_list($term_id);
 		$this->assign('house_list', $house_list);
 		
 		$this->display('mobile/list.html');
