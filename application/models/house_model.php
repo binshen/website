@@ -993,6 +993,10 @@ class House_model extends MY_Model
 	}
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public function get_m_index() {
+		return $this->db->get('term')->result_array();
+	}
+	
 	public function get_m_house_region() {
 		return $this->db->get('house_region')->result_array();
 	}

@@ -16,6 +16,16 @@
     </div>
     <div class="g-doc">
         <div class="new-list">
+        	{{foreach from=$term_list key=key item=item}}
+        	<a href="/m_house/view_list/{{$item.id}}" class="pic-box zhuanti-box">
+                <span class="s-img">
+                    <img data-url="/static/images/img1.jpg" src="images/default.gif" alt="'" class="scrollLoading">
+                    <em class="em-tit">{{$item.name}}</em>
+                </span>
+                <p class="p-tit">{{$item.title}}</p>
+            </a>
+        	{{/foreach}}
+        	<!--  
             <a href="/m_house/view_list" class="pic-box zhuanti-box">
                 <span class="s-img">
                     <img data-url="/static/images/img1.jpg" src="images/default.gif" alt="'" class="scrollLoading">
@@ -30,55 +40,7 @@
                 </span>
                 <p class="p-tit">买房那点事，辨别真假轨交房，到底什么是真正的</p>
             </a>
-            <a href="/m_house/view_list" class="pic-box">
-                <span class="s-img">
-                    <img data-url="/static/images/img3.jpg" src="images/default.gif" alt="'" class="scrollLoading">
-                    <em class="em-tit">城东轨交房：那些房子门口的地铁</em>
-                </span>
-                <p class="p-tit">买房那点事，辨别真假轨交房，到底什么是真正的</p>
-            </a>
-            <a href="/m_house/view_list" class="pic-box">
-                <span class="s-img">
-                    <img data-url="/static/images/img4.jpg" src="images/default.gif" alt="'" class="scrollLoading">
-                    <em class="em-tit">城东轨交房：那些房子门口的地铁</em>
-                </span>
-                <p class="p-tit">买房那点事，辨别真假轨交房，到底什么是真正的</p>
-            </a>
-            <a href="/m_house/view_list" class="pic-box">
-                <span class="s-img">
-                    <img data-url="/static/images/img3.jpg" src="images/default.gif" alt="'" class="scrollLoading">
-                    <em class="em-tit">城东轨交房：那些房子门口的地铁</em>
-                </span>
-                <p class="p-tit">买房那点事，辨别真假轨交房，到底什么是真正的</p>
-            </a>
-            <a href="/m_house/view_list" class="pic-box">
-                <span class="s-img">
-                    <img data-url="/static/images/img4.jpg" src="images/default.gif" alt="'" class="scrollLoading">
-                    <em class="em-tit">城东轨交房：那些房子门口的地铁</em>
-                </span>
-                <p class="p-tit">买房那点事，辨别真假轨交房，到底什么是真正的</p>
-            </a>
-            <a href="/m_house/view_list" class="pic-box">
-                <span class="s-img">
-                    <img data-url="/static/images/img4.jpg" src="images/default.gif" alt="'" class="scrollLoading">
-                    <em class="em-tit">城东轨交房：那些房子门口的地铁</em>
-                </span>
-                <p class="p-tit">买房那点事，辨别真假轨交房，到底什么是真正的</p>
-            </a>
-            <a href="/m_house/view_list" class="pic-box">
-                <span class="s-img">
-                    <img data-url="/static/images/img4.jpg" src="images/default.gif" alt="'" class="scrollLoading">
-                    <em class="em-tit">城东轨交房：那些房子门口的地铁</em>
-                </span>
-                <p class="p-tit">买房那点事，辨别真假轨交房，到底什么是真正的</p>
-            </a>
-            <a href="/m_house/view_list" class="pic-box">
-                <span class="s-img">
-                    <img data-url="/static/images/img4.jpg" src="images/default.gif" alt="'" class="scrollLoading">
-                    <em class="em-tit">城东轨交房：那些房子门口的地铁</em>
-                </span>
-                <p class="p-tit">买房那点事，辨别真假轨交房，到底什么是真正的</p>
-            </a>
+            -->
         </div>
     </div>
     <div class="pageRightMenu">

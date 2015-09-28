@@ -9,10 +9,14 @@ class M_house extends MY_Controller {
 	}
 	
 	public function index() {
+		
+		$term_list = $this->house_model->get_m_index();
+		$this->assign('term_list', $term_list);
+		
 		$this->display('mobile/index.html');
 	}
 	
-	public function view_list() {
+	public function view_list($term_id) {
 		
 		$region_list = $this->house_model->get_m_house_region();
 		$this->assign('region_list', $region_list);
