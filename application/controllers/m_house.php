@@ -130,7 +130,9 @@ class M_house extends MY_Controller {
 		$this->display('mobile/list.html');
 	}
 	
-	public function view_detail($hid) {
+	public function view_detail($hid, $term_id) {
+		
+		$this->assign('term_id', $term_id);
 		
 		$house = $this->house_model->get_m_house_detail($hid);
 		$house['unit_price'] = intval($house['total_price'] * 10000 / $house['acreage']);

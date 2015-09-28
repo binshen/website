@@ -143,7 +143,7 @@
         </div>
         <ul class="house-list">
         	{{foreach from=$house_list.res_list key=key item=item}}
-        	<a href="/m_house/view_detail/{{$item.id}}">
+        	<a href="/m_house/view_detail/{{$item.id}}/{{$term_id}}">
 	            <li><img data-url="http://dummyimage.com/325x310/000/fff" src="images/default1.gif" alt="'" class="scrollLoading">
 	                <p class="h-t1">{{$item.region_name}} {{$item.xq_name}}</p>
 	                <p class="h-t2">{{$item.room}}室{{$item.lounge}}厅   |   {{$item.floor}}/{{$item.total_floor}}层   |   {{$item.orientation_name}} </p>
