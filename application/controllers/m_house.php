@@ -16,7 +16,7 @@ class M_house extends MY_Controller {
 		$this->display('mobile/index.html');
 	}
 	
-	public function view_list($term_id) {
+	public function view_list($term_id, $page=1) {
 		
 		$region_list = $this->house_model->get_m_house_region();
 		$this->assign('region_list', $region_list);
@@ -24,12 +24,13 @@ class M_house extends MY_Controller {
 		$style_list = $this->house_model->get_search_style_list();
 		$this->assign('style_list', $style_list);
 		
-		$house_list = $this->house_model->get_m_house_list($term_id);
+		$house_list = $this->house_model->get_m_house_list($term_id, $page);
 		$this->assign('house_list', $house_list);
 		
 		$this->assign('term_id', $term_id);
 		$term = $this->house_model->get_m_term($term_id);
 		$this->assign('term_name', $term['name']);
+		$this->assign('term_title', $term['title']);
 		
 		/////////////////////////////////////////////////////
 		$search_region = $this->input->post('search_region');
@@ -126,6 +127,9 @@ class M_house extends MY_Controller {
 		} else {
 			$this->assign('search_feature_name', '特色');
 		}
+		
+		$pager = $this->pagination->getMobilePageLink('/m_house/view_list/'.$term_id, $house_list['countPage'], $house_list['numPerPage'], $term_id);
+		$this->assign('pager', $pager);
 		
 		$this->display('mobile/list.html');
 	}
