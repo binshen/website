@@ -1216,4 +1216,8 @@ class House_model extends MY_Model
 		//$this->db->where('a.type_id', 2);
 		return $this->db->where('a.id', $hid)->get()->row_array();
 	}
+	
+	public function get_m_term($id) {
+		return $this->db->get_where('term', array('id' => $id))->row_array();
+	}
 }

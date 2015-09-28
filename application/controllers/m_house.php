@@ -28,6 +28,8 @@ class M_house extends MY_Controller {
 		$this->assign('house_list', $house_list);
 		
 		$this->assign('term_id', $term_id);
+		$term = $this->house_model->get_m_term($term_id);
+		$this->assign('term_name', $term['name']);
 		
 		/////////////////////////////////////////////////////
 		$search_region = $this->input->post('search_region');
