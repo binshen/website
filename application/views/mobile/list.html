@@ -223,6 +223,10 @@
     	$("#houseListForm").attr('action', '/m_house/view_list/{{$term_id}}')
     	$("#houseListForm").submit();
     }
+    function pager_submit(url) {
+    	$("#houseListForm").attr('action', url)
+    	$("#houseListForm").submit();
+    }
 </script>
 </body>
 </html>
