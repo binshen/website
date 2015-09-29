@@ -23,11 +23,11 @@
     if(houseInfo.length>0){
       for(var i=0;i<houseInfo.length;i++){
         if(houseInfo[i].hId ==hId){
-          alert("已经加入对比列中！");
+          alert("该房源已加入对比列中！");
           return;
         }
         else if(houseInfo.length>=2){
-          alert("最多对比两个房型!");
+          alert("最多可对比两个房源!");
           return;
         }
       }
