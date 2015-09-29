@@ -19,7 +19,7 @@
         	{{foreach from=$term_list key=key item=item}}
         	<a href="/m_house/view_list/{{$item.id}}" class="pic-box zhuanti-box">
                 <span class="s-img">
-                    <img data-url="/static/images/img1.jpg" src="images/default.gif" alt="'" class="scrollLoading">
+                    <img data-url="/uploadfiles/term/{{$item.pic}}" src="images/default.gif" alt="'" class="scrollLoading">
                     <em class="em-tit">{{$item.name}}</em>
                 </span>
                 <p class="p-tit">{{$item.title}}</p>
