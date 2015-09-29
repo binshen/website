@@ -137,7 +137,6 @@ class M_house extends MY_Controller {
 	public function view_detail($hid, $term_id) {
 		
 		$this->assign('term_id', $term_id);
-		
 		$house = $this->house_model->get_m_house_detail($hid);
 		$house['unit_price'] = intval($house['total_price'] * 10000 / $house['acreage']);
 		
@@ -159,7 +158,21 @@ class M_house extends MY_Controller {
 		$this->display('mobile/details.html');
 	}
 	
-	public function compare() {
+	public function compare($hid1, $hid2, $term_id) {
+		$this->assign('term_id', $term_id);
+// 		$term = $this->house_model->get_m_term($term_id);
+// 		$this->assign('term_name', $term['name']);
+// 		$this->assign('term_title', $term['title']);
+		
+		$house1 = $this->house_model->get_m_house_detail($hid1);
+		$house1['unit_price'] = intval($house1['total_price'] * 10000 / $house1['acreage']);
+		
+		$house2 = $this->house_model->get_m_house_detail($hid2);
+		$house2['unit_price'] = intval($house2['total_price'] * 10000 / $house2['acreage']);
+		
+		$this->assign('house1', $house1);
+		$this->assign('house2', $house2);
+		
 		$this->display('mobile/contrast-tool.html');
 	}
 }

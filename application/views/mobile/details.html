@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="d-part1">
-            <p class="d-tit">{{$house.region_name}} {{$house.xq_name}} {{$house.room}}室{{$house.lounge}}厅 {{$house.acreage}}平米 {{$house.total_price}}万<br /><span class="color-999">{{$house.refresh_date}} ({{$house.hours}}小时前更新）</span></p>
+            <p class="d-tit"><i id="house-loca">{{$house.region_name}} {{$house.xq_name}}</i> <i id="house-style">{{$house.room}}室{{$house.lounge}}厅 {{$house.acreage}}平米</i> <i id="house-price">{{$house.total_price}}万</i><br /><span class="color-999">{{$house.refresh_date}} ({{$house.hours}}小时前更新）</span></p>
             <p class="d-p1">{{$house.total_price}}万元/套 <span>( {{$house.unit_price}}元/ ㎡)</span></p>
             <dl class="d-dl d-house-info">
               <dt>户型：</dt>
@@ -49,7 +49,7 @@
               <dd>{{$house.orientation_name}} </dd>
             </dl>
             <div class="clear"></div>  
-            <a href="javascript:void(0)" class="jCompareBtn"><em>+</em>加入对比</a>
+            <a href="javascript:void(0)" class="jCompareBtn" id="jCompareBtn"><em>+</em>加入对比</a>
         </div>
         <div class="d-part1">
             <span class="touxiang"><img src="http://dummyimage.com/80x100/000/fff"></span>
@@ -104,21 +104,18 @@
     </div>
     <!-- 底部导航 -->
     <div class="ft-menu"> 
-      <ul>
-        <li class="first">VS<br />进行对比<i class="i-num">+1</i></li>
+      <ul class="ul-menu">
+        <li class="first">VS<br />进行对比<i class="i-num" id="Ji-num">+0</i></li>
         <li><i class="am-icon-star-o"></i><br />
           收藏</li>
         <li><i class="am-icon-calculator"></i><br />房贷计算器</li>
         <li class="last"><i class="am-icon-phone"></i><br />电话咨询</li>
       </ul>
-      <div class="compare" >
+      <div class="compare">
           <i class="dec-icon am-icon-sort-desc"></i>
-          <div class="com-item"><p>城北 博威黄金海岸<br />
-两室一厅一卫<br /><i class="price">85万</i></p><i class="am-icon-close"></i></div>
-          <div class="com-item"><p>城北 博威黄金海岸<br />
-两室一厅一卫<br /><i class="price">85万</i></p><i class="am-icon-close"></i></div>
+          <ul class="com-item" id="Jcom-item"></ul>
           <div class="clear"></div>
-          <a href="/m_house/compare" class="beginComp">开始对比</a>
+          <a href="javascript:void(0)" class="beginComp" id="btnCompare">开始对比</a>
       </div>
     </div>
     <div class="pageRightMenu">
@@ -126,6 +123,8 @@
     </div>
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/swipe.js"></script>
+    <script type="text/javascript" src="/static/js/store.min.js"></script>
+    <script type="text/javascript" src="/static/js/compare.js"></script>
     <link href="{{$base_url}}css/map.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=gDeY0HhjlQOvjMmGKKWHAtCb"></script>
 	<script>
@@ -147,6 +146,20 @@
         speed: 100,
         continuous: true,
         nav: Jnav
+    });
+    var hId ="{{$house.id}}";
+    
+    $(function() {
+    	$("#btnCompare").click(function() {
+    		var houseInfo = store.get("houseInfo");
+    		if(houseInfo.length>1){
+    			var hid1 = houseInfo[0].hId;
+    			var hid2 = houseInfo[1].hId;
+    			document.location = '/m_house/compare/' + hid1 + '/' + hid2 + '/{{$term_id}}';
+    		} else {
+    			alert("请选择两套房源进行比较");
+    		}
+    	});
     });
     </script>
 </body>

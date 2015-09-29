@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>城北学区房</title>
+<title>对比工具</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
@@ -11,83 +11,84 @@
 </head>
 <body>
     <div class="g-head">
-        <i class="am-icon-chevron-left"></i>
+        <a href="/m_house/view_list/{{$term_id}}"><i class="am-icon-chevron-left"></i></a>
         对比工具
     </div>
     <div class="contrast-top">
-        <div class="checkbox-normal checked">
+    <!--     <div class="checkbox-normal checked">
             <input type="checkbox" name="chkAdvant" id="markAdvant" /><label for="markAdvant">标识优势</label>
+        </div> -->
+        <div class="com-item" style="display:none"><p>城北 博威黄金海岸<br />
+两室一厅一卫<br /><i class="price">85万</i></p><i class="am-icon-close"></i></div>
+        <div class="com-item"><p>城北 博威黄金海岸<br />
+两室一厅一卫<br /><i class="price">85万</i></p><i class="am-icon-close"></i></div>
+        <div class="com-item com-item-add">
+            <i>+</i><br/>
+            选择房型
         </div>
-        <div class="com-item"><p>城北 博威黄金海岸<br />
-两室一厅一卫<br /><i class="price">85万</i></p><i class="am-icon-close"></i></div>
-        <div class="com-item"><p>城北 博威黄金海岸<br />
-两室一厅一卫<br /><i class="price">85万</i></p><i class="am-icon-close"></i></div>
         <div class="clear"></div>
     </div> 
     <div class="contrast-btm">
         <div class="contrast-tit">基本信息</div>
-        <table cellspacing="0" cellpadding="0" >
+        <table cellspacing="0" cellpadding="0">
             <tr>
-                <th>楼盘名称</th>
-                <td>博威黄金海岸</td>
-                <td>颐景园</td>
+                <th style="width:16%">楼盘名称</th>
+                <td style="width:42%">{{$house1.xq_name}}</td>
+                <td>{{$house2.xq_name}}</td>
             </tr>
             <tr>
                 <th>总价</th>
-                <td>85万</td>
-                <td>95万</td>
+                <td>{{$house1.total_price}}万</td>
+                <td>{{$house2.total_price}}万</td>
             </tr>
             <tr>
                 <th>单价</th>
-                <td>8571元/㎡</td>
-                <td>9212元/㎡</td>
+                <td>{{$house1.unit_price}}元/㎡</td>
+                <td>{{$house2.unit_price}}元/㎡</td>
             </tr>
             <tr>
                 <th>面积</th>
-                <td>89㎡</td>
-                <td>90㎡</td>
+                <td>{{$house1.total_price}}㎡</td>
+                <td>{{$house2.total_price}}㎡</td>
             </tr>
             <tr>
                 <th>房型</th>
-                <td>2室1厅1卫</td>
-                <td>2室1厅1卫</td>
+                <td>{{$house1.room}}室{{$house1.lounge}}厅{{$house1.toilet}}卫</td>
+                <td>{{$house2.room}}室{{$house2.lounge}}厅{{$house2.toilet}}卫</td>
             </tr>
             <tr>
                 <th>项目位置</th>
-                <td>昆山市新纬路888号</td>
-                <td>昆山市青阳路东侧与金浦路南侧交界处</td>
+                <td>{{$house1.address}}</td>
+                <td>{{$house2.address}}</td>
             </tr>
             <tr>
-                <th>建筑类别</th>
-                <td>高层</td>
-                <td>多层</td>
+                <th>所在区域</th>
+                <td>{{$house1.region_name}}</td>
+                <td>{{$house2.region_name}}</td>
             </tr>
             <tr>
                 <th>装修</th>
-                <td>毛坯</td>
-                <td>豪华装修</td>
+                <td>{{$house1.decoration_name}}</td>
+                <td>{{$house2.decoration_name}}</td>
             </tr>
             <tr>
                 <th>朝向</th>
-                <td>南北</td>
-                <td>南北</td>
+                <td>{{$house1.orientation_name}}</td>
+                <td>{{$house2.orientation_name}}</td>
             </tr>
             <tr>
                 <th>物业费</th>
-                <td>4.35元/平米</td>
-                <td>4.35元/平米</td>
+                <td>{{$house1.estate_price}}元/平米</td>
+                <td>{{$house2.estate_price}}元/平米</td>
             </tr>
             <tr>
                 <th>配套设施</th>
-                <td>有线电视、电话、宽带
-网络、供暖</td>
-                <td>有线电视、电话、宽带
-网络、供暖</td>
+                <td>{{$house1.facility}}</td>
+                <td>{{$house2.facility}}</td>
             </tr>
         </table>
         <p class="tips"><span class="color-999">以上参数信息仅供参考，实际请以销售房屋为准。如果发现信息有误，</span>“欢迎您及时指正!“</p>
     </div>
-
 </body>
 </html>
 

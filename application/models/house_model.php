@@ -1003,7 +1003,7 @@ class House_model extends MY_Model
 	
 	public function get_m_house_list($term_id, $pageNum) {
 		// 每页显示的记录条数，默认10条
-		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 2;
+		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 10;
 		//$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
 		 
 		//获得总记录数
