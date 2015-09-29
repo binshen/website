@@ -20,7 +20,7 @@
                 <div class="m-slider-pic" id="J_slideWrap">
                     <ul class="">
                     {{foreach from=$house.house_pics key=key item=item}} 
-	                    <li><img src="{{$base_url}}uploadfiles/pics/{{$house.folder}}/1/{{$item.pic}}" style="width:500px;height:400px;" /></li>
+	                    <li><img src="{{$base_url}}uploadfiles/pics/{{$house.folder}}/1/{{$item.pic}}" width="338" height="270" /></li>
 	         		{{/foreach}}
                     </ul>
                 </div>
@@ -52,7 +52,7 @@
             <a href="javascript:void(0)" class="jCompareBtn" id="jCompareBtn"><em>+</em>加入对比</a>
         </div>
         <div class="d-part1">
-            <span class="touxiang"><img src="http://dummyimage.com/80x100/000/fff"></span>
+            <span class="touxiang"><img src="{{$base_url}}images/headpic.jpg" width="80" height="100"></span>
             <p class="peo-intro"><i class="name">{{$house.rel_name}}</i><br /><i class="color-999"><em class="am-icon-check-circle"></em>{{$house.company_name}}</i><br /><i class="tel">电话咨询   <em class="tel-num">{{$house.tel}}</em></i></p>
         </div>
         <div class="d-part1">
@@ -76,7 +76,7 @@
            <div class="clear"></div>
             <div class="house-show-pic">
                 {{foreach from=$house.house_pics_rest key=key item=item}}
-                    <img src="{{$base_url}}uploadfiles/pics/{{$house.folder}}/1/{{$item.pic}}" style="width:645px;height:430px;" />
+                    <img src="{{$base_url}}uploadfiles/pics/{{$house.folder}}/1/{{$item.pic}}" width="318" height="212" />
          		{{/foreach}}
             </div>
         </div>
@@ -106,7 +106,7 @@
     <div class="ft-menu"> 
       <ul class="ul-menu">
         <li class="first">VS<br />进行对比<i class="i-num" id="Ji-num">+0</i></li>
-        <li><i class="am-icon-star-o"></i><br />收藏</li>
+        <li id="btnCollect"><i class="am-icon-star-o"></i><br />收藏</li>
         <li><i class="am-icon-calculator"></i><br />房贷计算器</li>
         <li class="last"><i class="am-icon-phone"></i><br />电话咨询</li>
       </ul>
@@ -164,6 +164,10 @@
     		} else {
     			alert("请选择两套房源进行比较");
     		}
+    	});
+    	
+    	$("#btnCollect").click(function() {
+    		alert("123");
     	});
     });
     </script>
