@@ -144,7 +144,7 @@
         <ul class="house-list">
         	{{foreach from=$house_list.res_list key=key item=item}}
         	<a href="/m_house/view_detail/{{$item.id}}/{{$term_id}}">
-	            <li><img data-url="/uploadfiles/pics/{{$item.bg_pic}}" src="images/default1.gif" alt="'" class="scrollLoading" style="width:325px;height:310px;">
+	            <li><img data-url="/uploadfiles/pics/{{$item.bg_pic}}" src="images/default1.gif" alt="'" class="scrollLoading" width="165" height="157">
 	                <p class="h-t1">{{$item.region_name}} {{$item.xq_name}}</p>
 	                <p class="h-t2">{{$item.room}}室{{$item.lounge}}厅   |   {{$item.floor}}/{{$item.total_floor}}层   |   {{$item.orientation_name}} </p>
 	                <p class="h-t4"><span class="price">￥<i>{{$item.total_price}}万</i> </span><span class="area">{{$item.acreage}}㎡</span></p>
