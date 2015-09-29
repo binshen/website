@@ -125,9 +125,15 @@
     <script type="text/javascript" src="/static/js/swipe.js"></script>
     <script type="text/javascript" src="/static/js/store.min.js"></script>
     <script type="text/javascript" src="/static/js/compare.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.scrollLoading.js"></script>
     <link href="{{$base_url}}css/map.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=gDeY0HhjlQOvjMmGKKWHAtCb"></script>
 	<script>
+	$(".scrollLoading").scrollLoading();
+	$('#amz-go-top').click(function(){
+        $('html,body').animate({ scrollTop: 0 }, '500');
+    });
+	
 	var mapX ="{{$house.longitude}}";
 	var mapY ="{{$house.latitude}}";
 	var mapComm = "{{$house.xq_name}}";
