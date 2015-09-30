@@ -56,15 +56,6 @@
     }
   }
   getLocalSto();
-  //store.remove(name);
-  // var closeBtns = document.getElementsByClassName("am-icon-close");
-  // for(var i=0; i<closeBtns.length;i++){
-  //   closeBtns[i].onclick = function(){
-  //     document.getElementById(this.parentNode.id).style.display ='none';
-  //     deleteLoalSto(this.parentNode.id);
-  //   }
-
-  // }
   function closeHouseInfo(id){
     document.getElementById(id).style.display ='none';
       deleteLoalSto(id );
@@ -79,6 +70,16 @@
       }
     }
     document.getElementById("Ji-num").innerHTML = "+"+houseInfo.length;
+    // if(houseInfo.length ==0){
+    // document.getElementById("Jcompare").style.display ="none";
+
+    // }
     store.set(name,houseInfo);
     //alert(houseInfo.length);
+  }
+
+  document.getElementById("JMenuCompareBtn").onclick =function(){
+
+    document.getElementById("Jcompare").style.display ="block";
+
   }

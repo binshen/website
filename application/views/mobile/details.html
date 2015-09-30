@@ -8,6 +8,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
 <meta content="telephone=no" name="format-detection"/>
 <link rel="stylesheet" href="/static/css/style.css">
+<link href="/static/css/map.css" rel="stylesheet" type="text/css" />
 </head>
 <body style=" background:#f5f2f0;">
     <div class="g-head">
@@ -19,24 +20,22 @@
             <div class="m-slider">
                 <div class="m-slider-pic" id="J_slideWrap">
                     <ul class="">
-                    {{foreach from=$house.house_pics key=key item=item}} 
-	                    <li><img src="{{$base_url}}uploadfiles/pics/{{$house.folder}}/1/{{$item.pic}}" width="338" height="270" /></li>
-	         		{{/foreach}}
+                        {{foreach from=$house.house_pics key=key item=item}} 
+		                    <li><img src="{{$base_url}}uploadfiles/pics/{{$house.folder}}/1/{{$item.pic}}" width="338" height="270" /></li>
+		         		{{/foreach}}
                     </ul>
                 </div>
                 <div class="m-slider-doc" id="J_slideNav"></div>
             </div>
         </div>
         <div class="d-part1">
-            <p class="d-tit"><i id="house-loca">{{$house.region_name}} {{$house.xq_name}}</i> <i id="house-style">{{$house.room}}室{{$house.lounge}}厅 {{$house.acreage}}平米</i> <i id="house-price">{{$house.total_price}}万</i><br /><span class="color-999">{{$house.refresh_date}} ({{$house.hours}}小时前更新）</span></p>
+            <p class="d-tit"><i id="house-loca">{{$house.region_name}} {{$house.xq_name}}</i> <i id="house-style">{{$house.room}}室{{$house.lounge}}厅 {{$house.acreage}}</i> <i id="house-price">{{$house.total_price}}万</i><br /><span class="color-999">{{$house.refresh_date}} ({{$house.hours}}小时前更新）</span></p>
             <p class="d-p1">{{$house.total_price}}万元/套 <span>( {{$house.unit_price}}元/ ㎡)</span></p>
             <dl class="d-dl d-house-info">
               <dt>户型：</dt>
               <dd>{{$house.room}}室{{$house.lounge}}厅{{$house.toilet}}卫</dd>
               <dt>楼层：</dt>
-              <dd>{{$house.floor}}/{{$house.total_floor}}层</dd>
-              <dt>学区：</dt>
-              <dd>永平小学 </dd>
+              <dd>{{$house.floor}}/{{$house.total_floor}}</dd>
               <dt>地址：</dt>
               <dd>{{$house.region_name}} {{$house.address|default:"地址不详"}} </dd>
             </dl>
@@ -53,11 +52,11 @@
         </div>
         <div class="d-part1">
             <span class="touxiang"><img src="{{$base_url}}images/headpic.jpg" width="80" height="100"></span>
-            <p class="peo-intro"><i class="name">{{$house.rel_name}}</i><br /><i class="color-999"><em class="am-icon-check-circle"></em>{{$house.company_name}}</i><br /><i class="tel">电话咨询   <em class="tel-num">{{$house.tel}}</em></i></p>
+            <p class="peo-intro"><i class="name">{{$house.rel_name}}</i><br /><i class="color-999"><em class="am-icon-check-circle"></em>{{$house.company_name}}</i><br /><i class="tel">电话咨询 <em class="tel-num">{{$house.tel}}</em></i></p>
         </div>
         <div class="d-part1">
             <i class="info-tit color-999">详细描述</i>
-			{{$house.description}}
+            {{$house.description}}
         </div>
         <div class="d-part1">
            <i class="info-tit color-999">房源信息</i>
@@ -82,39 +81,43 @@
         </div>
         <div class="d-part1" style="margin-bottom:50px;">
             <i class="info-tit color-999">位置及周边</i>
-            <p class="zblink"><a href="" target="_blank">地址:<span class="color-999"><i class="am-icon-angle-right"></i>{{$house.address}}</span></a></p> 
-            <div class="house-d-by">
-	            <div id="detail-map" class="detail-map">
-		            <div class="detail-map-main" id="bigmap" style="width:300px;"></div>
-		            <div id="wrapper">
-		            <div class="box demo2">
-		                <ul class="tab_menu">
-		                    <li onclick="searchcondition('公交',this);" class="current tab-traffic-menu">交通</li>
-		                </ul>
-		                <div class="tab_box">
-		                    <div class="hide tab_box_eq">
-		                        <ul id="tab-traffic"><li class="tab-traffic"><b>数据正在加载中</b></li></ul>
-		                    </div>
-		                </div>
-		            </div>
-		            </div>
-		        </div>
-	        </div>
+            <p class="zblink"><a href="" target="_blank">地址:<span class="color-999"><i class="am-icon-angle-right"></i>{{$house.address}}</span></a></p>
+            <div id="detail-map" class="detail-map">
+              <div class="detail-map-main" id="bigmap" style="width:100%;"></div>
+              <div id="wrapper">
+              <!--demo1 end-->
+              <div class="box demo2">
+                <ul class="tab_menu">
+                  <li onclick="searchcondition('公交',this);" class="tab-traffic-menu">交通</li>
+                </ul>
+                <div class="tab_box">
+                  <div class="hide tab_box_eq">
+                    <dl id="tab-traffic">
+                      <dt class="tab-traffic"><b>数据正在加载中</b></dt>
+                      <dd></dd>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
         </div>
+
     </div>
     <!-- 底部导航 -->
     <div class="ft-menu"> 
       <ul class="ul-menu">
-        <li class="first">VS<br />进行对比<i class="i-num" id="Ji-num">+0</i></li>
+        <li id="btnCompare" class="first" id="JMenuCompareBtn">VS<br />进行对比<i class="i-num" id="Ji-num">+0</i></li>
         <li id="btnCollect"><i class="am-icon-star-o"></i><br />收藏</li>
         <li><i class="am-icon-calculator"></i><br />房贷计算器</li>
         <li class="last"><i class="am-icon-phone"></i><br />电话咨询</li>
       </ul>
-      <div class="compare">
+      <div class="compare" id="Jcompare">
           <i class="dec-icon am-icon-sort-desc"></i>
-          <ul class="com-item" id="Jcom-item"></ul>
+          <ul class="com-item" id="Jcom-item">
+          </ul>
           <div class="clear"></div>
-          <a href="javascript:void(0)" class="beginComp" id="btnCompare">开始对比</a>
+          <a href="javascript:void(0)" class="beginComp" id="btnDoCompare">开始对比</a>
       </div>
     </div>
     <div class="pageRightMenu">
@@ -122,26 +125,24 @@
     </div>
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="/static/js/swipe.js"></script>
-    <script type="text/javascript" src="/static/js/store.min.js"></script>
-    <script type="text/javascript" src="/static/js/compare.js"></script>
-    <script type="text/javascript" src="/static/js/jquery.scrollLoading.js"></script>
-    <link href="{{$base_url}}css/map.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=gDeY0HhjlQOvjMmGKKWHAtCb"></script>
-	<script>
-	$(".scrollLoading").scrollLoading();
+	<script type="text/javascript" src="/static/js/store.min.js"></script>
+	<script type="text/javascript" src="/static/js/jquery.scrollLoading.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=gDeY0HhjlQOvjMmGKKWHAtCb"></script>
+  <script>
+    $(".scrollLoading").scrollLoading();
 	$('#amz-go-top').click(function(){
-        $('html,body').animate({ scrollTop: 0 }, '500');
+      $('html,body').animate({ scrollTop: 0 }, '500');
     });
 	
 	var mapX ="{{$house.longitude}}";
 	var mapY ="{{$house.latitude}}";
 	var mapComm = "{{$house.xq_name}}";
 	var mapCommAddress = "";
-	</script>
-	<script type="text/javascript" src="{{$base_url}}js/map_mobile.js"></script>
+  </script>
+  <script type="text/javascript" src="/static/js/map.js"></script>
     <script type="text/javascript">
     function $$(a){
-    	return(typeof a=="object")?a:document.getElementById(a);
+      return(typeof a=="object")?a:document.getElementById(a);
     }
     //焦点图切换
     var Jwrap = $$("J_slideWrap"),
@@ -152,10 +153,10 @@
         continuous: true,
         nav: Jnav
     });
-    var hId ="{{$house.id}}";
+    var hId = "{{$house.id}}";
     
     $(function() {
-    	$("#btnCompare").click(function() {
+    	$("#btnDoCompare").click(function() {
     		var houseInfo = store.get("houseInfo");
     		if(houseInfo.length>1){
     			var hid1 = houseInfo[0].hId;
@@ -169,9 +170,12 @@
     	$("#btnCollect").click(function() {
     		alert("123");
     	});
+    	
+    	$("#btnCompare").click(function() {
+    		alert("234");
+    	});
     });
-    </script>
+</script>
+<script type="text/javascript" src="/static/js/compare.js"></script>
 </body>
 </html>
-
-
