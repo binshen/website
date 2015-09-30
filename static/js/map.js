@@ -33,9 +33,9 @@ function addmapresult(resultsite, condition) {
 				var tags = '';
 				for ( var i = 0; i < results.getCurrentNumPois(); i++) {
 					var title = results.getPoi(i).title;
-					s.push("<li class='" + resultsite + "'><em>"+String.fromCharCode(65 + (i - parseInt(i / 10) * 10))+"</em>——<b>" + title
+					s.push("<p><em>"+String.fromCharCode(65 + (i - parseInt(i / 10) * 10))+"</em>——<b>" + title
 							+ "</b>&nbsp;-&nbsp;" + results.getPoi(i).address
-							+ "</li>");
+							+ "</p>");
 				}
 				document.getElementById(resultsite).innerHTML = s.join("");
 			} else {
