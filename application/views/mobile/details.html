@@ -160,7 +160,19 @@
     	});
     	
     	$("#btnCollect").click(function() {
-    		alert("123");
+    		var uid = "1"
+    		var type = "2"
+    		if(uid == "" || type == "") {
+    			alert("请先登录系统！");
+    		} else {
+    			$.post('/m_house/collect/', { uid:uid, type:type, hid:'{{$house.id}}'}, function(data) {
+    				if(data) {
+    					alert("收藏成功!");
+    				} else {
+    					alert("收藏失败!");
+    				}
+    			})
+    		}
     	});
     	
     	$("#JMenuCompareBtn").click(function() {
