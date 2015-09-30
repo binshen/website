@@ -136,8 +136,8 @@
         <!-- popup end -->
         <div class="theme-box">
             <span class="s-img">
-                <img data-url="images/img1.jpg" src="images/default.gif" class="scrollLoading">
-                <em class="em-mark" style="width:100%">{{$term_name}}</em>
+                <img data-url="/uploadfiles/term/{{$term_pic}}" src="images/default.gif" alt="'" class="scrollLoading" width="325" height="190">
+                <em class="{{if $term_is_top==1}}em-mark{{else}}em-tit{{/if}}">{{$term_name}}</em>
             </span>
         </div>
         <ul class="house-list">

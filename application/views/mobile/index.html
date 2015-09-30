@@ -20,7 +20,7 @@
         	<a href="/m_house/view_list/{{$item.id}}" class="pic-box zhuanti-box">
                 <span class="s-img">
                     <img data-url="/uploadfiles/term/{{$item.pic}}" src="images/default.gif" alt="'" class="scrollLoading" width="325" height="190">
-                    <em class="em-tit">{{$item.name}}</em>
+                    <em class="{{if $item.is_top==1}}em-mark{{else}}em-tit{{/if}}">{{$item.name}}</em>
                 </span>
                 <p class="p-tit">{{$item.title}}</p>
             </a>
