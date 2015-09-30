@@ -71,15 +71,15 @@ body{background-color:#fff;}
 .am-icon-angle-down:before{content:"\f107";}
 /*页面导航*/
 .g-head{/*padding: 1em 0;*/ background: #ff6600; overflow: hidden; text-align: center; color: #fff; height: 50px; line-height: 50px; }
-.g-head .logo{margin:0 auto;background:url(../images/logo.png) no-repeat; background-size:100%; width: 104px; height: 30px; display:block;}
-.g-head .am-icon-user{margin:5px 15px 0 0; float: right; color: #fff;  }
+.g-head .logo{margin:10px auto 0;background:url(../images/logo.png) no-repeat; background-size:100%; width: 104px; height: 30px; display:block;}
+.g-head .am-icon-txt,.g-head .am-icon-user{margin:5px 15px 0 0; float: right; color: #fff;  }
 .g-head .am-icon-chevron-left{ float: left; margin:2px 0 0 15px;}
 .new-list{padding:1rem 0; background: #f5f2f0;}
 
 .pic-box{margin:0 auto 1.5rem;padding:0.5rem; width: 94%; background: #fff; -moz-box-shadow:10px 8px 13px #333333; -webkit-box-shadow:10px 8px 13px #d3d3d3; box-shadow:10px 8px 13px #d3d3d3; display: block; }
 
 .s-img{ position: relative;}
-.em-mark{ display:block; background: #e63a4e; font-size: 20px;padding:5px; width: 130px; height: 26px; line-height: 26px; color: #fff;margin-top:-36px; position: relative;}
+.em-mark{ display:block; background: #e63a4e; font-size: 20px;padding:5px; width: 120px; height: 26px; line-height: 26px; color: #fff;margin-top:-36px; position: relative;}
 
 .p-tit{ text-align: center; font-size: 16px; line-height: 30px;padding: 0.5rem 0;}
 
@@ -299,7 +299,6 @@ background: -o-gradient(linear, 0 0, 0 100%, from(#ff6600), to(#e04141));backgro
 
 .peo-house-info li .p-house-state,.peo-house-info li .p-house-time{ color: #999;}
 .peo-house-info li .p-house-time{font-size: 12px; float: right;padding: 0 5px;margin-top:-15px;}
-
 .collects-house-info li .p-house-time{margin-top: 0;}
 .peo-house-info li .price{color:#ee1717; }
 .peo-house-info .am-icon-angle{border:1px solid #ff7212; width: 20px; height: 20px; border-radius: 10px; text-align: center; line-height: 16px;padding:0;margin-top:10px; float: right;}
