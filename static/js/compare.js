@@ -78,8 +78,8 @@
     //alert(houseInfo.length);
   }
 
-  document.getElementById("JMenuCompareBtn").onclick =function(){
-
-    document.getElementById("Jcompare").style.display ="block";
-
-  }
+//  document.getElementById("JMenuCompareBtn").onclick =function(){
+//
+//    document.getElementById("Jcompare").style.display ="block";
+//
+//  }

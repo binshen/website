@@ -107,7 +107,7 @@
     <!-- 底部导航 -->
     <div class="ft-menu"> 
       <ul class="ul-menu">
-        <li id="btnCompare" class="first" id="JMenuCompareBtn">VS<br />进行对比<i class="i-num" id="Ji-num">+0</i></li>
+        <li class="first" id="JMenuCompareBtn">VS<br />进行对比<i class="i-num" id="Ji-num">+0</i></li>
         <li id="btnCollect"><i class="am-icon-star-o"></i><br />收藏</li>
         <li><i class="am-icon-calculator"></i><br />房贷计算器</li>
         <li class="last"><i class="am-icon-phone"></i><br />电话咨询</li>
@@ -171,8 +171,8 @@
     		alert("123");
     	});
     	
-    	$("#btnCompare").click(function() {
-    		alert("234");
+    	$("#JMenuCompareBtn").click(function() {
+    		$("#Jcompare").toggle();
     	});
     });
 </script>
