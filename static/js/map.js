@@ -6,9 +6,9 @@ $(document).ready(function(){
 	var point = new BMap.Point(mapX, mapY);  
 	initBigMap("bigmap", point, '公交');
 	addmapresult('tab-traffic', '公交');
-	// addmapresult('tab-hospital','医疗');
-	// addmapresult('tab-school','学校');
-	// addmapresult('tab-trade','超市');
+	//addmapresult('tab-hospital','医疗');
+	//addmapresult('tab-school','学校');
+	//addmapresult('tab-trade','超市');
 });
 
 //初始化地图
@@ -18,6 +18,7 @@ function initBigMap(div, point, condition, housetitle) {
 	window.point = point;
 	map.centerAndZoom(point, 15);
 	map.enableScrollWheelZoom();
+
 	searchcondition('公交',$('traffic-dt'));
 	//$(".tab-traffic-menu").click();
 }
@@ -49,7 +50,7 @@ function addmapresult(resultsite, condition) {
 }
 
 window.mapSearchResult = null;
-function searchcondition(condition) {
+function searchcondition(condition,obj) {
 	//alert(condition);
 	var searchComplete = function(items) {
 		window.mapSearchResult = items;
@@ -60,8 +61,8 @@ function searchcondition(condition) {
 		pageCapacity : 50
 	});
 	local.searchInBounds(condition, map.getBounds());
-	//$(obj).parent().find('li').removeClass('current');
-	//$(obj).addClass('current');
+	$(obj).parent().find('li').removeClass('current');
+	$(obj).addClass('current');
 	index_eq = $(obj).parent().find('li').index($(obj));
 	$('.tab_box_eq').removeClass('tab-main');
 	$('.tab_box_eq').addClass('hide');
@@ -73,10 +74,10 @@ function goToPage(condition,j) {
 	
 	map.clearOverlays(); //删除原本存在的标注
 	//设置房源样式
-	var myIcon = new BMap.Icon("/images/listicon.png", //图片地址
+	var myIcon = new BMap.Icon("images/listicon.png", //图片地址
 	new BMap.Size(38, 35), // 标注显示大小
 	{
-		imageOffset : new BMap.Size(-160, -258)
+		imageOffset : new BMap.Size(-162, -30)
 	// 这里相当于CSS sprites
 	});
 	var marker = new BMap.Marker(window.point, {
@@ -110,7 +111,7 @@ function addMarker(item, i,condition) {
 	//设置房源样式
 	if(condition=='公交'){
 		var myIcon = new BMap.Icon(
-			"/images/listicon.png", //图片地址
+			"images/listicon.png", //图片地址
 			new BMap.Size(25, 35), // 标注显示大小
 			{
 				anchor : new BMap.Size(0, 35), // 标注底部小尖尖的偏移量
@@ -121,7 +122,7 @@ function addMarker(item, i,condition) {
 	}
 	if(condition=='医疗'){
 		var myIcon = new BMap.Icon(
-			"/images/listicon.png", //图片地址
+			"images/listicon.png", //图片地址
 			new BMap.Size(25, 35), // 标注显示大小
 			{
 				anchor : new BMap.Size(0, 35), // 标注底部小尖尖的偏移量
@@ -132,7 +133,7 @@ function addMarker(item, i,condition) {
 	}
 	if(condition=='学校'){
 		var myIcon = new BMap.Icon(
-			"/images/listicon.png", //图片地址
+			"images/listicon.png", //图片地址
 			new BMap.Size(25, 35), // 标注显示大小
 			{
 				anchor : new BMap.Size(0, 35), // 标注底部小尖尖的偏移量
@@ -200,7 +201,7 @@ function addMarker(item, i,condition) {
       div.style.lineHeight = "18px";
       div.style.whiteSpace = "nowrap";
       div.style.MozUserSelect = "none";
-      div.style.fontSize = "12px"
+      div.style.fontSize = "12px";
       var span = this._span = document.createElement("span");
       div.appendChild(span);
       span.appendChild(document.createTextNode(this._text));      
@@ -208,6 +209,7 @@ function addMarker(item, i,condition) {
 
       var arrow = this._arrow = document.createElement("div");
       arrow.style.background = "url(http://map.baidu.com/fwmap/upload/r/map/fwmap/static/house/images/label.png) no-repeat";
+      arrow.style.backgroundSize ="100% 100%";
       arrow.style.position = "absolute";
       arrow.style.width = "11px";
       arrow.style.height = "10px";
