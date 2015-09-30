@@ -5,7 +5,7 @@
  *
  * @package		app
  * @subpackage	core
- * @category	controller
+ * @category	controller 
  * @author		bin.shen
  *
  */
