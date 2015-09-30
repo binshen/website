@@ -1220,4 +1220,17 @@ class House_model extends MY_Model
 	public function get_m_term($id) {
 		return $this->db->get_where('term', array('id' => $id))->row_array();
 	}
+	
+	public function collect_house($uid, $type, $hid) {
+		$collect = $this->db->get_where('house_collect', array('user_id' => $uid, 'user_type' => $type, 'house_id' => $hid))->row_array();
+		if(empty($collect)) {
+			$data = array();
+			$data['user_id'] = $uid;
+			$data['user_type'] = $type;
+			$data['house_id'] = $hid;
+			return $this->db->insert('house_collect', $data);
+		} else {
+			return false;
+		}
+	}
 }

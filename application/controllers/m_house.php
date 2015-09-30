@@ -158,6 +158,13 @@ class M_house extends MY_Controller {
 		$this->display('mobile/details.html');
 	}
 	
+	public function collect() {
+		$uid = $this->input->post('uid');
+		$type = $this->input->post('type');
+		$hid = $this->input->post('hid');
+		echo $this->house_model->collect_house($uid, $type, $hid);
+	}
+	
 	public function compare($hid1, $hid2, $term_id) {
 		$this->assign('term_id', $term_id);
 // 		$term = $this->house_model->get_m_term($term_id);
