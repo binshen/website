@@ -6,9 +6,9 @@ $(document).ready(function(){
 	var point = new BMap.Point(mapX, mapY);  
 	initBigMap("bigmap", point, '公交');
 	addmapresult('tab-traffic', '公交');
-	addmapresult('tab-hospital','医疗');
-	addmapresult('tab-school','学校');
-	addmapresult('tab-trade','超市');
+	// addmapresult('tab-hospital','医疗');
+	// addmapresult('tab-school','学校');
+	// addmapresult('tab-trade','超市');
 });
 
 //初始化地图
@@ -18,8 +18,8 @@ function initBigMap(div, point, condition, housetitle) {
 	window.point = point;
 	map.centerAndZoom(point, 15);
 	map.enableScrollWheelZoom();
-	//searchcondition(condition);
-	$(".tab-traffic-menu").click();
+	searchcondition('公交',$('traffic-dt'));
+	//$(".tab-traffic-menu").click();
 }
 
 //将地图查出的信息插入到页面中
@@ -49,7 +49,7 @@ function addmapresult(resultsite, condition) {
 }
 
 window.mapSearchResult = null;
-function searchcondition(condition,obj) {
+function searchcondition(condition) {
 	//alert(condition);
 	var searchComplete = function(items) {
 		window.mapSearchResult = items;
@@ -60,8 +60,8 @@ function searchcondition(condition,obj) {
 		pageCapacity : 50
 	});
 	local.searchInBounds(condition, map.getBounds());
-	$(obj).parent().find('li').removeClass('current');
-	$(obj).addClass('current');
+	//$(obj).parent().find('li').removeClass('current');
+	//$(obj).addClass('current');
 	index_eq = $(obj).parent().find('li').index($(obj));
 	$('.tab_box_eq').removeClass('tab-main');
 	$('.tab_box_eq').addClass('hide');
