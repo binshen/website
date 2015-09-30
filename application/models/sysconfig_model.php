@@ -69,6 +69,28 @@ class Sysconfig_model extends MY_Model
     	}
     }
     
+    public function fenpei(){
+    	$rs = $this->db->select('id')->from('admin')->where('admin_group','2')->where_not_in('id',array(2,3))->get()->result_array();
+    	$res = $this->db->select('id')->from('house')->where('type_id','2')->get()->result_array();
+    	$users = array();
+    	foreach($rs as $v){
+    		$users[]=$v['id'];
+    	}
+    	
+    	$i = 0;
+    	$j = 0;
+    	foreach($res as $v){
+    		$this->db->where('id',$v['id']);
+    		$this->db->update('house',array('user_id'=>$users[$j]));
+    		$i++;
+    		if($i > 14){
+    			$i = 0 ;
+    			$j++;
+    		}
+    	}
+    	die;
+    }
+    
 }
 
 /* End of file sysconfig_model.php */
