@@ -234,6 +234,7 @@ body{background-color:#fff;}
 /*底部导航*/
 .ft-menu{width: 100%; background:rgba(0,0,0,0.8);  position: fixed;  bottom: 0;}
 .ul-menu li{padding:4px 0; color: #fff; font-size: 16px; float: left; text-align: center; width: 23%;}
+.ul-menu li a{color: #fff;}
 .ul-menu li:first-child{ position: relative;}
 .ul-menu li:last-child{width:31%; background: #e04242;}
 .ul-menu li .am-icon-star-o{font-size: 18px;}
