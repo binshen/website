@@ -184,4 +184,9 @@ class M_house extends MY_Controller {
 		
 		$this->display('mobile/contrast-tool.html');
 	}
+	
+	public function compute() {
+		
+		$this->display('mobile/daikuan.html');
+	}
 }
