@@ -69,6 +69,8 @@ body{background-color:#fff;}
 .am-icon-sort-desc:before{content:"\f0dd";}
 .am-icon-angle-up:before{content:"\f106";}
 .am-icon-angle-down:before{content:"\f107";}
+.am-icon-home:before {content: "\f015"; font-size: 3rem; color: #fff;}
+
 /*页面导航*/
 .g-head{/*padding: 1em 0;*/ background: #ff6600; overflow: hidden; text-align: center; color: #fff; height: 50px; line-height: 50px; }
 .g-head .logo{margin:10px auto 0;background:url(../images/logo.png) no-repeat; background-size:100%; width: 104px; height: 30px; display:block;}
@@ -85,10 +87,11 @@ body{background-color:#fff;}
 
 .em-tit{ background:rgba(0,0,0,0.6); display: block; font-size: 16px; color: #fff; height: 36px; line-height: 36px; margin-top: -36px; position: relative; text-align: center;}
 
-.pageRightMenu{ position: fixed; right: 0;bottom:5rem;}
+.pageRightMenu{ position: fixed; right: 0;bottom:3.5rem;}
 
-.top-button{ width: 50px;height: 50px; border-radius: 25px; background: rgba(0,0,0,0.8); display: block; text-align: center; line-height:50px; }
-
+.menu-button{ width: 50px;height: 50px; border-radius: 25px; background: rgba(0,0,0,0.8); display: block; text-align: center; line-height:50px;margin-bottom: 10px; }
+.top-button{ display: none;}
+.am-active{ display: block;}
 #m-btn-filter{margin-bottom: 10px;}
 /*头部条件搜索*/
 .sort{font-size:1.4rem;background:#fff;padding:5px 10px 15px 15px; overflow: hidden;}
