@@ -1,0 +1,17 @@
+
+<div class="pageRightMenu">
+    <span class="menu-button top-button" id="amz-go-top"><i class="am-icon-chevron-up"></i></span>
+    <a href="/m_house"><span class="menu-button"><i class="am-icon-home"></i></span></a>
+</div>
+
+<script type="text/javascript">
+{literal}
+    //menu导航
+    $(window).scroll(function(){
+        $(window).scrollTop()>100?$('#amz-go-top').addClass('am-active'):$('#amz-go-top').removeClass('am-active');
+    });
+    $('#amz-go-top').click(function(){
+        $('html,body').animate({scrollTop: 0}, '500');
+    });
+{/literal}
+</script>
