@@ -120,11 +120,9 @@
 	<script type="text/javascript" src="/static/js/store.min.js"></script>
 	<script type="text/javascript" src="/static/js/jquery.scrollLoading.js"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=gDeY0HhjlQOvjMmGKKWHAtCb"></script>
+    {include file='nav.html'}
   <script>
     $(".scrollLoading").scrollLoading();
-	$('#amz-go-top').click(function(){
-      $('html,body').animate({ scrollTop: 0 }, '500');
-    });
 	
 	var mapX ="{{$house.longitude}}";
 	var mapY ="{{$house.latitude}}";
