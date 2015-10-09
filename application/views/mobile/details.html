@@ -164,6 +164,7 @@
     			$.post('/m_house/collect/', { uid:uid, type:type, hid:'{{$house.id}}'}, function(data) {
     				if(data) {
     					alert("收藏成功!");
+    					$('#btnCollect').addClass('collection-ok');
     				} else {
     					alert("您已经收藏过了!");
     				}
