@@ -102,7 +102,7 @@
         <li class="first" id="JMenuCompareBtn">VS<br />进行对比<i class="i-num" id="Ji-num">+0</i></li>
         <li id="btnCollect"><i class="am-icon-star-o"></i><br />收藏</li>
         <li><a href="/m_house/compute"><i class="am-icon-calculator"></i><br />房贷计算器</a></li>
-        <li class="last" onclick="window.location.href='tel://13912688061'"><i class="am-icon-phone"></i><br />电话咨询</li>
+        <li class="last" onclick="window.location.href='tel://{{$house.tel}}'"><i class="am-icon-phone"></i><br />电话咨询</li>
       </ul>
       <div class="compare" id="Jcompare">
           <i class="dec-icon am-icon-sort-desc"></i>
@@ -169,7 +169,7 @@
     				if(data) {
     					alert("收藏成功!");
     				} else {
-    					alert("收藏失败!");
+    					alert("您已经收藏过了!");
     				}
     			})
     		}
