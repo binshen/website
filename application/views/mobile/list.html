@@ -63,7 +63,6 @@
                 </div>
             </div>
         </div>
-        <br>
         <div id="m-filter-mask" class="leftmask leftmask3" style="display: none;"></div>
         <div id="m-filter-price-leftPopup" class="leftPopup region" data-back="leftmask3" style="z-index: 999;">
             <ul class="first-list first-list-style">
@@ -137,8 +136,8 @@
         <!-- popup end -->
         <div class="theme-box">
             <span class="s-img">
-                <img data-url="images/img1.jpg" src="images/default.gif" alt="'" class="scrollLoading">
-                <em class="em-mark" style="width:320px">{{$term_name}}</em>
+                <img data-url="/uploadfiles/term/{{$term_pic}}" src="images/default.gif" alt="'" class="scrollLoading" width="325" height="190">
+                <em class="{{if $term_is_top==1}}em-mark{{else}}em-tit{{/if}}">{{$term_name}}</em>
             </span>
         </div>
         <ul class="house-list">

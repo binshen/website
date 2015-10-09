@@ -71,8 +71,8 @@ body{background-color:#fff;}
 .am-icon-angle-down:before{content:"\f107";}
 /*页面导航*/
 .g-head{/*padding: 1em 0;*/ background: #ff6600; overflow: hidden; text-align: center; color: #fff; height: 50px; line-height: 50px; }
-.g-head .logo{margin:0 auto;background:url(../images/logo.png) no-repeat; background-size:100%; width: 104px; height: 30px; display:block;}
-.g-head .am-icon-user{margin:5px 15px 0 0; float: right; color: #fff;  }
+.g-head .logo{margin:10px auto 0;background:url(../images/logo.png) no-repeat; background-size:100%; width: 104px; height: 30px; display:block;}
+.g-head .am-icon-txt,.g-head .am-icon-user{margin:5px 15px 0 0; float: right; color: #fff;  }
 .g-head .am-icon-chevron-left{ float: left; margin:2px 0 0 15px;}
 .new-list{padding:1rem 0; background: #f5f2f0;}
 
@@ -234,6 +234,7 @@ body{background-color:#fff;}
 /*底部导航*/
 .ft-menu{width: 100%; background:rgba(0,0,0,0.8);  position: fixed;  bottom: 0;}
 .ul-menu li{padding:4px 0; color: #fff; font-size: 16px; float: left; text-align: center; width: 23%;}
+.ul-menu li a{color: #fff;}
 .ul-menu li:first-child{ position: relative;}
 .ul-menu li:last-child{width:31%; background: #e04242;}
 .ul-menu li .am-icon-star-o{font-size: 18px;}
@@ -299,7 +300,6 @@ background: -o-gradient(linear, 0 0, 0 100%, from(#ff6600), to(#e04141));backgro
 
 .peo-house-info li .p-house-state,.peo-house-info li .p-house-time{ color: #999;}
 .peo-house-info li .p-house-time{font-size: 12px; float: right;padding: 0 5px;margin-top:-15px;}
-
 .collects-house-info li .p-house-time{margin-top: 0;}
 .peo-house-info li .price{color:#ee1717; }
 .peo-house-info .am-icon-angle{border:1px solid #ff7212; width: 20px; height: 20px; border-radius: 10px; text-align: center; line-height: 16px;padding:0;margin-top:10px; float: right;}
@@ -329,36 +329,39 @@ background: -o-gradient(linear, 0 0, 0 100%, from(#ff6600), to(#e04141));backgro
 
 /*房贷计算器*/
 .flexbox{ display: box;  display: -webkit-box; display: -moz-box;}
-.listtab1 a{padding: 5px 0; display: block; box-flex:1;-webkit-box-flex:1; text-align: center;}
-.listtab1 a.active{ color:#ff6600; border-bottom: 2px solid #ff6600; }
-.cal-outer{box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box; width: 100%;margin-bottom:25px;}
-.calculator{display: table;-webkit-display: table;-moz-display: table; -ms-display: table; line-height: 32px; border-top:1px solid #f4f4f4;background: #fff; font-size: 16px;padding:6px 10px; width: 95%;}
-.calculator dt{ display: table-cell; vertical-align: top; width: 6.5em;}
+.listtab1 span{padding: 5px 0; display: block; box-flex:1;-webkit-box-flex:1; text-align: center;}
+.listtab1 span.active{ color:#ff6600; border-bottom: 2px solid #ff6600; }
+.cal-outer{box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box; width: 100%;margin-bottom:25px; overflow:hidden}
+.calculator{display: table;-webkit-display: table;-moz-display: table; -ms-display: table; line-height: 32px; border-top:1px solid #f4f4f4;background: #fff; font-size: 16px;padding:6px 10px; width:100%;}
+.calculator dt{ display: table-cell; vertical-align: top; width:25%;}
 
 .cal-tbody{background: #fff;}
 
 .mt32e{ line-height: 32px; font-size: 16px; background: #f4f4f4; color: #ff6666;padding:0 10px;}
-.calculator dd{ position: relative; display: table-cell; vertical-align: top; text-align: left; color: #999;font-size: 14px;}
+.calculator dd{ position: relative; display: table-cell; vertical-align: top; text-align: left; color: #999;font-size: 14px; width:75%;}
 .calculator dd a { color: #999;}
 .calculator dd select {border: none;width: 100%;margin: 0;padding: 0;height:32px;line-height:32px;font: inherit;-webkit-appearance: none;color: #999;background-color: transparent;}
-.calculator .ipt-text{background-color: #fff;color: #999;border:0px;height: 32px; line-height: normal; font-size: 16px; width: 100%; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;}
+.ipt-text{background-color: #fff;color: #999;border:0px;height: 32px; line-height: normal; font-size: 16px; width: 100%; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;}
 .calculator .ipt-text:focus{ color: #333; background-color: #fff;}
 .calculator .ipt-texta{background-color: #fff;color: #ccc;border:0px;height: 32px; line-height: normal; font-size: 16px; width: 100%; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;}
 .calculator .ipt-texta:focus{ color: #333; background-color: #fff;}
 .calculator .flexbox i{ margin: 0 5px; -moz-box-flex: 0; -webkit-box-flex: 0; box-flex: 0; line-height: 32px; font-style: normal; display: block; }
 .calculator .flexbox i:first-child{ margin-left: 0;}
 .calculator .flexbox i:last-child{ margin-right: 0;}
-.calculator dd select {border: none;width: 100%;margin: 0;padding: 0;height:32px;line-height:32px;font: inherit;-webkit-appearance: none;color: #f00;background-color: transparent;}
+.calculator dd select,#years {border: none;width: 100%;margin: 0;padding: 0;height:32px;line-height:32px;font: inherit;-webkit-appearance: none;color: #f00;background-color: transparent;}
 
 .btn-ok{height:32px; line-height:32px; font-size: 14px; border:1px solid #c00; border-radius:2px; text-align: center; cursor: pointer; background-color: #fff; color: #c00 !important; display: block; width: 50px; }
 
 .btn-cal{ width:80%; height: 45px; line-height: 45px; border-radius: 5px;  margin: 20px auto; text-align: center; color: #fff; background: #cc0000; line-height: 45px; display: block; font-size: 16px;}
+
+.btn-cal:hover{ color:#fff;}
 .hkmethods{ height: 32px; line-height: 32px; background: #fafafa; text-align: right;}
 
 .ul-resu{background: #fff;padding:10px 25px; }
 .ul-resu li{overflow: hidden;line-height:28px;}
-.ul-resu .iTxt{margin:0;float: left; color: #333;}
-.ul-resu .iResu{float:right;}
+.ul-resu .iTxt{margin:0;float: left; color: #333; width:25%;}
+.ul-resu .iResu{float:right;width:75%;}
+.ul-resu .iResu .inputwidthnew{ width:80%; border:none;}
 .ul-resu .res_input{border:none; background: none;}
 
 .mb15{margin-bottom: 15px;}
