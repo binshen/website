@@ -6,6 +6,7 @@ class M_manage extends MY_Controller {
 		parent::__construct();
 		if(!$this->session->userdata('user_id'))
 			redirect(site_url('m_login'));
+		$this->assign('username', $this->session->userdata('username'));
 		$this->load->model('m_manage_model');
 	}
 	
@@ -46,5 +47,9 @@ class M_manage extends MY_Controller {
 		}else{
 			$this->show_message('操作失败');
 		}
+	}
+	
+	public function collect(){
+		$this->display('mobile/collect.html');
 	}
 }

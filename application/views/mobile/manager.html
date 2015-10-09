@@ -17,15 +17,15 @@
     <div class="peo-top">
         <div class="peo-touxiang">
             <div class="ipic"><img src="http://dummyimage.com/70x70/000/fff"><i class="ipic-bg"></i></div>
-            <i class="iTxt">funmall-u20150911</i>
+            <i class="iTxt">{{$username}}</i>
             <div class="some-list">
                 <span>{{$data['res_list']|@count}}<br />我的房源</span>
-                <span>013<br />我的收藏</span>
+                <span>{{$data['collect_count']}}<br />我的收藏</span>
             </div>
         </div>
     </div>
     <div class="peo-tit">我的房源</div>
-    <div class="fenlei">分类：<a href="" class="current">全部房源</a> | <a href="">收藏房源</a></div>
+    <div class="fenlei">分类：<a href="{{site_url url='m_manage'}}" class="current">全部房源</a> | <a href="{{site_url url='m_manage/collect'}}">收藏房源</a></div>
     <ul class="peo-house-info">
     {{foreach from=$data['res_list'] item=row}}
         <li>
