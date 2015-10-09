@@ -16,11 +16,11 @@
     </div>
     <div class="peo-top">
         <div class="peo-touxiang">
-            <div class="ipic"><img src="http://dummyimage.com/70x70/000/fff"><i class="ipic-bg"></i></div>
+            <div class="ipic"><img src="/images/touxiang.gif"><i class="ipic-bg"></i></div>
             <i class="iTxt">{{$rel_name}}</i>
             <div class="some-list">
-                <span>{{$data['res_list']|@count}}<br />我的房源</span>
-                <span>{{$data['collect_count']}}<br />我的收藏</span>
+                <a href="{{site_url url='m_manage'}}"><span>{{$data['res_list']|@count}}<br />我的房源</span></a>
+                <a href="{{site_url url='m_manage/collect'}}"><span>{{$data['collect_count']}}<br />我的收藏</span></a>
             </div>
         </div>
     </div>
@@ -34,9 +34,9 @@
                     {{if $row->exe_status == 1}}在售{{else}}已下架{{/if}}
                 </span>
                 <div class="bor">
-                    <span class="p-house-info">
+                    <a href="{{site_url url='m_house/view_detail'}}/{{$row->id}}"><span class="p-house-info">
                         {{$row->name}}{{$row->room}}室{{$row->lounge}}厅{{$row->toilet}}卫<br /> <i class="price">{{$row->total_price}}</i>万
-                    </span>
+                    </span></a>
                     <span class="p-house-time">
                         {{$row->refresh_time}}刷新
                     </span>

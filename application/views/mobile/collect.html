@@ -16,16 +16,16 @@
     </div>
     <div class="peo-top">
         <div class="peo-touxiang">
-            <div class="ipic"><img src="http://dummyimage.com/70x70/000/fff"><i class="ipic-bg"></i></div>
+            <div class="ipic"><img src="/images/touxiang.gif"><i class="ipic-bg"></i></div>
             <i class="iTxt">{{$rel_name}}</i>
             <div class="some-list">
-                <span>{{$house_count}}<br />我的房源</span>
-                <span>{{$data|@count}}<br />我的收藏</span>
+                <a href="{{site_url url='m_manage'}}"><span>{{$house_count}}<br />我的房源</span></a>
+                <a href="{{site_url url='m_manage/collect'}}"><span>{{$data|@count}}<br />我的收藏</span></a>
             </div>
         </div>
     </div>
     <div class="peo-tit">收藏的房源</div>
-    <div class="fenlei">分类：<a href="{{site_url url='m_manage'}}" class="current">全部房源</a> | <a href="{{site_url url='m_manage/collect'}}">收藏房源</a></div>
+    <div class="fenlei">分类：<a href="{{site_url url='m_manage'}}">全部房源</a> | <a href="{{site_url url='m_manage/collect'}}" class="current">收藏房源</a></div>
       <ul class="peo-house-info collects-house-info">
       {{foreach from=$data item=row}}
         <li>
@@ -34,11 +34,11 @@
                     {{$row.xq_name}}
                 </span>
                 <div class="bor">
-                    <span class="p-house-info">
+                    <a href="{{site_url url='m_house/view_detail'}}/{{$row.house_id}}"><span class="p-house-info">
                         {{$row.house_name}} <br />
                         {{$row.room}}室{{$row.lounge}}厅{{$row.toilet}}卫<br />
                         {{$row.region_name}}
-                    </span>
+                    </span></a>
                     <span class="p-house-time">
                         二手房<br />
                         <i class="price">{{$row.total_price}}万元/套</i><br />

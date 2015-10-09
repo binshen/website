@@ -12,7 +12,11 @@
 </head>
 <body style=" background:#f5f2f0;">
     <div class="g-head">
+     {{if $term_id}}
         <a href="/m_house/view_list/{{$term_id}}"><i class="am-icon-chevron-left"></i></a>
+     {{else}}
+     		<a href="javascript:history.go(-1);"><i class="am-icon-chevron-left"></i></a>
+     {{/if}}
         {{$house.xq_name}}
     </div>
     <div class="g-doc">
