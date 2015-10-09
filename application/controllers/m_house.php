@@ -17,7 +17,6 @@ class M_house extends MY_Controller {
 	}
 	
 	public function view_list($term_id, $page=1) {
-		
 		$region_list = $this->house_model->get_m_house_region();
 		$this->assign('region_list', $region_list);
 		
