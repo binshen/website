@@ -175,9 +175,7 @@
         </div>
         -->
     </div>
-    <div class="pageRightMenu">
-        <span class="top-button" id="amz-go-top"><i class="am-icon-chevron-up"></i></span>
-    </div>
+
     <form method="POST" id="houseListForm">
     	<input type="hidden" id="term_id" name="term_id" value="{{$term_id}}">
     	<input type="hidden" id="search_region" name="search_region" value="{{$search_region|default:''}}">
@@ -190,12 +188,10 @@
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/jquery.scrollLoading.js"></script>
 <script type="text/javascript" src="/static/js/selectcartool.js"></script>
-
+{include file='nav.html'}
 <script type="text/javascript">
     $(".scrollLoading").scrollLoading();
-    $('#amz-go-top').click(function(){
-        $('html,body').animate({ scrollTop: 0 }, '500');
-    });
+
     //右侧滑动栏
     $(".m-btn").click(function(){
        var boxClass = $(this).attr("data-action");
