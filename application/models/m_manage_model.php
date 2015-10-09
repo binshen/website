@@ -69,6 +69,19 @@ class M_manage_model extends MY_Model
     	$this->db->where('id',$this->input->post('id'));
     	return $this->db->update('house',$data);
     }
-
+		
+    public function get_collects(){
+    	$user_id = $this->session->userdata('user_id');
+    	$user_type = $this->session->userdata('user_type');
+    	$this->db->select('a.*,b.name house_name,total_price,room,lounge,toilet,refresh_time,c.name xq_name,d.name region_name')->from('house_collect a');
+    	$this->db->join('house b','a.house_id	= b.id','left');
+    	$this->db->join('xiaoqu c','b.xq_id	= c.id','left');
+    	$this->db->join('house_region d','b.region_id	= d.id','left');
+    	$data['list'] = $this->db->get()->result_array();
+    	
+    	$rs = $this->db->select('count(1) num')->from('house')->where('user_id',$user_id)->get()->row();
+    	$data['house_count'] = $rs->num;
+    	return $data;
+    }
   
 }

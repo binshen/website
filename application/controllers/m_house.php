@@ -136,7 +136,7 @@ class M_house extends MY_Controller {
 		$this->display('mobile/list.html');
 	}
 	
-	public function view_detail($hid, $term_id) {
+	public function view_detail($hid, $term_id = null) {
 		
 		$this->assign('term_id', $term_id);
 		$house = $this->house_model->get_m_house_detail($hid);

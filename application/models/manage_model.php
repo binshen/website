@@ -45,7 +45,21 @@ class Manage_model extends MY_Model
             $this->session->set_userdata($user_info);
             return true;
         } else {
-            return false;
+        	$this->db->from('users');
+        	$this->db->where('username', $login_id);
+        	$this->db->where('passwd', sha1($passwd));
+        	$rs = $this->db->get();
+        	if ($rs->num_rows() > 0) {
+        		$res = $rs->row();
+        		$user_info['user_id'] = $res->id;
+        		$user_info['username'] = $this->input->post('username');
+        		$user_info['group_id'] = 3;
+        		$user_info['username'] = $res->username;
+        		$this->session->set_userdata($user_info);
+        		return true;
+        	}else{
+        		return false;
+        	}
         }
     }
     

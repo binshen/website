@@ -6,7 +6,7 @@ class M_manage extends MY_Controller {
 		parent::__construct();
 		if(!$this->session->userdata('user_id'))
 			redirect(site_url('m_login'));
-		$this->assign('username', $this->session->userdata('username'));
+		$this->assign('rel_name', $this->session->userdata('rel_name'));
 		$this->load->model('m_manage_model');
 	}
 	
@@ -50,6 +50,9 @@ class M_manage extends MY_Controller {
 	}
 	
 	public function collect(){
+		$data = $this->m_manage_model->get_collects();
+		$this->assign('data', $data['list']);
+		$this->assign('house_count', $data['house_count']);
 		$this->display('mobile/collect.html');
 	}
 }
