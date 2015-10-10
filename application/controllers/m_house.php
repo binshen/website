@@ -165,11 +165,7 @@ class M_house extends MY_Controller {
 		$this->assign('user_type_id', $user_type_id);
 		
 		$collected = $this->house_model->check_collect_house($user_id, $user_type_id, $hid);
-		if($collected) {
-			$this->assign('collected', 1);
-		} else {
-			$this->assign('collected', -1);
-		}
+		$this->assign('collected', $collected);
 		
 		$this->display('mobile/details.html');
 	}
