@@ -47,7 +47,7 @@ class Manage_model extends MY_Model
         } else {
         	$this->db->from('users');
         	$this->db->where('username', $login_id);
-        	$this->db->where('passwd', sha1($passwd));
+        	$this->db->where('password', sha1($passwd));
         	$rs = $this->db->get();
         	if ($rs->num_rows() > 0) {
         		$res = $rs->row();
