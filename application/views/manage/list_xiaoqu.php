@@ -22,6 +22,8 @@
 				<th>拼音首字母</th>
 				<th>简拼</th>
 				<th>小区地址</th>
+				<th>纬度</th>
+				<th>经度</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -34,6 +36,8 @@
             				<td><?php echo $row->short;?></td>
             				<td><?php echo $row->jianpin;?></td>
             				<td><?php echo $row->address;?></td>
+            				<td><?php echo $row->latitude;?></td>
+            				<td><?php echo $row->longitude;?></td>
             			</tr>
             <?php 
             		endforeach;
