@@ -9,7 +9,7 @@
 .photoshow{width:420px; float: left;}
 #bigPic {position:relative;margin-bottom: 20px; width:420px; }
 #pic_control {margin:0 auto;width:400px; height:60px;}
-#pic_control li {margin-right: 25px; float:left; width:60px; height: 60px; cursor: pointer;} 
+#pic_control li {margin-right: 23px; float:left; width:60px; height: 60px; cursor: pointer;border:1px solid #fff;} 
 #pic_control .last{margin-right: 0;}
 
 .detail-txt{width:450px; float: right;}
