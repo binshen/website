@@ -13,8 +13,8 @@ class M_house extends MY_Controller {
 		$term_list = $this->house_model->get_m_index();
 		$this->assign('term_list', $term_list);
 		
-		$username = $this->session->userdata('rel_name');
-		$this->assign('username', $username);
+// 		$username = $this->session->userdata('rel_name');
+// 		$this->assign('username', $username);
 		
 		$this->display('mobile/index.html');
 	}

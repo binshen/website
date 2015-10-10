@@ -24,6 +24,9 @@ class MY_Controller extends CI_Controller
         }else{
         	$this->cismarty->assign('member_username','');
         }
+        
+        $login_user_id = $this->session->userdata('user_id');
+        $this->cismarty->assign('login_user_id', $login_user_id > 0 ? true : false);
     }
     
 	//重载smarty方法assign
