@@ -29,6 +29,14 @@
         			<dt>地址：</dt>
         			<dd><input type="text" name="address" class="required" value="<?php if(!empty($address)) echo $address;?>" /></dd>
         		</dl>
+        		<dl>
+        			<dt>纬度：</dt>
+        			<dd><input type="text" name="latitude" class="required" value="<?php if(!empty($latitude)) echo $latitude;?>" /></dd>
+        		</dl>
+        		<dl>
+        			<dt>经度：</dt>
+        			<dd><input type="text" name="longitude" class="required" value="<?php if(!empty($longitude)) echo $longitude;?>" /></dd>
+        		</dl>
         	</fieldset>
         </div>
         <div class="formBar">

@@ -801,7 +801,9 @@ class Manage_model extends MY_Model
 			'name' => $this->input->post('name'),
 			'short' => $this->input->post('short'),
 			'jianpin' => $this->input->post('jianpin'),
-			'address' => $this->input->post('address')
+			'address' => $this->input->post('address'),
+			'latitude' => $this->input->post('latitude'),
+			'longitude' => $this->input->post('longitude')
 		);
 		$this->db->trans_start();//--------开始事务
 	
