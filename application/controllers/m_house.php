@@ -13,6 +13,9 @@ class M_house extends MY_Controller {
 		$term_list = $this->house_model->get_m_index();
 		$this->assign('term_list', $term_list);
 		
+		$username = $this->session->userdata('rel_name');
+		$this->assign('username', $username);
+		
 		$this->display('mobile/index.html');
 	}
 	
@@ -155,6 +158,18 @@ class M_house extends MY_Controller {
 		$house['house_pics'] = array_slice($house['house_pics_all'], 0, 5);
 		$house['house_pics_rest'] = array_slice($house['house_pics_all'], 6, 5);
 		$this->assign('house', $house);
+		
+		$user_id = $this->session->userdata('user_id');
+		$user_type_id = $this->session->userdata('user_type_id');
+		$this->assign('user_id', $user_id);
+		$this->assign('user_type_id', $user_type_id);
+		
+		$collected = $this->house_model->check_collect_house($user_id, $user_type_id, $hid);
+		if($collected) {
+			$this->assign('collected', 1);
+		} else {
+			$this->assign('collected', -1);
+		}
 		
 		$this->display('mobile/details.html');
 	}

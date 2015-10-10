@@ -9,7 +9,7 @@
 .photoshow{width:420px; float: left;}
 #bigPic {position:relative;margin-bottom: 20px; width:420px; }
 #pic_control {margin:0 auto;width:400px; height:60px;}
-#pic_control li {margin-right: 25px; float:left; width:60px; height: 60px; cursor: pointer;} 
+#pic_control li {margin-right: 23px; float:left; width:60px; height: 60px; cursor: pointer;border:1px solid #fff;} 
 #pic_control .last{margin-right: 0;}
 
 .detail-txt{width:450px; float: right;}
@@ -25,16 +25,14 @@
 .other-dl .color2,.other-dl .color2 a{ color: #3388b4;}
 .key-word{margin: 15px 0 20px 15px;}
 .key-word span{border: 1px solid #ccc; display: inline-block;padding: 0 5px; background: #f7ffec; margin-right:5px; color: #333;}
-
 .detail-tel{margin-bottom: 10px; background: #efeeee;padding:12px 25px;line-height: 35px; height: 35px; overflow:hidden; }
 .tel-icon{ width: 40px;height: 35px; float: left; background: url(../images/icon3_1.png) no-repeat 0 -265px;}
 .tel-txt{ font-size: 26px; color: #ff4f12; padding-left:18px; font-weight:bold;}
 .other-dl1{width:420px;}
 .other-dl2{position: absolute;top:0;left:220px;}
-
 .house-d-title{margin:10px 0;border:1px solid #ffe3b8; background:#fff1dc;padding: 0 20px; height: 38px; line-height: 38px; font-size: 16px; color: #e05313; font-weight: bold;}
-.house-d-by{padding:0 20px;}
-
+.house-d-by{padding:0 20px; text-align: center;}
+.house-d-by img{max-width: 860px;}
 .house-d-fr{width: 205px; float: right; }
 .agent-peo-info{margin-bottom: 50px; border: 1px solid #ececec;padding: 20px 15px; background: #fbfdfa;}
 .agent-head{border: 1px solid #eee;margin-bottom: 15px;}
@@ -52,4 +50,10 @@
 .a-r-title{margin-bottom: 20px; text-align: center;color: #999;}
 .a-r-house{padding:5px;width: 165px; margin: 0 auto 20px; color: #999;}
 .a-r-house .a-r-house-p{margin-top: 10px; line-height:20px;}
-.a-r-house a:hover { color: #999;};
+.a-r-house a:hover { color: #999;}
+
+
+
+
+
+

@@ -53,7 +53,7 @@ body{background-color:#fff;}
 	transform: translate(0,0)
 }
 
-.am-icon-user:before { content: "\f007"; font-size: 2.5rem;}
+.am-icon-user:before { content: "\f007";}
 .am-icon-chevron-up:before {  content: "\f077"; font-size:3rem; color: #fff; }
 .am-icon-angle-right:before{content: "\f105";}
 .am-icon-chevron-left:before {  content: "\f053"; font-size:2rem; color: #fff; }
@@ -69,13 +69,15 @@ body{background-color:#fff;}
 .am-icon-sort-desc:before{content:"\f0dd";}
 .am-icon-angle-up:before{content:"\f106";}
 .am-icon-angle-down:before{content:"\f107";}
-.am-icon-home:before {content: "\f015"; font-size: 3rem; color: #fff;}
+.am-icon-home:before {content: "\f015";}
+.am-icon-power-off:before{content: "\f011";}
+.am-icon-user:before,.am-icon-home:before,.am-icon-power-off:before {font-size: 3rem; color: #fff;}
 
 /*页面导航*/
-.g-head{/*padding: 1em 0;*/ background: #ff6600; overflow: hidden; text-align: center; color: #fff; height: 50px; line-height: 50px; }
+.g-head{/*padding: 1em 0;*/ background: #ff6600; overflow: hidden; text-align: center; color: #fff; height: 50px; line-height: 50px;  position:relative;}
 .g-head .logo{margin:10px auto 0;background:url(../images/logo.png) no-repeat; background-size:100%; width: 104px; height: 30px; display:block;}
 .g-head .am-icon-txt,.g-head .am-icon-user{margin:5px 15px 0 0; float: right; color: #fff;  }
-.g-head .am-icon-chevron-left{ float: left; margin:2px 0 0 15px;}
+.g-head .am-icon-chevron-left{position: absolute;top:2px;left:15px;}
 .new-list{padding:1rem 0; background: #f5f2f0;}
 
 .pic-box{margin:0 auto 1.5rem;padding:0.5rem; width: 94%; background: #fff; -moz-box-shadow:10px 8px 13px #333333; -webkit-box-shadow:10px 8px 13px #d3d3d3; box-shadow:10px 8px 13px #d3d3d3; display: block; }
@@ -89,7 +91,7 @@ body{background-color:#fff;}
 
 .pageRightMenu{ position: fixed; right: 0;bottom:3.5rem;}
 
-.menu-button{ width: 50px;height: 50px; border-radius: 25px; background: rgba(0,0,0,0.8); display: block; text-align: center; line-height:50px;margin-bottom: 10px; }
+.menu-button{ width: 50px;height: 50px; border-radius: 25px; background: rgba(0,0,0,0.8); display: block; text-align: center; line-height:56px;margin-bottom: 10px; }
 .top-button{ display: none;}
 .am-active{ display: block;}
 #m-btn-filter{margin-bottom: 10px;}
@@ -236,14 +238,15 @@ body{background-color:#fff;}
 .map{margin:5px auto; width: 330px;}
 /*底部导航*/
 .ft-menu{width: 100%; background:rgba(0,0,0,0.8);  position: fixed;  bottom: 0;}
-.ul-menu li{padding:4px 0; color: #fff; font-size: 16px; float: left; text-align: center; width: 23%;}
+.ul-menu li{padding:4px 0; color: #fff; font-size: 15px; float: left; text-align: center; width: 23%;}
 .ul-menu li a{color: #fff;}
 .ul-menu li:first-child{ position: relative;}
 .ul-menu li:last-child{width:31%; background: #e04242;}
 .ul-menu li .am-icon-star-o{font-size: 18px;}
 .ul-menu li .i-num{width: 20px; height: 20px; border-radius:10px; background:#e04242; display: block; font-size: 14px; text-align: center; line-height: 20px; position:absolute; top:2px; right: 0; }
 
-.jCompareBtn{border:1px solid #eb4e3b; border-radius: 3px; width: 80px; text-align: center;padding:3px 0; position: absolute; top:50px; right: 40px; display: block; background: #fff;}
+.jCompareBtn{border-radius: 3px; width: 80px; text-align: center;padding:3px 0; position: absolute; top:50px; right: 40px; display: block; background: #eb4e3b; color: #fff;}
+.jCompareBtn:link,.jCompareBtn:visited,.jCompareBtn:hover,.jCompareBtn:active{background: #eb4e3b;}
 .jCompareBtn em{transform:;}
 .compare{ position: absolute; top:-150px;background:rgba(0,0,0,0.8); padding:10px 20px 10px 0; border-radius: 5px; display: none; width:304px; height: 121px; }
 

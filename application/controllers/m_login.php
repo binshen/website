@@ -18,4 +18,9 @@ class M_login extends MY_Controller {
 			$this->display('mobile/login.html');
 		}
 	}
+	
+	public function logout() {
+		$this->session->sess_destroy();
+		redirect(site_url('m_login'));
+	}
 }
