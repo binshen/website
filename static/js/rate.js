@@ -1,3 +1,6 @@
+
+
+
 // JavaScript Document
 	var lilv_array = new Array;
 	
@@ -6,9 +9,9 @@
 	lilv_array[1][1] = new Array;
 	lilv_array[1][2] = new Array;
 	lilv_array[1][1][1] = 0.0600;//商贷1年 6%
-	lilv_array[1][1][3] = 0.0615;//商贷1～3年 6.15%
+	lilv_array[1][1][3] = 0.0515;//商贷1～3年 6.15%
 	lilv_array[1][1][5] = 0.0640;//商贷 3～5年 6.4%
-	lilv_array[1][1][10] = 0.0655;//商贷 5-30年 6.55%
+	lilv_array[1][1][10] = 0.0515;//商贷 5-30年 5.15%
 	lilv_array[1][2][5] = 0.0400;//公积金 1～5年 4%
 	lilv_array[1][2][10] = 0.0450;//公积金 5-30年 4.5%
 	//2014年1月1日利率下限（7折）
@@ -52,30 +55,30 @@
 	lilv_array[5][2][5] = 0.0400;//公积金 1～5年 4%
 	lilv_array[5][2][10] = 0.0450;//公积金 5-30年 4.5%
 	function exc_zuhe(fmobj, v) {
-	   if (fmobj.name == "calc11") {
+	   if (fmobj.name == "calc01") {
 		   if (v == 3) {
-			   document.getElementById("calc11_zuhe").style.display = '';
-			   //document.getElementById("calc11_zuhe1").style.display = '';
-			   //document.getElementById("calc11_zuhe2").style.display = '';
-			   document.getElementById("calc11_ctype").style.display = 'none';
-			   //document.getElementById("calc11_ctype1").style.display = 'none';
-			   //document.getElementById("calc11_ctype2").style.display = 'none';
-			   //document.getElementById("calc11_ctype3").style.display = 'none';
-			   //document.getElementById("calc11_ctype4").style.display = 'none';
-			   //document.getElementById("calc11_ctype5").style.display = 'none';
+			   document.getElementById("calc01_zuhe").style.display = '';
+			   //document.getElementById("calc01_zuhe1").style.display = '';
+			   //document.getElementById("calc01_zuhe2").style.display = '';
+			   document.getElementById("calc01_ctype").style.display = 'none';
+			   //document.getElementById("calc01_ctype1").style.display = 'none';
+			   //document.getElementById("calc01_ctype2").style.display = 'none';
+			   //document.getElementById("calc01_ctype3").style.display = 'none';
+			   //document.getElementById("calc01_ctype4").style.display = 'none';
+			   //document.getElementById("calc01_ctype5").style.display = 'none';
 			   document.getElementById("singlelv_li").style.display = "none";
 			   document.getElementById("sdlv_li").style.display = '';
 			   document.getElementById("gjlv_li").style.display = '';
 			   fmobj.loanradiotype[2].checked = true;
 		   
 		   } else {
-			   document.getElementById("calc11_zuhe").style.display = 'none';
-			   //document.getElementById("calc11_zuhe1").style.display = 'none';
-			   //document.getElementById("calc11_zuhe2").style.display = 'none';
-			   document.getElementById("calc11_ctype").style.display = '';
-			   //document.getElementById("calc11_ctype1").style.display = '';
-			   //document.getElementById("calc11_ctype2").style.display = '';
-			   //document.getElementById("calc11_ctype3").style.display = '';
+			   document.getElementById("calc01_zuhe").style.display = 'none';
+			   //document.getElementById("calc01_zuhe1").style.display = 'none';
+			   //document.getElementById("calc01_zuhe2").style.display = 'none';
+			   document.getElementById("calc01_ctype").style.display = '';
+			   //document.getElementById("calc01_ctype1").style.display = '';
+			   //document.getElementById("calc01_ctype2").style.display = '';
+			   //document.getElementById("calc01_ctype3").style.display = '';
 			   document.getElementById("calc1_js_div1").style.display = '';
 			   document.getElementById("calc1_js_div2").style.display = 'none';
 			   document.getElementById("sdlv_li").style.display = 'none';
@@ -86,13 +89,13 @@
 				   fmobj.loanradiotype[0].checked = true;
 			   } else {
 				   document.getElementById("singlelv").value = document.getElementById("gjlv").value;
-				   fmobj.loanradiotype[1].checked = true;
+				   fmobj.loanradiotype[1].checked = true;				   
 			   }
 		   }
 	   }
 	}
 	function exc_js(fmobj, v) {
-	   if (fmobj.name == "calc11") {
+	   if (fmobj.name == "calc01") {
 		   if (v == 1) {
 			   document.getElementById("calc1_js_div1").style.display = '';
 			   document.getElementById("calc1_js_div2").style.display = 'none';
@@ -118,7 +121,6 @@
 		fmobj.reset();
 		exc_zuhe(fmobj, strloanradiotype);
 	}
-	exc_zuhe('calc11','商业贷款');
 	function ext_loantotal(fmobj) {
 		var loanradiotype = document.getElementsByName("loanradiotype"); //取房贷计算
 		var price = parseInt(document.getElementById("price").value.toString()); //取房贷计算器单价
@@ -186,6 +188,7 @@
 				huankuan = Math.round(huankuan * 100) / 100;
 				//fmobj.month_money2.options[j] = new Option( (j+1) +"月," + huankuan + "(元)", huankuan);
 				month_money2 += (j + 1) + "月," + huankuan + "(元)\n";
+				
 			}
 			fmobj.month_money2.value = month_money2;
 			//还款总额
@@ -278,7 +281,7 @@
 		}
 	}
 	function ext_loanbenjin(fmobj,v) {
-	 if (fmobj.name == "calc11") {
+	 if (fmobj.name == "calc01") {
 		 if (v == 2) {
 			 document.getElementById("benxi").style.display = 'none';
 			 document.getElementById("benjin").style.display = '';
