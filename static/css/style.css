@@ -53,7 +53,7 @@ body{background-color:#fff;}
 	transform: translate(0,0)
 }
 
-.am-icon-user:before { content: "\f007"; font-size: 2.5rem;}
+.am-icon-user:before { content: "\f007";}
 .am-icon-chevron-up:before {  content: "\f077"; font-size:3rem; color: #fff; }
 .am-icon-angle-right:before{content: "\f105";}
 .am-icon-chevron-left:before {  content: "\f053"; font-size:2rem; color: #fff; }
@@ -69,13 +69,15 @@ body{background-color:#fff;}
 .am-icon-sort-desc:before{content:"\f0dd";}
 .am-icon-angle-up:before{content:"\f106";}
 .am-icon-angle-down:before{content:"\f107";}
-.am-icon-home:before {content: "\f015"; font-size: 3rem; color: #fff;}
+.am-icon-home:before {content: "\f015";}
+.am-icon-power-off:before{content: "\f011";}
+.am-icon-user:before,.am-icon-home:before,.am-icon-power-off:before {font-size: 3rem; color: #fff;}
 
 /*页面导航*/
-.g-head{/*padding: 1em 0;*/ background: #ff6600; overflow: hidden; text-align: center; color: #fff; height: 50px; line-height: 50px; }
+.g-head{/*padding: 1em 0;*/ background: #ff6600; overflow: hidden; text-align: center; color: #fff; height: 50px; line-height: 50px;  position:relative;}
 .g-head .logo{margin:10px auto 0;background:url(../images/logo.png) no-repeat; background-size:100%; width: 104px; height: 30px; display:block;}
 .g-head .am-icon-txt,.g-head .am-icon-user{margin:5px 15px 0 0; float: right; color: #fff;  }
-.g-head .am-icon-chevron-left{ float: left; margin:2px 0 0 15px;}
+.g-head .am-icon-chevron-left{position: absolute;top:2px;left:15px;}
 .new-list{padding:1rem 0; background: #f5f2f0;}
 
 .pic-box{margin:0 auto 1.5rem;padding:0.5rem; width: 94%; background: #fff; -moz-box-shadow:10px 8px 13px #333333; -webkit-box-shadow:10px 8px 13px #d3d3d3; box-shadow:10px 8px 13px #d3d3d3; display: block; }
@@ -176,7 +178,7 @@ body{background-color:#fff;}
 /*登录*/
 .login{ width: 100%; height: 100%; background:url(../images/login.jpg) no-repeat; background-size: cover;}
 
-.login .logo{padding:9rem 0;}
+.login .logo{padding:120px 0;}
 .login .logo a{ width: 215px; height: 60px; display: block; background: url(../images/login-logo.png) no-repeat; background-size: cover; margin:0 auto;}
 
 .login-bd{ position:relative; margin:0 auto 50px; width: 80%; background: url(../images/login_input_bg.png) no-repeat;background-size:100% 100%; }
@@ -375,5 +377,3 @@ background: -o-gradient(linear, 0 0, 0 100%, from(#ff6600), to(#e04141));backgro
 
 .collect-footer{ background: #f5f2f0; color: #474646;}
 .ul-menu li.collection-ok{color: #e04242;}
-
-
