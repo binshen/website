@@ -11,40 +11,43 @@
 </head>
 <body style=" background:#f4f4f4;">
     <div class="g-head">
-        <a href="javascript:history.go(-1);"><i class="am-icon-chevron-left"></i></a>
+         <a href="javascript:history.go(-1);"><i class="am-icon-chevron-left"></i></a>
         房贷计算器
     </div>
     <form id="calc01" name="calc01">
       <div class="flexbox listtab1" style="margin: 10px 0;" id="navMenu">
-<!--  	    <a href="" class="active" onclick="exc_zuhe(this.form, '商业贷');">商业贷</a>
-  	    <a href="" rel="公积金贷"  onclick="exc_zuhe(this.form, '公积金贷');">公积金贷</a>
-  	    <a href="" rel="组合贷"  onclick="exc_zuhe(this.form, '组合贷');">组合贷</a>-->
-		<span class="active"><input name="loanradiotype" type="radio" class="noborder CHECKED" onclick="exc_zuhe(this.form, this.value);" value="1" checked style="display:none" id="sydk"><label for="sydk">商业贷款</label></span>
-		<span><input onclick="exc_zuhe(this.form, this.value);" class="noborder" type="radio" value="2" name="loanradiotype" style="display:none" id="gjjdk"><label for="gjjdk">公积金贷款</label></span>
-		<span><input onclick="exc_zuhe(this.form, this.value);" class="noborder" type="radio" value="3" name="loanradiotype" style="display:none" id="zhxdk"><label for="zhxdk">组合型贷</label>款</span>
-		<input id="type" type="hidden" value="1" name="type">
-		
+<!--        <a href="" class="active" onclick="exc_zuhe(this.form, '商业贷');">商业贷</a>
+        <a href="" rel="公积金贷"  onclick="exc_zuhe(this.form, '公积金贷');">公积金贷</a>
+        <a href="" rel="组合贷"  onclick="exc_zuhe(this.form, '组合贷');">组合贷</a>-->
+    <span class="active"><input name="loanradiotype" type="radio" class="noborder CHECKED" onClick="exc_zuhe(this.form, this.value);" value="1" checked style="display:none" id="sydk"><label for="sydk">商业贷款</label></span>
+    <span><input onClick="exc_zuhe(this.form, this.value);" class="noborder" type="radio" value="2" name="loanradiotype" style="display:none" id="gjjdk"><label for="gjjdk">公积金贷款</label></span>
+    <span><input onClick="exc_zuhe(this.form, this.value);" class="noborder" type="radio" value="3" name="loanradiotype" style="display:none" id="zhxdk"><label for="zhxdk">组合型贷</label>款</span>
+    <input id="type" type="hidden" value="1" name="type">
+    
      </div>
+   
      <ul id="calc01_zuhe" class="calculator" style="DISPLAY: none">
-		<li>
-			<dl class="calculator">
-				<dt>商业性：</dt>
-				<dd>
-					<div class="flexbox">
-						<input type="number" id="zuhesy" class="ipt-text" maxlength="8" size="8" name="total_sy"><i>元</i>
-					</div>
-				</dd>
-			</dl>
-		</li>
-		<li>
-			<dl class="calculator">
-				<dt>公积金：</dt>
-				<dd><div class="flexbox">
-				<input type="number" id="zuhegjj" class="ipt-text" maxlength="8" size="8" name="total_gjj"><i>元</i>
-				</div></dd>
-			<dl>
-		</li>
-	 </ul>
+    <li>
+      <dl class="calculator">
+        <dt>商业性：</dt>
+        <dd>
+          <div class="flexbox">
+            <input type="number" id="zuhesy" class="ipt-text" maxlength="8" size="8" name="total_sy"><i>元</i>
+          </div>
+        </dd>
+      </dl>
+    </li>
+    <li>
+      <dl class="calculator">
+        <dt>公积金：</dt>
+        <dd><div class="flexbox">
+        <input type="number" id="zuhegjj" class="ipt-text" maxlength="8" size="8" name="total_gjj"><i>元</i>
+        </div></dd>
+      <dl>
+    </li>
+   </ul>
+   
+   
      <div id="calc01_ctype" class="syd">
         <div class="mb15" style="padding-left:10px;">选择计算方式:</div>
         <div class="jsfs">
@@ -93,7 +96,7 @@
               </dl>
             </div>
         </div>
-		</div>
+    </div>
         <div class="cal-outer">
           <dl class="calculator">
               <dt>按揭年数:</dt>
@@ -147,19 +150,19 @@
                 <div class="flexbox">
                     <ul>
                       <li id="singlelv_li" style="DISPLAY: block">
-					 	<div class="flexbox">
-                      		<input type="number" id="singlelv" class="red ipt-text" value="5.15"><i>%</i>
-						 </div>
+            <div class="flexbox">
+                          <input type="number" id="singlelv" class="red ipt-text" value="5.15"><i>%</i>
+             </div>
                       <li id="sdlv_li" style="DISPLAY: none">
-					  	商业:
-						  <div class="flexbox">
-							  <input type="number" id="sdlv" class="red ipt-text" value="5.15"><i>%</i>
-						  </div>
-						  <li id="gjlv_li" style="DISPLAY: none">
-						  公积金：
-					  	<div class="flexbox">
-                      	<input type="number" id="gjlv" class="red ipt-text" value="4.5"><i>%</i>
-					  </div>
+              商业:
+              <div class="flexbox">
+                <input type="number" id="sdlv" class="red ipt-text" value="5.15"><i>%</i>
+              </div>
+              <li id="gjlv_li" style="DISPLAY: none">
+              公积金：
+              <div class="flexbox">
+                        <input type="number" id="gjlv" class="red ipt-text" value="4.5"><i>%</i>
+            </div>
                       </li>
                     </ul>
                     <!-- <input id="singlelv" class="red ipt-text" value="6.55"><i>%</i> -->
@@ -177,7 +180,7 @@
           </dl>
         </div>
      <div class="methodbox nob">
-     		<a href="javascript:void(0)" class="btn-cal" id="btnCal" onClick="ext_loantotal(document.calc01)">开始计算</a>
+        <a href="javascript:void(0)" class="btn-cal" id="btnCal" onClick="ext_loantotal(document.calc01)">开始计算</a>
      </div>
      <div>查看结果：</div>
      <ul class="ul-resu">
@@ -212,24 +215,23 @@
             </textarea>元</i>
         </li>
      </ul>
-	 <div id="calc1_benjin" style="DISPLAY: none">
-		<input type="hidden" name="fangkuan_total2">
-		<input type="hidden" name="daikuan_total2">
-		<input type="hidden" name="all_total2">
-		<input type="hidden" name="accrual2">
-		<input type="hidden" name="money_first2">
-		<input type="hidden" name="month2">
-		<input type="hidden" name="month_money2">
-	</div>
+   <div id="calc1_benjin" style="DISPLAY: none">
+    <input type="hidden" name="fangkuan_total2">
+    <input type="hidden" name="daikuan_total2">
+    <input type="hidden" name="all_total2">
+    <input type="hidden" name="accrual2">
+    <input type="hidden" name="money_first2">
+    <input type="hidden" name="month2">
+    <input type="hidden" name="month_money2">
+  </div>
   </form>
-<script type="text/javascript" src="/static/js/jquery.min.js"></script>
-<script type="text/javascript" src="/static/js/rate.js"></script>
-{include file='nav.html'}
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/rate.js"></script>
 <script>
-	$("#navMenu span").click(function(){
-		$("#navMenu span").removeClass("active");
-		$(this).addClass("active");	
-	});
+  $("#navMenu span").click(function(){
+    $("#navMenu span").removeClass("active");
+    $(this).addClass("active"); 
+  });
 </script>
 </body>
 </html>
