@@ -90,7 +90,7 @@ class Sysconfig_model extends MY_Model
 	    	->where('passwd',sha1($this->input->post('password')))->get()->row();
     	if($rs){
     		$data['member_id'] = $rs->id;
-    		$data['member_username'] = $rs->username;
+    		$data['member_username'] = $rs->rel_name;
     		$this->session->set_userdata($data);
     		return 1;
     	}else{
