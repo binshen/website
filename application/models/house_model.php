@@ -1222,8 +1222,8 @@ class House_model extends MY_Model
 	}
 	
 	public function collect_house($uid, $type, $hid) {
-		$collect = $this->db->get_where('house_collect', array('user_id' => $uid, 'user_type' => $type, 'house_id' => $hid))->row_array();
-		if(empty($collect)) {
+		$collected = $this->check_collect_house($uid, $type, $hid);
+		if(!$collected) {
 			$data = array();
 			$data['user_id'] = $uid;
 			$data['user_type'] = $type;
@@ -1232,5 +1232,10 @@ class House_model extends MY_Model
 		} else {
 			return false;
 		}
+	}
+	
+	public function check_collect_house($uid, $type, $hid) {
+		$collect = $this->db->get_where('house_collect', array('user_id' => $uid, 'user_type' => $type, 'house_id' => $hid))->row_array();
+		return empty($collect)?false:true;
 	}
 }

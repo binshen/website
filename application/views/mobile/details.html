@@ -160,8 +160,8 @@
     	});
     	
     	$("#btnCollect").click(function() {
-    		var uid = "1"
-    		var type = "2"
+    		var uid = '{{$user_id}}';
+    		var type = '{{$user_type_id}}';
     		if(uid == "" || type == "") {
     			alert("请先登录系统！");
     		} else {
