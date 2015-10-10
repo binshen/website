@@ -11,11 +11,10 @@
 </head>
 <body>
     <div class="g-head">
-       	{{if !empty($username) }}
-       		<span class="am-icon-txt">欢迎{{$username}} <a href="/m_manage">管理</a>&nbsp;<a href="/m_login/logout">退出</a></span>
-       	{{else}}
+		<!--  
+       		<span class="am-icon-txt">欢迎XXX <a href="/m_manage">管理</a>&nbsp;<a href="/m_login/logout">退出</a></span>
        		<a href="/m_login/"><span class="am-icon-user"></span></a>
-       	{{/if}}
+		-->
         <a href="#" class="logo"></a>
     </div>
     <div class="g-doc">
@@ -49,7 +48,9 @@
     </div>
      <div class="pageRightMenu">
         <span class="menu-button top-button" id="amz-go-top"><i class="am-icon-chevron-up"></i></span>
+        {{if !empty($username) }}
         <a href="/m_manage"><span class="menu-button"><i class="am-icon-user"></i></span></a>
+        {{/if}}
     </div>
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/jquery.scrollLoading.js"></script>
