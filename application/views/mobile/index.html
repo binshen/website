@@ -12,7 +12,7 @@
 <body>
     <div class="g-head">
        	{{if !empty($username) }}
-       		<span class="am-icon-txt">欢迎 {{$username}} <a href="/m_login/logout">退出</a></span>
+       		<span class="am-icon-txt">欢迎{{$username}} <a href="/m_manage">管理</a>&nbsp;<a href="/m_login/logout">退出</a></span>
        	{{else}}
        		<a href="/m_login/"><span class="am-icon-user"></span></a>
        	{{/if}}

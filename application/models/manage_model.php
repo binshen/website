@@ -54,7 +54,7 @@ class Manage_model extends MY_Model
         		$user_info['user_id'] = $res->id;
         		$user_info['username'] = $this->input->post('username');
         		$user_info['group_id'] = 3;
-        		$user_info['username'] = $res->username;
+        		$user_info['rel_name'] = $res->username;
         		$this->session->set_userdata($user_info);
         		return true;
         	}else{
