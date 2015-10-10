@@ -244,6 +244,7 @@ body{background-color:#fff;}
 .ul-menu li .i-num{width: 20px; height: 20px; border-radius:10px; background:#e04242; display: block; font-size: 14px; text-align: center; line-height: 20px; position:absolute; top:2px; right: 0; }
 
 .jCompareBtn{border-radius: 3px; width: 80px; text-align: center;padding:3px 0; position: absolute; top:50px; right: 40px; display: block; background: #eb4e3b; color: #fff;}
+.jCompareBtn:link,.jCompareBtn:visited,.jCompareBtn:hover,.jCompareBtn:active{background: #eb4e3b;}
 .jCompareBtn em{transform:;}
 .compare{ position: absolute; top:-150px;background:rgba(0,0,0,0.8); padding:10px 20px 10px 0; border-radius: 5px; display: none; width:304px; height: 121px; }
 
