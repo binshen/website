@@ -41,6 +41,34 @@
 			
 			<!-- 专题对应房源 -->
 			
+			<fieldset>
+			<div class="button"><a href="<?php echo site_url('manage/list_sd_house_dialog');?>" target="dialog"><div class="buttonContent"><button type="button">添加房源</button></div></a></div>
+				<table class="list nowrap" width="100%" >
+					<thead>
+						<tr>
+							<th type="text" width="80" name="month[]"  fieldClass="required" size="30">月份</th>
+							<th type="file_class" name="price[]" fieldClass="required" size="10" >价格</th>
+							<th type="del" width="30">操作</th>
+						</tr>
+					</thead>
+					<tbody class="tbody" id="file_list">
+						<?php if(!empty($list)): 
+								foreach($list as $k=>$v):
+						?>
+						<tr class="unitBox" id="<?php echo "olda".$v->id;?>">
+							<td><input type="text" class="required" size='30' name="month[]" value="<?php echo $v->month?>"></td>
+							<td><input type="text" class="required" size='10' name="price[]" value="<?php echo $v->price?>"></td>
+							<td><a class="btnDel" href="javascript:$('#olda<?php echo $v->id;?>').remove();void(0);"><span>删除</span></a></td>
+						</tr>
+						<?php 
+								endforeach;
+							endif;
+								
+						?>
+					</tbody>
+				</table>
+			</fieldset>
+			
         </div>
         <div class="formBar">
     		<ul>

@@ -56,3 +56,9 @@
 		<div class="pagination" targetType="navTab" totalCount="<?php echo $countPage;?>" numPerPage="<?php echo $numPerPage;?>" pageNumShown="10" currentPage="<?php echo $pageNum;?>"></div>
 	</div>
 </div>
+<script>
+function test(){
+	alert('fffffff');
+}
+
+</script>

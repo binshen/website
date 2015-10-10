@@ -286,6 +286,11 @@ class Manage extends MY_Controller {
 		$this->load->view('manage/list_sd_house.php', $data);
 	}
 	
+	public function list_sd_house_dialog() {
+		$data = $this->manage_model->list_sd_house();
+		$this->load->view('manage/list_sd_house_dialog.php', $data);
+	}
+	
 	public function add_sd_house() {
 		$data['feature_list'] = $this->manage_model->get_feature();
 		$data['style_list'] = $this->manage_model->get_style_list();
