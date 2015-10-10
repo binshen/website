@@ -161,11 +161,10 @@
     	
     	$("#btnCollect").click(function() {
     		var uid = '{{$user_id}}';
-    		var type = '{{$user_type_id}}';
-    		if(uid == "" || type == "") {
+    		if(uid == "") {
     			alert("请先登录系统！");
     		} else {
-    			$.post('/m_house/collect/', { uid:uid, type:type, hid:'{{$house.id}}'}, function(data) {
+    			$.post('/m_house/collect/', { uid:uid, hid:'{{$house.id}}'}, function(data) {
     				if(data) {
     					alert("收藏成功!");
     					$('#btnCollect').addClass('collection-ok');

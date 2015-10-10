@@ -160,11 +160,9 @@ class M_house extends MY_Controller {
 		$this->assign('house', $house);
 		
 		$user_id = $this->session->userdata('user_id');
-		$user_type_id = $this->session->userdata('user_type_id');
 		$this->assign('user_id', $user_id);
-		$this->assign('user_type_id', $user_type_id);
 		
-		$collected = $this->house_model->check_collect_house($user_id, $user_type_id, $hid);
+		$collected = $this->house_model->check_collect_house($user_id, $hid);
 		$this->assign('collected', $collected);
 		
 		$this->display('mobile/details.html');
