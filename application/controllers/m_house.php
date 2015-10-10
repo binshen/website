@@ -175,7 +175,7 @@ class M_house extends MY_Controller {
 		echo $this->house_model->collect_house($uid, $type, $hid);
 	}
 	
-	public function compare($hid1, $hid2, $term_id) {
+	public function compare($hid1, $hid2, $term_id=NULL) {
 		$this->assign('term_id', $term_id);
 // 		$term = $this->house_model->get_m_term($term_id);
 // 		$this->assign('term_name', $term['name']);

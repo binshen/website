@@ -11,7 +11,11 @@
 </head>
 <body>
     <div class="g-head">
-        <a href="/m_house/view_list/{{$term_id}}"><i class="am-icon-chevron-left"></i></a>
+	    {{if $term_id}}
+	        <a href="/m_house/view_list/{{$term_id}}"><i class="am-icon-chevron-left"></i></a>
+	     {{else}}
+	     	<a href="javascript:history.go(-1);"><i class="am-icon-chevron-left"></i></a>
+	     {{/if}}
                      对比工具
     </div>
     <div class="contrast-top">
