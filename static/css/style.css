@@ -216,7 +216,7 @@ body{background-color:#fff;}
 .d-dl dt{float: left;}.d-dl dd,.d-dl-map dd{ color: #999;}
 .d-dl-map dt{clear: left; font-size: 18px;}
 
-.d-house-info{}
+.d-dl-map dt.traffic-dt{ width:100px; height: 34px; background:#37bbd1; color:#fff; text-align: center; line-height: 34px; margin-bottom: 10px; }
 
 .touxiang{width: 80px; float: left;margin-right: 10px;}
 
