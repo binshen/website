@@ -121,9 +121,11 @@ var mapCommAddress = "";
             房源图片
         </div>
         <div class="house-d-by">
+        	<div class="house-d-by-imgs">
             {{foreach from=$house.house_pics_all key=key item=item}}
             	<img src="{{$base_url}}/uploadfiles/pics/{{$house.folder}}/1/{{$item.pic}}" style="padding-bottom:10px;"/>
     		{{/foreach}}
+            </div>
         </div>
         <div class="house-d-title" id="house_map_area">
             小区地图
