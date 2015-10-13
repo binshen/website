@@ -256,7 +256,7 @@
     	</fieldset>
         
         <fieldset>
-    	    <legend>效果图</legend>
+    	    <legend>效果图(包含户型图，室内图，外景图等)</legend>
     	    <dl class="nowrap">
     	    	<dt>
     	    		<?php if(empty($folder)):?>
