@@ -288,6 +288,7 @@ class Manage extends MY_Controller {
 	
 	public function list_sd_house_dialog($term_id) {
 		$data = $this->manage_model->list_sd_house($term_id);
+		$data['term_id'] = $term_id;
 		$this->load->view('manage/list_sd_house_dialog.php', $data);
 	}
 	

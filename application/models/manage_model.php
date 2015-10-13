@@ -864,7 +864,7 @@ class Manage_model extends MY_Model
 		//总记录数
 		$data['countPage'] = $rs_total->num;
 	
-		$data['rel_name'] = null;
+		$data['name'] = null;
 		//list
 		$this->db->select('a.*, b.name AS region_name, c.name AS style_name, d.name AS orientation_name, e.name AS decoration_name, f.name AS xiaoqu_name');
 		$this->db->from('house a');
@@ -875,7 +875,7 @@ class Manage_model extends MY_Model
 		$this->db->join('xiaoqu f', 'a.xq_id = f.id', 'left');
 		if($this->input->post('name')){
 			$this->db->like('a.name',$this->input->post('name'));
-			$data['rel_name'] = $this->input->post('name');
+			$data['name'] = $this->input->post('name');
 		}
 		$this->db->where('type_id', 2);
 		if($this->session->userdata('group_id') == 2) {

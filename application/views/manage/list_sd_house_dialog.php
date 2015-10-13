@@ -1,15 +1,15 @@
-<form id="pagerForm" method="post" action="<?php echo site_url('manage/list_sd_house_dialog')?>">
+<form id="pagerForm" method="post" action="<?php echo site_url('manage/list_sd_house_dialog').'/'.$term_id?>">
 	<input type="hidden" name="pageNum" value="<?php echo $pageNum;?>" />
 	<input type="hidden" name="numPerPage" value="<?php echo $numPerPage;?>" />
 	<input type="hidden" name="orderField" value="<?php echo $this->input->post('orderField');?>" />
 	<input type="hidden" name="orderDirection" value="<?php echo $this->input->post('orderDirection');?>" />
 </form>
 <div class="pageHeader" id="dialog">
-	<form onsubmit="return dialogSearch(this);" action="<?php echo site_url('manage/list_sd_house_dialog')?>" method="post">
+	<form onsubmit="return dialogSearch(this);" action="<?php echo site_url('manage/list_sd_house_dialog').'/'.$term_id?>" method="post">
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
-				<td><label>标题：</label><input type="text" size="16" name="name" value="" /></td>
+				<td><label>标题：</label><input type="text" size="16" name="name" value="<?php echo $name;?>" /></td>
 			</tr>
 		</table>
 		<div class="subBar">
@@ -65,7 +65,7 @@
 			</select>
 			<span>条，共<?php  echo $countPage;?>条</span>
 		</div>		
-		<div class="pagination" targetType="dialog	" totalCount="<?php echo $countPage;?>" numPerPage="<?php echo $numPerPage;?>" pageNumShown="10" currentPage="<?php echo $pageNum;?>"></div>
+		<div class="pagination" targetType="dialog" totalCount="<?php echo $countPage;?>" numPerPage="<?php echo $numPerPage;?>" pageNumShown="10" currentPage="<?php echo $pageNum;?>"></div>
 	</div>
 	<div class="formBar">
     		<ul>
