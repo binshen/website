@@ -38,6 +38,11 @@
                   <td class="error-tip">! 请确认密码</td>
               </tr>
               <tr>
+                  <th width="105"><em class="red">*</em> 手机号:</th>
+                  <td width="265"><input class="reg-input reg-name" name="tel" type="text" /></td>
+                  <td class="error-tip">! 请填写手机号</td>
+              </tr>
+              <tr>
                   <th><em class="red">*</em> 验证码:</th>
                   <td colspan="2"><input class="reg-input reg-verifi-code" type="text" name="captcha" /><span class="show-code"></span><span>看不清？<a href="javascript:get_captcha();" class="change-next-a">换一张</a></span></td>
               </tr>
@@ -100,7 +105,10 @@ function check_input(){
 		alert('两次输入的密码不一致，请重新输入');
 		return false;
 	}
-	
+	if(!$("[name='tel']").val()){
+		alert('请输入手机号');
+		return false;
+	}
 	if(!$("[name='captcha']").val()){
 		alert('请输入验证码');
 		return false;

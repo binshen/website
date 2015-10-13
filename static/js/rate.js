@@ -1,6 +1,4 @@
 
-
-
 // JavaScript Document
 	var lilv_array = new Array;
 	
@@ -8,77 +6,64 @@
 	lilv_array[1] = new Array;
 	lilv_array[1][1] = new Array;
 	lilv_array[1][2] = new Array;
-	lilv_array[1][1][1] = 0.0600;//商贷1年 6%
-	lilv_array[1][1][3] = 0.0515;//商贷1～3年 6.15%
-	lilv_array[1][1][5] = 0.0640;//商贷 3～5年 6.4%
+	lilv_array[1][1][1] = 0.0515;//商贷1年 6%
+	lilv_array[1][1][3] = 0.0515;//商贷1～3年5.15%
+	lilv_array[1][1][5] = 0.0515;//商贷 3～5年 6.4%
 	lilv_array[1][1][10] = 0.0515;//商贷 5-30年 5.15%
-	lilv_array[1][2][5] = 0.0400;//公积金 1～5年 4%
-	lilv_array[1][2][10] = 0.0450;//公积金 5-30年 4.5%
+	lilv_array[1][2][5] = 0.0325;//公积金 1～5年 4%
+	lilv_array[1][2][10] = 0.0325;//公积金 5-30年 4.5%
 	//2014年1月1日利率下限（7折）
 	lilv_array[2] = new Array;
 	lilv_array[2][1] = new Array;
 	lilv_array[2][2] = new Array;
-	lilv_array[2][1][1] = 0.042;//商贷1年 4.2%
-	lilv_array[2][1][3] = 0.04305;//商贷1～3年 4.305%
-	lilv_array[2][1][5] = 0.0448;//商贷 3～5年 4.48%
-	lilv_array[2][1][10] = 0.04585;//商贷 5-30年 4.585%
-	lilv_array[2][2][5] = 0.0400;//公积金 1～5年 4%
-	lilv_array[2][2][10] = 0.0450;//公积金 5-30年 4.5%
+	lilv_array[2][1][1] = 0.036;//商贷1年 4.2%
+	lilv_array[2][1][3] = 0.036;//商贷1～3年 4.305%
+	lilv_array[2][1][5] = 0.036;//商贷 3～5年 4.48%
+	lilv_array[2][1][10] = 0.036;//商贷 5-30年 4.585%
+	lilv_array[2][2][5] = 0.0227;//公积金 1～5年 4%
+	lilv_array[2][2][10] = 0.0227;//公积金 5-30年 4.5%
 	//2014年1月1日利率下限（85折）
 	lilv_array[3] = new Array;
 	lilv_array[3][1] = new Array;
 	lilv_array[3][2] = new Array;
-	lilv_array[3][1][1] = 0.051;//商贷1年 5.1%
-	lilv_array[3][1][3] = 0.052275;//商贷1～3年 5.2275%
-	lilv_array[3][1][5] = 0.0544;//商贷 3～5年 5.44%
-	lilv_array[3][1][10] = 0.055675;//商贷 5-30年 5.5675%
-	lilv_array[3][2][5] = 0.0400;//公积金 1～5年 4%
-	lilv_array[3][2][10] = 0.0450;//公积金 5-30年 4.5%
+	lilv_array[3][1][1] = 0.0437;//商贷1年 5.1%
+	lilv_array[3][1][3] = 0.0437;//商贷1～3年 5.2275%
+	lilv_array[3][1][5] = 0.0437;//商贷 3～5年 5.44%
+	lilv_array[3][1][10] = 0.0437;//商贷 5-30年 5.5675%
+	lilv_array[3][2][5] = 0.0276;//公积金 1～5年 4%
+	lilv_array[3][2][10] = 0.0276;//公积金 5-30年 4.5%
 	//2014年1月1日利率上限（1.1倍）
 	lilv_array[4] = new Array;
 	lilv_array[4][1] = new Array;
 	lilv_array[4][2] = new Array;
-	lilv_array[4][1][1] = 0.066;//商贷1年 6.6%
-	lilv_array[4][1][3] = 0.06765;//商贷1～3年 6.765%
-	lilv_array[4][1][5] = 0.0704;//商贷 3～5年 7.04%
-	lilv_array[4][1][10] = 0.07205;//商贷 5-30年 7.205%
-	lilv_array[4][2][5] = 0.0400;//公积金 1～5年 4%
-	lilv_array[4][2][10] = 0.0450;//公积金 5-30年 4.5%
+	lilv_array[4][1][1] = 0.0566;//商贷1年 6.6%
+	lilv_array[4][1][3] = 0.0566;//商贷1～3年 6.765%
+	lilv_array[4][1][5] = 0.0566;//商贷 3～5年 7.04%
+	lilv_array[4][1][10] = 0.0566;//商贷 5-30年 7.205%
+	lilv_array[4][2][5] = 0.0357;//公积金 1～5年 4%
+	lilv_array[4][2][10] = 0.0357;//公积金 5-30年 4.5%
 	//2014年1月1日利率上限（1.05倍）
 	lilv_array[5] = new Array;
 	lilv_array[5][1] = new Array;
 	lilv_array[5][2] = new Array;
-	lilv_array[5][1][1] = 0.063;//商贷1年 6.3%
-	lilv_array[5][1][3] = 0.064575;//商贷1～3年 6.4575%
-	lilv_array[5][1][5] = 0.0672;//商贷 3～5年 6.72%
-	lilv_array[5][1][10] = 0.068775;//商贷 5-30年6.8775%
-	lilv_array[5][2][5] = 0.0400;//公积金 1～5年 4%
-	lilv_array[5][2][10] = 0.0450;//公积金 5-30年 4.5%
-	function exc_zuhe(fmobj, v) {
-	   if (fmobj.name == "calc01") {
+	lilv_array[5][1][1] = 0.0541;//商贷1年 6.3%
+	lilv_array[5][1][3] = 0.0541;//商贷1～3年 6.4575%
+	lilv_array[5][1][5] = 0.0541;//商贷 3～5年 6.72%
+	lilv_array[5][1][10] = 0.0541;//商贷 5-30年6.8775%
+	lilv_array[5][2][5] = 0.0341;//公积金 1～5年 4%
+	lilv_array[5][2][10] = 0.0341;//公积金 5-30年 4.5%
+	function exc_zuhe(v) {
 		   if (v == 3) {
 			   document.getElementById("calc01_zuhe").style.display = '';
-			   //document.getElementById("calc01_zuhe1").style.display = '';
-			   //document.getElementById("calc01_zuhe2").style.display = '';
 			   document.getElementById("calc01_ctype").style.display = 'none';
-			   //document.getElementById("calc01_ctype1").style.display = 'none';
-			   //document.getElementById("calc01_ctype2").style.display = 'none';
-			   //document.getElementById("calc01_ctype3").style.display = 'none';
-			   //document.getElementById("calc01_ctype4").style.display = 'none';
-			   //document.getElementById("calc01_ctype5").style.display = 'none';
 			   document.getElementById("singlelv_li").style.display = "none";
 			   document.getElementById("sdlv_li").style.display = '';
 			   document.getElementById("gjlv_li").style.display = '';
-			   fmobj.loanradiotype[2].checked = true;
+			   document.getElementById("calc01").loanradiotype[2].checked = true;
 		   
 		   } else {
 			   document.getElementById("calc01_zuhe").style.display = 'none';
-			   //document.getElementById("calc01_zuhe1").style.display = 'none';
-			   //document.getElementById("calc01_zuhe2").style.display = 'none';
 			   document.getElementById("calc01_ctype").style.display = '';
-			   //document.getElementById("calc01_ctype1").style.display = '';
-			   //document.getElementById("calc01_ctype2").style.display = '';
-			   //document.getElementById("calc01_ctype3").style.display = '';
 			   document.getElementById("calc1_js_div1").style.display = '';
 			   document.getElementById("calc1_js_div2").style.display = 'none';
 			   document.getElementById("sdlv_li").style.display = 'none';
@@ -86,13 +71,12 @@
 			   document.getElementById("singlelv_li").style.display = '';
 			   if (v == 1) {
 				   document.getElementById("singlelv").value = document.getElementById("sdlv").value;
-				   fmobj.loanradiotype[0].checked = true;
+				   document.getElementById("calc01").loanradiotype[0].checked = true;
 			   } else {
 				   document.getElementById("singlelv").value = document.getElementById("gjlv").value;
-				   fmobj.loanradiotype[1].checked = true;				   
+				   document.getElementById("calc01").loanradiotype[1].checked = true;				   
 			   }
 		   }
-	   }
 	}
 	function exc_js(fmobj, v) {
 	   if (fmobj.name == "calc01") {

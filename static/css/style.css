@@ -338,7 +338,8 @@ background: -o-gradient(linear, 0 0, 0 100%, from(#ff6600), to(#e04141));backgro
 .listtab1 span{padding: 5px 0; display: block; box-flex:1;-webkit-box-flex:1; text-align: center;}
 .listtab1 span.active{ color:#ff6600; border-bottom: 2px solid #ff6600; }
 .cal-outer{box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box; width: 100%;margin-bottom:25px; overflow:hidden}
-.calculator{display: table;-webkit-display: table;-moz-display: table; -ms-display: table; line-height: 32px; border-top:1px solid #f4f4f4;background: #fff; font-size: 16px;padding:6px 10px; width:100%;}
+.calculator{display: table;-webkit-display: table;-moz-display: table; -ms-display: table; line-height: 32px; border-top:1px solid #f4f4f4;background: #fff; font-size: 16px;padding:6px 10px; width:100%;
+-webkit-box-sizing:border-box;box-sizing:border-box;}
 .calculator dt{ display: table-cell; vertical-align: top; width:25%;}
 
 .cal-tbody{background: #fff;}
