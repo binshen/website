@@ -63,6 +63,7 @@ class Sysconfig_model extends MY_Model
 			'username'=>$this->input->post('username'),
 			'passwd'=>sha1($this->input->post('password')),
 			'rel_name'=>$this->input->post('username'),
+			'tel'=>$this->input->post('tel'),
 			'admin_group'=>3
 		);
 		$res = $this->db->insert('admin',$data);
