@@ -42,7 +42,7 @@
 			<!-- 专题对应房源 -->
 			
 			<fieldset>
-			<div class="button"><a href="<?php echo site_url('manage/list_sd_house_dialog').'/'.$id;?>" target="dialog"><div class="buttonContent"><button type="button">添加房源</button></div></a></div>
+			<div class="button"><a href="<?php echo site_url('manage/list_sd_house_dialog').'/'.$id;?>" target="dialog" width="800" height="480"><div class="buttonContent"><button type="button">添加房源</button></div></a></div>
 				<table class="list nowrap" width="100%" >
 					<thead>
 						<tr>
