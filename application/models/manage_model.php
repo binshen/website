@@ -845,7 +845,7 @@ class Manage_model extends MY_Model
 	/**
 	 * 二手房信息
 	 */
-	public function list_sd_house(){
+	public function list_sd_house($term_id){
 		// 每页显示的记录条数，默认20条
 		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
 		$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
@@ -880,6 +880,11 @@ class Manage_model extends MY_Model
 		$this->db->where('type_id', 2);
 		if($this->session->userdata('group_id') == 2) {
 			$this->db->where('broker_id', $this->session->userdata('user_id'));
+		}
+		
+		if($term_id){
+			$where = "(a.id not in (select house_id from term_house where term_id = ".$term_id."))";
+			$this->db->where($where);
 		}
 		
 		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
@@ -1431,6 +1436,22 @@ class Manage_model extends MY_Model
 	public function get_term($id){
 		$this->db->from('term a')->where('id', $id);
 		$data = $this->db->get()->row_array();
+		
+		$data['list'] = $this->db->select('a.*,b.name house_name')->from('term_house a')->join('house b','a.house_id=b.id','left')->where('a.term_id',$id)->get()->result();
 		return $data;
+	}
+	
+	public function add_term_house($term_id,$house_id){
+		$data = array(
+				'term_id'=>$term_id,
+				'house_id'=>$house_id
+		);
+		return $this->db->insert('term_house',$data);
+	}
+	
+	public function del_term_house($term_id,$house_id){
+		$this->db->where('term_id',$term_id);
+		$this->db->where('house_id',$house_id);
+		return $this->db->delete('term_house');
 	}
 }

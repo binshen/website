@@ -28,7 +28,7 @@
 		<ul class="toolBar">
 			<li><a class="add" href="<?php echo site_url('manage/add_term')?>" target="navTab" rel="add_term" title="新建"><span>新建</span></a></li>
 			<li><a class="delete" href="<?php echo site_url('manage/delete_term')?>/{id}" target="ajaxTodo"  title="确定要删除？" warn="请选择一条记录"><span>删除</span></a></li>
-			<li><a class="edit" href="<?php echo site_url('manage/edit_term/{id}')?>" target="navTab" rel="add_term" warn="请选择一条记录" title="查看"><span>查看</span></a></li>
+			<li><a class="edit" href="<?php echo site_url('manage/edit_term/{id}')?>" target="navTab" rel="add_term" warn="请选择一条记录" title="查看"><span>添加房源</span></a></li>
 		</ul>
 	</div>
 

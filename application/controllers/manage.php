@@ -286,8 +286,8 @@ class Manage extends MY_Controller {
 		$this->load->view('manage/list_sd_house.php', $data);
 	}
 	
-	public function list_sd_house_dialog() {
-		$data = $this->manage_model->list_sd_house();
+	public function list_sd_house_dialog($term_id) {
+		$data = $this->manage_model->list_sd_house($term_id);
 		$this->load->view('manage/list_sd_house_dialog.php', $data);
 	}
 	
@@ -833,7 +833,7 @@ class Manage extends MY_Controller {
 	
 	public function edit_term($id){
 		$data = $this->manage_model->get_term($id);
-		$this->load->view('manage/add_term.php',$data);
+		$this->load->view('manage/edit_term.php',$data);
 	}
 	
 	public function save_term(){
@@ -872,5 +872,21 @@ class Manage extends MY_Controller {
 		} else {
 			form_submit_json("300", $rs);
 		}
+	}
+	
+	public function add_term_house($term_id,$house_id){
+		$rs = $this->manage_model->add_term_house($term_id,$house_id);
+		if($rs)
+			echo '1';
+		else
+			echo '-1';
+	}
+	
+	public function del_term_house($term_id,$house_id){
+		$rs = $this->manage_model->del_term_house($term_id,$house_id);
+		if($rs)
+			echo '1';
+		else
+			echo '-1';
 	}
 }
