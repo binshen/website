@@ -36,7 +36,14 @@
         	    <dl class="nowrap">
         			<dt>图片预览：</dt>
         			<dd id="img"><?php if(!empty($pic)):?><img height="100px" src="<?php echo base_url().'uploadfiles/term/'.$pic;?>" /><?php endif;?></dd>
-        		</dl>     	
+        		</dl>
+        		<dl class="nowrap">
+        			<dt>是否推荐：</dt>
+        			<dd><select class="combox" name='is_top'>
+        			<option value="-1" <?php if(!empty($is_top) && $is_top == '-1') echo 'selected="selected";'?>>否</option>
+        			<option value="1" <?php if(!empty($is_top) && $is_top == '1') echo 'selected="selected";'?>>是</option>
+        			</select></dd>
+        		</dl>      	
         	</fieldset>
 			
 			<!-- 专题对应房源 -->
