@@ -845,7 +845,7 @@ class Manage_model extends MY_Model
 	/**
 	 * 二手房信息
 	 */
-	public function list_sd_house($term_id){
+	public function list_sd_house($term_id = NULL){
 		// 每页显示的记录条数，默认20条
 		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
 		$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
