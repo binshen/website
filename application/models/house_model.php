@@ -996,7 +996,7 @@ class House_model extends MY_Model
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public function get_m_index() {
-		return $this->db->get('term')->order_by('is_top', 'desc')->result_array();
+		return $this->db->order_by('is_top', 'desc')->get('term')->result_array();
 	}
 	
 	public function get_m_house_region() {
