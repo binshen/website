@@ -42,7 +42,10 @@ class Manage_model extends MY_Model
             $user_info['username'] = $this->input->post('username');
             $user_info['group_id'] = $res->admin_group;
             $user_info['rel_name'] = $res->rel_name;
-            $user_info['user_type_id'] = 1;
+            //$user_info['user_type_id'] = 1;
+            $user_info['manager_group'] = $res->manager_group;
+            $user_info['company_id'] = $res->company_id;
+            $user_info['subsidiary_id'] = $res->subsidiary_id;
             $this->session->set_userdata($user_info);
             return true;
         } else {
@@ -409,6 +412,12 @@ class Manage_model extends MY_Model
 		$this->db->from('admin');
 		if($this->input->post('rel_name'))
 			$this->db->like('rel_name',$this->input->post('rel_name'));
+		if($this->session->userdata('manager_group') == 1) {
+			$this->db->where('company_id', $this->session->userdata('company_id'));
+		} else if($this->session->userdata('manager_group') == 2) {
+			$this->db->where('company_id', $this->session->userdata('company_id'));
+			$this->db->where('subsidiary_id', $this->session->userdata('subsidiary_id'));
+		}
 		$this->db->where('id >', 1);
 	
 		$rs_total = $this->db->get()->row();
@@ -423,6 +432,12 @@ class Manage_model extends MY_Model
 		if($this->input->post('rel_name')){
 			$this->db->like('a.rel_name',$this->input->post('rel_name'));
 			$data['rel_name'] = $this->input->post('rel_name');
+		}
+		if($this->session->userdata('manager_group') == 1) {
+			$this->db->where('company_id', $this->session->userdata('company_id'));
+		} else if($this->session->userdata('manager_group') == 2) {
+			$this->db->where('company_id', $this->session->userdata('company_id'));
+			$this->db->where('subsidiary_id', $this->session->userdata('subsidiary_id'));
 		}
 		$this->db->where('a.id >', 1);
 		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
@@ -1235,13 +1250,23 @@ class Manage_model extends MY_Model
 		//获得总记录数
 		$this->db->select('count(1) as num');
 		$this->db->from('company');
-	
+		if($this->session->userdata('manager_group') == 1) {
+			$this->db->where('id', $this->session->userdata('company_id'));
+		} else if($this->session->userdata('manager_group') == 2) {
+			$this->db->where('id', -1);
+		}
+		
 		$rs_total = $this->db->get()->row();
 		//总记录数
 		$data['countPage'] = $rs_total->num;
 	
 		//list
 		$this->db->select('*')->from('company');
+		if($this->session->userdata('manager_group') == 1) {
+			$this->db->where('id', $this->session->userdata('company_id'));
+		} else if($this->session->userdata('manager_group') == 2) {
+			$this->db->where('id', -1);
+		}
 		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
 		$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
 		$data['res_list'] = $this->db->get()->result();
@@ -1293,7 +1318,12 @@ class Manage_model extends MY_Model
 		//获得总记录数
 		$this->db->select('count(1) as num');
 		$this->db->from('subsidiary');
-	
+		if($this->session->userdata('manager_group') == 1) {
+			$this->db->where('company_id', $this->session->userdata('company_id'));
+		} else if($this->session->userdata('manager_group') == 2) {
+			$this->db->where('id', $this->session->userdata('subsidiary_id'));
+		}
+		
 		$rs_total = $this->db->get()->row();
 		//总记录数
 		$data['countPage'] = $rs_total->num;
@@ -1302,6 +1332,11 @@ class Manage_model extends MY_Model
 		$this->db->select('a.*, b.name AS company_name');
 		$this->db->from('subsidiary a');
 		$this->db->join('company b', 'a.company_id = b.id', 'left');
+		if($this->session->userdata('manager_group') == 1) {
+			$this->db->where('a.company_id', $this->session->userdata('company_id'));
+		} else if($this->session->userdata('manager_group') == 2) {
+			$this->db->where('a.id', $this->session->userdata('subsidiary_id'));
+		}
 		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
 		$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'a.id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
 		$data['res_list'] = $this->db->get()->result();
