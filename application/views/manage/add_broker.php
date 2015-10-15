@@ -36,6 +36,9 @@
 				            	endif;
 				            ?>
         				</select>
+        				&nbsp;&nbsp;
+        				<input type="checkbox" value="1" name="manager_1" id="manager_1" onclick="click_manager(1,2)" <?php if ($manager_group == 1){ ?>checked<?php } ?>>
+        				<label for="manager_1" style="float:none" onclick="click_manager(1,2)">总店管理员</label>
         			</dd>
         		</dl>
         		<dl>
@@ -53,6 +56,9 @@
 				            	endif;
 				            ?>
         				</select>
+        				&nbsp;&nbsp;
+        				<input type="checkbox" value="2" name="manager_2" id="manager_2" onclick="click_manager(2,1)" <?php if ($manager_group == 2){ ?>checked<?php } ?>>
+        				<label for="manager_2" style="float:none" onclick="click_manager(2,1)">分店管理员</label>
         			</dd>
         		</dl>
         		<dl>
@@ -91,5 +97,11 @@
 <script>
 function save_broker() {
 	
+}
+
+function click_manager(i,j) {
+	if($("#manager_" + i).prop("checked")) {
+		$("#manager_" + j).prop("checked", false);
+	}
 }
 </script>

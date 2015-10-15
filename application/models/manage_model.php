@@ -434,6 +434,12 @@ class Manage_model extends MY_Model
 	}
 
 	public function save_broker() {
+		$manager_group = 0;
+		if($this->input->post('manager_1')) {
+			$manager_group = 1;
+		} else if($this->input->post('manager_2')) {
+			$manager_group = 2;
+		}
 		$data = array(
 			'username' => $this->input->post('tel'),
 			'passwd' => sha1('888888'),
@@ -443,7 +449,8 @@ class Manage_model extends MY_Model
 			'rel_name' => $this->input->post('rel_name'),
 			'region_id' => $this->input->post('region_id'),
 			'house_count' => $this->input->post('house_count'),
-			'admin_group' => 2
+			'admin_group' => 2,
+			'manager_group' => $manager_group
 		);
 		
 		$res = $this->db->select('house_count,broker_count')->from('subsidiary')->where('id',$this->input->post('subsidiary_id'))->get()->row();
