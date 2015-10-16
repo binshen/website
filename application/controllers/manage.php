@@ -65,6 +65,15 @@ class Manage extends MY_Controller {
 		$this->load->view('manage/add_new_house.php',$data);
 	}
 	
+	public function delete_new_house($id){
+		$rs = $this->manage_model->delete_new_house($id);
+		if($rs === 1){
+			form_submit_json("200", "操作成功", "list_new_house", "", "");
+		}else{
+			form_submit_json("300", $rs);
+		}
+	}
+	
 	//$flag如果存在则是选择户型
 	public function add_pics($time,$type_id,$flag=null){
 		$data['time'] = $time;
