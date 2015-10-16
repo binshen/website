@@ -45,7 +45,7 @@
 
 .detail-tel{margin-bottom: 5px; background: #efeeee;padding:20px 130px 20px 25px;line-height: 35px; height: 35px; overflow:hidden;width:400px; }
 .tel-icon{ width: 40px;height: 35px; float: left; background: url(../images/icon3_1.png) no-repeat 0 -265px;}
-.tel-txt{ font-size: 26px; color: #ff4f12; padding-left:18px; font-weight:bold;}
+.tel-txt{ font-size: 22px; color: #ff4f12; padding-left:15px; font-weight:bold;}
 .appoint{ width: 75px; height: 30px;line-height: 30px;border-radius: 5px; float: right; }
 .p-tips{margin-bottom:20px; font-size: 12px; color: #ff6600;}
 .other-dl1{width:420px;}
@@ -97,3 +97,4 @@
 
 .subscribe-style{margin:0 10px 20px; padding:10px; background: #f3f3f3;}
 .subscribe-style label{margin-right: 20px;}
+
