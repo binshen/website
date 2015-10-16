@@ -155,16 +155,22 @@ $(function(){
 							</ul>
 						</div>
 					<?php elseif($this->session->userdata('group_id') == 2): ?>
-						<!--
-						<div class="accordionHeader">
-							<h2><span>Folder</span>经纪人管理</h2>
-						</div>
-						<div class="accordionContent">
-							<ul class="tree">
-								<li><a href="<?php echo site_url('manage/list_broker');?>" target="navTab" rel="list_broker">经纪人列表</a></li>
-							</ul>
-						</div>
-						-->
+						
+						<?php if($this->session->userdata('manager_group') > 0): ?>
+							<div class="accordionHeader">
+								<h2><span>Folder</span>经纪人管理</h2>
+							</div>
+							<div class="accordionContent">
+								<ul class="tree">
+									<?php if($this->session->userdata('manager_group') == 1): ?>
+										<li><a href="<?php echo site_url('manage/list_company');?>" target="navTab" rel="list_company">公司管理</a></li>
+									<?php endif; ?>
+									<li><a href="<?php echo site_url('manage/list_subsidiary');?>" target="navTab" rel="list_subsidiary">分店管理</a></li>
+									<li><a href="<?php echo site_url('manage/list_broker');?>" target="navTab" rel="list_broker">经纪人列表</a></li>
+								</ul>
+							</div>
+						<?php endif; ?>
+						
 						<div class="accordionHeader">
 							<h2><span>Folder</span>房源管理</h2>
 						</div>
