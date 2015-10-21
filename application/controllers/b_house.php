@@ -66,4 +66,9 @@ class B_house extends MY_Controller {
 	
 		$this->display('mobile/daikuan.html');
 	}
+	
+	public function card() {
+		
+		$this->display('broker/card.html');
+	}
 }
