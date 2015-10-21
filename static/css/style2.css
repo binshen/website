@@ -415,8 +415,9 @@ background: -o-gradient(linear, 0 0, 0 100%, from(#ff6600), to(#e04141));backgro
 .peo-head{width:100px; height:100px; float:left;position:relative;}
 .peo-img{ display:block;width:100px; height:100px;}
 .head-cover{ width:100px; height:100px; position:absolute;top:0px; left:0px; background:url(../images/head_bg.png) no-repeat; background-size:100%; display:block;}
-.peo-txt{float:right; width:180px; line-height:26px; color:#fd6709;}
-.peo-txt span{ color:#9a9a9a;} 
+.peo-txt{float:right; width:180px; line-height:26px; color:#fd6709; overflow:hidden;}
+.peo-txt dt{ color:#9a9a9a; float:left; width:48px;} 
+.peo-txt dd{float:left; width:132px; overflow:hidden; height:28px;}
 .peo-head .level{width:35px; height:25px; background:#ff6000; border-radius:5px; position:absolute;top:5px; right:-10px; display:block; text-align:center; color:#fff;}
 .peo-head .level em{font-style:italic; font-size:20px;}
 .person-body{ padding:45px 0;}
