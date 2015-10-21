@@ -305,6 +305,15 @@ class Manage_model extends MY_Model
 		}
 	}
 	
+	public function delete_new_house($id){
+		$this->db->where('id',$id);
+		$rs = $this->db->delete('house');
+		if($rs)
+			return 1;
+		else
+			return -1;
+	}
+	
 	public function get_new_house($id){
 		$data = $this->db->select('a.*,b.name xq_name')->from('house a')->join('xiaoqu b','a.xq_id = b.id','left')->where('a.id',$id)->get()->row_array();
 		$data['pics'] = $this->db->select()->from('house_img')->where('h_id',$id)->get()->result();
