@@ -11,8 +11,8 @@
 </head>
 <body style="background:#f5f2f0;">
     <div class="g-head">
-        <i class="am-icon-chevron-left"></i>
-        资料卡
+        <a href="/b_house/view_list"><i class="am-icon-chevron-left"></i></a>
+       	 资料卡
     </div>
     
     <div class="g-doc">
@@ -20,14 +20,13 @@
         	<div style="margin:0 auto;width:310px">
                 <div class="peo-head">
                     <span class="peo-img"><img src="/static/images/touxiang1.gif" width="100" height="100" /></span>
-<!--                    <span class="head-cover"></span>-->
                     <span class="level"><em>V</em> <i>1</i></span>
                 </div>
                 <div class="peo-txt">
-                    <span>姓名：</span> 经纪人ID<br />
-                    <span>公司：</span> 经纪人公司<br />
-                    <span>分店：</span> 青阳路顺达二部<br />
-                    <span>电话：</span> 134-5169-1016
+                    <span>姓名：</span> {{$broker.rel_name}}<br />
+                    <span>公司：</span> {{$broker.company_name}}<br />
+                    <span>分店：</span> {{$broker.subsidiary_name}}<br />
+                    <span>电话：</span> {{$broker.tel}}
                 </div>
             </div>
         </div>
