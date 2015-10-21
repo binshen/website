@@ -401,6 +401,82 @@ class Manage_model extends MY_Model
 		$data = $this->db->get()->row_array();
 		return $data;
 	}
+	
+	public function list_share(){
+		// 每页显示的记录条数，默认20条
+		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
+		$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
+	
+		//获得总记录数
+		$this->db->select('count(1) as num');
+		$this->db->from('share');
+	
+		$rs_total = $this->db->get()->row();
+		//总记录数
+		$data['countPage'] = $rs_total?$rs_total->num:0;
+	
+		//list
+		$this->db->select('id,name');
+		$this->db->from('share');
+		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
+		$this->db->order_by('id', 'desc');
+		$data['res_list'] = $this->db->get()->result();
+		$data['pageNum'] = $pageNum;
+		$data['numPerPage'] = $numPerPage;
+		return $data;
+	}
+	
+	public function save_share(){
+		$this->db->trans_start();
+		if($this->input->post('id')){//修改
+			$this->db->where('id', $this->input->post('id'));
+			$this->db->update('share', array('name'=>$this->input->post('name')));
+		}else{//新增
+			$this->db->insert('share', array('name'=>$this->input->post('name')));
+		}
+		$this->db->trans_complete();
+		if ($this->db->trans_status() === FALSE) {
+			return $this->db_error;
+		} else {
+			return 1;
+		}
+	}
+	
+	public function delete_share($id){
+		$data = $this->get_news($id);
+		$rs = $this->db->delete('share', array('id' => $id));
+		if($rs){
+			return 1;
+		}else{
+			return $this->db_error;
+		}
+	}
+	
+	public function get_share($id){
+		$this->db->select()->from('share')->where('id', $id);
+		$data = $this->db->get()->row_array();
+		
+		$data['list'] = $this->db->select('a.*,b.name cname,b.company_id')->from('share_company a')
+		->join('subsidiary b','a.cid=b.id')
+		->where('a.tid',$id)->get()->result();
+		
+		return $data;
+	}
+	
+	public function add_share_company($tid,$cid,$pid){
+		$data = array(
+				'tid'=>$tid,
+				'cid'=>$cid,
+				'pid'=>$pid
+		);
+		return $this->db->insert('share_company',$data);
+	}
+	
+	public function del_share_company($tid,$cid,$pid){
+		$this->db->where('tid',$tid);
+		$this->db->where('cid',$cid);
+		return $this->db->delete('share_company');
+	}
     
 
 
@@ -1319,7 +1395,7 @@ class Manage_model extends MY_Model
 	/**
 	 * 分店信息
 	 */
-	public function list_subsidiary(){
+	public function list_subsidiary($tid = null){
 		// 每页显示的记录条数，默认20条
 		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
 		$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
@@ -1333,9 +1409,18 @@ class Manage_model extends MY_Model
 			$this->db->where('id', $this->session->userdata('subsidiary_id'));
 		}
 		
+		if($this->input->post('company_id'))
+			$this->db->where('company_id',$this->input->post('company_id'));
+		
+		if($tid){
+			$where = "(id not in (select cid from share_company where tid = ".$tid."))";
+			$this->db->where($where);
+		}
+		
 		$rs_total = $this->db->get()->row();
 		//总记录数
 		$data['countPage'] = $rs_total->num;
+		$data['company_id'] = null;
 	
 		//list
 		$this->db->select('a.*, b.name AS company_name');
@@ -1346,6 +1431,16 @@ class Manage_model extends MY_Model
 		} else if($this->session->userdata('manager_group') == 2) {
 			$this->db->where('a.id', $this->session->userdata('subsidiary_id'));
 		}
+		if($this->input->post('company_id')){
+			$this->db->where('company_id',$this->input->post('company_id'));
+			$data['company_id'] = $this->input->post('company_id');
+		}
+		
+		if($tid){
+			$where = "(a.id not in (select cid from share_company where tid = ".$tid."))";
+			$this->db->where($where);
+		}
+			
 		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
 		$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'a.id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
 		$data['res_list'] = $this->db->get()->result();
@@ -1504,5 +1599,9 @@ class Manage_model extends MY_Model
 		$this->db->where('term_id',$term_id);
 		$this->db->where('house_id',$house_id);
 		return $this->db->delete('term_house');
+	}
+	
+	public function list_all_company(){
+		return $this->db->select('id,name')->from('company')->get()->result_array();
 	}
 }

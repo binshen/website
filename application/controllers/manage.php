@@ -276,6 +276,55 @@ class Manage extends MY_Controller {
 		}
 	}
 	
+	public function list_share(){
+		$data = $this->manage_model->list_share();
+		$this->load->view('manage/list_share.php',$data);
+	}
+	
+	public function add_share(){
+		$this->load->view('manage/add_share.php');
+	}
+	
+	public function save_share(){
+		$rs = $this->manage_model->save_share();
+		if ($rs === 1) {
+			form_submit_json("200", "操作成功", "list_share");
+		} else {
+			form_submit_json("300", $rs);
+		}
+	}
+	
+	public function delete_share($id){
+		$rs = $this->manage_model->delete_share($id);
+		if ($rs === 1) {
+			form_submit_json("200", "操作成功", "list_share", "", "");
+		} else {
+			form_submit_json("300", $rs);
+		}
+	}
+	
+	public function edit_share($id){
+		$data = $this->manage_model->get_share($id);
+		$this->load->view('manage/edit_share.php',$data);
+	}
+	
+	public function add_share_company($tid,$cid,$pid){
+		$rs = $this->manage_model->add_share_company($tid,$cid,$pid);
+		if($rs)
+			echo '1';
+		else
+			echo '-1';
+	}
+	
+	public function del_share_company($tid,$cid,$pid){
+		$rs = $this->manage_model->del_share_company($tid,$cid,$pid);
+		if($rs)
+			echo '1';
+		else
+			echo '-1';
+	}
+	
+	
 
 	/**
 	 *
@@ -781,9 +830,15 @@ class Manage extends MY_Controller {
 	/**
 	 * 分店信息
 	 */
-	public function list_subsidiary() {
-		$data = $this->manage_model->list_subsidiary();
-		$this->load->view('manage/list_subsidiary.php', $data);
+	public function list_subsidiary($flag=null) {
+		$data = $this->manage_model->list_subsidiary($flag);
+		if($flag){
+			$data['select'] = $this->manage_model->list_all_company();
+			$data['tid'] = $flag;
+			$this->load->view('manage/list_subsidiary_dialog.php', $data);
+		}else{
+			$this->load->view('manage/list_subsidiary.php', $data);
+		}
 	}
 	
 	public function add_subsidiary() {
@@ -899,4 +954,5 @@ class Manage extends MY_Controller {
 		else
 			echo '-1';
 	}
+	
 }
