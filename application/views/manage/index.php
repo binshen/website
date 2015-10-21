@@ -124,6 +124,7 @@ $(function(){
 								<li><a href="<?php echo site_url('manage/list_company');?>" target="navTab" rel="list_company">公司管理</a></li>
 								<li><a href="<?php echo site_url('manage/list_subsidiary');?>" target="navTab" rel="list_subsidiary">分店管理</a></li>
 								<li><a href="<?php echo site_url('manage/list_broker');?>" target="navTab" rel="list_broker">经纪人列表</a></li>
+								<li><a href="<?php echo site_url('manage/list_share');?>" target="navTab" rel="list_share">资源共享列表</a></li>
 							</ul>
 						</div>
 						<div class="accordionHeader">
