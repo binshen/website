@@ -22,12 +22,12 @@
                     <span class="peo-img"><img src="/static/images/touxiang1.gif" width="100" height="100" /></span>
                     <span class="level"><em>V</em> <i>1</i></span>
                 </div>
-                <div class="peo-txt">
-                    <span>姓名：</span> {{$broker.rel_name}}<br />
-                    <span>公司：</span> {{$broker.company_name}}<br />
-                    <span>分店：</span> {{$broker.subsidiary_name}}<br />
-                    <span>电话：</span> {{$broker.tel}}
-                </div>
+                <dl class="peo-txt">
+                    <dt>姓名：</dt><dd>{{$broker.rel_name}}</dd>
+                    <dt>公司：</dt><dd>{{$broker.company_name}}</dd>
+                    <dt>分店：</dt><dd>{{$broker.subsidiary_name}}</dd>
+                    <dt>电话：</dt><dd>{{$broker.tel}}</dd>
+                </dl>
             </div>
         </div>
         <div class="person-body">

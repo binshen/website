@@ -14,7 +14,7 @@ class B_house extends MY_Controller {
 		
 	}
 	
-	public function view_list($page=1) {
+	public function view_list($page=1, $bid=NULL) {
 		
 		$this->display('broker/list.html');
 	}
