@@ -1243,7 +1243,7 @@ class House_model extends MY_Model
 	}
 	
 	public function get_broker_by_id($id) {
-		$this->db->select('a.rel_name, a.tel, a.pic, a.card, b.name AS company_name, c.name AS subsidiary_name');
+		$this->db->select('a.rel_name, a.tel, a.pic, a.ticket, b.name AS company_name, c.name AS subsidiary_name');
 		$this->db->from('admin a');
 		$this->db->join('company b', 'a.company_id = b.id', 'left');
 		$this->db->join('subsidiary c', 'a.subsidiary_id = c.id', 'left');
