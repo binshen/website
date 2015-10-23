@@ -50,22 +50,22 @@ class Api_model extends MY_Model {
 		$this->db->where('id', $id);
 		$broker = $this->db->get()->row_array();
 		if(!empty($broker)) {
-			if(empty($broker['card'])) {
+			if(empty($broker['ticket'])) {
 				$token_data = $this->get_or_create_token();
 				$access_token = $token_data['token'];
 				$url = 'https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=' . $access_token;
 				@$post_data->action_name = $action_name;
-				@$post_data->action_info->scene->scene_id = $h_id;
+				@$post_data->action_info->scene->scene_id = $id;
 				$ticket_data = json_decode($this->post($url, $post_data));
 				$ticket = $ticket_data->ticket;
 				$data = array(
-					'card' => $ticket
+					'ticket' => $ticket
 				);
-				$this->db->id = $id;
+				$this->db->where('id', $id);;
 				$this->db->update('admin', $data);
 				return $ticket;
 			} else {
-				return $broker['card'];
+				return $broker['ticket'];
 			}
 		}
 		return null;
