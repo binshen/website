@@ -11,20 +11,23 @@
 </head>
 <body>
      <div class="login">
-        <div class="logo"><a href="index.html"></a></div>
-        <form method="post" action="">
+        <div class="logo"><a href="/b_login"></a></div>
+        <form method="post" action="/b_login/login">
             <div class="login-bd">
                 <p>
-                    <span class="am-icon-user"></span><input type="text" name="username" placeholder="请输入用户名" size="20" value="" class="login_input" />
+                    <span class="am-icon-user"></span>
+                    <input type="text" name="username" placeholder="请输入用户名" size="20" value="" class="login_input" />
                 </p>
                 <p>
-                    <span class="am-icon-key"></span><input type="password" name="password" placeholder="请输入密码" size="20" value="" class="login_input" />
+                    <span class="am-icon-key"></span>
+                    <input type="password" name="password" placeholder="请输入密码" size="20" value="" class="login_input" />
                 </p>
             </div>
+        
+	        <div class="login_bar">
+	            <input class="sub" type="submit" value="登录" id="sub" />
+	        </div>
         </form>
-        <div class="login_bar">
-            <input class="sub" type="submit" value="登录" id="sub" />
-        </div>
      </div>
      <div class="footer">
      	<p style="color:#fff">© 2015 funmall.com.cn</p>
