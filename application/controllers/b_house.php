@@ -16,6 +16,20 @@ class B_house extends MY_Controller {
 	
 	public function view_list($page=1, $bid=NULL) {
 		
+		$code = $_GET['code'];
+		if(empty($code)){
+			$url = 'http://'.$_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"];
+			$url = urlencode($url);
+			redirect("https://open.weixin.qq.com/connect/oauth2/authorize?appid=".APP_ID."&redirect_uri={$url}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect");
+		} else {
+			$url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.APP_ID.'&secret='.APP_SECRET.'&code='.$code.'&grant_type=authorization_code';
+			$result = file_get_contents($url);
+			$jsonInfo = json_decode($result, true);
+			$wx_user = $this->api_model->get_or_create_wx_user($jsonInfo);
+			$open_id = $wx_user['open_id'];
+			echo $open_id;
+		}
+		
 		$this->display('broker/list.html');
 	}
 	
