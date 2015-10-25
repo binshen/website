@@ -25,9 +25,9 @@ class B_house extends MY_Controller {
 			$url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.APP_ID.'&secret='.APP_SECRET.'&code='.$code.'&grant_type=authorization_code';
 			$result = file_get_contents($url);
 			$jsonInfo = json_decode($result, true);
-			$wx_user = $this->api_model->get_or_create_wx_user($jsonInfo);
-			$open_id = $wx_user['open_id'];
-			echo $open_id;
+			//$wx_user = $this->api_model->get_or_create_wx_user($jsonInfo);
+			//$open_id = $wx_user['open_id'];
+			var_dump($jsonInfo);
 		}
 		
 		$this->display('broker/list.html');
