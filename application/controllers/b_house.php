@@ -14,12 +14,36 @@ class B_house extends MY_Controller {
 		
 	}
 	
-	public function view_list($page=1) {
+	public function view_list($page=1, $bid=NULL) {
 		
 		$this->display('broker/list.html');
 	}
 	
 	public function view_detail($hid) {
+		
+		$house = $this->house_model->get_m_house_detail($hid);
+		$house['unit_price'] = intval($house['total_price'] * 10000 / $house['acreage']);
+		
+		if(!empty($house['refresh_time'])) {
+			$house['refresh_date'] = date('Y-m-d', strtotime($house['refresh_time']));
+			$datetime1 = date_create($house['refresh_time']);
+			$datetime2 = date_create(date('Y-m-d H:i:s'));
+			$interval = date_diff($datetime1, $datetime2);
+			$house['hours'] = $interval->days * 24 + $interval->h;
+		} else {
+			$house['refresh_date'] = '';
+			$house['hours'] = '';
+		}
+		$house['house_pics_all'] = $this->house_model->get_second_hand_house_pics($hid);
+		$house['house_pics'] = array_slice($house['house_pics_all'], 0, 5);
+		$house['house_pics_rest'] = array_slice($house['house_pics_all'], 6, 5);
+		$this->assign('house', $house);
+		
+		$user_id = $this->session->userdata('user_id');
+		$this->assign('user_id', $user_id);
+		
+		$collected = $this->house_model->check_collect_house($user_id, $hid);
+		$this->assign('collected', $collected);
 		
 		$this->display('broker/details.html');
 	}
@@ -41,5 +65,13 @@ class B_house extends MY_Controller {
 	public function compute() {
 	
 		$this->display('mobile/daikuan.html');
+	}
+	
+	public function card($bid = 1) {
+		
+		$broker = $this->house_model->get_broker_by_id($bid);
+		$this->assign('broker', $broker);
+		
+		$this->display('broker/card.html');
 	}
 }

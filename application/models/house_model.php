@@ -1241,4 +1241,12 @@ class House_model extends MY_Model
 		$collect = $this->db->get_where('house_collect', array('user_id' => $uid, 'house_id' => $hid))->row_array();
 		return empty($collect)?false:true;
 	}
+	
+	public function get_broker_by_id($id) {
+		$this->db->select('a.rel_name, a.tel, a.pic, a.ticket, b.name AS company_name, c.name AS subsidiary_name');
+		$this->db->from('admin a');
+		$this->db->join('company b', 'a.company_id = b.id', 'left');
+		$this->db->join('subsidiary c', 'a.subsidiary_id = c.id', 'left');
+		return $this->db->where('a.id', $id)->get()->row_array();
+	}
 }

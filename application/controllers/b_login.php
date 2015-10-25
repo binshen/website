@@ -12,7 +12,7 @@ public function __construct() {
 	}
 	
 	public function login() {
-		if($this->manage_model->check_login()) {
+		if($this->manage_model->check_login(true)) {
 			redirect(site_url('/b_house/view_list'));
 		} else {
 			$this->display('broker/login.html');

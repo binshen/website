@@ -28,13 +28,16 @@ class Manage_model extends MY_Model
      * 
      * @return boolean
      */
-    public function check_login ()
+    public function check_login ($brokerOnly=false)
     {
         $login_id = $this->input->post('username');
         $passwd = $this->input->post('password');
         $this->db->from('admin');
         $this->db->where('username', $login_id);
         $this->db->where('passwd', sha1($passwd));
+        if($brokerOnly) {
+        	$this->db->where('admin_group <=', '2');
+        }
         $rs = $this->db->get();
         if ($rs->num_rows() > 0) {
         	$res = $rs->row();

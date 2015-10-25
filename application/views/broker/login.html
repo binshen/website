@@ -1,1 +1,46 @@
-Broker - login page
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>城北学区房</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<meta content="telephone=no" name="format-detection"/>
+<link rel="stylesheet" href="/static/css/style2.css">
+</head>
+<body>
+     <div class="login">
+        <div class="logo"><a href="/b_login"></a></div>
+        <form method="post" action="/b_login/login">
+            <div class="login-bd">
+                <p>
+                    <span class="am-icon-user"></span>
+                    <input type="text" name="username" placeholder="请输入用户名" size="20" value="" class="login_input" />
+                </p>
+                <p>
+                    <span class="am-icon-key"></span>
+                    <input type="password" name="password" placeholder="请输入密码" size="20" value="" class="login_input" />
+                </p>
+            </div>
+        
+	        <div class="login_bar">
+	            <input class="sub" type="submit" value="登录" id="sub" />
+	        </div>
+        </form>
+     </div>
+     <div class="footer">
+     	<p style="color:#fff">© 2015 funmall.com.cn</p>
+     </div>
+<script type="text/javascript" src="js/jquery.min.js"></script>     
+<script type="text/javascript">
+    //焦点图片按需加载
+    $(function(){
+        var maxH=Math.max(document.documentElement.clientHeight,window.innerWidth);
+        $('.login').height(maxH);
+     });
+</script>
+</body>
+</html>
+
+
