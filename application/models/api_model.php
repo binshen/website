@@ -70,32 +70,4 @@ class Api_model extends MY_Model {
 		}
 		return null;
 	}
-	
-	public function get_or_create_wx_user($jsonInfo) {
-		$open_id = $jsonInfo["openid"];
-		$this->db->from('wx_user');
-		$this->db->where('open_id', $open_id);
-		$wx_user = $this->db->get()->row_array();
-		if(empty($wx_user)) {
-			$data = array(
-				'open_id' => $open_id,
-				'access_token' => $jsonInfo["access_token"],
-				'refresh_token' => $jsonInfo["refresh_token"],
-				'expires_in' => $jsonInfo["expires_in"],
-				'created' => date('Y-m-d H:i:s')
-			);
-			$this->db->insert('wx_user', $data);
-			return $data;
-		} else {
-			$access_token = $jsonInfo["access_token"];
-			if($access_token != $wx_user['access_token']) {
-				$wx_user['access_token'] = $jsonInfo["access_token"];
-				$wx_user['refresh_token'] = $jsonInfo["refresh_token"];
-				$wx_user['expires_in'] = $jsonInfo["expires_in"];
-				$this->db->where('id', $wx_user['id']);
-				$this->db->update('wx_user', $wx_user);
-			}
-			return $wx_user;
-		}
-	}
 }
