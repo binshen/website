@@ -32,6 +32,10 @@ class B_house extends MY_Controller {
 // 			}
 // 		}
 		
+		var_dump($bid);
+		
+		echo "<hr>";
+		
 		$this->display('broker/list.html');
 	}
 	
