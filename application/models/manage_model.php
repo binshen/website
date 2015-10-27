@@ -1368,7 +1368,10 @@ class Manage_model extends MY_Model
 			'name' => $this->input->post('name'),
 			'company_count' => $this->input->post('company_count'),
 			'broker_count' => $this->input->post('broker_count'),
-			'house_count' => $this->input->post('house_count')
+			'house_count' => $this->input->post('house_count'),
+			'address' => $this->input->post('address'),
+			'tel' => $this->input->post('tel'),
+			'description' => $this->input->post('description')
 		);
 		$this->db->trans_start();//--------开始事务
 	

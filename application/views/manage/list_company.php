@@ -20,6 +20,8 @@
 			<tr>
 				<th width="120">ID</th>
 				<th>名称</th>
+				<th>地址</th>
+				<th>电话</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -30,6 +32,8 @@
             			<tr target="id" rel=<?php echo $row->id; ?>>
             				<td><?php echo $row->id;?></td>
             				<td><?php echo $row->name;?></td>
+            				<td><?php echo $row->address;?></td>
+            				<td><?php echo $row->tel;?></td>
             			</tr>
             <?php 
             		endforeach;

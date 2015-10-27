@@ -16,6 +16,24 @@
         			</dd>
         		</dl>
         		<dl>
+        			<dt>地址：</dt>
+        			<dd>
+        				<input name="address" type="text" class="required" value="<?php if(!empty($address)) echo $address;?>" />
+        			</dd>
+        		</dl>
+        		<dl>
+        			<dt>电话：</dt>
+        			<dd>
+        				<input name="tel" type="text" class="required" value="<?php if(!empty($tel)) echo $tel;?>" />
+        			</dd>
+        		</dl>
+        		<dl>
+        			<dt>简介：</dt>
+        			<dd>
+        				<input name="description" type="text" class="required" value="<?php if(!empty($description)) echo $description;?>" style="width:380px;" />
+        			</dd>
+        		</dl>
+        		<dl>
         			<dt>可开分店数：</dt>
         			<dd>
         				<input name="company_count" type="text" class="required" value="<?php if(!empty($company_count)) echo $company_count;?>" />
