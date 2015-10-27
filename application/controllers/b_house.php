@@ -200,4 +200,10 @@ class B_house extends MY_Controller {
 		
 		$this->display('broker/card.html');
 	}
+	
+	////////////////////////////////////////////////////////////////////////////////
+	public function chat() {
+		
+		$this->display('broker/chat.html');
+	}
 }
