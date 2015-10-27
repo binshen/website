@@ -189,7 +189,7 @@ class B_house extends MY_Controller {
 		$this->display('mobile/daikuan.html');
 	}
 	
-	public function card($bid = 1) {
+	public function card($bid) {
 		
 		$broker = $this->house_model->get_broker_by_id($bid);
 		$this->assign('broker', $broker);

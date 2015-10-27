@@ -49,6 +49,9 @@ class Manage_model extends MY_Model
             $user_info['manager_group'] = $res->manager_group;
             $user_info['company_id'] = $res->company_id;
             $user_info['subsidiary_id'] = $res->subsidiary_id;
+            if($brokerOnly) {
+            	$user_info['login_broker_id'] = $res->id;
+            }
             $this->session->set_userdata($user_info);
             return true;
         } else {
