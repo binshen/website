@@ -132,7 +132,7 @@ class M_house extends MY_Controller {
 			$this->assign('search_feature_name', '特色');
 		}
 		
-		$pager = $this->pagination->getMobilePageLink('/m_house/view_list/'.$term_id, $house_list['countPage'], $house_list['numPerPage'], $term_id);
+		$pager = $this->pagination->getMobilePageLink('/m_house/view_list/'.$term_id, $house_list['countPage'], $house_list['numPerPage']);
 		$this->assign('pager', $pager);
 		
 		$this->display('mobile/list.html');

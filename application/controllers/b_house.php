@@ -16,14 +16,17 @@ class B_house extends MY_Controller {
 	
 	public function view_list($page=1, $oid=NULL, $bid=NULL) {
 		
-		$this->assign('oid', $oid);
+		$uri = '/b_house/view_list/'.$page;
 		if(!empty($oid)) {
+			$uri .= '/' . $oid;
 			$this->session->set_userdata('_open_id', $oid);
 		}
-		$this->assign('bid', $bid);
+		
 		if(!empty($bid)) {
+			$uri .= '/' . $bid;
 			$this->session->set_userdata('_broker_id', $bid);
 		}
+		$this->assign('uri', $uri);
 		
 		$region_list = $this->house_model->get_m_house_region();
 		$this->assign('region_list', $region_list);
@@ -130,7 +133,7 @@ class B_house extends MY_Controller {
 			$this->assign('search_feature_name', '特色');
 		}
 		
-		$pager = $this->pagination->getMobilePageLink('/m_house/view_list/1', $house_list['countPage'], $house_list['numPerPage'], 1);
+		$pager = $this->pagination->getMobilePageLink($uri, $house_list['countPage'], $house_list['numPerPage']);
 		$this->assign('pager', $pager);
 		
 		$this->display('broker/list.html');

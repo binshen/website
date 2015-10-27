@@ -7,7 +7,7 @@ class MY_Pagination extends CI_Pagination {
 		parent::__construct();
 	}
 	
-	function getMobilePageLink($base_url, $total_rows, $per_page, $term_id) {
+	function getMobilePageLink($base_url, $total_rows, $per_page, $uri_segment=4) {
 	
 		$config['base_url'] = $base_url;
 		$config['total_rows'] = $total_rows;
@@ -23,7 +23,7 @@ class MY_Pagination extends CI_Pagination {
 		$config['first_link'] = false;
 		$config['last_link'] = false;
 	
-		$config['uri_segment'] = 4;
+		$config['uri_segment'] = $uri_segment;
 		$config['display_pages'] = false;
 		
 		$this->initialize($config);
