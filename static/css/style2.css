@@ -72,7 +72,8 @@ body{background-color:#fff;}
 .am-icon-home:before {content: "\f015";}
 .am-icon-power-off:before{content: "\f011";}
 .am-icon-share-square-o:before{content: "\f045";}
-.am-icon-home:before,.am-icon-power-off:before,.am-icon-share-square-o {font-size: 3rem; color: #fff;}
+.am-icon-comments:before{content:"\f086";}
+.am-icon-home:before,.am-icon-power-off:before,.am-icon-share-square-o,.am-icon-comments:before {font-size: 3rem; color: #fff;}
 .am-icon-user:before{font-size: 2rem;}
 /*页面导航*/
 .g-head{/*padding: 1em 0;*/ background: #ff6600; overflow: hidden; text-align: center; color: #fff; height: 50px; line-height: 50px;  position:relative;}
@@ -431,3 +432,38 @@ background: -o-gradient(linear, 0 0, 0 100%, from(#ff6600), to(#e04141));backgro
 .company-info{padding:10px 10px 30px; background:url(../images/list_bg.jpg) no-repeat; text-align:left;}
 .company-info .p1{ color:#fd7609; font-size:16px;}
 .company-info .p2{color:#fff;padding:10px 0;}.company-info .p3{ color:#fd7609;}
+
+/*聊天*/
+.cus_head_pic{ background:url(../images/touxiang1.jpg) no-repeat; background-size:100%; width:80px; height:67px; float:left;}
+.manger_head_pic{background:url(../images/touxiang2.jpg) no-repeat; background-size:100%; width:80px; height:67px; float:right;}
+.customer{margin:30px 5px; overflow:hidden;}.cus_word p,.manger_word p{ color:#000;padding:10px;}
+#dialogue{ background:#efefef;}
+#dialogue .g-doc{ position:relative;}
+.cus_word{ width:300px; float:left; position:relative;}
+.cus_word_icon{ position:absolute;top:2px;left:-9px; background:url(../images/dh_icon1.gif) no-repeat; background-size:100%; width:10px; height:12px;}
+.manger_word_icon{ position:absolute;top:5px;right:-9px; background:url(../images/dh_icon2.jpg) no-repeat; background-size:100%; width:10px; height:12px;}
+.manger_word{width:300px; float:right; position:relative;}
+.cus_word p{ background:#40be19; border-radius:5px; }
+.manger_word p{ background:#fff; border:1px solid #bdbdbd;border-radius:5px;}
+.word_submit{padding:10px;width:100%;  background:#fff; position:absolute;bottom:0;}
+.input_txt{ background:#fff; border:1px solid #bdbdbd; border-radius:5px; float:left; padding:10px; width:82%;}
+.tj_btn{ display:block; width:70px; height:47px; background:url(../images/fs_btn.jpg) no-repeat; background-size:100%; float:right;}
+
+@-webkit-keyframes twinkling{	/*透明度由0到1*/
+	0%{
+		opacity:0.2;				/*透明度为0*/
+	}
+	100%{
+		opacity:1;				/*透明度为1*/
+	}
+}
+.am-icon-comments-on:before{color:#ff0000;-webkit-animation: twinkling 1s infinite ease-in-out;}
+
+@media screen and (width: 320px){
+    .cus_word,.manger_word{ width:230px;}
+	.input_txt{width:75%;}
+}
+@media screen and (width: 375px){
+    .cus_word,.manger_word{ width:280px;}
+	.input_txt{width:80%;}
+}
