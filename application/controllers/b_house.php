@@ -8,6 +8,7 @@ class B_house extends MY_Controller {
 		parent::__construct();
 		$this->load->model('house_model');
 		$this->load->model('manage_model');
+		$this->load->model('api_model');
 	}
 	
 	public function index($oid, $bid=NULL) {
@@ -192,6 +193,9 @@ class B_house extends MY_Controller {
 	public function card($bid) {
 		
 		$broker = $this->house_model->get_broker_by_id($bid);
+		if(!empty($broker) && empty($broker['ticket'])) {
+			$broker['ticket'] = $this->api_model->get_or_create_ticket($broker['id']);
+		}
 		$this->assign('broker', $broker);
 		
 		$this->display('broker/card.html');
