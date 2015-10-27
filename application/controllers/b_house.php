@@ -14,9 +14,16 @@ class B_house extends MY_Controller {
 		
 	}
 	
-	public function view_list($page=1, $bid=NULL) {
+	public function view_list($page=1, $oid=NULL, $bid=NULL) {
 		
-		var_dump($bid);
+		if(!empty($oid)) {
+			$this->assign('oid', $oid);
+			$this->session->set_userdata('_open_id', $oid);
+		}
+		if(!empty($bid)) {
+			$this->assign('bid', $bid);
+			$this->session->set_userdata('_broker_id', $bid);
+		}
 		
 		$region_list = $this->house_model->get_m_house_region();
 		$this->assign('region_list', $region_list);

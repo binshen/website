@@ -196,7 +196,7 @@
     });
     function change_search(t, v) {
     	$("#search_" + t).val(v);
-    	$("#houseListForm").attr('action', '/m_house/view_list/1')
+    	$("#houseListForm").attr('action', '/b_house/view_list/1/{{$oid}}/{{$bid}}')
     	$("#houseListForm").submit();
     }
     function clear_all_search() {
@@ -206,7 +206,7 @@
     	$("#search_acreage").val("");
     	$("#search_type").val("");
     	$("#search_feature").val("");
-    	$("#houseListForm").attr('action', '/m_house/view_list/1')
+    	$("#houseListForm").attr('action', '/b_house/view_list/1/{{$oid}}/{{$bid}}')
     	$("#houseListForm").submit();
     }
     function pager_submit(url) {
