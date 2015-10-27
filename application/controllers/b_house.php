@@ -18,6 +18,114 @@ class B_house extends MY_Controller {
 		
 		var_dump($bid);
 		
+		$region_list = $this->house_model->get_m_house_region();
+		$this->assign('region_list', $region_list);
+		
+		$style_list = $this->house_model->get_search_style_list();
+		$this->assign('style_list', $style_list);
+		
+		$house_list = $this->house_model->get_m_house_list(1, $page);
+		$this->assign('house_list', $house_list);
+		
+		/////////////////////////////////////////////////////
+		$search_region = $this->input->post('search_region');
+		if(!empty($search_region)) {
+			$this->assign('search_region', $search_region);
+			$search_region_name = "不限";
+			foreach ($region_list as $region) {
+				if($region['id'] == $search_region) {
+					$search_region_name = $region['name'];
+					break;
+				}
+			}
+			$this->assign('search_region_name', $search_region_name);
+		} else {
+			$this->assign('search_region_name', '区域');
+		}
+		
+		$search_style = $this->input->post('search_style');
+		if(!empty($search_style)) {
+			$this->assign('search_style', $search_style);
+			$search_style_name = "不限";
+			foreach ($style_list as $style) {
+				if($style['id'] == $search_style) {
+					$search_style_name = $style['name'];
+					break;
+				}
+			}
+			$this->assign('search_style_name', $search_style_name);
+		} else {
+			$this->assign('search_style_name', '类型');
+		}
+		
+		$search_price = $this->input->post('search_price');
+		if(!empty($search_price)) {
+			$this->assign('search_price', $search_price);
+			$search_price_names = array(
+					0 => '不限',
+					1 => '50万以下',
+					2 => '50-80万',
+					3 => '80-100万',
+					4 => '100-120万',
+					5 => '120-150万',
+					6 => '150-200万',
+					7 => '200-250万',
+					8 => '250-300万',
+					9 => '300-500万',
+					10 => '500万以上'
+			);
+			$this->assign('search_price_name', $search_price_names[$search_price]);
+		} else {
+			$this->assign('search_price_name', '售价');
+		}
+		
+		$search_acreage = $this->input->post('search_acreage');
+		if(!empty($search_acreage)) {
+			$this->assign('search_acreage', $search_acreage);
+			$search_acreage_names = array(
+					0 => '不限',
+					1 => '50平以下',
+					2 => '50-70平',
+					3 => '70-90平',
+					4 => '90-120平',
+					5 => '120-150平',
+					6 => '150-200平',
+					7 => '200-300平',
+					8 => '300平以上'
+			);
+			$this->assign('search_acreage_name', $search_acreage_names[$search_acreage]);
+		} else {
+			$this->assign('search_acreage_name', '面积');
+		}
+		
+		$search_type = $this->input->post('search_type');
+		if(!empty($search_type)) {
+			$this->assign('search_type', $search_type);
+			$search_type_names = array(
+					0 => '不限',
+					1 => '一室',
+					2 => '二室',
+					3 => '三室',
+					4 => '四室',
+					5 => '五室',
+					6 => '五室以上'
+			);
+			$this->assign('search_type_name', $search_type_names[$search_type]);
+		} else {
+			$this->assign('search_type_name', '户型');
+		}
+		
+		$search_feature = $this->input->post('search_feature');
+		if(!empty($search_feature)) {
+			$this->assign('search_feature', $search_feature);
+			$this->assign('search_feature_name', empty($search_feature)?'不限':$search_feature);
+		} else {
+			$this->assign('search_feature_name', '特色');
+		}
+		
+		$pager = $this->pagination->getMobilePageLink('/m_house/view_list/1', $house_list['countPage'], $house_list['numPerPage'], 1);
+		$this->assign('pager', $pager);
+		
 		$this->display('broker/list.html');
 	}
 	
