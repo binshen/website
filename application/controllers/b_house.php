@@ -10,34 +10,33 @@ class B_house extends MY_Controller {
 		$this->load->model('manage_model');
 	}
 	
-	public function index() {
-		
+	public function index($oid, $bid=NULL) {
+		$this->session->set_userdata('wx_open_id', $oid);
+		$this->session->set_userdata('wx_broker_id', $bid);
+		$this->view_list(1);
 	}
 	
-	public function view_list($page=1, $oid=NULL, $bid=NULL) {
+	public function view_list($page=1) {
 		
-		$uri = '/b_house/view_list/'.$page;
-		if(!empty($oid)) {
-			$uri .= '/' . $oid;
-			$this->session->set_userdata('_open_id', $oid);
-		}
-		
-		if(!empty($bid)) {
-			$uri .= '/' . $bid;
-			$this->session->set_userdata('_broker_id', $bid);
-			
-			$company = $this->house_model->get_company_by_broker($bid);
+		$open_id = $this->session->userdata('wx_open_id');
+		$broker_id = $this->session->userdata('wx_broker_id');
+		$this->assign('open_id', $open_id);
+		$this->assign('broker_id', $broker_id);
+		if(!empty($broker_id)) {
+			$company = $this->house_model->get_company_by_broker($broker_id);
 			$this->assign('company', $company);
 		}
-		$this->assign('uri', $uri);
 		
 		$region_list = $this->house_model->get_m_house_region();
 		$this->assign('region_list', $region_list);
 		
 		$style_list = $this->house_model->get_search_style_list();
 		$this->assign('style_list', $style_list);
-		
-		$house_list = $this->house_model->get_m_house_list(1, $page);
+		if(empty($broker_id)) {
+			$house_list = $this->house_model->get_b_all_house_list($page);
+		} else {
+			$house_list = $this->house_model->get_b_broker_house_list($broker_id, $page);
+		}
 		$this->assign('house_list', $house_list);
 		
 		/////////////////////////////////////////////////////
@@ -136,7 +135,7 @@ class B_house extends MY_Controller {
 			$this->assign('search_feature_name', '特色');
 		}
 		
-		$pager = $this->pagination->getMobilePageLink($uri, $house_list['countPage'], $house_list['numPerPage']);
+		$pager = $this->pagination->getMobilePageLink('/b_house/view_list/', $house_list['countPage'], $house_list['numPerPage'], 3);
 		$this->assign('pager', $pager);
 		
 		$this->display('broker/list.html');

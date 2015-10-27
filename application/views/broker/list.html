@@ -140,9 +140,9 @@
             <p class="p2">{{$company.description}}</p>
             <p class="p3">地址：{{$company.address}}<br />电话：{{$company.tel}}</p>
         </div>
+        <div class="list-tit">精选房源</div>
         {{/if}}
         
-        <div class="list-tit">精选房源</div>
         <ul class="house-list">
         	{{foreach from=$house_list.res_list key=key item=item}}
         		<a href="/b_house/view_detail/{{$item.id}}">
@@ -199,7 +199,7 @@
     });
     function change_search(t, v) {
     	$("#search_" + t).val(v);
-    	$("#houseListForm").attr('action', '{{$uri}}')
+    	$("#houseListForm").attr('action', '/b_house/view_list/')
     	$("#houseListForm").submit();
     }
     function clear_all_search() {
@@ -209,7 +209,7 @@
     	$("#search_acreage").val("");
     	$("#search_type").val("");
     	$("#search_feature").val("");
-    	$("#houseListForm").attr('action', '{{$uri}}')
+    	$("#houseListForm").attr('action', '/b_house/view_list/')
     	$("#houseListForm").submit();
     }
     function pager_submit(url) {
