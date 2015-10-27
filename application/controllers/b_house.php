@@ -25,6 +25,9 @@ class B_house extends MY_Controller {
 		if(!empty($bid)) {
 			$uri .= '/' . $bid;
 			$this->session->set_userdata('_broker_id', $bid);
+			
+			$company = $this->house_model->get_company_by_broker($bid);
+			$this->assign('company', $company);
 		}
 		$this->assign('uri', $uri);
 		

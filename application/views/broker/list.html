@@ -134,11 +134,14 @@
             </ul>
         </div>
         
+        {{if !empty($company) }}
         <div class="company-info">
-        	<p class="p1">昆山顺达房产经纪有限公司</p>
-            <p class="p2">昆山顺达房产经纪有限公司是一家经昆山市工商局注册并批准的专业性的房产服务机构,公司注册资本50万元。</p>
-            <p class="p3">地址：昆山市青阳北路138号<br />电话：0512-36699066</p>
+        	<p class="p1">{{$company.name}}</p>
+            <p class="p2">{{$company.description}}</p>
+            <p class="p3">地址：{{$company.address}}<br />电话：{{$company.tel}}</p>
         </div>
+        {{/if}}
+        
         <div class="list-tit">精选房源</div>
         <ul class="house-list">
         	{{foreach from=$house_list.res_list key=key item=item}}

@@ -1249,4 +1249,11 @@ class House_model extends MY_Model
 		$this->db->join('subsidiary c', 'a.subsidiary_id = c.id', 'left');
 		return $this->db->where('a.id', $id)->get()->row_array();
 	}
+	
+	public function get_company_by_broker($b_id) {
+		$this->db->select('b.*');
+		$this->db->from('admin a');
+		$this->db->join('company b', 'a.company_id = b.id', 'left');
+		return $this->db->where('a.id', $b_id)->get()->row_array();
+	}
 }
