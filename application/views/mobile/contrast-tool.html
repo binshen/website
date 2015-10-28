@@ -21,11 +21,11 @@
     <div class="contrast-top">
         <ul class="com-item">
            <li id="compareHouse1">
-           	  <p>{{$house1.xq_name}}<br />{{$house1.room}}室{{$house1.lounge}}厅{{$house1.toilet}}卫<br /><i class="price">{{$house1.total_price}}万</i></p>
+           	  <p><span class="area-name">{{$house1.xq_name}}</span>{{$house1.room}}室{{$house1.lounge}}厅{{$house1.toilet}}卫<br /><i class="price">{{$house1.total_price}}万</i></p>
            	  <i class="am-icon-close" onclick="removeHouse(1, '{{$house1.id}}')"></i>
            </li>
            <li id="compareHouse2">
-           	  <p>{{$house2.xq_name}}<br />{{$house2.room}}室{{$house2.lounge}}厅{{$house2.toilet}}卫<br /><i class="price">{{$house2.total_price}}万</i></p>
+           	  <p><span class="area-name">{{$house2.xq_name}}</span>{{$house2.room}}室{{$house2.lounge}}厅{{$house2.toilet}}卫<br /><i class="price">{{$house2.total_price}}万</i></p>
            	  <i class="am-icon-close" onclick="removeHouse(2, '{{$house2.id}}')"></i>
            </li>
         </ul>

@@ -19,8 +19,14 @@ class B_house extends MY_Controller {
 	
 	public function view_list($page=1) {
 		
-		$open_id = $this->session->userdata('wx_open_id');
-		$broker_id = $this->session->userdata('wx_broker_id');
+		$login_broker_id = $this->session->userdata('login_broker_id');
+		if(!empty($login_broker_id)) {
+			$broker_id = $login_broker_id;
+			$open_id = "--BROKER--";
+		} else {
+			$open_id = $this->session->userdata('wx_open_id');
+			$broker_id = $this->session->userdata('wx_broker_id');
+		}
 		$this->assign('open_id', $open_id);
 		$this->assign('broker_id', $broker_id);
 		if(!empty($broker_id)) {
