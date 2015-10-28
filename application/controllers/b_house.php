@@ -38,6 +38,11 @@ class B_house extends MY_Controller {
 		} else {
 			$house_list = $this->house_model->get_b_broker_house_list($broker_id, $page);
 		}
+		if(!empty($house_list)) {
+			foreach ($house_list['res_list'] as &$d) {
+				$d->unit_price = intval($d->total_price * 10000 / $d->acreage);
+			}
+		}
 		$this->assign('house_list', $house_list);
 		
 		/////////////////////////////////////////////////////
