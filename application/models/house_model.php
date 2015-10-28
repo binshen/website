@@ -1632,7 +1632,7 @@ class House_model extends MY_Model
 // 		}
 		$conn = mysql_connect('121.40.97.183', 'root', 'soukecsk');
 		$sql = "SELECT count(1) FROM `house_track` where open_id = '" . $open_id . "' AND house_id =" . $house_id;
-		$result = mysql_db_query('funmall', $sql, $conn);
+		$result = mysql_query('funmall', $sql, $conn);
 		$row = mysql_fetch_row($result);
 		if($row[0] > 0) {
 			//TODO
