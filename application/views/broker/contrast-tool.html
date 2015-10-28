@@ -1,1 +1,132 @@
-Broker - contrast tool page
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>对比工具</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<meta content="telephone=no" name="format-detection"/>
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="g-head">
+	    <a href="javascript:history.go(-1);"><i class="am-icon-chevron-left"></i></a>
+                     对比工具
+    </div>
+    <div class="contrast-top">
+        <ul class="com-item">
+           <li id="compareHouse1">
+           	  <p>{{$house1.region_name}} {{$house1.xq_name}}<br />{{$house1.room}}室{{$house1.lounge}}厅{{$house1.toilet}}卫<br /><i class="price">{{$house1.total_price}}万</i></p>
+           	  <i class="am-icon-close" onclick="removeHouse(1, '{{$house1.id}}')"></i>
+           </li>
+           <li id="compareHouse2">
+           	  <p>{{$house2.region_name}} {{$house2.xq_name}}<br />{{$house2.room}}室{{$house2.lounge}}厅{{$house2.toilet}}卫<br /><i class="price">{{$house2.total_price}}万</i></p>
+           	  <i class="am-icon-close" onclick="removeHouse(2, '{{$house2.id}}')"></i>
+           </li>
+        </ul>
+        <ul class="com-item com-item-add" id="addHouseUL" style="display:none">
+            <li id="addHouse"><i>+</i><br/>选择房型</li>
+        </ul>
+        <div class="clear"></div>
+    </div> 
+    <div class="contrast-btm">
+        <div class="contrast-tit">基本信息</div>
+        <table cellspacing="0" cellpadding="0">
+            <tr>
+                <th style="width:16%">楼盘名称</th>
+                <td id="item11" style="width:42%">{{$house1.xq_name}}</td>
+                <td id="item12">{{$house2.xq_name}}</td>
+            </tr>
+            <tr>
+                <th>总价</th>
+                <td id="item21">{{$house1.total_price}}万</td>
+                <td id="item22">{{$house2.total_price}}万</td>
+            </tr>
+            <tr>
+                <th>单价</th>
+                <td id="item31">{{$house1.unit_price}}元/㎡</td>
+                <td id="item32">{{$house2.unit_price}}元/㎡</td>
+            </tr>
+            <tr>
+                <th>面积</th>
+                <td id="item41">{{$house1.total_price}}㎡</td>
+                <td id="item42">{{$house2.total_price}}㎡</td>
+            </tr>
+            <tr>
+                <th>房型</th>
+                <td id="item51">{{$house1.room}}室{{$house1.lounge}}厅{{$house1.toilet}}卫</td>
+                <td id="item52">{{$house2.room}}室{{$house2.lounge}}厅{{$house2.toilet}}卫</td>
+            </tr>
+            <tr>
+                <th>项目位置</th>
+                <td id="item61">{{$house1.address}}</td>
+                <td id="item62">{{$house2.address}}</td>
+            </tr>
+            <tr>
+                <th>所在区域</th>
+                <td id="item71">{{$house1.region_name}}</td>
+                <td id="item72">{{$house2.region_name}}</td>
+            </tr>
+            <tr>
+                <th>装修</th>
+                <td id="item81">{{$house1.decoration_name}}</td>
+                <td id="item82">{{$house2.decoration_name}}</td>
+            </tr>
+            <tr>
+                <th>朝向</th>
+                <td id="item91">{{$house1.orientation_name}}</td>
+                <td id="item92">{{$house2.orientation_name}}</td>
+            </tr>
+            <tr>
+                <th>物业费</th>
+                <td id="item101">{{$house1.estate_price}}元/平米</td>
+                <td id="item102">{{$house2.estate_price}}元/平米</td>
+            </tr>
+            <tr>
+                <th>配套设施</th>
+                <td id="item111">{{$house1.facility}}</td>
+                <td id="item112">{{$house2.facility}}</td>
+            </tr>
+        </table>
+        <p class="tips"><span class="color-999">以上参数信息仅供参考，实际请以销售房屋为准。如果发现信息有误，</span>“欢迎您及时指正!“</p>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/store.min.js"></script>
+{include file='nav.html'}
+<script type="text/javascript">
+function removeHouse(i, house_id) {
+	$("#addHouseUL").show();
+	$("#compareHouse"+i).hide();
+	$("#item1"+i).empty();
+	$("#item2"+i).empty();
+	$("#item3"+i).empty();
+	$("#item4"+i).empty();
+	$("#item5"+i).empty();
+	$("#item6"+i).empty();
+	$("#item7"+i).empty();
+	$("#item8"+i).empty();
+	$("#item9"+i).empty();
+	$("#item10"+i).empty();
+	$("#item11"+i).empty();
+	
+	var houseInfo = store.get("houseInfo");
+	var data = [];
+	for(var i =0; i<houseInfo.length;i++){
+		var hid = houseInfo[i].hId;
+		if(hid != house_id) {
+			data.push(houseInfo[i]);
+		}
+	}
+	store.set("houseInfo",data);
+}
+
+$(function() {
+	$("#addHouse").click(function() {
+		document.location = '/b_house/view_list/';;
+	});
+});
+</script>
+
