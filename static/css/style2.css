@@ -450,7 +450,7 @@ background: -o-gradient(linear, 0 0, 0 100%, from(#ff6600), to(#e04141));backgro
 .word_submit{padding:10px;width:100%;  background:#fff; position:absolute;bottom:0;}
 .input_txt{ background:#fff; border:1px solid #bdbdbd; border-radius:5px; float:left; padding:10px; width:82%;}
 .tj_btn{ display:block; width:70px; height:47px; background:url(../images/fs_btn.jpg) no-repeat; background-size:100%; float:right;}
-.data-time{text-align:right; display:block;}
+.data-time{text-align:right; display:block; font-size:10px;}
 @-webkit-keyframes twinkling{	/*透明度由0到1*/
 	0%{
 		opacity:0.2;				/*透明度为0*/
