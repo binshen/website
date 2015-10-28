@@ -1456,8 +1456,8 @@ class House_model extends MY_Model
 	
 	public function get_b_broker_house_list($broker_id, $pageNum) {
 		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 10;
-		$rs = $this->db->select('company_id')->from('admin')->where('id',$broker_id)->get()->row();
-		$cid = $rs->company_id;
+		$rs = $this->db->select('subsidiary_id')->from('admin')->where('id',$broker_id)->get()->row();
+		$cid = $rs->subsidiary_id;
 		$limit_num = ($pageNum - 1) * $numPerPage;
 		
 		$sql_broker = "SELECT
@@ -1465,7 +1465,7 @@ class House_model extends MY_Model
 										FROM
 											admin
 										WHERE
-											company_id IN (
+											subsidiary_id IN (
 												SELECT DISTINCT
 													(cid) cid
 												FROM
@@ -1490,6 +1490,15 @@ class House_model extends MY_Model
 			$brokers[] = $v['id'];
 		}
 		
+		if(!$brokers){
+			$rs = $this->db->select('id')->from('admin')->where('subsidiary_id',$cid)->get()->result_array();
+			foreach($rs as $k=>$v){
+				$brokers[] = $v['id'];
+			}
+		}
+		
+		$brokers_str = implode(',',$brokers);
+		
 		$rs = $this->db->select('company_id pid')->from('subsidiary')->where('id',$cid)->get()->row();
 		$pid = $rs->pid;
 		
@@ -1497,14 +1506,14 @@ class House_model extends MY_Model
 		
 		$order[] = $broker_id;
 		
-		$rs = $this->db->select('a.id id')->from('admin a')->join('subsidiary b','a.company_id = b.id','left')->where('b.company_id',$pid)
+		$rs = $this->db->select('a.id id')->from('admin a')->join('subsidiary b','a.subsidiary_id = b.id','left')->where('b.company_id',$pid)
 					->where('a.id !=',$broker_id)->where_in('a.id',$brokers)->get()->result_array();
 		
 		foreach($rs as $k=>$v){
 			$order[] = $v['id'];
 		}
 		
-		$rs = $this->db->select('a.id id')->from('admin a')->join('subsidiary b','a.company_id = b.id','left')
+		$rs = $this->db->select('a.id id')->from('admin a')->join('subsidiary b','a.subsidiary_id = b.id','left')
 					->where('b.company_id !=',$pid)->where_in('a.id',$brokers)->get()->result_array();
 		
 		foreach($rs as $k=>$v){
@@ -1588,28 +1597,7 @@ class House_model extends MY_Model
 							FROM
 								house a
 							WHERE
-								a.user_id IN (
-									SELECT
-										id
-									FROM
-										admin
-									WHERE
-										company_id IN (
-											SELECT DISTINCT
-												(cid) cid
-											FROM
-												share_company
-											WHERE
-												tid IN (
-													SELECT DISTINCT
-														(tid)
-													FROM
-														share_company
-													WHERE
-														cid = {$cid}
-												)
-										)
-								) and a.type_id > 1 and a.exe_status = 1 {$where}";
+								a.user_id IN ({$brokers_str}) and a.type_id > 1 and a.exe_status = 1 {$where}";
 		
 		$query_count = $this->db->query($sql_count);
 		$rs_count = $query_count->row();
@@ -1624,28 +1612,8 @@ class House_model extends MY_Model
 							LEFT JOIN xiaoqu d ON a.xq_id = d.id
 							LEFT JOIN house_substyle f ON a.substyle_id = f.id
 							WHERE
-								a.user_id IN (
-									SELECT
-										id
-									FROM
-										admin
-									WHERE
-										company_id IN (
-											SELECT DISTINCT
-												(cid) cid
-											FROM
-												share_company
-											WHERE
-												tid IN (
-													SELECT DISTINCT
-														(tid)
-													FROM
-														share_company
-													WHERE
-														cid = {$cid}
-												)
-										)
-								) and a.type_id > 1 and a.exe_status = 1 {$where} order by locate(a.user_id,'{$locate}'),refresh_time desc,id desc limit {$limit_num},{$numPerPage};";
+								a.user_id IN ({$brokers_str}) 
+							and a.type_id > 1 and a.exe_status = 1 {$where} order by locate(a.user_id,'{$locate}'),refresh_time desc,id desc limit {$limit_num},{$numPerPage};";
 		$query = $this->db->query($sql);
 		$data['res_list'] = $query->result_array();
 		$data['pageNum'] = $pageNum;
