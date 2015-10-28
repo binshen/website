@@ -117,7 +117,19 @@
 	<script type="text/javascript" src="/static/js/store.min.js"></script>
 	<script type="text/javascript" src="/static/js/jquery.scrollLoading.js"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=gDeY0HhjlQOvjMmGKKWHAtCb"></script>
-    {include file='nav.html'}
+    
+<script type="text/javascript">
+{literal}
+    //menu导航
+    $(window).scroll(function(){
+        $(window).scrollTop()>100?$('#amz-go-top').addClass('am-active'):$('#amz-go-top').removeClass('am-active');
+    });
+    $('#amz-go-top').click(function(){
+        $('html,body').animate({scrollTop: 0}, '500');
+    });
+{/literal}
+</script>
+    
   <script>
     $(".scrollLoading").scrollLoading();
 	
