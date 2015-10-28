@@ -431,10 +431,8 @@ background: -o-gradient(linear, 0 0, 0 100%, from(#ff6600), to(#e04141));backgro
 .ewm-tips{ text-align:center; color:#9a9a9a; padding:10px 0;}
 
 .company-info{padding:10px 10px 30px; background:url(../images/list_bg.jpg) no-repeat; text-align:left;}
-
 .company-info .p1{ color:#fd7609; font-size:16px;}
 .company-info .p2{color:#fff;padding:10px 0;}.company-info .p3{ color:#fd7609;}
-
 /*聊天*/
 .cus_head_pic{ background:url(../images/touxiang1.jpg) no-repeat; background-size:100%; width:80px; height:67px; float:left;}
 .manger_head_pic{background:url(../images/touxiang2.jpg) no-repeat; background-size:100%; width:80px; height:67px; float:right;}
@@ -450,7 +448,7 @@ background: -o-gradient(linear, 0 0, 0 100%, from(#ff6600), to(#e04141));backgro
 .word_submit{padding:10px;width:100%;  background:#fff; position:absolute;bottom:0;}
 .input_txt{ background:#fff; border:1px solid #bdbdbd; border-radius:5px; float:left; padding:10px; width:82%;}
 .tj_btn{ display:block; width:70px; height:47px; background:url(../images/fs_btn.jpg) no-repeat; background-size:100%; float:right;}
-.data-time{text-align:right; display:block;}
+.data-time{text-align:right; display:block; font-size:10px;}
 @-webkit-keyframes twinkling{	/*透明度由0到1*/
 	0%{
 		opacity:0.2;				/*透明度为0*/
@@ -468,5 +466,3 @@ background: -o-gradient(linear, 0 0, 0 100%, from(#ff6600), to(#e04141));backgro
     .cus_word,.manger_word{ width:280px;}
 	.input_txt{width:80%;}
 }
-
-
