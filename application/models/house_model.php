@@ -1460,29 +1460,59 @@ class House_model extends MY_Model
 		$cid = $rs->company_id;
 		$limit_num = ($pageNum - 1) * $numPerPage;
 		
+		$sql_broker = "SELECT
+											id
+										FROM
+											admin
+										WHERE
+											company_id IN (
+												SELECT DISTINCT
+													(cid) cid
+												FROM
+													share_company
+												WHERE
+													tid IN (
+														SELECT DISTINCT
+															(tid)
+														FROM
+															share_company
+														WHERE
+															cid = '{$cid}'
+													)
+											)";
+		
+		$query_broker = $this->db->query($sql_broker);
+		$broker_arr = $query_broker->result_array();
+		
+		$brokers = array();
+		
+		foreach($broker_arr as $k=>$v){
+			$brokers[] = $v['id'];
+		}
+		
 		$rs = $this->db->select('company_id pid')->from('subsidiary')->where('id',$cid)->get()->row();
 		$pid = $rs->pid;
 		
-		$rs = $this->db->select('id,company_id pid')->from('subsidiary')->get()->result_array();
 		$order = array();
-		$order[] = $cid;
 		
-		foreach($rs as $k=>$v){
-			if($v['pid'] == $pid && $v['id'] != $cid){
-				$order[] = $v['id'];
-				unset($rs[$k]);
-			}
-			if($v['id'] == $cid){
-				unset($rs[$k]);
-			}
-		}
+		$order[] = $broker_id;
+		
+		$rs = $this->db->select('a.id id')->from('admin a')->join('subsidiary b','a.company_id = b.id','left')->where('b.company_id',$pid)
+					->where('a.id !=',$broker_id)->where_in('a.id',$brokers)->get()->result_array();
 		
 		foreach($rs as $k=>$v){
 			$order[] = $v['id'];
 		}
 		
-		$locate = implode(',',$order);
+		$rs = $this->db->select('a.id id')->from('admin a')->join('subsidiary b','a.company_id = b.id','left')
+					->where('b.company_id !=',$pid)->where_in('a.id',$brokers)->get()->result_array();
 		
+		foreach($rs as $k=>$v){
+			$order[] = $v['id'];
+		}
+		
+		
+		$locate = implode(',',$order);
 		$where = '';
 		
 		if($this->input->post('search_region')) {
@@ -1586,14 +1616,13 @@ class House_model extends MY_Model
 		$data['countPage'] = $rs_count->num;
 		$data['rel_name'] = null;
 		$sql = "SELECT
-								a.*, g.company_id cid,b.name AS region_name, c.name AS orientation_name, d.name AS xq_name, d.address AS address, f.name AS style_name
+								a.*, b.name AS region_name, c.name AS orientation_name, d.name AS xq_name, d.address AS address, f.name AS style_name
 							FROM
 								house a
 							LEFT JOIN house_region b ON a.region_id = b.id
 							LEFT JOIN house_orientation c ON a.orientation_id = c.id
 							LEFT JOIN xiaoqu d ON a.xq_id = d.id
 							LEFT JOIN house_substyle f ON a.substyle_id = f.id
-							LEFT JOIN admin g ON a.user_id = g.id
 							WHERE
 								a.user_id IN (
 									SELECT
@@ -1616,7 +1645,7 @@ class House_model extends MY_Model
 														cid = {$cid}
 												)
 										)
-								) and a.type_id > 1 and a.exe_status = 1 {$where} order by locate(cid,'{$locate}'),refresh_time desc,id desc limit {$limit_num},{$numPerPage};";
+								) and a.type_id > 1 and a.exe_status = 1 {$where} order by locate(a.user_id,'{$locate}'),refresh_time desc,id desc limit {$limit_num},{$numPerPage};";
 		$query = $this->db->query($sql);
 		$data['res_list'] = $query->result_array();
 		$data['pageNum'] = $pageNum;
