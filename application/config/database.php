@@ -48,9 +48,9 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '127.0.0.1';
+$db['default']['hostname'] = '121.40.97.183';
 $db['default']['username'] = 'root';
-$db['default']['password'] = '';
+$db['default']['password'] = 'soukecsk';
 $db['default']['database'] = 'funmall';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
