@@ -1623,24 +1623,12 @@ class House_model extends MY_Model
 	}
 	
 	public function track_house($open_id, $house_id) {
-// 		$this->db->from('house_track');
-// 		$this->db->where('open_id', $open_id);
-// 		$this->db->where('house_id', $house_id);
-// 		$track_data = $this->db->get()->row_array();
-// 		if(empty($track_data)) {
-// 			$this->db->query("INSERT INTO house_track (open_id, house_id, date) VALUES('{$open_id}', '{$house_id}', '".date('Y-m-d H:i:s')."')");
-// 		}
-		$conn = mysql_connect('121.40.97.183', 'root', 'soukecsk');
-		$sql = "SELECT count(1) FROM `house_track` where open_id = '" . $open_id . "' AND house_id =" . $house_id;
-		mysql_select_db('funmall');
-		$result = mysql_query($sql, $conn);
-		$row = mysql_fetch_row($result);
-		if($row[0] > 0) {
-			//TODO
-		} else {
-			$sql = "INSERT INTO house_track (open_id, house_id, date) VALUES('{$open_id}', '{$house_id}', '".date('Y-m-d H:i:s')."')";
+		$this->db->from('house_track');
+		$this->db->where('open_id', $open_id);
+		$this->db->where('house_id', $house_id);
+		$track_data = $this->db->get()->row_array();
+		if(empty($track_data) && $house_id > 0) {
+			$this->db->query("INSERT INTO house_track (open_id, house_id, date) VALUES('{$open_id}', '{$house_id}', '".date('Y-m-d H:i:s')."')");
 		}
-		mysql_query($sql, $conn);
-		mysql_close($conn);
 	}
 }
