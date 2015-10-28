@@ -40,7 +40,7 @@ class B_house extends MY_Controller {
 		}
 		if(!empty($house_list)) {
 			foreach ($house_list['res_list'] as &$d) {
-				$d->unit_price = intval($d->total_price * 10000 / $d->acreage);
+				$d->unit_price = intval($d["total_price"] * 10000 / $d["acreage"]);
 			}
 		}
 		$this->assign('house_list', $house_list);
