@@ -159,6 +159,11 @@ class B_house extends MY_Controller {
 	
 	public function view_detail($hid) {
 		
+		$open_id = $this->session->userdata('wx_open_id');
+		if(!empty($open_id) && !empty($hid)) {
+			$this->house_model->track_house($open_id, $hid);
+		}
+		
 		$house = $this->house_model->get_m_house_detail($hid);
 		$house['unit_price'] = intval($house['total_price'] * 10000 / $house['acreage']);
 		

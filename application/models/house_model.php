@@ -1653,4 +1653,19 @@ class House_model extends MY_Model
 		return $data;
 		
 	}
+	
+	public function track_house($open_id, $house_id) {
+		$this->db->from('house_track');
+		$this->db->where('open_id', $open_id);
+		$this->db->where('house_id', $house_id);
+		$track_data = $this->db->get()->row_array();
+		if(empty($data_token)) {
+			$data = array(
+				'open_id' => $open_id,
+				'house_id' => $house_id,
+				'date' => date('Y-m-d H:i:s')
+			);
+			$this->db->insert('house_track', $data);
+		}
+	}
 }
