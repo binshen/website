@@ -1454,7 +1454,174 @@ class House_model extends MY_Model
 		return $data;
 	}
 	
-	public function get_b_broker_house_list($broker_id, $page) {
+	public function get_b_broker_house_list($broker_id, $pageNum) {
+		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 10;
+		$rs = $this->db->select('company_id')->from('admin')->where('id',$broker_id)->get()->row();
+		$cid = $rs->company_id;
+		$limit_num = ($pageNum - 1) * $numPerPage;
+		
+		$rs = $this->db->select('company_id pid')->from('subsidiary')->where('id',$cid)->get()->row();
+		$pid = $rs->pid;
+		
+		$rs = $this->db->select('id,company_id pid')->from('subsidiary')->get()->result_array();
+		$order = array();
+		$order[] = $cid;
+		
+		foreach($rs as $k=>$v){
+			if($v['pid'] == $pid && $v['id'] != $cid){
+				$order[] = $v['id'];
+				unset($rs[$k]);
+			}
+			if($v['id'] == $cid){
+				unset($rs[$k]);
+			}
+		}
+		
+		foreach($rs as $k=>$v){
+			$order[] = $v['id'];
+		}
+		
+		$locate = implode(',',$order);
+		
+		$where = '';
+		
+		if($this->input->post('search_region')) {
+			$search_region = intval($this->input->post('search_region'));
+				
+			if($search_region == 6) {
+				$this->db->where_in('a.region_id', array(1,2,3,4,5,6));
+				$where .= ' and a.region_id in (1,2,3,4,5,6)';
+			} else {
+				$where .= " and a.region_id = {$search_region}";
+			}
+		}
+		if($this->input->post('search_style'))
+			$where .= " and a.substyle_id = {$this->input->post('search_style')}";
+		if($this->input->post('search_price')){
+			$search_price = intval($this->input->post('search_price'));
+			if($search_price == 1) {
+				$where .= " and a.total_price <= 50";
+			} else if($search_price == 2) {
+				$where .= " and a.total_price > 50 and a.total_price <= 80";
+			} else if($search_price == 3) {
+				$where .= " and a.total_price > 80 and a.total_price <= 100";
+			} else if($search_price == 4) {
+				$where .= " and a.total_price > 100 and a.total_price <= 120";
+			} else if($search_price == 5) {
+				$where .= " and a.total_price > 120 and a.total_price <= 150";
+			} else if($search_price == 6) {
+				$where .= " and a.total_price > 150 and a.total_price <= 200";
+			} else if($search_price == 7) {
+				$where .= " and a.total_price > 200 and a.total_price <= 250";
+			} else if($search_price == 8) {
+				$where .= " and a.total_price > 250 and a.total_price <= 300";
+			} else if($search_price == 9) {
+				$where .= " and a.total_price > 300 and a.total_price <= 500";
+			} else if($search_price == 10) {
+				$where .= " and a.total_price > 500";
+			}
+		}
+		if($this->input->post('search_acreage')) {
+			$search_acreage = intval($this->input->post('search_acreage'));
+			if($search_acreage == 1) {
+				$where .= " and a.acreage <= 50";
+			} else if($search_acreage == 2) {
+				$where .= " and a.acreage > 50 and a.acreage <= 70";
+			} else if($search_acreage == 3) {
+				$where .= " and a.acreage > 70 and a.acreage <= 90";
+			} else if($search_acreage == 4) {
+				$where .= " and a.acreage > 90 and a.acreage <= 120";
+			} else if($search_acreage == 5) {
+				$where .= " and a.acreage > 120 and a.acreage <= 150";
+			} else if($search_acreage == 6) {
+				$where .= " and a.acreage > 150 and a.acreage <= 200";
+			} else if($search_acreage == 7) {
+				$where .= " and a.acreage > 200 and a.acreage <= 300";
+			} else if($search_acreage == 8) {
+				$this->db->where('a.acreage >',  '300');
+				$where .= " and a.acreage > 300";
+			}
+		}
+		if($this->input->post('search_type')) {
+			$search_type = intval($this->input->post('search_type'));
+			if($search_type > 5) {
+				$where .= " and a.room > 5";
+			} else {
+				$where .= " and a.room = {$search_type}";
+			}
+		}
+		if($this->input->post('search_feature'))
+			$where .= " and a.feature like '%{$this->input->post('search_feature')}%'";
+		
+		$sql_count = "SELECT
+								count(1) num
+							FROM
+								house a
+							WHERE
+								a.user_id IN (
+									SELECT
+										id
+									FROM
+										admin
+									WHERE
+										company_id IN (
+											SELECT DISTINCT
+												(cid) cid
+											FROM
+												share_company
+											WHERE
+												tid IN (
+													SELECT DISTINCT
+														(tid)
+													FROM
+														share_company
+													WHERE
+														cid = {$cid}
+												)
+										)
+								) and a.type_id > 1 and a.exe_status = 1 {$where}";
+		
+		$query_count = $this->db->query($sql_count);
+		$rs_count = $query_count->row();
+		$data['countPage'] = $rs_count->num;
+		$data['rel_name'] = null;
+		$sql = "SELECT
+								a.*, g.company_id cid,b.name AS region_name, c.name AS orientation_name, d.name AS xq_name, d.address AS address, f.name AS style_name
+							FROM
+								house a
+							LEFT JOIN house_region b ON a.region_id = b.id
+							LEFT JOIN house_orientation c ON a.orientation_id = c.id
+							LEFT JOIN xiaoqu d ON a.xq_id = d.id
+							LEFT JOIN house_substyle f ON a.substyle_id = f.id
+							LEFT JOIN admin g ON a.user_id = g.id
+							WHERE
+								a.user_id IN (
+									SELECT
+										id
+									FROM
+										admin
+									WHERE
+										company_id IN (
+											SELECT DISTINCT
+												(cid) cid
+											FROM
+												share_company
+											WHERE
+												tid IN (
+													SELECT DISTINCT
+														(tid)
+													FROM
+														share_company
+													WHERE
+														cid = {$cid}
+												)
+										)
+								) and a.type_id > 1 and a.exe_status = 1 {$where} order by locate(cid,'{$locate}'),refresh_time desc,id desc limit {$limit_num},{$numPerPage};";
+		$query = $this->db->query($sql);
+		$data['res_list'] = $query->result_array();
+		$data['pageNum'] = $pageNum;
+		$data['numPerPage'] = $numPerPage;
+		return $data;
 		
 	}
 }
