@@ -1660,12 +1660,7 @@ class House_model extends MY_Model
 		$this->db->where('house_id', $house_id);
 		$track_data = $this->db->get()->row_array();
 		if(empty($track_data)) {
-			$data = array(
-				'open_id' => $open_id,
-				'house_id' => $house_id,
-				'date' => date('Y-m-d H:i:s')
-			);
-			$this->db->insert('house_track', $data);
+			$this->db->query("INSERT INTO house_track VALUES('{$open_id}', '{$house_id}', '".date('Y-m-d H:i:s')."')");
 		}
 	}
 }
