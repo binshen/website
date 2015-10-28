@@ -1347,7 +1347,7 @@ class House_model extends MY_Model
 		}
 		if($this->input->post('search_feature'))
 			$this->db->like('a.feature', $this->input->post('search_feature'));
-		$this->db->where('a.type_id >', 1);
+		$this->db->where('a.type_id', 2);
 		$this->db->where('a.exe_status', 1);
 			
 		$rs_total = $this->db->get()->row();
@@ -1440,7 +1440,7 @@ class House_model extends MY_Model
 		}
 		if($this->input->post('search_feature'))
 			$this->db->like('a.feature', $this->input->post('search_feature'));
-		$this->db->where('a.type_id >', 1);
+		$this->db->where('a.type_id', 2);
 		$this->db->where('a.exe_status', 1);
 		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage);
 			
