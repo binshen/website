@@ -1659,7 +1659,7 @@ class House_model extends MY_Model
 		$this->db->where('open_id', $open_id);
 		$this->db->where('house_id', $house_id);
 		$track_data = $this->db->get()->row_array();
-		if(empty($data_token)) {
+		if(empty($track_data)) {
 			$data = array(
 				'open_id' => $open_id,
 				'house_id' => $house_id,
