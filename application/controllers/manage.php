@@ -955,4 +955,17 @@ class Manage extends MY_Controller {
 			echo '-1';
 	}
 	
+	
+	public function list_binding(){
+		$data = $this->manage_model->list_binding();
+		$this->load->view('manage/list_binding.php',$data);
+	}
+	
+	public function delete_binding($id) {
+		$rs = $this->manage_model->delete_binding($id);
+		if($rs)
+			echo '1';
+		else
+			echo '-1';
+	}
 }

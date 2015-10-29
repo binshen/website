@@ -1613,4 +1613,39 @@ class Manage_model extends MY_Model
 	public function list_all_company(){
 		return $this->db->select('id,name')->from('company')->get()->result_array();
 	}
+	
+	public function list_binding() {
+		// 每页显示的记录条数，默认20条
+		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
+		$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
+		
+		//获得总记录数
+		$this->db->select('count(1) as num');
+		$this->db->from('wx_user a');
+		$this->db->join('admin b', 'a.broker_id = b.id', 'inner');
+		$this->db->join('subsidiary c', 'b.subsidiary_id = c.id', 'left');
+		$this->db->join('company d', 'b.company_id = d.id', 'left');
+		
+		$rs_total = $this->db->get()->row();
+		//总记录数
+		$data['countPage'] = $rs_total->num;
+		
+		//list
+		$this->db->select('a.id, a.open_id, b.rel_name AS broker_name, c.name AS company_name, d.name AS subsidiary_name');
+		$this->db->from('wx_user a');
+		$this->db->join('admin b', 'a.broker_id = b.id', 'inner');
+		$this->db->join('subsidiary c', 'b.subsidiary_id = c.id', 'left');
+		$this->db->join('company d', 'b.company_id = d.id', 'left');
+		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
+		$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
+		$data['res_list'] = $this->db->get()->result();
+		$data['pageNum'] = $pageNum;
+		$data['numPerPage'] = $numPerPage;
+		return $data;
+	}
+	
+	public function delete_binding($id) {
+		$this->db->where('id',$id);
+		return $this->db->delete('wx_user');
+	}
 }
