@@ -169,7 +169,7 @@ class MY_Pagination extends CI_Pagination {
 			}
 		}
 
-		$output .= '<div class="m-pages-num-con" style="width:125px"><span id="curPageIndex">'.$this->cur_page.'</span>/'.$num_pages.'</div>';
+		$output .= '<div class="m-pages-num-con"><span id="curPageIndex">'.$this->cur_page.'</span>/'.$num_pages.'</div>';
 
 		// Render the "next" link
 		if ($this->next_link !== FALSE)//if ($this->next_link !== FALSE AND $this->cur_page < $num_pages)
