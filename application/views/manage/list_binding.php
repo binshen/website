@@ -18,6 +18,8 @@
 			<tr>
 				<th width="30%">游客ID</th>
 				<th>业务员</th>
+				<th>用户名</th>
+				<th>电话</th>
 				<th>公司</th>
 				<th>分店</th>
 			</tr>
@@ -30,6 +32,8 @@
             			<tr target="id" rel=<?php echo $row->id; ?>>
             				<td><?php echo $row->open_id;?></td>
             				<td><?php echo $row->broker_name;?></td>
+            				<td><?php echo $row->username;?></td>
+            				<td><?php echo $row->tel;?></td>
             				<td><?php echo $row->company_name;?></td>
             				<td><?php echo $row->subsidiary_name;?></td>
             			</tr>
