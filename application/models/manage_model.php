@@ -1648,4 +1648,39 @@ class Manage_model extends MY_Model
 		$this->db->where('id',$id);
 		return $this->db->delete('wx_user');
 	}
+	
+	public function list_tracking() {
+		// 每页显示的记录条数，默认20条
+		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
+		$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
+	
+		//获得总记录数
+		$this->db->select('count(1) as num');
+		$this->db->from('house_track a');
+		$this->db->join('house b', 'a.house_id = b.id', 'inner');
+		$this->db->join('xiaoqu c', 'b.xq_id = c.id', 'left');
+		$this->db->join('house_region d', 'b.region_id = d.id', 'left');
+		
+		$rs_total = $this->db->get()->row();
+		//总记录数
+		$data['countPage'] = $rs_total->num;
+	
+		//list
+		$this->db->select('a.id, a.open_id, b.id AS house_id, b.total_price, b.acreage, b.room, b.lounge, b.toilet, b.feature, c.name AS xiaoqu_name, d.name AS region_name');
+		$this->db->from('house_track a');
+		$this->db->join('house b', 'a.house_id = b.id', 'inner');
+		$this->db->join('xiaoqu c', 'b.xq_id = c.id', 'left');
+		$this->db->join('house_region d', 'b.region_id = d.id', 'left');
+		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
+		$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
+		$data['res_list'] = $this->db->get()->result();
+		$data['pageNum'] = $pageNum;
+		$data['numPerPage'] = $numPerPage;
+		return $data;
+	}
+	
+	public function delete_tracking($id) {
+		$this->db->where('id',$id);
+		return $this->db->delete('house_track');
+	}
 }

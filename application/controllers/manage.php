@@ -968,4 +968,17 @@ class Manage extends MY_Controller {
 		else
 			echo '-1';
 	}
+	
+	public function list_tracking(){
+		$data = $this->manage_model->list_tracking();
+		$this->load->view('manage/list_tracking.php',$data);
+	}
+	
+	public function delete_tracking($id) {
+		$rs = $this->manage_model->delete_tracking($id);
+		if($rs)
+			echo '1';
+		else
+			echo '-1';
+	}
 }
