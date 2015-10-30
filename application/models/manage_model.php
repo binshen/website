@@ -517,9 +517,11 @@ class Manage_model extends MY_Model
 	
 		$data['rel_name'] = null;
 		//list
-		$this->db->select('a.*, b.name AS region_name');
+		$this->db->select('a.*, b.name AS region_name, c.name AS company_name, d.name AS subsidiary_name');
 		$this->db->from('admin a');
 		$this->db->join('house_region b', 'a.region_id = b.id', 'left');
+		$this->db->join('company c', 'a.company_id = c.id', 'left');
+		$this->db->join('subsidiary d', 'a.subsidiary_id = d.id', 'left');
 		if($this->input->post('rel_name')){
 			$this->db->like('a.rel_name',$this->input->post('rel_name'));
 			$data['rel_name'] = $this->input->post('rel_name');
