@@ -479,7 +479,9 @@ class Manage extends MY_Controller {
 	public function add_broker() {
 		$data = array();
 		$data['region_list'] = $this->manage_model->get_region_list();
-		$data['company_list'] = $this->manage_model->get_company_list();
+		$is_admin = $this->session->userdata('admin_group') == 1 ||
+			($this->session->userdata('admin_group') == 2 && $this->session->userdata('manager_group') == 1);
+		$data['company_list'] = $this->manage_model->get_company_list($is_admin ? NULL : $this->session->userdata('company_id'));
 		if(!empty($data['company_list'])) {
 			$data['subsidiary_list'] = $this->manage_model->get_subsidiary_list_by_company($data['company_list'][0]->id);
 		}
@@ -510,7 +512,9 @@ class Manage extends MY_Controller {
 	public function edit_broker($id) {
 		$data = $this->manage_model->get_broker($id);
 		$data['region_list'] = $this->manage_model->get_region_list();
-		$data['company_list'] = $this->manage_model->get_company_list();
+		$is_admin = $this->session->userdata('admin_group') == 1 ||
+			($this->session->userdata('admin_group') == 2 && $this->session->userdata('manager_group') == 1);
+		$data['company_list'] = $this->manage_model->get_company_list($is_admin ? NULL : $this->session->userdata('company_id'));
 		$data['subsidiary_list'] = $this->manage_model->get_subsidiary_list_by_company($data['company_id']);
 		$this->load->view('manage/add_broker.php', $data);
 	}
@@ -870,7 +874,6 @@ class Manage extends MY_Controller {
 		$data = $this->manage_model->get_subsidiary($id);
 		$is_admin = $this->session->userdata('admin_group') == 1 ||
 			($this->session->userdata('admin_group') == 2 && $this->session->userdata('manager_group') == 1);
-		var_dump($is_admin);
 		$data['company_list'] = $this->manage_model->get_company_list($is_admin ? NULL : $this->session->userdata('company_id'));
 		$this->load->view('manage/add_subsidiary.php', $data);
 	}
