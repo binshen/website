@@ -1599,7 +1599,7 @@ class House_model extends MY_Model
 							FROM
 								house a
 							WHERE
-								a.user_id IN ({$brokers_str}) and a.type_id > 1 and a.exe_status = 1 {$where}";
+								a.broker_id IN ({$brokers_str}) and a.type_id > 1 and a.exe_status = 1 {$where}";
 		
 		$query_count = $this->db->query($sql_count);
 		$rs_count = $query_count->row();
@@ -1615,8 +1615,8 @@ class House_model extends MY_Model
 							LEFT JOIN house_decoration e ON a.decoration_id = e.id
 							LEFT JOIN house_substyle f ON a.substyle_id = f.id
 							WHERE
-								a.user_id IN ({$brokers_str}) 
-							and a.type_id > 1 and a.exe_status = 1 {$where} order by locate(a.user_id,'{$locate}'),refresh_time desc,id desc limit {$limit_num},{$numPerPage};";
+								a.broker_id IN ({$brokers_str}) 
+							and a.type_id > 1 and a.exe_status = 1 {$where} order by locate(a.broker_id,'{$locate}'),refresh_time desc,id desc limit {$limit_num},{$numPerPage};";
 		$query = $this->db->query($sql);
 		$data['res_list'] = $query->result_array();
 		$data['pageNum'] = $pageNum;
