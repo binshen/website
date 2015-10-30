@@ -504,10 +504,10 @@ class Manage_model extends MY_Model
 		if($this->input->post('rel_name'))
 			$this->db->like('rel_name',$this->input->post('rel_name'));
 		if($this->session->userdata('manager_group') == 1) {
-			$this->db->where('a.company_id', $this->session->userdata('company_id'));
+			$this->db->where('company_id', $this->session->userdata('company_id'));
 		} else if($this->session->userdata('manager_group') == 2) {
-			$this->db->where('a.company_id', $this->session->userdata('company_id'));
-			$this->db->where('a.subsidiary_id', $this->session->userdata('subsidiary_id'));
+			$this->db->where('company_id', $this->session->userdata('company_id'));
+			$this->db->where('subsidiary_id', $this->session->userdata('subsidiary_id'));
 		}
 		$this->db->where('id >', 1);
 	
