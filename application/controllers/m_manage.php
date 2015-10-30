@@ -18,7 +18,9 @@ class M_manage extends MY_Controller {
 	
 	public function refresh($id){
 		$rs = $this->m_manage_model->refresh($id);
-		if($rs){
+		if($rs == -1) {
+			$this->show_message('今天已经刷新过该房源');
+		} else if($rs){
 			$this->show_message('操作成功',site_url('m_manage'));
 		}else{
 			$this->show_message('操作失败');
