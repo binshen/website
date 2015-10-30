@@ -1522,8 +1522,12 @@ class Manage_model extends MY_Model
 		return $this->db->delete('subsidiary');
 	}
 	
-	public function get_company_list() {
-		return $this->db->get('company')->result();
+	public function get_company_list($id=NULL) {
+		if(empty($id)) {
+			return $this->db->get('company')->result();
+		} else {
+			return $this->db->get_where('company', array('id' => $id))->result();
+		}
 	}
 	
 	public function get_subsidiary_list_by_company($id) {

@@ -797,6 +797,7 @@ class Manage extends MY_Controller {
 	 */
 	public function list_company() {
 		$data = $this->manage_model->list_company();
+		$data['is_admin'] = $this->session->userdata('admin_group') == 1;
 		$this->load->view('manage/list_company.php', $data);
 	}
 	
@@ -815,6 +816,7 @@ class Manage extends MY_Controller {
 	
 	public function edit_company($id) {
 		$data = $this->manage_model->get_company($id);
+		$data['is_admin'] = $this->session->userdata('admin_group') == 1;
 		$this->load->view('manage/add_company.php', $data);
 	}
 	
@@ -843,7 +845,9 @@ class Manage extends MY_Controller {
 	
 	public function add_subsidiary() {
 		$data = array();
-		$data['company_list'] = $this->manage_model->get_company_list();
+		$is_admin = $this->session->userdata('admin_group') == 1 || 
+			($this->session->userdata('admin_group') == 2 && $this->session->userdata('manager_group') == 1);
+		$data['company_list'] = $this->manage_model->get_company_list($is_admin ? NULL : $this->session->userdata('company_id'));
 		$this->load->view('manage/add_subsidiary.php', $data);
 	}
 	
@@ -864,7 +868,10 @@ class Manage extends MY_Controller {
 	
 	public function edit_subsidiary($id) {
 		$data = $this->manage_model->get_subsidiary($id);
-		$data['company_list'] = $this->manage_model->get_company_list();
+		$is_admin = $this->session->userdata('admin_group') == 1 ||
+			($this->session->userdata('admin_group') == 2 && $this->session->userdata('manager_group') == 1);
+		var_dump($is_admin);
+		$data['company_list'] = $this->manage_model->get_company_list($is_admin ? NULL : $this->session->userdata('company_id'));
 		$this->load->view('manage/add_subsidiary.php', $data);
 	}
 	
