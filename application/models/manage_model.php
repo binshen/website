@@ -1530,8 +1530,12 @@ class Manage_model extends MY_Model
 		}
 	}
 	
-	public function get_subsidiary_list_by_company($id) {
-		return $this->db->get_where('subsidiary', array('company_id' => $id))->result_array();
+	public function get_subsidiary_list_by_company($id, $sid = NULL) {
+		if(empty($sid)) {
+			return $this->db->get_where('subsidiary', array('company_id' => $id))->result_array();
+		} else {
+			return $this->db->get_where('subsidiary', array('company_id' => $id, 'id' => $sid))->result_array();
+		}
 	}
 	
 
