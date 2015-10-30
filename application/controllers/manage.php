@@ -44,6 +44,10 @@ class Manage extends MY_Controller {
 		$this->load->view('manage/index.php');
 	}
 
+	private function is_admin() {
+		return $this->session->userdata('group_id') == 1 || ($this->session->userdata('group_id') == 2 && $this->session->userdata('manager_group') == 1);
+	}
+	
 	/**
 	 *
 	 * ***************************************yaobin*******************************************************************
@@ -479,8 +483,7 @@ class Manage extends MY_Controller {
 	public function add_broker() {
 		$data = array();
 		$data['region_list'] = $this->manage_model->get_region_list();
-		$is_admin = $this->session->userdata('admin_group') == 1 ||
-			($this->session->userdata('admin_group') == 2 && $this->session->userdata('manager_group') == 1);
+		$is_admin = $this->is_admin();
 		$data['company_list'] = $this->manage_model->get_company_list($is_admin ? NULL : $this->session->userdata('company_id'));
 		if(!empty($data['company_list'])) {
 			$data['subsidiary_list'] = $this->manage_model->get_subsidiary_list_by_company($data['company_list'][0]->id, $is_admin ? NULL : $this->session->userdata('subsidiary_id'));
@@ -513,8 +516,7 @@ class Manage extends MY_Controller {
 	public function edit_broker($id) {
 		$data = $this->manage_model->get_broker($id);
 		$data['region_list'] = $this->manage_model->get_region_list();
-		$is_admin = $this->session->userdata('admin_group') == 1 ||
-			($this->session->userdata('admin_group') == 2 && $this->session->userdata('manager_group') == 1);
+		$is_admin = $this->is_admin();
 		$data['company_list'] = $this->manage_model->get_company_list($is_admin ? NULL : $this->session->userdata('company_id'));
 		$data['subsidiary_list'] = $this->manage_model->get_subsidiary_list_by_company($data['company_id'], $is_admin ? NULL : $this->session->userdata('subsidiary_id'));
 		$data['is_admin'] = $is_admin;
@@ -803,12 +805,13 @@ class Manage extends MY_Controller {
 	 */
 	public function list_company() {
 		$data = $this->manage_model->list_company();
-		$data['is_admin'] = $this->session->userdata('admin_group') == 1;
+		$data['is_admin'] = $this->is_admin();
 		$this->load->view('manage/list_company.php', $data);
 	}
 	
 	public function add_company() {
-		$this->load->view('manage/add_company.php');
+		$data['is_admin'] = $this->is_admin();
+		$this->load->view('manage/add_company.php', $data);
 	}
 	
 	public function save_company() {
@@ -822,7 +825,7 @@ class Manage extends MY_Controller {
 	
 	public function edit_company($id) {
 		$data = $this->manage_model->get_company($id);
-		$data['is_admin'] = $this->session->userdata('admin_group') == 1;
+		$data['is_admin'] = $this->is_admin();
 		$this->load->view('manage/add_company.php', $data);
 	}
 	
@@ -839,8 +842,7 @@ class Manage extends MY_Controller {
 	 * 分店信息
 	 */
 	public function list_subsidiary($flag=null) {
-		$is_admin = $this->session->userdata('admin_group') == 1 ||
-			($this->session->userdata('admin_group') == 2 && $this->session->userdata('manager_group') == 1);
+		$is_admin = $this->is_admin();
 		$data = $this->manage_model->list_subsidiary($flag);
 		$data['is_admin'] = $is_admin;
 		if($flag){
@@ -854,8 +856,8 @@ class Manage extends MY_Controller {
 	
 	public function add_subsidiary() {
 		$data = array();
-		$is_admin = $this->session->userdata('admin_group') == 1 || 
-			($this->session->userdata('admin_group') == 2 && $this->session->userdata('manager_group') == 1);
+		$is_admin = $this->is_admin();
+		$data['is_admin'] = $is_admin;
 		$data['company_list'] = $this->manage_model->get_company_list($is_admin ? NULL : $this->session->userdata('company_id'));
 		$this->load->view('manage/add_subsidiary.php', $data);
 	}
@@ -877,8 +879,7 @@ class Manage extends MY_Controller {
 	
 	public function edit_subsidiary($id) {
 		$data = $this->manage_model->get_subsidiary($id);
-		$is_admin = $this->session->userdata('admin_group') == 1 ||
-			($this->session->userdata('admin_group') == 2 && $this->session->userdata('manager_group') == 1);
+		$is_admin = $this->is_admin();
 		$data['company_list'] = $this->manage_model->get_company_list($is_admin ? NULL : $this->session->userdata('company_id'));
 		$data['is_admin'] = $is_admin;
 		$this->load->view('manage/add_subsidiary.php', $data);
