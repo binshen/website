@@ -56,8 +56,8 @@ class M_manage_model extends MY_Model
     	$refresh_time = $house['refresh_time'];
     	if(!empty($refresh_time)) {
     		$refresh_date = substr($refresh_time, 0, 10);
-    		if($refresh_date == date('Y-m-d')) {
-    			return -1;
+    		if($refresh_date == date('Y-m-d', time())) {
+    			return -2;
     		}
     	}
     	$this->db->where('id',$id);
