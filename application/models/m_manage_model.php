@@ -37,7 +37,7 @@ class M_manage_model extends MY_Model
     	$this->db->join('admin e', 'a.broker_id = e.id', 'left');
     	$this->db->join('house_substyle f', 'a.substyle_id = f.id', 'left');
 //    	$this->db->where('a.user_type',$user_type_id);
-    	$this->db->where('user_id',$uid);
+    	$this->db->where('broker_id',$uid);
     	
     	$this->db->order_by('exe_status', 'desc');
     	$this->db->order_by('refresh_time', 'desc');
