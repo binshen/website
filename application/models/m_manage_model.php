@@ -61,7 +61,12 @@ class M_manage_model extends MY_Model
     		}
     	}
     	$this->db->where('id',$id);
-    	return $this->db->update('house',array('refresh_time'=>date('Y-m-d H:i:s',time())));
+    	$ret = $this->db->update('house',array('refresh_time'=>date('Y-m-d H:i:s',time())));
+    	if($ret) {
+    		return 1;
+    	} else {
+    		return -1;
+    	}
     }
     
     public function down_up($id,$exe_status){
