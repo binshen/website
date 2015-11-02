@@ -1508,8 +1508,13 @@ class House_model extends MY_Model
 		
 		$order[] = $broker_id;
 		
+		$rs = $this->db->select('id')->from('admin')->where('subsidiary_id',$cid)->get()->result_array();
+		foreach($rs as $k=>$v){
+			$order[] = $v['id'];
+		}
+		
 		$rs = $this->db->select('a.id id')->from('admin a')->join('subsidiary b','a.subsidiary_id = b.id','left')->where('b.company_id',$pid)
-					->where('a.id !=',$broker_id)->where_in('a.id',$brokers)->get()->result_array();
+					->where('a.id !=',$broker_id)->where('a.subsidiary_id !=',$cid)->where_in('a.id',$brokers)->get()->result_array();
 		
 		foreach($rs as $k=>$v){
 			$order[] = $v['id'];
