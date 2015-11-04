@@ -1,4 +1,4 @@
-﻿/// <reference path="jquery-1.4.1.min.js" />
+/// <reference path="jquery-1.4.1.min.js" />
 /// <reference path="iscroll.js" />
 /// <reference path="model.js" />
 
