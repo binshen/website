@@ -76,7 +76,10 @@ body{background-color:#fff;}
 /*页面导航*/
 .g-head{/*padding: 1em 0;*/ background: #ff6600; overflow: hidden; text-align: center; color: #fff; height: 50px; line-height: 50px;  position:relative;}
 .g-head .logo{margin:10px auto 0;background:url(../images/logo.png) no-repeat; background-size:100%; width: 104px; height: 30px; display:block;}
-.g-head .am-icon-txt,.g-head .am-icon-user{margin:5px 15px 0 0; float: right; color: #fff;  }
+.g-head .am-icon-txt{margin:5px 15px 0 0; float: right; color: #fff;  }
+.g-head .icon-user{margin:10px 15px 0 0; float: right; color: #fff; background:url(../images/icon_user.png) no-repeat; background-size:100%; width:30px; height:30px; }
+
+
 .g-head .am-icon-chevron-left{position: absolute;top:2px;left:15px;}
 .new-list{padding:1rem 0; background: #f5f2f0;}
 
