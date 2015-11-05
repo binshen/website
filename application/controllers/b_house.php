@@ -19,6 +19,13 @@ class B_house extends MY_Controller {
 	
 	public function view_list($page=1) {
 		
+		$broker_name = $this->session->userdata('rel_name');
+		if(!empty($broker_name)) {
+			$this->assign('store_name', $broker_name . ' - 微店房源');
+		} else {
+			$this->assign('store_name', '经纪人微店房源');
+		}
+		
 		$login_broker_id = $this->session->userdata('login_broker_id');
 		if(!empty($login_broker_id)) {
 			$broker_id = $login_broker_id;

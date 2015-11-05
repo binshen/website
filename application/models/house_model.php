@@ -1268,6 +1268,7 @@ class House_model extends MY_Model
 		$this->db->join('house_region b', 'a.region_id = b.id', 'left');
 		$this->db->join('house_orientation c', 'a.orientation_id = c.id', 'left');
 		$this->db->join('xiaoqu d', 'a.xq_id = d.id', 'left');
+		$this->db->join('house_decoration e', 'a.decoration_id = e.id', 'left');
 		$this->db->join('house_substyle f', 'a.substyle_id = f.id', 'left');
 		if($this->input->post('search_region')) {
 			$search_region = intval($this->input->post('search_region'));
@@ -1356,11 +1357,12 @@ class House_model extends MY_Model
 			
 		$data['rel_name'] = null;
 		//list
-		$this->db->select('a.*, b.name AS region_name, c.name AS orientation_name, d.name AS xq_name, d.address AS address, f.name AS style_name');
+		$this->db->select('a.*, b.name AS region_name, c.name AS orientation_name, d.name AS xq_name, d.address AS address, e.name AS decoration_name, f.name AS style_name');
 		$this->db->from('house a');
 		$this->db->join('house_region b', 'a.region_id = b.id', 'left');
 		$this->db->join('house_orientation c', 'a.orientation_id = c.id', 'left');
 		$this->db->join('xiaoqu d', 'a.xq_id = d.id', 'left');
+		$this->db->join('house_decoration e', 'a.decoration_id = e.id', 'left');
 		$this->db->join('house_substyle f', 'a.substyle_id = f.id', 'left');
 		if($this->input->post('search_region')) {
 			$search_region = intval($this->input->post('search_region'));
@@ -1506,8 +1508,13 @@ class House_model extends MY_Model
 		
 		$order[] = $broker_id;
 		
+		$rs = $this->db->select('id')->from('admin')->where('subsidiary_id',$cid)->get()->result_array();
+		foreach($rs as $k=>$v){
+			$order[] = $v['id'];
+		}
+		
 		$rs = $this->db->select('a.id id')->from('admin a')->join('subsidiary b','a.subsidiary_id = b.id','left')->where('b.company_id',$pid)
-					->where('a.id !=',$broker_id)->where_in('a.id',$brokers)->get()->result_array();
+					->where('a.id !=',$broker_id)->where('a.subsidiary_id !=',$cid)->where_in('a.id',$brokers)->get()->result_array();
 		
 		foreach($rs as $k=>$v){
 			$order[] = $v['id'];
@@ -1597,23 +1604,24 @@ class House_model extends MY_Model
 							FROM
 								house a
 							WHERE
-								a.user_id IN ({$brokers_str}) and a.type_id > 1 and a.exe_status = 1 {$where}";
+								a.broker_id IN ({$brokers_str}) and a.type_id > 1 and a.exe_status = 1 {$where}";
 		
 		$query_count = $this->db->query($sql_count);
 		$rs_count = $query_count->row();
 		$data['countPage'] = $rs_count->num;
 		$data['rel_name'] = null;
 		$sql = "SELECT
-								a.*, b.name AS region_name, c.name AS orientation_name, d.name AS xq_name, d.address AS address, f.name AS style_name
+								a.*, b.name AS region_name, c.name AS orientation_name, d.name AS xq_name, d.address AS address, e.name AS decoration_name, f.name AS style_name
 							FROM
 								house a
 							LEFT JOIN house_region b ON a.region_id = b.id
 							LEFT JOIN house_orientation c ON a.orientation_id = c.id
 							LEFT JOIN xiaoqu d ON a.xq_id = d.id
+							LEFT JOIN house_decoration e ON a.decoration_id = e.id
 							LEFT JOIN house_substyle f ON a.substyle_id = f.id
 							WHERE
-								a.user_id IN ({$brokers_str}) 
-							and a.type_id > 1 and a.exe_status = 1 {$where} order by locate(a.user_id,'{$locate}'),refresh_time desc,id desc limit {$limit_num},{$numPerPage};";
+								a.broker_id IN ({$brokers_str}) 
+							and a.type_id > 1 and a.exe_status = 1 {$where} order by locate(a.broker_id,'{$locate}'),refresh_time desc,id desc limit {$limit_num},{$numPerPage};";
 		$query = $this->db->query($sql);
 		$data['res_list'] = $query->result_array();
 		$data['pageNum'] = $pageNum;

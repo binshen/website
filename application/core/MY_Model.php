@@ -236,9 +236,9 @@ class MY_Model extends CI_Model{
     	$options = array(
     			'http' => array(
     					'method' => 'POST',
-    					'header' => 'Content-type:application/json',
-    					'content' => json_encode($post_data),
-    					'timeout' => 300
+    					'header' => 'Content-type:application/json;encoding=utf-8',
+    					'content' => urldecode(json_encode($post_data)),
+    					'timeout' => $timeout
     			)
     	);
     	$context = stream_context_create($options);

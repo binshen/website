@@ -37,7 +37,7 @@ class M_manage_model extends MY_Model
     	$this->db->join('admin e', 'a.broker_id = e.id', 'left');
     	$this->db->join('house_substyle f', 'a.substyle_id = f.id', 'left');
 //    	$this->db->where('a.user_type',$user_type_id);
-    	$this->db->where('user_id',$uid);
+    	$this->db->where('broker_id',$uid);
     	
     	$this->db->order_by('exe_status', 'desc');
     	$this->db->order_by('refresh_time', 'desc');
@@ -52,8 +52,21 @@ class M_manage_model extends MY_Model
     }
     
     public function refresh($id){
+    	$house = $this->db->select()->from('house')->where('id',$id)->get()->row_array();
+    	$refresh_time = $house['refresh_time'];
+    	if(!empty($refresh_time)) {
+    		$refresh_date = substr($refresh_time, 0, 10);
+    		if($refresh_date == date('Y-m-d', time())) {
+    			return -2;
+    		}
+    	}
     	$this->db->where('id',$id);
-    	return $this->db->update('house',array('refresh_time'=>date('Y-m-d H:i:s',time())));
+    	$ret = $this->db->update('house',array('refresh_time'=>date('Y-m-d H:i:s',time())));
+    	if($ret) {
+    		return 1;
+    	} else {
+    		return -1;
+    	}
     }
     
     public function down_up($id,$exe_status){

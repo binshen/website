@@ -1,4 +1,4 @@
-<form id="pagerForm" method="post" action="<?php echo site_url('manage/list_subsidiary')?>">
+<form id="pagerForm" method="post" action="<?php echo site_url('manage/list_tracking')?>">
 	<input type="hidden" name="pageNum" value="<?php echo $pageNum;?>" />
 	<input type="hidden" name="numPerPage" value="<?php echo $numPerPage;?>" />
 	<input type="hidden" name="orderField" value="<?php echo $this->input->post('orderField');?>" />
@@ -8,11 +8,7 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<?php if($is_admin) { ?>
-			<li><a class="add" href="<?php echo site_url('manage/add_subsidiary')?>" target="dialog" rel="add_subsidiary" title="新建"><span>新建</span></a></li>
-			<li><a class="delete" href="<?php echo site_url('manage/delete_subsidiary')?>/{id}" target="ajaxTodo"  title="确定要删除？" warn="请选择一条记录"><span>删除</span></a></li>
-			<?php } ?>
-			<li><a class="edit" href="<?php echo site_url('manage/edit_subsidiary/{id}')?>" target="dialog" rel="edit_subsidiary" warn="请选择一条记录" title="查看"><span>查看</span></a></li>
+			<li><a class="delete" href="<?php echo site_url('manage/delete_tracking')?>/{id}" target="ajaxTodo"  title="确定要删除？" warn="请选择一条记录"><span>删除</span></a></li>
 		</ul>
 	</div>
 
@@ -20,9 +16,14 @@
 	<table class="list" width="100%" targetType="navTab" asc="asc" desc="desc">
 		<thead>
 			<tr>
-				<th width="120">ID</th>
-				<th>分店名称</th>
-				<th>所属公司</th>
+				<th width="200">游客ID</th>
+				<th width="60">楼盘ID</th>
+				<th>小区</th>
+				<th>总价</th>
+				<th>面积</th>
+				<th>区域</th>
+				<th>房型</th>
+				<th>特色</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -31,9 +32,14 @@
             	    foreach ($res_list as $row):		               
             ?>		            
             			<tr target="id" rel=<?php echo $row->id; ?>>
-            				<td><?php echo $row->id;?></td>
-            				<td><?php echo $row->name;?></td>
-            				<td><?php echo $row->company_name;?></td>
+            				<td><?php echo $row->open_id;?></td>
+            				<td><?php echo $row->house_id;?></td>
+            				<td><?php echo $row->xiaoqu_name;?></td>
+            				<td><?php echo $row->total_price;?></td>
+            				<td><?php echo $row->acreage;?></td>
+            				<td><?php echo $row->region_name;?></td>
+            				<td><?php echo $row->room;?>室<?php echo $row->lounge;?>厅<?php echo $row->toilet;?>卫</td>
+            				<td><?php echo $row->feature;?></td>
             			</tr>
             <?php 
             		endforeach;

@@ -21,6 +21,7 @@
 				<th width="240" >姓名</th>
 				<th>电话</th>
 				<th>所属公司</th>
+				<th>所属分店</th>
 				<th>熟悉区域</th>
 			</tr>
 		</thead>
@@ -33,6 +34,7 @@
             				<td><?php echo $row->rel_name;?></td>
             				<td><?php echo $row->tel;?></td>
             				<td><?php echo $row->company_name;?></td>
+            				<td><?php echo $row->subsidiary_name;?></td>
             				<td><?php echo $row->region_name;?></td>
             			</tr>
             <?php 

@@ -34,13 +34,23 @@
         		<dl>
         			<dt>可开业务员数：</dt>
         			<dd>
-        				<input name="broker_count" type="text" class="required" value="<?php if(!empty($broker_count)) echo $broker_count;?>" />
+        				<?php if($is_admin) { ?>
+        					<input name="broker_count" type="text" class="required" value="<?php if(!empty($broker_count)) echo $broker_count;?>" />
+        				<?php } else { ?>
+        					<?php if(!empty($broker_count)) echo $broker_count;?>
+        					<input name="broker_count" type="hidden" value="<?php if(!empty($broker_count)) echo $broker_count;?>" />
+        				<?php } ?>
         			</dd>
         		</dl>
         		<dl>
         			<dt>可添加二手房数：</dt>
         			<dd>
-        				<input name="house_count" type="text" class="required" value="<?php if(!empty($house_count)) echo $house_count;?>" />
+        				<?php if($is_admin) { ?>
+        					<input name="house_count" type="text" class="required" value="<?php if(!empty($house_count)) echo $house_count;?>" />
+        				<?php } else { ?>
+        					<?php if(!empty($house_count)) echo $house_count;?>
+        					<input name="house_count" type="hidden" value="<?php if(!empty($house_count)) echo $house_count;?>" />
+        				<?php } ?>
         			</dd>
         		</dl>
         	</fieldset>

@@ -517,18 +517,20 @@ class Manage_model extends MY_Model
 	
 		$data['rel_name'] = null;
 		//list
-		$this->db->select('a.*, b.name AS region_name');
+		$this->db->select('a.*, b.name AS region_name, c.name AS company_name, d.name AS subsidiary_name');
 		$this->db->from('admin a');
 		$this->db->join('house_region b', 'a.region_id = b.id', 'left');
+		$this->db->join('company c', 'a.company_id = c.id', 'left');
+		$this->db->join('subsidiary d', 'a.subsidiary_id = d.id', 'left');
 		if($this->input->post('rel_name')){
 			$this->db->like('a.rel_name',$this->input->post('rel_name'));
 			$data['rel_name'] = $this->input->post('rel_name');
 		}
 		if($this->session->userdata('manager_group') == 1) {
-			$this->db->where('company_id', $this->session->userdata('company_id'));
+			$this->db->where('a.company_id', $this->session->userdata('company_id'));
 		} else if($this->session->userdata('manager_group') == 2) {
-			$this->db->where('company_id', $this->session->userdata('company_id'));
-			$this->db->where('subsidiary_id', $this->session->userdata('subsidiary_id'));
+			$this->db->where('a.company_id', $this->session->userdata('company_id'));
+			$this->db->where('a.subsidiary_id', $this->session->userdata('subsidiary_id'));
 		}
 		$this->db->where('a.id >', 1);
 		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
@@ -1520,12 +1522,20 @@ class Manage_model extends MY_Model
 		return $this->db->delete('subsidiary');
 	}
 	
-	public function get_company_list() {
-		return $this->db->get('company')->result();
+	public function get_company_list($id=NULL) {
+		if(empty($id)) {
+			return $this->db->get('company')->result();
+		} else {
+			return $this->db->get_where('company', array('id' => $id))->result();
+		}
 	}
 	
-	public function get_subsidiary_list_by_company($id) {
-		return $this->db->get_where('subsidiary', array('company_id' => $id))->result_array();
+	public function get_subsidiary_list_by_company($id, $sid = NULL) {
+		if(empty($sid)) {
+			return $this->db->get_where('subsidiary', array('company_id' => $id))->result_array();
+		} else {
+			return $this->db->get_where('subsidiary', array('company_id' => $id, 'id' => $sid))->result_array();
+		}
 	}
 	
 
@@ -1612,5 +1622,88 @@ class Manage_model extends MY_Model
 	
 	public function list_all_company(){
 		return $this->db->select('id,name')->from('company')->get()->result_array();
+	}
+	
+	public function list_binding() {
+		// 每页显示的记录条数，默认20条
+		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
+		$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
+		
+		//获得总记录数
+		$this->db->select('count(1) as num');
+		$this->db->from('wx_user a');
+		$this->db->join('admin b', 'a.broker_id = b.id', 'inner');
+		$this->db->join('subsidiary c', 'b.subsidiary_id = c.id', 'left');
+		$this->db->join('company d', 'b.company_id = d.id', 'left');
+		if($this->session->userdata('admin_group') == 2) {
+			$this->db->where('b.id', $this->session->userdata('user_id'));
+		}
+		$rs_total = $this->db->get()->row();
+		//总记录数
+		$data['countPage'] = $rs_total->num;
+		
+		//list
+		$this->db->select('a.id, a.open_id, b.rel_name AS broker_name, b.username, b.tel, c.name AS company_name, d.name AS subsidiary_name');
+		$this->db->from('wx_user a');
+		$this->db->join('admin b', 'a.broker_id = b.id', 'inner');
+		$this->db->join('subsidiary c', 'b.subsidiary_id = c.id', 'left');
+		$this->db->join('company d', 'b.company_id = d.id', 'left');
+		if($this->session->userdata('admin_group') == 2) {
+			$this->db->where('b.id', $this->session->userdata('user_id'));
+		}
+		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
+		$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
+		$data['res_list'] = $this->db->get()->result();
+		$data['pageNum'] = $pageNum;
+		$data['numPerPage'] = $numPerPage;
+		return $data;
+	}
+	
+	public function delete_binding($id) {
+		$this->db->where('id',$id);
+		return $this->db->delete('wx_user');
+	}
+	
+	public function list_tracking() {
+		// 每页显示的记录条数，默认20条
+		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
+		$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
+	
+		//获得总记录数
+		$this->db->select('count(1) as num');
+		$this->db->from('house_track a');
+		$this->db->from('wx_user t', 'a.open_id = t.open_id', 'left');
+		$this->db->join('house b', 'a.house_id = b.id', 'inner');
+		$this->db->join('xiaoqu c', 'b.xq_id = c.id', 'left');
+		$this->db->join('house_region d', 'b.region_id = d.id', 'left');
+		if($this->session->userdata('admin_group') == 2) {
+			$this->db->where('t.broker_id', $this->session->userdata('user_id'));
+		}
+		
+		$rs_total = $this->db->get()->row();
+		//总记录数
+		$data['countPage'] = $rs_total->num;
+	
+		//list
+		$this->db->select('a.id, a.open_id, b.id AS house_id, b.total_price, b.acreage, b.room, b.lounge, b.toilet, b.feature, c.name AS xiaoqu_name, d.name AS region_name');
+		$this->db->from('house_track a');
+		$this->db->from('wx_user t', 'a.open_id = t.open_id', 'left');
+		$this->db->join('house b', 'a.house_id = b.id', 'inner');
+		$this->db->join('xiaoqu c', 'b.xq_id = c.id', 'left');
+		$this->db->join('house_region d', 'b.region_id = d.id', 'left');
+		if($this->session->userdata('admin_group') == 2) {
+			$this->db->where('t.broker_id', $this->session->userdata('user_id'));
+		}
+		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
+		$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
+		$data['res_list'] = $this->db->get()->result();
+		$data['pageNum'] = $pageNum;
+		$data['numPerPage'] = $numPerPage;
+		return $data;
+	}
+	
+	public function delete_tracking($id) {
+		$this->db->where('id',$id);
+		return $this->db->delete('house_track');
 	}
 }

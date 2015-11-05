@@ -70,4 +70,36 @@ class Api_model extends MY_Model {
 		}
 		return null;
 	}
+	
+	public function send_message($access_token, $message, $open_id) {
+		
+		$url = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" . $access_token;
+		$content = array();
+// 		$content['touser'] = $open_id;
+// 		$content['msgtype'] = 'text';
+// 		$content['text'] = array('content' => $message);
+
+		$content['touser'] = $open_id;
+		$content['msgtype'] = 'news';
+		$content['news'] = array(
+			'articles' => array(
+				array(
+					'title' => urlencode('周市 宇业天逸华庭 3室2厅 104 60万'),
+					'url' => 'http://www.funmall.com.cn/b_house/view_detail/2904',
+					'picurl' => 'http://www.funmall.com.cn/uploadfiles/pics/20151102135539/1/817a0b92fbf7bc3bd0dde2cd1de60277.png'
+				),
+				array(
+					'title' => urlencode('城中 锦晟花园 5室1厅 120 100万'),
+					'url' => 'http://www.funmall.com.cn/b_house/view_detail/2791',
+					'picurl' => 'http://www.funmall.com.cn/uploadfiles/pics/20151030134650/1/283f930940902011b0e3aa4b683cfaf3.jpg'
+				),
+				array(
+					'title' => urlencode('城中 金鹰天地 4室2厅 170 238万'),
+					'url' => 'http://www.funmall.com.cn/b_house/view_detail/2836',
+					'picurl' => 'http://www.funmall.com.cn/uploadfiles/pics/20151030163107/1/dca6a48adf15403065c5a23ecd0eae59.png'
+				)
+			)
+		);
+		return $this->post($url, $content);
+	}
 }

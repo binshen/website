@@ -44,6 +44,10 @@ class Manage extends MY_Controller {
 		$this->load->view('manage/index.php');
 	}
 
+	private function is_admin() {
+		return $this->session->userdata('group_id') == 1 || ($this->session->userdata('group_id') == 2 && $this->session->userdata('manager_group') == 1);
+	}
+	
 	/**
 	 *
 	 * ***************************************yaobin*******************************************************************
@@ -479,10 +483,12 @@ class Manage extends MY_Controller {
 	public function add_broker() {
 		$data = array();
 		$data['region_list'] = $this->manage_model->get_region_list();
-		$data['company_list'] = $this->manage_model->get_company_list();
+		$is_admin = $this->is_admin();
+		$data['company_list'] = $this->manage_model->get_company_list($this->session->userdata('group_id') == 1 ? NULL : $this->session->userdata('company_id'));
 		if(!empty($data['company_list'])) {
-			$data['subsidiary_list'] = $this->manage_model->get_subsidiary_list_by_company($data['company_list'][0]->id);
+			$data['subsidiary_list'] = $this->manage_model->get_subsidiary_list_by_company($data['company_list'][0]->id, $is_admin ? NULL : $this->session->userdata('subsidiary_id'));
 		}
+		$data['is_admin'] = $is_admin;
 		$this->load->view('manage/add_broker.php', $data);
 	}
 	
@@ -499,9 +505,9 @@ class Manage extends MY_Controller {
 		if($ret == 1){
 			form_submit_json("200", "操作成功", 'list_broker');
 		} else if($ret == -3){
-			form_submit_json("300", "已经超出可分配二手房的数量，保存失败");
-		} else if($ret == -2){
 			form_submit_json("300", "已经超出业务员的数量，保存失败");
+		} else if($ret == -2){
+			form_submit_json("300", "已经超出可分配二手房的数量，保存失败");
 		}else {
 			form_submit_json("300", "保存失败");
 		}
@@ -510,8 +516,10 @@ class Manage extends MY_Controller {
 	public function edit_broker($id) {
 		$data = $this->manage_model->get_broker($id);
 		$data['region_list'] = $this->manage_model->get_region_list();
-		$data['company_list'] = $this->manage_model->get_company_list();
-		$data['subsidiary_list'] = $this->manage_model->get_subsidiary_list_by_company($data['company_id']);
+		$is_admin = $this->is_admin();
+		$data['company_list'] = $this->manage_model->get_company_list($this->session->userdata('group_id') == 1 ? NULL : $this->session->userdata('company_id'));
+		$data['subsidiary_list'] = $this->manage_model->get_subsidiary_list_by_company($data['company_id'], $is_admin ? NULL : $this->session->userdata('subsidiary_id'));
+		$data['is_admin'] = $is_admin;
 		$this->load->view('manage/add_broker.php', $data);
 	}
 	
@@ -797,11 +805,13 @@ class Manage extends MY_Controller {
 	 */
 	public function list_company() {
 		$data = $this->manage_model->list_company();
+		$data['is_admin'] = $this->session->userdata('group_id') == 1;
 		$this->load->view('manage/list_company.php', $data);
 	}
 	
 	public function add_company() {
-		$this->load->view('manage/add_company.php');
+		$data['is_admin'] = $this->session->userdata('group_id') == 1;
+		$this->load->view('manage/add_company.php', $data);
 	}
 	
 	public function save_company() {
@@ -815,6 +825,7 @@ class Manage extends MY_Controller {
 	
 	public function edit_company($id) {
 		$data = $this->manage_model->get_company($id);
+		$data['is_admin'] = $this->session->userdata('group_id') == 1;
 		$this->load->view('manage/add_company.php', $data);
 	}
 	
@@ -831,7 +842,9 @@ class Manage extends MY_Controller {
 	 * 分店信息
 	 */
 	public function list_subsidiary($flag=null) {
+		$is_admin = $this->is_admin();
 		$data = $this->manage_model->list_subsidiary($flag);
+		$data['is_admin'] = $is_admin;
 		if($flag){
 			$data['select'] = $this->manage_model->list_all_company();
 			$data['tid'] = $flag;
@@ -843,7 +856,9 @@ class Manage extends MY_Controller {
 	
 	public function add_subsidiary() {
 		$data = array();
-		$data['company_list'] = $this->manage_model->get_company_list();
+		$is_admin = $this->is_admin();
+		$data['is_admin'] = $is_admin;
+		$data['company_list'] = $this->manage_model->get_company_list($this->session->userdata('group_id') == 1 ? NULL : $this->session->userdata('company_id'));
 		$this->load->view('manage/add_subsidiary.php', $data);
 	}
 	
@@ -864,7 +879,9 @@ class Manage extends MY_Controller {
 	
 	public function edit_subsidiary($id) {
 		$data = $this->manage_model->get_subsidiary($id);
-		$data['company_list'] = $this->manage_model->get_company_list();
+		$is_admin = $this->is_admin();
+		$data['company_list'] = $this->manage_model->get_company_list($this->session->userdata('group_id') == 1 ? NULL : $this->session->userdata('company_id'));
+		$data['is_admin'] = $is_admin;
 		$this->load->view('manage/add_subsidiary.php', $data);
 	}
 	
@@ -955,4 +972,30 @@ class Manage extends MY_Controller {
 			echo '-1';
 	}
 	
+	
+	public function list_binding(){
+		$data = $this->manage_model->list_binding();
+		$this->load->view('manage/list_binding.php',$data);
+	}
+	
+	public function delete_binding($id) {
+		$rs = $this->manage_model->delete_binding($id);
+		if($rs)
+			echo '1';
+		else
+			echo '-1';
+	}
+	
+	public function list_tracking(){
+		$data = $this->manage_model->list_tracking();
+		$this->load->view('manage/list_tracking.php',$data);
+	}
+	
+	public function delete_tracking($id) {
+		$rs = $this->manage_model->delete_tracking($id);
+		if($rs)
+			echo '1';
+		else
+			echo '-1';
+	}
 }

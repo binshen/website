@@ -1,4 +1,4 @@
-<form id="pagerForm" method="post" action="<?php echo site_url('manage/list_subsidiary')?>">
+<form id="pagerForm" method="post" action="<?php echo site_url('manage/list_binding')?>">
 	<input type="hidden" name="pageNum" value="<?php echo $pageNum;?>" />
 	<input type="hidden" name="numPerPage" value="<?php echo $numPerPage;?>" />
 	<input type="hidden" name="orderField" value="<?php echo $this->input->post('orderField');?>" />
@@ -8,11 +8,7 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<?php if($is_admin) { ?>
-			<li><a class="add" href="<?php echo site_url('manage/add_subsidiary')?>" target="dialog" rel="add_subsidiary" title="新建"><span>新建</span></a></li>
-			<li><a class="delete" href="<?php echo site_url('manage/delete_subsidiary')?>/{id}" target="ajaxTodo"  title="确定要删除？" warn="请选择一条记录"><span>删除</span></a></li>
-			<?php } ?>
-			<li><a class="edit" href="<?php echo site_url('manage/edit_subsidiary/{id}')?>" target="dialog" rel="edit_subsidiary" warn="请选择一条记录" title="查看"><span>查看</span></a></li>
+			<li><a class="delete" href="<?php echo site_url('manage/delete_binding')?>/{id}" target="ajaxTodo"  title="确定要删除？" warn="请选择一条记录"><span>删除</span></a></li>
 		</ul>
 	</div>
 
@@ -20,9 +16,12 @@
 	<table class="list" width="100%" targetType="navTab" asc="asc" desc="desc">
 		<thead>
 			<tr>
-				<th width="120">ID</th>
-				<th>分店名称</th>
-				<th>所属公司</th>
+				<th width="30%">游客ID</th>
+				<th>业务员</th>
+				<th>用户名</th>
+				<th>电话</th>
+				<th>公司</th>
+				<th>分店</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -31,9 +30,12 @@
             	    foreach ($res_list as $row):		               
             ?>		            
             			<tr target="id" rel=<?php echo $row->id; ?>>
-            				<td><?php echo $row->id;?></td>
-            				<td><?php echo $row->name;?></td>
+            				<td><?php echo $row->open_id;?></td>
+            				<td><?php echo $row->broker_name;?></td>
+            				<td><?php echo $row->username;?></td>
+            				<td><?php echo $row->tel;?></td>
             				<td><?php echo $row->company_name;?></td>
+            				<td><?php echo $row->subsidiary_name;?></td>
             			</tr>
             <?php 
             		endforeach;

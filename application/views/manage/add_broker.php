@@ -36,9 +36,11 @@
 				            	endif;
 				            ?>
         				</select>
+        				<?php if($is_admin) { ?>
         				&nbsp;&nbsp;
         				<input type="checkbox" value="1" name="manager_1" id="manager_1" onclick="click_manager(1,2)" <?php if (!empty($manager_group) && $manager_group == 1){ ?>checked<?php } ?>>
         				<label for="manager_1" style="float:none" onclick="click_manager(1,2)">总店管理员</label>
+        				<?php } ?>
         			</dd>
         		</dl>
         		<dl>
