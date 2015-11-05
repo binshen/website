@@ -50,6 +50,7 @@
         newLi.innerHTML = "<p>"+houseInfo[i].hLoca+"<br/>"+houseInfo[i].hStyle+"<br/>"+"<i class='price'>"+houseInfo[i].hPrice+"</i></p><i class='am-icon-close' onclick='closeHouseInfo(this.parentNode.id)' ></i>";
          document.getElementById("Jcom-item").appendChild(newLi);
       }
+	  document.getElementById("Jcom-item").innerHTML = document.getElementById("Jcom-item").innerHTML+"<div class='clear'></div>";
     }
     else {
       houseInfo =[];
