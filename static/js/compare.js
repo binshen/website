@@ -60,7 +60,6 @@
   function closeHouseInfo(id){
     document.getElementById(id).style.display ='none';
       deleteLoalSto(id );
-
   }
   //delete local storage
   function deleteLoalSto(liid){
@@ -78,9 +77,3 @@
     store.set(name,houseInfo);
     //alert(houseInfo.length);
   }
-
-//  document.getElementById("JMenuCompareBtn").onclick =function(){
-//
-//    document.getElementById("Jcompare").style.display ="block";
-//
-//  }
