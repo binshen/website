@@ -139,6 +139,43 @@
                 <li><a href="javascript:void(0);" onclick="change_search('feature', '投资首选')">投资首选</a></li>
             </ul>
         </div>
+         <!-- 配置 popup start -->
+        <div class="leftPopup historyPopup" data-back="historyPopup" style="z-index: 999; display:block;">
+        	<div class="history-tit">浏览记录</div>
+            <ul>
+                <li>
+                	<span class="gm-header"><img src="images/gm-header.gif" alt="" width="45" height="60" /></span>
+                    <p class="gm-peo-txt"><i class="gm-name">吕江寅</i><i class="gm-tel">18013259605</i><br /><i class="gm-company">顺达地产 青阳1店</i><br />
+                    <i class="gm-time"><em class="am-icon-clock-o"></em>11:50</i></p>
+                    <div class="clear"></div>
+                    <span class="check-btn"><a href="">查看他的微店</a></span>
+                </li>
+                <li>
+                	<span class="gm-header"><img src="images/gm-header.gif" alt="" width="45" height="60" /></span>
+                    <p class="gm-peo-txt"><i class="gm-name">吕江寅</i><i class="gm-tel">18013259605</i><br /><i class="gm-company">顺达地产 青阳1店</i><br />
+                    <i class="gm-time"><em class="am-icon-clock-o"></em>11:50</i></p>
+                    <span class="check-btn"><a href="">查看他的微店</a></span>
+                </li>
+                <li>
+                	<span class="gm-header"><img src="images/gm-header.gif" alt="" width="45" height="60" /></span>
+                    <p class="gm-peo-txt"><i class="gm-name">吕江寅</i><i class="gm-tel">18013259605</i><br /><i class="gm-company">顺达地产 青阳1店</i><br />
+                    <i class="gm-time"><em class="am-icon-clock-o"></em>11:50</i></p>
+                    <span class="check-btn"><a href="">查看他的微店</a></span>
+                </li>
+                <li>
+                	<span class="gm-header"><img src="images/gm-header.gif" alt="" width="45" height="60" /></span>
+                    <p class="gm-peo-txt"><i class="gm-name">吕江寅</i><i class="gm-tel">18013259605</i><br /><i class="gm-company">顺达地产 青阳1店</i><br />
+                    <i class="gm-time"><em class="am-icon-clock-o"></em>11:50</i></p>
+                    <span class="check-btn"><a href="">查看他的微店</a></span>
+                </li>
+                <li>
+                	<span class="gm-header"><img src="images/gm-header.gif" alt="" width="45" height="60" /></span>
+                    <p class="gm-peo-txt"><i class="gm-name">吕江寅</i><i class="gm-tel">18013259605</i><br /><i class="gm-company">顺达地产 青阳1店</i><br />
+                    <i class="gm-time"><em class="am-icon-clock-o"></em>11:50</i></p>
+                    <span class="check-btn"><a href="">查看他的微店</a></span>
+                </li>
+            </ul>
+        </div>
         
         {{if !empty($company) }}
         <div class="company-info">
@@ -170,6 +207,7 @@
         {{if $login_broker_id_flag }}
         <a href="/b_house/card/{{$login_broker_id}}"><span class="menu-button"><i class="am-icon-share-square-o"></i></span></a>
         {{/if}}
+        <span class="menu-button" id="menu-history-button" data-action="historyPopup"><i class="am-icon-history"></i></span>
 	</div>
 	
 	<form method="POST" id="houseListForm">
@@ -205,6 +243,12 @@
         $('body').css('overflow','inherit');
 
     });
+    $("#menu-history-button").click(function(){
+		 var boxClass = $(this).attr("data-action");
+       $('#m-filter-mask').show();
+       $("."+boxClass).addClass("swipeLeft-block");
+       $('body').css('overflow','hidden')
+	})
     function change_search(t, v) {
     	$("#search_" + t).val(v);
     	$("#houseListForm").attr('action', '/b_house/view_list/')
