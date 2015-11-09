@@ -17,6 +17,11 @@ class B_house extends MY_Controller {
 		$this->view_list(1);
 	}
 	
+	public function view_art() {
+		
+		$this->display('broker/article.html');
+	}
+	
 	public function view_list($page=1) {
 		
 		$broker_name = $this->session->userdata('rel_name');
