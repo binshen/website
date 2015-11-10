@@ -14,7 +14,8 @@ class B_house extends MY_Controller {
 	public function index($oid, $bid=NULL) {
 		$this->session->set_userdata('wx_open_id', $oid);
 		$this->session->set_userdata('wx_broker_id', $bid);
-		$this->view_list(1);
+		//$this->view_list(1);
+		$this->view_list($bid);
 	}
 	
 	public function view_art($bid=NULL) {
