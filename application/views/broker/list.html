@@ -141,33 +141,15 @@
         </div>
          <!-- 配置 popup start -->
         <div class="leftPopup historyPopup" data-back="historyPopup" style="z-index: 999; display:block;">
-        	<div class="history-tit">浏览记录</div>
+        	<div class="history-tit">已关注的经纪人</div>
             <ul>
-                <li class="current">
+            	{{foreach from=$connected_brokers key=key item=item}}
+                <li {{if $key==0}}class="current"{{/if}} onclick="choose_broker('{{$item.id}}')">
                 	<span class="gm-header"><img src="/static/images/gm-header.gif" alt="" width="45" height="60" /></span>
-                    <p class="gm-peo-txt"><i class="gm-name">吕江寅</i><i class="gm-tel">18013259605</i><br /><i class="gm-company">顺达地产 青阳1店</i><br />
-                    <i class="gm-time"><em class="am-icon-clock-o"></em>11:50</i></p>
+                    <p class="gm-peo-txt"><i class="gm-name">{{$item.rel_name}}</i><i class="gm-tel">{{$item.tel}}</i><br /><i class="gm-company">{{$item.address}}</i><br />
+                    <i class="gm-time"><em class="am-icon-clock-o"></em>{{$item.updated}}</i></p>
                 </li>
-                <li>
-                	<span class="gm-header"><img src="/static/images/gm-header.gif" alt="" width="45" height="60" /></span>
-                    <p class="gm-peo-txt"><i class="gm-name">吕江寅</i><i class="gm-tel">18013259605</i><br /><i class="gm-company">顺达地产 青阳1店</i><br />
-                    <i class="gm-time"><em class="am-icon-clock-o"></em>11:50</i></p>
-                </li>
-                <li>
-                	<span class="gm-header"><img src="/static/images/gm-header.gif" alt="" width="45" height="60" /></span>
-                    <p class="gm-peo-txt"><i class="gm-name">吕江寅</i><i class="gm-tel">18013259605</i><br /><i class="gm-company">顺达地产 青阳1店</i><br />
-                    <i class="gm-time"><em class="am-icon-clock-o"></em>11:50</i></p>
-                </li>
-                <li>
-                	<span class="gm-header"><img src="/static/images/gm-header.gif" alt="" width="45" height="60" /></span>
-                    <p class="gm-peo-txt"><i class="gm-name">吕江寅</i><i class="gm-tel">18013259605</i><br /><i class="gm-company">顺达地产 青阳1店</i><br />
-                    <i class="gm-time"><em class="am-icon-clock-o"></em>11:50</i></p>
-                </li>
-                <li>
-                	<span class="gm-header"><img src="/static/images/gm-header.gif" alt="" width="45" height="60" /></span>
-                    <p class="gm-peo-txt"><i class="gm-name">吕江寅</i><i class="gm-tel">18013259605</i><br /><i class="gm-company">顺达地产 青阳1店</i><br />
-                    <i class="gm-time"><em class="am-icon-clock-o"></em>11:50</i></p>
-                </li>
+                {{/foreach}}
             </ul>
         </div>
         
@@ -261,6 +243,9 @@
     function pager_submit(url) {
     	$("#houseListForm").attr('action', url)
     	$("#houseListForm").submit();
+    }
+    function choose_broker(id) {
+    	window.location.href="/b_house/choose_broker/"+id;
     }
 </script>
 </body>

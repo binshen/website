@@ -1639,4 +1639,19 @@ class House_model extends MY_Model
 			$this->db->query("INSERT INTO house_track (open_id, house_id, date) VALUES('{$open_id}', '{$house_id}', '".date('Y-m-d H:i:s')."')");
 		}
 	}
+	
+	public function get_connected_brokers($open_id) {
+		$this->db->select('a.*, b.rel_name, b.tel, c.address');
+		$this->db->from('wx_user a');
+		$this->db->join('admin b', 'a.broker_id = b.id');
+		$this->db->join('company c', 'b.company_id = c.id');
+		$this->db->where('a.open_id', $open_id);
+		$this->db->order_by('a.updated DESC');
+		return $this->db->get()->result_array();
+	}
+	
+	public function choose_broker($id) {
+		$this->db->where('id', $id);
+		$this->db->update('wx_user', array('updated'=>date("Y-m-d H:i:s")));
+	}
 }

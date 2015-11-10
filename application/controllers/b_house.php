@@ -31,6 +31,7 @@ class B_house extends MY_Controller {
 			$this->assign('store_name', '经纪人微店房源');
 		}
 		
+		$connected_brokers = [];
 		$login_broker_id = $this->session->userdata('login_broker_id');
 		if(!empty($login_broker_id)) {
 			$broker_id = $login_broker_id;
@@ -38,9 +39,13 @@ class B_house extends MY_Controller {
 		} else {
 			$open_id = $this->session->userdata('wx_open_id');
 			$broker_id = $this->session->userdata('wx_broker_id');
+			//if(!empty($open_id)) {
+				$connected_brokers = $this->house_model->get_connected_brokers($open_id);
+			//}
 		}
 		$this->assign('open_id', $open_id);
 		$this->assign('broker_id', $broker_id);
+		$this->assign('connected_brokers', $connected_brokers);
 		if(!empty($broker_id)) {
 			$company = $this->house_model->get_company_by_broker($broker_id);
 			$this->assign('company', $company);
@@ -237,5 +242,11 @@ class B_house extends MY_Controller {
 	public function chat() {
 		
 		$this->display('broker/chat.html');
+	}
+	
+	public function choose_broker($id) {
+		
+		$this->house_model->choose_broker($id);
+		$this->view_list($id);
 	}
 }
