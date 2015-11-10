@@ -17,8 +17,9 @@ class B_house extends MY_Controller {
 		$this->view_list(1);
 	}
 	
-	public function view_art() {
-		
+	public function view_art($bid=NULL) {
+		$article = $this->house_model->get_article($bid);
+		$this->assign('article', $article);
 		$this->display('broker/article.html');
 	}
 	

@@ -11,27 +11,21 @@
 </head>
 <body>
     <div class="art">
-    	<div class="art-tit">千房百计之第一计新手买房全攻略</div>
-        <div class="art-info"><p><span class="art-time">2015-10-16</span><span class="art-author">房猫经纪人</span></p></div>
+    	<div class="art-tit">{{$article['title']}}</div>
+        <div class="art-info"><p><span class="art-time">{{$article['created']}}</span><span class="art-author">{{$article['rel_name']}}</span></p></div>
         <div class="art-body">
-        	<img src="/static/images/art_img1.jpg" alt="" width="320" height="120" />
-            <p>“大哥，买房吗？70年大产权，买一瓶送一瓶，汽水”，“帅哥，您看看这个，200平米的大别墅，买一套送一套，煎饼”“老板，看房吗？大海边儿的四合院，四合院里有大海。 ”这是蛇年春晚小品《大城小事》里的经典开场白，相信在现实的生活中，许多的购房者也有类似的经历。</p>
-       		<p>房子作为大众产品，与老百姓息息相关。2014年的“315消费者权益保护日”即将到来，房产类的纠纷事件再度成为社会热议的焦点。购房者不愿做甘被吞噬的“羊”，开发商也不是购房者该处处提防的“狼”，当购房者与开发商发生碰撞时，诚信与理性考验着双方，维权、保财、安家、共赢，没有恰当的处理方式，买卖这样一种特殊的合作关系会瞬间崩塌。</p>
-       		<img src="/static/images/art_img2.jpg" alt="" width="320" height="120" />
-        	<p>“大哥，买房吗？70年大产权，买一瓶送一瓶，汽水”，“帅哥，您看看这个，200平米的大别墅，买一套送一套，煎饼”“老板，看房吗？大海边儿的四合院，四合院里有大海。 ”这是蛇年春晚小品《大城小事》里的经典开场白，相信在现实的生活中，许多的购房者也有类似的经历。</p>
-       		<p>房子作为大众产品，与老百姓息息相关。2014年的“315消费者权益保护日”即将到来，房产类的纠纷事件再度成为社会热议的焦点。购房者不愿做甘被吞噬的“羊”，开发商也不是购房者该处处提防的“狼”，当购房者与开发商发生碰撞时，诚信与理性考验着双方，维权、保财、安家、共赢，没有恰当的处理方式，买卖这样一种特殊的合作关系会瞬间崩塌。</p>
-			<div class="art-action-next">
+        	{{$article['content']}}
+        	<div class="art-action-next">
             	<div class="art-ewm">
                 	<span class="art-ewm-img"><img src="/static/images/ewm.jpg" alt="" width="60" height="60" /></span>
                     <i>扫描二维码</i>
                 </div>
                 <div class="clear"></div>
-            	<span class="art-btn"><a href=/b_house/view_list><img src="/static/images/btn.png" alt="" /></a></span>
+            	<span class="art-btn"><a href="list.html"><img src="/static/images/btn.png" alt="" /></a></span>
                 <i class="arrow"></i>
             </div>
         </div>
     </div>
 </body>
 </html>
-
 
