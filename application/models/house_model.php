@@ -1651,8 +1651,10 @@ class House_model extends MY_Model
 	}
 	
 	public function choose_broker($id) {
-		$this->db->from('wx_user');
-		$this->db->where('id', $id);
+		$this->db->select('a.*, b.rel_name');
+		$this->db->from('wx_user a');
+		$this->db->join('admin b', 'a.broker_id = b.id');
+		$this->db->where('a.id', $id);
 		$wx_user = $this->db->get()->row_array();
 		if(!empty($wx_user)) {
 			$this->db->where('id', $id);

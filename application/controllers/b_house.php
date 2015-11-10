@@ -248,6 +248,7 @@ class B_house extends MY_Controller {
 		
 		$wx_user = $this->house_model->choose_broker($id);
 		if(!empty($wx_user)) {
+			$this->session->set_userdata('rel_name', $wx_user['rel_name']);
 			$this->session->set_userdata('wx_broker_id', $wx_user['broker_id']);
 		}
 		$this->view_list(1);
