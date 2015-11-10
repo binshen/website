@@ -537,7 +537,7 @@ animation:animationIcon 2s infinite linear;}
 .historyPopup .current{background-color:#ff6600; color:#fff;}
 
 .historyPopup .gm-header{ width:45px; float:left; height:60px;}
-.historyPopup .gm-peo-txt{padding-left:10px; line-height:20px; float:left; }
+.historyPopup .gm-peo-txt{padding-left:10px; line-height:20px; float:left; width:182px; overflow:hidden; }
 .historyPopup .gm-name{font-size:14px;margin-right:5px}
 .historyPopup .gm-tel{ font-size:12px; color:#ec8e1f;}
 .historyPopup .gm-company{ color:#9c9c9c; font-size:14px;}
