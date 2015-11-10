@@ -127,6 +127,7 @@ $(function(){
 								<li><a href="<?php echo site_url('manage/list_share');?>" target="navTab" rel="list_share">资源共享列表</a></li>
 								<li><a href="<?php echo site_url('manage/list_binding');?>" target="navTab" rel="list_binding">用户绑定列表</a></li>
 								<li><a href="<?php echo site_url('manage/list_tracking');?>" target="navTab" rel="list_tracking">用户浏览轨迹</a></li>
+								<li><a href="<?php echo site_url('manage/list_article');?>" target="navTab" rel="list_article">微店专题页</a></li>
 							</ul>
 						</div>
 						<div class="accordionHeader">
@@ -170,6 +171,7 @@ $(function(){
 									<?php endif; ?>
 									<li><a href="<?php echo site_url('manage/list_subsidiary');?>" target="navTab" rel="list_subsidiary">分店管理</a></li>
 									<li><a href="<?php echo site_url('manage/list_broker');?>" target="navTab" rel="list_broker">经纪人列表</a></li>
+									<li><a href="<?php echo site_url('manage/list_article');?>" target="navTab" rel="list_article">微店专题页</a></li>
 								</ul>
 							</div>
 						<?php endif; ?>

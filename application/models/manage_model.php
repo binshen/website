@@ -1706,4 +1706,69 @@ class Manage_model extends MY_Model
 		$this->db->where('id',$id);
 		return $this->db->delete('house_track');
 	}
+	
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * 经纪人微站专题页封面页
+	 */
+	public function list_article(){
+		// 每页显示的记录条数，默认20条
+		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
+		$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
+	
+		//获得总记录数
+		$this->db->select('count(1) as num');
+		$this->db->from('article a');
+		$this->db->join('admin b', 'a.broker_id = b.id');
+	
+		$rs_total = $this->db->get()->row();
+		//总记录数
+		$data['countPage'] = $rs_total->num;
+
+		//list
+		$this->db->select('a.*, b.rel_name');
+		$this->db->from('article a');
+		$this->db->join('admin b', 'a.broker_id = b.id');
+		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
+		$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
+		$data['res_list'] = $this->db->get()->result();
+		$data['pageNum'] = $pageNum;
+		$data['numPerPage'] = $numPerPage;
+		return $data;
+	}
+	
+	public function save_article() {
+		$data = array(
+			'broker_id' => $this->session->userdata('user_id'),
+			'title' => $this->input->post('title'),
+			'content' => $this->input->post('content'),
+			'force_show' => $this->input->post('force_show'),
+			'created' => date('Y-m-d H:i:s'),
+			'updated' => date('Y-m-d H:i:s')
+		);
+		$this->db->trans_start();//--------开始事务
+	
+		if($this->input->post('id')){//修改
+			unset($data['created']);
+			$this->db->where('id', $this->input->post('id'));
+			$this->db->update('article', $data);
+		} else {
+			$this->db->insert('article', $data);
+		}
+		$this->db->trans_complete();//------结束事务
+		if ($this->db->trans_status() === FALSE) {
+			return -1;
+		} else {
+			return 1;
+		}
+	}
+	
+	public function get_article($id) {
+		return $this->db->get_where('article', array('id' => $id))->row_array();
+	}
+	
+	public function delete_article($id) {
+		$this->db->where('id', $id);
+		return $this->db->delete('article');
+	}
 }

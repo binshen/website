@@ -998,4 +998,36 @@ class Manage extends MY_Controller {
 		else
 			echo '-1';
 	}
+	
+	public function list_article(){
+		$data = $this->manage_model->list_article();
+		$this->load->view('manage/list_article.php',$data);
+	}
+	
+	public function add_article() {
+		$this->load->view('manage/add_article.php');
+	}
+	
+	public function save_article() {
+		$ret = $this->manage_model->save_article();
+		if($ret == 1){
+			form_submit_json("200", "操作成功", 'list_article');
+		} else {
+			form_submit_json("300", "保存失败");
+		}
+	}
+	
+	public function edit_article($id) {
+		$data = $this->manage_model->get_article($id);
+		$this->load->view('manage/add_article.php', $data);
+	}
+	
+	public function delete_article($id) {
+		$ret = $this->manage_model->delete_article($id);
+		if($ret == 1) {
+			form_submit_json("200", "操作成功", 'list_article', '', '');
+		} else {
+			form_submit_json("300", "删除失败");
+		}
+	}
 }
