@@ -246,7 +246,7 @@ class B_house extends MY_Controller {
 	
 	public function choose_broker($id) {
 		
-		$this->house_model->choose_broker($id);
-		$this->view_list($id);
+		$wx_user = $this->house_model->choose_broker($id);
+		$this->view_list($wx_user['broker_id']);
 	}
 }

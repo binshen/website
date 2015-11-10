@@ -1651,7 +1651,13 @@ class House_model extends MY_Model
 	}
 	
 	public function choose_broker($id) {
+		$this->db->from('wx_user');
 		$this->db->where('id', $id);
-		$this->db->update('wx_user', array('updated'=>date("Y-m-d H:i:s")));
+		$wx_user = $this->db->get()->row_array();
+		if(!empty($wx_user)) {
+			$this->db->where('id', $id);
+			$this->db->update('wx_user', array('updated'=>date("Y-m-d H:i:s")));
+		}
+		return $wx_user;
 	}
 }
