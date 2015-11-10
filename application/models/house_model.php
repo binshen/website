@@ -1667,10 +1667,18 @@ class House_model extends MY_Model
 		$this->db->select('a.*, b.rel_name');
 		$this->db->from('article a');
 		$this->db->join('admin b', 'a.broker_id = b.id');
-		$this->db->order_by('force_show DESC, updated DESC');
+		$this->db->order_by('updated DESC');
 		if(!empty($broker_id)) {
 			$this->db->where('broker_id', $broker_id);
 		}
-		return $this->db->get()->row_array();
+		$result = $this->db->get()->row_array();
+		if(empty($result)) {
+			$this->db->select('a.*, b.rel_name');
+			$this->db->from('article a');
+			$this->db->join('admin b', 'a.broker_id = b.id');
+			$this->db->order_by('force_show DESC, updated DESC');
+			$result = $this->db->get()->row_array();
+		}
+		return $result;
 	}
 }
