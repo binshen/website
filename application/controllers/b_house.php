@@ -39,9 +39,9 @@ class B_house extends MY_Controller {
 		} else {
 			$open_id = $this->session->userdata('wx_open_id');
 			$broker_id = $this->session->userdata('wx_broker_id');
-			//if(!empty($open_id)) {
+			if(!empty($open_id)) {
 				$connected_brokers = $this->house_model->get_connected_brokers($open_id);
-			//}
+			}
 		}
 		$this->assign('open_id', $open_id);
 		$this->assign('broker_id', $broker_id);
