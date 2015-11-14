@@ -199,6 +199,10 @@ class B_house extends MY_Controller {
 		$house['house_pics_all'] = $this->house_model->get_second_hand_house_pics($hid);
 		$house['house_pics'] = array_slice($house['house_pics_all'], 0, 5);
 		$house['house_pics_rest'] = array_slice($house['house_pics_all'], 6, 5);
+		$broker_tel = $this->session->userdata('login_broker_tel');
+		if(!empty($broker_tel)) {
+			$house['tel'] = $broker_tel;
+		}
 		$this->assign('house', $house);
 		
 		$user_id = $this->session->userdata('user_id');
