@@ -170,7 +170,9 @@ $(function(){
 										<li><a href="<?php echo site_url('manage/list_company');?>" target="navTab" rel="list_company">公司管理</a></li>
 									<?php endif; ?>
 									<li><a href="<?php echo site_url('manage/list_subsidiary');?>" target="navTab" rel="list_subsidiary">分店管理</a></li>
-									<li><a href="<?php echo site_url('manage/list_broker');?>" target="navTab" rel="list_broker">经纪人列表</a></li>
+									<?php if($this->session->userdata('manager_group') > 0): ?>
+										<li><a href="<?php echo site_url('manage/list_broker');?>" target="navTab" rel="list_broker">经纪人列表</a></li>
+									<?php endif; ?>
 									<li><a href="<?php echo site_url('manage/list_article');?>" target="navTab" rel="list_article">微店专题页</a></li>
 								</ul>
 							</div>

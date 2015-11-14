@@ -1721,6 +1721,9 @@ class Manage_model extends MY_Model
 		$this->db->select('count(1) as num');
 		$this->db->from('article a');
 		$this->db->join('admin b', 'a.broker_id = b.id');
+		if($this->session->userdata('login_broker_id')) {
+			$this->db->where('a.broker_id', $this->session->userdata('login_broker_id'));
+		}
 	
 		$rs_total = $this->db->get()->row();
 		//总记录数
@@ -1730,6 +1733,9 @@ class Manage_model extends MY_Model
 		$this->db->select('a.*, b.rel_name');
 		$this->db->from('article a');
 		$this->db->join('admin b', 'a.broker_id = b.id');
+		if($this->session->userdata('login_broker_id')) {
+			$this->db->where('a.broker_id', $this->session->userdata('login_broker_id'));
+		}
 		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
 		$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
 		$data['res_list'] = $this->db->get()->result();
