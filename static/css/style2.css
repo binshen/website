@@ -520,7 +520,7 @@ background: -o-gradient(linear, 0 0, 0 100%, from(#ff6600), to(#e04141));backgro
 .art-body{ text-align:center;}
 .art-body img{width:auto;}
 .art-body p{ margin:15px; text-align:left; text-indent:2em;}
-.art-action-next{padding:2px 0 10px;width:100%; background:url(../images/art_bg1.jpg) no-repeat; background-size:cover; position:relative;}
+.art-action-next{padding:2px 0 80px;width:100%; background:url(../images/art_bg1.jpg) no-repeat; background-size:cover; position:relative;}
 .art-ewm{margin:5px 10px;float:right; width:64px; line-height:20px;}
 .art-ewm-img{padding:2px;background:#fff; display:block;}
 .art-ewm i{font-size:10px; color:#ed741f; text-align:center;}
