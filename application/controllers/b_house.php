@@ -228,8 +228,12 @@ class B_house extends MY_Controller {
 		$this->display('broker/contrast-tool.html');
 	}
 	
-	public function compute() {
+	public function compute($id) {
 	
+		$house = $this->house_model->get_m_house_detail($id);
+		$house['unit_price'] = intval($house['total_price'] * 10000 / $house['acreage']);
+		$this->assign('house', $house);
+		
 		$this->display('mobile/daikuan.html');
 	}
 	
