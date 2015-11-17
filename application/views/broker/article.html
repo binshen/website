@@ -31,7 +31,7 @@
 </body>
 <script>
   wx.config({
-    debug: true,
+    debug: false,
     appId: '{{$signPackage["appId"]}}',
     timestamp: {{$signPackage["timestamp"]}},
     nonceStr: '{{$signPackage["nonceStr"]}}',
@@ -43,7 +43,6 @@
   });
   wx.ready(function () {
     $("#btnShare").click(function() {
-    	alert("test");
     	wx.onMenuShareTimeline({
     	    title: "分享测试请忽略：{{$article['title']}}", // 分享标题
     	    link: window.location.href, // 分享链接
