@@ -37,11 +37,13 @@
     nonceStr: '{{$signPackage["nonceStr"]}}',
     signature: '{{$signPackage["signature"]}}',
     jsApiList: [
-      'onMenuShareTimeline'
+		'checkJsApi',
+      	'onMenuShareTimeline'
     ]
   });
   wx.ready(function () {
     $("#btnShare").click(function() {
+    	alert("test");
     	wx.onMenuShareTimeline({
     	    title: "分享测试请忽略：{{$article['title']}}", // 分享标题
     	    link: window.location.href, // 分享链接
