@@ -61,10 +61,10 @@ class Api_model extends MY_Model {
 			$data = array(
 				'app_id' => APP_ID,
 				'app_secret' => APP_SECRET,
-				'token' => $this->get_jsapi_ticket(),
+				'ticket' => $this->get_jsapi_ticket(),
 				'created' => time()
 			);
-			$this->db->insert('token', $data);
+			$this->db->insert('ticket', $data);
 			return $data;
 		} else {
 			$interval = time() - intval($data_ticket['created']);
