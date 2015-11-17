@@ -12,6 +12,12 @@ class Api_model extends MY_Model {
 		parent::__destruct();
 	}
 	
+	public function get_access_token() {
+		$url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.APP_ID.'&secret='.APP_SECRET;
+		$response = file_get_contents($url);
+		return json_decode($response)->access_token;
+	}
+	
 	public function get_or_create_token() {
 		
 		$this->db->from('token');
@@ -39,10 +45,37 @@ class Api_model extends MY_Model {
 		}
 	}
 	
-	public function get_access_token() {
-		$url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.APP_ID.'&secret='.APP_SECRET;
+	public function get_jsapi_ticket() {
+		$token = $this->get_or_create_token();
+		$url = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='.$token.'&type=jsapi';
 		$response = file_get_contents($url);
-		return json_decode($response)->access_token;
+		return json_decode($response)->ticket;
+	}
+	
+	public function get_or_create_jsapi_ticket() {
+		$this->db->from('ticket');
+		$this->db->where('app_id', APP_ID);
+		$this->db->where('app_secret', APP_SECRET);
+		$data_ticket = $this->db->get()->row_array();
+		if(empty($data_ticket)) {
+			$data = array(
+				'app_id' => APP_ID,
+				'app_secret' => APP_SECRET,
+				'token' => $this->get_jsapi_ticket(),
+				'created' => time()
+			);
+			$this->db->insert('token', $data);
+			return $data;
+		} else {
+			$interval = time() - intval($data_ticket['created']);
+			if($interval / 60 / 60 > 1) {
+				$data_ticket['ticket'] = $this->get_jsapi_ticket();
+				$data_ticket['created'] = time();
+				$this->db->where('id', $data_ticket['id']);
+				$this->db->update('ticket', $data_ticket);
+			}
+			return $data_ticket;
+		}
 	}
 	
 	public function get_or_create_ticket($id, $action_name = 'QR_LIMIT_SCENE') {

@@ -13,4 +13,14 @@ class Api extends MY_Controller {
 		$ret = $this->api_model->send_message($access_token, 'Hello World', 'orFu-vgK-snskoQdDgMkBe-jFe1k');
 		var_dump($ret);
 	}
+	
+	public function test_ticket() {
+		$ret = $this->api_model->get_or_create_ticket(1);
+		var_dump($ret);
+	}
+	
+	public function test_jsapi_ticket() {
+		$ret = $this->api_model->get_or_create_jsapi_ticket();
+		var_dump($ret);
+	}
 }
