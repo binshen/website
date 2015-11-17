@@ -47,10 +47,8 @@ class Api_model extends MY_Model {
 	
 	public function get_jsapi_ticket() {
 		$token = $this->get_or_create_token();
-		$url = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='.$token.'&type=jsapi';
-		var_dump($url);
+		$url = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='.$token['token'].'&type=jsapi';
 		$response = file_get_contents($url);
-		var_dump($response);
 		return json_decode($response)->ticket;
 	}
 	
