@@ -21,7 +21,8 @@ class B_house extends MY_Controller {
 	}
 	
 	private function getSignPackage() {
-		$jsapiTicket = $this->api_model->get_or_create_jsapi_ticket();
+		$ticket = $this->api_model->get_or_create_jsapi_ticket();
+		$jsapiTicket = $ticket['ticket'];
 		$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
 		$url = "$protocol$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 		$timestamp = time();

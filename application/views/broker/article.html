@@ -10,6 +10,25 @@
 <link rel="stylesheet" href="/static/css/style2.css">
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+</head>
+<body>
+    <div class="art">
+    	<div class="art-tit">{{$article['title']}}</div>
+        <div class="art-info"><p><span class="art-time">{{$article['created']}}</span><span class="art-author">{{$article['rel_name']}}</span></p></div>
+        <div class="art-body">
+        	{{$article['content']}}
+        	<div class="art-action-next">
+            	<div class="art-ewm">
+                	<span class="art-ewm-img" id="btnShare"><img src="/static/images/ewm.jpg" alt="" width="60" height="60" /></span>
+                    <i>扫描二维码</i>
+                </div>
+                <div class="clear"></div>
+            	<span class="art-btn"><a href="/b_house/view_list/1"><img src="/static/images/btn.png" alt="" /></a></span>
+                <i class="arrow"></i>
+            </div>
+        </div>
+    </div>
+</body>
 <script>
   wx.config({
     debug: true,
@@ -37,24 +56,5 @@
     });
   });
 </script>
-</head>
-<body>
-    <div class="art">
-    	<div class="art-tit">{{$article['title']}}</div>
-        <div class="art-info"><p><span class="art-time">{{$article['created']}}</span><span class="art-author">{{$article['rel_name']}}</span></p></div>
-        <div class="art-body">
-        	{{$article['content']}}
-        	<div class="art-action-next">
-            	<div class="art-ewm">
-                	<span class="art-ewm-img"><img id="btnShare" src="/static/images/ewm.jpg" alt="" width="60" height="60" /></span>
-                    <i>扫描二维码</i>
-                </div>
-                <div class="clear"></div>
-            	<span class="art-btn"><a href="/b_house/view_list/1"><img src="/static/images/btn.png" alt="" /></a></span>
-                <i class="arrow"></i>
-            </div>
-        </div>
-    </div>
-</body>
 </html>
 
