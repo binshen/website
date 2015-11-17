@@ -29,7 +29,7 @@ class B_house extends MY_Controller {
 		$string = "jsapi_ticket=$jsapiTicket&noncestr=$nonceStr&timestamp=$timestamp&url=$url";
 		$signature = sha1($string);
 		$signPackage = array(
-			"appId"     => $this->appId,
+			"appId"     => APP_ID,
 			"nonceStr"  => $nonceStr,
 			"timestamp" => $timestamp,
 			"url"       => $url,
