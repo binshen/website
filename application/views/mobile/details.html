@@ -162,7 +162,7 @@
     	$("#btnCollect").click(function() {
     		var uid = '{{$user_id}}';
     		if(uid == "") {
-    			//alert("请先登录系统！");
+    			alert("请先登录系统！");
     			window.location.href="/m_login/";
     		} else {
     			$.post('/m_house/collect/', { uid:uid, hid:'{{$house.id}}'}, function(data) {
