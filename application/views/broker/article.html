@@ -8,6 +8,35 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
 <meta content="telephone=no" name="format-detection"/>
 <link rel="stylesheet" href="/static/css/style2.css">
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+  wx.config({
+    debug: true,
+    appId: '{{$signPackage["appId"]}}',
+    timestamp: {{$signPackage["timestamp"]}},
+    nonceStr: '{{$signPackage["nonceStr"]}}',
+    signature: '{{$signPackage["signature"]}}',
+    jsApiList: [
+      'onMenuShareTimeline'
+    ]
+  });
+  wx.ready(function () {
+    $("#btnShare").click(function() {
+    	wx.onMenuShareTimeline({
+    	    title: "分享测试请忽略：{{$article['title']}}", // 分享标题
+    	    link: window.location.href, // 分享链接
+    	    imgUrl: '', // 分享图标
+    	    success: function () { 
+    	        alert("您已经成功分享");
+    	    },
+    	    cancel: function () { 
+    	    	alert("您已经取消分享");
+    	    }
+    	});
+    });
+  });
+</script>
 </head>
 <body>
     <div class="art">
@@ -17,7 +46,7 @@
         	{{$article['content']}}
         	<div class="art-action-next">
             	<div class="art-ewm">
-                	<span class="art-ewm-img"><img src="/static/images/ewm.jpg" alt="" width="60" height="60" /></span>
+                	<span class="art-ewm-img"><img id="btnShare" src="/static/images/ewm.jpg" alt="" width="60" height="60" /></span>
                     <i>扫描二维码</i>
                 </div>
                 <div class="clear"></div>
