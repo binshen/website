@@ -36,6 +36,9 @@ class M_house extends MY_Controller {
 			$this->assign('term_title', $term['title']);
 			$this->assign('term_is_top', $term['is_top']);
 			$this->assign('term_pic', $term['pic']);
+		} else {
+			$this->assign('term_name', '房源总列表');
+			$this->assign('term_title', '房源总列表');
 		}
 		/////////////////////////////////////////////////////
 		$search_region = $this->input->post('search_region');

@@ -134,12 +134,14 @@
         </div>
         
         <!-- popup end -->
+        {{if $term_id > 0}}
         <div class="theme-box">
             <span class="s-img">
                 <img data-url="/uploadfiles/term/{{$term_pic}}" src="images/default.gif" alt="'" class="scrollLoading" width="325" height="190">
                 <em class="{{if $term_is_top==1}}em-mark{{else}}em-tit{{/if}}">{{$term_name}}</em>
             </span>
         </div>
+        {{/if}}
         <ul class="house-list">
             {{foreach from=$house_list.res_list key=key item=item}}
                 <a href="/m_house/view_detail/{{$item.id}}/{{$term_id}}">

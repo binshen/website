@@ -1010,9 +1010,13 @@ class House_model extends MY_Model
 		 
 		//获得总记录数
 		$this->db->select('count(1) as num');
-		$this->db->from('term t1');
-		$this->db->join('term_house t2', 't2.term_id = t1.id', 'inner');
-		$this->db->join('house a', 't2.house_id = a.id', 'inner');
+		if($term_id > 0) {
+			$this->db->from('term t1');
+			$this->db->join('term_house t2', 't2.term_id = t1.id', 'inner');
+			$this->db->join('house a', 't2.house_id = a.id', 'inner');
+		} else {
+			$this->db->from('house a');
+		}
 		$this->db->join('house_region b', 'a.region_id = b.id', 'left');
 		$this->db->join('house_orientation c', 'a.orientation_id = c.id', 'left');
 		$this->db->join('xiaoqu d', 'a.xq_id = d.id', 'left');
@@ -1108,9 +1112,13 @@ class House_model extends MY_Model
 		$data['rel_name'] = null;
 		//list
 		$this->db->select('a.*, b.name AS region_name, c.name AS orientation_name, d.name AS xq_name, d.address AS address, f.name AS style_name');
-		$this->db->from('term t1');
-		$this->db->join('term_house t2', 't2.term_id = t1.id', 'inner');
-		$this->db->join('house a', 't2.house_id = a.id', 'inner');
+		if($term_id > 0) {
+			$this->db->from('term t1');
+			$this->db->join('term_house t2', 't2.term_id = t1.id', 'inner');
+			$this->db->join('house a', 't2.house_id = a.id', 'inner');
+		} else {
+			$this->db->from('house a');
+		}
 		$this->db->join('house_region b', 'a.region_id = b.id', 'left');
 		$this->db->join('house_orientation c', 'a.orientation_id = c.id', 'left');
 		$this->db->join('xiaoqu d', 'a.xq_id = d.id', 'left');
