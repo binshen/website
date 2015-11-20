@@ -107,7 +107,7 @@ function getObjectURL(file) {
 
 function list_house(data){
 	data.forEach(function(item){
-		$.get('<?php echo site_url('manage/add_term_house').'/'.$id?>/'+item.xq_id,function(data){
+		$.get('<?php echo site_url('manage/add_cloud_house').'/'.$id?>/'+item.xq_id,function(data){
 			if(data == '1'){
 				html = '<tr class="unitBox" id="old_'+item.xq_id+'">'
 				html += '<td>'+item.xq_name+'</td>'
@@ -120,7 +120,7 @@ function list_house(data){
 }
 
 function remove_house(house_id){
-	$.get('<?php echo site_url('manage/del_term_house').'/'.$id?>/'+house_id,function(data){
+	$.get('<?php echo site_url('manage/del_cloud_house')?>/'+house_id,function(data){
 		if(data == '1'){
 			$('#old_'+house_id).remove();
 		}

@@ -353,6 +353,11 @@ class Manage extends MY_Controller {
 		$data['term_id'] = $term_id;
 		$this->load->view('manage/list_sd_house_dialog.php', $data);
 	}
+
+	public function list_sd_house_cloud() {
+		$data = $this->manage_model->list_sd_house_cloud();
+		$this->load->view('manage/list_sd_house_cloud.php', $data);
+	}
 	
 	public function add_sd_house() {
 		$data['feature_list'] = $this->manage_model->get_feature();
@@ -963,7 +968,23 @@ class Manage extends MY_Controller {
 		else
 			echo '-1';
 	}
+
+	public function add_cloud_house($house_id){
+		$rs = $this->manage_model->add_cloud_house($house_id);
+		if($rs)
+			echo '1';
+		else
+			echo '-1';
+	}
 	
+	public function del_cloud_house($house_id){
+		$rs = $this->manage_model->del_cloud_house($house_id);
+		if($rs)
+			echo '1';
+		else
+			echo '-1';
+	}
+
 	public function del_term_house($term_id,$house_id){
 		$rs = $this->manage_model->del_term_house($term_id,$house_id);
 		if($rs)
@@ -971,7 +992,6 @@ class Manage extends MY_Controller {
 		else
 			echo '-1';
 	}
-	
 	
 	public function list_binding(){
 		$data = $this->manage_model->list_binding();
@@ -1029,5 +1049,10 @@ class Manage extends MY_Controller {
 		} else {
 			form_submit_json("300", "删除失败");
 		}
+	}
+
+	public function cloud_house(){
+		$data['list'] = $this->manage_model->cloud_house();
+		$this->load->view('manage/cloud_house.php',$data);
 	}
 }

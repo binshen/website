@@ -135,6 +135,7 @@ $(function(){
 						</div>
 						<div class="accordionContent">
 							<ul class="tree">
+								<li><a href="<?php echo site_url('manage/cloud_house');?>" target="navTab" rel="cloud_house">云房源</a></li>
 								<li><a href="<?php echo site_url('manage/list_new_house');?>" target="navTab" rel="list_new_house">新房管理</a></li>
 								<li><a href="<?php echo site_url('manage/list_sd_house');?>" target="navTab" rel="list_sd_house">二手房管理</a></li>
 								<li><a href="<?php echo site_url('manage/list_rent_house');?>" target="navTab" rel="list_rent_house">租房管理</a></li>
@@ -183,6 +184,7 @@ $(function(){
 						</div>
 						<div class="accordionContent">
 							<ul class="tree">
+
 								<li><a href="<?php echo site_url('manage/list_sd_house');?>" target="navTab" rel="list_sd_house">二手房管理</a></li>
 								<li><a href="<?php echo site_url('manage/list_rent_house');?>" target="navTab" rel="list_rent_house">租房管理</a></li>
 							</ul>

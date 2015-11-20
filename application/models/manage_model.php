@@ -975,6 +975,11 @@ class Manage_model extends MY_Model
 		if($this->session->userdata('group_id') == 2) {
 			$this->db->where('broker_id', $this->session->userdata('user_id'));
 		}
+
+		if($term_id){
+			$where = "(id not in (select house_id from term_house where term_id = ".$term_id."))";
+			$this->db->where($where);
+		}
 		
 		$rs_total = $this->db->get()->row();
 		//总记录数
@@ -1003,6 +1008,73 @@ class Manage_model extends MY_Model
 			$this->db->where($where);
 		}
 		
+		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
+		$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
+		$data['res_list'] = $this->db->get()->result();
+		$data['pageNum'] = $pageNum;
+		$data['numPerPage'] = $numPerPage;
+		return $data;
+	}
+
+	public function list_sd_house_cloud(){
+		// 每页显示的记录条数，默认20条
+		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
+		$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
+
+		//获得总记录数
+		$this->db->select('count(1) as num');
+		$this->db->from('house');
+		if($this->input->post('name'))
+			$this->db->like('name',$this->input->post('name'));
+		$this->db->where('type_id', 2);
+		if($this->session->userdata('group_id') == 2 && $this->session->userdata('manager_group') == 0) {//普通业务员
+			$this->db->where('broker_id', $this->session->userdata('user_id'));
+		}
+
+		if($this->session->userdata('group_id') == 2 && $this->session->userdata('manager_group') == 2) {//分店店长
+			$this->db->where('subsidiary_id', $this->session->userdata('subsidiary_id'));
+		}
+
+		if($this->session->userdata('group_id') == 2 && $this->session->userdata('manager_group') == 1) {//总店店长
+			$this->db->where('company_id', $this->session->userdata('company_id'));
+		}
+
+		$where = "(id not in (select hid from cloud_house))";
+		$this->db->where($where);
+
+		$rs_total = $this->db->get()->row();
+		//总记录数
+		$data['countPage'] = $rs_total->num;
+
+		$data['name'] = null;
+		//list
+		$this->db->select('a.*, b.name AS region_name, c.name AS style_name, d.name AS orientation_name, e.name AS decoration_name, f.name AS xiaoqu_name');
+		$this->db->from('house a');
+		$this->db->join('house_region b', 'a.region_id = b.id', 'left');
+		$this->db->join('house_style c', 'a.style_id = c.id', 'left');
+		$this->db->join('house_orientation d', 'a.orientation_id = d.id', 'left');
+		$this->db->join('house_decoration e', 'a.decoration_id = e.id', 'left');
+		$this->db->join('xiaoqu f', 'a.xq_id = f.id', 'left');
+		if($this->input->post('name')){
+			$this->db->like('a.name',$this->input->post('name'));
+			$data['name'] = $this->input->post('name');
+		}
+		$this->db->where('type_id', 2);
+		if($this->session->userdata('group_id') == 2 && $this->session->userdata('manager_group') == 0) {//普通业务员
+			$this->db->where('broker_id', $this->session->userdata('user_id'));
+		}
+
+		if($this->session->userdata('group_id') == 2 && $this->session->userdata('manager_group') == 2) {//分店店长
+			$this->db->where('subsidiary_id', $this->session->userdata('subsidiary_id'));
+		}
+
+		if($this->session->userdata('group_id') == 2 && $this->session->userdata('manager_group') == 1) {//总店店长
+			$this->db->where('company_id', $this->session->userdata('company_id'));
+		}
+
+		$where = "(a.id not in (select hid from cloud_house))";
+		$this->db->where($where);
+
 		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
 		$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
 		$data['res_list'] = $this->db->get()->result();
@@ -1614,11 +1686,28 @@ class Manage_model extends MY_Model
 		);
 		return $this->db->insert('term_house',$data);
 	}
+
+	public function add_cloud_house($house_id){
+		$data = array(
+			'hid'=>$house_id,
+			'bid'=>$this->session->userdata('user_id'),
+			'cid'=>$this->session->userdata('company_id'),
+			'sid'=>$this->session->userdata('subsidiary_id'),
+			'cdate'=>date('Y-m-d H:i:s',time())
+		);
+		return $this->db->insert('cloud_house',$data);
+	}
 	
 	public function del_term_house($term_id,$house_id){
 		$this->db->where('term_id',$term_id);
 		$this->db->where('house_id',$house_id);
 		return $this->db->delete('term_house');
+	}
+
+	public function del_cloud_house($house_id){
+		$this->db->where('hid',$house_id);
+		$this->db->where('bid',$this->session->userdata('user_id'));
+		return $this->db->delete('cloud_house');
 	}
 	
 	public function list_all_company(){
@@ -1777,5 +1866,22 @@ class Manage_model extends MY_Model
 	public function delete_article($id) {
 		$this->db->where('id', $id);
 		return $this->db->delete('article');
+	}
+
+	public function cloud_house(){
+		$this->db->select('b.id,b.name')->from('cloud_house a');
+		$this->db->join('house b','a.hid=b.id','left');
+		if($this->session->userdata('manager_group') == 1) {
+			$this->db->where('a.cid', $this->session->userdata('company_id'));
+		}
+		if($this->session->userdata('manager_group') == 2) {
+			$this->db->where('a.sid', $this->session->userdata('subsidiary_id'));
+		}
+		if($this->session->userdata('manager_group') == 0 && $this->session->userdata('admin_group') == 1) {
+			$this->db->where('a.bid', $this->session->userdata('login_broker_id'));
+		}
+		$data = $this->db->get()->result();
+		return $data;
+
 	}
 }
