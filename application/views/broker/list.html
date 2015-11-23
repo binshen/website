@@ -179,11 +179,11 @@
         {{$pager}}
     </div>
     <div class="pageRightMenu">
-    	<span class="menu-button top-button" id="amz-go-top"><i class="am-icon-chevron-up"></i></span>
+    	<span class="menu-button top-button am-icon-chevron-up" id="amz-go-top"></span>
         {{if $login_broker_id_flag }}
-        <a href="/b_house/card/{{$login_broker_id}}"><span class="menu-button"><i class="am-icon-share-square-o"></i></span></a>
+        <a href="/b_house/card/{{$login_broker_id}}"><span class="menu-button  am-icon-share"></span></a>
         {{else}}
-        <span class="menu-button" id="menu-history-button" data-action="historyPopup"><i class="am-icon-history"></i></span>
+        <span class="menu-button am-icon-history" id="menu-history-button" data-action="historyPopup"></span>
         {{/if}}
 	</div>
 	
