@@ -9,7 +9,7 @@ if (! defined('BASEPATH'))
  * @subpackage	core
  * @category	model
  * @author		bin.shen
- *        
+ *
  */
 class House_model extends MY_Model
 {
@@ -27,7 +27,7 @@ class House_model extends MY_Model
     	// 每页显示的记录条数，默认20条
     	$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
     	$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
-    	
+
     	//获得总记录数
     	$this->db->select('count(1) as num');
     	$this->db->from('house a');
@@ -121,11 +121,11 @@ class House_model extends MY_Model
     	}
     	$this->db->where('a.type_id', 2);
     	$this->db->where('a.exe_status', 1);
-    	
+
     	$rs_total = $this->db->get()->row();
     	//总记录数
     	$data['countPage'] = $rs_total->num;
-    	
+
     	$data['rel_name'] = null;
     	//list
     	$this->db->select('a.*, b.name AS region_name, c.name AS orientation_name, d.name AS xq_name, d.address AS address, e.tel AS tel, f.name AS style_name');
@@ -221,7 +221,7 @@ class House_model extends MY_Model
     	$this->db->where('a.type_id', 2);
     	$this->db->where('a.exe_status', 1);
     	$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage);
-    	
+
     	$orderField = $this->input->post('search_order');
     	if($orderField == 1) {
     		$orderDirection = $this->input->post('order_price_dir');
@@ -234,7 +234,7 @@ class House_model extends MY_Model
     		$this->db->order_by('refresh_time', 'desc');
     		$this->db->order_by('a.id', 'desc');
     	}
-    	
+
     	$data['res_list'] = $this->db->get()->result();
     	$data['pageNum'] = $pageNum;
     	$data['numPerPage'] = $numPerPage;
@@ -255,20 +255,20 @@ class House_model extends MY_Model
     	$this->db->where('a.type_id', 2);
     	return $this->db->where('a.id', $id)->get()->row_array();
     }
-    
+
     public function get_broker_house_count($broker_id) {
     	return $this->db->get_where('house', array('broker_id' => $broker_id))->num_rows();
     }
-    
+
     public function get_user_house_count($user_id) {
     	return $this->db->get_where('house', array('user_id' => $user_id))->num_rows();
     }
-    
+
     public function get_new_house_list() {
     	// 每页显示的记录条数，默认20条
     	$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
     	$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
-    	
+
     	if($this->input->post('search_type')) {
     		$this->db->select('distinct(h_id)')->from('house_hold');
     		$search_type = intval($this->input->post('search_type'));
@@ -283,7 +283,7 @@ class House_model extends MY_Model
     			$h_ids[] = $v['h_id'];
     		}
     	}
-    	
+
     	//获得总记录数
     	$this->db->select('count(1) as num');
     	$this->db->from('house a');
@@ -299,7 +299,7 @@ class House_model extends MY_Model
     	}
      	if($this->input->post('search_style'))
      		$this->db->where('a.substyle_id',$this->input->post('search_style'));
-     	
+
     	if($this->input->post('search_price')){
 			$search_price = intval($this->input->post('search_price'));
 			if($search_price == 1) {
@@ -348,10 +348,10 @@ class House_model extends MY_Model
      		} else if($search_acreage == 8) {
      			$this->db->where('a.acreage >',  '300');
      		}
-     	}     	
+     	}
      	if($this->input->post('search_type')) {
      		$this->db->where_in('a.id', $h_ids?$h_ids:'');
-     	}     		
+     	}
      	if($this->input->post('search_feature'))
      		$this->db->like('a.feature', $this->input->post('search_feature'));
      	if($this->input->post('search_text')) {
@@ -363,7 +363,7 @@ class House_model extends MY_Model
     	$rs_total = $this->db->get()->row();
     	//总记录数
     	$data['countPage'] = $rs_total->num;
-    	
+
     	$data['rel_name'] = null;
     	//list
     	$this->db->select('a.*, b.name AS region_name, c.name AS xq_name, c.address AS address ');
@@ -431,19 +431,19 @@ class House_model extends MY_Model
 		}
     	if($this->input->post('search_type')) {
      		$this->db->where_in('a.id', $h_ids?$h_ids:'');
-     	}  
+     	}
 		if($this->input->post('search_feature'))
 			$this->db->like('feature', $this->input->post('search_feature'));
-		
+
 		if($this->input->post('search_text')) {
 			$t = $this->input->post('search_text');
 			$where = "(a.name LIKE '%" . $t . "%' OR a.sub_title LIKE '%" . $t . "%' OR b.name LIKE '%" . $t . "%')";
 			$this->db->where($where);
 		}
-		
+
     	$this->db->where('a.type_id', 1);
     	$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage);
-    	
+
     	$orderField = $this->input->post('search_order');
     	if($orderField == 1) {
     		$orderDirection = $this->input->post('order_price_dir');
@@ -460,11 +460,11 @@ class House_model extends MY_Model
     	$data['numPerPage'] = $numPerPage;
     	return $data;
     }
-    
+
     public function get_second_hand_house_pics($id){
     	return $this->db->select()->from('house_img')->where('h_id',$id)->order_by('id','desc')->get()->result_array();
     }
-    
+
     public function get_house_rooms($h_id){
     	if(!$h_id)
     		return null;
@@ -476,7 +476,7 @@ class House_model extends MY_Model
     	}
     	return $data;
     }
-    
+
     public function get_house_news($xq_id){
     	if(!$xq_id)
     		return null;
@@ -504,7 +504,7 @@ class House_model extends MY_Model
     	}
     	return $data;
     }
-    
+
     public function get_house_news_row($xq_id){
     	$data = $this->db->select()->from('news')->where('xq_id',$xq_id)->order_by('cdate','desc')->get()->row_array();
     	if($data){
@@ -514,7 +514,7 @@ class House_model extends MY_Model
     		return null;
     	}
     }
-    
+
     public function get_new_house_detail($id){
     	$this->db->select('a.*,b.name decoration_name,c.name substyle_name,d.name region_name,e.name xq_name,e.latitude,e.longitude');
     	$this->db->from('house a');
@@ -525,15 +525,15 @@ class House_model extends MY_Model
     	$this->db->where('a.id',$id);
     	return $this->db->get()->row_array();
     }
-    
+
     public function get_search_region_list() {
     	return $this->db->get_where('house_region', array('id >' => 6))->result_array();
     }
-    
+
     public function get_search_style_list() {
     	return $this->db->get_where('house_substyle')->result_array();
     }
-    
+
     public function get_new_house_pics($id){
     	$data = array();
     	$rs = $this->db->select()->from('house_img')->where('h_id',$id)->order_by('type_id','acs')->get()->result_array();
@@ -542,7 +542,7 @@ class House_model extends MY_Model
     	}
     	return $data;
     }
-    
+
    	public function get_new_house_huxing($id){
    		$this->db->select('a.*,b.name orientation_name')->from('house_hold a');
    		$this->db->join('house_orientation b','a.orientation_id=b.id','left');
@@ -550,7 +550,7 @@ class House_model extends MY_Model
    		$this->db->limit(3,0);
    		return $this->db->get()->result_array();
    	}
-   	
+
    	public function get_new_house_price($id,$region_id,$substyle_id){
    		$data['own_price'] = $this->db->select()->from('price_trend')->where('h_id',$id)->order_by('month','acs')->limit(12,0)->get()->result_array();
    		$months = array();
@@ -562,7 +562,7 @@ class House_model extends MY_Model
    			->group_by('month')
    			->order_by('month','acs')
    			->get()->result_array();
-   		
+
    		$count_own = count($data['own_price']);
    		$count_avg = count($data['avg_price']);
    		if($count_own > 2){
@@ -572,7 +572,7 @@ class House_model extends MY_Model
    		}else{
    			$own_proportion = '';
    		}
-   		
+
    		if($count_avg > 2){
    			$avg_price = $data['avg_price'][$count_avg-1]['price'];
    			$avg_prev_price = $data['avg_price'][$count_avg-2]['price'];
@@ -582,13 +582,13 @@ class House_model extends MY_Model
    		}
    		$data['own_proportion'] = $own_proportion;
    		$data['avg_proportion'] = $avg_proportion;
-   		
-   		
+
+
    		return $data;
    	}
-   	
+
    	public function get_article_list($id){
-   		
+
    		$rs = $this->db->select('a.id,xq_id,b.name region_name,a.name,region_id')->from('house a')->join('house_region b','a.region_id=b.id','left')->where('a.id',$id)->get()->row_array();
    		$data['tag'] = $rs;
    		$data['list'] = $this->db->select()->from('news')->where('xq_id',$rs['xq_id'])->order_by('cdate','desc')->get()->result_array();
@@ -597,7 +597,7 @@ class House_model extends MY_Model
    		}
    		return $data;
    	}
-   	
+
    	public function get_article_detail($h_id,$id,$flag){
    		if($flag){
    			$rs = $this->db->select('id')->from('house')->where('xq_id',$h_id)->get()->row();
@@ -607,16 +607,16 @@ class House_model extends MY_Model
    			}else{
    				$data['tag'] = '';
    			}
-   			
+
    		}else{
    			$data['tag'] = $this->db->select('a.id,xq_id,b.name region_name,a.name,region_id')->from('house a')->join('house_region b','a.region_id=b.id','left')->where('a.id',$h_id)->get()->row_array();
    		}
-   		
-   		
+
+
    		$data['detail'] = $this->db->select()->from('news')->where('id',$id)->get()->row_array();
    		return $data;
    	}
-   	
+
    	public function get_huxing_list($h_id,$count,$pageNum){
    		$rs = $this->db->select('a.id,xq_id,b.name region_name,a.name,region_id,count(c.id) count_huxing')->from('house a')
    		->join('house_region b','a.region_id=b.id','left')
@@ -627,11 +627,11 @@ class House_model extends MY_Model
    		$data['tag'] = $rs;
    		$rs = $this->db->select('folder')->from('house')->where('id',$h_id)->get()->row();
    		$data['folder'] = $rs->folder;
-   		
+
    		// 每页显示的记录条数，默认20条
    		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 9;
    		//$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
-   		 
+
    		//获得总记录数
    		$this->db->select('count(1) as num');
    		$this->db->from('house_hold');
@@ -639,7 +639,7 @@ class House_model extends MY_Model
    		if($count != 'all'){
    			$this->db->where('room',$count);
    		}
-   		
+
    		$rs_total = $this->db->get()->row();
    		//总记录数
    		$data['countPage'] = $rs_total->num;
@@ -657,14 +657,14 @@ class House_model extends MY_Model
    		$data['numPerPage'] = $numPerPage;
    		return $data;
    	}
-   	
+
 
    	public function get_recommend_list(){
    		$this->db->select('a.name name,unit_price,a.id id,feature,bg_pic,b.name region_name')->from('house a');
    		$this->db->join('house_region b','a.region_id=b.id','left')->where('recommend','1')->limit(4,0);
    		return $this->db->get()->result_array();
    	}
-    
+
    	/**
    	 * 租房
    	 */
@@ -672,7 +672,7 @@ class House_model extends MY_Model
    		// 每页显示的记录条数，默认20条
    		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 20;
    		$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
-   		 
+
    		//获得总记录数
    		$this->db->select('count(1) as num');
    		$this->db->from('house a');
@@ -769,11 +769,11 @@ class House_model extends MY_Model
    			$this->db->where($where);
    		}
    		$this->db->where('a.type_id', 3);
-   		 
+
    		$rs_total = $this->db->get()->row();
    		//总记录数
    		$data['countPage'] = $rs_total->num;
-   		 
+
    		$data['rel_name'] = null;
    		//list
    		$this->db->select('a.*, b.name AS region_name, c.name AS orientation_name, d.name AS xq_name, d.address AS address, e.tel AS tel, f.name AS style_name');
@@ -872,7 +872,7 @@ class House_model extends MY_Model
    		}
    		$this->db->where('a.type_id', 3);
    		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage);
-   		 
+
    		$orderField = $this->input->post('search_order');
    		if($orderField == 1) {
    			$orderDirection = $this->input->post('order_price_dir');
@@ -884,13 +884,13 @@ class House_model extends MY_Model
    		} else {
    			$this->db->order_by('a.id', 'desc');
    		}
-   		 
+
    		$data['res_list'] = $this->db->get()->result();
    		$data['pageNum'] = $pageNum;
    		$data['numPerPage'] = $numPerPage;
    		return $data;
    	}
-   	
+
    	public function get_rent_house_detail($id) {
    		$this->db->select('a.*, b.name AS region_name, c.name AS orientation_name, d.name AS xq_name, d.address AS address, e.tel AS tel, f.name AS style_name');
    		$this->db->select('e.rel_name, e.company_name, g.name AS b_region_name, h.name AS decoration_name, d.latitude, d.longitude ');
@@ -905,7 +905,7 @@ class House_model extends MY_Model
    		$this->db->where('a.type_id', 3);
    		return $this->db->where('a.id', $id)->get()->row_array();
    	}
-   	
+
    	public function get_recommended_house_list($type_id){
    		$this->db->select('a.name, a.total_price, a.unit_price, a.id, a.feature, a.bg_pic, a.acreage, a.room, a.lounge, b.name AS region_name, c.name AS xq_name');
    		$this->db->from('house a');
@@ -916,13 +916,13 @@ class House_model extends MY_Model
    		$this->db->limit(4,0);
    		return $this->db->get()->result_array();
    	}
-   	
+
 	public function list_xiaoqu() {
 		return $this->db->select('id,name')->from('xiaoqu')->get()->result_array();
 	}
-	
+
 	public function save_publish() {
-		
+
 		$type_id = $this->input->post('type_id');
 		$data = array(
 			'name' => $this->input->post('name'),
@@ -951,27 +951,27 @@ class House_model extends MY_Model
 			'user_tel' => $this->input->post('user_tel'),
 			'user_id' => $this->session->userdata('member_id')
 		);
-		
+
 		if($type_id == 2) {
 			$data['total_price'] = $this->input->post('total_price');
 		} else {
 			$data['unit_price'] = $this->input->post('unit_price');
 			$data['rent_style_id'] = $this->input->post('rent_style_id');
 		}
-		
+
 		$this->db->trans_start();//--------开始事务
-	
+
 		if($this->input->post('id')){//修改
 			$h_id = $this->input->post('id');
 			$this->db->where('id', $h_id);
 			$this->db->update('house', $data);
-				
+
 			$this->db->delete('house_img', array('h_id' => $h_id));
 		} else {
 			$this->db->insert('house', $data);
 			$h_id = $this->db->insert_id();
 		}
-	
+
 		$folder = $this->input->post('folder');
 		$desc = $this->input->post('desc');
 		$is_bg = $this->input->post('is_bg');
@@ -985,7 +985,7 @@ class House_model extends MY_Model
 			);
 			$this->db->insert('house_img', $pic_data);
 		}
-	
+
 		$this->db->trans_complete();//------结束事务
 		if ($this->db->trans_status() === FALSE) {
 			return -1;
@@ -993,21 +993,21 @@ class House_model extends MY_Model
 			return 1;
 		}
 	}
-	
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public function get_m_index() {
 		return $this->db->order_by('is_top', 'desc')->get('term')->result_array();
 	}
-	
+
 	public function get_m_house_region() {
 		return $this->db->get('house_region')->result_array();
 	}
-	
+
 	public function get_m_house_list($term_id, $pageNum) {
 		// 每页显示的记录条数，默认10条
 		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 10;
 		//$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
-		 
+
 		//获得总记录数
 		$this->db->select('count(1) as num');
 		if($term_id > 0) {
@@ -1104,11 +1104,11 @@ class House_model extends MY_Model
 		}
 		$this->db->where('a.type_id >', 1);
 		$this->db->where('a.exe_status', 1);
-		 
+
 		$rs_total = $this->db->get()->row();
 		//总记录数
 		$data['countPage'] = $rs_total->num;
-		 
+
 		$data['rel_name'] = null;
 		//list
 		$this->db->select('a.*, b.name AS region_name, c.name AS orientation_name, d.name AS xq_name, d.address AS address, f.name AS style_name');
@@ -1207,17 +1207,17 @@ class House_model extends MY_Model
 		$this->db->where('a.type_id >', 1);
 		$this->db->where('a.exe_status', 1);
 		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage);
-		 
+
 		$orderField = $this->input->post('search_order');
 		$this->db->order_by('a.refresh_time', 'desc');
 		$this->db->order_by('a.id', 'desc');
-		 
+
 		$data['res_list'] = $this->db->get()->result_array();
 		$data['pageNum'] = $pageNum;
 		$data['numPerPage'] = $numPerPage;
 		return $data;
 	}
-	
+
 	public function get_m_house_detail($hid) {
 		$this->db->select('a.*, b.name AS region_name, c.name AS orientation_name, d.name AS xq_name, d.address AS address, e.tel AS tel, f.name AS style_name');
 		$this->db->select('e.rel_name, e.company_name, g.name AS b_region_name, h.name AS decoration_name, d.latitude, d.longitude ');
@@ -1232,11 +1232,11 @@ class House_model extends MY_Model
 		//$this->db->where('a.type_id', 2);
 		return $this->db->where('a.id', $hid)->get()->row_array();
 	}
-	
+
 	public function get_m_term($id) {
 		return $this->db->get_where('term', array('id' => $id))->row_array();
 	}
-	
+
 	public function collect_house($uid, $hid) {
 		$collected = $this->check_collect_house($uid, $hid);
 		if(!$collected) {
@@ -1248,12 +1248,12 @@ class House_model extends MY_Model
 			return false;
 		}
 	}
-	
+
 	public function check_collect_house($uid, $hid) {
 		$collect = $this->db->get_where('house_collect', array('user_id' => $uid, 'house_id' => $hid))->row_array();
 		return empty($collect)?false:true;
 	}
-	
+
 	public function get_broker_by_id($id) {
 		$this->db->select('a.id, a.rel_name, a.tel, a.pic, a.ticket, b.name AS company_name, c.name AS subsidiary_name');
 		$this->db->from('admin a');
@@ -1261,19 +1261,19 @@ class House_model extends MY_Model
 		$this->db->join('subsidiary c', 'a.subsidiary_id = c.id', 'left');
 		return $this->db->where('a.id', $id)->get()->row_array();
 	}
-	
+
 	public function get_company_by_broker($b_id) {
 		$this->db->select('b.*');
 		$this->db->from('admin a');
 		$this->db->join('company b', 'a.company_id = b.id', 'left');
 		return $this->db->where('a.id', $b_id)->get()->row_array();
 	}
-	
+
 	public function get_b_all_house_list($pageNum) {
 		// 每页显示的记录条数，默认10条
 		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 10;
 		//$pageNum = $this->input->post('pageNum') ? $this->input->post('pageNum') : 1;
-			
+
 		//获得总记录数
 		$this->db->select('count(1) as num');
 		$this->db->from('house a');
@@ -1362,11 +1362,11 @@ class House_model extends MY_Model
 			$this->db->like('a.feature', $this->input->post('search_feature'));
 		$this->db->where('a.type_id', 2);
 		$this->db->where('a.exe_status', 1);
-			
+
 		$rs_total = $this->db->get()->row();
 		//总记录数
 		$data['countPage'] = $rs_total->num;
-			
+
 		$data['rel_name'] = null;
 		//list
 		$this->db->select('a.*, b.name AS region_name, c.name AS orientation_name, d.name AS xq_name, d.address AS address, e.name AS decoration_name, f.name AS style_name');
@@ -1457,23 +1457,23 @@ class House_model extends MY_Model
 		$this->db->where('a.type_id', 2);
 		$this->db->where('a.exe_status', 1);
 		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage);
-			
+
 		$orderField = $this->input->post('search_order');
 		$this->db->order_by('a.refresh_time', 'desc');
 		$this->db->order_by('a.id', 'desc');
-			
+
 		$data['res_list'] = $this->db->get()->result_array();
 		$data['pageNum'] = $pageNum;
 		$data['numPerPage'] = $numPerPage;
 		return $data;
 	}
-	
+
 	public function get_b_broker_house_list($broker_id, $pageNum) {
 		$numPerPage = $this->input->post('numPerPage') ? $this->input->post('numPerPage') : 10;
 		$rs = $this->db->select('subsidiary_id')->from('admin')->where('id',$broker_id)->get()->row();
 		$cid = $rs->subsidiary_id;
 		$limit_num = ($pageNum - 1) * $numPerPage;
-		
+
 		$sql_broker = "SELECT
 											id
 										FROM
@@ -1494,58 +1494,58 @@ class House_model extends MY_Model
 															cid = '{$cid}'
 													)
 											)";
-		
+
 		$query_broker = $this->db->query($sql_broker);
 		$broker_arr = $query_broker->result_array();
-		
+
 		$brokers = array();
-		
+
 		foreach($broker_arr as $k=>$v){
 			$brokers[] = $v['id'];
 		}
-		
+
 		if(!$brokers){
 			$rs = $this->db->select('id')->from('admin')->where('subsidiary_id',$cid)->get()->result_array();
 			foreach($rs as $k=>$v){
 				$brokers[] = $v['id'];
 			}
 		}
-		
+
 		$brokers_str = implode(',',$brokers);
-		
+
 		$rs = $this->db->select('company_id pid')->from('subsidiary')->where('id',$cid)->get()->row();
 		$pid = $rs->pid;
-		
+
 		$order = array();
-		
+
 		$order[] = $broker_id;
-		
+
 		$rs = $this->db->select('id')->from('admin')->where('subsidiary_id',$cid)->get()->result_array();
 		foreach($rs as $k=>$v){
 			$order[] = $v['id'];
 		}
-		
+
 		$rs = $this->db->select('a.id id')->from('admin a')->join('subsidiary b','a.subsidiary_id = b.id','left')->where('b.company_id',$pid)
 					->where('a.id !=',$broker_id)->where('a.subsidiary_id !=',$cid)->where_in('a.id',$brokers)->get()->result_array();
-		
+
 		foreach($rs as $k=>$v){
 			$order[] = $v['id'];
 		}
-		
+
 		$rs = $this->db->select('a.id id')->from('admin a')->join('subsidiary b','a.subsidiary_id = b.id','left')
 					->where('b.company_id !=',$pid)->where_in('a.id',$brokers)->get()->result_array();
-		
+
 		foreach($rs as $k=>$v){
 			$order[] = $v['id'];
 		}
-		
-		
+
+
 		$locate = implode(',',$order);
 		$where = '';
-		
+
 		if($this->input->post('search_region')) {
 			$search_region = intval($this->input->post('search_region'));
-				
+
 			if($search_region == 6) {
 				$this->db->where_in('a.region_id', array(1,2,3,4,5,6));
 				$where .= ' and a.region_id in (1,2,3,4,5,6)';
@@ -1610,19 +1610,26 @@ class House_model extends MY_Model
 		}
 		if($this->input->post('search_feature'))
 			$where .= " and a.feature like '%{$this->input->post('search_feature')}%'";
-		
-		$sql_count = "SELECT
-								count(1) num
-							FROM
-								house a
-							WHERE
-								a.broker_id IN ({$brokers_str}) and a.type_id > 1 and a.exe_status = 1 {$where}";
-		
+		$sql_count = "select count(1) num from(
+							(SELECT
+									a.id id
+								FROM
+									house a
+								WHERE
+									a.broker_id IN ({$brokers_str}) and a.type_id > 1 and a.exe_status = 1 {$where})
+
+							UNION(
+								select hid id from cloud_house
+							)
+						) aa";
+
 		$query_count = $this->db->query($sql_count);
 		$rs_count = $query_count->row();
 		$data['countPage'] = $rs_count->num;
 		$data['rel_name'] = null;
-		$sql = "SELECT
+		$sql = "select * from
+							(
+							(SELECT
 								a.*, b.name AS region_name, c.name AS orientation_name, d.name AS xq_name, d.address AS address, e.name AS decoration_name, f.name AS style_name
 							FROM
 								house a
@@ -1632,16 +1639,32 @@ class House_model extends MY_Model
 							LEFT JOIN house_decoration e ON a.decoration_id = e.id
 							LEFT JOIN house_substyle f ON a.substyle_id = f.id
 							WHERE
-								a.broker_id IN ({$brokers_str}) 
-							and a.type_id > 1 and a.exe_status = 1 {$where} order by locate(a.broker_id,'{$locate}'),refresh_time desc,id desc limit {$limit_num},{$numPerPage};";
+								a.broker_id IN ({$brokers_str})
+							and a.type_id > 1 and a.exe_status = 1 {$where} order by locate(a.broker_id,'{$locate}'),refresh_time desc,id desc)
+
+							UNION (
+						 	SELECT
+								a.*, b.name AS region_name, c.name AS orientation_name, d.name AS xq_name, d.address AS address, e.name AS decoration_name, f.name AS style_name
+							FROM
+								house a
+							LEFT JOIN house_region b ON a.region_id = b.id
+							LEFT JOIN house_orientation c ON a.orientation_id = c.id
+							LEFT JOIN xiaoqu d ON a.xq_id = d.id
+							LEFT JOIN house_decoration e ON a.decoration_id = e.id
+							LEFT JOIN house_substyle f ON a.substyle_id = f.id
+							WHERE
+								a.id IN (SELECT ch.hid from cloud_house ch) {$where}
+							and a.type_id > 1 and a.exe_status = 1 order by refresh_time desc,id desc
+							)
+							 ) aa limit {$limit_num},{$numPerPage};";
 		$query = $this->db->query($sql);
 		$data['res_list'] = $query->result_array();
 		$data['pageNum'] = $pageNum;
 		$data['numPerPage'] = $numPerPage;
 		return $data;
-		
+
 	}
-	
+
 	public function track_house($open_id, $house_id) {
 		$this->db->from('house_track');
 		$this->db->where('open_id', $open_id);
@@ -1651,7 +1674,7 @@ class House_model extends MY_Model
 			$this->db->query("INSERT INTO house_track (open_id, house_id, date) VALUES('{$open_id}', '{$house_id}', '".date('Y-m-d H:i:s')."')");
 		}
 	}
-	
+
 	public function get_connected_brokers($open_id) {
 		$this->db->select('a.*, b.rel_name, b.tel, c.address');
 		$this->db->from('wx_user a');
@@ -1661,7 +1684,7 @@ class House_model extends MY_Model
 		$this->db->order_by('a.updated DESC');
 		return $this->db->get()->result_array();
 	}
-	
+
 	public function choose_broker($id) {
 		$this->db->select('a.*, b.rel_name');
 		$this->db->from('wx_user a');
@@ -1674,7 +1697,7 @@ class House_model extends MY_Model
 		}
 		return $wx_user;
 	}
-	
+
 	public function get_article($broker_id) {
 		$this->db->select('a.*, b.rel_name');
 		$this->db->from('article a');
