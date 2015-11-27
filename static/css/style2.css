@@ -53,6 +53,7 @@ body{background-color:#fff;}
 	transform: translate(0,0)
 }
 /*按钮样式*/
+
 .menu-button,.am-icon-user,.am-icon-key{ width: 45px;height: 45px; display: block; margin-bottom: 10px;  background: url(../images/items_icon_1.png) no-repeat; background-size: 315px auto;}
 .am-icon-chevron-up{background-position: -90px -270px;}
 .am-icon-share{ background-position: 0 -270px;}
@@ -88,8 +89,8 @@ body{background-color:#fff;}
 .g-head{/*padding: 1em 0;*/ background: #ff6600; overflow: hidden; text-align: center; color: #fff; height: 50px; line-height: 50px;  position:relative;}
 .g-head .logo{margin:10px auto 0;background:url(../images/logo.png) no-repeat; background-size:100%; width: 104px; height: 30px; display:block;}
 .g-head .am-icon-txt{margin:5px 15px 0 0; float: right; color: #fff;  }
-.g-head .am-icon-user{ position:absolute; right:15px;top:2px;}
-.g-head .am-icon-user em{font-size:12px; color:#fff;}
+.g-head .user-login-icon{ position:absolute; right:15px;top:2px;}
+.g-head .user-login-icon em{font-size:12px; color:#fff;}
 .g-head .am-icon-chevron-left{position: absolute;top:2px;left:15px;}
 .new-list{padding:1rem 0; background: #f5f2f0;}
 

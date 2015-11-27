@@ -13,13 +13,15 @@
     <div class="g-head">
         <!-- <i class="am-icon-chevron-left"></i> -->
        	{{$store_name}}
-        <i class="am-icon-user">
+        <span class="user-login-icon">
         	{{if $login_broker_id_flag }}
-        		<a href="/b_login/logout"><em>退出</em></a>
+        		<a href="/b_login/logout">
+                     <i class="am-icon-user"></i><em>退出</em>
+                </a>
         	{{else}}
-        		<a href="/b_login/"></a>
+        		<a href="/b_login/"><i class="am-icon-user"></i></a>
         	{{/if}}
-        </i>
+       </span> 
     </div>
     <div class="g-doc">
        <!-- 筛选 start -->
