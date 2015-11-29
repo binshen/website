@@ -135,4 +135,24 @@ class Api_model extends MY_Model {
 		);
 		return $this->post($url, $content);
 	}
+	
+	public function update_weixin_user($open_id) {
+		if(!empty($open_id)) {
+			$token = $this->get_or_create_token();
+			$access_token = $token['token'];
+			$url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token={$access_token}&openid={$open_id}&lang=zh_CN";
+			$result = file_get_contents($url);
+			$data = json_decode($result, true);
+			
+			$this->db->from('weixin');
+			$this->db->where('openid', $open_id);
+			$data_weixin = $this->db->get()->row_array();
+			if(empty($data_weixin)) {
+				$this->db->insert('weixin', $data);
+			} else {
+				$this->db->where('id', $data_weixin['id']);
+				$this->db->update('weixin', $data);
+			}
+		}
+	}
 }
