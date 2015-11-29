@@ -99,7 +99,8 @@ class Job_model extends MY_Model
     				$search_types[] = $t['room'];
     			}
     			if(!empty($t['feature'])) {
-    				$search_features[] = $t['feature'];
+    				$features = explode(',', $t['feature']);
+    				$search_features = array_merge($search_features, $features);
     			}
     		}
     		$search_region = $this->mostRepeatedValues($search_regions);
@@ -108,6 +109,7 @@ class Job_model extends MY_Model
     		$search_acreage = $this->mostRepeatedValues($search_acreages);
     		$search_type = $this->mostRepeatedValues($search_types);
     		$search_feature = $this->mostRepeatedValues($search_features);
+
     	}
     }
 }
