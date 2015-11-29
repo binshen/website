@@ -4,12 +4,10 @@ class Job extends MY_Controller {
 	
 	public function __construct() {
 		parent::__construct();
+		$this->load->model('job_model');
 	}
 	
 	public function match_house() {
-		
-		//echo "123123213213213213";
-		
-		
+		$this->job_model->match_house();
 	}
 }
