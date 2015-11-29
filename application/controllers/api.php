@@ -23,4 +23,14 @@ class Api extends MY_Controller {
 		$ret = $this->api_model->get_or_create_jsapi_ticket();
 		var_dump($ret);
 	}
+	
+	public function get_wx_user_info($open_id) {
+		$token = $this->api_model->get_or_create_token();
+		$access_token = $token['token'];
+		$url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token={$access_token}&openid={$open_id}&lang=zh_CN";
+		$result = file_get_contents($url);
+		$jsonInfo = json_decode($result, true);
+		var_dump($jsonInfo);
+		header("Content-type: text/html; charset=utf-8");
+	}
 }
