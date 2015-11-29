@@ -7,6 +7,11 @@ class Api extends MY_Controller {
 		$this->load->model('api_model');
 	}
 	
+	public function update_weixin_user($openid) {
+		$this->api_model->update_weixin_user($openid);
+	}
+	
+///////////////////////////////////////////////////////////////////////////	
 	public function index() {
 		$token = $this->api_model->get_or_create_token();
 		$access_token = $token['token'];
