@@ -210,6 +210,7 @@ class Job_model extends MY_Model
     		$content['touser'] = $open_id;
     		$content['msgtype'] = 'news';
     		$articles = array();
+    		$today = date('Y-m-d');
     		foreach ($house_list as $h) {
     			$title = $h['region_name'] . $h['xq_name'] . $h['room'] . '室' . $h['lounge'] . '厅 ' . $h['acreage'] . '㎡' . $h['total_price'] . '万'; 
     			$articles[] = array(
@@ -217,9 +218,27 @@ class Job_model extends MY_Model
     				'url' => 'http://www.funmall.com.cn/b_house/view_detail/' . $h['id'],
     				'picurl' => 'http://www.funmall.com.cn/uploadfiles/pics/' . $h['bg_pic']
     			);
+    			
+    			$this->updateHousePush($open_id, $h['id'], $today);
     		}
     		$content['news'] = array('articles' => $articles);
     		$this->post($url, $content);
+    	}
+    }
+    
+    private function updateHousePush($open_id, $house_id, $date) {
+    	$this->db->from('house_push');
+    	$this->db->where('open_id', $open_id);
+    	$this->db->where('house_id', $house_id);
+    	$this->db->where('date', $date);
+    	$data_house_push = $this->db->get()->row_array();
+    	if(empty($data_house_push)) {
+    		$data_house_push = array(
+    			'open_id' => $open_id,
+    			'house_id' => $house_id,
+    			'date' => $date
+    		);
+    		$this->db->insert('house_push', $data_house_push);
     	}
     }
 }
