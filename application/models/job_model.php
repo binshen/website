@@ -200,7 +200,7 @@ class Job_model extends MY_Model
     			$this->db->like('feature', $search_feature);
  
     		$this->db->where('a.type_id', 2);
-    		$this->db->where_not_in('a.id', $house_ids);
+    		//$this->db->where_not_in('a.id', $house_ids);
     		$this->db->limit(6);
     		$this->db->order_by('a.id', 'desc');
     		$house_list = $this->db->get()->result_array();
