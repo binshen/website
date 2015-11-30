@@ -21,10 +21,11 @@ class Job_model extends MY_Model
     	$array = array_count_values($array);
     	arsort($array);
     	$array = array_slice($array, 0, 1, true);
-    	return array_values($array)[0];
+    	return array_keys($array)[0];
     }
     
     public function match_house() {
+    	header("Content-type: text/html; charset=utf-8");
     	
     	$weixins = $this->db->get('weixin')->result_array();
     	foreach($weixins as $weixin) {
@@ -41,6 +42,9 @@ class Job_model extends MY_Model
     		$search_types = array();
     		$search_features = array();
     		$house_tracks = $this->db->where('a.open_id', $weixin['openid'])->get()->result_array();
+    		
+    		if(empty($house_tracks)) return;
+    		
     		foreach ($house_tracks as $t) {
     			if(!empty($t['id'])) {
     				$house_ids[] =  $t['id'];
@@ -109,6 +113,95 @@ class Job_model extends MY_Model
     		$search_acreage = $this->mostRepeatedValues($search_acreages);
     		$search_type = $this->mostRepeatedValues($search_types);
     		$search_feature = $this->mostRepeatedValues($search_features);
+    		    		
+    		$this->db->select('a.*, b.name AS region_name, c.name AS xq_name, c.address AS address ');
+    		$this->db->from('house a');
+    		$this->db->join('house_region b', 'a.region_id = b.id', 'left');
+    		$this->db->join('xiaoqu c', 'a.xq_id = c.id', 'left');
+    		if(!empty($search_region)) {
+    			$search_region = intval($search_region);
+    			if($search_region == 6) {
+    				$this->db->where_in('a.region_id', array(1,2,3,4,5,6));
+    			} else {
+    				$this->db->where('a.region_id', $search_region);
+    			}
+    		}
+    		if(!empty($search_style))
+    			$this->db->where('a.substyle_id',$search_style);
+    		if(!empty($search_price)){
+    			$search_price = intval($search_price);
+	    		if($search_price == 1) {
+	   				$this->db->where('a.total_price <=', '50');
+	   			} else if($search_price == 2) {
+	   				$this->db->where('a.total_price >',  '50');
+	   				$this->db->where('a.total_price <=', '80');
+	   			} else if($search_price == 3) {
+	   				$this->db->where('a.total_price >',  '80');
+	   				$this->db->where('a.total_price <=', '100');
+	   			} else if($search_price == 4) {
+	   				$this->db->where('a.total_price >',  '100');
+	   				$this->db->where('a.total_price <=', '120');
+	   			} else if($search_price == 5) {
+	   				$this->db->where('a.total_price >',  '120');
+	   				$this->db->where('a.total_price <=', '150');
+	   			} else if($search_price == 6) {
+	   				$this->db->where('a.total_price >',  '150');
+	   				$this->db->where('a.total_price <=', '200');
+	   			} else if($search_price == 7) {
+	   				$this->db->where('a.total_price >',  '200');
+	   				$this->db->where('a.total_price <=', '250');
+	   			} else if($search_price == 8) {
+	   				$this->db->where('a.total_price >',  '250');
+	   				$this->db->where('a.total_price <=', '300');
+	   			} else if($search_price == 9) {
+	   				$this->db->where('a.total_price >',  '300');
+	   				$this->db->where('a.total_price <=', '500');
+	   			} else if($search_price == 10) {
+	   				$this->db->where('a.total_price >',  '500');
+	   			}
+    		}
+    		if(!empty($search_acreage)) {
+    			$search_acreage = intval($search_acreage);
+    			if($search_acreage == 1) {
+    				$this->db->where('a.acreage <=', '50');
+    			} else if($search_acreage == 2) {
+    				$this->db->where('a.acreage >',  '50');
+    				$this->db->where('a.acreage <=', '70');
+    			} else if($search_acreage == 3) {
+    				$this->db->where('a.acreage >',  '70');
+    				$this->db->where('a.acreage <=', '90');
+    			} else if($search_acreage == 4) {
+    				$this->db->where('a.acreage >',  '90');
+    				$this->db->where('a.acreage <=', '120');
+    			} else if($search_acreage == 5) {
+    				$this->db->where('a.acreage >',  '120');
+    				$this->db->where('a.acreage <=', '150');
+    			} else if($search_acreage == 6) {
+    				$this->db->where('a.acreage >',  '150');
+    				$this->db->where('a.acreage <=', '200');
+    			} else if($search_acreage == 7) {
+    				$this->db->where('a.acreage >',  '200');
+    				$this->db->where('a.acreage <=', '300');
+    			} else if($search_acreage == 8) {
+    				$this->db->where('a.acreage >',  '300');
+    			}
+    		}
+	    	if(!empty($search_type)) {
+	   			$search_type = intval($search_type);
+	   			if($search_type > 5) {
+	   				$this->db->where('a.room >', '5');
+	   			} else {
+	   				$this->db->where('a.room', $search_type);
+	   			}
+	   		}
+    		if(!empty($search_feature))
+    			$this->db->like('feature', $search_feature);
+ 
+    		$this->db->where('a.type_id', 2);
+    		$this->db->where_not_in('a.id', $house_ids);
+    		$this->db->limit(10);
+    		$this->db->order_by('a.id', 'desc');
+    		$house_list = $this->db->get()->result();
 
     	}
     }
