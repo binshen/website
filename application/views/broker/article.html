@@ -38,30 +38,80 @@
     signature: '{{$signPackage["signature"]}}',
     jsApiList: [
 		'checkJsApi',
-      	'onMenuShareTimeline'
+		'onMenuShareAppMessage',
+      	'onMenuShareTimeline',
+      	'onMenuShareQQ',
+      	'onMenuShareWeibo',
+      	'onMenuShareQZone'
     ]
   });
+  var title = "{{$article['title']}}";
+  var desc = "";
+  var link = "http://www.funmall.com.cn/b_house/view_art/{{$article['id']}}";
+  var imgUrl = "http://www.funmall.com.cn/uploadfiles/pics/20151026100457/3/042f611121e7649b7b03d9d7cde459df.jpg";
   wx.ready(function () {
    	wx.onMenuShareTimeline({
-   	    title: "分享测试请忽略：{{$article['title']}}",
-   	    link: "http://www.funmall.com.cn/b_house/view_art/{{$article['id']}}",
-   	    imgUrl: "http://www.funmall.com.cn/uploadfiles/pics/20151026100457/3/042f611121e7649b7b03d9d7cde459df.jpg",
+   	    title: title,
+   	    link: link,
+   	    imgUrl: imgUrl,
    	    trigger: function (res) {
-        	alert('用户点击分享到朋友圈');
+        	//alert('用户点击分享到朋友圈');
         },
    	    success: function () { 
-   	        alert("您已经成功分享");
+   	        //alert("您已经成功分享");
    	    },
    	    cancel: function () { 
-   	    	alert("您已经取消分享");
+   	    	//alert("您已经取消分享");
    	    },
    	    fail: function (res) {
             alert(JSON.stringify(res));
         }
    	});
-   	wx.error(function(res){
-        alert("errorMSG:"+res);
-    });
+   	wx.onMenuShareAppMessage({
+   	    title: title,
+   	    desc: desc,
+   	    link: link,
+   	    imgUrl: imgUrl,
+   	    type: "",
+   	    dataUrl: '',
+   	    success: function () {
+   	    },
+   	    cancel: function () {
+   	    }
+   	});
+   	wx.onMenuShareQQ({
+   	    title: title,
+   	    desc: desc,
+   	    link: link,
+   	    imgUrl: imgUrl,
+   	    success: function () {
+   	    },
+   	    cancel: function () {
+   	    }
+   	});
+   	wx.onMenuShareWeibo({
+   	    title: title,
+	    desc: desc,
+	    link: link,
+	    imgUrl: imgUrl,
+   	    success: function () {
+   	    },
+   	    cancel: function () {
+   	    }
+   	});
+   	wx.onMenuShareQZone({
+   		title: title,
+	    desc: desc,
+	    link: link,
+	    imgUrl: imgUrl,
+   	    success: function () {
+   	    },
+   	    cancel: function () {
+   	    }
+   	});
+  });
+  wx.error(function(res){
+      alert("errorMSG:"+res);
   });
 </script>
 </html>
