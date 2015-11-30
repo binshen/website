@@ -203,7 +203,7 @@ class Job_model extends MY_Model
     		$this->db->where_not_in('a.id', $house_ids);
     		$this->db->limit(6);
     		$this->db->order_by('a.id', 'desc');
-    		$house_list = $this->db->get()->result();
+    		$house_list = $this->db->get()->result_array();
 
     		$url = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" . $access_token;
     		$content = array();
