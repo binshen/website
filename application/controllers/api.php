@@ -13,9 +13,24 @@ class Api extends MY_Controller {
 	
 ///////////////////////////////////////////////////////////////////////////	
 	public function index() {
-		$token = $this->api_model->get_or_create_token();
-		$access_token = $token['token'];
-		$ret = $this->api_model->send_message($access_token, 'Hello World', 'orFu-vgK-snskoQdDgMkBe-jFe1k');
+		$articles = array(
+			array(
+				'title' => urlencode('周市 宇业天逸华庭 3室2厅 104 60万'),
+				'url' => 'http://www.funmall.com.cn/b_house/view_detail/2904',
+				'picurl' => 'http://www.funmall.com.cn/uploadfiles/pics/20151102135539/1/817a0b92fbf7bc3bd0dde2cd1de60277.png'
+			),
+			array(
+				'title' => urlencode('城中 锦晟花园 5室1厅 120 100万'),
+				'url' => 'http://www.funmall.com.cn/b_house/view_detail/2791',
+				'picurl' => 'http://www.funmall.com.cn/uploadfiles/pics/20151030134650/1/283f930940902011b0e3aa4b683cfaf3.jpg'
+			),
+			array(
+				'title' => urlencode('城中 金鹰天地 4室2厅 170 238万'),
+				'url' => 'http://www.funmall.com.cn/b_house/view_detail/2836',
+				'picurl' => 'http://www.funmall.com.cn/uploadfiles/pics/20151030163107/1/dca6a48adf15403065c5a23ecd0eae59.png'
+			)
+		);
+		$ret = $this->api_model->send_message('orFu-vgK-snskoQdDgMkBe-jFe1k', $articles);
 		var_dump($ret);
 	}
 	
