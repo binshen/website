@@ -24,11 +24,13 @@ class Job_model extends MY_Model
     	return array_keys($array)[0];
     }
     
-    public function match_house() {
+    public function match_house($access_token) {
     	header("Content-type: text/html; charset=utf-8");
     	
     	$weixins = $this->db->get('weixin')->result_array();
     	foreach($weixins as $weixin) {
+    		
+    		$open_id = $weixin['openid'];
     		
     		$this->db->select('b.id, b.region_id, b.total_price, b.substyle_id, b.acreage, b.room, b.feature');
     		$this->db->from('house_track a');
@@ -41,7 +43,7 @@ class Job_model extends MY_Model
     		$search_acreages = array();
     		$search_types = array();
     		$search_features = array();
-    		$house_tracks = $this->db->where('a.open_id', $weixin['openid'])->get()->result_array();
+    		$house_tracks = $this->db->where('a.open_id', $open_id)->get()->result_array();
     		
     		if(empty($house_tracks)) return;
     		
@@ -199,10 +201,25 @@ class Job_model extends MY_Model
  
     		$this->db->where('a.type_id', 2);
     		$this->db->where_not_in('a.id', $house_ids);
-    		$this->db->limit(10);
+    		$this->db->limit(6);
     		$this->db->order_by('a.id', 'desc');
     		$house_list = $this->db->get()->result();
 
+    		$url = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" . $access_token;
+    		$content = array();
+    		$content['touser'] = $open_id;
+    		$content['msgtype'] = 'news';
+    		$articles = array();
+    		foreach ($house_list as $h) {
+    			$title = $h['region_name'] . $h['xq_name'] . $h['room'] . '室' . $h['lounge'] . '厅 ' . $h['acreage'] . '㎡' . $h['total_price'] . '万'; 
+    			$articles[] = array(
+    				'title' => urlencode($title),
+    				'url' => 'http://www.funmall.com.cn/b_house/view_detail/' . $h['id'],
+    				'picurl' => 'http://www.funmall.com.cn/uploadfiles/pics/' . $h['bg_pic']
+    			);
+    		}
+    		$content['news'] = array('articles' => $articles);
+    		$this->post($url, $content);
     	}
     }
 }
