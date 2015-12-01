@@ -130,7 +130,7 @@ class MY_Controller extends CI_Controller
     	return $str;
     }
     
-    private function getSignPackage($ticket) {
+    function getSignPackage($ticket) {
     	$jsapiTicket = $ticket['ticket'];
     	$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
     	$url = "$protocol$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
