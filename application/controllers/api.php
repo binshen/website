@@ -11,6 +11,15 @@ class Api extends MY_Controller {
 		$this->api_model->update_weixin_user($openid);
 	}
 	
+	public function view_art($open_id, $broker_id) {
+		$token = $this->api_model->get_or_create_token();
+		$access_token = $token['token'];
+		$url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token={$access_token}&openid={$open_id}&lang=zh_CN";
+		$result = file_get_contents($url);
+		$jsonInfo = json_decode($result, true);
+		var_dump($jsonInfo);
+	}
+	
 ///////////////////////////////////////////////////////////////////////////	
 	public function index() {
 		$articles = array(
