@@ -27,7 +27,7 @@ class Api extends MY_Controller {
 		$signPackage = $this->getSignPackage();
 		$this->assign('signPackage', $signPackage);
 		
-		$article = $this->house_model->get_article($bid);
+		$article = $this->house_model->get_article($broker_id);
 		$this->assign('article', $article);
 		$this->display('broker/article.html');
 	}
