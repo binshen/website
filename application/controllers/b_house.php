@@ -11,35 +11,6 @@ class B_house extends MY_Controller {
 		$this->load->model('api_model');
 	}
 	
-	private function createNonceStr($length = 16) {
-		$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-		$str = "";
-		for ($i = 0; $i < $length; $i++) {
-			$str .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
-		}
-		return $str;
-	}
-	
-	private function getSignPackage() {
-		$ticket = $this->api_model->get_or_create_jsapi_ticket();
-		$jsapiTicket = $ticket['ticket'];
-		$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-		$url = "$protocol$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-		$timestamp = time();
-		$nonceStr = $this->createNonceStr();
-		$string = "jsapi_ticket=$jsapiTicket&noncestr=$nonceStr&timestamp=$timestamp&url=$url";
-		$signature = sha1($string);
-		$signPackage = array(
-			"appId"     => APP_ID,
-			"nonceStr"  => $nonceStr,
-			"timestamp" => $timestamp,
-			"url"       => $url,
-			"signature" => $signature,
-			"rawString" => $string
-		);
-		return $signPackage;
-	}
-	
 	public function index($oid, $bid=NULL) {
 		$this->session->set_userdata('wx_open_id', $oid);
 		$this->session->set_userdata('wx_broker_id', $bid);

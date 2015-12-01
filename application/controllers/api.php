@@ -12,12 +12,23 @@ class Api extends MY_Controller {
 	}
 	
 	public function view_art($open_id, $broker_id) {
+		//$this->api_model->update_weixin_user($open_id);
+		
 		$token = $this->api_model->get_or_create_token();
 		$access_token = $token['token'];
 		$url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token={$access_token}&openid={$open_id}&lang=zh_CN";
 		$result = file_get_contents($url);
 		$jsonInfo = json_decode($result, true);
-		var_dump($jsonInfo);
+		$this->assign('subscribe', $jsonInfo['subscribe']);
+		
+		
+		
+		$signPackage = $this->getSignPackage();
+		$this->assign('signPackage', $signPackage);
+		
+		$article = $this->house_model->get_article($bid);
+		$this->assign('article', $article);
+		$this->display('broker/article.html');
 	}
 	
 ///////////////////////////////////////////////////////////////////////////	
