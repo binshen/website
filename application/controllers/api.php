@@ -5,6 +5,7 @@ class Api extends MY_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('api_model');
+		$this->load->model('house_model');
 	}
 	
 	public function update_weixin_user($openid) {
