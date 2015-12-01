@@ -22,7 +22,8 @@ class B_house extends MY_Controller {
 	
 	public function view_art($bid=NULL) {
 		
-		$signPackage = $this->getSignPackage();
+		$ticket = $this->api_model->get_or_create_jsapi_ticket();
+		$signPackage = $this->getSignPackage($ticket);
 		$this->assign('signPackage', $signPackage);
 		
 		$article = $this->house_model->get_article($bid);
