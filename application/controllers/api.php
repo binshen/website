@@ -20,8 +20,8 @@ class Api extends MY_Controller {
 		$url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token={$access_token}&openid={$open_id}&lang=zh_CN";
 		$result = file_get_contents($url);
 		$jsonInfo = json_decode($result, true);
-		$this->assign('subscribe', $jsonInfo['subscribe']);
-		
+		//$this->assign('subscribe', $jsonInfo['subscribe']);
+		var_dump($jsonInfo);
 		
 		
 		$signPackage = $this->getSignPackage();
