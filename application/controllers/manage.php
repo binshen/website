@@ -1055,4 +1055,8 @@ class Manage extends MY_Controller {
 		$data['list'] = $this->manage_model->cloud_house();
 		$this->load->view('manage/cloud_house.php',$data);
 	}
+	
+	public function list_house_push() {
+		$this->load->view('manage/list_house_push.php');
+	}
 }

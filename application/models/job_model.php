@@ -236,7 +236,8 @@ class Job_model extends MY_Model
     		$data_house_push = array(
     			'open_id' => $open_id,
     			'house_id' => $house_id,
-    			'date' => $date
+    			'date' => $date,
+    			'auto' => 1
     		);
     		$this->db->insert('house_push', $data_house_push);
     	}
