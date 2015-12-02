@@ -237,7 +237,7 @@ class Job_model extends MY_Model
     			'open_id' => $open_id,
     			'house_id' => $house_id,
     			'date' => $date,
-    			'auto' => 1
+    			'broker_id' => 0
     		);
     		$this->db->insert('house_push', $data_house_push);
     	}
