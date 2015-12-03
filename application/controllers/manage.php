@@ -1105,5 +1105,6 @@ class Manage extends MY_Controller {
 			}
 			$this->api_model->send_message($open_id, $articles);
 		}
+		form_submit_json("200", "操作成功", 'list_house_push');
 	}
 }
