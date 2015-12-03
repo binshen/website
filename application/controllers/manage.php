@@ -1058,6 +1058,7 @@ class Manage extends MY_Controller {
 	
 	public function list_house_push() {
 		$data = $this->manage_model->list_house_push();
+		$data['wx_users_list'] = $this->manage_model->list_wx_user();
 		$this->load->view('manage/list_house_push.php', $data);
 	}
 }

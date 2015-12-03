@@ -11,8 +11,23 @@
 	<div class="searchBar">
 		<table class="searchContent" id="search_purchase_order">
 			<tr>
-				<td><label>客户：</label><input type="text" size="16" name="open_id" value="<?php echo @$open_id; ?>" /></td>
-				<td><label>推送时间：</label><input type="text" size="16" name="date" value="<?php echo @$date; ?>" /></td>
+				<td>
+					<label>客户：</label>
+					<select class="combox" name="open_id">
+						<option value="">-全部-</option>
+						<?php          
+			                if (!empty($wx_users_list)):
+			            	    foreach ($wx_users_list as $row):
+			            	    	$selected = !empty(@$open_id) && $row['openid'] == @$open_id ? "selected" : "";          
+			            ?>
+        							<option value="<?php echo $row['openid']; ?>" <?php echo $selected; ?>><?php echo $row['nickname']; ?></option>
+        					<?php 
+			            		endforeach;
+			            	endif;
+			            ?>
+					</select>
+				</td>
+				<td><label>推送时间：</label><input type="text" class="date" size="16" name="date" value="<?php echo @$date; ?>" /></td>
 			</tr>
 		</table>
 		<div class="subBar">

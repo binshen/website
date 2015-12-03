@@ -1895,9 +1895,16 @@ class Manage_model extends MY_Model
 		if($this->session->userdata('login_broker_id')) {
 			$this->db->where('broker_id', $this->session->userdata('login_broker_id'));
 		}
+		if($this->input->post('open_id'))
+			$this->db->where('open_id', $this->input->post('open_id'));
+		if($this->input->post('date'))
+			$this->db->where('date', $this->input->post('date'));
 		$rs_total = $this->db->get()->row();
 		//总记录数
 		$data['countPage'] = $rs_total->num;
+		
+		$data['open_id'] = null;
+		$data['date'] = null;
 		
 		//list
 		$this->db->select('a.*, d.name, c.nickname');
@@ -1908,11 +1915,23 @@ class Manage_model extends MY_Model
 		if($this->session->userdata('login_broker_id')) {
 			$this->db->where('a.broker_id', $this->session->userdata('login_broker_id'));
 		}
+		if($this->input->post('open_id')) {
+			$this->db->where('open_id', $this->input->post('open_id'));
+			$data['open_id'] = $this->input->post('open_id');
+		}
+		if($this->input->post('date')) {
+			$this->db->where('date', $this->input->post('date'));
+			$data['date'] = $this->input->post('date');
+		}
 		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
 		$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
 		$data['res_list'] = $this->db->get()->result();
 		$data['pageNum'] = $pageNum;
 		$data['numPerPage'] = $numPerPage;
 		return $data;
+	}
+	
+	public function list_wx_user() {
+		return $this->db->get('weixin')->result_array();
 	}
 }
