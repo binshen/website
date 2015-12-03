@@ -1071,6 +1071,9 @@ class Manage extends MY_Controller {
 	}
 	
 	public function push_house_to_user() {
+		$open_id = $_POST['open_id'];
+		$today = date('Y-m-d');
+		
 		$articles = array();
 		$data = $_POST['data'];
 		foreach ($data as $h) {
@@ -1079,8 +1082,8 @@ class Manage extends MY_Controller {
     			'url' => 'http://www.funmall.com.cn/b_house/view_detail/' . $h['id'],
     			'picurl' => 'http://www.funmall.com.cn/uploadfiles/pics/' . $h['bg_pic']
     		);
+			$this->update_weixin_user->updateHousePush($open_id, $h['id'], $today);
 		}
-		$open_id = $_POST['open_id'];
 		$this->api_model->send_message($open_id, $articles);
 	}
 }
