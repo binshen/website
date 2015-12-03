@@ -5,7 +5,7 @@
 	<input type="hidden" name="orderDirection" value="<?php echo $this->input->post('orderDirection');?>" />
 </form>
 <div class="pageHeader" id="dialog">
-	<form id="thisForm" onsubmit="return validateCallback(this, dialogAjaxDone);" action="<?php echo site_url('manage/list_house_push_dialog')?>" method="post">
+	<form onsubmit="return validateCallback(this, dialogAjaxDone);" action="<?php echo site_url('manage/list_house_push_dialog')?>" method="post">
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
@@ -139,8 +139,7 @@ function push_house_to_user(){
 		}
 	});
 	$.post('<?php echo site_url('manage/push_house_to_user')?>', {data:data, open_id:$("#wx_user_openid").val()}, function(data){
-		//validateCallback($("#thisForm"), dialogAjaxDone);
+		dialogAjaxDone(JSON.parse(data));
 	});
-	$.pdialog.closeCurrent();
 }
 </script>
