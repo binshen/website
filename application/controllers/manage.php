@@ -18,6 +18,7 @@ class Manage extends MY_Controller {
 		$this->load->library('image_lib');
 		$this->load->helper('directory');
 		$this->load->model('house_model');
+		$this->load->model('api_model');
 	}
 
 	function _remap($method,$params = array())
@@ -1067,5 +1068,19 @@ class Manage extends MY_Controller {
 		$data['region_list'] = $this->house_model->get_m_house_region();
 		$data['wx_users_list'] = $this->manage_model->list_wx_user();
 		$this->load->view('manage/list_house_push_dialog.php', $data);
+	}
+	
+	public function push_house_to_user() {
+		$articles = array();
+		$data = $_POST['data'];
+		foreach ($data as $h) {
+			$articles[] = array(
+    			'title' => urlencode($h['title']),
+    			'url' => 'http://www.funmall.com.cn/b_house/view_detail/' . $h['id'],
+    			'picurl' => 'http://www.funmall.com.cn/uploadfiles/pics/' . $h['bg_pic']
+    		);
+		}
+		$open_id = $_POST['open_id'];
+		$this->api_model->send_message($open_id, $articles);
 	}
 }

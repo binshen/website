@@ -75,7 +75,7 @@
             	    foreach ($res_list as $row):		               
             ?>		            
             			<tr target="id" rel=<?php echo $row->id; ?>>
-            				<td><input type="checkbox" name="select" value="{'xq_id':'<?php echo $row->id;?>', 'xq_name':'<?php echo $row->name;?>'}"></td>
+            				<td><input type="checkbox" name="select" value="{'title':'<?php echo $row->region_name;?><?php echo $row->xq_name;?><?php echo $row->room;?>室<?php echo $row->lounge;?>厅<?php echo $row->acreage;?>㎡<?php echo $row->total_price;?>万','id':'<?php echo $row->id;?>','bg_pic':'<?php echo $row->bg_pic;?>'}"></td>
             				<td><?php echo $row->xq_name; ?></td>
             				<td><?php echo $row->style_name; ?></td>
             				<td><?php echo $row->region_name; ?></td>
@@ -96,7 +96,7 @@
 		<div class="pages">
 			<span>显示</span>
 			<select name="numPerPage" class="combox" onchange="navTabPageBreak({numPerPage:this.value})">
-				<option value="50" <?php echo  $this->input->post('numPerPage')==50?'selected':''?>>50</option>
+				<option value="50"  <?php echo $this->input->post('numPerPage')==50?'selected':''?>>50</option>
 				<option value="100" <?php echo $this->input->post('numPerPage')==100?'selected':''?>>100</option>
 				<option value="200" <?php echo $this->input->post('numPerPage')==200?'selected':''?>>200</option>
 			</select>
@@ -108,8 +108,8 @@
     		<ul>
     			<li>
     				<div>
-    					<select class="combox" name="open_id">
-							<option value="">所有人</option>
+    					<select class="combox" name="wx_user_openid" id="wx_user_openid">
+							<option value="-1">所有人</option>
 							<?php          
 				                if (!empty($wx_users_list)):
 				            	    foreach ($wx_users_list as $row):
@@ -123,13 +123,13 @@
 						</select>
     				</div>
     			</li>
-    			<li><div class="buttonActive"><div class="buttonContent"><button class="icon-save" onclick="bringBack_current();">推送房源</button></div></div></li>
+    			<li><div class="buttonActive"><div class="buttonContent"><button class="icon-save" onclick="push_house_to_user();">推送房源</button></div></div></li>
     			<li><div class="button"><div class="buttonContent"><button type="button" class="close icon-close">关闭</button></div></div></li>
     		</ul>
         </div>
 </div>
 <script>
-function bringBack_current(){
+function push_house_to_user(){
 	data = [];
 	$('[name="select"]').each(function(){
 		if($(this).is(":checked")){
@@ -138,7 +138,9 @@ function bringBack_current(){
 			data.push(json_obj);
 		}
 	});
-	list_house(data);
+	$.post('<?php echo site_url('manage/push_house_to_user')?>', {data:data, open_id:$("#wx_user_openid").val()}, function(data){
+		console.log(data)
+	});
 	$.pdialog.closeCurrent();
 }
 </script>
