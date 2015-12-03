@@ -19,6 +19,7 @@ class Manage extends MY_Controller {
 		$this->load->helper('directory');
 		$this->load->model('house_model');
 		$this->load->model('api_model');
+		$this->load->model('job_model');
 	}
 
 	function _remap($method,$params = array())
@@ -1071,19 +1072,38 @@ class Manage extends MY_Controller {
 	}
 	
 	public function push_house_to_user() {
-		$open_id = $_POST['open_id'];
 		$today = date('Y-m-d');
+		$broker_id = $this->session->userdata('user_id');
 		
-		$articles = array();
-		$data = $_POST['data'];
-		foreach ($data as $h) {
-			$articles[] = array(
-    			'title' => urlencode($h['title']),
-    			'url' => 'http://www.funmall.com.cn/b_house/view_detail/' . $h['id'],
-    			'picurl' => 'http://www.funmall.com.cn/uploadfiles/pics/' . $h['bg_pic']
-    		);
-			$this->update_weixin_user->updateHousePush($open_id, $h['id'], $today);
+		$open_id = $_POST['open_id'];
+		if($open_id == -1) {
+			$wx_users_list = $this->manage_model->list_wx_user();
+			foreach ($wx_users_list as $wx_user) {
+				$open_id = $wx_user['openid'];
+				$articles = array();
+				$data = $_POST['data'];
+				foreach ($data as $h) {
+					$articles[] = array(
+							'title' => urlencode($h['title']),
+							'url' => 'http://www.funmall.com.cn/b_house/view_detail/' . $h['id'],
+							'picurl' => 'http://www.funmall.com.cn/uploadfiles/pics/' . $h['bg_pic']
+					);
+					$this->job_model->updateHousePush($open_id, $h['id'], $today, $broker_id);
+				}
+				$this->api_model->send_message($open_id, $articles);
+			}
+		} else {
+			$articles = array();
+			$data = $_POST['data'];
+			foreach ($data as $h) {
+				$articles[] = array(
+						'title' => urlencode($h['title']),
+						'url' => 'http://www.funmall.com.cn/b_house/view_detail/' . $h['id'],
+						'picurl' => 'http://www.funmall.com.cn/uploadfiles/pics/' . $h['bg_pic']
+				);
+				$this->job_model->updateHousePush($open_id, $h['id'], $today, $broker_id);
+			}
+			$this->api_model->send_message($open_id, $articles);
 		}
-		$this->api_model->send_message($open_id, $articles);
 	}
 }

@@ -75,7 +75,7 @@
             	    foreach ($res_list as $row):		               
             ?>		            
             			<tr target="id" rel=<?php echo $row->id; ?>>
-            				<td><input type="checkbox" name="select" value="{'title':'<?php echo $row->region_name;?><?php echo $row->xq_name;?><?php echo $row->room;?>室<?php echo $row->lounge;?>厅<?php echo $row->acreage;?>㎡<?php echo $row->total_price;?>万','id':'<?php echo $row->id;?>','bg_pic':'<?php echo $row->bg_pic;?>'}"></td>
+            				<td><input type="checkbox" name="select" value="{'title':'<?php echo $row->region_name;?> <?php echo $row->xq_name;?> <?php echo $row->room;?>室<?php echo $row->lounge;?>厅 <?php echo $row->acreage;?>㎡ <?php echo $row->total_price;?>万','id':'<?php echo $row->id;?>','bg_pic':'<?php echo $row->bg_pic;?>'}"></td>
             				<td><?php echo $row->xq_name; ?></td>
             				<td><?php echo $row->style_name; ?></td>
             				<td><?php echo $row->region_name; ?></td>

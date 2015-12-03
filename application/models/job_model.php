@@ -226,7 +226,7 @@ class Job_model extends MY_Model
     	}
     }
     
-    private function updateHousePush($open_id, $house_id, $date) {
+    public function updateHousePush($open_id, $house_id, $date, $broker_id=0) {
     	$this->db->from('house_push');
     	$this->db->where('open_id', $open_id);
     	$this->db->where('house_id', $house_id);
@@ -237,7 +237,7 @@ class Job_model extends MY_Model
     			'open_id' => $open_id,
     			'house_id' => $house_id,
     			'date' => $date,
-    			'broker_id' => 0
+    			'broker_id' => $broker_id
     		);
     		$this->db->insert('house_push', $data_house_push);
     	}
