@@ -1,8 +1,8 @@
 <form id="pagerForm" method="post" action="<?php echo site_url('manage/list_house_push')?>">
 	<input type="hidden" name="pageNum" value="<?php echo $pageNum;?>" />
 	<input type="hidden" name="numPerPage" value="<?php echo $numPerPage;?>" />
-	<input type="hidden" name="open_id" value="<?php echo @$open_id;?>" />
-	<input type="hidden" name="date" value="<?php echo @$date;?>" />
+	<input type="hidden" name="open_id" value="<?php echo $open_id;?>" />
+	<input type="hidden" name="date" value="<?php echo $date;?>" />
 	<input type="hidden" name="orderField" value="<?php echo $this->input->post('orderField');?>" />
 	<input type="hidden" name="orderDirection" value="<?php echo $this->input->post('orderDirection');?>" />
 </form>
@@ -18,7 +18,7 @@
 						<?php          
 			                if (!empty($wx_users_list)):
 			            	    foreach ($wx_users_list as $row):
-			            	    	$selected = !empty(@$open_id) && $row['openid'] == @$open_id ? "selected" : "";          
+			            	    	$selected = !empty($open_id) && $row['openid'] == $open_id ? "selected" : "";          
 			            ?>
         							<option value="<?php echo $row['openid']; ?>" <?php echo $selected; ?>><?php echo $row['nickname']; ?></option>
         					<?php 
@@ -27,7 +27,7 @@
 			            ?>
 					</select>
 				</td>
-				<td><label>推送时间：</label><input type="text" class="date" size="16" name="date" value="<?php echo @$date; ?>" /></td>
+				<td><label>推送时间：</label><input type="text" class="date" size="16" name="date" value="<?php echo $date; ?>" /></td>
 			</tr>
 		</table>
 		<div class="subBar">
