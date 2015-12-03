@@ -21,7 +21,8 @@ class Job_model extends MY_Model
     	$array = array_count_values($array);
     	arsort($array);
     	$array = array_slice($array, 0, 1, true);
-    	return array_keys($array)[0];
+    	$keys = array_keys($array);
+    	return $keys[0];
     }
     
     public function match_house($access_token) {
