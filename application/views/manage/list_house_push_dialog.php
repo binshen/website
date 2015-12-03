@@ -20,7 +20,7 @@
 						<?php          
 			                if (!empty($region_list)):
 			            	    foreach ($region_list as $row):
-			            	    	$selected = !empty(@$search_region) && $row['id'] == @$search_region ? "selected" : "";          
+			            	    	$selected = !empty($search_region) && $row['id'] == $search_region ? "selected" : "";          
 			            ?>
         							<option value="<?php echo $row['id']; ?>" <?php echo $selected; ?>><?php echo $row['name']; ?></option>
         				<?php 
