@@ -113,7 +113,7 @@
 							<?php          
 				                if (!empty($wx_users_list)):
 				            	    foreach ($wx_users_list as $row):
-				            	    	$selected = !empty(@$open_id) && $row['openid'] == @$open_id ? "selected" : "";          
+				            	    	$selected = !empty($open_id) && $row['openid'] == $open_id ? "selected" : "";          
 				            ?>
 	        							<option value="<?php echo $row['openid']; ?>" <?php echo $selected; ?>><?php echo $row['nickname']; ?></option>
 	        					<?php 
