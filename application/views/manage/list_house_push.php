@@ -43,7 +43,7 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="<?php echo site_url('manage/add_house_push')?>" target="navTab" rel="add_news" title="推送"><span>推送</span></a></li>
+			<li><a class="add" href="<?php echo site_url('manage/list_house_push_dialog')?>" target="dialog" width="960" height="480" rel="add_news" title="推送"><span>推送</span></a></li>
 		</ul>
 	</div>
 

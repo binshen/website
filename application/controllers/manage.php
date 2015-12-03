@@ -17,7 +17,7 @@ class Manage extends MY_Controller {
 		$this->load->model('manage_model');
 		$this->load->library('image_lib');
 		$this->load->helper('directory');
-
+		$this->load->model('house_model');
 	}
 
 	function _remap($method,$params = array())
@@ -1060,5 +1060,12 @@ class Manage extends MY_Controller {
 		$data = $this->manage_model->list_house_push();
 		$data['wx_users_list'] = $this->manage_model->list_wx_user();
 		$this->load->view('manage/list_house_push.php', $data);
+	}
+	
+	public function list_house_push_dialog() {
+		$data = $this->manage_model->list_house_push_dialog();
+		$data['region_list'] = $this->house_model->get_m_house_region();
+		$data['wx_users_list'] = $this->manage_model->list_wx_user();
+		$this->load->view('manage/list_house_push_dialog.php', $data);
 	}
 }
