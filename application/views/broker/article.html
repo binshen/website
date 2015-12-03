@@ -17,15 +17,13 @@
         <div class="art-info"><p><span class="art-time">{{$article['created']}}</span><span class="art-author">{{$article['rel_name']}}</span></p></div>
         <div class="art-body">
         	{{$article['content']}}
-        	<div class="art-action-next">
-            	<div class="art-ewm">
-                	<span class="art-ewm-img" id="btnShare"><img src="/static/images/ewm.jpg" alt="" width="60" height="60" /></span>
-                    <i>扫描二维码</i>
+            <div class="art-action-next">
+                <div class="art-ewm">
+                    <img src="/static/images/ewm1.jpg" width="110" height="110" id="btnShare" />
+                    <div class="scan"></div>
                 </div>
-                <div class="clear"></div>
-            	<span class="art-btn"><a href="/b_house/view_list/1"><img src="/static/images/btn.png" alt="" /></a></span>
-                <i class="arrow"></i>
             </div>
+            <span class="art-btn"><a href="/b_house/view_list/1"><img src="/static/images/btn1.jpg" alt="" /></a></span>
         </div>
     </div>
 </body>
