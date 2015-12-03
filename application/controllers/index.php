@@ -24,7 +24,8 @@ class Index extends MY_Controller {
 		$this->assign('news3', $data['news3']);
 		$this->assign('news4', $data['news4']);
 		$this->assign('news5', $data['news5']);
-		
+		$this->assign('news6', $data['news6']);
+
 		$this->assign('style_list_1', $data['region_list']);
 		$this->assign('style_list_2', array(
 			array('id' => 1, 'name' => '一室'),

@@ -56,6 +56,7 @@
 	        			<option value="3" <?php if(!empty($index_area) && $index_area == 3) echo 'selected="selected"';?>>区域3</option>
 	        			<option value="4" <?php if(!empty($index_area) && $index_area == 4) echo 'selected="selected"';?>>区域4</option>
 	        			<option value="5" <?php if(!empty($index_area) && $index_area == 5) echo 'selected="selected"';?>>区域5</option>
+	        			<option value="6" <?php if(!empty($index_area) && $index_area == 6) echo 'selected="selected"';?>>区域6</option>
         			</select>
         			</dd>
         		</dl>
