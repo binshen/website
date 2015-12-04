@@ -54,7 +54,7 @@ body{background-color:#fff;}
 }
 /*按钮样式*/
 
-.menu-button,.am-icon-user,.am-icon-key{ width: 45px;height: 45px; display: block;   background: url(../images/items_icon_1.png) no-repeat; background-size: 315px auto;}
+.menu-button,.am-icon-user,.am-icon-key{margin-bottom: 10px; width: 45px;height: 45px; display: block;   background: url(../images/items_icon_1.png) no-repeat; background-size: 315px auto;}
 .am-icon-user{height: 33px;}
 .am-icon-chevron-up{background-position: -90px -270px;}
 .am-icon-share{ background-position: 0 -270px;}
@@ -104,7 +104,7 @@ body{background-color:#fff;}
 
 .em-tit{ background:rgba(0,0,0,0.6); display: block; font-size: 16px; color: #fff; height: 36px; line-height: 36px; margin-top: -36px; position: relative; text-align: center;}
 
-.pageRightMenu{ position: fixed; right: 0;bottom:3.5rem;}
+.pageRightMenu{ position: fixed; right: 0;bottom:5rem;}
 
 
 .top-button{ display: none;}
