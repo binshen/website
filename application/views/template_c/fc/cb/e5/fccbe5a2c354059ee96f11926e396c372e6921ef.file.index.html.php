@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2015-11-10 16:44:17
+<?php /* Smarty version Smarty-3.1.16, created on 2015-12-05 21:04:03
          compiled from "application\views\index.html" */ ?>
 <?php /*%%SmartyHeaderCode:1960755b6e9761cf065-27303114%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fccbe5a2c354059ee96f11926e396c372e6921ef' => 
     array (
       0 => 'application\\views\\index.html',
-      1 => 1446456203,
+      1 => 1449129057,
       2 => 'file',
     ),
   ),
@@ -33,6 +33,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'news2' => 0,
     'k' => 0,
     'news3' => 0,
+    'news6' => 0,
     'news5' => 0,
     'news4' => 0,
   ),
@@ -561,47 +562,62 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
 " width="170" height="280" /></a>
                     <div class="hotGuide">
                         <div class="guideTxt">
-                            <span class="guide-tit"><a href="" target="_blank">《昆山楼市》杂志6-7刊抢先看&gt;</a></span>
-                            <p class="guide-link"><a href="" target="_blank">市场行情</a><a href="" target="_blank">特别策划</a><a href="" target="_blank">名盘鉴赏</a><br /><a href="" target="_blank">楼市前线</a><a href="" target="_blank">楼相百态</a><a href="" target="_blank">独家调查</a></p>
+                            <?php ob_start();?><?php  $_smarty_tpl->tpl_vars['row'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['row']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['news6']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['row']->key => $_smarty_tpl->tpl_vars['row']->value) {
+$_smarty_tpl->tpl_vars['row']->_loop = true;
+?><?php $_tmp126=ob_get_clean();?><?php echo $_tmp126;?>
+
+                            <span class="guide-tit"><a href="<?php ob_start();?><?php echo smarty_function_site_url(array('url'=>'house/article_detail'),$_smarty_tpl);?>
+<?php $_tmp127=ob_get_clean();?><?php echo $_tmp127;?>
+/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['xq_id'];?>
+<?php $_tmp128=ob_get_clean();?><?php echo $_tmp128;?>
+/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['id'];?>
+<?php $_tmp129=ob_get_clean();?><?php echo $_tmp129;?>
+/1" target="_blank"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['row']->value['title'];?>
+<?php $_tmp130=ob_get_clean();?><?php echo $_tmp130;?>
+</a></span>
+                            <?php ob_start();?><?php } ?><?php $_tmp131=ob_get_clean();?><?php echo $_tmp131;?>
+
                         </div>
                     	<a href="<?php ob_start();?><?php echo smarty_function_site_url(array('url'=>'house/article_detail'),$_smarty_tpl);?>
-<?php $_tmp126=ob_get_clean();?><?php echo $_tmp126;?>
+<?php $_tmp132=ob_get_clean();?><?php echo $_tmp132;?>
 /<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['news5']->value[0]['xq_id'];?>
-<?php $_tmp127=ob_get_clean();?><?php echo $_tmp127;?>
+<?php $_tmp133=ob_get_clean();?><?php echo $_tmp133;?>
 /<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['news5']->value[0]['id'];?>
-<?php $_tmp128=ob_get_clean();?><?php echo $_tmp128;?>
+<?php $_tmp134=ob_get_clean();?><?php echo $_tmp134;?>
 /1" target="_blank" class="aPic aPicW270"><img src="/uploadfiles/news/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['news5']->value[0]['pic'];?>
-<?php $_tmp129=ob_get_clean();?><?php echo $_tmp129;?>
+<?php $_tmp135=ob_get_clean();?><?php echo $_tmp135;?>
 " width="270" height="190" /><i class="iTit"><em class="fz20"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['news5']->value[0]['title'];?>
-<?php $_tmp130=ob_get_clean();?><?php echo $_tmp130;?>
+<?php $_tmp136=ob_get_clean();?><?php echo $_tmp136;?>
 </em><br /><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['news5']->value[0]['title2'];?>
-<?php $_tmp131=ob_get_clean();?><?php echo $_tmp131;?>
+<?php $_tmp137=ob_get_clean();?><?php echo $_tmp137;?>
 </i></a>
                     </div>
                 </div>
                 <div class="newPic-btm clearfix">
                 	<a href="<?php ob_start();?><?php echo smarty_function_site_url(array('url'=>'house/article_detail'),$_smarty_tpl);?>
-<?php $_tmp132=ob_get_clean();?><?php echo $_tmp132;?>
+<?php $_tmp138=ob_get_clean();?><?php echo $_tmp138;?>
 /<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['news4']->value['xq_id'];?>
-<?php $_tmp133=ob_get_clean();?><?php echo $_tmp133;?>
+<?php $_tmp139=ob_get_clean();?><?php echo $_tmp139;?>
 /<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['news4']->value['id'];?>
-<?php $_tmp134=ob_get_clean();?><?php echo $_tmp134;?>
+<?php $_tmp140=ob_get_clean();?><?php echo $_tmp140;?>
 /1" target="_blank" class="aWid170"><img src="/uploadfiles/news/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['news4']->value['pic'];?>
-<?php $_tmp135=ob_get_clean();?><?php echo $_tmp135;?>
+<?php $_tmp141=ob_get_clean();?><?php echo $_tmp141;?>
 " width="170" height="195" /></a>
                     <a href="<?php ob_start();?><?php echo smarty_function_site_url(array('url'=>'house/article_detail'),$_smarty_tpl);?>
-<?php $_tmp136=ob_get_clean();?><?php echo $_tmp136;?>
+<?php $_tmp142=ob_get_clean();?><?php echo $_tmp142;?>
 /<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['news5']->value[1]['xq_id'];?>
-<?php $_tmp137=ob_get_clean();?><?php echo $_tmp137;?>
+<?php $_tmp143=ob_get_clean();?><?php echo $_tmp143;?>
 /<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['news5']->value[1]['id'];?>
-<?php $_tmp138=ob_get_clean();?><?php echo $_tmp138;?>
+<?php $_tmp144=ob_get_clean();?><?php echo $_tmp144;?>
 /1" target="_blank" class="aPic aPicW270"><img src="/uploadfiles/news/<?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['news5']->value[1]['pic'];?>
-<?php $_tmp139=ob_get_clean();?><?php echo $_tmp139;?>
+<?php $_tmp145=ob_get_clean();?><?php echo $_tmp145;?>
 " width="270" height="195" />
                     <i class="iTit"><em class="fz20"><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['news5']->value[1]['title'];?>
-<?php $_tmp140=ob_get_clean();?><?php echo $_tmp140;?>
+<?php $_tmp146=ob_get_clean();?><?php echo $_tmp146;?>
 </em><br /><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['news5']->value[1]['title2'];?>
-<?php $_tmp141=ob_get_clean();?><?php echo $_tmp141;?>
+<?php $_tmp147=ob_get_clean();?><?php echo $_tmp147;?>
 </i></a>
                 </div>
              </div>      

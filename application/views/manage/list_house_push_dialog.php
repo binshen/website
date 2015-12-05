@@ -5,7 +5,7 @@
 	<input type="hidden" name="orderDirection" value="<?php echo $this->input->post('orderDirection');?>" />
 </form>
 <div class="pageHeader" id="dialog">
-	<form onsubmit="return validateCallback(this, dialogAjaxDone);" action="<?php echo site_url('manage/list_house_push_dialog')?>" method="post">
+	<form onsubmit="return dialogSearch(this);" action="<?php echo site_url('manage/list_house_push_dialog')?>" method="post">
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
@@ -39,6 +39,42 @@
 						<option value="4" <?php if(@$search_type == 4) echo "selected"; ?>>4室</option>
 						<option value="5" <?php if(@$search_type == 5) echo "selected"; ?>>5室</option>
 						<option value="6" <?php if(@$search_type > 5) echo "selected"; ?>>5室以上</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label>特色：</label>
+					<input type="text" size="16" name="search_feature" value="<?php echo @$search_feature;?>" />
+				</td>
+				<td>
+					<label>价格：</label>
+					<select class="combox" name="search_price">
+						<option value="">-全部-</option>
+						<option value="1" <?php if(@$search_price == 1) echo "selected"; ?>>50万以下</option>
+						<option value="2" <?php if(@$search_price == 2) echo "selected"; ?>>50-80万</option>
+						<option value="3" <?php if(@$search_price == 3) echo "selected"; ?>>80-100万</option>
+						<option value="4" <?php if(@$search_price == 4) echo "selected"; ?>>100-120万</option>
+						<option value="5" <?php if(@$search_price == 5) echo "selected"; ?>>120-150万</option>
+						<option value="6" <?php if(@$search_price == 6) echo "selected"; ?>>150-200万</option>
+						<option value="7" <?php if(@$search_price == 7) echo "selected"; ?>>200-250万</option>
+						<option value="8" <?php if(@$search_price == 8) echo "selected"; ?>>250-300万</option>
+						<option value="9" <?php if(@$search_price == 9) echo "selected"; ?>>300-500万</option>
+						<option value="10" <?php if(@$search_price == 10) echo "selected"; ?>>500万以上</option>
+					</select>
+				</td>
+				<td>
+					<label>面积：</label>
+					<select class="combox" name="search_acreage">
+						<option value="">-全部-</option>
+						<option value="1" <?php if(@$search_acreage == 1) echo "selected"; ?>>50平以下</option>
+						<option value="2" <?php if(@$search_acreage == 2) echo "selected"; ?>>50-70平</option>
+						<option value="3" <?php if(@$search_acreage == 3) echo "selected"; ?>>70-90平</option>
+						<option value="4" <?php if(@$search_acreage == 4) echo "selected"; ?>>90-120平</option>
+						<option value="5" <?php if(@$search_acreage == 5) echo "selected"; ?>>120-150平</option>
+						<option value="6" <?php if(@$search_acreage == 6) echo "selected"; ?>>150-200平</option>
+						<option value="7" <?php if(@$search_acreage == 7) echo "selected"; ?>>200-300平</option>
+						<option value="8" <?php if(@$search_acreage == 8) echo "selected"; ?>>300平以上</option>
 					</select>
 				</td>
 			</tr>
