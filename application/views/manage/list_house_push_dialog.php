@@ -11,11 +11,11 @@
 			<tr>
 				<td>
 					<label>小区：</label>
-					<input type="text" size="16" name="search_xiaoqu" value="<?php echo @$search_xiaoqu;?>" />
+					<input type="text" size="16" name="search_xiaoqu" id="search_xiaoqu" value="<?php echo @$search_xiaoqu;?>" />
 				</td>
 				<td>
 					<label>区域：</label>
-					<select class="combox" name="search_region">
+					<select class="combox" name="search_region" id="search_region">
 						<option value="">-全部-</option>
 						<?php          
 			                if (!empty($region_list)):
@@ -31,7 +31,7 @@
 				</td>
 				<td>
 					<label>房型：</label>
-					<select class="combox" name="search_type">
+					<select class="combox" name="search_type" id="search_type">
 						<option value="">-全部-</option>
 						<option value="1" <?php if(@$search_type == 1) echo "selected"; ?>>1室</option>
 						<option value="2" <?php if(@$search_type == 2) echo "selected"; ?>>2室</option>
@@ -41,15 +41,16 @@
 						<option value="6" <?php if(@$search_type > 5) echo "selected"; ?>>5室以上</option>
 					</select>
 				</td>
+				<td></td>
 			</tr>
 			<tr>
 				<td>
 					<label>特色：</label>
-					<input type="text" size="16" name="search_feature" value="<?php echo @$search_feature;?>" />
+					<input type="text" size="16" name="search_feature" id="search_feature" value="<?php echo @$search_feature;?>" />
 				</td>
 				<td>
 					<label>价格：</label>
-					<select class="combox" name="search_price">
+					<select class="combox" name="search_price" id="search_price">
 						<option value="">-全部-</option>
 						<option value="1" <?php if(@$search_price == 1) echo "selected"; ?>>50万以下</option>
 						<option value="2" <?php if(@$search_price == 2) echo "selected"; ?>>50-80万</option>
@@ -65,7 +66,7 @@
 				</td>
 				<td>
 					<label>面积：</label>
-					<select class="combox" name="search_acreage">
+					<select class="combox" name="search_acreage" id="search_acreage">
 						<option value="">-全部-</option>
 						<option value="1" <?php if(@$search_acreage == 1) echo "selected"; ?>>50平以下</option>
 						<option value="2" <?php if(@$search_acreage == 2) echo "selected"; ?>>50-70平</option>
@@ -77,13 +78,12 @@
 						<option value="8" <?php if(@$search_acreage == 8) echo "selected"; ?>>300平以上</option>
 					</select>
 				</td>
+				<td>
+					<div class="buttonActive"><div class="buttonContent"><button id="clear_dialog_search">清除查询</button></div></div>
+					<div class="buttonActive"><div class="buttonContent"><button type="submit">执行查询</button></div></div>
+				</td>
 			</tr>
 		</table>
-		<div class="subBar">
-			<ul>
-				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">执行查询</button></div></div></li>
-			</ul>
-		</div>
 	</div>
 	</form>
 </div>
@@ -178,4 +178,14 @@ function push_house_to_user(){
 		dialogAjaxDone(JSON.parse(data));
 	});
 }
+
+//清除查询
+$('#clear_dialog_search').click(function(){
+	$("#search_xiaoqu").val("");
+	$("#search_region").val("");
+	$("#search_type").val("");
+	$("#search_feature").val("");
+	$("#search_price").val("");
+	$("#search_acreage").val("");
+});
 </script>

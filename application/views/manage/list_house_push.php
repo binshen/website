@@ -43,10 +43,9 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="<?php echo site_url('manage/list_house_push_dialog')?>" target="dialog" width="960" height="480" rel="add_news" title="推送"><span>推送</span></a></li>
+			<li><a class="add" href="<?php echo site_url('manage/list_house_push_dialog')?>" target="dialog" width="960" height="500" rel="add_house_pushs" title="推送房源"><span>推送房源</span></a></li>
 		</ul>
 	</div>
-
 	<div layoutH="116" id="list_warehouse_in_print">
 	<table class="list" width="100%" targetType="navTab" asc="asc" desc="desc">
 		<thead>
