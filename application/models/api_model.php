@@ -134,6 +134,18 @@ class Api_model extends MY_Model {
 		}
 	}
 	
+	PUBLIC function unsubscribe_weixin_user($open_id) {
+		if(!empty($open_id)) {
+			$this->db->from('weixin');
+			$this->db->where('openid', $open_id);
+			$data_weixin = $this->db->get()->row_array();
+			if(!empty($data_weixin)) {
+				$this->db->where('id', $data_weixin['id']);
+				$this->db->update('weixin', array('subscribe' => 0));
+			}
+		}
+	}
+	
 	public function subscribe() {
 		$this->db->from('weixin');
 		$wx_users = $this->db->get()->result_array();
