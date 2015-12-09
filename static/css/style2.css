@@ -528,7 +528,6 @@ background: -o-gradient(linear, 0 0, 0 100%, from(#ff6600), to(#e04141));backgro
 .art-ewm .scan{position: absolute; top: 0 ;left: 0; width:110px; height: 10px; background:url(../images/zwsb_line2.png) center no-repeat; background-size: 100%; -webkit-animation:act-scan 3s linear infinite alternate;animation:act-scan 3s linear infinite alternate ; }
 
 .zwsb{ position:absolute; top:15px;left: 140px;}
-
 .art-btn{ width:90%; margin:0 auto 50px;  background:url(../images/btn1.png) no-repeat; background-size:100%; display:block;
 /*-webkit-animation: animationIcon 2s infinite linear;-moz-animation: animationIcon 2s infinite linear;
 -ms-animation:animationIcon 2s infinite linear;	-o-animation: animationIcon 2s infinite linear;
