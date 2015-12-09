@@ -1932,7 +1932,7 @@ class Manage_model extends MY_Model
 	}
 	
 	public function list_wx_user() {
-		return $this->db->get_where('weixin', array('subscribe' => 1))->result_array();
+		return $this->db->get('weixin')->result_array();
 	}
 	
 	public function list_house_push_dialog() {
@@ -2030,6 +2030,11 @@ class Manage_model extends MY_Model
     	}
     	if($this->input->post('search_feature'))
     		$this->db->like('a.feature', $this->input->post('search_feature'));
+    	if($this->input->post('search_text')) {
+    		$t = $this->input->post('search_text');
+    		$where = "(a.name LIKE '%" . $t . "%' OR a.sub_title LIKE '%" . $t . "%' OR b.name LIKE '%" . $t . "%' OR c.name LIKE '%" . $t . "%' OR d.name LIKE '%" . $t . "%')";
+    		$this->db->where($where);
+    	}
     	$this->db->where('a.type_id', 2);
     	$this->db->where('a.exe_status', 1);
 
@@ -2094,7 +2099,6 @@ class Manage_model extends MY_Model
      		} else if($search_price == 10) {
      			$this->db->where('a.total_price >',  '500');
      		}
-     		$data['search_price'] = $search_price;
 		}
 		if($this->input->post('search_acreage')) {
 			$search_acreage = intval($this->input->post('search_acreage'));
@@ -2121,7 +2125,6 @@ class Manage_model extends MY_Model
 			} else if($search_acreage == 8) {
 				$this->db->where('a.acreage >',  '300');
 			}
-			$data['search_acreage'] = $search_acreage;
 		}
 		if($this->input->post('search_type')) {
 			$search_type = intval($this->input->post('search_type'));
@@ -2132,9 +2135,12 @@ class Manage_model extends MY_Model
 			}
 			$data['search_type'] = $search_type;
 		}
-		if($this->input->post('search_feature')){
+		if($this->input->post('search_feature'))
 			$this->db->like('a.feature', $this->input->post('search_feature'));
-			$data['search_feature'] = $this->input->post('search_feature');
+		if($this->input->post('search_text')) {
+			$t = $this->input->post('search_text');
+			$where = "(a.name LIKE '%" . $t . "%' OR a.sub_title LIKE '%" . $t . "%' OR b.name LIKE '%" . $t . "%' OR c.name LIKE '%" . $t . "%' OR d.name LIKE '%" . $t . "%')";
+			$this->db->where($where);
 		}
     	$this->db->where('a.type_id', 2);
     	$this->db->where('a.exe_status', 1);

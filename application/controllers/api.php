@@ -12,10 +12,6 @@ class Api extends MY_Controller {
 		$this->api_model->update_weixin_user($openid);
 	}
 	
-	public function unsubscribe_weixin_user($openid) {
-		$this->api_model->unsubscribe_weixin_user($openid);
-	}
-	
 	public function view_art($open_id, $broker_id) {
 		//$this->api_model->update_weixin_user($open_id);
 		

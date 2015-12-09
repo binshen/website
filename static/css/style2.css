@@ -54,7 +54,7 @@ body{background-color:#fff;}
 }
 /*按钮样式*/
 
-.menu-button,.am-icon-user,.am-icon-key{ width: 45px;height: 45px; display: block;   background: url(../images/items_icon_1.png) no-repeat; background-size: 315px auto;}
+.menu-button,.am-icon-user,.am-icon-key{margin-bottom: 10px; width: 45px;height: 45px; display: block;   background: url(../images/items_icon_1.png) no-repeat; background-size: 315px auto;}
 .am-icon-user{height: 33px;}
 .am-icon-chevron-up{background-position: -90px -270px;}
 .am-icon-share{ background-position: 0 -270px;}
@@ -104,7 +104,7 @@ body{background-color:#fff;}
 
 .em-tit{ background:rgba(0,0,0,0.6); display: block; font-size: 16px; color: #fff; height: 36px; line-height: 36px; margin-top: -36px; position: relative; text-align: center;}
 
-.pageRightMenu{ position: fixed; right: 0;bottom:3.5rem;}
+.pageRightMenu{ position: fixed; right: 0;bottom:5rem;}
 
 
 .top-button{ display: none;}
@@ -530,7 +530,8 @@ background: -o-gradient(linear, 0 0, 0 100%, from(#ff6600), to(#e04141));backgro
 .art-body{ text-align:center;}
 .art-body img{width:auto;}
 .art-body p{ margin:15px; text-align:left; text-indent:2em;}
-.art-action-next{margin-bottom:10px;padding:20px 10px 20px;width:100%; background:url(../images/art_bg2.jpg) no-repeat; background-size:100%; position:relative;}
+.art-action-next{margin-bottom:10px;/*padding:20px 10px 20px;width:100%; background:url(../images/art_bg2.jpg) no-repeat; background-size:100%; position:relative;*/}
+.art-action-next img{width: 100%;}
 .art-ewm{ position: relative; text-align: left;}
 @-webkit-keyframes act-scan{
   0%{ top:0; }
@@ -543,8 +544,7 @@ background: -o-gradient(linear, 0 0, 0 100%, from(#ff6600), to(#e04141));backgro
   100%{ top:0;}
 }
 
-.art-ewm .scan{position: absolute; top: 0 ;left: 0; width:110px; height: 10px; background:url(../images/zwsb_line.png) center no-repeat; background-size: 100%; -webkit-animation:act-scan 2s linear infinite alternate;animation:act-scan 2s linear infinite alternate ; }
-
+.art-ewm .scan{position: absolute; top: 0 ;left: 0; width:110px; height: 10px; background:url(../images/zwsb_line2.png) center no-repeat; background-size: 100%; -webkit-animation:act-scan 3s linear infinite alternate;animation:act-scan 3s linear infinite alternate ; }
 
 .zwsb{ position:absolute; top:15px;left: 140px;}
 
@@ -574,3 +574,4 @@ animation:animationIcon 2s infinite linear;*/}
 .historyPopup .current .gm-tel{ color:#f7ca3c;}
 .historyPopup .current .gm-company{ color:#dad1d7;}
 .historyPopup .current .gm-time{color:#fff;}
+
