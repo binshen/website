@@ -98,7 +98,6 @@ body{background-color:#fff;}
 
 .p-tit{ text-align: center; font-size: 16px; line-height: 30px;padding: 0.5rem 0;}
 .em-tit{ background:rgba(0,0,0,0.6); display: block; font-size: 16px; color: #fff; height: 36px; line-height: 36px; margin-top: -36px; position: relative; text-align: center;}
-
 .pageRightMenu{ position: fixed; right: 0;bottom:5rem;}
 .top-button{ display: none;}
 .am-active{ display: block;}
