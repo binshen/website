@@ -53,7 +53,6 @@ body{background-color:#fff;}
 	transform: translate(0,0)
 }
 /*按钮样式*/
-
 .menu-button,.am-icon-user,.am-icon-key{margin-bottom: 10px; width: 45px;height: 45px; display: block;   background: url(../images/items_icon_1.png) no-repeat; background-size: 315px auto;}
 .am-icon-user{height: 33px;}
 .am-icon-chevron-up{background-position: -90px -270px;}
