@@ -141,6 +141,6 @@ class Api_model extends MY_Model {
 		$this->db->where('a.type_id', 2);
 		$this->db->like('b.name', $keyword);
 		$this->db->limit(6);
-		return $this->db->get()->result();
+		return $this->db->get()->result_array();
 	}
 }
