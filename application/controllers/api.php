@@ -32,8 +32,8 @@ class Api extends MY_Controller {
 	}
 	
 	public function search_house() {
-		
-		var_dump($_POST);
+		$input = $_POST['input'];
+		echo $input;
 	}
 	
 ///////////////////////////////////////////////////////////////////////////	

@@ -12,4 +12,9 @@ class Job extends MY_Controller {
 		$access_token = $this->api_model->get_access_token();
 		$this->job_model->match_house($access_token);
 	}
+	
+	////////////////////////////////////////////////
+	public function test() {
+		echo "++++++++++++++";
+	}
 }
