@@ -11,7 +11,7 @@
 			<tr>
 				<td>
 					<label>小区：</label>
-					<input type="text" size="16" name="search_xiaoqu" value="<?php echo @$search_xiaoqu;?>" />
+					<input type="text" size="16" name="search_xiaoqu" value="<?php echo $search_xiaoqu;?>" />
 				</td>
 				<td>
 					<label>区域：</label>
@@ -20,7 +20,7 @@
 						<?php          
 			                if (!empty($region_list)):
 			            	    foreach ($region_list as $row):
-			            	    	$selected = !empty(@$search_region) && $row['id'] == @$search_region ? "selected" : "";          
+			            	    	$selected = !empty($search_region) && $row['id'] == $search_region ? "selected" : "";          
 			            ?>
         							<option value="<?php echo $row['id']; ?>" <?php echo $selected; ?>><?php echo $row['name']; ?></option>
         				<?php 
@@ -33,12 +33,12 @@
 					<label>房型：</label>
 					<select class="combox" name="search_type">
 						<option value="">-全部-</option>
-						<option value="1" <?php if(@$search_type == 1) echo "selected"; ?>>1室</option>
-						<option value="2" <?php if(@$search_type == 2) echo "selected"; ?>>2室</option>
-						<option value="3" <?php if(@$search_type == 3) echo "selected"; ?>>3室</option>
-						<option value="4" <?php if(@$search_type == 4) echo "selected"; ?>>4室</option>
-						<option value="5" <?php if(@$search_type == 5) echo "selected"; ?>>5室</option>
-						<option value="6" <?php if(@$search_type > 5) echo "selected"; ?>>5室以上</option>
+						<option value="1" <?php if($search_type == 1) echo "selected"; ?>>1室</option>
+						<option value="2" <?php if($search_type == 2) echo "selected"; ?>>2室</option>
+						<option value="3" <?php if($search_type == 3) echo "selected"; ?>>3室</option>
+						<option value="4" <?php if($search_type == 4) echo "selected"; ?>>4室</option>
+						<option value="5" <?php if($search_type == 5) echo "selected"; ?>>5室</option>
+						<option value="6" <?php if($search_type > 5) echo "selected"; ?>>5室以上</option>
 					</select>
 				</td>
 			</tr>
@@ -113,7 +113,7 @@
 							<?php          
 				                if (!empty($wx_users_list)):
 				            	    foreach ($wx_users_list as $row):
-				            	    	$selected = !empty(@$open_id) && $row['openid'] == @$open_id ? "selected" : "";          
+				            	    	$selected = !empty($open_id) && $row['openid'] == $open_id ? "selected" : "";          
 				            ?>
 	        							<option value="<?php echo $row['openid']; ?>" <?php echo $selected; ?>><?php echo $row['nickname']; ?></option>
 	        					<?php 
