@@ -6,41 +6,27 @@ io.set('transports', ['websocket' ,'flashsocket' ,'htmlfile' ,'xhr-polling' ,'po
 
 var users = [];
 var sockets = [];
-var admin_id = "admin";
 var chat_key = "chat:";
 
+var getSocketKey = function(b_id, u_id) {
+	return b_id + ":" + u_id;
+}
+
 io.sockets.on('connection', function (socket) {
-	
 	socket.on('online',function(data){
 		var data = JSON.parse(data);
-		var user_id = data.user_id;
-		if(!sockets[user_id]) {
-			users.unshift(data.user_id);
+		var b_id = data.b_id;
+		var u_id = data.u_id;
+		if(undefined === users[b_id] || null === users[b_id] ) {
+			users[b_id] = [];
 		}
-		sockets[user_id] = socket;
-		socket.emit('list-user', JSON.stringify({ users: users }));
-	});
-	
-	socket.on('send-message',function(data){
-		var data = JSON.parse(data);
-		var user_id = data.user_id;
-		data['time'] = (new Date()).getTime();
-		var json = JSON.stringify(data)
-		client.lpush(chat_key + user_id, json, function(err, res){
-			if(undefined !== sockets[user_id]) {
-				sockets[user_id].emit('receive-message', json);
-			}
-		});
-	});
-	
-	socket.on('show-history',function(data){
-		var data = JSON.parse(data);
-		var user_id = data.user_id;
-		client.lrange(chat_key + user_id, -10, -1, function(err, res) {
-			if(undefined !== sockets[user_id]) {
-				sockets[user_id].emit('receive-history', JSON.stringify(res));
-			}
-		});
+		if(undefined === users[b_id][u_id] || null === users[b_id][u_id]) {
+			users[b_id].unshift(u_id);
+		}
+		var socket_key = getSocketKey(b_id, u_id);
+		if(undefined === sockets[socket_key] || null === sockets[socket_key]) {
+			sockets[socket_key] = socket;
+		}
 	});
 	
 	socket.on('offline',function(data){
@@ -51,11 +37,46 @@ io.sockets.on('connection', function (socket) {
 		setTimeout(function() {
 			for(var index in sockets) {
 				if(sockets[index] == socket) {
-					users.splice(users.indexOf(index),1);
+					var data = index.split(':');
+					var b_id = data[0];
+					var u_id = data[1];
+					delete users[b_id][u_id];
 					delete sockets[index];
 					break;
 				}
 			}
 		}, 5000)
+	});
+	
+	socket.on('list-user',function(data){
+		var data = JSON.parse(data);
+		var b_id = data.b_id;
+		socket.emit('show-user', JSON.stringify({ users: users[b_id] })); 
+	});
+	
+	socket.on('send-message',function(data){
+		var data = JSON.parse(data);
+		var b_id = data.b_id;
+		var u_id = data.u_id;
+		data['time'] = (new Date()).getTime();
+		var json = JSON.stringify(data)
+		var socket_key = getSocketKey(b_id, u_id);
+		client.lpush(chat_key + socket_key, json, function(err, res){
+			if(undefined !== sockets[socket_key] && null !== sockets[socket_key]) {
+				sockets[socket_key].emit('receive-message', json);
+			}
+		});
+	});
+	
+	socket.on('show-history',function(data){
+		var data = JSON.parse(data);
+		var b_id = data.b_id;
+		var u_id = data.u_id;
+		var socket_key = getSocketKey(b_id, u_id);
+		client.lrange(chat_key + socket_key, -10, -1, function(err, res) {
+			if(undefined !== sockets[socket_key] && null !== sockets[socket_key]) {
+				sockets[socket_key].emit('receive-history', JSON.stringify(res));
+			}
+		});
 	});
 });
