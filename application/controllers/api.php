@@ -31,6 +31,11 @@ class Api extends MY_Controller {
 		$this->display('broker/article.html');
 	}
 	
+	public function search_house() {
+		
+		var_dump($_POST);
+	}
+	
 ///////////////////////////////////////////////////////////////////////////	
 	public function index() {
 		$articles = array(
