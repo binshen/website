@@ -37,7 +37,7 @@ class Api extends MY_Controller {
 			$content = array();
 			foreach ($results as $h) {
 				$content[] = array(
-					'Title' => $h['xq_name'],
+					'Title' => urlencode($h['xq_name']),
 					'Description' => '',
 					'PicUrl' => 'http://www.funmall.com.cn/uploadfiles/pics/' . $h['bg_pic'],
 					'Url' => 'http://www.funmall.com.cn/b_house/view_detail/' . $h['id']
