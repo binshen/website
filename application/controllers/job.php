@@ -15,6 +15,9 @@ class Job extends MY_Controller {
 	
 	////////////////////////////////////////////////
 	public function test() {
-		echo "++++++++++++++";
+		$result = $this->api_model->search_house_by_name('测试');
+		var_dump($result);
+		
+		echo json_decode(json_encode("12321321aaa"));
 	}
 }

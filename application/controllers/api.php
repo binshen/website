@@ -43,9 +43,9 @@ class Api extends MY_Controller {
 					'Url' => 'http://www.funmall.com.cn/b_house/view_detail/' . $h['id']
 				);
 			}
-			echo json_encode(array('result'=>true, 'content'=>$content));
+			echo json_encode($content);
 		} else {
-			echo json_encode(array('result'=>false));
+			echo "";
 		}
 	}
 	
