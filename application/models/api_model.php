@@ -135,9 +135,10 @@ class Api_model extends MY_Model {
 	}
 	
 	public function search_house_by_name($keyword) {
-		$this->db->select('a.id, a.bg_pic, b.name AS xq_name');
+		$this->db->select('a.*, b.name AS xq_name, c.name AS region_name');
 		$this->db->from('house a');
 		$this->db->join('xiaoqu b', 'a.xq_id = b.id', 'left');
+		$this->db->join('house_region c', 'a.region_id = c.id', 'left');
 		$this->db->where('a.type_id', 2);
 		$this->db->like('b.name', $keyword);
 		$this->db->limit(6);

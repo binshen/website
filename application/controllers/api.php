@@ -33,21 +33,18 @@ class Api extends MY_Controller {
 	
 	public function search_house() {
 		$results = $this->api_model->search_house_by_name($_POST['keyword']);
-		if(empty($results)) {
-			$content = array();
+		$content = array();
+		if(!empty($results)) {
 			foreach ($results as $h) {
 				$content[] = array(
-					'Title' => urlencode($h['xq_name']),
+					'Title' => $h['region_name'] . $h['xq_name'] . $h['room'] . '室' . $h['lounge'] . '厅 ' . $h['acreage'] . '㎡' . $h['total_price'] . '万',
 					'Description' => '',
 					'PicUrl' => 'http://www.funmall.com.cn/uploadfiles/pics/' . $h['bg_pic'],
 					'Url' => 'http://www.funmall.com.cn/b_house/view_detail/' . $h['id']
 				);
 			}
-			//echo json_encode($content);
-			var_dump($content);
-		} else {
-			echo "";
 		}
+		echo json_encode($content);
 	}
 	
 ///////////////////////////////////////////////////////////////////////////	
