@@ -539,7 +539,6 @@ animation:animationIcon 2s infinite linear;*/}
 .history-tit{padding:15px 0; text-align:center; color:#ff6600; font-size:20px;}
 .historyPopup li{padding:10px;border-top:1px solid #e9e9e9; position:relative; overflow:hidden; height:auto;}
 .historyPopup .current{background-color:#ff6600; color:#fff;}
-
 .historyPopup .gm-header{ width:45px; float:left; height:60px;}
 .historyPopup .gm-peo-txt{padding-left:10px; line-height:20px; float:left; width:182px; overflow:hidden; }
 .historyPopup .gm-name{font-size:14px;margin-right:5px}
