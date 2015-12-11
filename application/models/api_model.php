@@ -141,6 +141,7 @@ class Api_model extends MY_Model {
 		$this->db->join('house_region c', 'a.region_id = c.id', 'left');
 		$this->db->where('a.type_id', 2);
 		$this->db->like('b.name', $keyword);
+		$this->db->order_by('rand()');
 		$this->db->limit(6);
 		return $this->db->get()->result_array();
 	}
