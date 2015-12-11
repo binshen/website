@@ -38,21 +38,23 @@
             </div> 
         </div>
         <div class="dynamicR">
-            <img src="http://dummyimage.com/365x260/000/fff" alt="" width="365" height="260" />
-            <div class="dy-tit">昆城景苑</div>
+            <img src="/uploadfiles/pics/{{$house['bg_pic']}}" alt="" width="365" height="260" />
+            <div class="dy-tit">{{$house['name']}}</div>
             <dl class="dynamic-dl">
+            	<dt>所属小区</dt>
+                <dd>{{$house['xq_name']}}</dd>
                 <dt>参考售价</dt>
-                <dd>住宅<i class="red">13000</i>元/㎡</dd>
-                <dt>楼盘地址</dt>
-                <dd>[ 玉山 - 城南 ] 衡山路与人民南路两侧</dd>
-                <dt>开盘时间 </dt>
-                <dd>2014年10月26日</dd>
+                <dd><i class="red">{{$house['unit_price']}}</i>元/㎡</dd>
                 <dt>户型面积</dt>
-                <dd>89.00-130.00㎡</dd>
-                <dt>优惠折扣</dt>
-                <dd>购房98折</dd>
+                <dd>{{$house['acreage']}} ㎡</dd>
+                <dt>主力房型</dt>
+                <dd>{{$house['room']}}室{{$house['lounge']}}厅{{$house['toilet']}}卫</dd>
+                <dt>所在区域 </dt>
+                <dd>{{$house['region_fullname']}}</dd>
+                <dt>楼盘地址</dt>
+                <dd>{{$house['address']}}</dd>
             </dl>
-            <a href="#" target="_blank" class="dynamic-a-link">查看楼盘详情>></a>
+            <a href="{{site_url url='house/second_hand_detail'}}/{{$house['id']}}" target="_blank" class="dynamic-a-link">查看楼盘详情>></a>
         </div>
    </div>
 </div>

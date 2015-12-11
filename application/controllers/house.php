@@ -268,6 +268,17 @@ class House extends MY_Controller {
 		$data = $this->house_model->get_article_detail($h_id,$id,$flag);
 		$this->assign('detail', $data['detail']);
 		$this->assign('tag', $data['tag']);
+		
+		$house = $this->house_model->get_random_house_by_xq($data['tag']['xq_id'], $data['tag']['region_id']);
+		//var_dump($house);
+		$house['unit_price'] = intval($house['total_price'] * 10000 / $house['acreage']);
+		if($data['tag']['region_id'] < 6) {
+			$house['region_fullname'] = "玉山镇-" . $house['region_name'];
+		} else {
+			$house['region_fullname'] = $house['region_name'] . "-" . $house['region_name'];
+		}
+		$this->assign('house', $house);
+		
 		$this->display('article_detail.html');
 	}
 	

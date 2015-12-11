@@ -1716,4 +1716,28 @@ class House_model extends MY_Model
 		}
 		return $result;
 	}
+	
+	public function get_random_house_by_xq($xq_id, $region_id) {
+		$this->db->select('a.*, b.name AS region_name, c.name AS xq_name, c.address AS address ');
+		$this->db->from('house a');
+		$this->db->join('house_region b', 'a.region_id = b.id', 'left');
+		$this->db->join('xiaoqu c', 'a.xq_id = c.id', 'left');
+		$this->db->where('c.id', $xq_id);
+		$this->db->where('a.type_id', 2);
+		$this->db->order_by('rand()');
+		$this->db->limit(1);
+		$results = $this->db->get()->result_array();
+		if(empty($results)) {
+			$this->db->select('a.*, b.name AS region_name, c.name AS xq_name, c.address AS address ');
+			$this->db->from('house a');
+			$this->db->join('house_region b', 'a.region_id = b.id', 'left');
+			$this->db->join('xiaoqu c', 'a.xq_id = c.id', 'left');
+			$this->db->where('c.region_id', $region_id);
+			$this->db->where('a.type_id', 2);
+			$this->db->order_by('rand()');
+			$this->db->limit(1);
+			$results = $this->db->get()->result_array();
+		}
+		return $results[0];
+	}
 }
