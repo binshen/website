@@ -271,7 +271,7 @@ class House extends MY_Controller {
 		
 		$house = $this->house_model->get_random_house_by_xq($data['tag']['xq_id'], $data['tag']['region_id']);
 		//var_dump($house);
-		$house['unit_price'] = intval($house['total_price'] * 10000 / $house['acreage']);
+		//$house['unit_price'] = intval($house['total_price'] * 10000 / $house['acreage']);
 		if($data['tag']['region_id'] < 6) {
 			$house['region_fullname'] = "玉山镇-" . $house['region_name'];
 		} else {
