@@ -256,6 +256,12 @@ class B_house extends MY_Controller {
 	////////////////////////////////////////////////////////////////////////////////
 	public function chat() {
 		
+		$open_id = 'orFu-vgK-snskoQdDgMkBe-jFe1k'; //$this->session->userdata('wx_open_id');
+		$this->assign('open_id', $open_id);
+		
+		$broker = $this->house_model->get_bind_broker_id($open_id);
+		$this->assign('broker_id', $broker['broker_id']);
+		
 		$this->display('broker/chat.html');
 	}
 	

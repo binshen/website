@@ -1740,4 +1740,13 @@ class House_model extends MY_Model
 		}
 		return $results[0];
 	}
+	
+	public function get_bind_broker_id($open_id) {
+		$this->db->select('broker_id');
+		$this->db->from('wx_user');
+		$this->db->where('open_id', $open_id);
+		$this->db->order_by('updated DESC');
+		$this->db->limit(1);
+		return $this->db->get()->row_array();
+	}
 }
