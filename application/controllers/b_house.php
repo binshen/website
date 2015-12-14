@@ -256,7 +256,8 @@ class B_house extends MY_Controller {
 	////////////////////////////////////////////////////////////////////////////////
 	public function chat() {
 		
-		$open_id = 'orFu-vgK-snskoQdDgMkBe-jFe1k'; //$this->session->userdata('wx_open_id');
+		//$open_id = 'orFu-vgK-snskoQdDgMkBe-jFe1k';
+		$open_id = $this->session->userdata('wx_open_id');
 		$this->assign('open_id', $open_id);
 		
 		$broker = $this->house_model->get_bind_broker_id($open_id);
