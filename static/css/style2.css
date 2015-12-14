@@ -433,9 +433,12 @@ body{background-color:#fff;}
 .company-info .p2{color:#fff;padding:10px 0;}.company-info .p3{ color:#fd7609;}
 
 /*聊天*/
+.dialogue-content{height:550px;overflow-y: scroll;}
+.customer{margin:15px 5px; overflow:hidden;}
+.manger{margin:15px 5px;overflow: hidden;}
 .cus_head_pic{ background:url(../images/touxiang1.jpg) no-repeat; background-size:100%; width:80px; height:67px; float:left;}
 .manger_head_pic{background:url(../images/touxiang2.jpg) no-repeat; background-size:100%; width:80px; height:67px; float:right;}
-.customer{margin:30px 5px; overflow:hidden;}.cus_word p,.manger_word p{ color:#000;padding:10px;}
+.cus_word p,.manger_word p{ color:#000;padding:10px;}
 #dialogue{ background:#efefef;}
 #dialogue .g-doc{ position:relative;}
 .cus_word{ width:300px; float:left; position:relative;}
@@ -553,5 +556,6 @@ body{background-color:#fff;}
 .historyPopup .current .gm-tel{ color:#f7ca3c;}
 .historyPopup .current .gm-company{ color:#dad1d7;}
 .historyPopup .current .gm-time{color:#fff;}
+
 
 
