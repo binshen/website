@@ -129,6 +129,7 @@ $(function(){
 								<li><a href="<?php echo site_url('manage/list_tracking');?>" target="navTab" rel="list_tracking">用户浏览轨迹</a></li>
 								<li><a href="<?php echo site_url('manage/list_article');?>" target="navTab" rel="list_article">微店专题页</a></li>
 								<li><a href="<?php echo site_url('manage/list_house_push');?>" target="navTab" rel="list_house_push">房源推送</a></li>
+								<li><a href="<?php echo site_url('manage/list_client_chat');?>" target="navTab" rel="list_client_chat">客户聊天</a></li>
 							</ul>
 						</div>
 						<div class="accordionHeader">
@@ -177,6 +178,7 @@ $(function(){
 									<?php endif; ?>
 									<li><a href="<?php echo site_url('manage/list_article');?>" target="navTab" rel="list_article">微店专题页</a></li>
 									<li><a href="<?php echo site_url('manage/list_house_push');?>" target="navTab" rel="list_house_push">房源推送</a></li>
+									<li><a href="<?php echo site_url('manage/list_client_chat');?>" target="navTab" rel="list_client_chat">客户聊天</a></li>
 								</ul>
 							</div>
 						<?php endif; ?>

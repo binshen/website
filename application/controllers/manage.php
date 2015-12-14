@@ -1107,4 +1107,9 @@ class Manage extends MY_Controller {
 		}
 		form_submit_json("200", "操作成功", 'list_house_push');
 	}
+	
+	public function list_client_chat() {
+		
+		$this->load->view('manage/list_client_chat.php');
+	}
 }
