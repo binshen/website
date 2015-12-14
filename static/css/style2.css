@@ -551,7 +551,6 @@ body{background-color:#fff;}
 .historyPopup .check-btn{ border-radius:5px; border:1px solid #3b3b3b; display:inline-block; font-size:12px; height:30px; line-height:30px; padding:0 2px; position:absolute; top:25px;right:10px;}
 .historyPopup .check-btn a{ font-size:12px; border-bottom:none;}
 .historyPopup .am-icon-clock-o{margin-right:5px;}
-
 .historyPopup .current .gm-company{ color:#fff;}
 .historyPopup .current .gm-tel{ color:#f7ca3c;}
 .historyPopup .current .gm-company{ color:#dad1d7;}
