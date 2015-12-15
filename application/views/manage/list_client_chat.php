@@ -1,1 +1,281 @@
-<?php
+<link rel="stylesheet" href="/chat/css/dialogue-backer.css">
+<body>
+  <div class="main">
+       <div class="dialogue-left">
+          <div class="dialogue-left-head">
+              Customer
+          </div>
+          <div class="dialogue-left-body">
+            <ul class="cus-list" id="cus-list">
+                <li class="current">
+                  <span class="cus-head cus-head-female"></span>
+                  <span class="cus-txt">
+                          姓名：周末末<br />
+                          性别：女
+                  </span>
+                </li>
+                <li>
+                  <span class="cus-head cus-head-male"><i class="message-number">3</i></span>
+                  <span class="cus-txt">
+                          姓名：周末末<br />
+                          性别：男
+                  </span>
+
+                </li>
+                 <li>
+                  <span class="cus-head cus-head-female"></span>
+                  <span class="cus-txt">
+                          姓名：周末末<br />
+                          性别：女
+                  </span>
+                </li>
+                <li>
+                  <span class="cus-head cus-head-male"></span>
+                  <span class="cus-txt">
+                          姓名：周末末<br />
+                          性别：男
+                  </span>
+                </li>
+                <li class="current">
+                  <span class="cus-head cus-head-female"></span>
+                  <span class="cus-txt">
+                          姓名：周末末<br />
+                          性别：女
+                  </span>
+                </li>
+                <li>
+                  <span class="cus-head cus-head-male"><i class="message-number">3</i></span>
+                  <span class="cus-txt">
+                          姓名：周末末<br />
+                          性别：男
+                  </span>
+
+                </li>
+                 <li>
+                  <span class="cus-head cus-head-female"></span>
+                  <span class="cus-txt">
+                          姓名：周末末<br />
+                          性别：女
+                  </span>
+                </li>
+                <li>
+                  <span class="cus-head cus-head-male"></span>
+                  <span class="cus-txt">
+                          姓名：周末末<br />
+                          性别：男
+                  </span>
+                </li>
+                <li class="current">
+                  <span class="cus-head cus-head-female"></span>
+                  <span class="cus-txt">
+                          姓名：周末末<br />
+                          性别：女
+                  </span>
+                </li>
+                <li>
+                  <span class="cus-head cus-head-male"><i class="message-number">3</i></span>
+                  <span class="cus-txt">
+                          姓名：周末末<br />
+                          性别：男
+                  </span>
+
+                </li>
+                 <li>
+                  <span class="cus-head cus-head-female"></span>
+                  <span class="cus-txt">
+                          姓名：周末末<br />
+                          性别：女
+                  </span>
+                </li>
+                <li>
+                  <span class="cus-head cus-head-male"></span>
+                  <span class="cus-txt">
+                          姓名：周末末<br />
+                          性别：男
+                  </span>
+                </li>
+                <li class="current">
+                  <span class="cus-head cus-head-female"></span>
+                  <span class="cus-txt">
+                          姓名：周末末<br />
+                          性别：女
+                  </span>
+                </li>
+                <li>
+                  <span class="cus-head cus-head-male"><i class="message-number">3</i></span>
+                  <span class="cus-txt">
+                          姓名：周末末<br />
+                          性别：男
+                  </span>
+
+                </li>
+                 <li>
+                  <span class="cus-head cus-head-female"></span>
+                  <span class="cus-txt">
+                          姓名：周末末<br />
+                          性别：女
+                  </span>
+                </li>
+                <li>
+                  <span class="cus-head cus-head-male"></span>
+                  <span class="cus-txt">
+                          姓名：周末末<br />
+                          性别：男
+                  </span>
+                </li>
+                <li class="current">
+                  <span class="cus-head cus-head-female"></span>
+                  <span class="cus-txt">
+                          姓名：周末末<br />
+                          性别：女
+                  </span>
+                </li>
+                <li>
+                  <span class="cus-head cus-head-male"><i class="message-number">3</i></span>
+                  <span class="cus-txt">
+                          姓名：周末末<br />
+                          性别：男
+                  </span>
+
+                </li>
+                 <li>
+                  <span class="cus-head cus-head-female"></span>
+                  <span class="cus-txt">
+                          姓名：周末末<br />
+                          性别：女
+                  </span>
+                </li>
+                <li>
+                  <span class="cus-head cus-head-male"></span>
+                  <span class="cus-txt">
+                          姓名：周末末<br />
+                          性别：男
+                  </span>
+                </li>
+            </ul>
+            <div id="tool">
+                 <span id="tool-bar"></span>
+            </div>
+          </div>
+          <div class="dialogue-left-ftr">
+              <p>©2015 Funmall Co., Ltd. All rights reserved.
+   备案号：苏CP备13003602号-2</p>
+          </div>
+       </div>
+       <div class="dialogue-center">
+          <div class="dialogue-center-head">
+          </div>
+          <div class="dialogue-center-name">周小惠</div>
+          <div class="dialogue-center-chat">
+            <div class="chat-div chat-div-female">
+                <div class="chat-pop">
+                  <p>你好，请问城北有哪些好的学区房推荐？</p>
+              </div>
+              <div class="chat-head">
+                </div>
+            </div>
+            <div class="chat-div chat-div-female">
+               <div class="chat-head">
+                </div>
+                <div class="chat-pop">
+                  <p>你好，大德世家 ，长江花园</p>
+              </div>
+            </div>
+            <div class="chat-div chat-div-male">
+                <div class="chat-pop">
+                  <p>你好，请问有什么问题</p>
+               </div>
+               <div class="chat-head">
+                </div>
+            </div>
+            <div class="chat-div chat-div-female">
+               <div class="chat-head">
+                </div>
+                <div class="chat-pop">
+                  <p>你好，请问有什么问题</p>
+              </div>
+            </div>
+          </div>
+          <div class="dialogue-center-input">
+              <div class="chat-input-head">
+              </div>
+              <div class="chat-txt-input">
+                  <input type="text" value="" class="input-txt" />
+                  <a href="javascript:void(0)" class="set-btn">发送</a>
+              </div>
+          </div>
+       </div>
+       <div class="dialogue-right">
+          <div class="dialogue-right-head">
+              <img src="/chat/images/dialogue-logo.jpg" alt=""  />
+          </div>
+          <div class="dialogue-right-tit">
+              浏览记录
+          </div>
+          <div class="dialogue-right-body">
+              <div class="history-list">
+                <div class="clearfix">
+                  <span class="s-img"><img src="http://dummyimage.com/70x50/000/fff" alt="" width="70" height="50" /></span>
+                  <p><span class="s01">金城花园</span>
+                  <span class="s02">90㎡ | 三房 | 69万</span>
+                  <span class="s03">城东</span></p>
+                </div>
+                  <span class="s-label"><i>学区房</i><i>精装修</i><i>学区房</i><i>学区房</i><i>精装修</i><i>学区房</i></span>
+              </div>
+               <div class="history-list">
+                <div class="clearfix">
+                  <span class="s-img"><img src="http://dummyimage.com/70x50/000/fff" alt="" width="70" height="50" /></span>
+                  <p><span class="s01">金城花园</span>
+                  <span class="s02">90㎡ | 三房 | 69万</span>
+                  <span class="s03">城东</span></p>
+                </div>
+                  <span class="s-label"><i>学区房</i><i>精装修</i><i>学区房</i></span>
+              </div>
+               <div class="history-list">
+                <div class="clearfix">
+                  <span class="s-img"><img src="http://dummyimage.com/70x50/000/fff" alt="" width="70" height="50" /></span>
+                  <p><span class="s01">金城花园</span>
+                  <span class="s02">90㎡ | 三房 | 69万</span>
+                  <span class="s03">城东</span></p>
+                </div>
+                  <span class="s-label"><i>学区房</i><i>精装修</i><i>学区房</i></span>
+              </div>
+               <div class="history-list">
+                <div class="clearfix">
+                  <span class="s-img"><img src="http://dummyimage.com/70x50/000/fff" alt="" width="70" height="50" /></span>
+                  <p><span class="s01">金城花园</span>
+                  <span class="s02">90㎡ | 三房 | 69万</span>
+                  <span class="s03">城东</span></p>
+                </div>
+                  <span class="s-label"><i>学区房</i><i>精装修</i><i>学区房</i></span>
+              </div>
+               <div class="history-list">
+                <div class="clearfix">
+                  <span class="s-img"><img src="http://dummyimage.com/70x50/000/fff" alt="" width="70" height="50" /></span>
+                  <p><span class="s01">金城花园</span>
+                  <span class="s02">90㎡ | 三房 | 69万</span>
+                  <span class="s03">城东</span></p>
+                </div>
+                  <span class="s-label"><i>学区房</i><i>精装修</i><i>学区房</i></span>
+              </div>
+               <div class="history-list">
+                <div class="clearfix">
+                  <span class="s-img"><img src="http://dummyimage.com/70x50/000/fff" alt="" width="70" height="50" /></span>
+                  <p><span class="s01">金城花园</span>
+                  <span class="s02">90㎡ | 三房 | 69万</span>
+                  <span class="s03">城东</span></p>
+                </div>
+                  <span class="s-label"><i>学区房</i><i>精装修</i><i>学区房</i></span>
+              </div>
+              
+          </div>
+       </div>
+  </div>
+<script src="/chat/js/single-iScroll.js" charset="gbk"></script>
+<script>
+    iScroll.init({
+      el: document.getElementById('cus-list'),
+      scrollBar: document.getElementById('tool-bar')
+    })
+</script>
+</body>
