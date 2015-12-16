@@ -9,7 +9,7 @@
                     <img src="/chat/images/female-head-pic.png" alt="" class="imgToGray" />
                   </span>
                   <span class="cus-txt">
-                          姓名：周末末<br />
+                          <i class="cus-name"> 姓名：周末末1</i><br />
                           性别：女
                   </span>
                 </li>
@@ -18,7 +18,7 @@
                     <img src="/chat/images/male-head-pic.png" alt="" />
                   <i class="message-number">3</i></span>
                   <span class="cus-txt">
-                          姓名：周末末<br />
+                          <i class="cus-name"> 姓名：周末末2</i><br />
                           性别：男
                   </span>
                 </li>
@@ -27,7 +27,7 @@
                         <img src="/chat/images/female-head-pic.png" alt=""  />
                       </span>
                       <span class="cus-txt">
-                              姓名：周末末<br />
+                              <i class="cus-name"> 姓名：周末末3</i><br />
                               性别：女
                       </span>
                     </li>
@@ -36,7 +36,7 @@
                         <img src="/chat/images/male-head-pic.png" alt="" class="imgToGray" />
                       <i class="message-number">3</i></span>
                       <span class="cus-txt">
-                              姓名：周末末<br />
+                              <i class="cus-name"> 姓名：周末末4</i><br />
                               性别：男
                       </span>
                     </li>
@@ -45,7 +45,7 @@
                       <img src="/chat/images/female-head-pic.png" alt="" class="imgToGray" />
                     </span>
                     <span class="cus-txt">
-                            姓名：周末末<br />
+                           <i class="cus-name"> 姓名：周末末5</i><br />
                             性别：女
                     </span>
                   </li>
@@ -54,7 +54,7 @@
                       <img src="/chat/images/male-head-pic.png" alt="" class="imgToGray" />
                     <i class="message-number">3</i></span>
                     <span class="cus-txt">
-                            姓名：周末末<br />
+                            <i class="cus-name"> 姓名：周末末6</i><br />
                             性别：男
                     </span>
                   </li>
@@ -63,7 +63,7 @@
                    <img src="/chat/images/female-head-pic.png" alt="" class="imgToGray" />
                  </span>
                  <span class="cus-txt">
-                         姓名：周末末<br />
+                         <i class="cus-name"> 姓名：周末末7</i><br />
                          性别：女
                  </span>
                </li>
@@ -72,7 +72,7 @@
                    <img src="/chat/images/male-head-pic.png" alt="" class="imgToGray" />
                  <i class="message-number">3</i></span>
                  <span class="cus-txt">
-                         姓名：周末末<br />
+                         <i class="cus-name"> 姓名：周末末8</i><br />
                          性别：男
                  </span>
                </li>
@@ -82,7 +82,7 @@
                          <img src="/chat/images/female-head-pic.png" alt="" class="imgToGray" />
                        </span>
                        <span class="cus-txt">
-                               姓名：周末末<br />
+                               <i class="cus-name"> 姓名：周末末9</i><br />
                                性别：女
                        </span>
                      </li>
@@ -91,7 +91,7 @@
                          <img src="/chat/images/male-head-pic.png" alt="" class="imgToGray" />
                        <i class="message-number">3</i></span>
                        <span class="cus-txt">
-                               姓名：周末末<br />
+                               <i class="cus-name"> 姓名：周末末10</i><br />
                                性别：男
                        </span>
                      </li>
@@ -100,7 +100,7 @@
                      <img src="/chat/images/female-head-pic.png" alt="" class="imgToGray" />
                    </span>
                    <span class="cus-txt">
-                           姓名：周末末<br />
+                           <i class="cus-name"> 姓名：周末末11</i><br />
                            性别：女
                    </span>
                  </li>
@@ -109,7 +109,7 @@
                      <img src="/chat/images/male-head-pic.png" alt="" class="imgToGray" />
                    <i class="message-number">3</i></span>
                    <span class="cus-txt">
-                           姓名：周末末<br />
+                          <i class="cus-name"> 姓名：周末末12</i><br />
                            性别：男
                    </span>
                  </li>
@@ -118,7 +118,7 @@
                   <img src="/chat/images/female-head-pic.png" alt="" class="imgToGray"  />
                 </span>
                 <span class="cus-txt">
-                        姓名：周末末<br />
+                       <i class="cus-name"> 姓名：周末末13</i><br />
                         性别：女
               </li>
               <li>
@@ -126,7 +126,7 @@
                   <img src="/chat/images/male-head-pic.png" alt="" class="imgToGray"  />
                 <i class="message-number">3</i></span>
                 <span class="cus-txt">
-                        姓名：周末末<br />
+                       <i class="cus-name"> 姓名：周末末14</i><br />
                         性别：男
                 </span>
               </li>
@@ -141,7 +141,7 @@
           </div>
        </div>
        <div class="dialogue-center">
-          <div class="dialogue-center-name">周小惠</div>
+          <div class="dialogue-center-name" id="dialogue-center-name">周小惠</div>
           <div class="dialogue-center-chat">
             <div class="chat-div chat-div-female">
                 <div class="chat-pop">
@@ -283,7 +283,7 @@
           <div class="dialogue-right-tit">
               浏览记录
           </div>
-          <div class="dialogue-right-body">
+          <div class="dialogue-right-body" id="dialogue-right-body">
               <div class="history-list">
                 <div class="clearfix">
                   <span class="s-img"><img src="http://dummyimage.com/70x50/000/fff" alt="" width="70" height="50" /></span>
@@ -345,7 +345,7 @@
 <script src="/chat/js/single-iScroll.js" charset="gbk"></script>
 <script src="/chat/js/jquery-ui.min.js" charset="gbk"></script>
 <script>
-    iScroll.init({
+  iScroll.init({
       el: document.getElementById('cus-list'),
       scrollBar: document.getElementById('tool-bar')
     })
@@ -383,6 +383,13 @@
     for(var i; i<$('.imgToGray').length;i++){
           $('.imgToGray')[i].src = gray($('.imgToGray')[i]);
     }
+//
 
+$("#cus-list li").click(function(){
+    $("#cus-list li").removeClass('current');
+    $(this).addClass('current');
+    $("#dialogue-center-name").html( $(this).children().find(".cus-name").html());
+   // $("#dialogue-right-body").append();
+})
 </script>
 </body>
