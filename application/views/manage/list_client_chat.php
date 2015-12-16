@@ -2,156 +2,134 @@
 <body>
   <div class="main">
        <div class="dialogue-left">
-          <div class="dialogue-left-head">
-              Customer
-          </div>
           <div class="dialogue-left-body">
             <ul class="cus-list" id="cus-list">
-                <li class="current">
-                  <span class="cus-head cus-head-female"></span>
+                <li>
+                  <span class="cus-head cus-head-female">
+                    <img src="/chat/images/female-head-pic.png" alt="" class="imgToGray" />
+                  </span>
                   <span class="cus-txt">
                           姓名：周末末<br />
                           性别：女
-                  </span>
-                </li>
-                <li>
-                  <span class="cus-head cus-head-male"><i class="message-number">3</i></span>
-                  <span class="cus-txt">
-                          姓名：周末末<br />
-                          性别：男
-                  </span>
-
-                </li>
-                 <li>
-                  <span class="cus-head cus-head-female"></span>
-                  <span class="cus-txt">
-                          姓名：周末末<br />
-                          性别：女
-                  </span>
-                </li>
-                <li>
-                  <span class="cus-head cus-head-male"></span>
-                  <span class="cus-txt">
-                          姓名：周末末<br />
-                          性别：男
                   </span>
                 </li>
                 <li class="current">
-                  <span class="cus-head cus-head-female"></span>
-                  <span class="cus-txt">
-                          姓名：周末末<br />
-                          性别：女
-                  </span>
-                </li>
-                <li>
-                  <span class="cus-head cus-head-male"><i class="message-number">3</i></span>
+                  <span class="cus-head cus-head-male">
+                    <img src="/chat/images/male-head-pic.png" alt="" />
+                  <i class="message-number">3</i></span>
                   <span class="cus-txt">
                           姓名：周末末<br />
                           性别：男
                   </span>
-
                 </li>
                  <li>
-                  <span class="cus-head cus-head-female"></span>
-                  <span class="cus-txt">
-                          姓名：周末末<br />
-                          性别：女
-                  </span>
-                </li>
-                <li>
-                  <span class="cus-head cus-head-male"></span>
-                  <span class="cus-txt">
-                          姓名：周末末<br />
-                          性别：男
-                  </span>
-                </li>
-                <li class="current">
-                  <span class="cus-head cus-head-female"></span>
-                  <span class="cus-txt">
-                          姓名：周末末<br />
-                          性别：女
-                  </span>
-                </li>
-                <li>
-                  <span class="cus-head cus-head-male"><i class="message-number">3</i></span>
-                  <span class="cus-txt">
-                          姓名：周末末<br />
-                          性别：男
-                  </span>
-
-                </li>
+                      <span class="cus-head cus-head-female">
+                        <img src="/chat/images/female-head-pic.png" alt=""  />
+                      </span>
+                      <span class="cus-txt">
+                              姓名：周末末<br />
+                              性别：女
+                      </span>
+                    </li>
+                    <li>
+                      <span class="cus-head cus-head-male">
+                        <img src="/chat/images/male-head-pic.png" alt="" class="imgToGray" />
+                      <i class="message-number">3</i></span>
+                      <span class="cus-txt">
+                              姓名：周末末<br />
+                              性别：男
+                      </span>
+                    </li>
                  <li>
-                  <span class="cus-head cus-head-female"></span>
-                  <span class="cus-txt">
-                          姓名：周末末<br />
-                          性别：女
-                  </span>
-                </li>
+                    <span class="cus-head cus-head-female">
+                      <img src="/chat/images/female-head-pic.png" alt="" class="imgToGray" />
+                    </span>
+                    <span class="cus-txt">
+                            姓名：周末末<br />
+                            性别：女
+                    </span>
+                  </li>
+                  <li>
+                    <span class="cus-head cus-head-male">
+                      <img src="/chat/images/male-head-pic.png" alt="" class="imgToGray" />
+                    <i class="message-number">3</i></span>
+                    <span class="cus-txt">
+                            姓名：周末末<br />
+                            性别：男
+                    </span>
+                  </li>
                 <li>
-                  <span class="cus-head cus-head-male"></span>
-                  <span class="cus-txt">
-                          姓名：周末末<br />
-                          性别：男
-                  </span>
-                </li>
-                <li class="current">
-                  <span class="cus-head cus-head-female"></span>
-                  <span class="cus-txt">
-                          姓名：周末末<br />
-                          性别：女
-                  </span>
-                </li>
-                <li>
-                  <span class="cus-head cus-head-male"><i class="message-number">3</i></span>
-                  <span class="cus-txt">
-                          姓名：周末末<br />
-                          性别：男
-                  </span>
+                 <span class="cus-head cus-head-female">
+                   <img src="/chat/images/female-head-pic.png" alt="" class="imgToGray" />
+                 </span>
+                 <span class="cus-txt">
+                         姓名：周末末<br />
+                         性别：女
+                 </span>
+               </li>
+               <li>
+                 <span class="cus-head cus-head-male">
+                   <img src="/chat/images/male-head-pic.png" alt="" class="imgToGray" />
+                 <i class="message-number">3</i></span>
+                 <span class="cus-txt">
+                         姓名：周末末<br />
+                         性别：男
+                 </span>
+               </li>
 
-                </li>
+               <li>
+                        <span class="cus-head cus-head-female">
+                         <img src="/chat/images/female-head-pic.png" alt="" class="imgToGray" />
+                       </span>
+                       <span class="cus-txt">
+                               姓名：周末末<br />
+                               性别：女
+                       </span>
+                     </li>
+                     <li>
+                       <span class="cus-head cus-head-male">
+                         <img src="/chat/images/male-head-pic.png" alt="" class="imgToGray" />
+                       <i class="message-number">3</i></span>
+                       <span class="cus-txt">
+                               姓名：周末末<br />
+                               性别：男
+                       </span>
+                     </li>
+              <li>
+                   <span class="cus-head cus-head-female">
+                     <img src="/chat/images/female-head-pic.png" alt="" class="imgToGray" />
+                   </span>
+                   <span class="cus-txt">
+                           姓名：周末末<br />
+                           性别：女
+                   </span>
+                 </li>
                  <li>
-                  <span class="cus-head cus-head-female"></span>
-                  <span class="cus-txt">
-                          姓名：周末末<br />
-                          性别：女
-                  </span>
-                </li>
-                <li>
-                  <span class="cus-head cus-head-male"></span>
-                  <span class="cus-txt">
-                          姓名：周末末<br />
-                          性别：男
-                  </span>
-                </li>
-                <li class="current">
-                  <span class="cus-head cus-head-female"></span>
-                  <span class="cus-txt">
-                          姓名：周末末<br />
-                          性别：女
-                  </span>
-                </li>
-                <li>
-                  <span class="cus-head cus-head-male"><i class="message-number">3</i></span>
-                  <span class="cus-txt">
-                          姓名：周末末<br />
-                          性别：男
-                  </span>
-
-                </li>
-                 <li>
-                  <span class="cus-head cus-head-female"></span>
-                  <span class="cus-txt">
-                          姓名：周末末<br />
-                          性别：女
-                  </span>
-                </li>
-                <li>
-                  <span class="cus-head cus-head-male"></span>
-                  <span class="cus-txt">
-                          姓名：周末末<br />
-                          性别：男
-                  </span>
-                </li>
+                   <span class="cus-head cus-head-male">
+                     <img src="/chat/images/male-head-pic.png" alt="" class="imgToGray" />
+                   <i class="message-number">3</i></span>
+                   <span class="cus-txt">
+                           姓名：周末末<br />
+                           性别：男
+                   </span>
+                 </li>
+               <li>
+                <span class="cus-head cus-head-female">
+                  <img src="/chat/images/female-head-pic.png" alt="" class="imgToGray"  />
+                </span>
+                <span class="cus-txt">
+                        姓名：周末末<br />
+                        性别：女
+              </li>
+              <li>
+                <span class="cus-head cus-head-male">
+                  <img src="/chat/images/male-head-pic.png" alt="" class="imgToGray"  />
+                <i class="message-number">3</i></span>
+                <span class="cus-txt">
+                        姓名：周末末<br />
+                        性别：男
+                </span>
+              </li>
             </ul>
             <div id="tool">
                  <span id="tool-bar"></span>
@@ -163,8 +141,6 @@
           </div>
        </div>
        <div class="dialogue-center">
-          <div class="dialogue-center-head">
-          </div>
           <div class="dialogue-center-name">周小惠</div>
           <div class="dialogue-center-chat">
             <div class="chat-div chat-div-female">
@@ -193,22 +169,117 @@
                 </div>
                 <div class="chat-pop">
                   <p>你好，请问有什么问题</p>
-              </div>
+                </div>
             </div>
+             <div class="chat-div chat-div-male">
+                <div class="chat-pop">
+                  <p>你好，请问有什么问题</p>
+               </div>
+               <div class="chat-head">
+                </div>
+            </div>
+            <div class="chat-div chat-div-female">
+               <div class="chat-head">
+                </div>
+                <div class="chat-pop">
+                  <p>你好，请问有什么问题</p>
+                </div>
+            </div>
+           <div class="chat-div chat-div-male">
+                 <div class="chat-pop">
+                   <p>你好，请问有什么问题</p>
+                </div>
+                <div class="chat-head">
+                 </div>
+             </div>
+             <div class="chat-div chat-div-female">
+                <div class="chat-head">
+                 </div>
+                 <div class="chat-pop">
+                   <p>你好，请问有什么问题</p>
+                 </div>
+             </div>
+              <div class="chat-div chat-div-male">
+                 <div class="chat-pop">
+                   <p>你好，请问有什么问题</p>
+                </div>
+                <div class="chat-head">
+                 </div>
+             </div>
+             <div class="chat-div chat-div-female">
+                <div class="chat-head">
+                 </div>
+                 <div class="chat-pop">
+                   <p>你好，请问有什么问题</p>
+                 </div>
+             </div>
+              <div class="chat-div chat-div-male">
+                 <div class="chat-pop">
+                   <p>你好，请问有什么问题</p>
+                </div>
+                <div class="chat-head">
+                 </div>
+             </div>
+             <div class="chat-div chat-div-female">
+                <div class="chat-head">
+                 </div>
+                 <div class="chat-pop">
+                   <p>你好，请问有什么问题</p>
+                 </div>
+             </div>
+                <div class="chat-div chat-div-male">
+                   <div class="chat-pop">
+                     <p>你好，请问有什么问题</p>
+                  </div>
+                  <div class="chat-head">
+                   </div>
+               </div>
+               <div class="chat-div chat-div-female">
+                  <div class="chat-head">
+                   </div>
+                   <div class="chat-pop">
+                     <p>你好，请问有什么问题</p>
+                   </div>
+               </div>
+               <div class="chat-div chat-div-male">
+                  <div class="chat-pop">
+                    <p>你好，请问有什么问题</p>
+                 </div>
+                 <div class="chat-head">
+                  </div>
+              </div>
+              <div class="chat-div chat-div-female">
+                 <div class="chat-head">
+                  </div>
+                  <div class="chat-pop">
+                    <p>你好，请问有什么问题</p>
+                  </div>
+              </div>
+                 <div class="chat-div chat-div-male">
+                    <div class="chat-pop">
+                      <p>你好，请问有什么问题</p>
+                   </div>
+                   <div class="chat-head">
+                    </div>
+                </div>
+                <div class="chat-div chat-div-female">
+                   <div class="chat-head">
+                    </div>
+                    <div class="chat-pop">
+                      <p>你好，请问有什么问题</p>
+                    </div>
+                </div>
           </div>
           <div class="dialogue-center-input">
-              <div class="chat-input-head">
-              </div>
               <div class="chat-txt-input">
                   <input type="text" value="" class="input-txt" />
                   <a href="javascript:void(0)" class="set-btn">发送</a>
               </div>
+              <div class="chat-input-head">
+              </div>
           </div>
        </div>
        <div class="dialogue-right">
-          <div class="dialogue-right-head">
-              <img src="/chat/images/dialogue-logo.jpg" alt=""  />
-          </div>
           <div class="dialogue-right-tit">
               浏览记录
           </div>
@@ -272,10 +343,46 @@
        </div>
   </div>
 <script src="/chat/js/single-iScroll.js" charset="gbk"></script>
+<script src="/chat/js/jquery-ui.min.js" charset="gbk"></script>
 <script>
     iScroll.init({
       el: document.getElementById('cus-list'),
       scrollBar: document.getElementById('tool-bar')
     })
+    //gray
+
+
+    //var imgObj = document.getElementsById('cus-list');
+
+  //  var imgObj = $('.imgToGray');
+
+    function gray(imgObj) {
+      var canvas = document.createElement('canvas');
+      var canvasContext = canvas.getContext('2d');
+
+      var imgW = imgObj.width;
+      var imgH = imgObj.height;
+      canvas.width = imgW;
+      canvas.height = imgH;
+
+      canvasContext.drawImage(imgObj, 0, 0);
+      var imgPixels = canvasContext.getImageData(0, 0, imgW, imgH);
+
+      for (var y = 0; y < imgPixels.height; y++) {
+        for (var x = 0; x < imgPixels.width; x++) {
+          var i = (y * 4) * imgPixels.width + x * 4;
+          var avg = (imgPixels.data[i] + imgPixels.data[i + 1] + imgPixels.data[i + 2]) / 3;
+          imgPixels.data[i] = avg;
+          imgPixels.data[i + 1] = avg;
+          imgPixels.data[i + 2] = avg;
+        }
+      }
+      canvasContext.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
+      return canvas.toDataURL();
+    }
+    for(var i; i<$('.imgToGray').length;i++){
+          $('.imgToGray')[i].src = gray($('.imgToGray')[i]);
+    }
+
 </script>
 </body>
