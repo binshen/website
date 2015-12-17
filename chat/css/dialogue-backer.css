@@ -43,7 +43,7 @@ a:visited{color:#333;}
 #tool {position: absolute;top: 0;right: 3px;width: 10px;height:608px;background:none;}
 #tool-bar {width: 8px;background: #666;position: absolute;top: 0;left: 1px; border-radius: 5px;}
 
-.cus-list li{ height: 42px; margin:5px;padding:5px; }
+.cus-list li{ height: 42px; margin:5px;padding:5px; cursor:pointer; }
 .cus-list li.current{ background: #0e94c7;}
 .message-number{width: 20px; height: 20px; border-radius: 10px; background: #f2092f; text-align: center; line-height: 20px; display: block; color:#fff; font-size: 12px; position: absolute;top:-5px; right: -5px;}
 .cus-list .cus-txt{padding-left:50px; display: block; line-height: 20px; font-size: 12px; color: #fff;}
@@ -64,7 +64,7 @@ a:visited{color:#333;}
 .chat-div-female .chat-head,.chat-input-head{background:url(../images/head.png) no-repeat -72px -3px; }
 .chat-div-male .chat-head,.chat-input-head{background:url(../images/head.png) no-repeat -72px -49px;}
 .chat-div-male .chat-pop p{background: #fff;}
-.gray {
+/*.gray {
 	/*-webkit-filter: grayscale(100%);	-moz-filter: grayscale(100%);-ms-filter: grayscale(100%);	-o-filter: grayscale(100%);	filter: grayscale(100%);*/
 	/*filter: gray;}*/
 .chat-input-head{ float: right;}
