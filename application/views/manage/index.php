@@ -231,7 +231,7 @@ $(function(){
 
 	</div>
 
-	<div id="footer">Copyright &copy; 2010 DWZ团队 京ICP备05019125号-10</div>
+	<div id="footer">Copyright &copy; 2015 Funmall Co., Ltd. All rights reserved. 备案号：苏CP备13003602号-2</div>
 
 
 </body>
