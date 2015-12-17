@@ -135,13 +135,10 @@
                  <span id="tool-bar"></span>
             </div>
           </div>
-          <div class="dialogue-left-ftr">
-              <p>©2015 Funmall Co., Ltd. All rights reserved.<br /> 备案号：苏CP备13003602号-2</p>
-          </div>
        </div>
        <div class="dialogue-center">
           <div class="dialogue-center-name" id="dialogue-center-name">周小惠</div>
-          <div class="dialogue-center-chat">
+          <div class="dialogue-center-chat" id="dialogue-center-chat">
             <div class="chat-div chat-div-female">
                 <div class="chat-pop">
                   <p>你好，请问城北有哪些好的学区房推荐？</p>
@@ -344,6 +341,12 @@
 <script src="/chat/js/single-iScroll.js" charset="gbk"></script>
 <script src="/chat/js/jquery-ui.min.js" charset="gbk"></script>
 <script>
+$(function(){
+    var windowHei = $(window).height();
+    var centerPx = parseInt(windowHei-155-120)+'px';
+    $('#dialogue-center-chat').height(centerPx);
+})
+
   iScroll.init({
       el: document.getElementById('cus-list'),
       scrollBar: document.getElementById('tool-bar')
