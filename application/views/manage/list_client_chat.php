@@ -136,8 +136,7 @@
             </div>
           </div>
           <div class="dialogue-left-ftr">
-              <p>©2015 Funmall Co., Ltd. All rights reserved.
-   备案号：苏CP备13003602号-2</p>
+              <p>©2015 Funmall Co., Ltd. All rights reserved.<br /> 备案号：苏CP备13003602号-2</p>
           </div>
        </div>
        <div class="dialogue-center">
