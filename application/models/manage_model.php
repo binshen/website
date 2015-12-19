@@ -2172,7 +2172,7 @@ class Manage_model extends MY_Model
 		$this->db->join('weixin b', 'a.open_id = b.openid');
 		$group_id = $this->session->userdata('group_id');
 		if($group_id > 1) {
-			$broker_id = $this->session->userdata('login_broker_id');
+			$broker_id = $this->session->userdata('user_id');
 			$this->db->where('broker_id', $broker_id);
 		}
 		return $this->db->get()->result_array();

@@ -6,13 +6,14 @@
             <ul class="cus-list" id="cus-list">
             	<?php 
             		if (!empty($wx_users_list)):
+            			$sex = array('1' => '男', '2' => '女');
             			foreach ($wx_users_list as $row):
             	?>
 			                <li>
 			                  <span class="cus-head cus-head-female">
 			                    <img src="<?php echo $row['headimgurl']; ?>" alt="" class="imgToGray" style="height: 36px;width:36px;"/>
 			                  </span>
-			                  <span class="cus-txt"><i class="cus-name"> 姓名：<?php echo $row['nickname']; ?></i><br /> 性别：<?php echo $row['sex']; ?></span>
+			                  <span class="cus-txt"><i class="cus-name"> 姓名：<?php echo $row['nickname']; ?></i><br /> 性别：<?php echo @$sex[$row['sex']]; ?></span>
 			                </li>
 				<?php 
 	            		endforeach;
