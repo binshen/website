@@ -4,132 +4,20 @@
        <div class="dialogue-left">
           <div class="dialogue-left-body">
             <ul class="cus-list" id="cus-list">
-                <li>
-                  <span class="cus-head cus-head-female">
-                    <img src="/chat/images/female-head-pic.png" alt="" class="imgToGray" />
-                  </span>
-                  <span class="cus-txt">
-                          <i class="cus-name"> 姓名：周末末1</i><br />
-                          性别：女
-                  </span>
-                </li>
-                <li class="current">
-                  <span class="cus-head cus-head-male">
-                    <img src="/chat/images/male-head-pic.png" alt="" />
-                  <i class="message-number">3</i></span>
-                  <span class="cus-txt">
-                          <i class="cus-name"> 姓名：周末末2</i><br />
-                          性别：男
-                  </span>
-                </li>
-                 <li>
-                      <span class="cus-head cus-head-female">
-                        <img src="/chat/images/female-head-pic.png" alt=""  />
-                      </span>
-                      <span class="cus-txt">
-                              <i class="cus-name"> 姓名：周末末3</i><br />
-                              性别：女
-                      </span>
-                    </li>
-                    <li>
-                      <span class="cus-head cus-head-male">
-                        <img src="/chat/images/male-head-pic.png" alt="" class="imgToGray" />
-                      <i class="message-number">3</i></span>
-                      <span class="cus-txt">
-                              <i class="cus-name"> 姓名：周末末4</i><br />
-                              性别：男
-                      </span>
-                    </li>
-                 <li>
-                    <span class="cus-head cus-head-female">
-                      <img src="/chat/images/female-head-pic.png" alt="" class="imgToGray" />
-                    </span>
-                    <span class="cus-txt">
-                           <i class="cus-name"> 姓名：周末末5</i><br />
-                            性别：女
-                    </span>
-                  </li>
-                  <li>
-                    <span class="cus-head cus-head-male">
-                      <img src="/chat/images/male-head-pic.png" alt="" class="imgToGray" />
-                    <i class="message-number">3</i></span>
-                    <span class="cus-txt">
-                            <i class="cus-name"> 姓名：周末末6</i><br />
-                            性别：男
-                    </span>
-                  </li>
-                <li>
-                 <span class="cus-head cus-head-female">
-                   <img src="/chat/images/female-head-pic.png" alt="" class="imgToGray" />
-                 </span>
-                 <span class="cus-txt">
-                         <i class="cus-name"> 姓名：周末末7</i><br />
-                         性别：女
-                 </span>
-               </li>
-               <li>
-                 <span class="cus-head cus-head-male">
-                   <img src="/chat/images/male-head-pic.png" alt="" class="imgToGray" />
-                 <i class="message-number">3</i></span>
-                 <span class="cus-txt">
-                         <i class="cus-name"> 姓名：周末末8</i><br />
-                         性别：男
-                 </span>
-               </li>
-
-               <li>
-                        <span class="cus-head cus-head-female">
-                         <img src="/chat/images/female-head-pic.png" alt="" class="imgToGray" />
-                       </span>
-                       <span class="cus-txt">
-                               <i class="cus-name"> 姓名：周末末9</i><br />
-                               性别：女
-                       </span>
-                     </li>
-                     <li>
-                       <span class="cus-head cus-head-male">
-                         <img src="/chat/images/male-head-pic.png" alt="" class="imgToGray" />
-                       <i class="message-number">3</i></span>
-                       <span class="cus-txt">
-                               <i class="cus-name"> 姓名：周末末10</i><br />
-                               性别：男
-                       </span>
-                     </li>
-              <li>
-                   <span class="cus-head cus-head-female">
-                     <img src="/chat/images/female-head-pic.png" alt="" class="imgToGray" />
-                   </span>
-                   <span class="cus-txt">
-                           <i class="cus-name"> 姓名：周末末11</i><br />
-                           性别：女
-                   </span>
-                 </li>
-                 <li>
-                   <span class="cus-head cus-head-male">
-                     <img src="/chat/images/male-head-pic.png" alt="" class="imgToGray" />
-                   <i class="message-number">3</i></span>
-                   <span class="cus-txt">
-                          <i class="cus-name"> 姓名：周末末12</i><br />
-                           性别：男
-                   </span>
-                 </li>
-               <li>
-                <span class="cus-head cus-head-female">
-                  <img src="/chat/images/female-head-pic.png" alt="" class="imgToGray"  />
-                </span>
-                <span class="cus-txt">
-                       <i class="cus-name"> 姓名：周末末13</i><br />
-                        性别：女
-              </li>
-              <li>
-                <span class="cus-head cus-head-male">
-                  <img src="/chat/images/male-head-pic.png" alt="" class="imgToGray"  />
-                <i class="message-number">3</i></span>
-                <span class="cus-txt">
-                       <i class="cus-name"> 姓名：周末末14</i><br />
-                        性别：男
-                </span>
-              </li>
+            	<?php 
+            		if (!empty($wx_users_list)):
+            			foreach ($wx_users_list as $row):
+            	?>
+			                <li>
+			                  <span class="cus-head cus-head-female">
+			                    <img src="<?php echo $row['headimgurl']; ?>" alt="" class="imgToGray" style="height: 36px;width:36px;"/>
+			                  </span>
+			                  <span class="cus-txt"><i class="cus-name"> 姓名：<?php echo $row['nickname']; ?></i><br /> 性别：<?php echo $row['sex']; ?></span>
+			                </li>
+				<?php 
+	            		endforeach;
+	            	endif;
+	            ?>
             </ul>
             <div id="tool">
                  <span id="tool-bar"></span>
@@ -349,57 +237,6 @@
 <script src="/chat/js/single-iScroll.js" charset="gbk"></script>
 <script src="/chat/js/jquery-ui.min.js" charset="gbk"></script>
 <script>
-$(function(){
-    var windowHei = $(window).height();
-    var leftPx = parseInt(windowHei-120)+'px';
-    var centerPx = parseInt(windowHei-155-120)+'px';
-    var rightPx = parseInt(windowHei-180)+'px';
-    $('#dialogue-center-chat').height(centerPx);
-    $('#cus-list').height(leftPx);
-    $('#tool').height(leftPx);
-    $('#dialogue-right-body').height(rightPx);
-   iScroll.init({
-   el: document.getElementById('cus-list'),
-   scrollBar: document.getElementById('tool-bar')
-    })
-})
 
-
-    //gray
-    function gray(imgObj) {
-      var canvas = document.createElement('canvas');
-      var canvasContext = canvas.getContext('2d');
-
-      var imgW = imgObj.width;
-      var imgH = imgObj.height;
-      canvas.width = imgW;
-      canvas.height = imgH;
-
-      canvasContext.drawImage(imgObj, 0, 0);
-      var imgPixels = canvasContext.getImageData(0, 0, imgW, imgH);
-
-      for (var y = 0; y < imgPixels.height; y++) {
-        for (var x = 0; x < imgPixels.width; x++) {
-          var i = (y * 4) * imgPixels.width + x * 4;
-          var avg = (imgPixels.data[i] + imgPixels.data[i + 1] + imgPixels.data[i + 2]) / 3;
-          imgPixels.data[i] = avg;
-          imgPixels.data[i + 1] = avg;
-          imgPixels.data[i + 2] = avg;
-        }
-      }
-      canvasContext.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
-      return canvas.toDataURL();
-    }
-    for(var i; i<$('.imgToGray').length;i++){
-          $('.imgToGray')[i].src = gray($('.imgToGray')[i]);
-    }
-//
-
-$("#cus-list li").click(function(){
-    $("#cus-list li").removeClass('current');
-    $(this).addClass('current');
-    $("#dialogue-center-name").html( $(this).children().find(".cus-name").html());
-   // $("#dialogue-right-body").append();
-})
 </script>
 </body>

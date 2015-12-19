@@ -2164,4 +2164,17 @@ class Manage_model extends MY_Model
     	$data['numPerPage'] = $numPerPage;
     	return $data;
 	}
+	
+	public function get_bind_wx_users() {
+		$this->db->select('a.open_id, b.nickname, b.sex, b.headimgurl');
+		$this->db->distinct();
+		$this->db->from('wx_user a');
+		$this->db->join('weixin b', 'a.open_id = b.openid');
+		$group_id = $this->session->userdata('group_id');
+		if($group_id > 1) {
+			$broker_id = $this->session->userdata('login_broker_id');
+			$this->db->where('broker_id', $broker_id);
+		}
+		return $this->db->get()->result_array();
+	}
 }

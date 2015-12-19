@@ -1110,6 +1110,8 @@ class Manage extends MY_Controller {
 	
 	public function list_client_chat() {
 		
-		$this->load->view('manage/list_client_chat.php');
+		$data = array();
+		$data['wx_users_list'] = $this->manage_model->get_bind_wx_users();
+		$this->load->view('manage/list_client_chat.php', $data);
 	}
 }
