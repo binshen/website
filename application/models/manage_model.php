@@ -2178,4 +2178,14 @@ class Manage_model extends MY_Model
 		$this->db->where('b.subscribe', 1);
 		return $this->db->get()->result_array();
 	}
+	
+	public function list_house_tracks($open_id) {
+		$this->db->select('a.room, a.total_price, a.acreage, a.bg_pic, a.feature, b.name AS region_name, c.name AS xq_name');
+		$this->db->from('house_track t');
+		$this->db->join('house a', 't.house_id = a.id', 'left');
+		$this->db->join('house_region b', 'a.region_id = b.id', 'left');
+		$this->db->join('xiaoqu c', 'a.xq_id = c.id', 'left');
+		$this->db->where('t.open_id', $open_id);
+		return $this->db->get()->result_array();
+	}
 }
