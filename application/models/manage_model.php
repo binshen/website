@@ -2180,7 +2180,7 @@ class Manage_model extends MY_Model
 	}
 	
 	public function list_house_tracks($open_id) {
-		$this->db->select('a.room, a.total_price, a.acreage, a.bg_pic, a.feature, b.name AS region_name, c.name AS xq_name');
+		$this->db->select('a.id, a.room, a.total_price, a.acreage, a.bg_pic, a.feature, b.name AS region_name, c.name AS xq_name');
 		$this->db->from('house_track t');
 		$this->db->join('house a', 't.house_id = a.id', 'left');
 		$this->db->join('house_region b', 'a.region_id = b.id', 'left');

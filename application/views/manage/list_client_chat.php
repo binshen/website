@@ -56,15 +56,6 @@
        <div class="dialogue-right">
           	<div class="dialogue-right-tit">浏览记录</div>
           	<div class="dialogue-right-body" id="dialogue-right-body">
-              	<div class="history-list">
-                	<div class="clearfix">
-                  		<span class="s-img"><img src="http://dummyimage.com/70x50/000/fff" alt="" width="70" height="50" /></span>
-                  		<p><span class="s01">金城花园</span>
-                  		<span class="s02">90㎡ | 三房 | 69万</span>
-                  		<span class="s03">城东</span></p>
-                	</div>
-                  	<span class="s-label"><i>学区房</i><i>精装修</i><i>学区房</i><i>学区房</i><i>精装修</i><i>学区房</i></span>
-              	</div>
           	</div>
        </div>
   </div>
@@ -136,16 +127,17 @@ $("#cus-list li").click(function(){
 					f_text += "</i>";
 				}
 			}
-			console.log(h);
-			html += '<div class="history-list">';
-			html += ' <div class="clearfix">';
-			html += '  <span class="s-img"><img src="/uploadfiles/pics/' + h.bg_pic + '" alt="" width="70" height="50" /></span>';
-			html += '  <p><span class="s01">' + h.xq_name + '</span>';
-			html += '  <span class="s02">' + h.acreage + '㎡ | ' + h.room + '房 | ' + h.acreage + '万</span>';
-			html += '  <span class="s03">' + h.region_name + '</span></p>';
+			html += '<a href="../house/second_hand_detail/' + h.id + '" target="_blank">'
+			html += ' <div class="history-list">';
+			html += '  <div class="clearfix">';
+			html += '   <span class="s-img"><img src="/uploadfiles/pics/' + h.bg_pic + '" alt="" width="70" height="50" /></span>';
+			html += '   <p><span class="s01">' + h.xq_name + '</span>';
+			html += '   <span class="s02">' + h.acreage + '㎡ | ' + h.room + '房 | ' + h.acreage + '万</span>';
+			html += '   <span class="s03">' + h.region_name + '</span></p>';
+			html += '  </div>';
+			html += '  <span class="s-label">' + f_text + '</span>';
 			html += ' </div>';
-			html += ' <span class="s-label">' + f_text + '</span>';
-			html += '</div>';
+			html += '</a>';
 		}
     	$("#dialogue-right-body").html(html);
     });
