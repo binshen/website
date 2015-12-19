@@ -163,7 +163,9 @@ $("#cus-list li").click(function(){
 		html += '</div>';
 		$("#dialogue-center-chat").append(html);
 
-		play_ring("/chat/ring/msg.wav")
+		if(broker_id !== m.user_id) {
+			play_ring("/chat/ring/msg.wav");
+		}
 	});
 	
     socket.on('receive-history', function (data) {
