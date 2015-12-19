@@ -38,9 +38,9 @@ a:visited{color:#333;}
 /*.cus-head-female{background:url(../images/head.png) no-repeat -72px -3px;}*/
 /*.cus-head-male{background:url(../images/head.png) no-repeat -72px -49px;}*/
 
-.dialogue-left-body{height:608px; background: url(../images/dialogue-left-bg.jpg) no-repeat; position: relative; }
-.cus-list {overflow: hidden;height:550px;  }
-#tool {position: absolute;top: 0;right: 3px;width: 10px;height:608px;background:none;}
+.dialogue-left-body{ background:#000  url(../images/dialogue-left-bg.jpg) no-repeat; position: relative; }
+.cus-list {overflow: hidden;height:600px;  }
+#tool {position: absolute;top: 0;right: 3px;width: 10px;height:600px;background:none;}
 #tool-bar {width: 8px;background: #666;position: absolute;top: 0;left: 1px; border-radius: 5px;}
 
 .cus-list li{ height: 42px; margin:5px;padding:5px; cursor:pointer; }
@@ -56,11 +56,25 @@ a:visited{color:#333;}
 .dialogue-center-name{ font-size: 30px; color: #666; text-align: center; background: #f1f1f1; height:70px; line-height: 70px; font-family:'Microsoft YaHei' }
 
 .dialogue-center-chat{padding:10px 60px; height: 400px; overflow-y: scroll;}
-.chat-div{padding:10px 0; overflow: hidden; zoom:1;}
-.chat-pop{ float: right; display: inline-block; margin:3px 10px 0;}
-.chat-pop p{border-radius: 3px; background: #e7f1f6; padding:15px; display: inline-block; font-size: 12px;}
+/*.chat-div-manage{ overflow: hidden; zoom:1;*/
+	/*float: left;}*/
+
+.chat-div{padding:10px 0; overflow: hidden; zoom:1;
+	width:550px;}
+.chat-pop{ float: right; display: inline-block; margin:3px 10px 0;
+	width: 400px;}
+.chat-pop p{border-radius: 3px; background: #e7f1f6; padding:10px; display: inline-block; font-size: 12px;
+	line-height: 20px;
+	float: right;
+}
+
+.chat-div-customer .chat-pop{
+	float: left;}
+.chat-div-customer .chat-pop p{
+	float: left;}
 .chat-div .chat-head,.chat-input-head{width:36px; height: 36px;  }
 .chat-div .chat-head{float: right;}
+.chat-div-customer .chat-head{float: left;}
 .chat-div-female .chat-head,.chat-input-head{background:url(../images/head.png) no-repeat -72px -3px; }
 .chat-div-male .chat-head,.chat-input-head{background:url(../images/head.png) no-repeat -72px -49px;}
 .chat-div-male .chat-pop p{background: #fff;}

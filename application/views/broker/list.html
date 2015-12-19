@@ -11,17 +11,13 @@
 </head>
 <body>
 <div class="g-head">
-    <!-- <i class="am-icon-chevron-left"></i> -->
     {{$store_name}}
-        <span class="user-login-icon">
-        	{{if $login_broker_id_flag }}
-        		<a href="/b_login/logout">
-                    <i class="am-icon-user"></i><em>退出</em>
-                </a>
-        	{{else}}
-        		<a href="/b_login/"><i class="am-icon-user"></i></a>
-        	{{/if}}
-       </span>
+    {{if $login_broker_id_flag }}
+            <a href="/b_login/logout" class="am-icon-user am-icon-user-out"></a>
+
+    {{else}}
+            <a href="/b_login/" class="am-icon-user"></a>
+    {{/if}}
 </div>
 <div class="g-doc">
     <!-- 筛选 start -->

@@ -135,133 +135,138 @@
                  <span id="tool-bar"></span>
             </div>
           </div>
-          <div class="dialogue-left-ftr">
-              <p>©2015 Funmall Co., Ltd. All rights reserved.<br /> 备案号：苏CP备13003602号-2</p>
-          </div>
        </div>
        <div class="dialogue-center">
           <div class="dialogue-center-name" id="dialogue-center-name">周小惠</div>
-          <div class="dialogue-center-chat">
-            <div class="chat-div chat-div-female">
+          <div class="dialogue-center-chat" id="dialogue-center-chat">
+            <div class="chat-div chat-div-female chat-div-customer">
+              <div class="chat-head"></div>
                 <div class="chat-pop">
-                  <p>你好，请问城北有哪些好的学区房推荐？</p>
-              </div>
+                  <p>你好，请问城北有哪些好的学区房推荐？你好，请问城北有哪些好的学区房推荐？你好，请问城北有哪些好的学区房推荐？你好，请问城北有哪些好的学区房推荐？你好，请问城北有哪些好的学区房推荐？</p>
+                 </div>
+
+            </div>
+            <div class="chat-div chat-div-female chat-div-customer">
+               <div class="chat-head">
+                </div>
+                <div class="chat-pop">
+                  <p>你好，大德世家 ，长江花园你好，请问城北有哪些好的学区房推荐？你好，请问城北有哪些好的学区房推荐？你好，请问城北有哪些好的学区房推荐？你好，请问城北有哪些好的学区房推荐？</p>
+                </div>
+
+            </div>
+            <div class="chat-div chat-div-male chat-div-manage">
+               <div class="chat-head">
+               </div>
+                <div class="chat-pop">
+                  <p>你好，请问有什么问题你好，请问城北有哪些好的学区房推荐？你好，请问城北有哪些好的学区房推荐？你好，请问城北有哪些好的学区房推荐？你好，请问城北有哪些好的学区房推荐？你好，请问城北有哪些好的学区房推荐？</p>
+               </div>
+
+            </div>
+            <div class="chat-div chat-div-female chat-div-customer">
+               <div class="chat-head">
+                </div>
+                <div class="chat-pop">
+                  <p>你好，请问有什么问题</p>
+                </div>
+            </div>
+             <div class="chat-div chat-div-male chat-div-manage">
               <div class="chat-head">
-                </div>
-            </div>
-            <div class="chat-div chat-div-female">
-               <div class="chat-head">
-                </div>
-                <div class="chat-pop">
-                  <p>你好，大德世家 ，长江花园</p>
-              </div>
-            </div>
-            <div class="chat-div chat-div-male">
+                             </div>
                 <div class="chat-pop">
                   <p>你好，请问有什么问题</p>
                </div>
-               <div class="chat-head">
-                </div>
+
             </div>
-            <div class="chat-div chat-div-female">
-               <div class="chat-head">
-                </div>
-                <div class="chat-pop">
-                  <p>你好，请问有什么问题</p>
-                </div>
-            </div>
-             <div class="chat-div chat-div-male">
-                <div class="chat-pop">
-                  <p>你好，请问有什么问题</p>
-               </div>
-               <div class="chat-head">
-                </div>
-            </div>
-            <div class="chat-div chat-div-female">
+            <div class="chat-div chat-div-female chat-div-customer">
                <div class="chat-head">
                 </div>
                 <div class="chat-pop">
                   <p>你好，请问有什么问题</p>
                 </div>
             </div>
-           <div class="chat-div chat-div-male">
+           <div class="chat-div chat-div-male chat-div-manage">
+               <div class="chat-head">
+                                </div>
                  <div class="chat-pop">
                    <p>你好，请问有什么问题</p>
                 </div>
-                <div class="chat-head">
-                 </div>
              </div>
-             <div class="chat-div chat-div-female">
-                <div class="chat-head">
-                 </div>
-                 <div class="chat-pop">
-                   <p>你好，请问有什么问题</p>
-                 </div>
-             </div>
-              <div class="chat-div chat-div-male">
-                 <div class="chat-pop">
-                   <p>你好，请问有什么问题</p>
-                </div>
-                <div class="chat-head">
-                 </div>
-             </div>
-             <div class="chat-div chat-div-female">
+             <div class="chat-div chat-div-female chat-div-customer">
                 <div class="chat-head">
                  </div>
                  <div class="chat-pop">
                    <p>你好，请问有什么问题</p>
                  </div>
              </div>
-              <div class="chat-div chat-div-male">
+              <div class="chat-div chat-div-male chat-div-manage">
+              <div class="chat-head">
+                               </div>
                  <div class="chat-pop">
                    <p>你好，请问有什么问题</p>
                 </div>
-                <div class="chat-head">
-                 </div>
+
              </div>
-             <div class="chat-div chat-div-female">
+             <div class="chat-div chat-div-female chat-div-customer">
                 <div class="chat-head">
                  </div>
                  <div class="chat-pop">
                    <p>你好，请问有什么问题</p>
                  </div>
              </div>
-                <div class="chat-div chat-div-male">
+              <div class="chat-div chat-div-male chat-div-manage">
+              <div class="chat-head">
+                               </div>
+                 <div class="chat-pop">
+                   <p>你好，请问有什么问题</p>
+                </div>
+
+             </div>
+             <div class="chat-div chat-div-female chat-div-customer">
+                <div class="chat-head">
+                 </div>
+                 <div class="chat-pop">
+                   <p>你好，请问有什么问题</p>
+                 </div>
+             </div>
+                <div class="chat-div chat-div-male chat-div-manage">
+                <div class="chat-head">
+                                   </div>
                    <div class="chat-pop">
                      <p>你好，请问有什么问题</p>
                   </div>
-                  <div class="chat-head">
-                   </div>
+
                </div>
-               <div class="chat-div chat-div-female">
+               <div class="chat-div chat-div-female chat-div-customer">
                   <div class="chat-head">
                    </div>
                    <div class="chat-pop">
                      <p>你好，请问有什么问题</p>
                    </div>
                </div>
-               <div class="chat-div chat-div-male">
+               <div class="chat-div chat-div-male chat-div-manage">
+                <div class="chat-head">
+                                 </div>
                   <div class="chat-pop">
                     <p>你好，请问有什么问题</p>
                  </div>
-                 <div class="chat-head">
-                  </div>
+
               </div>
-              <div class="chat-div chat-div-female">
+              <div class="chat-div chat-div-female chat-div-customer">
                  <div class="chat-head">
                   </div>
                   <div class="chat-pop">
                     <p>你好，请问有什么问题</p>
                   </div>
               </div>
-                 <div class="chat-div chat-div-male">
+                 <div class="chat-div chat-div-male chat-div-manage">
+                  <div class="chat-head">
+                                     </div>
                     <div class="chat-pop">
-                      <p>你好，请问有什么问题</p>
+                      <p>你好，请问有什么问题你好，请问有什么问题你好，请问有什么问题你好，请问有什么问题你好，请问有什么问题你好，请问有什么问题你好，请问有什么问题你好，请问有什么问题你好，请问有什么问题</p>
                    </div>
-                   <div class="chat-head">
-                    </div>
+
                 </div>
-                <div class="chat-div chat-div-female">
+                <div class="chat-div chat-div-female chat-div-customer">
                    <div class="chat-head">
                     </div>
                     <div class="chat-pop">
@@ -344,17 +349,23 @@
 <script src="/chat/js/single-iScroll.js" charset="gbk"></script>
 <script src="/chat/js/jquery-ui.min.js" charset="gbk"></script>
 <script>
-  iScroll.init({
-      el: document.getElementById('cus-list'),
-      scrollBar: document.getElementById('tool-bar')
+$(function(){
+    var windowHei = $(window).height();
+    var leftPx = parseInt(windowHei-120)+'px';
+    var centerPx = parseInt(windowHei-155-120)+'px';
+    var rightPx = parseInt(windowHei-180)+'px';
+    $('#dialogue-center-chat').height(centerPx);
+    $('#cus-list').height(leftPx);
+    $('#tool').height(leftPx);
+    $('#dialogue-right-body').height(rightPx);
+   iScroll.init({
+   el: document.getElementById('cus-list'),
+   scrollBar: document.getElementById('tool-bar')
     })
+})
+
+
     //gray
-
-
-    //var imgObj = document.getElementsById('cus-list');
-
-  //  var imgObj = $('.imgToGray');
-
     function gray(imgObj) {
       var canvas = document.createElement('canvas');
       var canvasContext = canvas.getContext('2d');
