@@ -166,6 +166,8 @@ $("#cus-list li").click(function(){
 		if(broker_id !== m.user_id) {
 			play_ring("/chat/ring/msg.wav");
 		}
+
+		$('#dialogue-center-chat').scrollIntoView();
 	});
 	
     socket.on('receive-history', function (data) {
