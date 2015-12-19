@@ -185,8 +185,8 @@ $("#cus-list li").click(function(){
 	});
 
     $("#btnSendMsg").click(function() {
-        alert("123");
     	socket.emit('send-message', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2, "message": $("#msg_box").val() }));
+    	$("#msg_box").val("");
 	});
 })
 
@@ -195,4 +195,5 @@ function play_ring(url){
 	$("#ring").html(embed);
 }
 </script>
+<div id="ring" style="widht:0px; height:0px;"></div>
 </body>
