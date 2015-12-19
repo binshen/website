@@ -41,8 +41,8 @@
           </div>
           <div class="dialogue-center-input">
               <div class="chat-txt-input">
-                  <input type="text" value="" class="input-txt" />
-                  <a href="javascript:void(0)" class="set-btn">发送</a>
+                  <input type="text" id="msg_box" value="" class="input-txt" />
+                  <a href="javascript:void(0)" class="set-btn" id="btnSendMsg">发送</a>
               </div>
               <div class="chat-input-head">
               </div>
@@ -138,7 +138,7 @@ $("#cus-list li").click(function(){
     	$("#dialogue-right-body").html(html);
     });
 
-    var broker_id = 2;
+    var broker_id = '<?php echo $this->session->userdata('user_id'); ?>';
     var socket = io.connect('http://121.40.97.183:4000');
     socket.emit('online', JSON.stringify({ "user_id": broker_id, "user_type": 2 }));
     socket.emit('show-history', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2 }));
@@ -148,6 +148,20 @@ $("#cus-list li").click(function(){
 	
 	socket.on('reconnect',function(){
 		console.log('reconnected')
+	});
+
+	socket.on('receive-message', function (data) {
+		var html = "";
+		var m = JSON.parse(data);
+		if(m.user_type == 1) {
+			html += '<div class="chat-div chat-div-female chat-div-customer">';
+		} else {
+			html += '<div class="chat-div chat-div-male chat-div-manage">';
+		}
+		html += '<div class="chat-head"></div>';
+		html += '<div class="chat-pop"><p>' + m.message + '</p></div>';
+		html += '</div>';
+		$("#dialogue-center-chat").append(html);
 	});
 	
     socket.on('receive-history', function (data) {
@@ -166,6 +180,11 @@ $("#cus-list li").click(function(){
 			html += '</div>';
     	}
     	$("#dialogue-center-chat").html(html);
+	});
+
+    $("#btnSendMsg").click(function() {
+        alert("123");
+    	socket.emit('send-message', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2, "message": $("#msg_box").val() }));
 	});
 })
 </script>
