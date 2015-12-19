@@ -28,21 +28,16 @@
        <div class="dialogue-center">
           <div class="dialogue-center-name" id="dialogue-center-name">周小惠</div>
           <div class="dialogue-center-chat" id="dialogue-center-chat">
-            <div class="chat-div chat-div-female chat-div-customer">
-               <div class="chat-head">
-                </div>
-                <div class="chat-pop">
-                  <p>你好，请问有什么问题</p>
-                </div>
+          	<!--
+          	<div class="chat-div chat-div-female chat-div-customer">
+               <div class="chat-head"></div>
+               <div class="chat-pop"><p>你好，请问有什么问题</p></div>
             </div>
-             <div class="chat-div chat-div-male chat-div-manage">
-              <div class="chat-head">
-                             </div>
-                <div class="chat-pop">
-                  <p>你好，请问有什么问题</p>
-               </div>
+            <div class="chat-div chat-div-male chat-div-manage">
+               <div class="chat-head"></div>
+               <div class="chat-pop"><p>你好，请问有什么问题</p></div>
             </div>
-            
+            -->
           </div>
           <div class="dialogue-center-input">
               <div class="chat-txt-input">
@@ -61,6 +56,7 @@
   </div>
 <script src="/chat/js/single-iScroll.js" charset="gbk"></script>
 <script src="/chat/js/jquery-ui.min.js" charset="gbk"></script>
+<script type="text/javascript" src="http://121.40.97.183:4000/socket.io/socket.io.js"></script>
 <script>
 $(function(){
     var windowHei = $(window).height();
@@ -141,7 +137,36 @@ $("#cus-list li").click(function(){
 		}
     	$("#dialogue-right-body").html(html);
     });
-    
+
+    var broker_id = 2;
+    var socket = io.connect('http://121.40.97.183:4000');
+    socket.emit('online', JSON.stringify({ "user_id": broker_id, "user_type": 2 }));
+    socket.emit('show-history', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2 }));
+    socket.on('disconnect',function(){
+		console.log('disconnected')
+	});
+	
+	socket.on('reconnect',function(){
+		console.log('reconnected')
+	});
+	
+    socket.on('receive-history', function (data) {
+    	var messages = JSON.parse(data);
+    	var messages = messages.reverse();
+    	var html = "";
+    	for(var i in messages) {
+			var m = JSON.parse(messages[i]);
+			if(m.user_type == 1) {
+				html += '<div class="chat-div chat-div-female chat-div-customer">';
+			} else {
+				html += '<div class="chat-div chat-div-male chat-div-manage">';
+			}
+			html += '<div class="chat-head"></div>';
+			html += '<div class="chat-pop"><p>' + m.message + '</p></div>';
+			html += '</div>';
+    	}
+    	$("#dialogue-center-chat").html(html);
+	});
 })
 </script>
 </body>
