@@ -7,11 +7,11 @@
             	<?php 
             		if (!empty($wx_users_list)):
             			$sex = array('1' => '男', '2' => '女');
-            			foreach ($wx_users_list as $row):
+            			foreach ($wx_users_list as $i => $row):
             	?>
 			                <li>
 			                  <span class="cus-head cus-head-female">
-			                    <img src="<?php echo $row['headimgurl']; ?>" alt="" class="imgToGray" style="height: 36px;width:36px;"/>
+			                    <img src="<?php echo $row['headimgurl']; ?>" alt="" <?php if($i=0) {?>class="imgToGray"<?php } ?> style="height: 36px;width:36px;"/>
 			                  </span>
 			                  <span class="cus-txt"><i class="cus-name"> 姓名：<?php echo $row['nickname']; ?></i><br /> 性别：<?php echo @$sex[$row['sex']]; ?></span>
 			                </li>
@@ -173,9 +173,7 @@
           </div>
        </div>
        <div class="dialogue-right">
-          <div class="dialogue-right-tit">
-              浏览记录
-          </div>
+          <div class="dialogue-right-tit">浏览记录</div>
           <div class="dialogue-right-body" id="dialogue-right-body">
               <div class="history-list">
                 <div class="clearfix">
@@ -238,6 +236,57 @@
 <script src="/chat/js/single-iScroll.js" charset="gbk"></script>
 <script src="/chat/js/jquery-ui.min.js" charset="gbk"></script>
 <script>
+$(function(){
+    var windowHei = $(window).height();
+    var leftPx = parseInt(windowHei-120)+'px';
+    var centerPx = parseInt(windowHei-155-120)+'px';
+    var rightPx = parseInt(windowHei-180)+'px';
+    $('#dialogue-center-chat').height(centerPx);
+    $('#cus-list').height(leftPx);
+    $('#tool').height(leftPx);
+    $('#dialogue-right-body').height(rightPx);
+   iScroll.init({
+   el: document.getElementById('cus-list'),
+   scrollBar: document.getElementById('tool-bar')
+    })
+})
 
+
+    //gray
+    function gray(imgObj) {
+      var canvas = document.createElement('canvas');
+      var canvasContext = canvas.getContext('2d');
+
+      var imgW = imgObj.width;
+      var imgH = imgObj.height;
+      canvas.width = imgW;
+      canvas.height = imgH;
+
+      canvasContext.drawImage(imgObj, 0, 0);
+      var imgPixels = canvasContext.getImageData(0, 0, imgW, imgH);
+
+      for (var y = 0; y < imgPixels.height; y++) {
+        for (var x = 0; x < imgPixels.width; x++) {
+          var i = (y * 4) * imgPixels.width + x * 4;
+          var avg = (imgPixels.data[i] + imgPixels.data[i + 1] + imgPixels.data[i + 2]) / 3;
+          imgPixels.data[i] = avg;
+          imgPixels.data[i + 1] = avg;
+          imgPixels.data[i + 2] = avg;
+        }
+      }
+      canvasContext.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
+      return canvas.toDataURL();
+    }
+    for(var i; i<$('.imgToGray').length;i++){
+          $('.imgToGray')[i].src = gray($('.imgToGray')[i]);
+    }
+//
+
+$("#cus-list li").click(function(){
+    $("#cus-list li").removeClass('current');
+    $(this).addClass('current');
+    $("#dialogue-center-name").html( $(this).children().find(".cus-name").html());
+   // $("#dialogue-right-body").append();
+})
 </script>
 </body>

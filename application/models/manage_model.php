@@ -2173,8 +2173,9 @@ class Manage_model extends MY_Model
 		$group_id = $this->session->userdata('group_id');
 		if($group_id > 1) {
 			$broker_id = $this->session->userdata('user_id');
-			$this->db->where('broker_id', $broker_id);
+			$this->db->where('a.broker_id', $broker_id);
 		}
+		$this->db->where('b.subscribe', 1);
 		return $this->db->get()->result_array();
 	}
 }
