@@ -162,6 +162,8 @@ $("#cus-list li").click(function(){
 		html += '<div class="chat-pop"><p>' + m.message + '</p></div>';
 		html += '</div>';
 		$("#dialogue-center-chat").append(html);
+
+		play_ring("/chat/ring/msg.wav")
 	});
 	
     socket.on('receive-history', function (data) {
@@ -187,5 +189,10 @@ $("#cus-list li").click(function(){
     	socket.emit('send-message', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2, "message": $("#msg_box").val() }));
 	});
 })
+
+function play_ring(url){
+	var embed = '<embed id="ring" src="'+url+'" loop="0" autostart="true" hidden="true" style="height:0px; width:0px;0px;"></embed>';
+	$("#ring").html(embed);
+}
 </script>
 </body>
