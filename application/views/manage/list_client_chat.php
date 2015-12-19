@@ -167,7 +167,7 @@ $("#cus-list li").click(function(){
 			play_ring("/chat/ring/msg.wav");
 		}
 
-		$('#dialogue-center-chat').scrollIntoView();
+		$('#dialogue-center-chat').scrollIntoView(false);
 	});
 	
     socket.on('receive-history', function (data) {
