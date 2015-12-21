@@ -26,7 +26,7 @@
           </div>
        </div>
        <div class="dialogue-center">
-          <div class="dialogue-center-name" id="dialogue-center-name">周小惠</div>
+          <div class="dialogue-center-name" id="dialogue-center-name">请选择想要聊天的客户</div>
           <div class="dialogue-center-chat" id="dialogue-center-chat">
           	<!--
           	<div class="chat-div chat-div-female chat-div-customer">
