@@ -1,19 +1,19 @@
-<link rel="stylesheet" href="/chat/css/dialogue-backer.css">
+<link href="/chat/css/dialogue-backer.css" rel="stylesheet" type="text/css" />
 <body>
-  <div class="main">
+  <div class="dialogue-main">
        <div class="dialogue-left">
           <div class="dialogue-left-body">
-            <ul class="cus-list" id="cus-list">
+            <ul class="dialogue-cus-list" id="cus-list">
             	<?php 
             		if (!empty($wx_users_list)):
             			$sex = array('1' => '男', '2' => '女');
             			foreach ($wx_users_list as $i => $row):
             	?>
 			                <li>
-			                  <span class="cus-head cus-head-female">
+			                  <span class="dialogue-cus-head dialogue-cus-head-female">
 			                    <img src="<?php echo $row['headimgurl']; ?>" alt="" <?php if($i=0) {?>class="imgToGray"<?php } ?> style="height: 36px;width:36px;"/>
 			                  </span>
-			                  <span class="cus-txt"><i class="cus-name"> 姓名：<?php echo $row['nickname']; ?></i><br /> 性别：<?php echo @$sex[$row['sex']]; ?><input type="hidden" class="cus-open-id" value="<?php echo $row['open_id']; ?>" /></span>
+			                  <span class="dialogue-cus-txt"><i class="dialogue-cus-name"> 姓名：<?php echo $row['nickname']; ?></i><br /> 性别：<?php echo @$sex[$row['sex']]; ?><input type="hidden" class="cus-open-id" value="<?php echo $row['open_id']; ?>" /></span>
 			                </li>
 				<?php 
 	            		endforeach;
@@ -29,22 +29,22 @@
           <div class="dialogue-center-name" id="dialogue-center-name">周小惠</div>
           <div class="dialogue-center-chat" id="dialogue-center-chat">
           	<!--
-          	<div class="chat-div chat-div-female chat-div-customer">
-               <div class="chat-head"></div>
-               <div class="chat-pop"><p>你好，请问有什么问题</p></div>
+          	<div class="dialogue-chat-div dialogue-chat-div-female dialogue-chat-div-customer">
+               <div class="dialogue-chat-head"></div>
+               <div class="dialogue-chat-pop"><p>你好，请问有什么问题</p></div>
             </div>
-            <div class="chat-div chat-div-male chat-div-manage">
-               <div class="chat-head"></div>
-               <div class="chat-pop"><p>你好，请问有什么问题</p></div>
+            <div class="dialogue-chat-div dialogue-chat-div-male dialogue-chat-div-manage">
+               <div class="dialogue-chat-head"></div>
+               <div class="dialogue-chat-pop"><p>你好，请问有什么问题</p></div>
             </div>
             -->
           </div>
           <div class="dialogue-center-input">
-              <div class="chat-txt-input">
-                  <input type="text" id="msg_box" value="" class="input-txt" />
-                  <a href="javascript:void(0)" class="set-btn" id="btnSendMsg">发送</a>
+              <div class="dialogue-chat-txt-input">
+                  <input type="text" id="msg_box" value="" class="dialogue-input-txt" />
+                  <a href="javascript:void(0)" class="dialogue-set-btn" id="btnSendMsg">发送</a>
               </div>
-              <div class="chat-input-head">
+              <div class="dialogue-chat-input-head">
               </div>
           </div>
        </div>
@@ -124,14 +124,14 @@ $("#cus-list li").click(function(){
 				}
 			}
 			html += '<a href="../house/second_hand_detail/' + h.id + '" target="_blank">'
-			html += ' <div class="history-list">';
+			html += ' <div class="dialogue-history-list">';
 			html += '  <div class="clearfix">';
-			html += '   <span class="s-img"><img src="/uploadfiles/pics/' + h.bg_pic + '" alt="" width="70" height="50" /></span>';
+			html += '   <span class="dialogue-s-img"><img src="/uploadfiles/pics/' + h.bg_pic + '" alt="" width="70" height="50" /></span>';
 			html += '   <p><span class="s01">' + h.xq_name + '</span>';
 			html += '   <span class="s02">' + h.acreage + '㎡ | ' + h.room + '房 | ' + h.acreage + '万</span>';
 			html += '   <span class="s03">' + h.region_name + '</span></p>';
 			html += '  </div>';
-			html += '  <span class="s-label">' + f_text + '</span>';
+			html += '  <span class="dialogue-s-label">' + f_text + '</span>';
 			html += ' </div>';
 			html += '</a>';
 		}
@@ -145,7 +145,7 @@ $("#cus-list li").click(function(){
     socket.on('disconnect',function(){
 		console.log('disconnected')
 	});
-	
+
 	socket.on('reconnect',function(){
 		console.log('reconnected')
 	});
@@ -154,12 +154,12 @@ $("#cus-list li").click(function(){
 		var html = "";
 		var m = JSON.parse(data);
 		if(m.user_type == 1) {
-			html += '<div class="chat-div chat-div-female chat-div-customer">';
+			html += '<div class="dialogue-chat-div dialogue-chat-div-female dialogue-chat-div-customer">';
 		} else {
-			html += '<div class="chat-div chat-div-male chat-div-manage">';
+			html += '<div class="dialogue-chat-div dialogue-chat-div-male dialogue-chat-div-manage">';
 		}
-		html += '<div class="chat-head"></div>';
-		html += '<div class="chat-pop"><p>' + m.message + '</p></div>';
+		html += '<div class="dialogue-chat-head"></div>';
+		html += '<div class="dialogue-chat-pop"><p>' + m.message + '</p></div>';
 		html += '</div>';
 		$("#dialogue-center-chat").append(html);
 
@@ -169,7 +169,7 @@ $("#cus-list li").click(function(){
 
 		$('#dialogue-center-chat').scrollIntoView(false);
 	});
-	
+
     socket.on('receive-history', function (data) {
     	var messages = JSON.parse(data);
     	var messages = messages.reverse();
@@ -199,5 +199,5 @@ function play_ring(url){
 	$("#ring").html(embed);
 }
 </script>
-<div id="ring" style="widht:0px; height:0px;"></div>
+<div id="ring" style="width:0px; height:0px;"></div>
 </body>
