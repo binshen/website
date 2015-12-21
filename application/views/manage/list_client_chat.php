@@ -177,12 +177,12 @@ $("#cus-list li").click(function(){
     	for(var i in messages) {
 			var m = JSON.parse(messages[i]);
 			if(m.user_type == 1) {
-				html += '<div class="chat-div chat-div-female chat-div-customer">';
+				html += '<div class="dialogue-chat-div dialogue-chat-div-female dialogue-chat-div-customer">';
 			} else {
-				html += '<div class="chat-div chat-div-male chat-div-manage">';
+				html += '<div class="dialogue-chat-div dialogue-chat-div-male dialogue-chat-div-manage">';
 			}
-			html += '<div class="chat-head"></div>';
-			html += '<div class="chat-pop"><p>' + m.message + '</p></div>';
+			html += '<div class="dialogue-chat-head"></div>';
+			html += '<div class="dialogue-chat-pop"><p>' + m.message + '</p></div>';
 			html += '</div>';
     	}
     	$("#dialogue-center-chat").html(html);
