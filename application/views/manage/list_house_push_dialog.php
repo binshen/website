@@ -5,7 +5,7 @@
 	<input type="hidden" name="orderDirection" value="<?php echo $this->input->post('orderDirection');?>" />
 </form>
 <div class="pageHeader" id="dialog">
-	<form onsubmit="return validateCallback(this, dialogAjaxDone);" action="<?php echo site_url('manage/list_house_push_dialog')?>" method="post">
+	<form onsubmit="return dialogSearch(this);" action="<?php echo site_url('manage/list_house_push_dialog')?>" method="post">
 	<div class="searchBar">
 		<table class="searchContent">
 			<tr>
