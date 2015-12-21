@@ -81,14 +81,11 @@ Date.prototype.format = function(format) {
 			showMessage(messages[i]);
 		} 
 	});
-	
 	$(function() {
 		$("#btnSendMsg").click(function() {
 	    	socket.emit('send-message', JSON.stringify({ "user_id": open_id, "target_id": target_id, "user_type": 1, "message": $("#msg_box").val() }));
 	    	$("#msg_box").val("");
-		});
-		
-		//焦点图片按需加载
+		});	//焦点图片按需加载
 		var maxH = Math.max(document.documentElement.clientHeight,window.innerHeight) - 50;
 	    $('.g-doc').height(maxH);
 	});
