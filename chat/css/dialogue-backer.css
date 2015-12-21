@@ -27,7 +27,6 @@ i,em{font-style:normal;}
 .clearfix:after{content:"\20";clear:both;height:0;display:block;overflow:hidden;}
 .clearfix{*zoom:1;}
 
-
 .dialogue-main{margin:0 auto;padding:0; width: 100%; background: #f7f7f7; overflow: hidden;zoom:1;position: relative;}
 .dialogue-left{width: 18%; float: left;	position: relative; background: #f7f7f7; margin:0;padding:0;}
 .dialogue-left-head{font-size: 30px; color: #fff; font-family: Arial; background: #22252a; text-align: center; padding: 15px 0; height: 40px; margin:0;padding:0;}
