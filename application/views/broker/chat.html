@@ -73,7 +73,6 @@ Date.prototype.format = function(format) {
 	socket.on('receive-message', function (data) {
 		showMessage(data);
 	});
-	
 	socket.on('receive-history', function (data) {
 		var messages = JSON.parse(data);
 		var messages = messages.reverse();
