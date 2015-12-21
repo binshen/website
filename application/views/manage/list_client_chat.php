@@ -55,7 +55,6 @@
        </div>
   </div>
 <script src="/chat/js/single-iScroll.js" charset="gbk"></script>
-<script type="text/javascript" src="/js/jquery-1.8.3.min.js" ></script>
 <script type="text/javascript" src="http://121.40.97.183:4000/socket.io/socket.io.js"></script>
 <script>
 $(function(){
