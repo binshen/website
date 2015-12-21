@@ -101,7 +101,6 @@ for(var i; i<$('.imgToGray').length;i++){
 	$('.imgToGray')[i].src = gray($('.imgToGray')[i]);
 }
 //
-
 $("#cus-list li").click(function(){
     $("#cus-list li").removeClass('current');
     $(this).addClass('current');
