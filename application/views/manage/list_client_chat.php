@@ -106,7 +106,7 @@ for(var i; i<$('.imgToGray').length;i++){
 $("#cus-list li").click(function(){
     $("#cus-list li").removeClass('current');
     $(this).addClass('current');
-    $("#dialogue-center-name").html($(this).children().find(".cus-name").html());
+    $("#dialogue-center-name").html($(this).children().find(".dialogue-cus-name").html());
 
     var open_id = $(this).children().find(".cus-open-id").val();
     $.get('/manage/list_house_tracks/'+open_id, function(data) {
