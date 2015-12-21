@@ -26,6 +26,13 @@
 <script type="text/javascript" src="/static/js/jquery.scrollLoading.js"></script>
 <script type="text/javascript" src="http://121.40.97.183:4000/socket.io/socket.io.js"></script>
 <script>
+$(function(){
+	var maxH=Math.max(document.documentElement.clientHeight,window.innerHeight)-50;
+	var contentPx = parseInt(maxH-140)+'px';
+	$('.g-doc').height(maxH);
+	$('.dialogue-content').height(contentPx);
+});
+
 Date.prototype.format = function(format) {
     var date = {
 	    "M+": this.getMonth() + 1,
