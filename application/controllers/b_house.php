@@ -270,7 +270,7 @@ class B_house extends MY_Controller {
 		
 		$wx_user = $this->house_model->choose_broker($id);
 		if(!empty($wx_user)) {
-			//$this->api_model->update_weixin_user($wx_user['open_id']);
+			$this->api_model->update_weixin_user($wx_user['open_id']);
 			
 			$this->session->set_userdata('rel_name', $wx_user['rel_name']);
 			$this->session->set_userdata('wx_broker_id', $wx_user['broker_id']);
