@@ -434,11 +434,27 @@ body{background-color:#fff;}
 .company-info .p2{color:#fff;padding:10px 0;}.company-info .p3{ color:#fd7609;}
 
 /*聊天*/
-.dialogue-content{height:550px;overflow-y: scroll;}
-.customer{margin:15px 5px; overflow:hidden;}
-.manger{margin:15px 5px;overflow: hidden;}
-.cus_head_pic{ background:url(../images/touxiang1.jpg) no-repeat; background-size:100%; width:80px; height:67px; float:left;}
-.manger_head_pic{background:url(../images/touxiang2.jpg) no-repeat; background-size:100%; width:80px; height:67px; float:right;}
+.dialogue-detail{
+    opacity:1;
+    -webkit-transition-property:opacity;
+    -webkit-transition-duration:1s;
+    -webkit-transition-timing-function:linear;
+    -webkit-transition-delay:1.5s;z-index:20;
+    width:100%;height:100%;overflow:hidden;position:absolute;top:0px;left:0px;
+}
+.scrollDetail .iScrollLoneScrollbar{border-right:4px double #37574a!important;position:absolute!important;right:14px!important;height:100%!important;overflow:visible!important;}
+.scrollDetail .iScrollLoneScrollbar{border-right:4px double #37574a!important;position:absolute!important;right:14px!important;height:100%!important;overflow:visible!important;}
+.scrollDetail .iScrollIndicator{width:33px!important;background-color:#111!important;left:-8px!important;border-radius:13px!important;border:none!important;}
+.scrollDetail .iScrollIndicator:after{content:"";width:19px;height:18px;position:absolute;bottom:15.5%;left:7px;}
+
+.dialogue-div {position: relative;}
+.dialogue-content{position: absolute;top:60px;left:0;height:75%;width:100%;}
+
+.customer{margin:15px 10px 0; overflow:hidden;}
+.manger{margin:15px 10px 0;overflow: hidden;}
+.cus_head_pic{ background:url(../images/touxiang1.jpg) no-repeat; background-size:100%; width:60px; height:50px; float:left;}
+.manger_head_pic{background:url(../images/touxiang2.jpg) no-repeat; background-size:100%; width:60px; height:50px; float:right;}
+
 .cus_word p,.manger_word p{ color:#000;padding:10px;}
 #dialogue{ background:#efefef;}
 #dialogue .g-doc{ position:relative;}
@@ -447,9 +463,10 @@ body{background-color:#fff;}
     transform:rotate(45deg);-ms-transform:rotate(45deg);-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-0-transform:rotate(45deg);}
 .manger_word_icon{ position:absolute;top:15px;right:-8px;width:15px; height:15px;background: #fff;
     transform:rotate(45deg);-ms-transform:rotate(45deg);-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-0-transform:rotate(45deg);}
+
 .manger_word{width:300px; float:right; position:relative;}
 .cus_word p{ background:#40be19; border-radius:5px; }
-.manger_word p{ background:#fff; border:1px solid #bdbdbd;border-radius:5px;}
+.manger_word p{ background:#fff;border-radius:5px;}
 .word_submit{padding:10px;width:100%;  background:#fff; position:absolute;bottom:0;}
 .input_txt{ background:#fff; border:1px solid #bdbdbd; border-radius:5px; float:left; padding:10px; width:82%;}
 .tj_btn{ display:block; width:70px; height:47px; background:url(../images/fs_btn.jpg) no-repeat; background-size:100%; float:right;}
