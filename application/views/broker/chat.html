@@ -13,25 +13,31 @@
 <div class="g-head">
     <a href="javascript:history.go(-1);"><i class="am-icon-chevron-left"></i></a>聊天窗口
 </div>
-<div class="g-doc">
-    <div class="dialogue-content" id="dialogue-content">
-        
-    </div>
-    <div class="word_submit">
-        <input type="text" class="input_txt" id="msg_box" />
-        <div class="tj_btn" id="btnSendMsg"></div>
-    </div>
+<div class="dialogue-content" id="dialogue-content">
+	<div class="dialogue-detail" id="scrollCont1">
+		<div class="scroll" id="scorll">
+
+		</div>
+	</div>
 </div>
+<div class="word_submit">
+	<input type="text" class="input_txt" id="msg_box" />
+	<div class="tj_btn" id="btnSendMsg"></div>
+</div>
+
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/jquery.scrollLoading.js"></script>
+<script type="text/javascript" src="js/zepto.js"></script>
 <script type="text/javascript" src="http://121.40.97.183:4000/socket.io/socket.io.js"></script>
 <script>
-$(function(){
-	var maxH=Math.max(document.documentElement.clientHeight,window.innerHeight)-50;
-	var contentPx = parseInt(maxH-140)+'px';
-	$('.g-doc').height(maxH);
-	$('.dialogue-content').height(contentPx);
-});
+	//模拟滚动条
+	window.myScroll = new IScroll('#scrollCont1', {
+		scrollbars: true,
+		mouseWheel: true,
+		interactiveScrollbars: true,
+		shrinkScrollbars: 'scale',
+		fadeScrollbars: false
+	});
 
 Date.prototype.format = function(format) {
     var date = {
@@ -108,7 +114,9 @@ Date.prototype.format = function(format) {
 			content += date.format('yyyy-MM-dd h:m:s');
 			content += '</span></p><span class="manger_word_icon"></span></div></div>';
 		}
-		$("#dialogue-content").append(content);
+		$("#scorll").append(content);
+		myScroll.refresh();
+		myScroll.scrollToElement("#scorll>div:last-child",3000);
 	}
 </script>
 </body>
