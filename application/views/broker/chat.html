@@ -87,8 +87,11 @@ Date.prototype.format = function(format) {
 	});
 	$(function() {
 		$("#btnSendMsg").click(function() {
-	    	socket.emit('send-message', JSON.stringify({ "user_id": open_id, "target_id": target_id, "user_type": 1, "message": $("#msg_box").val() }));
-	    	$("#msg_box").val("");
+			var message = trim($("#msg_box").val());
+			if(message !== ""){
+		    	socket.emit('send-message', JSON.stringify({ "user_id": open_id, "target_id": target_id, "user_type": 1, "message":  }));
+		    	$("#msg_box").val("");
+			}
 		});
 	});
 	
@@ -114,6 +117,10 @@ Date.prototype.format = function(format) {
 		$("#scorll").append(content);
 		myScroll.refresh();
 		myScroll.scrollToElement("#scorll>div:last-child",1500);
+	}
+	
+	function trim(str) {
+		return str.replace(/(^\s+)|(\s+$)/g, "");
 	}
 </script>
 </body>
