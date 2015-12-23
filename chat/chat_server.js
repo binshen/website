@@ -24,6 +24,13 @@ var getSocketKey = function(user_type, user_id, target_id) {
 	}
 }
 
+function trim(str) {
+	if(typeof(str) === 'string') {
+		return str.replace(/(^\s+)|(\s+$)/g, "");
+	}
+	return str;
+}
+
 Array.prototype.contains = function (obj) {  
     var i = this.length;  
     while (i--) {  
@@ -86,6 +93,10 @@ io.sockets.on('connection', function (socket) {
 	
 	socket.on('send-message',function(data){
 		var data = JSON.parse(data);
+		var message = data.message
+		if(undefined !== message || null !== message || "" === trim(message)) {
+			return;
+		}
 		var user_id = data.user_id;
 		var target_id = data.target_id;
 		var user_type = data.user_type;
@@ -108,7 +119,7 @@ io.sockets.on('connection', function (socket) {
 		var target_id = data.target_id;
 		var user_type = data.user_type;
 		var socket_key = getSocketKey(user_type, user_id, target_id);
-		client.lrange(chat_key + socket_key, -10, -1, function(err, res) {
+		client.lrange(chat_key + socket_key, 0, 10, function(err, res) {
 			if(undefined !== sockets[user_id] && null !== sockets[user_id]) {
 				sockets[user_id].emit('receive-history', JSON.stringify(res));
 			}
