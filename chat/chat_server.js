@@ -63,12 +63,13 @@ io.sockets.on('connection', function (socket) {
 		setTimeout(function() {
 			for(var index in sockets) {
 				if(sockets[index] == socket) {
+					console.log('disconnect - index - ' + index)
 					delete users[index];
 					delete sockets[index];
 					break;
 				}
 			}
-		}, 5000)
+		}, 1000)
 	});
 	
 	socket.on('list-user',function(data){
