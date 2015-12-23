@@ -87,8 +87,8 @@ Date.prototype.format = function(format) {
 	});
 	$(function() {
 		$("#btnSendMsg").click(function() {
-			var message = trim($("#msg_box").val());
-			if(message !== ""){
+			var message = $("#msg_box").val();
+			if(trim(message) !== ""){
 		    	socket.emit('send-message', JSON.stringify({ "user_id": open_id, "target_id": target_id, "user_type": 1, "message": message }));
 		    	$("#msg_box").val("");
 			}
