@@ -27,7 +27,7 @@
 
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/jquery.scrollLoading.js"></script>
-<script type="text/javascript" src="/static/js/js/zepto.js"></script>
+<script type="text/javascript" src="/static/js/zepto.js"></script>
 <script type="text/javascript" src="http://121.40.97.183:4000/socket.io/socket.io.js"></script>
 <script>
 	//模拟滚动条
@@ -90,9 +90,7 @@ Date.prototype.format = function(format) {
 		$("#btnSendMsg").click(function() {
 	    	socket.emit('send-message', JSON.stringify({ "user_id": open_id, "target_id": target_id, "user_type": 1, "message": $("#msg_box").val() }));
 	    	$("#msg_box").val("");
-		});	//焦点图片按需加载
-		var maxH = Math.max(document.documentElement.clientHeight,window.innerHeight) - 50;
-	    $('.g-doc').height(maxH);
+		});
 	});
 	
 	function showMessage(d) {
@@ -116,7 +114,7 @@ Date.prototype.format = function(format) {
 		}
 		$("#scorll").append(content);
 		myScroll.refresh();
-		myScroll.scrollToElement("#scorll>div:last-child",3000);
+		myScroll.scrollToElement("#scorll>div:last-child",1500);
 	}
 </script>
 </body>
