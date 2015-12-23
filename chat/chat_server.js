@@ -16,15 +16,11 @@ var users = [];
 var sockets = [];
 var chat_key = "chat:";
 
-var getSocketKey = function(user_type, user_id, target_id) {
-	if(user_type == 1) {
-		return user_id + ":" + target_id;
-	} else {
-		return target_id + ":" + user_id;
-	}
+var getKey = function(user_type, user_id, target_id) {
+	return chat_key + ( user_type == 1 ? user_id + ":" + target_id : target_id + ":" + user_id)
 }
 
-function trim(str) {
+var trim = function(str) {
 	if(typeof(str) === 'string') {
 		return str.replace(/(^\s+)|(\s+$)/g, "");
 	}
@@ -52,7 +48,7 @@ io.sockets.on('connection', function (socket) {
 		
 		var user_type = data.user_type;
 		if(user_type == 1) {
-			
+			socket.emit('show-status', JSON.stringify({ status: users.contains(data.target_id) }));
 		}
 	});
 	
@@ -94,7 +90,7 @@ io.sockets.on('connection', function (socket) {
 	socket.on('send-message',function(data){
 		var data = JSON.parse(data);
 		var message = data.message
-		if(undefined !== message || null !== message || "" === trim(message)) {
+		if(undefined === message || null === message || "" === trim(message)) {
 			return;
 		}
 		var user_id = data.user_id;
@@ -102,8 +98,8 @@ io.sockets.on('connection', function (socket) {
 		var user_type = data.user_type;
 		data['time'] = (new Date()).getTime();
 		var json = JSON.stringify(data)
-		var socket_key = getSocketKey(user_type, user_id, target_id);
-		client.lpush(chat_key + socket_key, json, function(err, res){
+		var socket_key = getKey(user_type, user_id, target_id);
+		client.lpush(socket_key, json, function(err, res){
 			if(undefined !== sockets[user_id] && null !== sockets[user_id]) {
 				sockets[user_id].emit('receive-message', json);
 			}
@@ -118,8 +114,8 @@ io.sockets.on('connection', function (socket) {
 		var user_id = data.user_id;
 		var target_id = data.target_id;
 		var user_type = data.user_type;
-		var socket_key = getSocketKey(user_type, user_id, target_id);
-		client.lrange(chat_key + socket_key, 0, 10, function(err, res) {
+		var socket_key = getKey(user_type, user_id, target_id);
+		client.lrange(socket_key, 0, 10, function(err, res) {
 			if(undefined !== sockets[user_id] && null !== sockets[user_id]) {
 				sockets[user_id].emit('receive-history', JSON.stringify(res));
 			}
