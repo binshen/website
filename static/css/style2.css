@@ -480,7 +480,6 @@ body{background-color:#fff;}
     }
 }
 .am-icon-comments-on:before{color:#ff0000;-webkit-animation: twinkling 1s infinite ease-in-out;}
-
 @media screen and (width: 320px){.cus_word,.manger_word{ width:230px;}.input_txt{width:75%;}}
 @media screen and (width: 375px){.cus_word,.manger_word{ width:280px;}.input_txt{width:80%;}}
 
