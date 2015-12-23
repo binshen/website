@@ -115,7 +115,7 @@ io.sockets.on('connection', function (socket) {
 		var target_id = data.target_id;
 		var user_type = data.user_type;
 		var socket_key = getKey(user_type, user_id, target_id);
-		client.lrange(socket_key, 0, 10, function(err, res) {
+		client.lrange(socket_key, 0, 19, function(err, res) {
 			if(undefined !== sockets[user_id] && null !== sockets[user_id]) {
 				sockets[user_id].emit('receive-history', JSON.stringify(res));
 			}

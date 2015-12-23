@@ -82,6 +82,7 @@
 	socket.on('show-status',function(data){
 		var data = JSON.parse(data);
 		var status = data.status;
+		alert(status);
 		if(status) {
 			$("#status").text(" - 在线");
 		} else {
