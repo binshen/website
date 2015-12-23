@@ -450,8 +450,8 @@ body{background-color:#fff;}
 .dialogue-div {position: relative;}
 .dialogue-content{position: absolute;top:60px;left:0;height:75%;width:100%;}
 
-.customer{margin:15px 10px 0; overflow:hidden;}
-.manger{margin:15px 10px 0;overflow: hidden;}
+.customer{margin:0 10px 15px; overflow:hidden;}
+.manger{margin:0 10px 15px;overflow: hidden;}
 .cus_head_pic{ background:url(../images/touxiang1.jpg) no-repeat; background-size:100%; width:50px; height:42px; float:left;}
 .manger_head_pic{background:url(../images/touxiang2.jpg) no-repeat; background-size:100%; width:50px; height:42px; float:right;}
 
