@@ -3,7 +3,7 @@ var redis = require("redis"), client = redis.createClient(redis_port, redis_host
 
 var mysql = require("mysql");
 var connection = mysql.createConnection({
-	host: '127.0.0.1',
+	host: '121.40.97.183',
 	user: 'root',
 	password: 'soukecsk',
 	database: 'funmall'
@@ -37,21 +37,46 @@ Array.prototype.contains = function (obj) {
     return false;  
 }
 
+Array.prototype.remove = function(val) {
+	for(var i=0; i<this.length; i++) {
+		if(this[i] == val) {
+			this.splice(i, 1);
+			break;
+		}
+	}
+}
+
 io.sockets.on('connection', function (socket) {
 	socket.on('online',function(data){
 		var data = JSON.parse(data);
 		console.log('online - ' + JSON.stringify(data))
 		
 		var user_id = data.user_id;
-		if(undefined === users[user_id] || null === users[user_id]) {
+		if(!users.contains(user_id)) {
 			users.unshift(user_id);
 		}
 		sockets[user_id] = socket;
+		
+		console.log('online - users - ' + JSON.stringify(users))
 		
 		var user_type = data.user_type;
 		if(user_type == 1) {
 			console.log('online - status - ' + users.contains(data.target_id))
 			socket.emit('show-status', JSON.stringify({ status: users.contains(data.target_id) }));
+		} else {
+			/*
+			var sql = "SELECT DISTINCT open_id FROM wx_user WHERE broker_id = " + user_id + " AND open_id IS NOT NULL AND open_id <> ''";
+			connection.query(sql, function(err, rows, fields) {
+			    if (err) throw err;
+			    for(var i in rows) {
+			    	var open_id = rows[i].open_id;
+					if(users.contains(open_id)) {
+						sockets[open_id].emit('show-status', JSON.stringify({ status: 1 }));
+					}
+				}
+			});
+			connection.end()
+			*/
 		}
 	});
 	
@@ -64,8 +89,8 @@ io.sockets.on('connection', function (socket) {
 			for(var index in sockets) {
 				if(sockets[index] == socket) {
 					console.log('disconnect - index - ' + index)
-					delete users[index];
-					delete sockets[index];
+					users.remove(index);
+					sockets.remove(socket);
 					break;
 				}
 			}
@@ -79,14 +104,14 @@ io.sockets.on('connection', function (socket) {
 		var sql = "SELECT DISTINCT open_id FROM wx_user WHERE broker_id = " + broker_id + " AND open_id IS NOT NULL AND open_id <> ''";
 		connection.query(sql, function(err, rows, fields) {
 		    if (err) throw err;
-		    var online_users = []
+		    var _users= []
 		    for(var i in rows) {
 				var open_id = rows[i].open_id
 				if(users.contains(open_id)) {
-					online_users.push(open_id);
+					_users.push(open_id);
 				}
 			}
-		    socket.emit('show-user', JSON.stringify({ users: online_users }));
+		    socket.emit('show-user', JSON.stringify({ users: _users }));
 		});
 		connection.end()
 	});

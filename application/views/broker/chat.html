@@ -92,11 +92,12 @@
 	socket.on('receive-message', function (data) {
 		showMessage(data);
 		
+/*
 		var d = JSON.parse(data)
 		if(open_id !== m.user_id) {
-			alert("123");
 			play_ring("/chat/ring/msg.wav");
 		}
+*/
 	});
 	
 	socket.on('receive-history', function (data) {
@@ -124,17 +125,17 @@
 		date.setTime(d.time);
 		var content = '';
 		if(d.user_type == 1) {
-			content += '<div class="manger"><div class="manger_head_pic"></div><div class="manger_word"><p>';
-			content += message;
-			content += '<br /><span class="data-time">';
-			content += date.format('yyyy-MM-dd h:m:s');
-			content += '</span></p><span class="manger_word_icon"></span></div></div>';
-		} else {
 			content += '<div class="customer"><div class="cus_head_pic"></div><div class="cus_word"><p>';
 			content += message;
 			content += '<br /><span class="data-time">'
 			content += date.format('yyyy-MM-dd h:m:s');
 			content += '</span></p><span class="cus_word_icon"></span></div></div>';
+		} else {
+			content += '<div class="manger"><div class="manger_head_pic"></div><div class="manger_word"><p>';
+			content += message;
+			content += '<br /><span class="data-time">';
+			content += date.format('yyyy-MM-dd h:m:s');
+			content += '</span></p><span class="manger_word_icon"></span></div></div>';
 		}
 		$("#scorll").append(content);
 		myScroll.refresh();
