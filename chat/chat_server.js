@@ -40,6 +40,8 @@ Array.prototype.contains = function (obj) {
 io.sockets.on('connection', function (socket) {
 	socket.on('online',function(data){
 		var data = JSON.parse(data);
+		console.log('online - ' + JSON.stringify(data))
+		
 		var user_id = data.user_id;
 		if(undefined === users[user_id] || null === users[user_id]) {
 			users.unshift(user_id);
@@ -48,6 +50,7 @@ io.sockets.on('connection', function (socket) {
 		
 		var user_type = data.user_type;
 		if(user_type == 1) {
+			console.log('online - status - ' + users.contains(data.target_id))
 			socket.emit('show-status', JSON.stringify({ status: users.contains(data.target_id) }));
 		}
 	});
