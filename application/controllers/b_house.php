@@ -281,7 +281,7 @@ class B_house extends MY_Controller {
 			$redis->connect('127.0.0.1', 6379);
 			if(!empty($o_bid)) {
 				$o_key = "map:" . $o_bid;
-				$redis->lrem($o_key, 0, $open_id);
+				$redis->lrem($o_key, $open_id, 0);
 			}
 			
 			$key = "map:" . $broker_id;
