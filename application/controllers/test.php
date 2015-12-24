@@ -18,7 +18,13 @@ class Test extends MY_Controller {
 	}
 	
 	public function info() {
-		phpinfo();
+		//phpinfo();
+		
+		$redis = new Redis();
+		$redis->connect('127.0.0.1', 6379);
+		
+		$chat_data = $redis->lrange("chat:orFu-vgK-snskoQdDgMkBe-jFe1k:2", 0, -1);
+		var_dump($chat_data);
 	}
 	
 	public function index() {
