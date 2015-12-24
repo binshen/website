@@ -31,7 +31,7 @@ var contains = function(arr, obj) {
             return true;  
         }  
     }  
-    return false;  
+    return false;
 }
 
 var remove = function(arr, val) {

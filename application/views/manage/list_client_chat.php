@@ -28,16 +28,6 @@
        <div class="dialogue-center">
           <div class="dialogue-center-name" id="dialogue-center-name">请选择想要聊天的客户</div>
           <div class="dialogue-center-chat" id="dialogue-center-chat">
-          	<!--
-          	<div class="dialogue-chat-div dialogue-chat-div-female dialogue-chat-div-customer">
-               <div class="dialogue-chat-head"></div>
-               <div class="dialogue-chat-pop"><p>你好，请问有什么问题</p></div>
-            </div>
-            <div class="dialogue-chat-div dialogue-chat-div-male dialogue-chat-div-manage">
-               <div class="dialogue-chat-head"></div>
-               <div class="dialogue-chat-pop"><p>你好，请问有什么问题</p></div>
-            </div>
-            -->
           </div>
           <div class="dialogue-center-input">
               <div class="dialogue-chat-txt-input">
@@ -107,6 +97,8 @@ $("#cus-list li").click(function(){
     $("#dialogue-center-name").html($(this).children().find(".dialogue-cus-name").html());
 
     var open_id = $(this).children().find(".cus-open-id").val();
+	$("#selectBroker").val(open_id);
+    
     $.get('/manage/list_house_tracks/'+open_id, function(data) {
 		var data = JSON.parse(data);
 		var html = "";
@@ -187,7 +179,7 @@ $("#cus-list li").click(function(){
 	});
 
     $("#btnSendMsg").click(function() {
-    	socket.emit('send-message', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2, "message": $("#msg_box").val() }));
+    	socket.emit('send-message', JSON.stringify({ "user_id": broker_id, "target_id": $("#selectBroker").val(), "user_type": 2, "message": $("#msg_box").val() }));
     	$("#msg_box").val("");
 	});
 })
@@ -198,5 +190,6 @@ function play_ring(url){
 }
 </script>
 <div id="ring" style="width:0px; height:0px;"></div>
+<input type="hidden" id="selectBroker" value="" />
 </body>
 
