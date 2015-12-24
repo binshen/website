@@ -282,7 +282,7 @@ class B_house extends MY_Controller {
 			if(!empty($o_bid)) {
 				$o_key = "map:" . $o_bid;
 				//$redis->lrem($o_key, $open_id, 0);
-				$o_users = $redis->lrange($key, 0, -1);
+				$o_users = $redis->lrange($o_key, 0, -1);
 				if(in_array($open_id, $o_users)) {
 					unset($o_users[$o_key]);
 					$redis->lpush($o_key, $open_id);
