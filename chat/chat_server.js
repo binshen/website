@@ -54,11 +54,12 @@ Array.prototype.remove = function(val) {
 }
 
 var updateStatus = function(broker_id, status) {
-	client.lrange(getMapKey(broker_id), 0, -1, function(err, res) {
-		var user_list = JSON.stringify(res);
-		console.log('online - update_status - status = ' + status + ' users = ' + user_list)
-		for(var i in user_list) {
-			var user_id = user_list[i];
+	client.lrange(getMapKey(broker_id), 0, -1, function(err, _users) {
+		console.log('update_status - users = ' + JSON.stringify(_users))
+		for(var i in _users) {
+			var user_id = _users[i];
+			console.log('update_status - user_id = ' + user_id + ' status = ' + status)
+			
 			var _socket = sockets[user_id];
 			if(undefined !== _socket && null !== _socket) {
 				_socket.emit('show-status', JSON.stringify({ status: status }));
