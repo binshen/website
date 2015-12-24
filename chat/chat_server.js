@@ -1,16 +1,6 @@
 var redis_host = '127.0.0.1', redis_port = 6379;
 var redis = require("redis"), client = redis.createClient(redis_port, redis_host);
 
-/*
-var mysql = require("mysql");
-var connection = mysql.createConnection({
-	host: '121.40.97.183',
-	user: 'root',
-	password: 'soukecsk',
-	database: 'funmall'
-})
-*/
-
 var io = require('socket.io').listen(4000);
 io.set('transports', ['websocket' ,'flashsocket' ,'htmlfile' ,'xhr-polling' ,'polling']);
 
@@ -34,33 +24,31 @@ var trim = function(str) {
 	return str;
 }
 
-Array.prototype.contains = function (obj) {  
-    var i = this.length;  
+var contains = function(arr, obj) {
+	var i = arr.length;  
     while (i--) {  
-        if (this[i] === obj) {  
+        if (arr[i] === obj) {  
             return true;  
         }  
     }  
     return false;  
 }
 
-Array.prototype.remove = function(val) {
+var remove = function(arr, val) {
 	for(var i=0; i<this.length; i++) {
-		if(this[i] == val) {
-			this.splice(i, 1);
+		if(arr[i] == val) {
+			arr.splice(i, 1);
 			break;
 		}
 	}
 }
 
 var updateStatus = function(broker_id, status) {
-	client.lrange(getMapKey(broker_id), 0, -1, function(err, _users) {
-		console.log('update_status - users = ' + JSON.stringify(_users))
-		for(var i in _users) {
-			var user_id = _users[i];
-			console.log('update_status - user_id = ' + user_id + ' status = ' + status)
-			
-			var _socket = sockets[user_id];
+	client.lrange(getMapKey(broker_id), 0, -1, function(err, res) {
+		console.log('update_status - users = ' + JSON.stringify(res) + ' length = ' + res.length)
+		for(var i in res) {
+			console.log('update_status - user_id = ' + res[i] + ' status = ' + status)
+			var _socket = sockets[res[i]];
 			if(undefined !== _socket && null !== _socket) {
 				_socket.emit('show-status', JSON.stringify({ status: status }));
 			}
@@ -74,7 +62,7 @@ io.sockets.on('connection', function (socket) {
 		console.log('online - ' + JSON.stringify(data))
 		
 		var user_id = data.user_id;
-		if(!users.contains(user_id)) {
+		if(!contains(users, user_id)) {
 			users.unshift(user_id);
 		}
 		console.log('online - users - ' + JSON.stringify(users));
@@ -83,8 +71,8 @@ io.sockets.on('connection', function (socket) {
 		
 		var user_type = data.user_type;
 		if(user_type == 1) {
-			console.log('online - user_type = 1 - status - ' + users.contains(data.target_id));
-			socket.emit('show-status', JSON.stringify({ status: users.contains(data.target_id) }));
+			console.log('online - user_type = 1 - status - ' + contains(users, data.target_id));
+			socket.emit('show-status', JSON.stringify({ status: contains(users, data.target_id) }));
 		} else {
 			console.log('online - user_type = 2 - status = true');
 			updateStatus(user_id, true);
@@ -100,36 +88,15 @@ io.sockets.on('connection', function (socket) {
 			for(var user_id in sockets) {
 				if(sockets[user_id] == socket) {
 					console.log('disconnect - user_id = ' + user_id)
-					users.remove(user_id);
-					sockets.remove(socket);
-					
 					updateStatus(user_id, false);
+					
+					remove(users, user_id);
+					remove(sockets, socket);
 					break;
 				}
 			}
 		}, 1000)
 	});
-	
-/*
-	socket.on('list-user',function(data){
-		var data = JSON.parse(data);
-		var broker_id = data.broker_id;
-		connection.connect();
-		var sql = "SELECT DISTINCT open_id FROM wx_user WHERE broker_id = " + broker_id + " AND open_id IS NOT NULL AND open_id <> ''";
-		connection.query(sql, function(err, rows, fields) {
-		    if (err) throw err;
-		    var _users= []
-		    for(var i in rows) {
-				var open_id = rows[i].open_id
-				if(users.contains(open_id)) {
-					_users.push(open_id);
-				}
-			}
-		    socket.emit('show-user', JSON.stringify({ users: _users }));
-		});
-		connection.end()
-	});
-*/
 	
 	socket.on('send-message',function(data){
 		var data = JSON.parse(data);
