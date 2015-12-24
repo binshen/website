@@ -151,7 +151,7 @@ $("#cus-list li").click(function(){
 		
 		$("#dialogue-center-chat").append(html);
 
-		if(broker_id !== m.user_id) {
+		if(broker_id !== data.user_id) {
 			play_ring("/chat/ring/msg.wav");
 		}
 
@@ -180,15 +180,15 @@ $("#cus-list li").click(function(){
 	});
 })
 
-function getMessageText(m) {
+function getMessageText(data) {
 	var html = "";
-	if(m.user_type == 1) {
+	if(data.user_type == 1) {
 		html += '<div class="dialogue-chat-div dialogue-chat-div-female dialogue-chat-div-customer">';
 	} else {
 		html += '<div class="dialogue-chat-div dialogue-chat-div-male dialogue-chat-div-manage">';
 	}
 	html += '<div class="dialogue-chat-head"></div>';
-	html += '<div class="dialogue-chat-pop"><p>' + m.message + '</p></div>';
+	html += '<div class="dialogue-chat-pop"><p>' + data.message + '</p></div>';
 	html += '</div>';
 	return html
 }
