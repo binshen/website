@@ -74,13 +74,9 @@ io.sockets.on('connection', function (socket) {
 			users.unshift(user_id);
 		}
 		console.log('online - users - ' + JSON.stringify(users));
-
-		if(containKey(sockets, user_id)) {
-			socket = sockets[user_id];
-		} else {
-			sockets[user_id] = socket;
-		}
-		console.log('online - sockets - length = ' + Object.keys(sockets).length);
+		
+		sockets[user_id] = socket;
+		console.log('online - sockets - keys = ' + JSON.stringify(Object.keys(sockets)) + ' length = ' + Object.keys(sockets).length);
 		
 		var user_type = data.user_type;
 		if(user_type == 1) {
