@@ -266,22 +266,28 @@ class B_house extends MY_Controller {
 		$this->display('broker/chat.html');
 	}
 	
-	public function choose_broker($id) {
+	public function choose_broker($id, $o_bid=NULL) {
 		
 		$wx_user = $this->house_model->choose_broker($id);
 		if(!empty($wx_user)) {
-			$this->api_model->update_weixin_user($wx_user['open_id']);
+			$open_id = $wx_user['open_id'];
+			$broker_id = $wx_user['broker_id'];
+			$this->api_model->update_weixin_user($open_id);
 			
 			$this->session->set_userdata('rel_name', $wx_user['rel_name']);
-			$this->session->set_userdata('wx_broker_id', $wx_user['broker_id']);
+			$this->session->set_userdata('wx_broker_id', $broker_id);
 			
 			$redis = new Redis();
 			$redis->connect('127.0.0.1', 6379);
+			if(!empty($o_bid)) {
+				$o_key = "map:" . $o_bid;
+				$redis.lrem($o_key, 0, $open_id);
+			}
 			
-			$key = "map:" . $wx_user['broker_id'];
-			$users = $redis->lrange($key, 0, -1);
-			if(!in_array($wx_user['open_id'], $users)) {
-				$redis->lpush($key, $wx_user['open_id']);
+			$key = "map:" . $broker_id;
+			$users = $redis->smembers($key);// lrange($key, 0, -1);
+			if(!in_array($open_id, $users)) {
+				$redis->lpush($key, $open_id);
 			}
 		}
 		$this->view_list(1);
