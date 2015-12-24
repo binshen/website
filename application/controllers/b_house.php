@@ -285,7 +285,7 @@ class B_house extends MY_Controller {
 			}
 			
 			$key = "map:" . $broker_id;
-			$users = $redis->smembers($key);// lrange($key, 0, -1);
+			$users = $redis->lrange($key, 0, -1); //smembers($key);
 			if(!in_array($open_id, $users)) {
 				$redis->lpush($key, $open_id);
 			}
