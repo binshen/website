@@ -285,7 +285,7 @@ class B_house extends MY_Controller {
 				$o_users = $redis->lrange($o_key, 0, -1);
 				if(in_array($open_id, $o_users)) {
 					unset($o_users[$o_key]);
-					$redis->lpush($o_key, $open_id);
+					$redis->set($o_key, $o_users);
 				}
 			}
 			
