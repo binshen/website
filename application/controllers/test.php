@@ -17,6 +17,9 @@ class Test extends MY_Controller {
 		$this->load->model('manage_model');
 	}
 	
+	public function info() {
+		phpinfo();
+	}
 	
 	public function index() {
 		
