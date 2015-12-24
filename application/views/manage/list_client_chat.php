@@ -143,7 +143,12 @@ $("#cus-list li").click(function(){
 
 	socket.on('receive-message', function (data) {
 		var data = JSON.parse(data);
+		console.log("----------------MESSAGE------------------");
+		console.log(data);
+		
 		var html = getMessageText(data);
+		console.log(html);
+		
 		$("#dialogue-center-chat").append(html);
 
 		if(broker_id !== m.user_id) {
