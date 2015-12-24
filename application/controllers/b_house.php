@@ -279,7 +279,10 @@ class B_house extends MY_Controller {
 			$redis->connect('127.0.0.1', 6379);
 			
 			$key = "map:" . $id;
-			$redis->lpush($key, $wx_user['open_id']);
+			$users = $redis->lrange($key, 0, -1);
+			if(!in_array($wx_user['open_id'], $users)) {
+				$redis->lpush($key, $wx_user['open_id']);
+			}
 		}
 		$this->view_list(1);
 	}
