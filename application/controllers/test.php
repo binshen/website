@@ -17,6 +17,15 @@ class Test extends MY_Controller {
 		$this->load->model('manage_model');
 	}
 	
+	public function test($id=2) {
+		$redis = new Redis();
+		$redis->connect('121.40.97.183', 6379);
+		
+		$key = "map:" . $id;
+		$users = $redis->lrange($key, 0, -1);
+		var_dump($users);
+	}
+	
 	public function info() {
 		//phpinfo();
 		

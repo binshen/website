@@ -278,7 +278,7 @@ class B_house extends MY_Controller {
 			$redis = new Redis();
 			$redis->connect('127.0.0.1', 6379);
 			
-			$key = "map:" . $id;
+			$key = "map:" . $wx_user['broker_id'];
 			$users = $redis->lrange($key, 0, -1);
 			if(!in_array($wx_user['open_id'], $users)) {
 				$redis->lpush($key, $wx_user['open_id']);
