@@ -104,6 +104,8 @@ io.sockets.on('connection', function (socket) {
 		if(undefined === message || null === message || "" === trim(message)) {
 			return;
 		}
+		console.log('send-message - ' + JSON.stringify(data));
+		
 		var user_id = data.user_id;
 		var target_id = data.target_id;
 		var user_type = data.user_type;
@@ -121,6 +123,7 @@ io.sockets.on('connection', function (socket) {
 	});
 	
 	socket.on('show-history',function(data){
+		console.log('show-history - ' + data);
 		var data = JSON.parse(data);
 		var user_id = data.user_id;
 		var target_id = data.target_id;

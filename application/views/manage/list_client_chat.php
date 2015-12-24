@@ -97,7 +97,7 @@ $("#cus-list li").click(function(){
     $("#dialogue-center-name").html($(this).children().find(".dialogue-cus-name").html());
 
     var open_id = $(this).children().find(".cus-open-id").val();
-	$("#selectBroker").val(open_id);
+	$("#selectedUser").val(open_id);
     
     $.get('/manage/list_house_tracks/'+open_id, function(data) {
 		var data = JSON.parse(data);
@@ -132,6 +132,7 @@ $("#cus-list li").click(function(){
     var socket = io.connect('http://121.40.97.183:4000');
     socket.emit('online', JSON.stringify({ "user_id": broker_id, "user_type": 2 }));
     socket.emit('show-history', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2 }));
+    
     socket.on('disconnect',function(){
 		console.log('disconnected')
 	});
@@ -141,16 +142,8 @@ $("#cus-list li").click(function(){
 	});
 
 	socket.on('receive-message', function (data) {
-		var html = "";
-		var m = JSON.parse(data);
-		if(m.user_type == 1) {
-			html += '<div class="dialogue-chat-div dialogue-chat-div-female dialogue-chat-div-customer">';
-		} else {
-			html += '<div class="dialogue-chat-div dialogue-chat-div-male dialogue-chat-div-manage">';
-		}
-		html += '<div class="dialogue-chat-head"></div>';
-		html += '<div class="dialogue-chat-pop"><p>' + m.message + '</p></div>';
-		html += '</div>';
+		var data = JSON.parse(data);
+		var html = getMessageText(data);
 		$("#dialogue-center-chat").append(html);
 
 		if(broker_id !== m.user_id) {
@@ -161,28 +154,39 @@ $("#cus-list li").click(function(){
 	});
 
     socket.on('receive-history', function (data) {
-    	var messages = JSON.parse(data);
-    	var messages = messages.reverse();
+    	var data = JSON.parse(data);
+    	var messages = data.reverse();
     	var html = "";
     	for(var i in messages) {
-			var m = JSON.parse(messages[i]);
-			if(m.user_type == 1) {
-				html += '<div class="dialogue-chat-div dialogue-chat-div-female dialogue-chat-div-customer">';
-			} else {
-				html += '<div class="dialogue-chat-div dialogue-chat-div-male dialogue-chat-div-manage">';
-			}
-			html += '<div class="dialogue-chat-head"></div>';
-			html += '<div class="dialogue-chat-pop"><p>' + m.message + '</p></div>';
-			html += '</div>';
+        	var message = JSON.parse(messages[i])
+			html += getMessageText(JSON.parse(messages[i]))
     	}
     	$("#dialogue-center-chat").html(html);
 	});
 
     $("#btnSendMsg").click(function() {
-    	socket.emit('send-message', JSON.stringify({ "user_id": broker_id, "target_id": $("#selectBroker").val(), "user_type": 2, "message": $("#msg_box").val() }));
+    	socket.emit('send-message', JSON.stringify({ 
+        	"user_id": broker_id, 
+        	"target_id": $("#selectedUser").val(), 
+        	"user_type": 2, 
+        	"message": $("#msg_box").val() 
+        }));
     	$("#msg_box").val("");
 	});
 })
+
+function getMessageText(m) {
+	var html = "";
+	if(m.user_type == 1) {
+		html += '<div class="dialogue-chat-div dialogue-chat-div-female dialogue-chat-div-customer">';
+	} else {
+		html += '<div class="dialogue-chat-div dialogue-chat-div-male dialogue-chat-div-manage">';
+	}
+	html += '<div class="dialogue-chat-head"></div>';
+	html += '<div class="dialogue-chat-pop"><p>' + m.message + '</p></div>';
+	html += '</div>';
+	return html
+}
 
 function play_ring(url){
 	var embed = '<embed id="ring" src="'+url+'" loop="0" autostart="true" hidden="true" style="height:0px; width:0px;0px;"></embed>';
@@ -190,6 +194,6 @@ function play_ring(url){
 }
 </script>
 <div id="ring" style="width:0px; height:0px;"></div>
-<input type="hidden" id="selectBroker" value="" />
+<input type="hidden" id="selectedUser" value="" />
 </body>
 
