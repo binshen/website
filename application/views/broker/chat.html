@@ -11,7 +11,7 @@
 </head>
 <body id="dialogue">
 <div class="g-head">
-    <a href="javascript:history.go(-1);"><i class="am-icon-chevron-left"></i></a>聊天窗口
+    <a href="javascript:history.go(-1);"><i class="am-icon-chevron-left"></i></a>聊天窗口<span id="status"></span>
 </div>
 <div class="dialogue-content" id="dialogue-content">
 	<div class="dialogue-detail" id="scrollCont1">
@@ -38,33 +38,37 @@
 		fadeScrollbars: false
 	});
 
-Date.prototype.format = function(format) {
-    var date = {
-	    "M+": this.getMonth() + 1,
-	    "d+": this.getDate(),
-	    "h+": this.getHours(),
-	    "m+": this.getMinutes(),
-	    "s+": this.getSeconds(),
-	    "q+": Math.floor((this.getMonth() + 3) / 3),
-	    "S+": this.getMilliseconds()
-    };
-    if (/(y+)/i.test(format)) {
-        format = format.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
-    }
-    for (var k in date) {
-	    if (new RegExp("(" + k + ")").test(format)) {
-        	format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? date[k] : ("00" + date[k]).substr(("" + date[k]).length));
+	Date.prototype.format = function(format) {
+	    var date = {
+		    "M+": this.getMonth() + 1,
+		    "d+": this.getDate(),
+		    "h+": this.getHours(),
+		    "m+": this.getMinutes(),
+		    "s+": this.getSeconds(),
+		    "q+": Math.floor((this.getMonth() + 3) / 3),
+		    "S+": this.getMilliseconds()
+	    };
+	    if (/(y+)/i.test(format)) {
+	        format = format.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
 	    }
-    }
-    return format;
-}
+	    for (var k in date) {
+		    if (new RegExp("(" + k + ")").test(format)) {
+	        	format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? date[k] : ("00" + date[k]).substr(("" + date[k]).length));
+		    }
+	    }
+	    return format;
+	}
+	
+	function trim(str) {
+		return str.replace(/(^\s+)|(\s+$)/g, "");
+	}
 </script>
 <script type="text/javascript">
 	var open_id = '{{$open_id}}';
 	var target_id = '{{$broker_id}}';
 	var socket = io.connect('http://121.40.97.183:4000');
 	
-	socket.emit('online', JSON.stringify({ "user_id": open_id, "user_type": 1 }));
+	socket.emit('online', JSON.stringify({ "user_id": open_id, "target_id": target_id, "user_type": 1 }));
 	socket.emit('show-history', JSON.stringify({ "user_id": open_id, "target_id": target_id, "user_type": 1 }));
 	
 	socket.on('disconnect',function(){
@@ -75,9 +79,27 @@ Date.prototype.format = function(format) {
 		console.log('reconnected')
 	});
 	
+	socket.on('show-status',function(data){
+		var data = JSON.parse(data);
+		var status = data.status;
+		if(status) {
+			$("#status").text(" - 在线");
+		} else {
+			$("#status").text(" - 离线");
+		}
+	});
+	
 	socket.on('receive-message', function (data) {
 		showMessage(data);
+		
+/*
+		var d = JSON.parse(data)
+		if(open_id !== m.user_id) {
+			play_ring("/chat/ring/msg.wav");
+		}
+*/
 	});
+	
 	socket.on('receive-history', function (data) {
 		var messages = JSON.parse(data);
 		var messages = messages.reverse();
@@ -85,10 +107,14 @@ Date.prototype.format = function(format) {
 			showMessage(messages[i]);
 		} 
 	});
+	
 	$(function() {
 		$("#btnSendMsg").click(function() {
-	    	socket.emit('send-message', JSON.stringify({ "user_id": open_id, "target_id": target_id, "user_type": 1, "message": $("#msg_box").val() }));
-	    	$("#msg_box").val("");
+			var message = $("#msg_box").val();
+			if(trim(message) !== ""){
+		    	socket.emit('send-message', JSON.stringify({ "user_id": open_id, "target_id": target_id, "user_type": 1, "message": message }));
+		    	$("#msg_box").val("");
+			}
 		});
 	});
 	
@@ -115,7 +141,13 @@ Date.prototype.format = function(format) {
 		myScroll.refresh();
 		myScroll.scrollToElement("#scorll>div:last-child",1500);
 	}
+	
+	function play_ring(url){
+		var embed = '<embed id="ring" src="'+url+'" loop="0" autostart="true" hidden="true" style="height:0px; width:0px;0px;"></embed>';
+		$("#ring").html(embed);
+	}
 </script>
+<div id="ring" style="width:0px; height:0px;"></div>
 </body>
 </html>
 
