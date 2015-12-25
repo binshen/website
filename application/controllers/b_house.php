@@ -279,7 +279,6 @@ class B_house extends MY_Controller {
 			
 			$redis = new Redis();
 			$redis->connect('127.0.0.1', 6379);
-			var_dump($o_bid);die;
 			if(!empty($o_bid)) {
 				$o_key = "map:" . $o_bid;
 				$redis->lrem($o_key, $open_id, 0);
