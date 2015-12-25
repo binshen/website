@@ -73,15 +73,16 @@ io.sockets.on('connection', function (socket) {
 		if(!contain(users, user_id)) {
 			users.unshift(user_id);
 		}
-		console.log('online - users - ' + JSON.stringify(users));
+		console.log('online - user_id = ' + user_id + ' users - ' + JSON.stringify(users));
 		
 		sockets[user_id] = socket;
 		console.log('online - sockets - keys = ' + JSON.stringify(Object.keys(sockets)) + ' length = ' + Object.keys(sockets).length);
 		
 		var user_type = data.user_type;
 		if(user_type == 1) {
-			console.log('online - user_type = 1 - status - ' + contain(users, data.target_id));
-			socket.emit('show-status', JSON.stringify({ status: contain(users, data.target_id) }));
+			var target_id = data.target_id;
+			console.log('online - user_type = 1 - status - ' + contain(users, target_id));
+			socket.emit('show-status', JSON.stringify({ status: contain(users, target_id) }));
 		} else {
 			console.log('online - user_type = 2 - status = true');
 			updateStatus(user_id, true);
