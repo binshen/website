@@ -185,7 +185,21 @@
 
 <div class="pageRightMenu">
     <span class="menu-button top-button am-icon-chevron-up" id="amz-go-top"></span>
-    <span class="menu-button am-icon-comments" onclick="go_chat()"><!-- <i class="message-number">1</i> --></span>
+    <span class="menu-button am-icon-comments" onclick="go_chat()">
+    	<i class="message-number" id="message_number">1</i>
+    	<script type="text/javascript" src="http://121.40.97.183:4000/socket.io/socket.io.js"></script>
+		<script type="text/javascript">
+			var socket = io.connect('http://121.40.97.183:4000');
+			socket.on('show-status',function(data){
+				console.log('show-status');
+			});
+			socket.on('receive-message', function (data) {
+				var num = $("#message_number").text();
+				if(num == '') num = 0;
+				$("#message_number").val(num++);
+			});
+		</script>
+    </span>
     {{if $login_broker_id_flag }}
     <a href="/b_house/card/{{$login_broker_id}}"><span class="menu-button  am-icon-share"></span></a>
     {{else}}
