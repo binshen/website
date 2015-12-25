@@ -64,16 +64,15 @@ socket.on('reconnect',function(){
 
 socket.on('receive-message', function (data) {
 	var data = JSON.parse(data);
-	console.log("----------------MESSAGE------------------");
-	console.log(data);
-	
 	var html = getMessageText(data);
-	console.log(html);
-	
-	$("#dialogue-center-chat-inner").append(html);
-	$("#dialogue-center-chat").mCustomScrollbar('update');
-    $("#dialogue-center-chat").mCustomScrollbar("scrollTo","bottom");
 
+	var open_id = $("#selectedUser").val();
+	if(open_id == data.target_id) {
+		$("#dialogue-center-chat-inner").append(html);
+		$("#dialogue-center-chat").mCustomScrollbar('update');
+	    $("#dialogue-center-chat").mCustomScrollbar("scrollTo","bottom");
+	}
+	
 	if(broker_id !== data.user_id) {
 		play_ring("/chat/ring/msg.wav");
 	}
