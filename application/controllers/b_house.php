@@ -280,17 +280,19 @@ class B_house extends MY_Controller {
 			$this->session->set_userdata('rel_name', $wx_user['rel_name']);
 			$this->session->set_userdata('wx_broker_id', $broker_id);
 			
-			$redis = new Redis();
-			$redis->connect('127.0.0.1', 6379);
- 			if(!empty($o_bid)) {
- 				$o_key = "map:" . $o_bid;
- 				$redis->lrem($o_key, $open_id, 0);
-			}
-			
-			$key = "map:" . $broker_id;
-			$users = $redis->lrange($key, 0, -1);
-			if(!in_array($open_id, $users)) {
-				$redis->lpush($key, $open_id);
+			if($broker_id != $o_bid) {
+				$redis = new Redis();
+				$redis->connect('127.0.0.1', 6379);
+				if(!empty($o_bid)) {
+					$o_key = "map:" . $o_bid;
+					$redis->lrem($o_key, $open_id, 0);
+				}
+					
+				$key = "map:" . $broker_id;
+				$users = $redis->lrange($key, 0, -1);
+				if(!in_array($open_id, $users)) {
+					$redis->lpush($key, $open_id);
+				}
 			}
 		}
 		$this->view_list(1);
