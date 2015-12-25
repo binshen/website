@@ -69,7 +69,7 @@ socket.on('receive-message', function (data) {
 	var user_id = data.user_id;
 	var target_id = data.target_id;
 	var user_type = data.user_type;
-	if((user_type == 1 && open_id == user_id) && (user_type == 2 && open_id == target_id)) {
+	if((user_type == 1 && open_id == user_id) || (user_type == 2 && open_id == target_id)) {
 		var html = getMessageText(data);
 		$("#dialogue-center-chat-inner").append(html);
 		$("#dialogue-center-chat").mCustomScrollbar('update');
