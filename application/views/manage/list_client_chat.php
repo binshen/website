@@ -12,9 +12,14 @@
             	?>
 			                <li>
 			                  <span class="dialogue-cus-head dialogue-cus-head-female">
-			                    <img src="<?php echo $row['headimgurl']; ?>" alt="" <?php if($i=0) {?>class="imgToGray"<?php } ?> style="height: 36px;width:36px;"/>
+			                    <img src="<?php echo $row['headimgurl']; ?>" alt="" id="<?php echo $row['open_id']; ?>" style="height: 36px;width:36px;"/>
 			                  </span>
-			                  <span class="dialogue-cus-txt"><i class="dialogue-cus-name"> 姓名：<?php echo $row['nickname']; ?></i><br /> 性别：<?php echo @$sex[$row['sex']]; ?><input type="hidden" class="cus-open-id" value="<?php echo $row['open_id']; ?>" /></span>
+			                  <span class="dialogue-cus-txt">
+			                  	<i class="dialogue-cus-name"> 姓名：<?php echo $row['nickname']; ?></i>
+			                  	<br /> 性别：<?php echo @$sex[$row['sex']]; ?>
+			                  	<input type="hidden" class="cus-open-id" value="<?php echo $row['open_id']; ?>" />
+			                  	<span style="padding-left:15px; color:green" id="status_<?php echo $row['open_id']; ?>">OFF</span>
+			                  </span>
 			                </li>
 				<?php 
 	            		endforeach;
@@ -93,6 +98,19 @@ socket.on('receive-history', function (data) {
     $("#dialogue-center-chat").mCustomScrollbar("scrollTo","bottom");
 });
 
+socket.on('show-status',function(data){
+	var data = JSON.parse(data);
+	var user_id = data.user_id;
+	var status = data.status;
+	if(status) {
+		$("#status_" + user_id).text("ON");
+		$("#status_" + user_id).css('color', 'red');
+	} else {
+		$("#status_" + user_id).text("OFF");
+		$("#status_" + user_id).css('color', 'green');
+	}
+});
+
 $(function(){
 	var windowHei = $(window).height();
 	var leftPx = parseInt(windowHei-120)+'px';
@@ -106,10 +124,12 @@ $(function(){
 	$('#dialogue-right-body').height(rightPx);
 	$("#dialogue-center-chat").mCustomScrollbar();
 
-	for(var i; i<$('.imgToGray').length;i++){
+	for(var i=0; i<$('.imgToGray').length;i++){
 		$('.imgToGray')[i].src = gray($('.imgToGray')[i]);
 	}
 
+	socket.emit('online', JSON.stringify({ "user_id": broker_id, "user_type": 2 }));
+	
 /////////////////////////////////////////////////////////////////////////
 	$("#cus-list li").click(function(){
 	    $("#cus-list li").removeClass('current');
@@ -121,7 +141,6 @@ $(function(){
 	    
 		$("#selectedUser").val(open_id);
 
-		socket.emit('online', JSON.stringify({ "user_id": broker_id, "user_type": 2 }));
 		socket.emit('show-history', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2 }));
 		
 	    $("#btnSendMsg").click(function() {

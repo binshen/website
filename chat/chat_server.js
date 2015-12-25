@@ -9,7 +9,7 @@ var redis = require("redis"), client = redis.createClient(redis_port, redis_host
 var io = require('socket.io').listen(4000);
 io.set('transports', ['websocket' ,'flashsocket' ,'htmlfile' ,'xhr-polling' ,'polling']);
 
-var users = [];
+var users = {};
 var sockets = {};
 
 var map_key = "map:";
@@ -29,25 +29,6 @@ var trim = function(str) {
 	return str;
 }
 
-var contain = function(arr, val) {
-	var i = arr.length;  
-    while (i--) {  
-        if (arr[i] === val) {  
-            return true;  
-        }  
-    }  
-    return false;
-}
-
-var remove = function(arr, val) {
-	for(var i=0; i<arr.length; i++) {
-		if(arr[i] == val) {
-			arr.splice(i, 1);
-			break;
-		}
-	}
-}
-
 var containKey = function(obj, key) {
 	return obj.hasOwnProperty(key);
 }
@@ -56,17 +37,26 @@ var removeKey = function(obj, key) {
 	delete obj[key];
 }
 
-var updateStatus = function(broker_id, status) {
+var updateBrokerStatus = function(broker_id, status) {
 	client.lrange(getMapKey(broker_id), 0, -1, function(err, res) {
 		logger.debug('update_status - users = ' + JSON.stringify(res) + ' length = ' + res.length)
 		for(var i in res) {
 			var user_id = res[i];
-			if(contain(users, user_id) && containKey(sockets, user_id)) {
+			if(containKey(users, user_id) && containKey(sockets, user_id)) {
 				logger.debug('update_status - user_id = ' + user_id + ' status = ' + status)
 				sockets[user_id].emit('show-status', JSON.stringify({ status: status }));
+				if(status) {
+					sockets[broker_id].emit('show-status', JSON.stringify({ status: true, user_id: user_id }));
+				}
 			}
 		}
 	});
+}
+
+var updateClientStatus = function(broker_id, user_id, status) {
+	if(containKey(users, broker_id) && containKey(sockets, broker_id)) {
+		sockets[broker_id].emit('show-status', JSON.stringify({ status: status, user_id: user_id }));
+	}
 }
 
 io.sockets.on('connection', function (socket) {
@@ -75,22 +65,23 @@ io.sockets.on('connection', function (socket) {
 		logger.debug('online - ' + JSON.stringify(data))
 		
 		var user_id = data.user_id;
-		if(!contain(users, user_id)) {
-			users.unshift(user_id);
+		var target_id = data.target_id;
+		var user_type = data.user_type;
+		
+		if(!containKey(users, user_id)) {
+			users[user_id] = {target_id: target_id, user_type: user_type}
 		}
 		logger.debug('online - user_id = ' + user_id + ' users - ' + JSON.stringify(users));
 		
 		sockets[user_id] = socket;
 		logger.debug('online - sockets - keys = ' + JSON.stringify(Object.keys(sockets)) + ' length = ' + Object.keys(sockets).length);
 		
-		var user_type = data.user_type;
 		if(user_type == 1) {
-			var target_id = data.target_id;
-			logger.debug('online - user_type = 1 - status - ' + contain(users, target_id));
-			socket.emit('show-status', JSON.stringify({ status: contain(users, target_id) }));
+			logger.debug('online - user_type = 1 - status - true');
+			updateClientStatus(target_id, user_id, true);
 		} else {
 			logger.debug('online - user_type = 2 - status = true');
-			updateStatus(user_id, true);
+			updateBrokerStatus(user_id, true);
 		}
 	});
 	
@@ -102,10 +93,18 @@ io.sockets.on('connection', function (socket) {
 		setTimeout(function() {
 			for(var user_id in sockets) {
 				if(sockets[user_id] == socket) {
-					logger.debug('disconnect - user_id = ' + user_id)
-					updateStatus(user_id, false);
-					
-					remove(users, user_id);
+					if(containKey(users, user_id)) {
+						var user = users[user_id];
+						logger.debug('disconnect - user = ' + JSON.stringify(user))
+						var user_type = user.user_type
+						if(user_type == 1) {
+							var target_id = user.target_id
+							updateClientStatus(target_id, user_id, false);
+						} else {
+							updateBrokerStatus(user_id, false);
+						}
+						removeKey(users, user_id);
+					}
 					removeKey(sockets, user_id);
 					break;
 				}
