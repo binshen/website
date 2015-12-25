@@ -266,7 +266,7 @@ class B_house extends MY_Controller {
 		$this->display('broker/chat.html');
 	}
 	
-	public function choose_broker($id, $o_bid=NULL) {
+	public function choose_broker($id, $o_bid) {
 		
 		$wx_user = $this->house_model->choose_broker($id);
 		if(!empty($wx_user)) {
@@ -279,18 +279,14 @@ class B_house extends MY_Controller {
 			
 			$redis = new Redis();
 			$redis->connect('127.0.0.1', 6379);
+			var_dump($o_bid);die;
 			if(!empty($o_bid)) {
 				$o_key = "map:" . $o_bid;
-				$redis->lrem($o_key, $open_id, 1);
-// 				$o_users = $redis->lrange($o_key, 0, -1);
-// 				if(in_array($open_id, $o_users)) {
-// 					unset($o_users[$o_key]);
-// 					$redis->set($o_key, $o_users);
-// 				}
+				$redis->lrem($o_key, $open_id, 0);
 			}
 			
 			$key = "map:" . $broker_id;
-			$users = $redis->lrange($key, 0, -1); //smembers($key);
+			$users = $redis->lrange($key, 0, -1);
 			if(!in_array($open_id, $users)) {
 				$redis->lpush($key, $open_id);
 			}
