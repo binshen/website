@@ -48,9 +48,49 @@
        </div>
   </div>
 <script src="/chat/js/jquery.mCustomScrollbar.min.js"></script>
-<script type="text/javascript" src="http://121.40.97.183:4000/socket.io/socket.io.js"></script>
+<!-- <script type="text/javascript" src="http://121.40.97.183:4000/socket.io/socket.io.js"></script> -->
+<script type="text/javascript" src="/chat/socket.io.js"></script>
 <script>
 var broker_id = '<?php echo $this->session->userdata('user_id'); ?>';
+var socket = io.connect('http://121.40.97.183:4000');
+
+socket.on('disconnect',function(){
+	console.log('disconnected')
+});
+
+socket.on('reconnect',function(){
+	console.log('reconnected')
+});
+
+socket.on('receive-message', function (data) {
+	var data = JSON.parse(data);
+	console.log("----------------MESSAGE------------------");
+	console.log(data);
+	
+	var html = getMessageText(data);
+	console.log(html);
+	
+	$("#dialogue-center-chat-inner").append(html);
+	$("#dialogue-center-chat").mCustomScrollbar('update');
+    $("#dialogue-center-chat").mCustomScrollbar("scrollTo","bottom");
+
+	if(broker_id !== data.user_id) {
+		play_ring("/chat/ring/msg.wav");
+	}
+});
+
+socket.on('receive-history', function (data) {
+	var data = JSON.parse(data);
+	var messages = data.reverse();
+	var html = "";
+	for(var i in messages) {
+    	var message = JSON.parse(messages[i])
+		html += getMessageText(JSON.parse(messages[i]))
+	}
+	$("#dialogue-center-chat-inner").html(html);
+	$("#dialogue-center-chat").mCustomScrollbar('update');
+    $("#dialogue-center-chat").mCustomScrollbar("scrollTo","bottom");
+});
 
 $(function(){
 	var windowHei = $(window).height();
@@ -76,52 +116,13 @@ $(function(){
 	    $("#dialogue-center-name").html($(this).children().find(".dialogue-cus-name").html());
 
 	    var open_id = $(this).children().find(".cus-open-id").val();
+	    list_house_tracks(open_id);
+	    
 		$("#selectedUser").val(open_id);
+
+		socket.emit('online', JSON.stringify({ "user_id": broker_id, "user_type": 2 }));
+		socket.emit('show-history', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2 }));
 		
-		list_house_tracks(open_id);
-	    
-	    var socket = io.connect('http://121.40.97.183:4000');
-	    socket.emit('online', JSON.stringify({ "user_id": broker_id, "user_type": 2 }));
-	    socket.emit('show-history', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2 }));
-	    
-	    socket.on('disconnect',function(){
-			console.log('disconnected')
-		});
-
-		socket.on('reconnect',function(){
-			console.log('reconnected')
-		});
-
-		socket.on('receive-message', function (data) {
-			var data = JSON.parse(data);
-			console.log("----------------MESSAGE------------------");
-			console.log(data);
-			
-			var html = getMessageText(data);
-			console.log(html);
-			
-			$("#dialogue-center-chat-inner").append(html);
-			$("#dialogue-center-chat").mCustomScrollbar('update');
-	        $("#dialogue-center-chat").mCustomScrollbar("scrollTo","bottom");
-
-			if(broker_id !== data.user_id) {
-				play_ring("/chat/ring/msg.wav");
-			}
-		});
-
-	    socket.on('receive-history', function (data) {
-	    	var data = JSON.parse(data);
-	    	var messages = data.reverse();
-	    	var html = "";
-	    	for(var i in messages) {
-	        	var message = JSON.parse(messages[i])
-				html += getMessageText(JSON.parse(messages[i]))
-	    	}
-	    	$("#dialogue-center-chat-inner").html(html);
-	    	$("#dialogue-center-chat").mCustomScrollbar('update');
-	        $("#dialogue-center-chat").mCustomScrollbar("scrollTo","bottom");
-		});
-
 	    $("#btnSendMsg").click(function() {
 	    	socket.emit('send-message', JSON.stringify({ 
 	        	"user_id": broker_id, 
