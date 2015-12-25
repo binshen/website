@@ -48,15 +48,16 @@ i,em{font-style:normal;}
 .dialogue-left-ftr{margin:0;padding:10px 0; background: #1f2227;position:fixed;width: 18%; bottom:35px;}
 .dialogue-left-ftr p{ margin:0;padding:0;color: #fff; font-size: 10px; line-height: 20px;-webkit-transform:scale(0.8);}
 
-.dialogue-center{margin:0;padding:0;float: left; width: 55%;	position: relative;}
+.dialogue-center{margin:0;padding:0;float: left; width: 55%; height: 100%;	position: relative;}
 .dialogue-center-head{margin:0;padding:0;border-bottom:1px solid #d7d7d7;  background: #fff; height: 75px;}
 .dialogue-center-name{margin:0;padding:0; font-size: 30px; color: #666; text-align: center; background: #f1f1f1; height:70px; line-height: 70px; font-family:'Microsoft YaHei' }
 
-.dialogue-center-chat{margin:0;padding:10px 60px; height: 400px; overflow-y: scroll;}
+.dialogue-center-chat{margin:0;padding:10px 0; height: 100%; overflow: auto; position: relative; }
+.dialogue-center ._mCS_2 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{ background: #666;}
 /*.chat-div-manage{ overflow: hidden; zoom:1;*/
 /*float: left;}*/
 
-.dialogue-chat-div{margin:0;padding:10px 0; overflow: hidden; zoom:1;width:550px;}
+.dialogue-chat-div{margin:0;padding:10px 60px; overflow: hidden; zoom:1;}
 .dialogue-chat-div .dialogue-chat-pop{ float: right; display: inline-block; margin:3px 10px 0;
 	width: 400px;padding:0;}
 
