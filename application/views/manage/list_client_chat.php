@@ -1,4 +1,5 @@
 <link href="/chat/css/dialogue-backer.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/chat/css/jquery.mCustomScrollbar.css">
 <body>
   <div class="dialogue-main">
        <div class="dialogue-left">
@@ -28,6 +29,8 @@
        <div class="dialogue-center">
           <div class="dialogue-center-name" id="dialogue-center-name">请选择想要聊天的客户</div>
           <div class="dialogue-center-chat" id="dialogue-center-chat">
+          	<div class="dialogue-center-chat-inner" id="dialogue-center-chat-inner">
+          	</div>
           </div>
           <div class="dialogue-center-input">
               <div class="dialogue-chat-txt-input">
@@ -44,22 +47,21 @@
           	</div>
        </div>
   </div>
-<script src="/chat/js/single-iScroll.js" charset="gbk"></script>
+<script src="/chat/js/jquery.mCustomScrollbar.min.js"></script>
 <script type="text/javascript" src="http://121.40.97.183:4000/socket.io/socket.io.js"></script>
 <script>
 $(function(){
-    var windowHei = $(window).height();
-    var leftPx = parseInt(windowHei-120)+'px';
-    var centerPx = parseInt(windowHei-155-120)+'px';
-    var rightPx = parseInt(windowHei-180)+'px';
-    $('#dialogue-center-chat').height(centerPx);
-    $('#cus-list').height(leftPx);
-    $('#tool').height(leftPx);
-    $('#dialogue-right-body').height(rightPx);
-   	iScroll.init({
-   		el: document.getElementById('cus-list'),
-   		scrollBar: document.getElementById('tool-bar')
-    })
+	var windowHei = $(window).height();
+	var leftPx = parseInt(windowHei-120)+'px';
+	var centerPx = parseInt(windowHei-155-120)+'px';
+	var rightPx = parseInt(windowHei-180)+'px';
+	$('#dialogue-center-chat').height(centerPx);
+	$('#tool1').height(centerPx);
+	$('#cus-list').height(leftPx);
+	$("#cus-list").mCustomScrollbar();
+	$('#tool').height(leftPx);
+	$('#dialogue-right-body').height(rightPx);
+	$("#dialogue-center-chat").mCustomScrollbar();
 })
 
 //gray
@@ -166,7 +168,9 @@ $("#cus-list li").click(function(){
         	var message = JSON.parse(messages[i])
 			html += getMessageText(JSON.parse(messages[i]))
     	}
-    	$("#dialogue-center-chat").html(html);
+    	$("#dialogue-center-chat-inner").html(html);
+    	$("#dialogue-center-chat").mCustomScrollbar('update');
+        $("#dialogue-center-chat").mCustomScrollbar("scrollTo","bottom");
 	});
 
     $("#btnSendMsg").click(function() {
