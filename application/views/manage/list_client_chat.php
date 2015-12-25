@@ -50,6 +50,8 @@
 <script src="/chat/js/jquery.mCustomScrollbar.min.js"></script>
 <script type="text/javascript" src="http://121.40.97.183:4000/socket.io/socket.io.js"></script>
 <script>
+var broker_id = '<?php echo $this->session->userdata('user_id'); ?>';
+
 $(function(){
 	var windowHei = $(window).height();
 	var leftPx = parseInt(windowHei-120)+'px';
@@ -62,46 +64,96 @@ $(function(){
 	$('#tool').height(leftPx);
 	$('#dialogue-right-body').height(rightPx);
 	$("#dialogue-center-chat").mCustomScrollbar();
+
+	for(var i; i<$('.imgToGray').length;i++){
+		$('.imgToGray')[i].src = gray($('.imgToGray')[i]);
+	}
+
+/////////////////////////////////////////////////////////////////////////
+	$("#cus-list li").click(function(){
+	    $("#cus-list li").removeClass('current');
+	    $(this).addClass('current');
+	    $("#dialogue-center-name").html($(this).children().find(".dialogue-cus-name").html());
+
+	    var open_id = $(this).children().find(".cus-open-id").val();
+		$("#selectedUser").val(open_id);
+		
+		list_house_tracks(open_id);
+	    
+	    var socket = io.connect('http://121.40.97.183:4000');
+	    socket.emit('online', JSON.stringify({ "user_id": broker_id, "user_type": 2 }));
+	    socket.emit('show-history', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2 }));
+	    
+	    socket.on('disconnect',function(){
+			console.log('disconnected')
+		});
+
+		socket.on('reconnect',function(){
+			console.log('reconnected')
+		});
+
+		socket.on('receive-message', function (data) {
+			var data = JSON.parse(data);
+			console.log("----------------MESSAGE------------------");
+			console.log(data);
+			
+			var html = getMessageText(data);
+			console.log(html);
+			
+			$("#dialogue-center-chat-inner").append(html);
+			$("#dialogue-center-chat").mCustomScrollbar('update');
+	        $("#dialogue-center-chat").mCustomScrollbar("scrollTo","bottom");
+
+			if(broker_id !== data.user_id) {
+				play_ring("/chat/ring/msg.wav");
+			}
+		});
+
+	    socket.on('receive-history', function (data) {
+	    	var data = JSON.parse(data);
+	    	var messages = data.reverse();
+	    	var html = "";
+	    	for(var i in messages) {
+	        	var message = JSON.parse(messages[i])
+				html += getMessageText(JSON.parse(messages[i]))
+	    	}
+	    	$("#dialogue-center-chat-inner").html(html);
+	    	$("#dialogue-center-chat").mCustomScrollbar('update');
+	        $("#dialogue-center-chat").mCustomScrollbar("scrollTo","bottom");
+		});
+
+	    $("#btnSendMsg").click(function() {
+	    	socket.emit('send-message', JSON.stringify({ 
+	        	"user_id": broker_id, 
+	        	"target_id": $("#selectedUser").val(), 
+	        	"user_type": 2, 
+	        	"message": $("#msg_box").val() 
+	        }));
+	    	$("#msg_box").val("");
+		});
+	});
 })
 
-//gray
-function gray(imgObj) {
-	var canvas = document.createElement('canvas');
-	var canvasContext = canvas.getContext('2d');
-
-	var imgW = imgObj.width;
-	var imgH = imgObj.height;
-	canvas.width = imgW;
-	canvas.height = imgH;
-
-	canvasContext.drawImage(imgObj, 0, 0);
-	var imgPixels = canvasContext.getImageData(0, 0, imgW, imgH);
-
-	for (var y = 0; y < imgPixels.height; y++) {
-		for (var x = 0; x < imgPixels.width; x++) {
-			var i = (y * 4) * imgPixels.width + x * 4;
-          	var avg = (imgPixels.data[i] + imgPixels.data[i + 1] + imgPixels.data[i + 2]) / 3;
-          	imgPixels.data[i] = avg;
-          	imgPixels.data[i + 1] = avg;
-          	imgPixels.data[i + 2] = avg;
-		}
+function getMessageText(data) {
+	var html = "";
+	if(data.user_type == 1) {
+		html += '<div class="dialogue-chat-div dialogue-chat-div-female dialogue-chat-div-customer">';
+	} else {
+		html += '<div class="dialogue-chat-div dialogue-chat-div-male dialogue-chat-div-manage">';
 	}
-    canvasContext.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
-    return canvas.toDataURL();
+	html += '<div class="dialogue-chat-head"></div>';
+	html += '<div class="dialogue-chat-pop"><p>' + data.message + '</p></div>';
+	html += '</div>';
+	return html
 }
-for(var i; i<$('.imgToGray').length;i++){
-	$('.imgToGray')[i].src = gray($('.imgToGray')[i]);
-}
-//
-$("#cus-list li").click(function(){
-    $("#cus-list li").removeClass('current');
-    $(this).addClass('current');
-    $("#dialogue-center-name").html($(this).children().find(".dialogue-cus-name").html());
 
-    var open_id = $(this).children().find(".cus-open-id").val();
-	$("#selectedUser").val(open_id);
-    
-    $.get('/manage/list_house_tracks/'+open_id, function(data) {
+function play_ring(url){
+	var embed = '<embed id="ring" src="'+url+'" loop="0" autostart="true" hidden="true" style="height:0px; width:0px;0px;"></embed>';
+	$("#ring").html(embed);
+}
+
+function list_house_tracks(open_id) {
+	$.get('/manage/list_house_tracks/'+open_id, function(data) {
 		var data = JSON.parse(data);
 		var html = "";
 		for(var i in data) {
@@ -129,79 +181,31 @@ $("#cus-list li").click(function(){
 		}
     	$("#dialogue-right-body").html(html);
     });
-
-    var broker_id = '<?php echo $this->session->userdata('user_id'); ?>';
-    var socket = io.connect('http://121.40.97.183:4000');
-    socket.emit('online', JSON.stringify({ "user_id": broker_id, "user_type": 2 }));
-    socket.emit('show-history', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2 }));
-    
-    socket.on('disconnect',function(){
-		console.log('disconnected')
-	});
-
-	socket.on('reconnect',function(){
-		console.log('reconnected')
-	});
-
-	socket.on('receive-message', function (data) {
-		var data = JSON.parse(data);
-		console.log("----------------MESSAGE------------------");
-		console.log(data);
-		
-		var html = getMessageText(data);
-		console.log(html);
-		
-		$("#dialogue-center-chat-inner").append(html);
-		$("#dialogue-center-chat").mCustomScrollbar('update');
-        $("#dialogue-center-chat").mCustomScrollbar("scrollTo","bottom");
-
-		if(broker_id !== data.user_id) {
-			play_ring("/chat/ring/msg.wav");
-		}
-
-		//$('#dialogue-center-chat').scrollIntoView(false);
-	});
-
-    socket.on('receive-history', function (data) {
-    	var data = JSON.parse(data);
-    	var messages = data.reverse();
-    	var html = "";
-    	for(var i in messages) {
-        	var message = JSON.parse(messages[i])
-			html += getMessageText(JSON.parse(messages[i]))
-    	}
-    	$("#dialogue-center-chat-inner").html(html);
-    	$("#dialogue-center-chat").mCustomScrollbar('update');
-        $("#dialogue-center-chat").mCustomScrollbar("scrollTo","bottom");
-	});
-
-    $("#btnSendMsg").click(function() {
-    	socket.emit('send-message', JSON.stringify({ 
-        	"user_id": broker_id, 
-        	"target_id": $("#selectedUser").val(), 
-        	"user_type": 2, 
-        	"message": $("#msg_box").val() 
-        }));
-    	$("#msg_box").val("");
-	});
-})
-
-function getMessageText(data) {
-	var html = "";
-	if(data.user_type == 1) {
-		html += '<div class="dialogue-chat-div dialogue-chat-div-female dialogue-chat-div-customer">';
-	} else {
-		html += '<div class="dialogue-chat-div dialogue-chat-div-male dialogue-chat-div-manage">';
-	}
-	html += '<div class="dialogue-chat-head"></div>';
-	html += '<div class="dialogue-chat-pop"><p>' + data.message + '</p></div>';
-	html += '</div>';
-	return html
 }
 
-function play_ring(url){
-	var embed = '<embed id="ring" src="'+url+'" loop="0" autostart="true" hidden="true" style="height:0px; width:0px;0px;"></embed>';
-	$("#ring").html(embed);
+function gray(imgObj) {
+	var canvas = document.createElement('canvas');
+	var canvasContext = canvas.getContext('2d');
+
+	var imgW = imgObj.width;
+	var imgH = imgObj.height;
+	canvas.width = imgW;
+	canvas.height = imgH;
+
+	canvasContext.drawImage(imgObj, 0, 0);
+	var imgPixels = canvasContext.getImageData(0, 0, imgW, imgH);
+
+	for (var y = 0; y < imgPixels.height; y++) {
+		for (var x = 0; x < imgPixels.width; x++) {
+			var i = (y * 4) * imgPixels.width + x * 4;
+          	var avg = (imgPixels.data[i] + imgPixels.data[i + 1] + imgPixels.data[i + 2]) / 3;
+          	imgPixels.data[i] = avg;
+          	imgPixels.data[i + 1] = avg;
+          	imgPixels.data[i + 2] = avg;
+		}
+	}
+    canvasContext.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
+    return canvas.toDataURL();
 }
 </script>
 <div id="ring" style="width:0px; height:0px;"></div>
