@@ -143,7 +143,7 @@
         <div class="history-tit">已关注的经纪人</div>
         <ul>
             {{foreach from=$connected_brokers key=key item=item}}
-            <li {{if $key==0}}class="current"{{/if}} onclick="choose_broker('{{$item.id}}', '{{$item.broker_id}}')">
+            <li {{if $key==0}}class="current"{{/if}} onclick="choose_broker('{{$item.id}}', '{{$connected_broker_id}}')">
                 <span class="gm-header"><img src="/static/images/gm-header.gif" alt="" width="45" height="60" /></span>
                 <p class="gm-peo-txt"><i class="gm-name">{{$item.rel_name}}</i><i class="gm-tel">{{$item.tel}}</i><br /><i
                         class="gm-company">{{$item.address}}</i><br />

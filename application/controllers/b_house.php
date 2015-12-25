@@ -58,6 +58,9 @@ class B_house extends MY_Controller {
 		$this->assign('broker_id', $broker_id);
 		$this->assign('connected_brokers', $connected_brokers);
 		
+		$broker = $this->house_model->get_bind_broker_id($open_id);
+		$this->assign('connected_broker_id', $broker['broker_id']);
+		
 		$region_list = $this->house_model->get_m_house_region();
 		$this->assign('region_list', $region_list);
 		
@@ -280,12 +283,8 @@ class B_house extends MY_Controller {
 			$redis = new Redis();
 			$redis->connect('127.0.0.1', 6379);
  			if(!empty($o_bid)) {
-// 				$o_key = "map:" . $o_bid;
-// 				$redis->lrem($o_key, $open_id, 0);
-				
-				//$open_id = 'orFu-vgK-snskoQdDgMkBe-jFe1k';
-				//$key = "map:1";
-				$redis->lrem("map:1", 'orFu-vgK-snskoQdDgMkBe-jFe1k', 0);
+ 				$o_key = "map:" . $o_bid;
+ 				$redis->lrem($o_key, $open_id, 0);
 			}
 			
 			$key = "map:" . $broker_id;
