@@ -125,16 +125,27 @@ $(function(){
 		socket.emit('show-history', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2 }));
 		
 	    $("#btnSendMsg").click(function() {
-	    	socket.emit('send-message', JSON.stringify({ 
-	        	"user_id": broker_id, 
-	        	"target_id": $("#selectedUser").val(), 
-	        	"user_type": 2, 
-	        	"message": $("#msg_box").val() 
-	        }));
-	    	$("#msg_box").val("");
+	    	sendMessage();
 		});
+
+	    $('#msg_box').keypress(function(event){  
+	        var keycode = (event.keyCode ? event.keyCode : event.which);  
+	        if(keycode == '13'){  
+	        	sendMessage();    
+	        }  
+	    });
 	});
 })
+
+function sendMessage() {
+	socket.emit('send-message', JSON.stringify({ 
+    	"user_id": broker_id, 
+    	"target_id": $("#selectedUser").val(), 
+    	"user_type": 2, 
+    	"message": $("#msg_box").val() 
+    }));
+	$("#msg_box").val("");
+}
 
 function getMessageText(data) {
 	var html = "";
