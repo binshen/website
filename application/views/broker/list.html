@@ -268,6 +268,7 @@
 		console.log('show-status');
 	});
 	socket.on('receive-message', function (data) {
+		/*
 		var num = $("#msg_num").text() || 0;
 		try {
 			num = parseInt(num);
@@ -275,6 +276,9 @@
 			num = 0;
 		}
 		var html = '<i class="message-number" id="msg_num">' + ++num + '</i>';
+		*/
+		var data = JSON.parse(data);
+		var html = '<i class="message-number" id="msg_num">' + data.count + '</i>';
 		$("#span_msg_num").html(html);
 	});
 </script>
