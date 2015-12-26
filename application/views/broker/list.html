@@ -268,10 +268,12 @@
 		console.log('show-status');
 	});
 	socket.on('receive-message', function (data) {
-		var num = $("#msg_num").text();
+		var num = $("#msg_num").text() || 0;
 		try {
-			num = parseInt(num)
-		} catch(e) {}
+			num = parseInt(num);
+		} catch(e) {
+			num = 0;
+		}
 		var html = '<i class="message-number" id="msg_num">' + ++num + '</i>';
 		$("#span_msg_num").html(html);
 	});
