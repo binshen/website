@@ -186,10 +186,11 @@
 <div class="pageRightMenu">
     <span class="menu-button top-button am-icon-chevron-up" id="amz-go-top"></span>
     <span class="menu-button am-icon-comments" onclick="go_chat()">
-    	<i class="message-number" id="message_number">1</i>
+    	<i class="message-number" id="message_number"></i>
     	<script type="text/javascript" src="http://121.40.97.183:4000/socket.io/socket.io.js"></script>
 		<script type="text/javascript">
 			var socket = io.connect('http://121.40.97.183:4000');
+			socket.emit('online', JSON.stringify({ "user_id": 'orFu-vgK-snskoQdDgMkBe-jFe1k', "target_id": 2, "user_type": 1 }));
 			socket.on('show-status',function(data){
 				console.log('show-status');
 			});
