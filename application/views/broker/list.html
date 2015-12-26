@@ -168,8 +168,7 @@
             <li><img data-url="/uploadfiles/pics/{{$item.bg_pic}}" src="/static/images/default1.gif" alt="'"
                      class="scrollLoading" width="85" height="77">
                 <div class="house-txt">
-                    <p class="h-t1">{{$item.region_name}} {{$item.xq_name}}<!-- <span class="house-label">学
-</span></p> -->
+                    <p class="h-t1">{{$item.region_name}} {{$item.xq_name}}
                     <p class="h-t2">{{$item.room}}室{{$item.lounge}}厅   | {{$item.floor}}/{{$item.total_floor}}层
                         | {{$item.acreage}}㎡</p>
                     <p class="h-t3"><i>装修:</i> {{$item.decoration_name}} | <i>朝向:</i>
@@ -185,21 +184,8 @@
 
 <div class="pageRightMenu">
     <span class="menu-button top-button am-icon-chevron-up" id="amz-go-top"></span>
-    <span class="menu-button am-icon-comments" onclick="go_chat()">
-    	<i class="message-number" id="message_number"></i>
-    	<script type="text/javascript" src="http://121.40.97.183:4000/socket.io/socket.io.js"></script>
-		<script type="text/javascript">
-			var socket = io.connect('http://121.40.97.183:4000');
-			socket.emit('online', JSON.stringify({ "user_id": 'orFu-vgK-snskoQdDgMkBe-jFe1k', "target_id": 2, "user_type": 1 }));
-			socket.on('show-status',function(data){
-				console.log('show-status');
-			});
-			socket.on('receive-message', function (data) {
-				var num = $("#message_number").text();
-				if(num == '') num = 0;
-				$("#message_number").val(num++);
-			});
-		</script>
+    <span class="menu-button am-icon-comments" onclick="go_chat()" id="span_msg_num">
+    	<!-- <i class="message-number" id="msg_num"></i> -->
     </span>
     {{if $login_broker_id_flag }}
     <a href="/b_house/card/{{$login_broker_id}}"><span class="menu-button  am-icon-share"></span></a>
@@ -271,6 +257,23 @@
     function go_chat() {
     	window.location.href="/b_house/chat/";
     }
+</script>
+
+
+<script type="text/javascript" src="http://121.40.97.183:4000/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+	var socket = io.connect('http://121.40.97.183:4000');
+	socket.emit('online', JSON.stringify({ "user_id": '{{$open_id}}', "target_id": '{{$connected_broker_id}}', "user_type": 1 }));
+	socket.on('show-status',function(data){
+		console.log('show-status');
+	});
+	socket.on('receive-message', function (data) {
+		var html = "";
+		try {
+			html = '<i class="message-number" id="msg_num">' + parseInt($("#msg_num").text()) + '</i>';
+		} catch(e) { }
+		$("#span_msg_num").html(html);
+	});
 </script>
 </body>
 </html>
