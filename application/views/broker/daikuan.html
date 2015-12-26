@@ -1,1 +1,233 @@
-Broker - daikuan computer
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>城北学区房</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<meta content="telephone=no" name="format-detection"/>
+<link rel="stylesheet" href="/static/css/style.css">
+<link rel="stylesheet" href="/static/css/style2.css">
+</head>
+<body style=" background:#f4f4f4;">
+    <div class="g-head">
+         <a href="javascript:history.go(-1);"><i class="am-icon-chevron-left"></i></a>
+        房贷计算器
+    </div>
+    <form id="calc01" name="calc01">
+      <div class="flexbox listtab1" style="margin: 10px 0;" id="navMenu">
+<!--  	    <a href="" class="active" onclick="exc_zuhe(this.form, '商业贷');">商业贷</a>
+  	    <a href="" rel="公积金贷"  onclick="exc_zuhe(this.form, '公积金贷');">公积金贷</a>
+  	    <a href="" rel="组合贷"  onclick="exc_zuhe(this.form, '组合贷');">组合贷</a>-->
+		<span class="active" onClick="exc_zuhe(1);" ><input name="loanradiotype" type="radio" class="noborder CHECKED" value="1" checked id="sydk" style="display:none"><label for="sydk">商业贷款</label></span>
+		<span onClick="exc_zuhe(2);"><input class="noborder" type="radio" value="2" name="loanradiotype"  id="gjjdk" style="display:none"><label for="gjjdk">公积金贷款</label></span>
+		<span onClick="exc_zuhe(3);"><input class="noborder" type="radio" value="3" name="loanradiotype"  id="zhxdk" style="display:none"><label for="zhxdk">组合型贷</label>款</span>
+		<input id="type" type="hidden" value="1" name="type">
+		
+     </div>
+	 
+     <ul id="calc01_zuhe" class="calculator" style="DISPLAY: none">
+		<li>
+			<dl class="calculator">
+				<dt>商业性：</dt>
+				<dd>
+					<div class="flexbox">
+						<input type="number" id="zuhesy" class="ipt-text" maxlength="8" size="8" name="total_sy"><i>元</i>
+					</div>
+				</dd>
+			</dl>
+		</li>
+		<li>
+			<dl class="calculator">
+				<dt>公积金：</dt>
+				<dd><div class="flexbox">
+				<input type="number" id="zuhegjj" class="ipt-text" maxlength="8" size="8" name="total_gjj"><i>元</i>
+				</div></dd>
+			</dl>
+		</li>
+	 </ul>
+	 
+	 
+     <div id="calc01_ctype" class="syd">
+        <div class="mb15" style="padding-left:10px;">选择计算方式:</div>
+        <div class="jsfs">
+            <div class="mb15"><input onClick="exc_js(this.form, 1);" id="calc01_radio1" class="noborder" checked type="radio" value="1" name="jisuan_radio"><label for="calc01_radio1">根据面积、单价计算</label></div>
+            <div class="cal-outer" id="calc1_js_div1">
+              <dl class="calculator">
+                <dt>房产单价：</dt>
+                <dd>
+                  <div class="flexbox">
+                    <input type="number" id="price" class="ipt-text" name="price" value="{{$house.unit_price}}"><i>元/平米</i>
+                  </div>
+                </dd>
+              </dl>
+              <dl class="calculator">
+                <dt>房产面积：</dt>
+                <dd>
+                  <div class="flexbox">
+                    <input type="number" id="sqm" class="ipt-text" name="sqm" value="{{$house.acreage}}"><i>平方米</i>
+                  </div>
+                </dd>
+              </dl>
+              <dl class="calculator">
+                <dt>按揭成数：</dt>
+                <dd>
+                  <select name="anjie" size="1" id="anjie">
+                      <option value="9">9成</option>
+                      <option value="8">8成</option>
+                      <option selected value="7">7成</option>
+                      <option value="6">6成</option>
+                      <option value="5">5成</option>
+                      <option value="4">4成</option>
+                      <option value="3">3成</option>
+                      <option value="2">2成</option>
+                  </select>
+                </dd>
+              </dl>
+            </div>
+            <div class="mb15"><input onClick="exc_js(this.form, 2);" id="calc01_radio2" class="noborder" type="radio" value="2" name="jisuan_radio"><label for="calc01_radio2">根据贷款总额计算</label></div>
+            <div class="cal-outer" id="calc1_js_div2" style="display:none;">
+              <dl class="calculator">
+                  <dt>贷款总额：</dt>
+                  <dd>
+                    <div class="flexbox"><input type="number" id="daikuan" class="ipt-text" maxlength="8" size="10" name="daikuan_total000" value="{{$house.total_price}}"><i>元</i>
+                    </div>
+                  </dd>
+              </dl>
+            </div>
+        </div>
+		</div>
+        <div class="cal-outer">
+          <dl class="calculator">
+              <dt>按揭年数:</dt>
+              <dd>
+                    <select id="years" name="years">
+                        <option value="1">1年（12期）</option>
+                        <option value="2">2年（24期）</option>
+                        <option value="3">3年（36期）</option>
+                        <option value="4">4年（48期）</option>
+                        <option value="5">5年（60期）</option>
+                        <option value="6">6年（72期）</option>
+                        <option value="7">7年（84期）</option>
+                        <option value="8">8年（96期）</option>
+                        <option value="9">9年（108期）</option>
+                        <option value="10">10年（120期）</option>
+                        <option value="11">11年（132期）</option>
+                        <option value="12">12年（144期）</option>
+                        <option value="13">13年（156期）</option>
+                        <option value="14">14年（168期）</option>
+                        <option value="15">15年（180期）</option>
+                        <option value="16">16年（192期）</option>
+                        <option value="17">17年（204期）</option>
+                        <option value="18">18年（216期）</option>
+                        <option value="19">19年（228期）</option>
+                        <option selected value="20">20年（240期）</option>
+                        <option value="25">25年（300期）</option>
+                        <option value="30">30年（360期）</option>
+                  </select>
+              </dd>
+          </dl>
+          <dl class="calculator">
+              <dt>贷款利率：</dt>
+              <dd>
+                    <select onChange="ShowlilvNew(this.form,document.calc01.years.value,this.value)" id="lilv"
+                     name="lilv">
+                        <option value="5">1.05倍</option>
+                        <option value="4">1.1倍</option>
+                        <option value="3">85折</option>
+                        <option value="2">7折</option>
+                        <option value="1" selected="true">基准利率</option>
+                    </select>  
+              </dd>
+          </dl>
+          <dl class="calculator">
+              <dt></dt>
+              <dd>
+                <div class="flexbox">
+                    <ul>
+                      <li id="singlelv_li" style="DISPLAY: block">
+					 	<div class="flexbox">
+                      		<input type="number" id="singlelv" class="red ipt-text" value="4.90"><i>%</i>
+						 </div>
+                      <li id="sdlv_li" style="DISPLAY: none">
+					  	商业:
+						  <div class="flexbox">
+							  <input type="number" id="sdlv" class="red ipt-text" value="4.90"><i>%</i>
+						  </div>
+						  <li id="gjlv_li" style="DISPLAY: none">
+						  公积金：
+					  	<div class="flexbox">
+                      	<input type="number" id="gjlv" class="red ipt-text" value="3.25"><i>%</i>
+					  </div>
+                      </li>
+                    </ul>
+                    <!-- <input id="singlelv" class="red ipt-text" value="6.55"><i>%</i> -->
+                </div>
+              </dd>
+          </dl>
+          <dl class="calculator">
+              <dt>还款方式：</dt>
+              <dd>
+                    <input onClick="ext_loanbenjin(this.form, this.value)" id="dengeben1" checked type="radio" value="1" name="radioben"><label for="dengeben1">等额本息</label>
+                    <input onClick="ext_loanbenjin(this.form, this.value)" id="dengeben2" type="radio" value="2" name="radioben"><label for="dengeben2">等额本金</label>
+              </dd>
+          </dl>
+        </div>
+     <div class="methodbox nob">
+     		<a href="javascript:void(0)" class="btn-cal" id="btnCal" onClick="ext_loantotal(document.calc01)">开始计算</a>
+     </div>
+     <div>查看结果：</div>
+     <ul class="ul-resu">
+        <li><i class="iTxt">房款总额：</i>
+            <i class="iResu"><input id="fangkuan_total1" class="res_input" readonly name="fangkuan_total1">元</i>
+        </li>
+        <li><i class="iTxt">贷款总额：</i>
+            <i class="iResu"><input class="res_input" readonly name="daikuan_total1">元</i>
+        </li>
+        <li><i class="iTxt">还款总额：</i>
+            <i class="iResu"><input class="res_input" readonly name="all_total1">元</i>
+        </li>
+        <li>
+          <i class="iTxt">付利息款：</i>
+          <i class="iResu"><input class="res_input" readonly name="accrual1">元</i>
+        </li>
+        <li>
+          <i class="iTxt">首期付款：</i>
+          <i class="iResu"><input class="res_input" readonly name="money_first1">元</i>
+        </li>
+        <li>
+          <i class="iTxt">贷款月数：</i>
+          <i class="iResu"><input class="res_input" readonly name="month1">元</i>
+        </li>
+        <li id="benxi">
+          <i class="iTxt">月均还款：</i>
+          <i class="iResu"><input class="res_input" readonly name="month_money1">元</i>
+        </li>
+        <li id="benjin" style="DISPLAY: none">
+          <i class="iTxt">月均金额：</i>
+          <i class="iResu"><textarea class="inputwidthnew" rows="3" cols="16" name="month_money3">
+            </textarea>元</i>
+        </li>
+     </ul>
+	 <div id="calc1_benjin" style="DISPLAY: none">
+		<input type="hidden" name="fangkuan_total2">
+		<input type="hidden" name="daikuan_total2">
+		<input type="hidden" name="all_total2">
+		<input type="hidden" name="accrual2">
+		<input type="hidden" name="money_first2">
+		<input type="hidden" name="month2">
+		<input type="hidden" name="month_money2">
+	</div>
+  </form>
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/rate.js"></script>
+<script>
+  $("#navMenu span").click(function(){
+    $("#navMenu span").removeClass("active");
+    $(this).addClass("active"); 
+  });
+</script>
+<div class="pageRightMenu">{include file='broker_socket.html'}</div>
+</body>
+</html>

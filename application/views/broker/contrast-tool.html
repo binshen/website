@@ -8,6 +8,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
 <meta content="telephone=no" name="format-detection"/>
 <link rel="stylesheet" href="/static/css/style.css">
+<link rel="stylesheet" href="/static/css/style2.css">
 </head>
 <body>
     <div class="g-head">
@@ -96,20 +97,7 @@
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/store.min.js"></script>
 
-<div class="pageRightMenu">
-    <span class="menu-button top-button" id="amz-go-top"><i class="am-icon-chevron-up"></i></span>
-</div>
-<script type="text/javascript">
-{literal}
-    //menu导航
-    $(window).scroll(function(){
-        $(window).scrollTop()>100?$('#amz-go-top').addClass('am-active'):$('#amz-go-top').removeClass('am-active');
-    });
-    $('#amz-go-top').click(function(){
-        $('html,body').animate({scrollTop: 0}, '500');
-    });
-{/literal}
-</script>
+<div class="pageRightMenu">{include file='broker_socket.html'}</div>
 
 <script type="text/javascript">
 function removeHouse(i, house_id) {

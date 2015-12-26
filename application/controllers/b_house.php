@@ -241,7 +241,7 @@ class B_house extends MY_Controller {
 		$house['unit_price'] = intval($house['total_price'] * 10000 / $house['acreage']);
 		$this->assign('house', $house);
 		
-		$this->display('mobile/daikuan.html');
+		$this->display('broker/daikuan.html');
 	}
 	
 	public function card($bid) {
