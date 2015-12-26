@@ -3,6 +3,7 @@
 </span>
 <script type="text/javascript" src="http://121.40.97.183:4000/socket.io/socket.io.js"></script>
 <script type="text/javascript">
+{literal}
 	var socket = io.connect('http://121.40.97.183:4000');
 	socket.emit('online', JSON.stringify({ "user_id": '{{$open_id}}', "target_id": '{{$connected_broker_id}}', "user_type": 1 }));
 	socket.on('show-status',function(data){
@@ -15,4 +16,5 @@
 			$("#span_msg_num").html(html);
 		}
 	});
+{/literal}
 </script>
