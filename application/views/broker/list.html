@@ -269,13 +269,10 @@
 	});
 	socket.on('receive-message', function (data) {
 		var num = $("#msg_num").text();
-		var html = "";
 		try {
 			num = parseInt(num)
-		} catch(e) {
-			num = 0
-		}
-		html = '<i class="message-number" id="msg_num">' + num++ + '</i>';
+		} catch(e) {}
+		var html = '<i class="message-number" id="msg_num">' + ++num + '</i>';
 		$("#span_msg_num").html(html);
 	});
 </script>
