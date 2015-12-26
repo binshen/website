@@ -184,9 +184,7 @@
 
 <div class="pageRightMenu">
     <span class="menu-button top-button am-icon-chevron-up" id="amz-go-top"></span>
-    <span class="menu-button am-icon-comments" onclick="go_chat()" id="span_msg_num">
-    	<!-- <i class="message-number" id="msg_num"></i> -->
-    </span>
+    {include file='/broker/socket.html'}
     {{if $login_broker_id_flag }}
     <a href="/b_house/card/{{$login_broker_id}}"><span class="menu-button  am-icon-share"></span></a>
     {{else}}
@@ -257,32 +255,6 @@
     function go_chat() {
     	window.location.href="/b_house/chat/";
     }
-</script>
-
-
-<script type="text/javascript" src="http://121.40.97.183:4000/socket.io/socket.io.js"></script>
-<script type="text/javascript">
-	var socket = io.connect('http://121.40.97.183:4000');
-	socket.emit('online', JSON.stringify({ "user_id": '{{$open_id}}', "target_id": '{{$connected_broker_id}}', "user_type": 1 }));
-	socket.on('show-status',function(data){
-		console.log('show-status');
-	});
-	socket.on('receive-message', function (data) {
-		/*
-		var num = $("#msg_num").text() || 0;
-		try {
-			num = parseInt(num);
-		} catch(e) {
-			num = 0;
-		}
-		var html = '<i class="message-number" id="msg_num">' + ++num + '</i>';
-		*/
-		var data = JSON.parse(data);
-		if(data.count > 0) {
-			var html = '<i class="message-number" id="msg_num">' + data.count + '</i>';
-			$("#span_msg_num").html(html);
-		}
-	});
 </script>
 </body>
 </html>
