@@ -268,10 +268,14 @@
 		console.log('show-status');
 	});
 	socket.on('receive-message', function (data) {
+		var num = $("#msg_num").text();
 		var html = "";
 		try {
-			html = '<i class="message-number" id="msg_num">' + parseInt($("#msg_num").text()) + '</i>';
-		} catch(e) { }
+			num = parseInt(num)
+		} catch(e) {
+			num = 0
+		}
+		html = '<i class="message-number" id="msg_num">' + num++ + '</i>';
 		$("#span_msg_num").html(html);
 	});
 </script>
