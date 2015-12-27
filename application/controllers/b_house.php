@@ -9,6 +9,15 @@ class B_house extends MY_Controller {
 		$this->load->model('house_model');
 		$this->load->model('manage_model');
 		$this->load->model('api_model');
+		
+		$open_id = $this->session->userdata('wx_open_id');
+		if(!empty($open_id)) {
+			$this->assign('wx_open_id', $wx_open_id);
+		}
+		$broker_id = $this->session->userdata('wx_broker_id');
+		if(!empty($broker_id)) {
+			$this->assign('wx_broker_id', $wx_broker_id);
+		}
 	}
 	
 	public function index($oid, $bid=NULL) {
@@ -259,11 +268,11 @@ class B_house extends MY_Controller {
 	public function chat() {
 		
 		//$open_id = 'orFu-vgK-snskoQdDgMkBe-jFe1k';
-		$open_id = $this->session->userdata('wx_open_id');
-		$this->assign('open_id', $open_id);
+// 		$open_id = $this->session->userdata('wx_open_id');
+// 		$this->assign('open_id', $open_id);
 		
-		$broker = $this->house_model->get_bind_broker_id($open_id);
-		$this->assign('broker_id', $broker['broker_id']);
+// 		$broker = $this->house_model->get_bind_broker_id($open_id);
+// 		$this->assign('broker_id', $broker['broker_id']);
 		
 		$this->display('broker/chat.html');
 	}

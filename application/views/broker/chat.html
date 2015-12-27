@@ -27,7 +27,8 @@
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/jquery.scrollLoading.js"></script>
 <script type="text/javascript" src="/static/js/zepto.js"></script>
-<script type="text/javascript" src="http://121.40.97.183:4000/socket.io/socket.io.js"></script>
+<!-- <script type="text/javascript" src="http://121.40.97.183:4000/socket.io/socket.io.js"></script> -->
+<script type="text/javascript" src="/chat/socket.io.js"></script>
 <script>
 	//模拟滚动条
 	window.myScroll = new IScroll('#scrollCont1', {
@@ -64,8 +65,8 @@
 	}
 </script>
 <script type="text/javascript">
-	var open_id = '{{$open_id}}';
-	var target_id = '{{$broker_id}}';
+	var open_id = '{{$wx_open_id}}';
+	var target_id = '{{$wx_broker_id}}';
 	var socket = io.connect('http://121.40.97.183:4000');
 	
 	socket.emit('online', JSON.stringify({ "user_id": open_id, "target_id": target_id, "user_type": 1, "reset_count":1 }));
