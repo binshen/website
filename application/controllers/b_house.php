@@ -11,11 +11,11 @@ class B_house extends MY_Controller {
 		$this->load->model('api_model');
 		
 		$wx_open_id = $this->session->userdata('wx_open_id');
-		if(!empty($open_id)) {
+		if(!empty($wx_open_id)) {
 			$this->assign('wx_open_id', $wx_open_id);
 		}
 		$wx_broker_id = $this->session->userdata('wx_broker_id');
-		if(!empty($broker_id)) {
+		if(!empty($wx_broker_id)) {
 			$this->assign('wx_broker_id', $wx_broker_id);
 		}
 	}
