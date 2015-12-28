@@ -84,10 +84,11 @@ socket.on('receive-message', function (data) {
 	if(user_type == 1) {
 		play_ring("/chat/ring/msg.wav");
 
-		if(open_id != user_id) {
+		if(open_id == "" || open_id != user_id) {
 			var count = data.count
 			if(count > 0) {
-				$("#number_" + user_id).html('<em class="dialogue-message-number">' + count + '</em>');
+				var html = '<em class="dialogue-message-number">' + count + '</em>';
+				$("#number_" + user_id).html(html);
 			}
 		}
 	}
