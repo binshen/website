@@ -83,6 +83,13 @@ socket.on('receive-message', function (data) {
 	if(user_type == 1) {
 		play_ring("/chat/ring/msg.wav");
 	}
+
+	if(user_type == 1) {
+		var count = data.count
+		if(count > 0) {
+			$("#status_" + user_id).text(count);
+		}
+	}
 });
 
 socket.on('receive-history', function (data) {
