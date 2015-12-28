@@ -305,4 +305,8 @@ class B_house extends MY_Controller {
 		}
 		$this->view_list(1);
 	}
+	
+	public function send_notification($open_id) {
+		$this->api_model->send_text($open_id, 'You received a message !');
+	}
 }

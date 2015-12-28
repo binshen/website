@@ -8,6 +8,10 @@ class Api extends MY_Controller {
 		$this->load->model('house_model');
 	}
 	
+	public function send_text($open_id) {
+		$this->api_model->send_text($open_id, 'You received a message !');
+	}
+	
 	public function update_weixin_user($openid) {
 		$this->api_model->update_weixin_user($openid);
 	}

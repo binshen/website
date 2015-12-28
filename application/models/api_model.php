@@ -114,6 +114,16 @@ class Api_model extends MY_Model {
 		return $this->post($url, $content);
 	}
 	
+	public function send_text($open_id, $text) {
+		$token = $this->get_or_create_token();
+		$url = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" . $token['token'];
+		$content = array();
+		$content['touser'] = $open_id;
+		$content['msgtype'] = 'text';
+		$content['text'] = array('content' => $text);
+		return $this->post($url, $content);
+	}
+	
 	public function update_weixin_user($open_id) {
 		if(!empty($open_id)) {
 			$token = $this->get_or_create_token();
