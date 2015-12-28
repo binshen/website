@@ -9,7 +9,7 @@ class Api extends MY_Controller {
 	}
 	
 	public function send_text($open_id) {
-		$this->api_model->send_text($open_id, urlencode("您收到了一条消息。<a href='http://www.funmall.com.cn/b_house/view_chat/{$open_id}'>点击查看消息</a>"));
+		$this->api_model->send_text($open_id, urlencode("您收到了一条消息。<a href='http://www.funmall.com.cn/b_house/view_chat/{$open_id}'>点击查看</a>"));
 	}
 	
 	public function update_weixin_user($openid) {
