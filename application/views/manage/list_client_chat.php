@@ -20,6 +20,7 @@
 			                  	<br /> 性别：<?php echo @$sex[$row['sex']]; ?>
 			                  	<input type="hidden" class="cus-open-id" value="<?php echo $row['open_id']; ?>" />
 			                  	<span style="padding-left:15px; color:green" id="status_<?php echo $row['open_id']; ?>">OFF</span>
+			                  	<input type="hidden" id="status_flag_<?php echo $row['open_id']; ?>" value="0" />
 			                  </span>
 			                </li>
 				<?php 
@@ -91,6 +92,11 @@ socket.on('receive-message', function (data) {
 				$("#number_" + user_id).html(html);
 			}
 		}
+	} else {
+		var status = $("#status_flag_" + target_id).val();
+		if(status < 1) {
+			$.get('b_house/send_notification/' + target_id, function() { /*  */ });
+		}
 	}
 });
 
@@ -114,9 +120,11 @@ socket.on('show-status',function(data){
 	if(status) {
 		$("#status_" + user_id).text("ON");
 		$("#status_" + user_id).css('color', 'red');
+		$("#status_flag_" + user_id).text(1);
 	} else {
 		$("#status_" + user_id).text("OFF");
 		$("#status_" + user_id).css('color', 'green');
+		$("#status_flag_" + user_id).text(0);
 	}
 });
 
