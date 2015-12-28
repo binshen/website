@@ -83,12 +83,12 @@ socket.on('receive-message', function (data) {
 	}
 	if(user_type == 1) {
 		play_ring("/chat/ring/msg.wav");
-	}
 
-	if(user_type == 1) {
-		var count = data.count
-		if(count > 0) {
-			$("#number_" + user_id).text('<em class="dialogue-message-number">' + count + '</em>');
+		if(open_id != user_id) {
+			var count = data.count
+			if(count > 0) {
+				$("#number_" + user_id).html('<em class="dialogue-message-number">' + count + '</em>');
+			}
 		}
 	}
 });
@@ -145,6 +145,7 @@ $(function(){
 	    $("#dialogue-center-name").html($(this).children().find(".dialogue-cus-name").html());
 
 	    var open_id = $(this).children().find(".cus-open-id").val();
+	    $("#number_" + user_id).html("");
 	    list_house_tracks(open_id);
 	    
 		$("#selectedUser").val(open_id);
