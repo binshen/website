@@ -42,9 +42,10 @@ i,em{font-style:normal;}
 
 .dialogue-cus-list li{list-style:none; height: 42px; margin:5px;padding:5px; cursor:pointer; }
 .dialogue-cus-list li.current{ background: #0e94c7;}
-.dialogue-message-number{margin:0;padding:0;width: 20px; height: 20px; border-radius: 10px; background: #f2092f; text-align: center; line-height: 20px; display: block; color:#fff; font-size: 12px; position: absolute;top:-5px; right: -5px;}
+.dialogue-message-number-i{position: absolute;top:-5px;right: -5px; display:block;}
+.dialogue-message-number{width: 20px;height: 20px;border-radius: 10px;background: #f2092f;text-align: center;	line-height: 20px;display: block;
+	color:#fff;	font-size: 12px;}
 .dialogue-cus-list .dialogue-cus-txt{margin:0;padding-left:50px;font-style:normal; display: block; line-height: 20px; font-size: 12px; color: #fff;}
-
 .dialogue-left-ftr{margin:0;padding:10px 0; background: #1f2227;position:fixed;width: 18%; bottom:35px;}
 .dialogue-left-ftr p{ margin:0;padding:0;color: #fff; font-size: 10px; line-height: 20px;-webkit-transform:scale(0.8);}
 
