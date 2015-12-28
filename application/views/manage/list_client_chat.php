@@ -146,7 +146,7 @@ $(function(){
 	    $("#dialogue-center-name").html($(this).children().find(".dialogue-cus-name").html());
 
 	    var open_id = $(this).children().find(".cus-open-id").val();
-	    $("#number_" + user_id).html("");
+	    $("#number_" + open_id).html("");
 	    list_house_tracks(open_id);
 	    
 		$("#selectedUser").val(open_id);
