@@ -1,10 +1,15 @@
+var log4js = require('log4js')
+log4js.configure({ "appenders": [{ "type": "console" }], "replaceConsole": false })
+logger = log4js.getLogger()
+logger.setLevel("TRACE")
+
 var redis_host = '127.0.0.1', redis_port = 6379;
 var redis = require("redis"), client = redis.createClient(redis_port, redis_host);
 
 var io = require('socket.io').listen(4000);
 io.set('transports', ['websocket' ,'flashsocket' ,'htmlfile' ,'xhr-polling' ,'polling']);
 
-var users = [];
+var users = {};
 var sockets = {};
 
 var map_key = "map:";
@@ -24,25 +29,6 @@ var trim = function(str) {
 	return str;
 }
 
-var contain = function(arr, val) {
-	var i = arr.length;  
-    while (i--) {  
-        if (arr[i] === val) {  
-            return true;  
-        }  
-    }  
-    return false;
-}
-
-var remove = function(arr, val) {
-	for(var i=0; i<arr.length; i++) {
-		if(arr[i] == val) {
-			arr.splice(i, 1);
-			break;
-		}
-	}
-}
-
 var containKey = function(obj, key) {
 	return obj.hasOwnProperty(key);
 }
@@ -51,40 +37,75 @@ var removeKey = function(obj, key) {
 	delete obj[key];
 }
 
-var updateStatus = function(broker_id, status) {
+var updateBrokerStatus = function(broker_id, status) {
 	client.lrange(getMapKey(broker_id), 0, -1, function(err, res) {
-		console.log('update_status - users = ' + JSON.stringify(res) + ' length = ' + res.length)
+		logger.debug('updateBrokerStatus - users = ' + JSON.stringify(res) + ' length = ' + res.length)
 		for(var i in res) {
 			var user_id = res[i];
-			if(contain(users, user_id) && containKey(sockets, user_id)) {
-				console.log('update_status - user_id = ' + user_id + ' status = ' + status)
+			if(containKey(users, user_id) && containKey(sockets, user_id)) {
+				logger.debug('updateBrokerStatus - user_id = ' + user_id + ' status = ' + status)
 				sockets[user_id].emit('show-status', JSON.stringify({ status: status }));
+				if(status) {
+					sockets[broker_id].emit('show-status', JSON.stringify({ status: true, user_id: user_id }));
+				}
 			}
 		}
 	});
 }
 
+var updateClientStatus = function(broker_id, user_id, status) {
+	logger.debug('updateClientStatus - broker_id = ' + broker_id + ' user_id = ' + user_id + ' status = ' + status)
+	if(containKey(users, broker_id) && containKey(sockets, broker_id)) {
+		sockets[broker_id].emit('show-status', JSON.stringify({ status: status, user_id: user_id }));
+	}
+	if(containKey(users, user_id) && containKey(sockets, user_id)) {
+		sockets[user_id].emit('show-status', JSON.stringify({ status: containKey(users, broker_id) }));
+	}
+}
+
+var getNumber = function(user_id) {
+	if(containKey(users, user_id)) {
+		var user = users[user_id];
+		if(containKey(user, 'count')) {
+			try {
+				return parseInt(user['count'])
+			} catch (e) {}
+		}
+	}
+	return 0;
+}
+
 io.sockets.on('connection', function (socket) {
 	socket.on('online',function(data){
 		var data = JSON.parse(data);
-		console.log('online - ' + JSON.stringify(data))
+		logger.debug('online - ' + JSON.stringify(data))
 		
 		var user_id = data.user_id;
-		if(!contain(users, user_id)) {
-			users.unshift(user_id);
+		var target_id = data.target_id;
+		var user_type = data.user_type;
+		
+		if(!containKey(users, user_id)) {
+			users[user_id] = {target_id: target_id, user_type: user_type}
 		}
-		console.log('online - users - ' + JSON.stringify(users));
+		logger.trace('online - users - ' + JSON.stringify(users));
 		
 		sockets[user_id] = socket;
-		console.log('online - sockets - keys = ' + JSON.stringify(Object.keys(sockets)) + ' length = ' + Object.keys(sockets).length);
+		logger.debug('online - sockets - keys = ' + JSON.stringify(Object.keys(sockets)));
 		
-		var user_type = data.user_type;
 		if(user_type == 1) {
-			console.log('online - user_type = 1 - status - ' + contain(users, data.target_id));
-			socket.emit('show-status', JSON.stringify({ status: contain(users, data.target_id) }));
+			updateClientStatus(target_id, user_id, true);
+			logger.debug('online - user_type = 1 - status = true');
+			if(data.reset_count) {
+				logger.debug('online - reset_count = true - count = 0');
+				users[user_id]['count'] = 0;
+			} else {
+				var count = getNumber(user_id);
+				logger.debug('online - reset_count = false - count = ' + count);
+				sockets[user_id].emit('receive-message', JSON.stringify({ count: count}));
+			}
 		} else {
-			console.log('online - user_type = 2 - status = true');
-			updateStatus(user_id, true);
+			logger.debug('online - user_type = 2 - status = true');
+			updateBrokerStatus(user_id, true);
 		}
 	});
 	
@@ -96,10 +117,18 @@ io.sockets.on('connection', function (socket) {
 		setTimeout(function() {
 			for(var user_id in sockets) {
 				if(sockets[user_id] == socket) {
-					console.log('disconnect - user_id = ' + user_id)
-					updateStatus(user_id, false);
-					
-					remove(users, user_id);
+					if(containKey(users, user_id)) {
+						var user = users[user_id];
+						logger.debug('disconnect - user = ' + JSON.stringify(user))
+						var user_type = user.user_type
+						if(user_type == 1) {
+							var target_id = user.target_id
+							updateClientStatus(target_id, user_id, false);
+						} else {
+							updateBrokerStatus(user_id, false);
+						}
+						removeKey(users, user_id);
+					}
 					removeKey(sockets, user_id);
 					break;
 				}
@@ -113,7 +142,6 @@ io.sockets.on('connection', function (socket) {
 		if(undefined === message || null === message || "" === trim(message)) {
 			return;
 		}
-		console.log('send-message - ' + JSON.stringify(data));
 		
 		var user_id = data.user_id;
 		var target_id = data.target_id;
@@ -122,16 +150,28 @@ io.sockets.on('connection', function (socket) {
 		var json = JSON.stringify(data)
 		client.lpush(getSocketKey(user_type, user_id, target_id), json, function(err, res){
 			if(containKey(sockets, user_id)) {
-				sockets[user_id].emit('receive-message', json);
+				if(user_type == 1) {
+					var count = getNumber(user_id);
+					data.count = ++count;
+					users[user_id]['count'] = data.count;
+				}
+				logger.debug('send-message - 1 - ' + JSON.stringify(data));
+				sockets[user_id].emit('receive-message', JSON.stringify(data));
 			}
 			if(containKey(sockets, target_id)) {
-				sockets[target_id].emit('receive-message', json);
+				if(user_type == 2) {
+					var count = getNumber(target_id);
+					data.count = ++count;
+					users[target_id]['count'] = data.count;
+				}
+				logger.debug('send-message - 2 - ' + JSON.stringify(data));
+				sockets[target_id].emit('receive-message', JSON.stringify(data));
 			}
 		});
 	});
 	
 	socket.on('show-history',function(data){
-		console.log('show-history - ' + data);
+		logger.debug('show-history - ' + data);
 		var data = JSON.parse(data);
 		var user_id = data.user_id;
 		var target_id = data.target_id;

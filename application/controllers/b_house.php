@@ -9,6 +9,15 @@ class B_house extends MY_Controller {
 		$this->load->model('house_model');
 		$this->load->model('manage_model');
 		$this->load->model('api_model');
+		
+		$wx_open_id = $this->session->userdata('wx_open_id');
+		if(!empty($wx_open_id)) {
+			$this->assign('wx_open_id', $wx_open_id);
+		}
+		$wx_broker_id = $this->session->userdata('wx_broker_id');
+		if(!empty($wx_broker_id)) {
+			$this->assign('wx_broker_id', $wx_broker_id);
+		}
 	}
 	
 	public function index($oid, $bid=NULL) {
@@ -53,13 +62,12 @@ class B_house extends MY_Controller {
 			if(!empty($open_id)) {
 				$connected_brokers = $this->house_model->get_connected_brokers($open_id);
 			}
+			$broker = $this->house_model->get_bind_broker_id($open_id);
+			$this->assign('connected_broker_id', $broker['broker_id']);
 		}
 		$this->assign('open_id', $open_id);
 		$this->assign('broker_id', $broker_id);
 		$this->assign('connected_brokers', $connected_brokers);
-		
-		$broker = $this->house_model->get_bind_broker_id($open_id);
-		$this->assign('connected_broker_id', $broker['broker_id']);
 		
 		$region_list = $this->house_model->get_m_house_region();
 		$this->assign('region_list', $region_list);
@@ -242,7 +250,7 @@ class B_house extends MY_Controller {
 		$house['unit_price'] = intval($house['total_price'] * 10000 / $house['acreage']);
 		$this->assign('house', $house);
 		
-		$this->display('mobile/daikuan.html');
+		$this->display('broker/daikuan.html');
 	}
 	
 	public function card($bid) {

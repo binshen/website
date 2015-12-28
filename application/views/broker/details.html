@@ -118,10 +118,13 @@
 	<script type="text/javascript" src="/static/js/store.min.js"></script>
 	<script type="text/javascript" src="/static/js/jquery.scrollLoading.js"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=gDeY0HhjlQOvjMmGKKWHAtCb"></script>
-    
+<div class="pageRightMenu">
+	<span class="menu-button top-button am-icon-chevron-up" id="amz-go-top"></span>
+	{include file='broker_socket.html'}
+</div>
 <script type="text/javascript">
 {literal}
-    //menu导航
+	//menu导航
     $(window).scroll(function(){
         $(window).scrollTop()>100?$('#amz-go-top').addClass('am-active'):$('#amz-go-top').removeClass('am-active');
     });
@@ -130,7 +133,6 @@
     });
 {/literal}
 </script>
-    
   <script>
     $(".scrollLoading").scrollLoading();
 	

@@ -168,8 +168,7 @@
             <li><img data-url="/uploadfiles/pics/{{$item.bg_pic}}" src="/static/images/default1.gif" alt="'"
                      class="scrollLoading" width="85" height="77">
                 <div class="house-txt">
-                    <p class="h-t1">{{$item.region_name}} {{$item.xq_name}}<!-- <span class="house-label">学
-</span></p> -->
+                    <p class="h-t1">{{$item.region_name}} {{$item.xq_name}}
                     <p class="h-t2">{{$item.room}}室{{$item.lounge}}厅   | {{$item.floor}}/{{$item.total_floor}}层
                         | {{$item.acreage}}㎡</p>
                     <p class="h-t3"><i>装修:</i> {{$item.decoration_name}} | <i>朝向:</i>
@@ -185,7 +184,7 @@
 
 <div class="pageRightMenu">
     <span class="menu-button top-button am-icon-chevron-up" id="amz-go-top"></span>
-    <span class="menu-button am-icon-comments" onclick="go_chat()"><!-- <i class="message-number">1</i> --></span>
+    {include file='broker_socket.html'}
     {{if $login_broker_id_flag }}
     <a href="/b_house/card/{{$login_broker_id}}"><span class="menu-button  am-icon-share"></span></a>
     {{else}}
@@ -252,9 +251,6 @@
     }
     function choose_broker(id, broker_id) {
         window.location.href="/b_house/choose_broker/"+id+"/"+broker_id;
-    }
-    function go_chat() {
-    	window.location.href="/b_house/chat/";
     }
 </script>
 </body>
