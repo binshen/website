@@ -13,6 +13,7 @@
 			                <li>
 			                  <span class="dialogue-cus-head dialogue-cus-head-female">
 			                    <img src="<?php echo $row['headimgurl']; ?>" alt="" id="<?php echo $row['open_id']; ?>" style="height: 36px;width:36px;"/>
+			                  	<i class="dialogue-message-number-i" id="number_<?php echo $row['open_id']; ?>"></i>
 			                  </span>
 			                  <span class="dialogue-cus-txt">
 			                  	<i class="dialogue-cus-name"> 姓名：<?php echo $row['nickname']; ?></i>
@@ -87,7 +88,7 @@ socket.on('receive-message', function (data) {
 	if(user_type == 1) {
 		var count = data.count
 		if(count > 0) {
-			$("#status_" + user_id).text(count);
+			$("#number_" + user_id).text('<em class="dialogue-message-number">' + count + '</em>');
 		}
 	}
 });
