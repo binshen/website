@@ -10,16 +10,15 @@
             			$sex = array('1' => '男', '2' => '女');
             			foreach ($wx_users_list as $i => $row):
             	?>
-			                <li>
+			                <li id="<?php echo $row['open_id']; ?>">
 			                  <span class="dialogue-cus-head dialogue-cus-head-female">
 			                    <img src="<?php echo $row['headimgurl']; ?>" alt="" id="<?php echo $row['open_id']; ?>" style="height: 36px;width:36px;"/>
 			                  	<i class="dialogue-message-number-i" id="number_<?php echo $row['open_id']; ?>"></i>
 			                  </span>
+			                  <span class="online-state leave-state" id="status_<?php echo $row['open_id']; ?>">离线</span>
 			                  <span class="dialogue-cus-txt">
-			                  	<i class="dialogue-cus-name"> 姓名：<?php echo $row['nickname']; ?></i>
+			                  	<i class="dialogue-cus-name"> 昵称：<?php echo $row['nickname']; ?></i>
 			                  	<br /> 性别：<?php echo @$sex[$row['sex']]; ?>
-			                  	<input type="hidden" class="cus-open-id" value="<?php echo $row['open_id']; ?>" />
-			                  	<span style="padding-left:15px; color:green" id="status_<?php echo $row['open_id']; ?>">OFF</span>
 			                  	<input type="hidden" id="status_flag_<?php echo $row['open_id']; ?>" value="0" />
 			                  </span>
 			                </li>
@@ -118,12 +117,12 @@ socket.on('show-status',function(data){
 	var user_id = data.user_id;
 	var status = data.status;
 	if(status) {
-		$("#status_" + user_id).text("ON");
-		$("#status_" + user_id).css('color', 'red');
+		$("#status_" + user_id).text("在线");
+		$("#status_" + user_id).removeClass('leave-state');
 		$("#status_flag_" + user_id).val(1);
 	} else {
-		$("#status_" + user_id).text("OFF");
-		$("#status_" + user_id).css('color', 'green');
+		$("#status_" + user_id).text("离线");
+		$("#status_" + user_id).addClass('leave-state');
 		$("#status_flag_" + user_id).val(0);
 	}
 });
@@ -141,9 +140,9 @@ $(function(){
 	$('#dialogue-right-body').height(rightPx);
 	$("#dialogue-center-chat").mCustomScrollbar();
 
-	for(var i=0; i<$('.imgToGray').length;i++){
-		$('.imgToGray')[i].src = gray($('.imgToGray')[i]);
-	}
+//	for(var i=0; i<$('.imgToGray').length;i++){
+//		$('.imgToGray')[i].src = gray($('.imgToGray')[i]);
+//	}
 
 	socket.emit('online', JSON.stringify({ "user_id": broker_id, "user_type": 2 }));
 	
@@ -153,12 +152,13 @@ $(function(){
 	    $(this).addClass('current');
 	    $("#dialogue-center-name").html($(this).children().find(".dialogue-cus-name").html());
 
-	    var open_id = $(this).children().find(".cus-open-id").val();
+	    var open_id = $(this).attr('id');
 	    $("#number_" + open_id).html("");
 	    list_house_tracks(open_id);
 	    
 		$("#selectedUser").val(open_id);
 
+		socket.emit('online', JSON.stringify({ "user_id": broker_id, "user_type": 2 }));
 		socket.emit('show-history', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2 }));
 		
 	    $("#btnSendMsg").click(function() {
@@ -233,6 +233,7 @@ function list_house_tracks(open_id) {
     });
 }
 
+/*
 function gray(imgObj) {
 	var canvas = document.createElement('canvas');
 	var canvasContext = canvas.getContext('2d');
@@ -257,6 +258,7 @@ function gray(imgObj) {
     canvasContext.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
     return canvas.toDataURL();
 }
+*/
 </script>
 <div id="ring" style="width:0px; height:0px;"></div>
 <input type="hidden" id="selectedUser" value="" />
