@@ -72,6 +72,17 @@ i,em{font-style:normal;}
 .dialogue-chat-div-female .dialogue-chat-head,.dialogue-chat-input-head{margin:0;padding:0;background:url(../images/head.png) no-repeat -72px -3px; }
 .dialogue-chat-div-male .dialogue-chat-head,.dialogue-chat-input-head{margin:0;padding:0;background:url(../images/head.png) no-repeat -72px -49px;}
 .dialogue-chat-div-male .dialogue-chat-pop p{margin:0;background: #fff;}
+.online-state{ display: inline;margin:10px 20px 0 0;
+	float: right;
+	width: 45px;
+	height: 20px; background: #cc0000; text-align: center;
+	line-height: 20px;
+	font-size: 12px;
+	color: #fff;border-radius: 3px;}
+
+.leave-state{ background: #666;}
+
+
 /*.gray {
 	/*-webkit-filter: grayscale(100%);	-moz-filter: grayscale(100%);-ms-filter: grayscale(100%);	-o-filter: grayscale(100%);	filter: grayscale(100%);*/
 /*filter: gray;}*/
