@@ -13,12 +13,14 @@
 			                <li>
 			                  <span class="dialogue-cus-head dialogue-cus-head-female">
 			                    <img src="<?php echo $row['headimgurl']; ?>" alt="" id="<?php echo $row['open_id']; ?>" style="height: 36px;width:36px;"/>
+			                  	<i class="dialogue-message-number-i" id="number_<?php echo $row['open_id']; ?>"></i>
 			                  </span>
 			                  <span class="dialogue-cus-txt">
 			                  	<i class="dialogue-cus-name"> 姓名：<?php echo $row['nickname']; ?></i>
 			                  	<br /> 性别：<?php echo @$sex[$row['sex']]; ?>
 			                  	<input type="hidden" class="cus-open-id" value="<?php echo $row['open_id']; ?>" />
 			                  	<span style="padding-left:15px; color:green" id="status_<?php echo $row['open_id']; ?>">OFF</span>
+			                  	<input type="hidden" id="status_flag_<?php echo $row['open_id']; ?>" value="0" />
 			                  </span>
 			                </li>
 				<?php 
@@ -82,12 +84,18 @@ socket.on('receive-message', function (data) {
 	}
 	if(user_type == 1) {
 		play_ring("/chat/ring/msg.wav");
-	}
 
-	if(user_type == 1) {
-		var count = data.count
-		if(count > 0) {
-			$("#status_" + user_id).text(count);
+		if(open_id == "" || open_id != user_id) {
+			var count = data.count
+			if(count > 0) {
+				var html = '<em class="dialogue-message-number">' + count + '</em>';
+				$("#number_" + user_id).html(html);
+			}
+		}
+	} else {
+		var status = $("#status_flag_" + target_id).val();
+		if(status < 1) {
+			$.get('/b_house/send_notification/' + target_id, function() { /*  */ });
 		}
 	}
 });
@@ -112,9 +120,11 @@ socket.on('show-status',function(data){
 	if(status) {
 		$("#status_" + user_id).text("ON");
 		$("#status_" + user_id).css('color', 'red');
+		$("#status_flag_" + user_id).val(1);
 	} else {
 		$("#status_" + user_id).text("OFF");
 		$("#status_" + user_id).css('color', 'green');
+		$("#status_flag_" + user_id).val(0);
 	}
 });
 
@@ -144,6 +154,7 @@ $(function(){
 	    $("#dialogue-center-name").html($(this).children().find(".dialogue-cus-name").html());
 
 	    var open_id = $(this).children().find(".cus-open-id").val();
+	    $("#number_" + open_id).html("");
 	    list_house_tracks(open_id);
 	    
 		$("#selectedUser").val(open_id);

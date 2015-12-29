@@ -305,4 +305,15 @@ class B_house extends MY_Controller {
 		}
 		$this->view_list(1);
 	}
+	
+	public function send_notification($open_id) {
+		$this->api_model->send_text($open_id, urlencode("您收到了一条消息。<a href='http://www.funmall.com.cn/b_house/view_chat/{$open_id}'>点击查看</a>"));
+	}
+	
+	public function view_chat($open_id) {
+		$this->assign('open_id', $open_id);
+		$broker = $this->house_model->get_bind_broker_id($open_id);
+		$this->assign('broker_id', $broker['broker_id']);
+		$this->display('broker/chat.html');
+	}
 }
