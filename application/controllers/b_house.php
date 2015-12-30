@@ -323,6 +323,8 @@ class B_house extends MY_Controller {
 		$client_users = $this->house_model->get_bind_client_users($broker_id);
 		$this->assign('client_users', $client_users);
 		
+		$this->assign('broker_id', $broker_id);
+		
 		$this->display('broker/chat-list.html');
 	}
 }
