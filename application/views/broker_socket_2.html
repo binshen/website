@@ -1,7 +1,8 @@
 <span class="menu-button am-icon-comments" onclick="go_chat()" id="span_msg_num"></span>
 <script type="text/javascript" src="/chat/socket.io.js"></script>
 <script type="text/javascript">
-var json_data = { "user_id": '{{$broker_id}}', "user_type": 2 };
+var broker_id = '{{$broker_id}}';
+var json_data = { "user_id": broker_id, "user_type": 2 };
 {literal}
 	var socket = io.connect('http://121.40.97.183:4000');
 	socket.emit('online', JSON.stringify(json_data));
@@ -17,7 +18,7 @@ var json_data = { "user_id": '{{$broker_id}}', "user_type": 2 };
 	});
 	
     function go_chat() {
-    	window.location.href="/b_house/chat_list/{{$broker_id}}";
+    	window.location.href="/b_house/chat_list/" + broker_id;
     }
 {/literal}
 </script>
