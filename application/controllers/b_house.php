@@ -31,7 +31,9 @@ class B_house extends MY_Controller {
 		$this->session->set_userdata('wx_broker_id', $bid);
 		//$this->api_model->update_weixin_user($oid);
 		
-		//$this->view_list(1);
+		$this->assign('wx_open_id', $oid);
+		$this->assign('wx_broker_id', $bid);
+		
 		$this->view_art($bid);
 	}
 	
