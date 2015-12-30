@@ -2,9 +2,9 @@
 <script type="text/javascript" src="/chat/socket.io.js"></script>
 <script type="text/javascript">
 {{if $login_broker_id_flag }}
-	var json_data = { "user_id": '{{$broker_id}}', "user_type": 2 };
+	var json_data = { "user_id": '{{$wx_broker_id}}', "user_type": 2 };
 	function go_chat() {
-		window.location.href="/b_house/chat_list/{{$broker_id}}";
+		window.location.href="/b_house/chat_list/{{$wx_broker_id}}";
 	}
 {{else}}
 	var json_data = { "user_id": '{{$wx_open_id}}', "target_id": '{{$wx_broker_id}}', "user_type": 1 };
