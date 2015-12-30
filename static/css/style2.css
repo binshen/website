@@ -455,7 +455,7 @@ body{background-color:#fff;}
 .cus_head_pic{ background:url(../images/touxiang1.jpg) no-repeat; background-size:100%; width:50px; height:42px; float:left;}
 .manger_head_pic{background:url(../images/touxiang2.jpg) no-repeat; background-size:100%; width:50px; height:42px; float:right;}
 
-.cus_word p,.manger_word p{ color:#000;padding:2px 10px;}
+.cus_word p,.manger_word p{ color:#000;padding:5px 10px;}
 #dialogue{ background:#efefef;}
 #dialogue .g-doc{ position:relative;}
 .cus_word{margin-top:5px; width:300px; float:left; position:relative;}
@@ -465,8 +465,8 @@ body{background-color:#fff;}
     transform:rotate(45deg);-ms-transform:rotate(45deg);-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-o-transform:rotate(45deg);}
 
 .manger_word{margin-top:5px;width:300px; float:right; position:relative;}
-.cus_word p{ background:#82d842; border-radius:5px;font-size:12px;float: left; line-height: 18px; }
-.manger_word p{ background:#fff;border-radius:5px; font-size:12px;	float: right; line-height: 18px;}
+.cus_word p{ background:#82d842; border-radius:5px;font-size:14px;float: left; line-height: 18px; }
+.manger_word p{ background:#fff;border-radius:5px; font-size:14px;	float: right; line-height: 18px;}
 .word_submit{padding:10px;width:100%;  background:#fff; position:absolute;bottom:0;}
 .input_txt{ background:#fff; border:1px solid #bdbdbd; border-radius:5px; float:left; padding:10px; width:77%; }
 .tj_btn{ display:block; width:70px; height:35px; background: #1677d2; float:right; border-radius: 3px;
