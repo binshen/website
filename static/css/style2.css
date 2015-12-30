@@ -422,7 +422,7 @@ body{background-color:#fff;}
 .peo-txt{float:right; width:180px; line-height:26px; color:#fd6709; overflow:hidden;}
 .peo-txt dt{ color:#9a9a9a; float:left; width:48px;}
 .peo-txt dd{float:left; width:132px; overflow:hidden; height:28px;}
-.peo-head .level{width:35px; height:25px; background:#ff6000; border-radius:5px; position:absolute;top:5px; right:-10px; display:block; text-align:center; color:#fff;}
+.peo-head .level{width:35px; height:25px; background:#ff6000; border-radius:5px; position:absolute;top:5px; right:-15px; display:block; text-align:center; color:#fff;}
 .peo-head .level em{font-style:italic; font-size:20px;}
 .person-body{ padding:45px 0;}
 .ewm{ padding:10px; width:220px; height:220px; background:#fff; margin:0 auto;}
