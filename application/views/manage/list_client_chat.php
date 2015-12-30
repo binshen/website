@@ -94,7 +94,7 @@ socket.on('receive-message', function (data) {
 	} else {
 		var status = $("#status_flag_" + target_id).val();
 		if(status < 1) {
-			$.get('/b_house/send_notification/' + target_id, function() { /*  */ });
+			$.get('/b_house/send_notification/' + target_id + '/' + broker_id, function() { /*  */ });
 		}
 	}
 });
