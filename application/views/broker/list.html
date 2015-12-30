@@ -184,11 +184,10 @@
 
 <div class="pageRightMenu">
     <span class="menu-button top-button am-icon-chevron-up" id="amz-go-top"></span>
+    {include file='broker_socket.html'}
     {{if $login_broker_id_flag }}
-    	{include file='broker_socket_2.html'}
     	<a href="/b_house/card/{{$login_broker_id}}"><span class="menu-button  am-icon-share"></span></a>
     {{else}}
-    	{include file='broker_socket.html'}
     	<span class="menu-button am-icon-history" id="menu-history-button" data-action="historyPopup"></span>
     {{/if}}
 </div>

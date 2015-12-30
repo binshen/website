@@ -1,7 +1,18 @@
 <span class="menu-button am-icon-comments" onclick="go_chat()" id="span_msg_num"></span>
 <script type="text/javascript" src="/chat/socket.io.js"></script>
 <script type="text/javascript">
-var json_data = { "user_id": '{{$wx_open_id}}', "target_id": '{{$wx_broker_id}}', "user_type": 1 };
+{{if $login_broker_id_flag }}
+	var json_data = { "user_id": '{{$broker_id}}', "user_type": 2 };
+	function go_chat() {
+		window.location.href="/b_house/chat_list/{{$broker_id}}";
+	}
+{{else}}
+	var json_data = { "user_id": '{{$wx_open_id}}', "target_id": '{{$wx_broker_id}}', "user_type": 1 };
+    function go_chat() {
+    	window.location.href="/b_house/chat/";
+    }
+{{/if}}
+
 {literal}
 	var socket = io.connect('http://121.40.97.183:4000');
 	socket.emit('online', JSON.stringify(json_data));
@@ -15,9 +26,5 @@ var json_data = { "user_id": '{{$wx_open_id}}', "target_id": '{{$wx_broker_id}}'
 			$("#span_msg_num").html(html);
 		}
 	});
-	
-    function go_chat() {
-    	window.location.href="/b_house/chat/";
-    }
 {/literal}
 </script>
