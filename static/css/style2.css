@@ -455,7 +455,7 @@ body{background-color:#fff;}
 .cus_head_pic{ background:url(../images/touxiang1.jpg) no-repeat; background-size:100%; width:50px; height:42px; float:left;}
 .manger_head_pic{background:url(../images/touxiang2.jpg) no-repeat; background-size:100%; width:50px; height:42px; float:right;}
 
-.cus_word p,.manger_word p{ color:#000;padding:5px 10px;}
+.cus_word p,.manger_word p{ color:#000;padding:10px;}
 #dialogue{ background:#efefef;}
 #dialogue .g-doc{ position:relative;}
 .cus_word{margin-top:5px; width:300px; float:left; position:relative;}
