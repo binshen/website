@@ -15,7 +15,7 @@
     </div>
     <ul class="dialogue-customer-list">
     	{{foreach from=$client_users key=key item=item}}
-	        <li onclick="go_to_chat('{{$item['open_id']}}')">
+	        <li onclick="go_chat('{{$item['open_id']}}')">
 	            <a href=""><span class="cus-head">
 	                <img src="{{$item['headimgurl']}}" alt="" width="50" height="50" />
 	                <i class="dialogue-messages">3</i>
@@ -31,9 +31,8 @@
         {{/foreach}}
     </ul>
 <script>
-
-function go_to_chat(open_id) {
-	window.location.href="/b_house/view_chat/" + open_id + '/' + broker_id;
+function go_chat(open_id) {
+	window.location.href="/b_house/view_chat/" + open_id + '/{{$broker_id}}';
 }
 </script>
 </body>
