@@ -36,7 +36,7 @@
         {{/foreach}}
     </ul>
 <script>
-var broker_id = '<?php echo $this->session->userdata('user_id'); ?>';
+var broker_id = '{{$broker_id}}';
 var socket = io.connect('http://121.40.97.183:4000');
 
 socket.on('disconnect',function(){
