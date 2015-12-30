@@ -468,11 +468,11 @@ body{background-color:#fff;}
 .cus_word p{ background:#82d842; border-radius:5px;font-size:14px;float: left; line-height: 18px; }
 .manger_word p{ background:#fff;border-radius:5px; font-size:14px;	float: right; line-height: 18px;}
 .word_submit{padding:10px;width:100%;  background:#fff; position:absolute;bottom:0;}
-.input_txt{ background:#fff; border:1px solid #bdbdbd; border-radius:5px; float:left; padding:10px; width:77%; }
+.input_txt{ background:#fff; border:1px solid #bdbdbd; border-radius:5px; float:left; padding:7px 10px; width:77%; }
 .tj_btn{ display:block; width:70px; height:35px; background: #1677d2; float:right; border-radius: 3px;
     margin-left: 2px; text-align: center;	color: #fff; line-height: 35px;
     margin-top: 3px;}
-.data-time{ display:block; font-size:10px; text-align: center;color: #666;}
+.data-time{ display:block; font-size:10px; text-align: center;color: #ccc;}
 @-webkit-keyframes twinkling{	/*透明度由0到1*/
     0%{
         opacity:0.2;				/*透明度为0*/
@@ -598,9 +598,8 @@ body{background-color:#fff;}
 .dialogue-customer-list .cus-date{
     float: right;font-size:12px;
     color: #666;margin:10px 10px 0 0;}
-.dialogue-messages{width: 20px;
-    height: 20px;
-    line-height: 20px;
-    color: #fff;
-    position:absolute; background: #cc0000; text-align: center;top:-10px;right:-10px; border-radius: 10px; font-size:12px;}
+.dialogue-messages{
+    position:absolute; top:-10px;right:-10px;    display: block;}
 
+.dialogue-messages-em{width: 20px; height: 20px; line-height: 20px; color: #fff; background: #cc0000;
+    display: block;text-align: center; border-radius: 10px; font-size:12px;}
