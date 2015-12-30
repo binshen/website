@@ -22,7 +22,7 @@
 </div>
 <div class="word_submit">
 	<input type="text" class="input_txt" id="msg_box" />
-	<div class="tj_btn" id="btnSendMsg"></div>
+	<div class="tj_btn" id="btnSendMsg">发送</div>
 </div>
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/jquery.scrollLoading.js"></script>
@@ -118,7 +118,7 @@
 			}
 		});
 	});
-	
+
 	function showMessage(d) {
 		var d = JSON.parse(d)
 		var message = d.message;
@@ -126,17 +126,17 @@
 		date.setTime(d.time);
 		var content = '';
 		if(d.user_type == 1) {
-			content += '<div class="customer"><div class="cus_head_pic"></div><div class="cus_word"><p>';
-			content += message;
-			content += '<br /><span class="data-time">'
+			content += '<div class="customer"><span class="data-time">';
 			content += date.format('yyyy-MM-dd h:m:s');
-			content += '</span></p><span class="cus_word_icon"></span></div></div>';
+			content +='</span><div class="cus_head_pic"></div><div class="cus_word"><p>';
+			content += message;
+			content += '</p><span class="cus_word_icon"></span></div></div>';
 		} else {
-			content += '<div class="manger"><div class="manger_head_pic"></div><div class="manger_word"><p>';
-			content += message;
-			content += '<br /><span class="data-time">';
+			content += '<div class="manger"><span class="data-time">';
 			content += date.format('yyyy-MM-dd h:m:s');
-			content += '</span></p><span class="manger_word_icon"></span></div></div>';
+			content +='</span><div class="cus_head_pic"></div><div class="cus_word"><p>';
+			content += message;
+			content += '</p><span class="manger_word_icon"></span></div></div>';
 		}
 		$("#scorll").append(content);
 		myScroll.refresh();
