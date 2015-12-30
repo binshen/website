@@ -105,6 +105,10 @@ io.sockets.on('connection', function (socket) {
 			}
 		} else {
 			logger.debug('online - user_type = 2 - status = true');
+			
+			if(undefined !== target_id && containKey(users, target_id)) {
+				users[target_id]['count'] = 0;
+			}
 			updateBrokerStatus(user_id, true);
 		}
 	});

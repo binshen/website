@@ -17,6 +17,12 @@ class B_house extends MY_Controller {
 		$wx_broker_id = $this->session->userdata('wx_broker_id');
 		if(!empty($wx_broker_id)) {
 			$this->assign('wx_broker_id', $wx_broker_id);
+		} else {
+			if(!empty($wx_open_id)) {
+				$broker = $this->house_model->get_bind_broker_id($wx_open_id);
+				$this->assign('wx_broker_id', $broker['broker_id']);
+				$this->session->set_userdata('wx_broker_id', $broker['broker_id']);
+			}
 		}
 	}
 	
@@ -266,14 +272,7 @@ class B_house extends MY_Controller {
 	
 	////////////////////////////////////////////////////////////////////////////////
 	public function chat() {
-		
-		//$open_id = 'orFu-vgK-snskoQdDgMkBe-jFe1k';
-		$open_id = $this->session->userdata('wx_open_id');
-		$this->assign('open_id', $open_id);
-		
-		$broker = $this->house_model->get_bind_broker_id($open_id);
-		$this->assign('broker_id', $broker['broker_id']);
-		
+				
 		$this->display('broker/chat.html');
 	}
 	
@@ -306,14 +305,13 @@ class B_house extends MY_Controller {
 		$this->view_list(1);
 	}
 	
-	public function send_notification($open_id) {
-		$this->api_model->send_text($open_id, urlencode("您收到了一条消息。<a href='http://www.funmall.com.cn/b_house/view_chat/{$open_id}'>点击查看</a>"));
+	public function send_notification($open_id, $broker_id) {
+		$this->api_model->send_text($open_id, urlencode("您收到了一条消息。<a href='http://www.funmall.com.cn/b_house/view_chat/{$open_id}/{$broker_id}'>点击查看</a>"));
 	}
 	
-	public function view_chat($open_id) {
-		$this->assign('open_id', $open_id);
-		$broker = $this->house_model->get_bind_broker_id($open_id);
-		$this->assign('broker_id', $broker['broker_id']);
+	public function view_chat($open_id, $broker_id) {
+		$this->assign('wx_open_id', $open_id);
+		$this->assign('wx_broker_id', $broker_id);
 		$this->display('broker/chat.html');
 	}
 }
