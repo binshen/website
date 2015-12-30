@@ -15,27 +15,21 @@
         我的客户源
     </div>
     <ul class="dialogue-customer-list">
-        <li>
-            <a href=""><span class="cus-head">
-                <img src="/static/images/dia-head.jpg" alt="" width="50" height="50" />
-                <i class="dialogue-messages">3</i>
-            </span>
-            <i class="cus-date">15/12/27</i>
-            <div class="cus-txt">
-                <p class="p-txt1"><i class="name">周小惠</i> <i class="sex">女</i> <i class="state">在线</i></p>
-                <p class="p-txt2">江苏 苏州</p>
-            </div></a>
-        </li>
-        <li>
-            <a href=""><span class="cus-head">
-                <img src="/static/images/dia-head.jpg" alt="" width="50" height="50" />
-            </span>
-            <i class="cus-date">15/12/27</i>
-            <div class="cus-txt">
-                <p class="p-txt1"><i class="name">周小惠</i> <i class="sex">女</i> <i class="state leave-state">在线</i></p>
-                <p class="p-txt2">江苏 苏州</p>
-            </div></a>
-        </li>
+    	{{foreach from=$client_users key=key item=item}}
+	        <li>
+	            <a href=""><span class="cus-head">
+	                <img src="{{$item['headimgurl']}}" alt="" width="50" height="50" />
+	                <i class="dialogue-messages">3</i>
+	            </span>
+	            <i class="cus-date">15/12/27</i>
+	            <div class="cus-txt">
+	                <p class="p-txt1"><i class="name">{{$item['nickname']}}</i>
+	                <i class="sex">{{if $item['sex'] == 1}}男{{else}}女{{/if}}</i>
+	                <i class="state leave-state">离线</i></p>
+	                <p class="p-txt2">{{$item['province']}} {{$item['city']}}</p>
+	            </div></a>
+	        </li>
+        {{/foreach}}
     </ul>
 </body>
 </html>

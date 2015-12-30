@@ -1749,4 +1749,14 @@ class House_model extends MY_Model
 		$this->db->limit(1);
 		return $this->db->get()->row_array();
 	}
+	
+	public function get_bind_client_users($broker_id) {
+		$this->db->select('a.open_id, b.nickname, b.sex, b.headimgurl, b.city, b.province ');
+		$this->db->distinct();
+		$this->db->from('wx_user a');
+		$this->db->join('weixin b', 'a.open_id = b.openid');
+		$this->db->where('a.broker_id', $broker_id);
+		$this->db->where('b.subscribe', 1);
+		return $this->db->get()->result_array();
+	}
 }
