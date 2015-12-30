@@ -15,18 +15,20 @@
     </div>
     <ul class="dialogue-customer-list">
     	{{foreach from=$client_users key=key item=item}}
-	        <li onclick="go_chat('{{$item['open_id']}}')">
-	            <a href=""><span class="cus-head">
-	                <img src="{{$item['headimgurl']}}" alt="" width="50" height="50" />
-	                <i class="dialogue-messages"><em class="dialogue-messages-em">3</em></i>
-	            </span>
-	            <i class="cus-date">15/12/27</i>
-	            <div class="cus-txt">
-	                <p class="p-txt1"><i class="name">{{$item['nickname']}}</i>
-	                <i class="sex">{{if $item['sex'] == 1}}男{{else}}女{{/if}}</i>
-	                <i class="state leave-state">离线</i></p>
-	                <p class="p-txt2">{{$item['province']}} {{$item['city']}}</p>
-	            </div></a>
+	        <li>
+	            <a href="#" onclick="go_chat('{{$item['open_id']}}')">
+		            <span class="cus-head">
+		                <img src="{{$item['headimgurl']}}" alt="" width="50" height="50" />
+		                <i class="dialogue-messages" id="number_{{$item['open_id']}}"><!-- <em class="dialogue-messages-em">3</em> --></i>
+		            </span>
+		            <i class="cus-date" id="datetime_{{$item['open_id']}}"></i>
+		            <div class="cus-txt">
+		                <p class="p-txt1"><i class="name">{{$item['nickname']}}</i>
+		                <i class="sex">{{if $item['sex'] == 1}}男{{else}}女{{/if}}</i>
+		                <i class="state leave-state">离线</i></p>
+		                <p class="p-txt2">{{$item['province']}} {{$item['city']}}</p>
+		            </div>
+	            </a>
 	        </li>
         {{/foreach}}
     </ul>
