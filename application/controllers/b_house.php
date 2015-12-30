@@ -306,12 +306,20 @@ class B_house extends MY_Controller {
 	}
 	
 	public function send_notification($open_id, $broker_id) {
-		$this->api_model->send_text($open_id, urlencode("您收到了一条消息。<a href='http://www.funmall.com.cn/b_house/view_chat/{$open_id}/{$broker_id}'>点击查看</a>"));
+		
+		$text = "您收到了一条消息。<a href='http://www.funmall.com.cn/b_house/view_chat/{$open_id}/{$broker_id}'>点击查看</a>";
+		$this->api_model->send_text($open_id, urlencode($text));
 	}
 	
 	public function view_chat($open_id, $broker_id) {
+		
 		$this->assign('wx_open_id', $open_id);
 		$this->assign('wx_broker_id', $broker_id);
 		$this->display('broker/chat.html');
+	}
+	
+	public function chat_list($broker_id) {
+		
+		$this->display('broker/chat-list.html');
 	}
 }
