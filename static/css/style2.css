@@ -427,7 +427,6 @@ body{background-color:#fff;}
 .person-body{ padding:45px 0;}
 .ewm{ padding:10px; width:220px; height:220px; background:#fff; margin:0 auto;}
 .ewm-tips{ text-align:center; color:#9a9a9a; padding:10px 0;}
-
 .company-info{padding:10px 10px 30px; background:url(../images/list_bg.jpg) no-repeat; text-align:left;}
 
 .company-info .p1{ color:#fd7609; font-size:16px;}
@@ -465,8 +464,8 @@ body{background-color:#fff;}
     transform:rotate(45deg);-ms-transform:rotate(45deg);-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-o-transform:rotate(45deg);}
 
 .manger_word{margin-top:5px;width:300px; float:right; position:relative;}
-.cus_word p{ background:#82d842; border-radius:5px;font-size:14px;float: left; line-height: 18px; }
-.manger_word p{ background:#fff;border-radius:5px; font-size:14px;	float: right; line-height: 18px;}
+.cus_word p{ background:#fff; border-radius:5px;font-size:14px;float: left; line-height: 18px; }
+.manger_word p{ background:#82d842;border-radius:5px; font-size:14px;	float: right; line-height: 18px;}
 .word_submit{padding:10px;width:100%;  background:#fff; position:absolute;bottom:0;}
 .input_txt{ background:#fff; border:1px solid #bdbdbd; border-radius:5px; float:left; padding:7px 10px; width:77%; }
 .tj_btn{ display:block; width:70px; height:35px; background: #1677d2; float:right; border-radius: 3px;
