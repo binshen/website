@@ -59,7 +59,7 @@ socket.on('receive-message', function (data) {
 	var user_id = data.user_id;
 	var count = data.count
 	if(count > 0) {
-		var html = '<em class="dialogue-message-number">' + count + '</em>';
+		var html = '<em class="dialogue-messages-em">' + count + '</em>';
 		$("#number_" + user_id).html(html);
 	}
 });
