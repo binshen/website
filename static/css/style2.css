@@ -451,8 +451,9 @@ body{background-color:#fff;}
 
 .customer{margin:0 10px 15px; overflow:hidden;}
 .manger{margin:0 10px 15px;overflow: hidden;}
-.cus_head_pic{ background:url(../images/touxiang1.jpg) no-repeat; background-size:100%; width:50px; height:42px; float:left;}
-.manger_head_pic{background:url(../images/touxiang2.jpg) no-repeat; background-size:100%; width:50px; height:42px; float:right;}
+.cus_head_pic{
+    margin-right: 10px; width:50px; height:42px; float:left;}
+.manger_head_pic{ margin-left:10px;width:50px; height:42px; float:right;}
 
 .cus_word p,.manger_word p{ color:#000;padding:10px;}
 #dialogue{ background:#efefef;}
