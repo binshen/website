@@ -31,7 +31,9 @@ class B_house extends MY_Controller {
 		$this->session->set_userdata('wx_broker_id', $bid);
 		//$this->api_model->update_weixin_user($oid);
 		
-		//$this->view_list(1);
+		$this->assign('wx_open_id', $oid);
+		$this->assign('wx_broker_id', $bid);
+		
 		$this->view_art($bid);
 	}
 	
@@ -72,7 +74,7 @@ class B_house extends MY_Controller {
 			$this->assign('connected_broker_id', $broker['broker_id']);
 		}
 		$this->assign('open_id', $open_id);
-		$this->assign('broker_id', $broker_id);
+		$this->assign('wx_broker_id', $broker_id);
 		$this->assign('connected_brokers', $connected_brokers);
 		
 		$region_list = $this->house_model->get_m_house_region();
@@ -323,7 +325,7 @@ class B_house extends MY_Controller {
 		$client_users = $this->house_model->get_bind_client_users($broker_id);
 		$this->assign('client_users', $client_users);
 		
-		$this->assign('broker_id', $broker_id);
+		$this->assign('wx_broker_id', $broker_id);
 		
 		$this->display('broker/chat-list.html');
 	}
