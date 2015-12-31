@@ -320,6 +320,13 @@ class B_house extends MY_Controller {
 		$this->display('broker/chat.html');
 	}
 	
+	public function view_chat2($open_id, $broker_id) {
+	
+		$this->assign('wx_open_id', $open_id);
+		$this->assign('wx_broker_id', $broker_id);
+		$this->display('broker/chat2.html');
+	}
+	
 	public function chat_list($broker_id) {
 		
 		$client_users = $this->house_model->get_bind_client_users($broker_id);
