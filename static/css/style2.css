@@ -451,16 +451,17 @@ body{background-color:#fff;}
 
 .customer{margin:0 10px 15px; overflow:hidden;}
 .manger{margin:0 10px 15px;overflow: hidden;}
-.cus_head_pic{ background:url(../images/touxiang1.jpg) no-repeat; background-size:100%; width:50px; height:42px; float:left;}
-.manger_head_pic{background:url(../images/touxiang2.jpg) no-repeat; background-size:100%; width:50px; height:42px; float:right;}
+.cus_head_pic{
+    margin-right: 10px; width:50px; height:42px; float:left;}
+.manger_head_pic{ margin-left:10px;width:50px; height:42px; float:right;}
 
 .cus_word p,.manger_word p{ color:#000;padding:10px;}
 #dialogue{ background:#efefef;}
 #dialogue .g-doc{ position:relative;}
 .cus_word{margin-top:5px; width:300px; float:left; position:relative;}
-.cus_word_icon{ position:absolute;top:5px;left:-3px;width:8px; height:8px; background: #82d842;
+.cus_word_icon{ position:absolute;top:5px;left:-3px;width:8px; height:8px;background: #fff;
     transform:rotate(45deg);-ms-transform:rotate(45deg);-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-o-transform:rotate(45deg);}
-.manger_word_icon{ position:absolute;top:5px;right:-3px;width:8px; height:8px;background: #fff;
+.manger_word_icon{ position:absolute;top:5px;right:-3px;width:8px; height:8px;background: #82d842;
     transform:rotate(45deg);-ms-transform:rotate(45deg);-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-o-transform:rotate(45deg);}
 
 .manger_word{margin-top:5px;width:300px; float:right; position:relative;}
