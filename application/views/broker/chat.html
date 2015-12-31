@@ -121,6 +121,7 @@
 
 	var messageCount = 0;
 	function showMessage(d) {
+		messageCount++;
 		var d = JSON.parse(d)
 		var message = d.message;
 		var date = new Date();
