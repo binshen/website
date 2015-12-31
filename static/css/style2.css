@@ -458,9 +458,9 @@ body{background-color:#fff;}
 #dialogue{ background:#efefef;}
 #dialogue .g-doc{ position:relative;}
 .cus_word{margin-top:5px; width:300px; float:left; position:relative;}
-.cus_word_icon{ position:absolute;top:5px;left:-3px;width:8px; height:8px; background: #82d842;
+.cus_word_icon{ position:absolute;top:5px;left:-3px;width:8px; height:8px;background: #fff;
     transform:rotate(45deg);-ms-transform:rotate(45deg);-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-o-transform:rotate(45deg);}
-.manger_word_icon{ position:absolute;top:5px;right:-3px;width:8px; height:8px;background: #fff;
+.manger_word_icon{ position:absolute;top:5px;right:-3px;width:8px; height:8px;background: #82d842;
     transform:rotate(45deg);-ms-transform:rotate(45deg);-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-o-transform:rotate(45deg);}
 
 .manger_word{margin-top:5px;width:300px; float:right; position:relative;}
