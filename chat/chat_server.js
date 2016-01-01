@@ -29,6 +29,25 @@ var trim = function(str) {
 	return str;
 }
 
+var contain = function(arr, val) {
+	var i = arr.length;  
+    while (i--) {  
+        if (arr[i] === val) {  
+            return true;  
+        }  
+    }  
+    return false;
+}
+
+var remove = function(arr, val) {
+	for(var i=0; i<arr.length; i++) {
+		if(arr[i] == val) {
+			arr.splice(i, 1);
+			break;
+		}
+	}
+}
+
 var containKey = function(obj, key) {
 	return obj.hasOwnProperty(key);
 }
@@ -102,7 +121,11 @@ io.sockets.on('connection', function (socket) {
 		if(!containKey(sockets, user_id)) {
 			sockets[user_id] = [];
 		}
-		sockets[user_id].push(socket);
+		
+		if(!contain(sockets[user_id], socket)) {
+			sockets[user_id].push(socket);
+		}
+		
 		logger.debug('online - sockets - keys = ' + JSON.stringify(Object.keys(sockets)));
 		
 		if(user_type == 1) {
