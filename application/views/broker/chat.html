@@ -94,10 +94,10 @@
 	socket.on('receive-message', function (data) {
 		showMessage(data);
 		
-		var data = JSON.parse(data);
-		if(user_type != data.user_type) {
-			play_ring("/chat/ring/msg.wav");
-		}
+//		var data = JSON.parse(data);
+//		if(user_type != data.user_type) {
+//			play_ring("/chat/ring/msg.wav");
+//		}
 	});
 	
 	socket.on('receive-history', function (data) {
