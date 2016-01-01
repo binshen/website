@@ -70,7 +70,7 @@
 	var target_id = user_type == 1 ? '{{$wx_broker_id}}' : '{{$wx_open_id}}';
 	var socket = io.connect('http://121.40.97.183:4000');
 	
-	socket.emit('online', JSON.stringify({ "user_id": user_id, "target_id": target_id, "user_type": user_type, "reset_flag": true }));
+	socket.emit('online', JSON.stringify({ "user_id": user_id, "target_id": target_id, "user_type": user_type, "reset_flag": 1 }));
 	socket.emit('show-history', JSON.stringify({ "user_id": user_id, "target_id": target_id, "user_type": user_type }));
 
 	socket.on('disconnect',function(){
