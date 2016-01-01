@@ -65,13 +65,14 @@
 	}
 </script>
 <script type="text/javascript">
-	var open_id = '{{$wx_open_id}}';
-	var target_id = '{{$wx_broker_id}}';
+	var user_type = '{{$wx_user_type}}';
+	var user_id   = user_type == 1 ? '{{$wx_open_id}}' : '{{$wx_broker_id}}';
+	var target_id = user_type == 1 ? '{{$wx_broker_id}}' : '{{$wx_open_id}}';
 	var socket = io.connect('http://121.40.97.183:4000');
 	
-	socket.emit('online', JSON.stringify({ "user_id": open_id, "target_id": target_id, "user_type": 1, "reset_flag": true }));
-	socket.emit('show-history', JSON.stringify({ "user_id": open_id, "target_id": target_id, "user_type": 1 }));
-	
+	socket.emit('online', JSON.stringify({ "user_id": user_id, "target_id": target_id, "user_type": user_type, "reset_flag": true }));
+	socket.emit('show-history', JSON.stringify({ "user_id": user_id, "target_id": target_id, "user_type": user_type }));
+
 	socket.on('disconnect',function(){
 		console.log('disconnected')
 	});
@@ -92,13 +93,6 @@
 	
 	socket.on('receive-message', function (data) {
 		showMessage(data);
-		
-/*
-		var d = JSON.parse(data)
-		if(open_id !== m.user_id) {
-			play_ring("/chat/ring/msg.wav");
-		}
-*/
 	});
 	
 	socket.on('receive-history', function (data) {
@@ -113,7 +107,7 @@
 		$("#btnSendMsg").click(function() {
 			var message = $("#msg_box").val();
 			if(trim(message) !== ""){
-		    	socket.emit('send-message', JSON.stringify({ "user_id": open_id, "target_id": target_id, "user_type": 1, "message": message }));
+		    	socket.emit('send-message', JSON.stringify({ "user_id": user_id, "target_id": target_id, "user_type": user_type, "message": message }));
 		    	$("#msg_box").val("");
 			}
 		});
@@ -128,42 +122,21 @@
 		date.setTime(d.time);
 		var content = '';
 		if(d.user_type == 1) {
-			 if(messageCount%5==0) {
-				 content += '<div class="customer"><span class="data-time">';
-				 content += date.format('yyyy-MM-dd h:m:s');
-				 content +='</span><div class="cus_head_pic"><img src="/static/images/touxiang1.jpg" alt="" width="50" height="50"></div><div class="cus_word"><p>';
-				 content += message;
-				 content += '</p><span class="cus_word_icon"></span></div></div>';
+			 content += '<div class="customer">';
+			 if(messageCount % 5 == 0) {
+			 	content += '<span class="data-time">' + date.format('yyyy-MM-dd h:m:s') + '</span>';
 			 }
-			else{
-				 content += '<div class="customer"><div class="cus_head_pic"><img src="/static/images/touxiang1.jpg" alt="" width="50" height="50"></div><div class="cus_word"><p>';
-				 content += message;
-				 content += '</p><span class="cus_word_icon"></span></div></div>';
-
-			 }
-//			content += '<div class="customer"><span class="data-time">';
-//			content += date.format('yyyy-MM-dd h:m:s');
-//			content +='</span><div class="cus_head_pic"></div><div class="cus_word"><p>';
-//			content += message;
-//			content += '</p><span class="cus_word_icon"></span></div></div>';
+			 content +='<div class="cus_head_pic"><img src="/static/images/touxiang1.jpg" alt="" width="50" height="50"></div><div class="cus_word"><p>';
+			 content += message;
+			 content += '</p><span class="cus_word_icon"></span></div></div>';
 		} else {
-			if(messageCount%5==0){
-				content += '<div class="manger"><span class="data-time">';
-				content += date.format('yyyy-MM-dd h:m:s');
-				content +='</span><div class="manger_head_pic"><img src="/static/images/touxiang2.jpg" alt="" width="50" height="50"></div><div class="manger_word"><p>';
-				content += message;
-				content += '</p><span class="manger_word_icon"></span></div></div>';
+			content += '<div class="manger">';
+			if(messageCount % 5 == 0) {
+				content += '<span class="data-time">' + date.format('yyyy-MM-dd h:m:s') + '</span>';
 			}
-			else{
-				content += '<div class="manger"><div class="manger_head_pic"><img src="/static/images/touxiang2.jpg" alt="" width="50" height="50"></div><div class="manger_word"><p>';
-				content += message;
-				content += '</p><span class="manger_word_icon"></span></div></div>';
-			}
-//			content += '<div class="manger"><span class="data-time">';
-//			content += date.format('yyyy-MM-dd h:m:s');
-//			content +='</span><div class="manger_head_pic"></div><div class="manger_word"><p>';
-//			content += message;
-//			content += '</p><span class="manger_word_icon"></span></div></div>';
+			content +='<div class="manger_head_pic"><img src="/static/images/touxiang2.jpg" alt="" width="50" height="50"></div><div class="manger_word"><p>';
+			content += message;
+			content += '</p><span class="manger_word_icon"></span></div></div>';
 		}
 		$("#scorll").append(content);
 		myScroll.refresh();
@@ -178,4 +151,3 @@
 <div id="ring" style="width:0px; height:0px;"></div>
 </body>
 </html>
-
