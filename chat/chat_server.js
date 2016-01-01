@@ -158,24 +158,27 @@ io.sockets.on('connection', function (socket) {
 			for(var user_id in sockets) {
 				for(var index in sockets[user_id]) {
 					if(sockets[user_id][index] == socket) {
+						remove(sockets[user_id], socket);
+						if(sockets[user_id].length === 0) {
+							removeKey(sockets, user_id);
+						}
 						if(containKey(users, user_id)) {
 							var user = users[user_id];
-							logger.debug('disconnect - user = ' + JSON.stringify(user))
-							var user_type = user.user_type
+							logger.debug('disconnect - user = ' + JSON.stringify(user));
+							var user_type = user.user_type;
+							var existed = containKey(sockets, user_id);
 							if(user_type == 1) {
 								var target_id = user.target_id
-								updateClientStatus(target_id, user_id, false);
+								updateClientStatus(target_id, user_id, existed);
 							} else {
-								updateBrokerStatus(user_id, false);
+								updateBrokerStatus(user_id, existed);
 							}
-							removeKey(users, user_id);
+							if(!existed) {
+								removeKey(users, user_id);
+							}
 						}
-						removeKey(sockets[user_id], index);
 						break;
 					}
-				}
-				if(sockets[user_id].length === 0) {
-					removeKey(sockets, user_id);
 				}
 			}
 		}, 1000)
