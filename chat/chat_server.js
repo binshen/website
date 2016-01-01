@@ -209,18 +209,18 @@ io.sockets.on('connection', function (socket) {
 					var count = getNumber(user_id, target_id);
 					data.count = ++count;
 					users[user_id]['count'][target_id] = data.count;
-					emit(user_id, 'receive-message', data);
 				}
 				logger.debug('send-message - 1 - ' + JSON.stringify(data));
+				emit(user_id, 'receive-message', data);
 			}
 			if(containKey(sockets, target_id)) {
 				if(user_type == 2) {
 					var count = getNumber(target_id, user_id);
 					data.count = ++count;
 					users[target_id]['count'][user_id] = data.count;
-					emit(target_id, 'receive-message', data);
 				}
 				logger.debug('send-message - 2 - ' + JSON.stringify(data));
+				emit(target_id, 'receive-message', data);
 			}
 		});
 	});
