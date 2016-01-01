@@ -158,7 +158,7 @@ $(function(){
 	    
 		$("#selectedUser").val(open_id);
 
-		socket.emit('online', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2 }));
+		socket.emit('online', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2, "reset_flag": true }));
 		socket.emit('show-history', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2 }));
 		
 	    $("#btnSendMsg").click(function() {

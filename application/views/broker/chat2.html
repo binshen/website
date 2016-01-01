@@ -69,7 +69,7 @@
 	var broker_id = '{{$wx_broker_id}}';
 	var socket = io.connect('http://121.40.97.183:4000');
 	
-	socket.emit('online', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2 }));
+	socket.emit('online', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2, "reset_flag": true }));
 	socket.emit('show-history', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2 }));
 	
 	socket.on('disconnect',function(){

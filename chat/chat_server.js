@@ -60,13 +60,13 @@ var hasValue = function(val) {
 	return undefined !== val && null !== val;
 }
 
-var updateBrokerStatus = function(broker_id, status) {
+var updateType2Status = function(broker_id, status) {
 	client.lrange(getMapKey(broker_id), 0, -1, function(err, res) {
-		logger.debug('updateBrokerStatus - users = ' + JSON.stringify(res) + ' length = ' + res.length)
+		logger.debug('updateType2Status - users = ' + JSON.stringify(res) + ' length = ' + res.length)
 		for(var i in res) {
 			var user_id = res[i];
 			if(containKey(users, user_id) && containKey(sockets, user_id)) {
-				logger.debug('updateBrokerStatus - user_id = ' + user_id + ' status = ' + status);
+				logger.debug('updateType2Status - user_id = ' + user_id + ' status = ' + status);
 				emit(user_id, 'show-status', { status: status });
 				if(status) {
 					emit(broker_id, 'show-status', { status: true, user_id: user_id });
@@ -76,8 +76,8 @@ var updateBrokerStatus = function(broker_id, status) {
 	});
 }
 
-var updateClientStatus = function(broker_id, user_id, status) {
-	logger.debug('updateClientStatus - broker_id = ' + broker_id + ' user_id = ' + user_id + ' status = ' + status)
+var updateType1Status = function(broker_id, user_id, status) {
+	logger.debug('updateType1Status - broker_id = ' + broker_id + ' user_id = ' + user_id + ' status = ' + status)
 	if(containKey(users, broker_id) && containKey(sockets, broker_id)) {
 		emit(broker_id, 'show-status', { status: status, user_id: user_id });
 	}
@@ -86,13 +86,15 @@ var updateClientStatus = function(broker_id, user_id, status) {
 	}
 }
 
-var getNumber = function(user_id) {
+var getNumber = function(user_id, target_id) {
 	if(containKey(users, user_id)) {
-		var user = users[user_id];
-		if(containKey(user, 'count')) {
+		var count = users[user_id]['count'];
+		if(containKey(count, target_id)) {
 			try {
-				return parseInt(user['count'])
-			} catch (e) {}
+				return parseInt(count[target_id])
+			} catch (e) {
+				logger.trace('getNumber - user_id=%s - target_id=%s ', user_id, target_id);
+			}
 		}
 	}
 	return 0;
@@ -114,7 +116,7 @@ io.sockets.on('connection', function (socket) {
 		var user_type = data.user_type;
 		
 		if(!containKey(users, user_id)) {
-			users[user_id] = {target_id: target_id, user_type: user_type}
+			users[user_id] = {target_id: target_id, user_type: user_type, count: {}}
 		}
 		logger.trace('online - users - ' + JSON.stringify(users));
 		
@@ -128,24 +130,29 @@ io.sockets.on('connection', function (socket) {
 		
 		logger.debug('online - sockets - keys = ' + JSON.stringify(Object.keys(sockets)));
 		
+		var reset_flag = data.reset_flag;
 		if(user_type == 1) {
-			updateClientStatus(target_id, user_id, true);
+			updateType1Status(target_id, user_id, true);
 			logger.debug('online - user_type = 1 - status = true');
-			if(data.reset_count) {
-				logger.debug('online - reset_count = true - count = 0');
-				users[user_id]['count'] = 0;
+			if(reset_flag) {
+				logger.debug('online - reset_flag = true - count = 0');
+				users[user_id]['count'][target_id] = 0;
 			} else {
-				var count = getNumber(user_id);
-				logger.debug('online - reset_count = false - count = ' + count);
+				var count = getNumber(user_id, target_id);
+				logger.debug('online - reset_flag = false - count = ' + count);
 				emit(user_id, 'receive-message', { count: count });
 			}
 		} else {
+			updateType2Status(user_id, true);
 			logger.debug('online - user_type = 2 - status = true');
-			
-			if(hasValue(target_id) && containKey(users, target_id)) {
-				users[target_id]['count'] = 0;
-			}
-			updateBrokerStatus(user_id, true);
+			if(reset_flag) {
+				logger.debug('online - reset_flag = true - count = 0');
+				users[user_id]['count'][target_id] = 0
+			} else {
+				var count = getNumber(user_id, target_id);
+				logger.debug('online - reset_flag = false - count = ' + count);
+				emit(user_id, 'receive-message', { count: count });
+			}			
 		}
 	});
 	
@@ -169,9 +176,9 @@ io.sockets.on('connection', function (socket) {
 							var existed = containKey(sockets, user_id);
 							if(user_type == 1) {
 								var target_id = user.target_id
-								updateClientStatus(target_id, user_id, existed);
+								updateType1Status(target_id, user_id, existed);
 							} else {
-								updateBrokerStatus(user_id, existed);
+								updateType2Status(user_id, existed);
 							}
 							if(!existed) {
 								removeKey(users, user_id);
@@ -199,21 +206,21 @@ io.sockets.on('connection', function (socket) {
 		client.lpush(getSocketKey(user_type, user_id, target_id), json, function(err, res){
 			if(containKey(sockets, user_id)) {
 				if(user_type == 1) {
-					var count = getNumber(user_id);
+					var count = getNumber(user_id, target_id);
 					data.count = ++count;
-					users[user_id]['count'] = data.count;
+					users[user_id]['count'][target_id] = data.count;
+					emit(user_id, 'receive-message', data);
 				}
 				logger.debug('send-message - 1 - ' + JSON.stringify(data));
-				emit(user_id, 'receive-message', data);
 			}
 			if(containKey(sockets, target_id)) {
 				if(user_type == 2) {
-					var count = getNumber(target_id);
+					var count = getNumber(target_id, user_id);
 					data.count = ++count;
-					users[target_id]['count'] = data.count;
+					users[target_id]['count'][user_id] = data.count;
+					emit(target_id, 'receive-message', data);
 				}
 				logger.debug('send-message - 2 - ' + JSON.stringify(data));
-				emit(target_id, 'receive-message', data);
 			}
 		});
 	});
