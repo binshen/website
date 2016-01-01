@@ -11,7 +11,7 @@
 </head>
 <body id="dialogue">
 <div class="g-head">
-    <a href="javascript:history.go(-1);"><i class="am-icon-chevron-left"></i></a>聊天窗口<span id="status"></span>
+    <a href="go_back()"><i class="am-icon-chevron-left"></i></a>聊天窗口<span id="status"></span>
 </div>
 <div class="dialogue-content" id="dialogue-content">
 	<div class="dialogue-detail" id="scrollCont1">
@@ -151,6 +151,11 @@
 	function play_ring(url){
 		var embed = '<embed id="ring" src="'+url+'" loop="0" autostart="true" hidden="true" style="height:0px; width:0px;0px;"></embed>';
 		$("#ring").html(embed);
+	}
+	
+	function go_back() {
+		socket.emit('zero-out', JSON.stringify({ "user_id": user_id, "target_id": target_id, "user_type": user_type }));
+		history.go(-1);
 	}
 </script>
 <div id="ring" style="width:0px; height:0px;"></div>

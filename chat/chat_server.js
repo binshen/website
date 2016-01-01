@@ -156,9 +156,17 @@ io.sockets.on('connection', function (socket) {
 		}
 	});
 	
-	socket.on('offline',function(data){
-		socket.disconnect();
+	socket.on('zero-out',function(data){
+		logger.debug('show-history - ' + data);
+		var data = JSON.parse(data);
+		var user_id = data.user_id;
+		var target_id = data.target_id;
+		users[user_id]['count'][target_id] = 0;
 	});
+	
+//	socket.on('offline',function(data){
+//		socket.disconnect();
+//	});
 	
 	socket.on("disconnect", function() {
 		setTimeout(function() {
