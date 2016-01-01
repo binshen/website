@@ -65,7 +65,7 @@
 	}
 </script>
 <script type="text/javascript">
-	var user_type = '{{$wx_user_type}}';
+	var user_type = '{{$wx_user_type|default:1}}';
 	var user_id   = user_type == 1 ? '{{$wx_open_id}}' : '{{$wx_broker_id}}';
 	var target_id = user_type == 1 ? '{{$wx_broker_id}}' : '{{$wx_open_id}}';
 	var socket = io.connect('http://121.40.97.183:4000');
