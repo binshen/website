@@ -78,10 +78,10 @@ var updateType2Status = function(broker_id, status) {
 
 var updateType1Status = function(broker_id, user_id, status) {
 	logger.debug('updateType1Status - broker_id = ' + broker_id + ' user_id = ' + user_id + ' status = ' + status)
-	if(containKey(users, broker_id) && containKey(sockets, broker_id)) {
+	if(containKey(users, broker_id)) {
 		emit(broker_id, 'show-status', { status: status, user_id: user_id });
 	}
-	if(containKey(users, user_id) && containKey(sockets, user_id)) {
+	if(containKey(users, user_id)) {
 		emit(user_id, 'show-status', { status: containKey(users, broker_id) });
 	}
 }
@@ -101,9 +101,11 @@ var getNumber = function(user_id, target_id) {
 }
 
 var emit = function(user_id, message, jsonData) {
-	sockets[user_id].forEach(function(socket) {
-		socket.emit(message, JSON.stringify(jsonData));
-	});
+	if(containKey(sockets, user_id)) {
+		sockets[user_id].forEach(function(socket) {
+			socket.emit(message, JSON.stringify(jsonData));
+		});
+	}
 }
 
 io.sockets.on('connection', function (socket) {
@@ -122,11 +124,12 @@ io.sockets.on('connection', function (socket) {
 		
 		if(!containKey(sockets, user_id)) {
 			sockets[user_id] = [];
-		}
-		
-		if(!contain(sockets[user_id], socket)) {
 			sockets[user_id].push(socket);
 		}
+		
+//		if(!contain(sockets[user_id], socket)) {
+//			sockets[user_id].push(socket);
+//		}
 		
 		logger.debug('online - sockets - keys = ' + JSON.stringify(Object.keys(sockets)));
 		
@@ -136,7 +139,9 @@ io.sockets.on('connection', function (socket) {
 			logger.debug('online - user_type = 1 - status = true');
 			if(reset_flag) {
 				logger.debug('online - reset_flag = true - count = 0');
-				users[user_id]['count'][target_id] = 0;
+				if(containKey(users, target_id)) {
+					users[target_id]['count'][user_id] = 0;
+				}
 			} else {
 				var count = getNumber(user_id, target_id);
 				logger.debug('online - reset_flag = false - count = ' + count);
@@ -147,7 +152,9 @@ io.sockets.on('connection', function (socket) {
 			logger.debug('online - user_type = 2 - status = true');
 			if(reset_flag) {
 				logger.debug('online - reset_flag = true - count = 0');
-				users[user_id]['count'][target_id] = 0
+				if(containKey(users, target_id)) {
+					users[target_id]['count'][user_id] = 0;
+				}
 			} else {
 				var count = getNumber(user_id, target_id);
 				logger.debug('online - reset_flag = false - count = ' + count);
@@ -200,23 +207,24 @@ io.sockets.on('connection', function (socket) {
 		data['time'] = (new Date()).getTime();
 		var json = JSON.stringify(data)
 		client.lpush(getSocketKey(user_type, user_id, target_id), json, function(err, res){
-			if(containKey(sockets, user_id)) {
-				if(user_type == 1) {
-					var count = getNumber(user_id, target_id);
-					data.count = ++count;
+			if(user_type == 1) {
+				var count = getNumber(user_id, target_id);
+				data.count = ++count;
+				if(containKey(users, user_id)) {
 					users[user_id]['count'][target_id] = data.count;
 				}
-				logger.debug('send-message - 1 - ' + JSON.stringify(data));
+				logger.debug('send-message to 2 - ' + JSON.stringify(data));
 				emit(user_id, 'receive-message', data);
-			}
-			if(containKey(sockets, target_id)) {
-				if(user_type == 2) {
-					var count = getNumber(target_id, user_id);
-					data.count = ++count;
+				emit(target_id, 'receive-message', data);
+			} else {
+				var count = getNumber(target_id, user_id);
+				data.count = ++count;
+				if(containKey(users, target_id)) {
 					users[target_id]['count'][user_id] = data.count;
 				}
-				logger.debug('send-message - 2 - ' + JSON.stringify(data));
+				logger.debug('send-message to 1 - ' + JSON.stringify(data));
 				emit(target_id, 'receive-message', data);
+				emit(user_id, 'receive-message', data);
 			}
 		});
 	});
@@ -228,9 +236,19 @@ io.sockets.on('connection', function (socket) {
 		var target_id = data.target_id;
 		var user_type = data.user_type;
 		client.lrange(getSocketKey(user_type, user_id, target_id), 0, 19, function(err, res) {
-			if(containKey(sockets, user_id)) {
-				emit(user_id, 'receive-history', res);
-			}
+			emit(user_id, 'receive-history', res);
 		});
 	});
 });
+
+//var schedule = require('node-schedule');
+//schedule.scheduleJob('* * * * *', function(){
+//	console.log("+++++++++++++++++++++++++++++++++++++++++++++");
+//	for(var user_id in sockets) {
+//		if(!user_id.startsWith('orFu-')) {
+//			emit(user_id, 'heart-beat', { user_id: user_id });
+//			removeKey(sockets, user_id);
+//		}
+//	}
+//	console.log("+++++++++++++++++++++++++++++++++++++++++++++");
+//});
