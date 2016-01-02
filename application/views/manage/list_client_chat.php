@@ -145,7 +145,7 @@ $(function(){
 	$("#cus-list li").click(function(){
 		var open_id = $("#selectedUser").val();
 		if(open_id != "") {
-			socket.emit('zero-out', JSON.stringify({ "user_id": broker_id, "target_id": open_id }));
+			socket.emit('zero-out', JSON.stringify({ "user_id": open_id, "target_id": broker_id }));
 		}
 		
 	    $("#cus-list li").removeClass('current');

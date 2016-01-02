@@ -97,7 +97,7 @@
 		var data = JSON.parse(data);
 		var user_id = data.user_id;
 		var target_id = data.target_id;
-		socket.emit('zero-out', JSON.stringify({ "user_id": user_id, "target_id": target_id }));
+		socket.emit('zero-out', JSON.stringify({ "user_id": target_id, "target_id": user_id }));
 //		if(user_type != data.user_type) {
 //			play_ring("/chat/ring/msg.wav");
 //		}
