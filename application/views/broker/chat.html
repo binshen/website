@@ -69,6 +69,7 @@
 	var user_id   = user_type == 1 ? '{{$wx_open_id}}' : '{{$wx_broker_id}}';
 	var target_id = user_type == 1 ? '{{$wx_broker_id}}' : '{{$wx_open_id}}';
 	var socket = io.connect('http://121.40.97.183:4000');
+	var status = false;
 	
 	socket.emit('online', JSON.stringify({ "user_id": user_id, "target_id": target_id, "user_type": user_type, "reset_flag": 1 }));
 	socket.emit('show-history', JSON.stringify({ "user_id": user_id, "target_id": target_id, "user_type": user_type }));
@@ -83,7 +84,7 @@
 	
 	socket.on('show-status',function(data){
 		var data = JSON.parse(data);
-		var status = data.status;
+		status = data.status;
 		if(status) {
 			$("#status").text(" - 在线");
 		} else {
@@ -101,6 +102,10 @@
 		
 		if(user_type != data.user_type) {
 			$('#audio_tag').trigger('play');
+		}
+		
+		if(user_type == 2 && !status) {
+			$.get('/b_house/send_notification/' + target_id + '/' + broker_id, function() { /*  */ });
 		}
 	});
 	
