@@ -1,7 +1,7 @@
 var log4js = require('log4js')
 log4js.configure({ "appenders": [{ "type": "console" }], "replaceConsole": false })
 logger = log4js.getLogger()
-logger.setLevel("TRACE")
+logger.setLevel("INFO")
 
 var redis_host = '127.0.0.1', redis_port = 6379;
 var redis = require("redis"), client = redis.createClient(redis_port, redis_host);
@@ -152,34 +152,32 @@ io.sockets.on('connection', function (socket) {
 	});
 	
 	socket.on("disconnect", function() {
-		setTimeout(function() {
-			for(var user_id in sockets) {
-				for(var index in sockets[user_id]) {
-					if(sockets[user_id][index] == socket) {
-						remove(sockets[user_id], socket);
-						if(sockets[user_id].length === 0) {
-							removeKey(sockets, user_id);
-						}
-						if(containKey(users, user_id)) {
-							var user = users[user_id];
-							logger.info('disconnect - user = ' + JSON.stringify(user));
-							var user_type = user.user_type;
-							var existed = containKey(sockets, user_id);
-							if(user_type == 1) {
-								var target_id = user.target_id
-								updateType1Status(target_id, user_id, existed);
-							} else {
-								updateType2Status(user_id, existed);
-							}
-							if(!existed) {
-								removeKey(users, user_id);
-							}
-						}
-						break;
+		for(var user_id in sockets) {
+			for(var index in sockets[user_id]) {
+				if(sockets[user_id][index] == socket) {
+					remove(sockets[user_id], socket);
+					if(sockets[user_id].length === 0) {
+						removeKey(sockets, user_id);
 					}
+					if(containKey(users, user_id)) {
+						var user = users[user_id];
+						logger.info('disconnect - user = ' + JSON.stringify(user));
+						var user_type = user.user_type;
+						var existed = containKey(sockets, user_id);
+						if(user_type == 1) {
+							var target_id = user.target_id
+							updateType1Status(target_id, user_id, existed);
+						} else {
+							updateType2Status(user_id, existed);
+						}
+						if(!existed) {
+							removeKey(users, user_id);
+						}
+					}
+					break;
 				}
 			}
-		}, 200)
+		}
 	});
 	
 	socket.on('send-message',function(data){
@@ -218,16 +216,30 @@ io.sockets.on('connection', function (socket) {
 			emit(user_id, 'receive-history', res);
 		});
 	});
+	
+	socket.on('zero-out',function(data){
+		logger.info('zero-out - ' + data);
+		var data = JSON.parse(data);
+		var user_id = data.user_id;
+		var target_id = data.target_id;
+		if(containKey(counts, user_id)) {
+			if(containKey(counts[user_id], target_id)) {
+				counts[user_id][target_id] = 0;
+			}
+		}
+	});
 });
 
 //var schedule = require('node-schedule');
 //schedule.scheduleJob('* * * * *', function(){
-//	console.log("+++++++++++++++++++++++++++++++++++++++++++++");
-//	for(var user_id in sockets) {
-//		if(!user_id.startsWith('orFu-')) {
-//			emit(user_id, 'heart-beat', { user_id: user_id });
-//			removeKey(sockets, user_id);
+//	for(var user_id in counts) {
+//		for(var target_id in counts[user_id]) {
+//			if(!containKey(users, target_id)) {
+//				removeKey(counts[user_id], target_id);
+//			}
+//		}
+//		if(counts[user_id].length === 0) {
+//			removeKey(counts, user_id);
 //		}
 //	}
-//	console.log("+++++++++++++++++++++++++++++++++++++++++++++");
 //});
