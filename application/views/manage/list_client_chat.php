@@ -82,7 +82,7 @@ socket.on('receive-message', function (data) {
 	    $("#dialogue-center-chat").mCustomScrollbar("scrollTo","bottom");
 	}
 	if(user_type == 1) {
-		play_ring("/chat/ring/msg.wav");
+		$('#audio_tag').trigger('play');
 
 		if(open_id == "" || open_id != user_id) {
 			var count = data.count
@@ -197,11 +197,6 @@ function getMessageText(data) {
 	return html
 }
 
-function play_ring(url){
-	var embed = '<embed id="ring" src="'+url+'" loop="0" autostart="true" hidden="true" style="height:0px; width:0px;0px;"></embed>';
-	$("#ring").html(embed);
-}
-
 function list_house_tracks(open_id) {
 	$.get('/manage/list_house_tracks/'+open_id, function(data) {
 		var data = JSON.parse(data);
@@ -233,7 +228,7 @@ function list_house_tracks(open_id) {
     });
 }
 </script>
-<div id="ring" style="width:0px; height:0px;"></div>
 <input type="hidden" id="selectedUser" value="" />
+<audio id="audio_tag"><source src="/chat/ring/msg.wav" type="audio/x-wav" /></audio>
 </body>
 
