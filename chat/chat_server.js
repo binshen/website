@@ -10,14 +10,16 @@ var io = require('socket.io').listen(4000);
 io.set('transports', ['websocket' ,'flashsocket' ,'htmlfile' ,'xhr-polling' ,'polling']);
 
 var users = {};
+var counts = {};
 var sockets = {};
 
 var map_key = "map:";
+var chat_key = "chat:";
+
 var getMapKey = function(broker_id) {
 	return map_key + broker_id;
 }
 
-var chat_key = "chat:";
 var getSocketKey = function(user_type, user_id, target_id) {
 	return chat_key + ( user_type == 1 ? user_id + ":" + target_id : target_id + ":" + user_id );
 }
@@ -65,7 +67,7 @@ var updateType2Status = function(broker_id, status) {
 		logger.debug('updateType2Status - users = ' + JSON.stringify(res) + ' length = ' + res.length)
 		for(var i in res) {
 			var user_id = res[i];
-			if(containKey(users, user_id) && containKey(sockets, user_id)) {
+			if(containKey(users, user_id)) {
 				logger.debug('updateType2Status - user_id = ' + user_id + ' status = ' + status);
 				emit(user_id, 'show-status', { status: status });
 				if(status) {
@@ -86,14 +88,13 @@ var updateType1Status = function(broker_id, user_id, status) {
 	}
 }
 
-var getNumber = function(user_id, target_id) {
-	if(containKey(users, user_id)) {
-		var count = users[user_id]['count'];
-		if(containKey(count, target_id)) {
+var getCount = function(user_id, target_id) {
+	if(containKey(counts, user_id)) {
+		if(containKey(counts[user_id], target_id)) {
 			try {
-				return parseInt(count[target_id])
+				return parseInt(counts[user_id][target_id])
 			} catch (e) {
-				logger.trace('getNumber - user_id=%s - target_id=%s ', user_id, target_id);
+				logger.error('Error in getCount - user_id=%s - target_id=%s ', user_id, target_id);
 			}
 		}
 	}
@@ -111,60 +112,47 @@ var emit = function(user_id, message, jsonData) {
 io.sockets.on('connection', function (socket) {
 	socket.on('online',function(data){
 		var data = JSON.parse(data);
-		logger.debug('online - ' + JSON.stringify(data))
+		logger.info('online - ' + JSON.stringify(data))
 		
 		var user_id = data.user_id;
 		var target_id = data.target_id;
 		var user_type = data.user_type;
 		
 		if(!containKey(users, user_id)) {
-			users[user_id] = {target_id: target_id, user_type: user_type, count: {}}
+			users[user_id] = {target_id: target_id, user_type: user_type}
 		}
-		logger.trace('online - users - ' + JSON.stringify(users));
-		
+		if(!containKey(counts, user_id)) {
+			counts[user_id] = {};
+		}
 		if(!containKey(sockets, user_id)) {
 			sockets[user_id] = [];
 			sockets[user_id].push(socket);
 		}
-		
 //		if(!contain(sockets[user_id], socket)) {
 //			sockets[user_id].push(socket);
 //		}
-		
 		logger.debug('online - sockets - keys = ' + JSON.stringify(Object.keys(sockets)));
 		
-		var reset_flag = data.reset_flag;
 		if(user_type == 1) {
 			updateType1Status(target_id, user_id, true);
-			logger.debug('online - user_type = 1 - status = true');
-			if(reset_flag) {
-				logger.debug('online - reset_flag = true - count = 0');
-				if(containKey(users, user_id)) {
-					users[user_id]['count'][target_id] = 0;
-				}
-			} else {
-				var count = getNumber(user_id, target_id);
-				logger.debug('online - reset_flag = false - count = ' + count);
-				emit(user_id, 'receive-message', { count: count });
-			}
 		} else {
 			updateType2Status(user_id, true);
-			logger.debug('online - user_type = 2 - status = true');
-			if(reset_flag) {
-				logger.debug('online - reset_flag = true - count = 0');
-				if(containKey(users, user_id)) {
-					users[user_id]['count'][target_id] = 0;
-				}
-			} else {
-				var count = getNumber(user_id, target_id);
-				logger.debug('online - reset_flag = false - count = ' + count);
-				emit(user_id, 'receive-message', { count: count });
-			}			
+		}
+		var reset_flag = data.reset_flag;
+		if(reset_flag) {
+			logger.debug('online - reset_flag = true - count = 0');
+			if(containKey(counts, user_id)) {
+				counts[user_id][target_id] = 0;
+			}
+		} else {
+			var count = getCount(user_id, target_id);
+			logger.debug('online - reset_flag = false - count = ' + count);
+			emit(user_id, 'receive-message', { count: count });
 		}
 	});
 	
 	socket.on("disconnect", function() {
-		//setTimeout(function() {
+		setTimeout(function() {
 			for(var user_id in sockets) {
 				for(var index in sockets[user_id]) {
 					if(sockets[user_id][index] == socket) {
@@ -174,7 +162,7 @@ io.sockets.on('connection', function (socket) {
 						}
 						if(containKey(users, user_id)) {
 							var user = users[user_id];
-							logger.debug('disconnect - user = ' + JSON.stringify(user));
+							logger.info('disconnect - user = ' + JSON.stringify(user));
 							var user_type = user.user_type;
 							var existed = containKey(sockets, user_id);
 							if(user_type == 1) {
@@ -183,45 +171,45 @@ io.sockets.on('connection', function (socket) {
 							} else {
 								updateType2Status(user_id, existed);
 							}
-//							if(!existed) {
-//								removeKey(users, user_id);
-//							}
+							if(!existed) {
+								removeKey(users, user_id);
+							}
 						}
 						break;
 					}
 				}
 			}
-		//}, 1000)
+		}, 200)
 	});
 	
 	socket.on('send-message',function(data){
 		var data = JSON.parse(data);
 		var message = data.message
-		if(undefined === message || null === message || "" === trim(message)) {
+		if(!hasValue(message) || "" === trim(message)) {
 			return;
 		}
-		
+		logger.info('send-message - ' + JSON.stringify(data));
 		var user_id = data.user_id;
 		var target_id = data.target_id;
 		var user_type = data.user_type;
 		data['time'] = (new Date()).getTime();
-		var json = JSON.stringify(data)
+		var json = JSON.stringify(data);
 		client.lpush(getSocketKey(user_type, user_id, target_id), json, function(err, res){
-			logger.debug('send-message - 1 - ' + JSON.stringify(data));
 			emit(user_id, 'receive-message', data);
 			
-			var count = getNumber(target_id, user_id);
+			var count = getCount(target_id, user_id);
 			count++;
-			if(containKey(users, target_id)) {
-				users[target_id]['count'][user_id] = count;
+			if(containKey(counts, target_id)) {
+				counts[target_id][user_id] = count;
+				data['count'] = count;
 			}
-			logger.debug('send-message - 2 - ' + count);
-			emit(target_id, 'receive-message', { count: count });
+			logger.debug('send-message - %s - %s', user_type, JSON.stringify(data));
+			emit(target_id, 'receive-message', data);
 		});
 	});
 	
 	socket.on('show-history',function(data){
-		logger.debug('show-history - ' + data);
+		logger.info('show-history - ' + data);
 		var data = JSON.parse(data);
 		var user_id = data.user_id;
 		var target_id = data.target_id;
