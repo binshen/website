@@ -207,7 +207,7 @@ class B_house extends MY_Controller {
 		} else {
 			$this->session->set_userdata('wx_open_id', $open_id);
 		}
-		$this->assign('wx_open_id', $wx_open_id);
+		$this->assign('wx_open_id', $open_id);
 
 		if(!empty($open_id) && !empty($hid)) {
 			$this->house_model->track_house($open_id, (int)$hid);
