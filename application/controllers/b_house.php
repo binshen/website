@@ -214,15 +214,14 @@ class B_house extends MY_Controller {
 		}
 		
 		$wx_broker_id = $this->session->userdata('wx_broker_id');
-		if(!empty($wx_broker_id)) {
-			$this->assign('wx_broker_id', $wx_broker_id);
-		} else {
+		if(empty($wx_broker_id)) {
 			if(!empty($wx_open_id)) {
 				$broker = $this->house_model->get_bind_broker_id($wx_open_id);
-				$this->assign('wx_broker_id', $broker['broker_id']);
+				$wx_broker_id = $broker['broker_id'];
 				$this->session->set_userdata('wx_broker_id', $broker['broker_id']);
 			}
 		}
+		$this->assign('wx_broker_id', $wx_broker_id);
 
 		$house = $this->house_model->get_m_house_detail($hid);
 		$house['unit_price'] = intval($house['total_price'] * 10000 / $house['acreage']);
