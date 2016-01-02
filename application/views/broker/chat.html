@@ -11,7 +11,7 @@
 </head>
 <body id="dialogue">
 <div class="g-head">
-    <a href="go_back()"><i class="am-icon-chevron-left"></i></a>聊天窗口<span id="status"></span>
+    <a href="go_back()"><i class="am-icon-chevron-left"></i></a>聊天窗口<span id="status"> - 离线</span>
 </div>
 <div class="dialogue-content" id="dialogue-content">
 	<div class="dialogue-detail" id="scrollCont1">
@@ -105,7 +105,7 @@
 		}
 		
 		if(user_type == 2 && !status) {
-			$.get('/b_house/send_notification/' + target_id + '/' + broker_id, function() { /*  */ });
+			$.get('/b_house/send_notification/' + target_id + '/' + user_id, function() { /*  */ });
 		}
 	});
 	
