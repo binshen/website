@@ -139,8 +139,8 @@ io.sockets.on('connection', function (socket) {
 			logger.debug('online - user_type = 1 - status = true');
 			if(reset_flag) {
 				logger.debug('online - reset_flag = true - count = 0');
-				if(containKey(users, target_id)) {
-					users[target_id]['count'][user_id] = 0;
+				if(containKey(users, user_id)) {
+					users[user_id]['count'][target_id] = 0;
 				}
 			} else {
 				var count = getNumber(user_id, target_id);
@@ -152,8 +152,8 @@ io.sockets.on('connection', function (socket) {
 			logger.debug('online - user_type = 2 - status = true');
 			if(reset_flag) {
 				logger.debug('online - reset_flag = true - count = 0');
-				if(containKey(users, target_id)) {
-					users[target_id]['count'][user_id] = 0;
+				if(containKey(users, user_id)) {
+					users[user_id]['count'][target_id] = 0;
 				}
 			} else {
 				var count = getNumber(user_id, target_id);
@@ -164,7 +164,7 @@ io.sockets.on('connection', function (socket) {
 	});
 	
 	socket.on("disconnect", function() {
-		setTimeout(function() {
+		//setTimeout(function() {
 			for(var user_id in sockets) {
 				for(var index in sockets[user_id]) {
 					if(sockets[user_id][index] == socket) {
@@ -183,15 +183,15 @@ io.sockets.on('connection', function (socket) {
 							} else {
 								updateType2Status(user_id, existed);
 							}
-							if(!existed) {
-								removeKey(users, user_id);
-							}
+//							if(!existed) {
+//								removeKey(users, user_id);
+//							}
 						}
 						break;
 					}
 				}
 			}
-		}, 1000)
+		//}, 1000)
 	});
 	
 	socket.on('send-message',function(data){
@@ -207,25 +207,16 @@ io.sockets.on('connection', function (socket) {
 		data['time'] = (new Date()).getTime();
 		var json = JSON.stringify(data)
 		client.lpush(getSocketKey(user_type, user_id, target_id), json, function(err, res){
-			if(user_type == 1) {
-				var count = getNumber(user_id, target_id);
-				data.count = ++count;
-				if(containKey(users, user_id)) {
-					users[user_id]['count'][target_id] = data.count;
-				}
-				logger.debug('send-message to 2 - ' + JSON.stringify(data));
-				emit(user_id, 'receive-message', data);
-				emit(target_id, 'receive-message', data);
-			} else {
-				var count = getNumber(target_id, user_id);
-				data.count = ++count;
-				if(containKey(users, target_id)) {
-					users[target_id]['count'][user_id] = data.count;
-				}
-				logger.debug('send-message to 1 - ' + JSON.stringify(data));
-				emit(target_id, 'receive-message', data);
-				emit(user_id, 'receive-message', data);
+			logger.debug('send-message - 1 - ' + JSON.stringify(data));
+			emit(user_id, 'receive-message', data);
+			
+			var count = getNumber(target_id, user_id);
+			count++;
+			if(containKey(users, target_id)) {
+				users[target_id]['count'][user_id] = count;
 			}
+			logger.debug('send-message - 2 - ' + count);
+			emit(target_id, 'receive-message', { count: count });
 		});
 	});
 	
