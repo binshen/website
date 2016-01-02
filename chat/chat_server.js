@@ -58,10 +58,6 @@ var removeKey = function(obj, key) {
 	delete obj[key];
 }
 
-var hasValue = function(val) {
-	return undefined !== val && null !== val;
-}
-
 var updateType2Status = function(broker_id, status) {
 	client.lrange(getMapKey(broker_id), 0, -1, function(err, res) {
 		logger.debug('updateType2Status - users = ' + JSON.stringify(res) + ' length = ' + res.length)
@@ -183,7 +179,7 @@ io.sockets.on('connection', function (socket) {
 	socket.on('send-message',function(data){
 		var data = JSON.parse(data);
 		var message = data.message
-		if(!hasValue(message) || "" === trim(message)) {
+		if(undefined === message || null === message || "" === trim(message)) {
 			return;
 		}
 		logger.info('send-message - ' + JSON.stringify(data));
