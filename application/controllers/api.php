@@ -44,7 +44,7 @@ class Api extends MY_Controller {
 					'Title' => $h['region_name'] . $h['xq_name'] . $h['room'] . '室' . $h['lounge'] . '厅 ' . $h['acreage'] . '㎡' . $h['total_price'] . '万',
 					'Description' => '',
 					'PicUrl' => 'http://www.funmall.com.cn/uploadfiles/pics/' . $h['bg_pic'],
-					'Url' => 'http://www.funmall.com.cn/b_house/view_detail/' . $h['id']
+					'Url' => 'http://www.funmall.com.cn/b_house/view_detail/' . $h['id'] . '/' . $_POST['open_id']
 				);
 			}
 		}
