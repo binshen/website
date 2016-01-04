@@ -12,8 +12,21 @@ class Api extends MY_Controller {
 		$this->api_model->send_text($open_id, urlencode("您收到了一条消息。<a href='http://www.funmall.com.cn/b_house/view_chat/{$open_id}'>点击查看</a>"));
 	}
 	
-	public function update_weixin_user($openid) {
+	public function update_weixin_user($openid, $broker_id) {
 		$this->api_model->update_weixin_user($openid);
+		
+		$redis = new Redis();
+		$redis->connect('127.0.0.1', 6379);
+		
+		$key = "map:" . $broker_id;
+		$users = $redis->lrange($key, 0, -1);
+		if(!in_array($openid, $users)) {
+			$redis->lpush($key, $openid);
+		}
+	}
+	
+	public function unsubscribe_weixin_user($openid) {
+		
 	}
 	
 	public function view_art($open_id, $broker_id) {
@@ -48,6 +61,9 @@ class Api extends MY_Controller {
 				);
 			}
 		}
+		$wx_open_id = $_POST['open_id'];
+		$this->session->set_userdata('wx_open_id', $wx_open_id);
+		
 		echo json_encode($content);
 	}
 	

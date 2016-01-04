@@ -243,4 +243,17 @@ class Job_model extends MY_Model
     		$this->db->insert('house_push', $data_house_push);
     	}
     }
+    
+    public function getWxUserKeys() {
+    	$this->db->select('broker_id');
+    	$this->db->from('wx_user');
+    	$this->db->distinct();
+    	return $this->db->get()->result_array();
+    }
+    
+    public function getWxUser() {
+    	$this->db->select('open_id, broker_id');
+    	$this->db->from('wx_user');
+    	return $this->db->get()->result_array();
+    }
 }

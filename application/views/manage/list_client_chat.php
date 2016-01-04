@@ -82,7 +82,7 @@ socket.on('receive-message', function (data) {
 	    $("#dialogue-center-chat").mCustomScrollbar("scrollTo","bottom");
 	}
 	if(user_type == 1) {
-		play_ring("/chat/ring/msg.wav");
+		$('#audio_tag').trigger('play');
 
 		if(open_id == "" || open_id != user_id) {
 			var count = data.count
@@ -139,15 +139,15 @@ $(function(){
 	$('#tool').height(leftPx);
 	$('#dialogue-right-body').height(rightPx);
 	$("#dialogue-center-chat").mCustomScrollbar();
-
-//	for(var i=0; i<$('.imgToGray').length;i++){
-//		$('.imgToGray')[i].src = gray($('.imgToGray')[i]);
-//	}
-
 	socket.emit('online', JSON.stringify({ "user_id": broker_id, "user_type": 2 }));
 	
 /////////////////////////////////////////////////////////////////////////
 	$("#cus-list li").click(function(){
+		var open_id = $("#selectedUser").val();
+		if(open_id != "") {
+			socket.emit('zero-out', JSON.stringify({ "user_id": open_id, "target_id": broker_id }));
+		}
+		
 	    $("#cus-list li").removeClass('current');
 	    $(this).addClass('current');
 	    $("#dialogue-center-name").html($(this).children().find(".dialogue-cus-name").html());
@@ -158,7 +158,7 @@ $(function(){
 	    
 		$("#selectedUser").val(open_id);
 
-		socket.emit('online', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2 }));
+		socket.emit('online', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2, "reset_flag": 1 }));
 		socket.emit('show-history', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2 }));
 		
 	    $("#btnSendMsg").click(function() {
@@ -197,11 +197,6 @@ function getMessageText(data) {
 	return html
 }
 
-function play_ring(url){
-	var embed = '<embed id="ring" src="'+url+'" loop="0" autostart="true" hidden="true" style="height:0px; width:0px;0px;"></embed>';
-	$("#ring").html(embed);
-}
-
 function list_house_tracks(open_id) {
 	$.get('/manage/list_house_tracks/'+open_id, function(data) {
 		var data = JSON.parse(data);
@@ -232,35 +227,8 @@ function list_house_tracks(open_id) {
     	$("#dialogue-right-body").html(html);
     });
 }
-
-/*
-function gray(imgObj) {
-	var canvas = document.createElement('canvas');
-	var canvasContext = canvas.getContext('2d');
-
-	var imgW = imgObj.width;
-	var imgH = imgObj.height;
-	canvas.width = imgW;
-	canvas.height = imgH;
-
-	canvasContext.drawImage(imgObj, 0, 0);
-	var imgPixels = canvasContext.getImageData(0, 0, imgW, imgH);
-
-	for (var y = 0; y < imgPixels.height; y++) {
-		for (var x = 0; x < imgPixels.width; x++) {
-			var i = (y * 4) * imgPixels.width + x * 4;
-          	var avg = (imgPixels.data[i] + imgPixels.data[i + 1] + imgPixels.data[i + 2]) / 3;
-          	imgPixels.data[i] = avg;
-          	imgPixels.data[i + 1] = avg;
-          	imgPixels.data[i + 2] = avg;
-		}
-	}
-    canvasContext.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
-    return canvas.toDataURL();
-}
-*/
 </script>
-<div id="ring" style="width:0px; height:0px;"></div>
 <input type="hidden" id="selectedUser" value="" />
+<audio id="audio_tag"><source src="/chat/ring/msg.wav" type="audio/x-wav" /></audio>
 </body>
 

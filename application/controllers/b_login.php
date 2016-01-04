@@ -24,4 +24,17 @@ public function __construct() {
 		//redirect(site_url('b_login'));
 		redirect(site_url('/b_house/view_list'));
 	}
+	
+	public function logout2() {
+		$this->session->unset_userdata('login_broker_id');
+		$this->session->unset_userdata('user_id');
+		$this->session->unset_userdata('username');
+		$this->session->unset_userdata('group_id');
+		$this->session->unset_userdata('rel_name');
+		$this->session->unset_userdata('manager_group');
+		$this->session->unset_userdata('company_id');
+		$this->session->unset_userdata('subsidiary_id');
+		$this->session->unset_userdata('login_broker_tel');
+		redirect(site_url('/b_house/view_list'));
+	}
 }

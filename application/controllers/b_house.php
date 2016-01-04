@@ -206,7 +206,7 @@ class B_house extends MY_Controller {
 		if(!empty($open_id) && !empty($hid)) {
 			$this->house_model->track_house($open_id, (int)$hid);
 		}
-		
+
 		$house = $this->house_model->get_m_house_detail($hid);
 		$house['unit_price'] = intval($house['total_price'] * 10000 / $house['acreage']);
 		
@@ -313,10 +313,11 @@ class B_house extends MY_Controller {
 		$this->api_model->send_text($open_id, urlencode($text));
 	}
 	
-	public function view_chat($open_id, $broker_id) {
+	public function view_chat($open_id, $broker_id, $user_type=1) {
 		
 		$this->assign('wx_open_id', $open_id);
 		$this->assign('wx_broker_id', $broker_id);
+		$this->assign('wx_user_type', $user_type);
 		$this->display('broker/chat.html');
 	}
 	

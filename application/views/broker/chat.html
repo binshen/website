@@ -11,7 +11,7 @@
 </head>
 <body id="dialogue">
 <div class="g-head">
-    <a href="javascript:history.go(-1);"><i class="am-icon-chevron-left"></i></a>聊天窗口<span id="status"></span>
+    <a href="go_back()"><i class="am-icon-chevron-left"></i></a>聊天窗口<span id="status"> - 离线</span>
 </div>
 <div class="dialogue-content" id="dialogue-content">
 	<div class="dialogue-detail" id="scrollCont1">
@@ -65,13 +65,15 @@
 	}
 </script>
 <script type="text/javascript">
-	var open_id = '{{$wx_open_id}}';
-	var target_id = '{{$wx_broker_id}}';
+	var user_type = '{{$wx_user_type|default:1}}';
+	var user_id   = user_type == 1 ? '{{$wx_open_id}}' : '{{$wx_broker_id}}';
+	var target_id = user_type == 1 ? '{{$wx_broker_id}}' : '{{$wx_open_id}}';
 	var socket = io.connect('http://121.40.97.183:4000');
+	var status = 0;
 	
-	socket.emit('online', JSON.stringify({ "user_id": open_id, "target_id": target_id, "user_type": 1, "reset_count":1 }));
-	socket.emit('show-history', JSON.stringify({ "user_id": open_id, "target_id": target_id, "user_type": 1 }));
-	
+	socket.emit('online', JSON.stringify({ "user_id": user_id, "target_id": target_id, "user_type": user_type, "reset_flag": 1 }));
+	socket.emit('show-history', JSON.stringify({ "user_id": user_id, "target_id": target_id, "user_type": user_type }));
+
 	socket.on('disconnect',function(){
 		console.log('disconnected')
 	});
@@ -82,7 +84,7 @@
 	
 	socket.on('show-status',function(data){
 		var data = JSON.parse(data);
-		var status = data.status;
+		status = data.status;
 		if(status) {
 			$("#status").text(" - 在线");
 		} else {
@@ -93,12 +95,18 @@
 	socket.on('receive-message', function (data) {
 		showMessage(data);
 		
-/*
-		var d = JSON.parse(data)
-		if(open_id !== m.user_id) {
-			play_ring("/chat/ring/msg.wav");
+		var data = JSON.parse(data);
+		var user_id = data.user_id;
+		var target_id = data.target_id;
+		socket.emit('zero-out', JSON.stringify({ "user_id": target_id, "target_id": user_id }));
+		
+		if(user_type != data.user_type) {
+			$('#audio_tag').trigger('play');
 		}
-*/
+		
+		if(user_type == 2 && status < 1) {
+			$.get('/b_house/send_notification/' + target_id + '/' + user_id, function() { /*  */ });
+		}
 	});
 	
 	socket.on('receive-history', function (data) {
@@ -113,69 +121,47 @@
 		$("#btnSendMsg").click(function() {
 			var message = $("#msg_box").val();
 			if(trim(message) !== ""){
-		    	socket.emit('send-message', JSON.stringify({ "user_id": open_id, "target_id": target_id, "user_type": 1, "message": message }));
+		    	socket.emit('send-message', JSON.stringify({ "user_id": user_id, "target_id": target_id, "user_type": user_type, "message": message }));
 		    	$("#msg_box").val("");
 			}
 		});
 	});
 
 	var messageCount = 0;
-	function showMessage(d) {
+	function showMessage(data) {
 		messageCount++;
-		var d = JSON.parse(d)
-		var message = d.message;
+		var data = JSON.parse(data)
+		var message = data.message;
 		var date = new Date();
-		date.setTime(d.time);
+		date.setTime(data.time);
 		var content = '';
-		if(d.user_type == 1) {
-			 if(messageCount%5==0) {
-				 content += '<div class="customer"><span class="data-time">';
-				 content += date.format('yyyy-MM-dd h:m:s');
-				 content +='</span><div class="cus_head_pic"><img src="/static/images/touxiang1.jpg" alt="" width="50" height="50"></div><div class="cus_word"><p>';
-				 content += message;
-				 content += '</p><span class="cus_word_icon"></span></div></div>';
+		if(data.user_type == 1) {
+			 content += '<div class="customer">';
+			 if(messageCount % 5 == 0) {
+			 	content += '<span class="data-time">' + date.format('yyyy-MM-dd h:m:s') + '</span>';
 			 }
-			else{
-				 content += '<div class="customer"><div class="cus_head_pic"><img src="/static/images/touxiang1.jpg" alt="" width="50" height="50"></div><div class="cus_word"><p>';
-				 content += message;
-				 content += '</p><span class="cus_word_icon"></span></div></div>';
-
-			 }
-//			content += '<div class="customer"><span class="data-time">';
-//			content += date.format('yyyy-MM-dd h:m:s');
-//			content +='</span><div class="cus_head_pic"></div><div class="cus_word"><p>';
-//			content += message;
-//			content += '</p><span class="cus_word_icon"></span></div></div>';
+			 content +='<div class="cus_head_pic"><img src="/static/images/touxiang1.jpg" alt="" width="50" height="50"></div><div class="cus_word"><p>';
+			 content += message;
+			 content += '</p><span class="cus_word_icon"></span></div></div>';
 		} else {
-			if(messageCount%5==0){
-				content += '<div class="manger"><span class="data-time">';
-				content += date.format('yyyy-MM-dd h:m:s');
-				content +='</span><div class="manger_head_pic"><img src="/static/images/touxiang2.jpg" alt="" width="50" height="50"></div><div class="manger_word"><p>';
-				content += message;
-				content += '</p><span class="manger_word_icon"></span></div></div>';
+			content += '<div class="manger">';
+			if(messageCount % 5 == 0) {
+				content += '<span class="data-time">' + date.format('yyyy-MM-dd h:m:s') + '</span>';
 			}
-			else{
-				content += '<div class="manger"><div class="manger_head_pic"><img src="/static/images/touxiang2.jpg" alt="" width="50" height="50"></div><div class="manger_word"><p>';
-				content += message;
-				content += '</p><span class="manger_word_icon"></span></div></div>';
-			}
-//			content += '<div class="manger"><span class="data-time">';
-//			content += date.format('yyyy-MM-dd h:m:s');
-//			content +='</span><div class="manger_head_pic"></div><div class="manger_word"><p>';
-//			content += message;
-//			content += '</p><span class="manger_word_icon"></span></div></div>';
+			content +='<div class="manger_head_pic"><img src="/static/images/touxiang2.jpg" alt="" width="50" height="50"></div><div class="manger_word"><p>';
+			content += message;
+			content += '</p><span class="manger_word_icon"></span></div></div>';
 		}
 		$("#scorll").append(content);
 		myScroll.refresh();
 		myScroll.scrollToElement("#scorll>div:last-child",1500);
 	}
 	
-	function play_ring(url){
-		var embed = '<embed id="ring" src="'+url+'" loop="0" autostart="true" hidden="true" style="height:0px; width:0px;0px;"></embed>';
-		$("#ring").html(embed);
+	function go_back() {
+		socket.emit('zero-out', JSON.stringify({ "user_id": user_id, "target_id": target_id }));
+		history.go(-1);
 	}
 </script>
-<div id="ring" style="width:0px; height:0px;"></div>
+<audio id="audio_tag"><source src="/chat/ring/msg.wav" type="audio/x-wav" /></audio>
 </body>
 </html>
-
