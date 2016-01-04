@@ -44,7 +44,7 @@
                   <a href="javascript:void(0)" class="dialogue-set-btn" id="btnSendMsg">发送</a>
               </div>
               <div class="dialogue-chat-input-head">
-              		<img src="images/touxiang2.jpg" alt="" width="36" height="36" />
+              		<img src="/chat/images/touxiang2.jpg" alt="" width="36" height="36" />
               </div>
           </div>
        </div>
@@ -192,7 +192,7 @@ function getMessageText(data) {
 	} else {
 		html += '<div class="dialogue-chat-div dialogue-chat-div-male dialogue-chat-div-manage">';
 	}
-	html += '<div class="dialogue-chat-head"><img src="images/touxiang2.jpg" alt="" width="36" height="36" /></div>';
+	html += '<div class="dialogue-chat-head"><img src="/chat/images/touxiang2.jpg" alt="" width="36" height="36" /></div>';
 	html += '<div class="dialogue-chat-pop"><p>' + data.message + '</p></div>';
 	html += '</div>';
 	return html
