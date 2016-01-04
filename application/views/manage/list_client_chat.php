@@ -12,7 +12,7 @@
             	?>
 			                <li id="<?php echo $row['open_id']; ?>">
 			                  <span class="dialogue-cus-head">
-			                    <img src="<?php echo $row['headimgurl']; ?>" alt="" id="<?php echo $row['open_id']; ?>" style="height: 36px;width:36px;"/>
+			                    <img id="headimgurl_<?php echo $row['open_id']; ?>" src="<?php echo $row['headimgurl']; ?>" alt="" id="<?php echo $row['open_id']; ?>" style="height: 36px;width:36px;"/>
 			                  	<i class="dialogue-message-number-i" id="number_<?php echo $row['open_id']; ?>"></i>
 			                  </span>
 			                  <span class="online-state leave-state" id="status_<?php echo $row['open_id']; ?>">离线</span>
@@ -59,6 +59,7 @@
 <script type="text/javascript" src="/chat/socket.io.js"></script>
 <script>
 var broker_id = '<?php echo $this->session->userdata('user_id'); ?>';
+var headimgurl = '';
 var socket = io.connect('http://121.40.97.183:4000');
 
 socket.on('disconnect',function(){
@@ -156,6 +157,8 @@ $(function(){
 	    var open_id = $(this).attr('id');
 	    $("#number_" + open_id).html("");
 	    list_house_tracks(open_id);
+
+		headimgurl = $("#headimgurl_" + open_id).attr('src');
 	    
 		$("#selectedUser").val(open_id);
 
@@ -189,7 +192,7 @@ function getMessageText(data) {
 	var html = "";
 	if(data.user_type == 1) {
 		html += '<div class="dialogue-chat-div dialogue-chat-div-customer">';
-		html += '<div class="dialogue-chat-head"></div>';
+		html += '<div class="dialogue-chat-head"><img src="' + headimgurl + '" alt="" width="36" height="36" /></div>';
 	} else {
 		html += '<div class="dialogue-chat-div dialogue-chat-div-manage">';
 	    html += '<div class="dialogue-chat-head"><img src="/chat/images/touxiang2.jpg" alt="" width="36" height="36" /></div>';
