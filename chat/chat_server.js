@@ -97,6 +97,16 @@ var getCount = function(user_id, target_id) {
 	return 0;
 }
 
+var showHistory = function(data, index) {
+	var data = JSON.parse(data);
+	var user_id = data.user_id;
+	var target_id = data.target_id;
+	var user_type = data.user_type;
+	client.lrange(getSocketKey(user_type, user_id, target_id), 0, index, function(err, res) {
+		emit(user_id, 'receive-history', res);
+	});
+}
+
 var emit = function(user_id, message, jsonData) {
 	if(containKey(sockets, user_id)) {
 		sockets[user_id].forEach(function(socket) {
@@ -204,13 +214,12 @@ io.sockets.on('connection', function (socket) {
 	
 	socket.on('show-history',function(data){
 		logger.info('show-history - ' + data);
-		var data = JSON.parse(data);
-		var user_id = data.user_id;
-		var target_id = data.target_id;
-		var user_type = data.user_type;
-		client.lrange(getSocketKey(user_type, user_id, target_id), 0, 19, function(err, res) {
-			emit(user_id, 'receive-history', res);
-		});
+		showHistory(data, 19);
+	});
+	
+	socket.on('show-all-history',function(data){
+		logger.info('show-all-history - ' + data);
+		showHistory(data, -1);
 	});
 	
 	socket.on('zero-out',function(data){

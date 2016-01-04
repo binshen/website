@@ -42,6 +42,7 @@
               <div class="dialogue-chat-txt-input">
                   <input type="text" id="msg_box" value="" class="dialogue-input-txt" />
                   <a href="javascript:void(0)" class="dialogue-set-btn" id="btnSendMsg">发送</a>
+                  <input id="showAllHistory" type="checkbox" value="1"><label for="showAllHistory" style="padding-right: 10px;">历史消息</label>
               </div>
               <div class="dialogue-chat-input-head">
               		<img src="/chat/images/touxiang2.jpg" alt="" width="36" height="36" />
@@ -159,7 +160,9 @@ $(function(){
 	    list_house_tracks(open_id);
 
 		headimgurl = $("#headimgurl_" + open_id).attr('src');
-	    
+
+		$("#showAllHistory").prop('checked', false);
+		
 		$("#selectedUser").val(open_id);
 
 		socket.emit('online', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2, "reset_flag": 1 }));
@@ -175,6 +178,20 @@ $(function(){
 	        	sendMessage();    
 	        }  
 	    });
+	});
+
+	$("#showAllHistory").click(function() {
+		var checked = $(this).prop('checked');
+		var open_id = $("#selectedUser").val();
+		if(open_id == "") {
+			 $(this).prop('checked', false);
+		} else {
+			if(checked) {
+				socket.emit('show-all-history', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2 }));
+			} else {
+				socket.emit('show-history', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2 }));
+			}
+		}
 	});
 })
 
