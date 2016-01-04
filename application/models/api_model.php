@@ -155,4 +155,11 @@ class Api_model extends MY_Model {
 		$this->db->limit(6);
 		return $this->db->get()->result_array();
 	}
+	
+	public function getWeixinUser($open_id) {
+		$this->db->select('nickname, headimgurl');
+		$this->db->from('weixin');
+		$this->db->where('openid', $open_id);
+		return $this->db->get()->row_array();
+	}
 }
