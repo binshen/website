@@ -11,7 +11,7 @@
             			foreach ($wx_users_list as $i => $row):
             	?>
 			                <li id="<?php echo $row['open_id']; ?>">
-			                  <span class="dialogue-cus-head dialogue-cus-head-female">
+			                  <span class="dialogue-cus-head">
 			                    <img src="<?php echo $row['headimgurl']; ?>" alt="" id="<?php echo $row['open_id']; ?>" style="height: 36px;width:36px;"/>
 			                  	<i class="dialogue-message-number-i" id="number_<?php echo $row['open_id']; ?>"></i>
 			                  </span>
@@ -188,11 +188,13 @@ function sendMessage() {
 function getMessageText(data) {
 	var html = "";
 	if(data.user_type == 1) {
-		html += '<div class="dialogue-chat-div dialogue-chat-div-female dialogue-chat-div-customer">';
+		html += '<div class="dialogue-chat-div dialogue-chat-div-customer">';
+		html += '<div class="dialogue-chat-head"></div>';
 	} else {
-		html += '<div class="dialogue-chat-div dialogue-chat-div-male dialogue-chat-div-manage">';
+		html += '<div class="dialogue-chat-div dialogue-chat-div-manage">';
+	    html += '<div class="dialogue-chat-head"><img src="/chat/images/touxiang2.jpg" alt="" width="36" height="36" /></div>';
+
 	}
-	html += '<div class="dialogue-chat-head"><img src="/chat/images/touxiang2.jpg" alt="" width="36" height="36" /></div>';
 	html += '<div class="dialogue-chat-pop"><p>' + data.message + '</p></div>';
 	html += '</div>';
 	return html

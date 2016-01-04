@@ -67,10 +67,8 @@ i,em{font-style:normal;}
 .dialogue-chat-div .dialogue-chat-pop p{margin:0;border-radius: 3px; background: #e7f1f6; padding:6px; display: inline-block; font-size: 12px;line-height: 20px;float: right;}
 .dialogue-chat-div-customer .dialogue-chat-pop p{float: left;}
 .dialogue-chat-div .dialogue-chat-head,.dialogue-chat-input-head{margin:0;padding:0;width:36px; height: 36px;  }
-.dialogue-chat-div .dialogue-chat-head{margin:0;padding:0;float: right;}
-.dialogue-chat-div-customer .dialogue-chat-head{margin:0;padding:0;float: left;}
-.dialogue-chat-div-female .dialogue-chat-head,.dialogue-chat-input-head{margin:0;padding:0; }
-.dialogue-chat-div-male .dialogue-chat-head,.dialogue-chat-input-head{margin:0;padding:0;}
+.dialogue-chat-div-manage .dialogue-chat-head{float: right;}
+.dialogue-chat-div-customer .dialogue-chat-head{float: left; background:url(../images/female-head-pic.png) no-repeat;}
 .dialogue-chat-div-male .dialogue-chat-pop p{margin:0;background: #fff;}
 .online-state{ display: inline;margin:10px 0 0 0;
 	float: right;
