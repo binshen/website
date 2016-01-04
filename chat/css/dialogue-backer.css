@@ -69,8 +69,8 @@ i,em{font-style:normal;}
 .dialogue-chat-div .dialogue-chat-head,.dialogue-chat-input-head{margin:0;padding:0;width:36px; height: 36px;  }
 .dialogue-chat-div .dialogue-chat-head{margin:0;padding:0;float: right;}
 .dialogue-chat-div-customer .dialogue-chat-head{margin:0;padding:0;float: left;}
-.dialogue-chat-div-female .dialogue-chat-head,.dialogue-chat-input-head{margin:0;padding:0;background:url(../images/head.png) no-repeat -72px -3px; }
-.dialogue-chat-div-male .dialogue-chat-head,.dialogue-chat-input-head{margin:0;padding:0;background:url(../images/head.png) no-repeat -72px -49px;}
+.dialogue-chat-div-female .dialogue-chat-head,.dialogue-chat-input-head{margin:0;padding:0; }
+.dialogue-chat-div-male .dialogue-chat-head,.dialogue-chat-input-head{margin:0;padding:0;}
 .dialogue-chat-div-male .dialogue-chat-pop p{margin:0;background: #fff;}
 .online-state{ display: inline;margin:10px 0 0 0;
 	float: right;
