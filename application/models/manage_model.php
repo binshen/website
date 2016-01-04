@@ -1932,7 +1932,7 @@ class Manage_model extends MY_Model
 	}
 	
 	public function list_wx_user() {
-		return $this->db->get_where('weixin', array('subscribe' => 1, 'nickname <> ""'))->result_array();
+		return $this->db->get_where('weixin', array('subscribe' => 1, 'nickname <>' => ''))->result_array();
 	}
 	
 	public function list_house_push_dialog() {
