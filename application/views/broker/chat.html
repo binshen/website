@@ -27,7 +27,6 @@
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/jquery.scrollLoading.js"></script>
 <script type="text/javascript" src="/static/js/zepto.js"></script>
-<!-- <script type="text/javascript" src="http://121.40.97.183:4000/socket.io/socket.io.js"></script> -->
 <script type="text/javascript" src="/chat/socket.io.js"></script>
 <script>
 	//模拟滚动条
@@ -73,9 +72,7 @@
 	var headimgurl = '{{$headimgurl}}';
 	
 	socket.emit('online', JSON.stringify({ "user_id": user_id, "target_id": target_id, "user_type": user_type, "reset_flag": 1 }));
-	
 	socket.emit('show-history', JSON.stringify({ "user_id": user_id, "target_id": target_id, "user_type": user_type }));
-	console.log('---------- show-history: ' + JSON.stringify({ "user_id": user_id, "target_id": target_id, "user_type": user_type }));
 	
 	socket.on('disconnect',function(){
 		console.log('disconnected')
@@ -86,7 +83,6 @@
 	});
 	
 	socket.on('show-status',function(data){
-		console.log('========== show-status: ' + data);
 		var data = JSON.parse(data);
 		status = data.status;
 		if(status) {
@@ -97,8 +93,6 @@
 	});
 	
 	socket.on('receive-message', function (data) {
-		console.log('++++++++++ receive-message: ' + data);
-		
 		showMessage(data);
 		
 		var data = JSON.parse(data);
@@ -116,8 +110,6 @@
 	});
 	
 	socket.on('receive-history', function (data) {
-		console.log('########## receive-history: ' + data);
-		
 		var messages = JSON.parse(data);
 		var messages = messages.reverse();
 		for(var i in messages) {
