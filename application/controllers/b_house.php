@@ -318,6 +318,15 @@ class B_house extends MY_Controller {
 		$this->assign('wx_open_id', $open_id);
 		$this->assign('wx_broker_id', $broker_id);
 		$this->assign('wx_user_type', $user_type);
+		
+		$wx_user = $this->api_model->getWeixinUser($open_id);
+		if(!empty($wx_user)) {
+			$headimgurl = $wx_user['headimgurl'];
+		} else {
+			$headimgurl = '/static/images/touxiang1.jpg';
+		}
+		$this->assign('headimgurl', $headimgurl);
+		
 		$this->display('broker/chat.html');
 	}
 	

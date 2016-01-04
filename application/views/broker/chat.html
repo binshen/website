@@ -70,6 +70,7 @@
 	var target_id = user_type == 1 ? '{{$wx_broker_id}}' : '{{$wx_open_id}}';
 	var socket = io.connect('http://121.40.97.183:4000');
 	var status = 0;
+	var headimgurl = '{{$headimgurl}}';
 	
 	socket.emit('online', JSON.stringify({ "user_id": user_id, "target_id": target_id, "user_type": user_type, "reset_flag": 1 }));
 	socket.emit('show-history', JSON.stringify({ "user_id": user_id, "target_id": target_id, "user_type": user_type }));
@@ -140,7 +141,7 @@
 			 if(messageCount % 5 == 0) {
 			 	content += '<span class="data-time">' + date.format('yyyy-MM-dd h:m:s') + '</span>';
 			 }
-			 content +='<div class="cus_head_pic"><img src="/static/images/touxiang1.jpg" alt="" width="50" height="50"></div><div class="cus_word"><p>';
+			 content +='<div class="cus_head_pic"><img src="' + headimgurl + '" alt="" width="50" height="50"></div><div class="cus_word"><p>';
 			 content += message;
 			 content += '</p><span class="cus_word_icon"></span></div></div>';
 		} else {
