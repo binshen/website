@@ -85,7 +85,7 @@
 	socket.on('show-status',function(data){
 		var data = JSON.parse(data);
 		status = data.status;
-		if(status) {
+		if(status == true) {
 			$("#status").text(" - 在线");
 		} else {
 			$("#status").text(" - 离线");
@@ -104,14 +104,15 @@
 			$('#audio_tag').trigger('play');
 		}
 		
-		if(user_type == 2 && status < 1) {
+		if(user_type == 2 && status != true) {
 			$.get('/b_house/send_notification/' + target_id + '/' + user_id, function() { /*  */ });
 		}
 	});
 	
 	socket.on('receive-history', function (data) {
-		var messages = JSON.parse(data);
-		var messages = messages.reverse();
+		var data = JSON.parse(data);
+		var results = data.results;
+		var messages = results.reverse();
 		for(var i in messages) {
 			showMessage(messages[i]);
 		} 

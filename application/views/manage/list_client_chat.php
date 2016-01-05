@@ -125,7 +125,7 @@ socket.on('show-status',function(data){
 	var data = JSON.parse(data);
 	var user_id = data.user_id;
 	var status = data.status;
-	if(status) {
+	if(status == true) {
 		$("#status_" + user_id).text("在线");
 		$("#status_" + user_id).removeClass('leave-state');
 		$("#status_flag_" + user_id).val(1);
