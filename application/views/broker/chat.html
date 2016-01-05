@@ -11,7 +11,7 @@
 </head>
 <body id="dialogue">
 <div class="g-head">
-    <a href="go_back()"><i class="am-icon-chevron-left"></i></a>聊天窗口<span id="status"> - 离线</span>
+    <a href="go_back()"><i class="am-icon-chevron-left"></i></a>聊天窗口<span id="status_span"> - 离线</span>
 </div>
 <div class="dialogue-content" id="dialogue-content">
 	<div class="dialogue-detail" id="scrollCont1">
@@ -85,10 +85,10 @@
 	socket.on('show-status',function(data){
 		var data = JSON.parse(data);
 		status = data.status;
-		if(status == true) {
-			$("#status").text(" - 在线");
+		if(isTrue(status)) {
+			$("#status_span").text(" - 在线");
 		} else {
-			$("#status").text(" - 离线");
+			$("#status_span").text(" - 离线");
 		}
 	});
 	
@@ -104,7 +104,7 @@
 			$('#audio_tag').trigger('play');
 		}
 		
-		if(user_type == 2 && status != true) {
+		if(user_type == 2 && !isTrue(status)) {
 			$.get('/b_house/send_notification/' + target_id + '/' + user_id, function() { /*  */ });
 		}
 	});
@@ -161,6 +161,10 @@
 	function go_back() {
 		socket.emit('zero-out', JSON.stringify({ "user_id": user_id, "target_id": target_id }));
 		history.go(-1);
+	}
+	
+	function isTrue(val) {
+		return (val === 1 || val === '1' || val === true || val == 'true') ? true : false;
 	}
 </script>
 <audio id="audio_tag"><source src="/chat/ring/msg.wav" type="audio/x-wav" /></audio>

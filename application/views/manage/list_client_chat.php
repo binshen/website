@@ -96,7 +96,7 @@ socket.on('receive-message', function (data) {
 		}
 	} else {
 		var status = $("#status_flag_" + target_id).val();
-		if(status < 1) {
+		if(!isTrue(status)) {
 			$.get('/b_house/send_notification/' + target_id + '/' + broker_id, function() { /*  */ });
 		}
 	}
@@ -125,7 +125,7 @@ socket.on('show-status',function(data){
 	var data = JSON.parse(data);
 	var user_id = data.user_id;
 	var status = data.status;
-	if(status == true) {
+	if(isTrue(status)) {
 		$("#status_" + user_id).text("在线");
 		$("#status_" + user_id).removeClass('leave-state');
 		$("#status_flag_" + user_id).val(1);
@@ -257,6 +257,10 @@ function list_house_tracks(open_id) {
 		}
     	$("#dialogue-right-body").html(html);
     });
+}
+
+function isTrue(val) {
+	return (val === 1 || val === '1' || val === true || val == 'true') ? true : false;
 }
 </script>
 <input type="hidden" id="selectedUser" value="" />
