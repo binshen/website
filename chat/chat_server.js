@@ -103,7 +103,11 @@ var showHistory = function(data, index) {
 	var target_id = data.target_id;
 	var user_type = data.user_type;
 	client.lrange(getSocketKey(user_type, user_id, target_id), 0, index, function(err, res) {
-		emit(user_id, 'receive-history', res);
+		if(user_type == 1) {
+			emit(user_id, 'receive-history', res);
+		} else {
+			emit(user_id, 'receive-history', {user_id: target_id, results: res});
+		}
 	});
 }
 
