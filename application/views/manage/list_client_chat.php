@@ -103,8 +103,14 @@ socket.on('receive-message', function (data) {
 });
 
 socket.on('receive-history', function (data) {
+	
 	var data = JSON.parse(data);
-	var messages = data.reverse();
+	var user_id = data.user_id;
+	var open_id = $("#selectedUser").val();
+	if(open_id != user_id) return;
+	
+	var results = data.results;
+	var messages = results.reverse();
 	var html = "";
 	for(var i in messages) {
     	var message = JSON.parse(messages[i])
@@ -165,20 +171,22 @@ $(function(){
 		
 		$("#selectedUser").val(open_id);
 
+		$("#dialogue-center-chat-inner").html("");
+		
 		socket.emit('online', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2, "reset_flag": 1 }));
 		socket.emit('show-history', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2 }));
-		
-	    $("#btnSendMsg").click(function() {
-	    	sendMessage();
-		});
-
-	    $('#msg_box').keypress(function(event){  
-	        var keycode = (event.keyCode ? event.keyCode : event.which);  
-	        if(keycode == '13'){  
-	        	sendMessage();    
-	        }  
-	    });
 	});
+
+	$("#btnSendMsg").click(function() {
+    	sendMessage();
+	});
+
+    $('#msg_box').keypress(function(event){  
+        var keycode = (event.keyCode ? event.keyCode : event.which);  
+        if(keycode == '13'){  
+        	sendMessage();    
+        }  
+    });
 
 	$("#showAllHistory").click(function() {
 		var checked = $(this).prop('checked');
@@ -217,7 +225,7 @@ function getMessageText(data) {
 	}
 	html += '<div class="dialogue-chat-pop"><p>' + data.message + '</p></div>';
 	html += '</div>';
-	return html
+	return html;
 }
 
 function list_house_tracks(open_id) {
