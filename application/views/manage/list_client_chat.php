@@ -105,12 +105,7 @@ socket.on('receive-message', function (data) {
 socket.on('receive-history', function (data) {
 	
 	var data = JSON.parse(data);
-	var user_id = data.user_id;
-	var open_id = $("#selectedUser").val();
-	if(open_id != user_id) return;
-	
-	var results = data.results;
-	var messages = results.reverse();
+	var messages = data.reverse();
 	var html = "";
 	for(var i in messages) {
     	var message = JSON.parse(messages[i])

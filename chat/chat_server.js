@@ -103,7 +103,7 @@ var showHistory = function(data, index) {
 	var target_id = data.target_id;
 	var user_type = data.user_type;
 	client.lrange(getSocketKey(user_type, user_id, target_id), 0, index, function(err, res) {
-		emit(user_id, 'receive-history', {user_id: user_id, results: res});
+		emit(user_id, 'receive-history', res);
 	});
 }
 
@@ -235,16 +235,16 @@ io.sockets.on('connection', function (socket) {
 	});
 });
 
-var schedule = require('node-schedule');
-schedule.scheduleJob('* * * * *', function(){
-	for(var user_id in counts) {
-		for(var target_id in counts[user_id]) {
-			if(!containKey(users, target_id)) {
-				removeKey(counts[user_id], target_id);
-			}
-		}
-		if(counts[user_id].length === 0) {
-			removeKey(counts, user_id);
-		}
-	}
-});
+//var schedule = require('node-schedule');
+//schedule.scheduleJob('* * * * *', function(){
+//	for(var user_id in counts) {
+//		for(var target_id in counts[user_id]) {
+//			if(!containKey(users, target_id)) {
+//				removeKey(counts[user_id], target_id);
+//			}
+//		}
+//		if(counts[user_id].length === 0) {
+//			removeKey(counts, user_id);
+//		}
+//	}
+//});

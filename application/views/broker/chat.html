@@ -110,8 +110,7 @@
 	});
 	
 	socket.on('receive-history', function (data) {
-		var data = JSON.parse(data);
-		var messages = data.results;
+		var messages = JSON.parse(data);
 		var messages = messages.reverse();
 		for(var i in messages) {
 			showMessage(messages[i]);
