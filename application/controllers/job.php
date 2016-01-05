@@ -19,7 +19,7 @@ class Job extends MY_Controller {
 		
 		$results = $this->job_model->getWxUserKeys();
 		$keys = array_map(function($v) {
-			return 'chat:'.$v['broker_id'];
+			return 'map:'.$v['broker_id'];
 		}, $results);		
 		$redis->delete($keys);
 				
