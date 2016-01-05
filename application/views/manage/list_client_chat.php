@@ -260,7 +260,7 @@ function list_house_tracks(open_id) {
 }
 
 function isTrue(val) {
-	return (val === 1 || val === '1' || val === true || val == 'true') ? true : false;
+	return (val == 1 || val == '1' || val == true || val == 'true') ? true : false;
 }
 </script>
 <input type="hidden" id="selectedUser" value="" />

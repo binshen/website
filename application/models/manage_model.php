@@ -2187,6 +2187,7 @@ class Manage_model extends MY_Model
 		$this->db->join('xiaoqu c', 'a.xq_id = c.id', 'inner');
 		$this->db->where('t.open_id', $open_id);
 		$this->db->order_by('t.date', 'desc');
+		$this->db->limit(20);
 		return $this->db->get()->result_array();
 	}
 }
