@@ -1932,7 +1932,7 @@ class Manage_model extends MY_Model
 	}
 	
 	public function list_wx_user() {
-		return $this->db->get_where('weixin', array('subscribe' => 1))->result_array();
+		return $this->db->get_where('weixin', array('subscribe' => 1, 'nickname <>' => ''))->result_array();
 	}
 	
 	public function list_house_push_dialog() {
@@ -2187,6 +2187,7 @@ class Manage_model extends MY_Model
 		$this->db->join('xiaoqu c', 'a.xq_id = c.id', 'inner');
 		$this->db->where('t.open_id', $open_id);
 		$this->db->order_by('t.date', 'desc');
+		$this->db->limit(20);
 		return $this->db->get()->result_array();
 	}
 }

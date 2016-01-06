@@ -274,8 +274,11 @@ class B_house extends MY_Controller {
 	
 	////////////////////////////////////////////////////////////////////////////////
 	public function chat() {
-				
-		$this->display('broker/chat.html');
+		
+		$wx_open_id = $this->session->userdata('wx_open_id');
+		$wx_broker_id = $this->session->userdata('wx_broker_id');
+		
+		$this->view_chat($wx_open_id, $wx_broker_id);
 	}
 	
 	public function choose_broker($id, $o_bid) {

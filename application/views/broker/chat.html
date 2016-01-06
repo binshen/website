@@ -11,7 +11,7 @@
 </head>
 <body id="dialogue">
 <div class="g-head">
-    <a href="go_back()"><i class="am-icon-chevron-left"></i></a>聊天窗口<span id="status"> - 离线</span>
+    <a href="go_back()"><i class="am-icon-chevron-left"></i></a>聊天窗口<span id="status_span"> - 离线</span>
 </div>
 <div class="dialogue-content" id="dialogue-content">
 	<div class="dialogue-detail" id="scrollCont1">
@@ -27,7 +27,6 @@
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/jquery.scrollLoading.js"></script>
 <script type="text/javascript" src="/static/js/zepto.js"></script>
-<!-- <script type="text/javascript" src="http://121.40.97.183:4000/socket.io/socket.io.js"></script> -->
 <script type="text/javascript" src="/chat/socket.io.js"></script>
 <script>
 	//模拟滚动条
@@ -74,7 +73,7 @@
 	
 	socket.emit('online', JSON.stringify({ "user_id": user_id, "target_id": target_id, "user_type": user_type, "reset_flag": 1 }));
 	socket.emit('show-history', JSON.stringify({ "user_id": user_id, "target_id": target_id, "user_type": user_type }));
-
+	
 	socket.on('disconnect',function(){
 		console.log('disconnected')
 	});
@@ -86,10 +85,10 @@
 	socket.on('show-status',function(data){
 		var data = JSON.parse(data);
 		status = data.status;
-		if(status) {
-			$("#status").text(" - 在线");
+		if(isTrue(status)) {
+			$("#status_span").text(" - 在线");
 		} else {
-			$("#status").text(" - 离线");
+			$("#status_span").text(" - 离线");
 		}
 	});
 	
@@ -105,14 +104,15 @@
 			$('#audio_tag').trigger('play');
 		}
 		
-		if(user_type == 2 && status < 1) {
+		if(user_type == 2 && !isTrue(status)) {
 			$.get('/b_house/send_notification/' + target_id + '/' + user_id, function() { /*  */ });
 		}
 	});
 	
 	socket.on('receive-history', function (data) {
-		var messages = JSON.parse(data);
-		var messages = messages.reverse();
+		var data = JSON.parse(data);
+		var results = data.results;
+		var messages = results.reverse();
 		for(var i in messages) {
 			showMessage(messages[i]);
 		} 
@@ -161,6 +161,10 @@
 	function go_back() {
 		socket.emit('zero-out', JSON.stringify({ "user_id": user_id, "target_id": target_id }));
 		history.go(-1);
+	}
+	
+	function isTrue(val) {
+		return (val === 1 || val === '1' || val === true || val == 'true') ? true : false;
 	}
 </script>
 <audio id="audio_tag"><source src="/chat/ring/msg.wav" type="audio/x-wav" /></audio>

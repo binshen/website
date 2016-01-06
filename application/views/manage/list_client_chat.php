@@ -12,7 +12,7 @@
             	?>
 			                <li id="<?php echo $row['open_id']; ?>">
 			                  <span class="dialogue-cus-head">
-			                    <img src="<?php echo $row['headimgurl']; ?>" alt="" id="<?php echo $row['open_id']; ?>" style="height: 36px;width:36px;"/>
+			                    <img id="headimgurl_<?php echo $row['open_id']; ?>" src="<?php echo $row['headimgurl']; ?>" alt="" id="<?php echo $row['open_id']; ?>" style="height: 36px;width:36px;"/>
 			                  	<i class="dialogue-message-number-i" id="number_<?php echo $row['open_id']; ?>"></i>
 			                  </span>
 			                  <span class="online-state leave-state" id="status_<?php echo $row['open_id']; ?>">离线</span>
@@ -42,6 +42,7 @@
               <div class="dialogue-chat-txt-input">
                   <input type="text" id="msg_box" value="" class="dialogue-input-txt" />
                   <a href="javascript:void(0)" class="dialogue-set-btn" id="btnSendMsg">发送</a>
+                  <input id="showAllHistory" type="checkbox" value="1"><label for="showAllHistory" style="padding-right: 10px;">历史消息</label>
               </div>
               <div class="dialogue-chat-input-head">
               		<img src="/chat/images/touxiang2.jpg" alt="" width="36" height="36" />
@@ -59,6 +60,7 @@
 <script type="text/javascript" src="/chat/socket.io.js"></script>
 <script>
 var broker_id = '<?php echo $this->session->userdata('user_id'); ?>';
+var headimgurl = '';
 var socket = io.connect('http://121.40.97.183:4000');
 
 socket.on('disconnect',function(){
@@ -94,15 +96,21 @@ socket.on('receive-message', function (data) {
 		}
 	} else {
 		var status = $("#status_flag_" + target_id).val();
-		if(status < 1) {
+		if(!isTrue(status)) {
 			$.get('/b_house/send_notification/' + target_id + '/' + broker_id, function() { /*  */ });
 		}
 	}
 });
 
 socket.on('receive-history', function (data) {
+	
 	var data = JSON.parse(data);
-	var messages = data.reverse();
+	var user_id = data.user_id;
+	var open_id = $("#selectedUser").val();
+	if(open_id != user_id) return;
+	
+	var results = data.results;
+	var messages = results.reverse();
 	var html = "";
 	for(var i in messages) {
     	var message = JSON.parse(messages[i])
@@ -117,7 +125,7 @@ socket.on('show-status',function(data){
 	var data = JSON.parse(data);
 	var user_id = data.user_id;
 	var status = data.status;
-	if(status) {
+	if(isTrue(status)) {
 		$("#status_" + user_id).text("在线");
 		$("#status_" + user_id).removeClass('leave-state');
 		$("#status_flag_" + user_id).val(1);
@@ -156,22 +164,42 @@ $(function(){
 	    var open_id = $(this).attr('id');
 	    $("#number_" + open_id).html("");
 	    list_house_tracks(open_id);
-	    
+
+		headimgurl = $("#headimgurl_" + open_id).attr('src');
+
+		$("#showAllHistory").prop('checked', false);
+		
 		$("#selectedUser").val(open_id);
 
+		$("#dialogue-center-chat-inner").html("");
+		
 		socket.emit('online', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2, "reset_flag": 1 }));
 		socket.emit('show-history', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2 }));
-		
-	    $("#btnSendMsg").click(function() {
-	    	sendMessage();
-		});
+	});
 
-	    $('#msg_box').keypress(function(event){  
-	        var keycode = (event.keyCode ? event.keyCode : event.which);  
-	        if(keycode == '13'){  
-	        	sendMessage();    
-	        }  
-	    });
+	$("#btnSendMsg").click(function() {
+    	sendMessage();
+	});
+
+    $('#msg_box').keypress(function(event){  
+        var keycode = (event.keyCode ? event.keyCode : event.which);  
+        if(keycode == '13'){  
+        	sendMessage();    
+        }  
+    });
+
+	$("#showAllHistory").click(function() {
+		var checked = $(this).prop('checked');
+		var open_id = $("#selectedUser").val();
+		if(open_id == "") {
+			 $(this).prop('checked', false);
+		} else {
+			if(checked) {
+				socket.emit('show-all-history', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2 }));
+			} else {
+				socket.emit('show-history', JSON.stringify({ "user_id": broker_id, "target_id": open_id, "user_type": 2 }));
+			}
+		}
 	});
 })
 
@@ -189,7 +217,7 @@ function getMessageText(data) {
 	var html = "";
 	if(data.user_type == 1) {
 		html += '<div class="dialogue-chat-div dialogue-chat-div-customer">';
-		html += '<div class="dialogue-chat-head"></div>';
+		html += '<div class="dialogue-chat-head"><img src="' + headimgurl + '" alt="" width="36" height="36" /></div>';
 	} else {
 		html += '<div class="dialogue-chat-div dialogue-chat-div-manage">';
 	    html += '<div class="dialogue-chat-head"><img src="/chat/images/touxiang2.jpg" alt="" width="36" height="36" /></div>';
@@ -197,7 +225,7 @@ function getMessageText(data) {
 	}
 	html += '<div class="dialogue-chat-pop"><p>' + data.message + '</p></div>';
 	html += '</div>';
-	return html
+	return html;
 }
 
 function list_house_tracks(open_id) {
@@ -229,6 +257,10 @@ function list_house_tracks(open_id) {
 		}
     	$("#dialogue-right-body").html(html);
     });
+}
+
+function isTrue(val) {
+	return (val == 1 || val == '1' || val == true || val == 'true') ? true : false;
 }
 </script>
 <input type="hidden" id="selectedUser" value="" />
