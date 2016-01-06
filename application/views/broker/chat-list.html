@@ -2,432 +2,90 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>城北学区房</title>
+	<title>我的客源</title>
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
 	<meta content="telephone=no" name="format-detection"/>
-	<link rel="stylesheet" href="css/style2.css">
+	<link rel="stylesheet" href="/static/css/style2.css">
 </head>
+<body>
 <div class="g-head">
-	<i class="am-icon-chevron-left"></i>
-	我的客户源
+	<i class="am-icon-chevron-left"></i>我的客源
 </div>
 <ul class="dialogue-customer-list">
+	{{foreach from=$client_users key=key item=item}}
 	<li>
-           <span class="cus-head">
-                <img src="images/dia-head.jpg" alt="" width="50" height="50" />
-                <i class="dialogue-messages">3</i>
-            </span>
-		<div class="all-icon">
-                <span class="edit-btn">
-
-                </span>
-                <span class="history-icon">
-                </span>
-		</div>
-		<div class="cus-txt">
-			<p class="p-txt1"><i class="name">州州</i> <i class="sex">女</i> <i class="state">在线</i></p>
-			<p class="p-txt2"><i class="fz16">姓名：</i>周小惠 <br /><i class="fz16">电话：</i>13761126491
-				<span  class="tel-btn"><i class="am-icon-phone"></i></span></p>
-		</div>
+		<a href="#" onclick="go_chat('{{$item['open_id']}}')">
+		            <span class="cus-head">
+		                <img src="{{$item['headimgurl']}}" alt="" width="50" height="50" />
+		                <i class="dialogue-messages" id="number_{{$item['open_id']}}"><!-- <em class="dialogue-messages-em">3</em> --></i>
+		            </span>
+			<i class="cus-date" id="datetime_{{$item['open_id']}}"></i>
+			<div class="cus-txt">
+				<p class="p-txt1">
+					<i class="name">{{$item['nickname']}}</i>
+					<i class="sex">{{if $item['sex'] == 1}}男{{else}}女{{/if}}</i>
+					<i class="state leave-state" id="status_{{$item['open_id']}}">离线</i>
+					<input type="hidden" id="status_flag_{{$item['open_id']}}" value="0" />
+				</p>
+				<p class="p-txt2">{{$item['province']}} {{$item['city']}}</p>
+			</div>
+		</a>
 	</li>
-	<li>
-            <span class="cus-head">
-                <img src="images/dia-head.jpg" alt="" width="50" height="50" />
-            </span>
-		<div class="all-icon">
-                <span class="edit-btn">
-
-                </span>
-                <span class="history-icon">
-                </span>
-		</div>
-		<div class="cus-txt">
-			<p class="p-txt1"><i class="name">州州</i> <i class="sex">女</i> <i class="state">在线</i></p>
-			<p class="p-txt2"><i class="fz16">姓名：</i>无 <br /><i class="fz16">电话：</i>无
-				<span  class="tel-btn"><i class="am-icon-phone"></i></span></p>
-		</div>
-	</li>
-	<li>
-            <span class="cus-head">
-                <img src="images/dia-head.jpg" alt="" width="50" height="50" />
-            </span>
-		<div class="all-icon">
-                <span class="edit-btn">
-
-                </span>
-                <span class="history-icon">
-                </span>
-		</div>
-		<div class="cus-txt">
-			<p class="p-txt1"><i class="name">州州</i> <i class="sex">女</i> <i class="state">在线</i></p>
-			<p class="p-txt2"><i class="fz12">Name：</i>周小惠 <br /><i class="fz12">Tel：</i>13761126491
-				<span  class="tel-btn"><i class="am-icon-phone"></i></span></p>
-		</div>
-	</li>
-	<li>
-            <span class="cus-head">
-                <img src="images/dia-head.jpg" alt="" width="50" height="50" />
-            </span>
-		<div class="all-icon">
-                <span class="edit-btn">
-
-                </span>
-                <span class="history-icon">
-                </span>
-		</div>
-		<div class="cus-txt">
-			<p class="p-txt1"><i class="name">州州</i> <i class="sex">女</i> <i class="state">在线</i></p>
-			<p class="p-txt2"><i class="fz12">Name：</i>周小惠 <br /><i class="fz12">Tel：</i>13761126491
-				<span  class="tel-btn"><i class="am-icon-phone"></i></span></p>
-		</div>
-	</li>
-	<li>
-             <span class="cus-head">
-                <img src="images/dia-head.jpg" alt="" width="50" height="50" />
-            </span>
-		<div class="all-icon">
-                <span class="edit-btn">
-
-                </span>
-                <span class="history-icon">
-                </span>
-		</div>
-		<div class="cus-txt">
-			<p class="p-txt1"><i class="name">州州</i> <i class="sex">女</i> <i class="state">在线</i></p>
-			<p class="p-txt2"><i class="fz12">Name：</i>周小惠 <br /><i class="fz12">Tel：</i>13761126491
-				<span  class="tel-btn"><i class="am-icon-phone"></i></span></p>
-		</div>
-	</li>
-	<li>
-            <span class="cus-head">
-                <img src="images/dia-head.jpg" alt="" width="50" height="50" />
-            </span>
-		<div class="all-icon">
-                <span class="edit-btn">
-
-                </span>
-                <span class="history-icon">
-                </span>
-		</div>
-		<div class="cus-txt">
-			<p class="p-txt1"><i class="name">州州</i> <i class="sex">女</i> <i class="state">在线</i></p>
-			<p class="p-txt2"><i class="fz12">Name：</i>周小惠 <br /><i class="fz12">Tel：</i>13761126491
-				<span  class="tel-btn"><i class="am-icon-phone"></i></span></p>
-		</div>
-	</li>
-	<li>
-             <span class="cus-head">
-                <img src="images/dia-head.jpg" alt="" width="50" height="50" />
-            </span>
-		<div class="all-icon">
-                <span class="edit-btn">
-                </span>
-                <span class="history-icon">
-                </span>
-		</div>
-		<div class="cus-txt">
-			<p class="p-txt1"><i class="name">州州</i> <i class="sex">女</i> <i class="state">在线</i></p>
-			<p class="p-txt2"><i class="fz12">Name：</i>周小惠 <br /><i class="fz12">Tel：</i>13761126491
-				<span  class="tel-btn"><i class="am-icon-phone"></i></span></p>
-		</div>
-	</li>
-	<li>
-             <span class="cus-head">
-                <img src="images/dia-head.jpg" alt="" width="50" height="50" />
-            </span>
-		<div class="all-icon">
-                <span class="edit-btn">
-
-                </span>
-                <span class="history-icon">
-                </span>
-		</div>
-		<div class="cus-txt">
-			<p class="p-txt1"><i class="name">州州</i> <i class="sex">女</i> <i class="state">在线</i></p>
-			<p class="p-txt2"><i class="fz12">Name：</i>周小惠 <br /><i class="fz12">Tel：</i>13761126491
-				<span  class="tel-btn"><i class="am-icon-phone"></i></span></p>
-		</div>
-	</li>
-	<li>
-             <span class="cus-head">
-                <img src="images/dia-head.jpg" alt="" width="50" height="50" />
-            </span>
-		<div class="all-icon">
-                <span class="edit-btn">
-
-                </span>
-                <span class="history-icon">
-                </span>
-		</div>
-		<div class="cus-txt">
-			<p class="p-txt1"><i class="name">州州</i> <i class="sex">女</i> <i class="state">在线</i></p>
-			<p class="p-txt2"><i class="fz12">Name：</i>周小惠 <br /><i class="fz12">Tel：</i>13761126491
-				<span  class="tel-btn"><i class="am-icon-phone"></i></span></p>
-		</div>
-	</li>
-	<li>
-             <span class="cus-head">
-                <img src="images/dia-head.jpg" alt="" width="50" height="50" />
-            </span>
-		<div class="all-icon">
-                <span class="edit-btn">
-
-                </span>
-                <span class="history-icon">
-                </span>
-		</div>
-		<div class="cus-txt">
-			<p class="p-txt1"><i class="name">州州</i> <i class="sex">女</i> <i class="state">在线</i></p>
-			<p class="p-txt2"><i class="fz12">Name：</i>周小惠 <br /><i class="fz12">Tel：</i>13761126491
-				<span  class="tel-btn"><i class="am-icon-phone"></i></span></p>
-		</div>
-	</li>
-	<li>
-             <span class="cus-head">
-                <img src="images/dia-head.jpg" alt="" width="50" height="50" />
-            </span>
-		<div class="all-icon">
-                <span class="edit-btn">
-
-                </span>
-                <span class="history-icon">
-                </span>
-		</div>
-		<div class="cus-txt">
-			<p class="p-txt1"><i class="name">州州</i> <i class="sex">女</i> <i class="state">在线</i></p>
-			<p class="p-txt2"><i class="fz12">Name：</i>周小惠 <br /><i class="fz12">Tel：</i>13761126491
-				<span  class="tel-btn"><i class="am-icon-phone"></i></span></p>
-		</div>
-	</li>
-	<li>
-             <span class="cus-head">
-                <img src="images/dia-head.jpg" alt="" width="50" height="50" />
-            </span>
-		<div class="all-icon">
-                <span class="edit-btn">
-
-                </span>
-                <span class="history-icon">
-                </span>
-		</div>
-		<div class="cus-txt">
-			<p class="p-txt1"><i class="name">州州</i> <i class="sex">女</i> <i class="state">在线</i></p>
-			<p class="p-txt2"><i class="fz12">Name：</i>周小惠 <br /><i class="fz12">Tel：</i>13761126491
-				<span  class="tel-btn"><i class="am-icon-phone"></i></span></p>
-		</div>
-	</li>
-	<li>
-             <span class="cus-head">
-                <img src="images/dia-head.jpg" alt="" width="50" height="50" />
-            </span>
-		<div class="all-icon">
-                <span class="edit-btn">
-
-                </span>
-                <span class="history-icon">
-                </span>
-		</div>
-		<div class="cus-txt">
-			<p class="p-txt1"><i class="name">州州</i> <i class="sex">女</i> <i class="state">在线</i></p>
-			<p class="p-txt2"><i class="fz12">Name：</i>周小惠 <br /><i class="fz12">Tel：</i>13761126491
-				<span  class="tel-btn"><i class="am-icon-phone"></i></span></p>
-		</div>
-	</li>
+	{{/foreach}}
 </ul>
-<!--真实信息编辑pop-->
-<div class="pop-box" style="display: none;">
-	<div class="pop-bg"></div>
-	<div class="pop-content">
-		<div class="pop-tit">修改用户真实信息</div>
-		<p><i>Name：</i><input  type="text" placeholder="请输入用户真实姓名" class="true-txt" /></p>
-		<p><i>Tel：</i><input  type="text" placeholder="请输入用户电话号码" class="true-txt" /></p>
-		<div class="save-btn">保存</div>
-		<div class="closeBtn"></div>
-	</div>
-</div>
-<div id="m-filter-mask" class="leftmask leftmask3" style="display: none;"></div>
-<div id="m-filter-hisbrowse-leftPopup" class="leftPopup hisbrowse" data-back="leftmask3" style="display:none;z-index: 999999;">
-	<div class="swipeLeft" id="m-filter-hisbrowse">
-		<ul class="dialogue-right-body" id="dialogue-right-body">
-			<li class="dialogue-right-tit">
-				浏览记录
-			</li>
-			<li><a href="../house/second_hand_detail/64" target="_blank">
-				<div class="dialogue-history-list">
-					<div class="clearfix">
-                            <span class="dialogue-s-img">
-                                 <img src="http://dummyimage.com/70x50/000/fff" alt="" width="70" height="50">
-                            </span>
-						<p><span class="s01">康居新江南</span>
-							<span class="s02">138㎡ | 4房 | 138万</span>
-							<span class="s03">城西</span></p>
-						<i class="iscall"></i>
-					</div>   </div></a>
-			</li>
-			<li><a href="../house/second_hand_detail/60" target="_blank">
-				<div class="dialogue-history-list">
-					<div class="clearfix">
-                            <span class="dialogue-s-img">
-                                <img src="http://dummyimage.com/70x50/000/fff" alt="" width="70" height="50">
-                            </span>
-						<p><span class="s01">世茂蝶湖湾</span>
-							<span class="s02">262㎡ | 4房 | 262万</span>
-							<span class="s03">城南</span></p>
-					</div>
-				</div></a>
-			</li>
-			<li>
-				<a href="../house/second_hand_detail/69" target="_blank">
-					<div class="dialogue-history-list">
-						<div class="clearfix">
-                            <span class="dialogue-s-img">
-                                <img src="http://dummyimage.com/70x50/000/fff" alt="" width="70" height="50">
-                            </span>
-							<p><span class="s01">罗马假日</span>
-								<span class="s02">170㎡ | 4房 | 170万</span>
-								<span class="s03">城西</span></p>  </div>
-					</div></a>
-			</li>
-			<li>
-				<a href="../house/second_hand_detail/101" target="_blank">
-					<div class="dialogue-history-list">
-						<div class="clearfix">
-                            <span class="dialogue-s-img">
-                                <img src="http://dummyimage.com/70x50/000/fff" alt="" width="70" height="50">
-                            </span>
-							<p><span class="s01">风景英伦</span>
-								<span class="s02">104㎡ | 2房 | 104万</span>
-								<span class="s03">城西</span></p>  </div>
-					</div></a>
-			</li>
-			<li>
-				<a href="../house/second_hand_detail/101" target="_blank">
-					<div class="dialogue-history-list">
-						<div class="clearfix">
-                            <span class="dialogue-s-img">
-                                <img src="http://dummyimage.com/70x50/000/fff" alt="" width="70" height="50">
-                            </span>
-							<p><span class="s01">风景英伦</span>
-								<span class="s02">104㎡ | 2房 | 104万</span>
-								<span class="s03">城西</span></p>  </div>
-					</div></a>
-			</li>
-			<li>
-				<a href="../house/second_hand_detail/101" target="_blank">
-					<div class="dialogue-history-list">
-						<div class="clearfix">
-                            <span class="dialogue-s-img">
-                                <img src="http://dummyimage.com/70x50/000/fff" alt="" width="70" height="50">
-                            </span>
-							<p><span class="s01">风景英伦</span>
-								<span class="s02">104㎡ | 2房 | 104万</span>
-								<span class="s03">城西</span></p>  </div>
-					</div></a>
-			</li>
-			<li>
-				<a href="../house/second_hand_detail/101" target="_blank">
-					<div class="dialogue-history-list">
-						<div class="clearfix">
-                            <span class="dialogue-s-img">
-                                <img src="http://dummyimage.com/70x50/000/fff" alt="" width="70" height="50">
-                            </span>
-							<p><span class="s01">风景英伦</span>
-								<span class="s02">104㎡ | 2房 | 104万</span>
-								<span class="s03">城西</span></p>  </div>
-					</div></a>
-			</li>
-			<li>
-				<a href="../house/second_hand_detail/101" target="_blank">
-					<div class="dialogue-history-list">
-						<div class="clearfix">
-                            <span class="dialogue-s-img">
-                                <img src="http://dummyimage.com/70x50/000/fff" alt="" width="70" height="50">
-                            </span>
-							<p><span class="s01">风景英伦</span>
-								<span class="s02">104㎡ | 2房 | 104万</span>
-								<span class="s03">城西</span></p>  </div>
-					</div></a>
-			</li>
-			<li>
-				<a href="../house/second_hand_detail/101" target="_blank">
-					<div class="dialogue-history-list">
-						<div class="clearfix">
-                            <span class="dialogue-s-img">
-                                <img src="http://dummyimage.com/70x50/000/fff" alt="" width="70" height="50">
-                            </span>
-							<p><span class="s01">风景英伦</span>
-								<span class="s02">104㎡ | 2房 | 104万</span>
-								<span class="s03">城西</span></p>  </div>
-					</div></a>
-			</li>
-			<li>
-				<a href="../house/second_hand_detail/101" target="_blank">
-					<div class="dialogue-history-list">
-						<div class="clearfix">
-                            <span class="dialogue-s-img">
-                                <img src="http://dummyimage.com/70x50/000/fff" alt="" width="70" height="50">
-                            </span>
-							<p><span class="s01">风景英伦</span>
-								<span class="s02">104㎡ | 2房 | 104万</span>
-								<span class="s03">城西</span></p>  </div>
-					</div></a>
-			</li>
-			<li>
-				<a href="../house/second_hand_detail/101" target="_blank">
-					<div class="dialogue-history-list">
-						<div class="clearfix">
-                        <span class="dialogue-s-img">
-                            <img src="http://dummyimage.com/70x50/000/fff" alt="" width="70" height="50">
-                        </span>
-							<p><span class="s01">风景英伦</span>
-								<span class="s02">104㎡ | 2房 | 104万</span>
-								<span class="s03">城西</span></p>  </div>
-					</div></a>
-			</li>
-		</ul>
-	</div>
-</div>
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/model.js"></script>
-<script type="text/javascript" src="js/iscroll.js"></script>
-<!--<script type="text/javascript" src="js/selectcartool.js"></script>-->
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/chat/socket.io.js"></script>
 <script>
-	$(".edit-btn").click(function(ev){
-		$(".pop-box").show();
-		ev.preventDefault();
-	});
-	$(".closeBtn").click(function(){
-		$(".pop-box").hide();
-	});
-	//    function hidepop(){
-	//
-	//        alert(1);
-	//    }
+	var broker_id = '{{$wx_broker_id}}';
+	var socket = io.connect('http://121.40.97.183:4000');
 
-	$(".history-icon").bind("click",function(ev){
-		$('#m-filter-mask').show();
-		$('#m-filter-hisbrowse-leftPopup').show();
-		$('#m-filter-hisbrowse').addClass("swipeLeft-block");
-		//  $('#m-filter-mask').touches({ touchstart: function (ev) { ev.preventDefault(); }, touchmove: function (ev) { ev.preventDefault(); } });
-		// $('#m-filter-hisbrowse').touches({ touchstart: function (ev) { ev.stopPropagation(); }, touchmove: function (ev) { ev.preventDefault(); } });
-		$('body').css('overflow','hidden');
-		new iScroll($("#m-filter-hisbrowse")[0], {
-			snap:'li',
-			momentum: true,
-			click: true,
-			bounce: false
-		});
-		// ev.preventDefault();
-	})
-	$(".leftmask3").bind('click',function () {
-		$(this).hide();
-		$(".swipeLeft").removeClass("swipeLeft-block");
-		$(".leftPopup").hide();
+	$(function(){
+		socket.emit('online', JSON.stringify({ "user_id": broker_id, "user_type": 2 }));
 	});
 
+	socket.on('disconnect',function(){
+		console.log('disconnected')
+	});
+
+	socket.on('reconnect',function(){
+		console.log('reconnected')
+	});
+
+	socket.on('receive-message', function (data) {
+		var data = JSON.parse(data);
+
+		var user_id = data.user_id;
+		var count = data.count
+		if(count > 0) {
+			$('#audio_tag').trigger('play');
+
+			var html = '<em class="dialogue-messages-em">' + count + '</em>';
+			$("#number_" + user_id).html(html);
+		}
+	});
+
+	socket.on('show-status',function(data){
+		var data = JSON.parse(data);
+		var user_id = data.user_id;
+		var status = data.status;
+		if(status) {
+			$("#status_" + user_id).text("在线");
+			$("#status_" + user_id).removeClass('leave-state');
+			$("#status_flag_" + user_id).val(1);
+		} else {
+			$("#status_" + user_id).text("离线");
+			$("#status_" + user_id).addClass('leave-state');
+			$("#status_flag_" + user_id).val(0);
+		}
+	});
+
+	function go_chat(open_id) {
+		window.location.href="/b_house/view_chat/" + open_id + '/{{$wx_broker_id}}/2';
+	}
 </script>
+<audio id="audio_tag"><source src="/chat/ring/msg.wav" type="audio/x-wav" /></audio>
 </body>
 </html>
 
