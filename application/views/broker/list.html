@@ -69,7 +69,7 @@
         </div>
     </div>
     <div id="m-filter-mask" class="leftmask leftmask3" style="display: none;"></div>
-    <div id="m-filter-price-leftPopup" class="leftPopup region" data-back="leftmask3" style="z-index: 999;">
+    <div id="m-filter-price-leftPopup" class="leftPopup region" data-back="leftmask3" style="dispaly:none;z-index: 999;">
         <ul class="first-list first-list-style">
             <li><a href="javascript:void(0);" onclick="change_search('region', 0)">不限</a></li>
             {{foreach from=$region_list item=item}}
@@ -77,7 +77,7 @@
             {{/foreach}}
         </ul>
     </div>
-    <div id="m-filter-level-leftPopup" class="leftPopup style" data-back="leftmask3" style="z-index: 999;">
+    <div id="m-filter-level-leftPopup" class="leftPopup style" data-back="leftmask3" style="dispaly:none;z-index: 999;">
         <ul class="first-list">
             <li><a href="javascript:void(0);" onclick="change_search('style', 0)">不限</a></li>
             {{foreach from=$style_list item=item}}
@@ -85,7 +85,7 @@
             {{/foreach}}
         </ul>
     </div>
-    <div id="m-filter-body-leftPopup" class="leftPopup price" data-back="leftmask3" style="z-index: 999;">
+    <div id="m-filter-body-leftPopup" class="leftPopup price" data-back="leftmask3" style="dispaly:none;z-index: 999;">
         <ul class="first-list">
             <li><a href="javascript:void(0);" onclick="change_search('price', 0)">不限</a></li>
             <li><a href="javascript:void(0);" onclick="change_search('price', 1)">50万以下</a></li>
@@ -100,7 +100,7 @@
             <li><a href="javascript:void(0);" onclick="change_search('price', 10)">500万以上</a></li>
         </ul>
     </div>
-    <div id="m-filter-condition-leftPopup" class="leftPopup area" data-back="leftmask3" style="z-index: 999;">
+    <div id="m-filter-condition-leftPopup" class="leftPopup area" data-back="leftmask3" style="dispaly:none;z-index: 999;">
         <ul class="first-list rp">
             <li><a href="javascript:void(0);" onclick="change_search('acreage', 0)">不限</a></li>
             <li><a href="javascript:void(0);" onclick="change_search('acreage', 1)">50平以下</a></li>
@@ -113,7 +113,7 @@
             <li><a href="javascript:void(0);" onclick="change_search('acreage', 8)">300平以上</a></li>
         </ul>
     </div>
-    <div id="m-filter-brandtype-leftPopup" class="leftPopup type" data-back="leftmask3" style="z-index: 999;">
+    <div id="m-filter-brandtype-leftPopup" class="leftPopup type" data-back="leftmask3" style="dispaly:none;z-index: 999;">
         <ul class="first-list rp">
             <li><a href="javascript:void(0);" onclick="change_search('type', 0)">不限</a></li>
             <li><a href="javascript:void(0);" onclick="change_search('type', 1)">一室</a></li>
@@ -124,7 +124,7 @@
             <li><a href="javascript:void(0);" onclick="change_search('type', 6)">五室以上</a></li>
         </ul>
     </div>
-    <div id="m-filter-trans-leftPopup" class="leftPopup feature" data-back="leftmask3" style="z-index: 999;">
+    <div id="m-filter-trans-leftPopup" class="leftPopup feature" data-back="leftmask3" style="dispaly:none;z-index: 999;">
         <ul class="first-list rp">
             <li><a href="javascript:void(0);" onclick="change_search('feature', '0')">不限</a></li>
             <li><a href="javascript:void(0);" onclick="change_search('feature', '婚房首选')">婚房首选</a></li>
@@ -138,7 +138,7 @@
         </ul>
     </div>
     <!-- 配置 popup start -->
-    <div class="leftPopup historyPopup" data-back="historyPopup" style="z-index: 999; display:block;">
+    <div class="leftPopup historyPopup" data-back="historyPopup" style="z-index: 999; display:none;">
         <div class="history-tit">已关注的经纪人</div>
         <ul>
             {{foreach from=$connected_brokers key=key item=item}}
