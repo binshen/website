@@ -146,15 +146,20 @@
     	var user_tel = $("#user_tel").val();
 		$.post('/b_house/update_wx_user_info/', { open_id: selected_open_id, realname: realname, user_tel: user_tel } , function(data) {
 			if(data) {
-				$("#realname_"+selected_open_id).text(realname);
-				$("#user_tel_"+selected_open_id).text(user_tel);
-				$("#realname").val("");
-				$("#user_tel").val("");
+				if(realname) {
+					$("#realname_"+selected_open_id).text(user_tel);
+				} else {
+					$("#realname_"+selected_open_id).text('无');
+				}
 				if(user_tel) {
 					$("#user_tel_icon_"+selected_open_id).show();
+					$("#user_tel_"+selected_open_id).text(user_tel);
 				} else {
 					$("#user_tel_icon_"+selected_open_id).hide();
+					$("#user_tel_"+selected_open_id).text('无');
 				}
+				$("#realname").val("");
+				$("#user_tel").val("");
 			}
 			$(".pop-box").hide();
         });
