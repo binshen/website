@@ -625,18 +625,20 @@ body{background-color:#fff;}
 .pop-box .save-btn{width:60px; height: 30px; line-height: 30px; text-align: center; color: #fff; background: #000; margin: 20px  auto 0; }
 
 .pop-box .true-txt{ padding:3px 5px;}
-
 .pop-box .closeBtn{ position: absolute;top:10px; right: 10px; background: url(../images/close.png) no-repeat; background-size: 20px; width: 20px; height: 20px; display: block;}
-
 
 .dialogue-right-tit{ text-align: center; color: #333; font-size: 18px; padding: 10px 0; font-family: 'Microsoft YaHei'}
 .dialogue-right-body{width:100%;
     position: absolute;left:0;top:0;}
 .dialogue-right-body .pulisher{font-size:12px; margin:0 5px 5px; text-align: center;}
 .dialogue-right-body .pulisher i{color:#ff6600;}
+.dialogue-s-img{padding:0;margin:0;width: 70px; float: left;}
 .dialogue-s-img img{border:none;width:auto\9;vertical-align:top;}
-.dialogue-history-list{margin:0 10px;padding:10px 0;border-top:1px solid #dcdcdc;}
+.dialogue-history-list{margin:0 10px;padding-top:10px;border-top:1px solid #dcdcdc;}
 .dialogue-history-list p{margin:0 0 5px 5px;padding:0; float: left; font-size: 12px; }
 .dialogue-history-list p .s01{margin:0;padding:0; color: #333;font-size: 14px; display: block;}
-.dialogue-history-list p span{margin:0;padding:0;display: block;line-height:18px; color: #333; }
-.dialogue-right-body li .iscall{ width: 20px; margin-top:15px; height: 20px; float: right; background: url(../images/call_icon.png) no-repeat;}
+.dialogue-history-list p span{margin:0;padding:0;display: block;line-height:18px;
+    color: #333; }
+.dialogue-right-body li .iscall{ width: 20px; margin-top:15px;
+    height: 20px;
+    float: right; background: url(../images/call_icon.png) no-repeat;}
