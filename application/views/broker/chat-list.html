@@ -23,8 +23,8 @@
 	        </span>
         </a>
         <div class="all-icon">
-            <span class="edit-btn"></span>
-            <span class="history-icon"></span>
+            <span class="edit-btn" oid="{{$item['open_id']}}"></span>
+            <span class="history-icon" oid="{{$item['open_id']}}"></span>
         </div>
         <div class="cus-txt">
             <p class="p-txt1">
@@ -44,9 +44,9 @@
 <div class="pop-box" style="display: none;">
     <div class="pop-bg"></div>
     <div class="pop-content">
-        <div class="pop-tit">修改用户真实信息</div>
-        <p><i>Name：</i><input  type="text" placeholder="请输入用户真实姓名" class="true-txt" /></p>
-        <p><i>Tel：</i><input  type="text" placeholder="请输入用户电话号码" class="true-txt" /></p>
+        <div class="pop-tit">修改客源信息</div>
+        <p><i>姓名：</i><input  type="text" placeholder="请输入客户姓名" class="true-txt" /></p>
+        <p><i>电话：</i><input  type="text" placeholder="请输入客户电话" class="true-txt" maxlength="11" /></p>
         <div class="save-btn">保存</div>
         <div class="closeBtn"></div>
     </div>
@@ -56,29 +56,22 @@
 	<div class="swipeLeft" id="m-filter-hisbrowse">
 	    <ul class="dialogue-right-body" id="dialogue-right-body">
 	        <li class="dialogue-right-tit">浏览记录</li>
-	        <li><a href="../house/second_hand_detail/64" target="_blank">
-	            <div class="dialogue-history-list">
-	                <div class="clearfix">
-	                    <span class="dialogue-s-img">
-	                         <img src="http://dummyimage.com/70x50/000/fff" alt="" width="70" height="50">
-	                    </span>
-	                        <p><span class="s01">康居新江南</span>
+	        <li>
+	        	<a href="../house/second_hand_detail/64" target="_blank">
+		            <div class="dialogue-history-list">
+		                <div class="clearfix">
+		                    <span class="dialogue-s-img">
+		                         <img src="http://dummyimage.com/70x50/000/fff" alt="" width="70" height="50">
+		                    </span>
+	                        <p>
+	                        	<span class="s01">康居新江南</span>
 	                            <span class="s02">138㎡ | 4房 | 138万</span>
-	                            <span class="s03">城西</span></p>
-	                    <i class="iscall"></i>
-	                </div>   </div></a>
-	        </li>
-	        <li><a href="../house/second_hand_detail/60" target="_blank">
-	            <div class="dialogue-history-list">
-	                <div class="clearfix">
-	                    <span class="dialogue-s-img">
-	                        <img src="http://dummyimage.com/70x50/000/fff" alt="" width="70" height="50">
-	                    </span>
-	                    <p><span class="s01">世茂蝶湖湾</span>
-	                        <span class="s02">262㎡ | 4房 | 262万</span>
-	                        <span class="s03">城南</span></p>
-	                </div>
-	            </div></a>
+	                            <span class="s03">城西</span>
+	                        </p>
+		                    <i class="iscall"></i>
+		                </div>
+		            </div>
+		        </a>
 	        </li>
 	   </ul>
 	</div>
@@ -90,6 +83,7 @@
 <script>
 	var broker_id = '{{$wx_broker_id}}';
 	var socket = io.connect('http://121.40.97.183:4000');
+	var selected_open_id = '';
 
 	$(function(){
 		socket.emit('online', JSON.stringify({ "user_id": broker_id, "user_type": 2 }));
@@ -135,13 +129,19 @@
 		window.location.href="/b_house/view_chat/" + open_id + '/{{$wx_broker_id}}/2';
 	}
 	
-	$(".edit-btn").click(function(ev){
+	$(".edit-btn").click(function(ev){    	
+		selected_open_id = $(this).attr('oid');
         $(".pop-box").show();
         ev.preventDefault();
     });
 	
     $(".closeBtn").click(function(){
         $(".pop-box").hide();
+    });
+    
+    $(".save-btn").click(function() {
+    	alert(selected_open_id);
+    	$(".pop-box").hide();
     });
 
     $(".history-icon").bind("click",function(ev){
@@ -155,7 +155,16 @@
             click: true,
             bounce: false
         });
-     })
+        
+        var open_id = $(this).attr('oid');
+        alert(open_id);
+        /*
+        $.get('/b_house/list_house_tracks/' + , function() {
+        	
+        });
+        */
+    });
+    
     $(".leftmask3").bind('click',function () {
         $(this).hide();
         $(".swipeLeft").removeClass("swipeLeft-block");
