@@ -154,27 +154,28 @@
         	var data = JSON.parse(data);
         	for(var i in data) {
         		var d = data[i];
-        		console.log(d);
-        		html += '<li>';
-            	html += '  <a href="/uploadfiles/pics/' + d.bg_pic + '" target="_blank">';
-            	html += '    <div class="dialogue-history-list">';
-            	html += '      <div class="clearfix">';
-            	html += '        <span class="dialogue-s-img">';
-            	html += '          <img src="http://dummyimage.com/70x50/000/fff" alt="" width="70" height="50">';
-            	html += '        </span>';
-            	html += '        <p>';
-            	html += '          <span class="s01">' + d.xq_name + '</span>';
-            	html += '          <span class="s02">' + d.acreage + '㎡ | ' + d.room + '房 | ' + d.total_price + '万</span>';
-            	html += '          <span class="s03">' + d.region_name + '</span>';
-            	html += '        </p>';
-            	if(d.call_time) {
-            		html += '  <i class="iscall"></i>';
-            	}
-            	html += '      </div>';
-            	html += '    </div>';
-            	html += '  </a>';
-            	html += '  <p class="pulisher"><i>发布者：</i>周小惠 <i>电话：</i>13131313131</p>';
-            	html += '</li>';
+        		if(d.id) {
+        			html += '<li>';
+                	html += '  <a href="/b_house/view_detail/' + d.id + '" target="_self">';
+                	html += '    <div class="dialogue-history-list">';
+                	html += '      <div class="clearfix">';
+                	html += '        <span class="dialogue-s-img">';
+                	html += '          <img src="/uploadfiles/pics/' + d.bg_pic + '" alt="" width="70" height="50">';
+                	html += '        </span>';
+                	html += '        <p>';
+                	html += '          <span class="s01">' + d.xq_name + '</span>';
+                	html += '          <span class="s02">' + d.acreage + '㎡ | ' + d.room + '房 | ' + d.total_price + '万</span>';
+                	html += '          <span class="s03">' + d.region_name + '</span>';
+                	html += '        </p>';
+                	if(d.call_time) {
+                		html += '  <i class="iscall"></i>';
+                	}
+                	html += '      </div>';
+                	html += '    </div>';
+                	html += '  </a>';
+                	html += '  <p class="pulisher"><i>发布者：</i>周小惠 <i>电话：</i>13131313131</p>';
+                	html += '</li>';
+        		}
         	}
         	$("#dialogue-right-body").html(html);
         	
