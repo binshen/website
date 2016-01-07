@@ -605,11 +605,8 @@ body{background-color:#fff;}
 /*.dialogue-customer-list .cus-date{*/
 /*font-size:12px;*/
 /*color: #666;margin:10px 10px 0 0;}*/
-.dialogue-messages{width: 20px;
-    height: 20px;
-    line-height: 20px;
-    color: #fff;
-    position:absolute; background: #cc0000; text-align: center;top:-10px;right:-10px; border-radius: 10px; font-size:12px;}
+.dialogue-messages{width: 20px;	height: 20px;	position:absolute; top:-10px;right:-10px;}
+.dialogue-messages-em{line-height: 20px; background: #cc0000;text-align: center;	color: #fff; border-radius: 10px; font-size:12px; display: block;}
 .cus-txt .tel-btn{ display: inline-block;  width: 40px;  height: 25px; text-align: center;background: #cc0000; color: #fff; border-radius: 3px;margin-left:10px;}
 .cus-txt .tel-btn .am-icon-phone:before{font-size:2.5rem; }
 
@@ -631,17 +628,12 @@ body{background-color:#fff;}
 
 .pop-box .closeBtn{ position: absolute;top:10px; right: 10px; background: url(../images/close.png) no-repeat; background-size: 20px; width: 20px; height: 20px; display: block;}
 
-.dialogue-right{width: 25%; float: left;
-    -moz-box-shadow:5px 0 5px #ddd inset;              /* For Firefox3.6+ */
-    -webkit-box-shadow:5px 0 5px #ddd inset;           /* For Chrome5+, Safari5+ */
-    box-shadow:5px 0 5px #ddd inset;                   /* For Latest Opera */
-    margin:0;padding:0;
-}
-.dialogue-right-head{margin:0;padding:0;height: 75px;border-bottom:1px solid #d7d7d7; background: #fff; }
-.dialogue-right-head img{float: right;border:none;width:auto\9;vertical-align:top; }
-.dialogue-right-tit{margin:0; text-align: center; color: #333; font-size: 18px; padding: 20px 0; font-family: 'Microsoft YaHei'}
-.dialogue-right-body{width:100%; position: absolute;left:0;top:0;}
-.dialogue-s-img{padding:0;margin:0;width: 70px; float: left;}
+
+.dialogue-right-tit{ text-align: center; color: #333; font-size: 18px; padding: 10px 0; font-family: 'Microsoft YaHei'}
+.dialogue-right-body{width:100%;
+    position: absolute;left:0;top:0;}
+.dialogue-right-body .pulisher{font-size:12px; margin:0 5px 5px; text-align: center;}
+.dialogue-right-body .pulisher i{color:#ff6600;}
 .dialogue-s-img img{border:none;width:auto\9;vertical-align:top;}
 .dialogue-history-list{margin:0 10px;padding:10px 0;border-top:1px solid #dcdcdc;}
 .dialogue-history-list p{margin:0 0 5px 5px;padding:0; float: left; font-size: 12px; }
