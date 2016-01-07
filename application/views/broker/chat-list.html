@@ -147,7 +147,7 @@
 		$.post('/b_house/update_wx_user_info/', { open_id: selected_open_id, realname: realname, user_tel: user_tel } , function(data) {
 			if(data) {
 				if(realname) {
-					$("#realname_"+selected_open_id).text(user_tel);
+					$("#realname_"+selected_open_id).text(realname);
 				} else {
 					$("#realname_"+selected_open_id).text('无');
 				}
