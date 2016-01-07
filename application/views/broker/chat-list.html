@@ -36,8 +36,15 @@
             <p class="p-txt2">
             	<i class="fz16">姓名：</i><span id="realname_{{$item['open_id']}}">{{if $item['realname'] }}{{$item['realname']}}{{else}}无{{/if}}</span>
             	<br />
-            	<i class="fz16">电话：</i><span id="user_tel_{{$item['open_id']}}">{{if $item['user_tel'] }}{{$item['user_tel']}}{{else}}无{{/if}}</span>
-            	<span class="tel-btn"><i class="am-icon-phone"></i></span>
+            	<i class="fz16">电话：</i>
+            	<span id="user_tel_{{$item['open_id']}}">
+	            	{{if $item['user_tel'] }}
+	            		{{$item['user_tel']}}
+	            		<span class="tel-btn" onclick="window.location.href='tel://$item['user_tel']'"><i class="am-icon-phone"></i></span>
+	            	{{else}}
+	            		无
+	            	{{/if}}
+            	</span>
             </p>
         </div>
     </li>
