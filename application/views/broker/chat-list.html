@@ -19,7 +19,7 @@
 		<a href="#" onclick="go_chat('{{$item['open_id']}}')">
 	        <span class="cus-head">
 	            <img src="{{$item['headimgurl']}}" alt="" width="50" height="50" />
-	            <i class="dialogue-messages" id="number_{{$item['open_id']}}"><em class="dialogue-messages-em">3</em></i>
+	            <i class="dialogue-messages" id="number_{{$item['open_id']}}"><!-- <em class="dialogue-messages-em">3</em> --></i>
 	        </span>
         </a>
         <div class="all-icon">
@@ -45,8 +45,8 @@
     <div class="pop-bg"></div>
     <div class="pop-content">
         <div class="pop-tit">修改客源信息</div>
-        <p><i>姓名：</i><input  type="text" placeholder="请输入客户姓名" class="true-txt" /></p>
-        <p><i>电话：</i><input  type="text" placeholder="请输入客户电话" class="true-txt" maxlength="11" /></p>
+        <p><i>姓名：</i><input id="realname" type="text" placeholder="请输入客户姓名" class="true-txt" /></p>
+        <p><i>电话：</i><input id="user_tel" type="text" placeholder="请输入客户电话" class="true-txt" maxlength="11" /></p>
         <div class="save-btn">保存</div>
         <div class="closeBtn"></div>
     </div>
@@ -141,8 +141,11 @@
     });
     
     $(".save-btn").click(function() {
-    	alert(selected_open_id);
-    	$(".pop-box").hide();
+    	var realname = $("#realname").val();
+    	var user_tel = $("#user_tel").val();
+		$.post('/b_house/update_wx_user/', { open_id: selected_open_id, realname: realname, user_tel: user_tel } , function(data) {
+			$(".pop-box").hide();
+        });
     });
 
     $(".history-icon").bind("click",function(ev){
