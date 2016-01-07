@@ -40,7 +40,7 @@
             	<span id="user_tel_{{$item['open_id']}}">
 	            	{{if $item['user_tel'] }}
 	            		{{$item['user_tel']}}
-	            		<span class="tel-btn" onclick="window.location.href='tel://$item['user_tel']'"><i class="am-icon-phone"></i></span>
+	            		<span class="tel-btn" onclick="makeCall('{{$item['user_tel']}}')"><i class="am-icon-phone"></i></span>
 	            	{{else}}
 	            		无
 	            	{{/if}}
@@ -209,6 +209,10 @@
 		$(".swipeLeft").removeClass("swipeLeft-block");
 		$(".leftPopup").hide();
     });
+    
+    var makeCall = function(tel) {
+    	window.location.href='tel://'+tel;
+    }
 </script>
 <audio id="audio_tag"><source src="/chat/ring/msg.wav" type="audio/x-wav" /></audio>
 </body>
