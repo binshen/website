@@ -146,17 +146,18 @@
     });
 
     $(".history-icon").bind("click",function(ev){
-        $('#m-filter-mask').show();
-        $('#m-filter-hisbrowse-leftPopup').show();
-        $('#m-filter-hisbrowse').addClass("swipeLeft-block");
-        $('body').css('overflow','hidden');
-        new iScroll($("#m-filter-hisbrowse")[0], {
-            snap:'li',
-            momentum: true,
-            click: true,
-            bounce: false
-        });
-        
+		$('#m-filter-mask').show();
+		$('#m-filter-hisbrowse-leftPopup').show();
+		$('#m-filter-hisbrowse').addClass("swipeLeft-block");
+		$('#m-filter-mask').touches({ touchstart: function (ev) { ev.preventDefault(); }, touchmove: function (ev) { ev.preventDefault(); } });
+		$('#m-filter-hisbrowse').touches({ touchstart: function (ev) { ev.stopPropagation(); }, touchmove: function (ev) { ev.preventDefault(); } });
+		$('body').css('overflow','hidden');
+		new iScroll($("#m-filter-hisbrowse")[0], {
+			snap:'li',
+			momentum: true,
+			click: true,
+			bounce: false
+		});
         var open_id = $(this).attr('oid');
         alert(open_id);
         /*
@@ -166,10 +167,10 @@
         */
     });
     
-    $(".leftmask3").bind('click',function () {
-        $(this).hide();
-        $(".swipeLeft").removeClass("swipeLeft-block");
-        $(".leftPopup").hide();
+    $(".leftmask3").bind('touchstart',function () {
+		$(this).hide();
+		$(".swipeLeft").removeClass("swipeLeft-block");
+		$(".leftPopup").hide();
     });
 </script>
 <audio id="audio_tag"><source src="/chat/ring/msg.wav" type="audio/x-wav" /></audio>
