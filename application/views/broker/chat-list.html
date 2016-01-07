@@ -34,7 +34,9 @@
             	<input type="hidden" id="status_flag_{{$item['open_id']}}" value="0" />
             </p>
             <p class="p-txt2">
-            	<i class="fz16">姓名：</i>无 <br /><i class="fz16">电话：</i>无
+            	<i class="fz16">姓名：</i><span id="realname_{{$item['open_id']}}">{{if $item['realname'] }}{{$item['realname']}}{{else}}无{{/if}}</span>
+            	<br />
+            	<i class="fz16">电话：</i><span id="user_tel_{{$item['open_id']}}">{{if $item['user_tel'] }}{{$item['user_tel']}}{{else}}无{{/if}}</span>
             	<span class="tel-btn"><i class="am-icon-phone"></i></span>
             </p>
         </div>
@@ -132,6 +134,15 @@
 	
 	$(".edit-btn").click(function(ev){    	
 		selected_open_id = $(this).attr('oid');
+		var realname = $("#realname_"+selected_open_id).text();
+		var user_tel = $("#user_tel_"+selected_open_id).text();
+		if(realname != '无') {
+			$("#realname").val(realname);
+		}
+		if(user_tel != '无') {
+			$("#user_tel").val(user_tel);
+		}
+		
         $(".pop-box").show();
         ev.preventDefault();
     });
@@ -143,7 +154,13 @@
     $(".save-btn").click(function() {
     	var realname = $("#realname").val();
     	var user_tel = $("#user_tel").val();
-		$.post('/b_house/update_wx_user/', { open_id: selected_open_id, realname: realname, user_tel: user_tel } , function(data) {
+		$.post('/b_house/update_wx_user_info/', { open_id: selected_open_id, realname: realname, user_tel: user_tel } , function(data) {
+			if(data) {
+				$("#realname_"+selected_open_id).text(realname);
+				$("#user_tel_"+selected_open_id).text(user_tel);
+				$("#realname").val("");
+				$("#user_tel").val("");
+			}
 			$(".pop-box").hide();
         });
     });
@@ -162,7 +179,6 @@
 			bounce: false
 		});
         var open_id = $(this).attr('oid');
-        alert(open_id);
         /*
         $.get('/b_house/list_house_tracks/' + , function() {
         	

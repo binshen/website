@@ -1751,7 +1751,7 @@ class House_model extends MY_Model
 	}
 	
 	public function get_bind_client_users($broker_id) {
-		$this->db->select('a.open_id, b.nickname, b.sex, b.headimgurl, b.city, b.province ');
+		$this->db->select('a.open_id, b.nickname, b.sex, b.headimgurl, b.user_tel, b.realname ');
 		$this->db->distinct();
 		$this->db->from('wx_user a');
 		$this->db->join('weixin b', 'a.open_id = b.openid');
@@ -1771,7 +1771,7 @@ class House_model extends MY_Model
 			$data = array();
 			$data['realname'] = $_POST['realname'];
 			$data['user_tel'] = $_POST['user_tel'];
-			$this->db->where('id', $open_id);
+			$this->db->where('openid', $open_id);
 			return $this->db->update('weixin', $data);
 		}
 	}
