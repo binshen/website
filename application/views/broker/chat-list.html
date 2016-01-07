@@ -142,15 +142,18 @@
 		if(user_tel != '无') {
 			$("#user_tel").val(user_tel);
 		}
-		
-        $(".pop-box").show();
+
+		$(".pop-bg").show();
+		$(".pop-box").show();
         ev.preventDefault();
     });
-	
-    $(".closeBtn").click(function(){
-        $(".pop-box").hide();
-    });
-    
+	$(".closeBtn").click(function(){
+		$(".pop-box").hide();
+	});
+	$(".pop-bg").bind('touchstart',function(){
+		$(this).hide();
+		$(".pop-box").hide();
+	});
     $(".save-btn").click(function() {
     	var realname = $("#realname").val();
     	var user_tel = $("#user_tel").val();
