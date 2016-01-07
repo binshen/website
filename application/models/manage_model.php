@@ -2180,11 +2180,12 @@ class Manage_model extends MY_Model
 	}
 	
 	public function list_house_tracks($open_id) {
-		$this->db->select('a.id, a.room, a.total_price, a.acreage, a.bg_pic, a.feature, b.name AS region_name, c.name AS xq_name, t.call_time');
+		$this->db->select('a.id, a.room, a.total_price, a.acreage, a.bg_pic, a.feature, b.name AS region_name, c.name AS xq_name, t.call_time, d.rel_name, d.tel');
 		$this->db->from('house_track t');
 		$this->db->join('house a', 't.house_id = a.id', 'inner');
 		$this->db->join('house_region b', 'a.region_id = b.id', 'inner');
 		$this->db->join('xiaoqu c', 'a.xq_id = c.id', 'inner');
+		$this->db->join('admin d', 'a.broker_id = d.id', 'inner');
 		$this->db->where('t.open_id', $open_id);
 		$this->db->order_by('t.date', 'desc');
 		$this->db->limit(20);
