@@ -39,7 +39,7 @@
             	<i class="fz16">电话：</i>
             	{{if $item['user_tel'] }}
             		<span id="user_tel_{{$item['open_id']}}">{{$item['user_tel']}}</span>
-            		<span class="tel-btn" onclick="makeCall('{{$item['user_tel']}}')"><i class="am-icon-phone"></i></span>
+            		<span id="user_tel_icon_{{$item['open_id']}}" class="tel-btn" onclick="makeCall('{{$item['user_tel']}}')"><i class="am-icon-phone"></i></span>
             	{{else}}
             		无
             	{{/if}}
@@ -150,6 +150,11 @@
 				$("#user_tel_"+selected_open_id).text(user_tel);
 				$("#realname").val("");
 				$("#user_tel").val("");
+				if(user_tel) {
+					$("#user_tel_icon_"+selected_open_id).show();
+				} else {
+					$("#user_tel_icon_"+selected_open_id).hide();
+				}
 			}
 			$(".pop-box").hide();
         });
