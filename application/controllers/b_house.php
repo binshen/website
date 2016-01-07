@@ -343,11 +343,8 @@ class B_house extends MY_Controller {
 		$this->display('broker/chat-list.html');
 	}
 	
-	public function update_wx_user() {
-		
-		$open_id = $_POST['open_id'];
-		$realname = $_POST['realname'];
-		$user_tel = $_POST['user_tel'];
-		
+	public function update_wx_user_info() {
+		echo $this->house_model->update_wx_user_info();
+		die;
 	}
 }

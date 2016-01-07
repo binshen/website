@@ -1759,4 +1759,20 @@ class House_model extends MY_Model
 		$this->db->where('b.subscribe', 1);
 		return $this->db->get()->result_array();
 	}
+	
+	public function update_wx_user_info() {
+		$open_id = $_POST['open_id'];
+		$this->db->from('weixin');
+		$this->db->where('openid', $open_id);
+		$weixin = $this->db->get()->row_array();
+		if(empty($weixin)) {
+			return -1;
+		} else {
+			$data = array();
+			$data['realname'] = $_POST['realname'];
+			$data['user_tel'] = $_POST['user_tel'];
+			$this->db->where('id', $open_id);
+			return $this->db->update('weixin', $data);
+		}
+	}
 }
