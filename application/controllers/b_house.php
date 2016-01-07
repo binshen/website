@@ -347,4 +347,9 @@ class B_house extends MY_Controller {
 		echo $this->house_model->update_wx_user_info();
 		die;
 	}
+	
+	public function list_house_tracks($open_id) {
+		$house_tracks = $this->manage_model->list_house_tracks($open_id);
+		echo json_encode($house_tracks);
+	}
 }

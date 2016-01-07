@@ -58,24 +58,6 @@
 	<div class="swipeLeft" id="m-filter-hisbrowse">
 	    <ul class="dialogue-right-body" id="dialogue-right-body">
 	        <li class="dialogue-right-tit">浏览记录</li>
-	        <li>
-	        	<a href="../house/second_hand_detail/64" target="_blank">
-		            <div class="dialogue-history-list">
-		                <div class="clearfix">
-		                    <span class="dialogue-s-img">
-		                         <img src="http://dummyimage.com/70x50/000/fff" alt="" width="70" height="50">
-		                    </span>
-	                        <p>
-	                        	<span class="s01">康居新江南</span>
-	                            <span class="s02">138㎡ | 4房 | 138万</span>
-	                            <span class="s03">城西</span>
-	                        </p>
-		                    <i class="iscall"></i>
-		                </div>
-		            </div>
-		        </a>
-				<p class="pulisher"><i>发布者：</i>周小惠 <i>电话：</i>13131313131</p>
-	        </li>
 	   </ul>
 	</div>
 </div>
@@ -169,24 +151,50 @@
     });
 
     $(".history-icon").bind("click",function(ev){
-		$('#m-filter-mask').show();
-		$('#m-filter-hisbrowse-leftPopup').show();
-		$('#m-filter-hisbrowse').addClass("swipeLeft-block");
-		$('#m-filter-mask').touches({ touchstart: function (ev) { ev.preventDefault(); }, touchmove: function (ev) { ev.preventDefault(); } });
-		$('#m-filter-hisbrowse').touches({ touchstart: function (ev) { ev.stopPropagation(); }, touchmove: function (ev) { ev.preventDefault(); } });
-		$('body').css('overflow','hidden');
-		new iScroll($("#m-filter-hisbrowse")[0], {
-			snap:'li',
-			momentum: true,
-			click: true,
-			bounce: false
-		});
         var open_id = $(this).attr('oid');
-        /*
-        $.get('/b_house/list_house_tracks/' + , function() {
+        $.get('/b_house/list_house_tracks/' + open_id, function(data) {
+        	var html = '<li class="dialogue-right-tit">浏览记录</li>';
+        	var data = JSON.parse(data);
+        	for(var i in data) {
+        		var d = data[i];
+        		if(d.id) {
+        			html += '<li>';
+                	html += '  <a href="/b_house/view_detail/' + d.id + '" target="_self">';
+                	html += '    <div class="dialogue-history-list">';
+                	html += '      <div class="clearfix">';
+                	html += '        <span class="dialogue-s-img">';
+                	html += '          <img src="/uploadfiles/pics/' + d.bg_pic + '" alt="" width="70" height="50">';
+                	html += '        </span>';
+                	html += '        <p>';
+                	html += '          <span class="s01">' + d.xq_name + '</span>';
+                	html += '          <span class="s02">' + d.acreage + '㎡ | ' + d.room + '房 | ' + d.total_price + '万</span>';
+                	html += '          <span class="s03">' + d.region_name + '</span>';
+                	html += '        </p>';
+                	if(d.call_time != null) {
+                		html += '  <i class="iscall"></i>';
+                	}
+                	html += '      </div>';
+                	html += '    </div>';
+                	html += '  </a>';
+                	html += '  <p class="pulisher"><i>发布者：</i>' + d.rel_name + ' <i>电话：</i>' + d.tel + '</p>';
+                	html += '</li>';
+        		}
+        	}
+        	$("#dialogue-right-body").html(html);
         	
+        	$('#m-filter-mask').show();
+    		$('#m-filter-hisbrowse-leftPopup').show();
+    		$('#m-filter-hisbrowse').addClass("swipeLeft-block");
+    		$('#m-filter-mask').touches({ touchstart: function (ev) { ev.preventDefault(); }, touchmove: function (ev) { ev.preventDefault(); } });
+    		$('#m-filter-hisbrowse').touches({ touchstart: function (ev) { ev.stopPropagation(); }, touchmove: function (ev) { ev.preventDefault(); } });
+    		$('body').css('overflow','hidden');
+    		new iScroll($("#m-filter-hisbrowse")[0], {
+    			snap:'li',
+    			momentum: true,
+    			click: true,
+    			bounce: false
+    		});
         });
-        */
     });
     
     $('#m-filter-mask').bind('touchstart',function () {
