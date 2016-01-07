@@ -565,24 +565,23 @@ body{background-color:#fff;}
 
 /*游览记录*/
 .history-tit{padding:15px 0; text-align:center; color:#ff6600; font-size:20px;}
-.historyPopup li{padding:10px;border-top:1px solid #e9e9e9; position:relative; overflow:hidden; height:auto;}
-.historyPopup .current{background-color:#ff6600; color:#fff;}
-.historyPopup .gm-header{ width:45px; float:left; height:60px;}
-.historyPopup .gm-peo-txt{padding-left:10px; line-height:20px; float:left; width:182px; overflow:hidden; }
-.historyPopup .gm-name{font-size:14px;margin-right:5px}
-.historyPopup .gm-tel{ font-size:12px; color:#ec8e1f;}
-.historyPopup .gm-company{ color:#9c9c9c; font-size:14px;}
-.historyPopup .gm-time{ color:#b7b7b7; font-size:12px;}
-.historyPopup .check-btn{ border-radius:5px; border:1px solid #3b3b3b; display:inline-block; font-size:12px; height:30px; line-height:30px; padding:0 2px; position:absolute; top:25px;right:10px;}
-.historyPopup .check-btn a{ font-size:12px; border-bottom:none;}
-.historyPopup .am-icon-clock-o{margin-right:5px;}
-.historyPopup .current .gm-company{ color:#fff;}
-.historyPopup .current .gm-tel{ color:#f7ca3c;}
-.historyPopup .current .gm-company{ color:#dad1d7;}
-.historyPopup .current .gm-time{color:#fff;}
+#m-filter-history li.his-li{padding:10px;border-top:1px solid #e9e9e9; position:relative; overflow:hidden; height:auto;}
+#m-filter-history .current{background-color:#ff6600; color:#fff;}
+#m-filter-history .gm-header{ width:45px; float:left; height:60px;}
+#m-filter-history .gm-peo-txt{padding-left:10px; line-height:20px; float:left; width:182px; overflow:hidden; }
+#m-filter-history .gm-name{font-size:14px;margin-right:5px}
+#m-filter-history .gm-tel{ font-size:12px; color:#ec8e1f;}
+#m-filter-history .gm-company{ color:#9c9c9c; font-size:14px;}
+#m-filter-history .gm-time{ color:#b7b7b7; font-size:12px;}
+#m-filter-history .check-btn{ border-radius:5px; border:1px solid #3b3b3b; display:inline-block; font-size:12px; height:30px; line-height:30px; padding:0 2px; position:absolute; top:25px;right:10px;}
+#m-filter-history .check-btn a{ font-size:12px; border-bottom:none;}
+#m-filter-history .am-icon-clock-o{margin-right:5px;}
+#m-filter-history .current .gm-company{ color:#fff;}
+#m-filter-history .current .gm-tel{ color:#f7ca3c;}
+#m-filter-history .current .gm-company{ color:#dad1d7;}
+#m-filter-history .current .gm-time{color:#fff;}
 
 /*选择我的客户源*/
-
 .dialogue-customer-list li{margin:0 10px;padding:10px 0; overflow: hidden; border-bottom: 1px solid #ccc;}
 .dialogue-customer-list .cus-head{width: 50px; height: 50px;	float: left;margin-top:10px;
     position: relative;}
@@ -611,51 +610,26 @@ body{background-color:#fff;}
     line-height: 20px;
     color: #fff;
     position:absolute; background: #cc0000; text-align: center;top:-10px;right:-10px; border-radius: 10px; font-size:12px;}
-.cus-txt .tel-btn{ display: inline-block;
-    width: 40px;
-    height: 25px; text-align: center;background: #cc0000;
-    color: #fff; border-radius: 3px;margin-left:10px;}
+.cus-txt .tel-btn{ display: inline-block;  width: 40px;  height: 25px; text-align: center;background: #cc0000; color: #fff; border-radius: 3px;margin-left:10px;}
 .cus-txt .tel-btn .am-icon-phone:before{font-size:2.5rem; }
 
-.dialogue-customer-list  .all-icon{
-    margin: 15px 10px 0 0;float: right;
+.dialogue-customer-list  .all-icon{  margin: 15px 10px 0 0;float: right;}
+.dialogue-customer-list  .edit-btn{ float: left;width: 25px;height: 25px; margin-right: 15px; background: url(../images/edit_btn.png) no-repeat; background-size: 25px auto;
 }
-.dialogue-customer-list  .edit-btn{
-    float: left;width: 25px;height: 25px; margin-right: 15px;
-    background: url(../images/edit_btn.png) no-repeat; background-size: 25px auto;
-}
-.dialogue-customer-list  .history-icon{
-    float: right;width: 25px;height: 25px;
-    background: url(../images/his_icon.png) no-repeat; background-size: 25px auto;}
+.dialogue-customer-list  .history-icon{ float: right;width: 25px;height: 25px; background: url(../images/his_icon.png) no-repeat; background-size: 25px auto;}
 
-.pop-box{
-    width: 100%;  height: 100%;position: absolute;top:0;left:0;}
+.pop-box{  width: 100%;  height: 100%;position: absolute;top:0;left:0;}
 .pop-box .pop-bg{
-    position:absolute;top:0;left:0; background: #000;filter:alpha(opacity=60);opacity:0.6;
-    width: 100%; height: 100%;}
-.pop-box .pop-content{ background: #ddd;
-    width: 320px;
-    height: 250px;
-    position: absolute; top:180px;left:50%; margin-left:-160px; text-align: center;}
-.pop-box .pop-tit{border-top:3px solid #cc0000;padding-top: 10px;
-    color: #000;
-    line-height: 30px;
-}
-.pop-box p{
-    margin-top:  20px;}.pop-box p i{
-                           width: 60px;
-                           display: inline-block;}
-.pop-box .save-btn{width:60px;
-    height: 30px;
-    line-height: 30px; text-align: center;
-    color: #fff; background: #000; margin: 20px  auto 0; }
+    position:absolute;top:0;left:0; background: #000;filter:alpha(opacity=60);opacity:0.6;  width: 100%; height: 100%;}
+.pop-box .pop-content{ background: #ddd;  width: 320px;   height: 250px;  position: absolute; top:180px;left:50%; margin-left:-160px; text-align: center;}
+.pop-box .pop-tit{border-top:3px solid #cc0000;padding-top: 10px; color: #000;  line-height: 30px;}
+.pop-box p{ margin-top:  20px;}
+.pop-box p i{ width: 60px;display: inline-block;}
+.pop-box .save-btn{width:60px; height: 30px; line-height: 30px; text-align: center; color: #fff; background: #000; margin: 20px  auto 0; }
 
 .pop-box .true-txt{ padding:3px 5px;}
 
-.pop-box .closeBtn{
-    position: absolute;top:10px; right: 10px; background: url(../images/close.png) no-repeat; background-size: 20px;
-    width: 20px; height: 20px;
-    display: block;}
+.pop-box .closeBtn{ position: absolute;top:10px; right: 10px; background: url(../images/close.png) no-repeat; background-size: 20px; width: 20px; height: 20px; display: block;}
 
 .dialogue-right{width: 25%; float: left;
     -moz-box-shadow:5px 0 5px #ddd inset;              /* For Firefox3.6+ */
@@ -666,15 +640,11 @@ body{background-color:#fff;}
 .dialogue-right-head{margin:0;padding:0;height: 75px;border-bottom:1px solid #d7d7d7; background: #fff; }
 .dialogue-right-head img{float: right;border:none;width:auto\9;vertical-align:top; }
 .dialogue-right-tit{margin:0; text-align: center; color: #333; font-size: 18px; padding: 20px 0; font-family: 'Microsoft YaHei'}
-.dialogue-right-body{width:100%;
-    position: absolute;left:0;top:0;}
+.dialogue-right-body{width:100%; position: absolute;left:0;top:0;}
 .dialogue-s-img{padding:0;margin:0;width: 70px; float: left;}
 .dialogue-s-img img{border:none;width:auto\9;vertical-align:top;}
 .dialogue-history-list{margin:0 10px;padding:10px 0;border-top:1px solid #dcdcdc;}
 .dialogue-history-list p{margin:0 0 5px 5px;padding:0; float: left; font-size: 12px; }
 .dialogue-history-list p .s01{margin:0;padding:0; color: #333;font-size: 14px; display: block;}
-.dialogue-history-list p span{margin:0;padding:0;display: block;line-height:18px;
-    color: #333; }
-.dialogue-right-body li .iscall{ width: 20px; margin-top:15px;
-    height: 20px;
-    float: right; background: url(../images/call_icon.png) no-repeat;}
+.dialogue-history-list p span{margin:0;padding:0;display: block;line-height:18px; color: #333; }
+.dialogue-right-body li .iscall{ width: 20px; margin-top:15px; height: 20px; float: right; background: url(../images/call_icon.png) no-repeat;}
