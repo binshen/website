@@ -51,7 +51,6 @@ class Manage_model extends MY_Model
             $user_info['subsidiary_id'] = $res->subsidiary_id;
             if($brokerOnly) {
             	$user_info['login_broker_id'] = $res->id;
-            	$user_info['login_broker_tel'] = $res->tel;
             }
             $this->session->set_userdata($user_info);
             return true;
