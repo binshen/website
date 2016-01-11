@@ -356,7 +356,7 @@ class B_house extends MY_Controller {
 	public function update_call_time($hid) {
 		$open_id = $this->session->userdata('wx_open_id');
 		if(!empty($open_id) && !empty($hid)) {
-			$this->manage_model->update_call_time($open_id, $hid);
+			$this->house_model->update_call_time($open_id, $hid);
 		}
 		die;
 	}

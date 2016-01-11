@@ -175,8 +175,9 @@
     });
     
     function makeCall() {
-    	$.get('/b_house/update_call_time/{{$house.id}}', function(data) { /**/ });
-    	window.location.href='tel://{{$house.tel}}'
+    	$.get('/b_house/update_call_time/{{$house.id}}', function(data) { 
+    		window.location.href='tel://{{$house.tel}}'
+    	});
     }
 </script>
 <script type="text/javascript" src="/static/js/compare.js"></script>

@@ -1670,8 +1670,10 @@ class House_model extends MY_Model
 		$this->db->where('open_id', $open_id);
 		$this->db->where('house_id', $house_id);
 		$track_data = $this->db->get()->row_array();
-		if(empty($track_data) && $house_id > 0) {
+		if(empty($track_data)) {
 			$this->db->query("INSERT INTO house_track (open_id, house_id, date) VALUES('{$open_id}', '{$house_id}', '".date('Y-m-d H:i:s')."')");
+		} else {
+			$this->db->query("UPDATE house_track SET date = '".date('Y-m-d H:i:s')."' WHERE open_id = '{$open_id}' AND house_id = '{$house_id}'");
 		}
 	}
 
@@ -1785,7 +1787,7 @@ class House_model extends MY_Model
 		if(empty($track_data)) {
 			$this->db->query("INSERT INTO house_track (open_id, house_id, date, call_time) VALUES('{$open_id}', '{$house_id}', '".$now."', '".$now."')");
 		} else {
-			$this->db->query("UPDATE house_track SET date = '".$now."', call_time = '".$now."' WHERE open_id = '{$open_id}' AND house_id = '{$house_id}'");
+			$this->db->query("UPDATE house_track SET call_time = '".$now."' WHERE open_id = '{$open_id}' AND house_id = '{$house_id}'");
 		}
 	}
 }
