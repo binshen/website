@@ -352,4 +352,12 @@ class B_house extends MY_Controller {
 		$house_tracks = $this->manage_model->list_house_tracks($open_id);
 		echo json_encode($house_tracks);
 	}
+	
+	public function update_call_time($hid) {
+		$open_id = $this->session->userdata('wx_open_id');
+		if(!empty($open_id) && !empty($hid)) {
+			$this->manage_model->update_call_time($open_id, $hid);
+		}
+		die;
+	}
 }
