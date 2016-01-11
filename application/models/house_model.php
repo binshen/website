@@ -1756,8 +1756,8 @@ class House_model extends MY_Model
 		$this->db->select('b.rel_name, b.tel, b.company_name');
 		$this->db->from('wx_user a');
 		$this->db->join('admin b', 'a.broker_id = b.id', 'inner');
-		$this->db->where('open_id', $open_id);
-		$this->db->order_by('updated DESC');
+		$this->db->where('a.open_id', $open_id);
+		$this->db->order_by('a.updated DESC');
 		$this->db->limit(1);
 		return $this->db->get()->row_array();
 	}

@@ -226,7 +226,7 @@ class B_house extends MY_Controller {
 		$login_broker_id = $this->session->userdata('login_broker_id');
 		if(empty($login_broker_id)) {
 			$open_id = $this->session->userdata('wx_open_id');
-			$bind_broker = $this->house_model->get_bind_broker_id($open_id);
+			$bind_broker = $this->house_model->get_bind_broker_info($open_id);
 			if(!empty($bind_broker)) {
 				$house['rel_name'] = $bind_broker['rel_name'];
 				$house['tel'] = $bind_broker['tel'];
