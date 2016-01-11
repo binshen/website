@@ -36,8 +36,13 @@
             <p class="p-txt2">
             	<i class="fz16">姓名：</i><span id="realname_{{$item['open_id']}}">{{if $item['realname'] }}{{$item['realname']}}{{else}}无{{/if}}</span>
             	<br />
-            	<i class="fz16">电话：</i><span id="user_tel_{{$item['open_id']}}">{{if $item['user_tel'] }}{{$item['user_tel']}}{{else}}无{{/if}}</span>
-            	<span class="tel-btn"><i class="am-icon-phone"></i></span>
+            	<i class="fz16">电话：</i>
+            	{{if $item['user_tel'] }}
+            		<span id="user_tel_{{$item['open_id']}}">{{$item['user_tel']}}</span>
+            		<span id="user_tel_icon_{{$item['open_id']}}" class="tel-btn" onclick="makeCall('{{$item['user_tel']}}')"><i class="am-icon-phone"></i></span>
+            	{{else}}
+            		无
+            	{{/if}}
             </p>
         </div>
     </li>
@@ -141,8 +146,18 @@
     	var user_tel = $("#user_tel").val();
 		$.post('/b_house/update_wx_user_info/', { open_id: selected_open_id, realname: realname, user_tel: user_tel } , function(data) {
 			if(data) {
-				$("#realname_"+selected_open_id).text(realname);
-				$("#user_tel_"+selected_open_id).text(user_tel);
+				if(realname) {
+					$("#realname_"+selected_open_id).text(realname);
+				} else {
+					$("#realname_"+selected_open_id).text('无');
+				}
+				if(user_tel) {
+					$("#user_tel_icon_"+selected_open_id).show();
+					$("#user_tel_"+selected_open_id).text(user_tel);
+				} else {
+					$("#user_tel_icon_"+selected_open_id).hide();
+					$("#user_tel_"+selected_open_id).text('无');
+				}
 				$("#realname").val("");
 				$("#user_tel").val("");
 			}
@@ -202,6 +217,10 @@
 		$(".swipeLeft").removeClass("swipeLeft-block");
 		$(".leftPopup").hide();
     });
+    
+    var makeCall = function(tel) {
+    	window.location.href='tel://'+tel;
+    }
 </script>
 <audio id="audio_tag"><source src="/chat/ring/msg.wav" type="audio/x-wav" /></audio>
 </body>
