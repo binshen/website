@@ -14,7 +14,19 @@ class Test extends MY_Controller {
 	public function __construct() {
 		parent::__construct();
 		
+		$this->load->model('house_model');
 		$this->load->model('manage_model');
+	}
+	
+	public function view() {
+		//$broker_list = $this->house_model->get_subordinate_list(15);
+		//var_dump($broker_list);
+		
+		//$house_list = $this->house_model->get_viewed_house_list(1);
+		//var_dump($house_list);
+		
+		$house_list = $this->house_model->get_viewed_client_list('orFu-vgK-snskoQdDgMkBe-jFe1k');
+		var_dump($house_list);
 	}
 	
 	public function test($id=2) {
