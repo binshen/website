@@ -281,6 +281,12 @@ class B_house extends MY_Controller {
 		if(!empty($broker) && empty($broker['ticket'])) {
 			$broker['ticket'] = $this->api_model->get_or_create_ticket($broker['id']);
 		}
+		if(!empty($broker['pic'])) {
+			$broker['pic'] = '/uploadfiles/profile/' . $broker['pic'];
+		} else {
+			$broker['pic'] = '/chat/images/touxiang2.jpg';
+		}
+		
 		$this->assign('broker', $broker);
 		
 		$this->display('broker/card.html');
