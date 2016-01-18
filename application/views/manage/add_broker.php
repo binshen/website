@@ -32,9 +32,9 @@
 						</div>
         			</dd>
         		</dl>
-        		<dl>
+        		<dl class="nowrap">
         			<dt>头像预览：</dt>
-        			<dd id="img"><?php if(!empty($pic)):?><img height="80px" width="80px" src="<?php echo base_url().'uploadfiles/profile/'.$pic;?>" /><?php endif;?></dd>
+        			<dd id="img"><?php if(!empty($pic)):?><img height="50px" width="50px" src="<?php echo base_url().'uploadfiles/profile/'.$pic;?>" /><?php endif;?></dd>
         		</dl>
         		<dl>
         			<dt>所属公司：</dt>
