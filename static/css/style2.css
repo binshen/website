@@ -632,7 +632,7 @@ body{background-color:#fff;}
 .dialogue-right-body{width:100%;
     position: absolute;left:0;top:0;}
 .dialogue-right-body .pulisher{font-size:12px; margin:0 5px 5px; text-align: center;}
-.dialogue-right-body .pulisher i{color:#999;}
+.dialogue-right-body .pulisher i{color:#999 ;}
 .dialogue-s-img{padding:0;margin:0;width: 70px; float: left;}
 .dialogue-s-img img{border:none;width:auto\9;vertical-align:top;}
 .dialogue-history-list{margin:0 10px;padding-top:10px;border-top:1px solid #dcdcdc;}
@@ -643,3 +643,6 @@ body{background-color:#fff;}
 .dialogue-right-body li .iscall{ width: 20px; margin-top:15px;
     height: 20px;
     float: right; background: url(../images/call_icon.png) no-repeat;}
+
+#dialogue-customer-list1 .p-txt2 .s-name{ display: inline-block;
+    margin-right: 10px;}
