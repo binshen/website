@@ -1135,6 +1135,15 @@ class Manage extends MY_Controller {
 	public function list_client_chat() {
 		$data = array();
 		$data['wx_users_list'] = $this->manage_model->get_bind_wx_users();
+		
+		$user_id = $this->session->userdata('user_id');
+		$user_info = $this->manage_model->get_user_info($user_id);
+		if(!empty($user_info)) {
+			$data['user_pic'] = '/uploadfiles/profile/' . $user_info['pic'];
+		} else {
+			$data['user_pic'] = '/chat/images/touxiang2.jpg';
+		}
+		
 		$this->load->view('manage/list_client_chat.php', $data);
 	}
 	
