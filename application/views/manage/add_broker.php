@@ -121,7 +121,7 @@ function click_manager(i,j) {
 $("#fileField").change(function(){
 	var objUrl = getObjectURL(this.files[0]);
 	if (objUrl) {
-		html = '<img height="100px" src="'+objUrl+'" />';
+		html = '<img height="50px" width="50px" src="'+objUrl+'" />';
 		$("#img").html(html) ;
 	}
 }) ;
