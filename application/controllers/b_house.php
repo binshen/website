@@ -223,10 +223,24 @@ class B_house extends MY_Controller {
 		$house['house_pics_all'] = $this->house_model->get_second_hand_house_pics($hid);
 		$house['house_pics'] = array_slice($house['house_pics_all'], 0, 5);
 		$house['house_pics_rest'] = array_slice($house['house_pics_all'], 6, 5);
-		$broker_tel = $this->session->userdata('login_broker_tel');
-		if(!empty($broker_tel)) {
-			$house['tel'] = $broker_tel;
+		$login_broker_id = $this->session->userdata('login_broker_id');
+		if(empty($login_broker_id)) {
+			$open_id = $this->session->userdata('wx_open_id');
+			$bind_broker = $this->house_model->get_bind_broker_info($open_id);
+			if(!empty($bind_broker)) {
+				$house['rel_name'] = $bind_broker['rel_name'];
+				$house['tel'] = $bind_broker['tel'];
+				$house['company_name'] = $bind_broker['company_name'];
+			}
+		} else {
+			$userInfo = $this->house_model->get_login_info($login_broker_id);
+			if(!empty($userInfo)) {
+				$house['rel_name'] = $userInfo['rel_name'];
+				$house['tel'] = $userInfo['tel'];
+				$house['company_name'] = $userInfo['company_name'];
+			}
 		}
+		
 		$this->assign('house', $house);
 		
 		$user_id = $this->session->userdata('user_id');

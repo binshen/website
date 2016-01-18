@@ -162,11 +162,18 @@ $(function(){
 							</ul>
 						</div>
 					<?php elseif($this->session->userdata('group_id') == 2): ?>
-						
-						<?php if($this->session->userdata('manager_group') > 0): ?>
-							<div class="accordionHeader">
-								<h2><span>Folder</span>经纪人管理</h2>
+						<div class="accordionHeader">
+							<h2><span>Folder</span>经纪人管理</h2>
+						</div>
+						<?php if($this->session->userdata('manager_group') == 0): ?>
+							<div class="accordionContent">
+								<ul class="tree">
+									<li><a href="<?php echo site_url('manage/list_article');?>" target="navTab" rel="list_article">微店专题页</a></li>
+									<li><a href="<?php echo site_url('manage/list_house_push');?>" target="navTab" rel="list_house_push">房源推送</a></li>
+									<li><a href="<?php echo site_url('manage/list_client_chat');?>" target="navTab" rel="list_client_chat">客户聊天</a></li>
+								</ul>
 							</div>
+						<?php else: ?>
 							<div class="accordionContent">
 								<ul class="tree">
 									<?php if($this->session->userdata('manager_group') == 1): ?>

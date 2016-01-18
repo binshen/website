@@ -500,6 +500,7 @@ class Manage extends MY_Controller {
 	}
 	
 	public function save_broker() {
+		
 		if(!$this->input->post('id')){
 			$tel = $this->input->post('tel');
 			$broker = $this->manage_model->get_admin_by_tel($tel);
@@ -508,7 +509,30 @@ class Manage extends MY_Controller {
 				return;
 			}
 		}
-		$ret = $this->manage_model->save_broker();
+		
+		if($_FILES["userfile"]['name'] and $this->input->post('old_img')){//修改上传的图片，需要先删除原来的图片
+			@unlink('./././uploadfiles/profile/'.$this->input->post('old_img'));//del old img
+		}else if(!$_FILES["userfile"]['name'] and !$this->input->post('old_img')){//未上传图片
+			form_submit_json("300", "请添加图片");exit;
+		}
+		
+		if(!$_FILES["userfile"]['name'] and $this->input->post('old_img')){//不修改图片信息
+			$ret = $this->manage_model->save_broker();
+		}else{
+			$config['upload_path'] = './././uploadfiles/profile';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$config['max_size'] = '1000';
+			$config['encrypt_name'] = true;
+			$this->load->library('upload', $config);
+			if($this->upload->do_upload()){
+				$img_info = $this->upload->data();
+				$ret = $this->manage_model->save_broker($img_info['file_name']);
+			}else{
+				form_submit_json("300", $this->upload->display_errors('<b>','</b>'));
+				exit;
+			}
+		}
+		
 		if($ret == 1){
 			form_submit_json("200", "操作成功", 'list_broker');
 		} else if($ret == -3){

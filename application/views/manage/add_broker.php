@@ -4,7 +4,7 @@
 .file{ position:absolute; top:0; right:80px; height:24px; filter:alpha(opacity:0);opacity: 0;width:300px }
 </style>
 <div class="pageContent">
-    <form method="post" enctype="multipart/form-data" action="<?php echo site_url('manage/save_broker');?>" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+    <form method="post" enctype="multipart/form-data" action="<?php echo site_url('manage/save_broker');?>" class="pageForm required-validate" onsubmit="return iframeCallback(this, dialogAjaxDone);">
         <div class="pageFormContent" layoutH="55">
         	<fieldset>
         	<legend>经纪人信息</legend>
@@ -20,6 +20,21 @@
         			<dd>
         				<input name="tel" type="text" class="required" value="<?php if(!empty($tel)) echo $tel;?>" />
         			</dd>
+        		</dl>
+        		<dl>
+        			<dt>头像：</dt>
+        			<dd>
+	        			<div class="file-box">
+		        			<input type="hidden" name="old_img" value="<?php if(!empty($pic)) echo $pic;?>" />
+		    				<input type='text' id='textfield' class='txt' value="<?php if(!empty($pic)) echo $pic;?>" />  
+					 		<input type='button' class='btn' value='浏览...' />
+							<input type="file" name="userfile" class="file" id="fileField"  onchange="document.getElementById('textfield').value=this.value" />
+						</div>
+        			</dd>
+        		</dl>
+        		<dl class="nowrap">
+        			<dt>头像预览：</dt>
+        			<dd id="img"><?php if(!empty($pic)):?><img height="50px" width="50px" src="<?php echo base_url().'uploadfiles/profile/'.$pic;?>" /><?php endif;?></dd>
         		</dl>
         		<dl>
         			<dt>所属公司：</dt>
@@ -90,20 +105,36 @@
         </div>
         <div class="formBar">
     		<ul>
-    			<li><div class="buttonActive"><div class="buttonContent"><button type="submit" class="icon-save" onclick="save_broker();">保存</button></div></div></li>
+    			<li><div class="buttonActive"><div class="buttonContent"><button type="submit" class="icon-save">保存</button></div></div></li>
     			<li><div class="button"><div class="buttonContent"><button type="button" class="close icon-close">取消</button></div></div></li>
     		</ul>
         </div>
 	</form>
 </div>
 <script>
-function save_broker() {
-	
-}
-
 function click_manager(i,j) {
 	if($("#manager_" + i).prop("checked")) {
 		$("#manager_" + j).prop("checked", false);
 	}
+}
+
+$("#fileField").change(function(){
+	var objUrl = getObjectURL(this.files[0]);
+	if (objUrl) {
+		html = '<img height="50px" width="50px" src="'+objUrl+'" />';
+		$("#img").html(html) ;
+	}
+}) ;
+//建立一個可存取到該file的url
+function getObjectURL(file) {
+	var url = null ; 
+	if (window.createObjectURL!=undefined) { // basic
+		url = window.createObjectURL(file) ;
+	} else if (window.URL!=undefined) { // mozilla(firefox)
+		url = window.URL.createObjectURL(file) ;
+	} else if (window.webkitURL!=undefined) { // webkit or chrome
+		url = window.webkitURL.createObjectURL(file) ;
+	}
+	return url ;
 }
 </script>

@@ -1752,6 +1752,16 @@ class House_model extends MY_Model
 		return $this->db->get()->row_array();
 	}
 	
+	public function get_bind_broker_info($open_id) {
+		$this->db->select('b.rel_name, b.tel, b.company_name');
+		$this->db->from('wx_user a');
+		$this->db->join('admin b', 'a.broker_id = b.id', 'inner');
+		$this->db->where('a.open_id', $open_id);
+		$this->db->order_by('a.updated DESC');
+		$this->db->limit(1);
+		return $this->db->get()->row_array();
+	}
+	
 	public function get_bind_client_users($broker_id) {
 		$this->db->select('a.open_id, b.nickname, b.sex, b.headimgurl, b.user_tel, b.realname ');
 		$this->db->distinct();
@@ -1789,5 +1799,13 @@ class House_model extends MY_Model
 		} else {
 			$this->db->query("UPDATE house_track SET call_time = '".$now."' WHERE open_id = '{$open_id}' AND house_id = '{$house_id}'");
 		}
+	}
+	
+	public function get_login_info($user_id) {
+		$this->db->select('a.tel, a.rel_name, b.name as company_name');
+		$this->db->from('admin a');
+		$this->db->join('company b', 'a.company_id = b.id', 'inner');
+		$this->db->where('a.id', $user_id);
+		return $this->db->get()->row_array();
 	}
 }
