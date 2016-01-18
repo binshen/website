@@ -380,4 +380,12 @@ class B_house extends MY_Controller {
 		}
 		die;
 	}
+	
+	public function agent_list($subsidiary_id) {
+		
+		$subordinate_list = $this->house_model->get_subordinate_list($subsidiary_id);
+		$this->assign('subordinate_list', $subordinate_list);
+		
+		$this->display('broker/agent-list.html');
+	}
 }

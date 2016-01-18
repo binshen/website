@@ -1810,7 +1810,10 @@ class House_model extends MY_Model
 	}
 	
 	public function get_subordinate_list($subsidiary_id) {
-		$this->db->from('admin');
+		$this->db->select('a.id, a.tel, a.rel_name, b.name as company_name, c.name as subsidiary_name');
+		$this->db->from('admin a');
+		$this->db->join('company b', 'a.company_id = b.id', 'inner');
+		$this->db->join('subsidiary c', 'a.subsidiary_id = c.id', 'inner');
 		$this->db->where('subsidiary_id', $subsidiary_id);
 		return $this->db->get()->result_array();
 	}
