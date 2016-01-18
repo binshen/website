@@ -22,6 +22,21 @@
         			</dd>
         		</dl>
         		<dl>
+        			<dt>头像：</dt>
+        			<dd>
+	        			<div class="file-box">
+		        			<input type="hidden" name="old_img" value="<?php if(!empty($pic)) echo $pic;?>" />
+		    				<input type='text' id='textfield' class='txt' value="<?php if(!empty($pic)) echo $pic;?>" />  
+					 		<input type='button' class='btn' value='浏览...' />
+							<input type="file" name="userfile" class="file" id="fileField"  onchange="document.getElementById('textfield').value=this.value" />
+						</div>
+        			</dd>
+        		</dl>
+        		<dl>
+        			<dt>头像预览：</dt>
+        			<dd id="img"><?php if(!empty($pic)):?><img height="80px" width="80px" src="<?php echo base_url().'uploadfiles/profile/'.$pic;?>" /><?php endif;?></dd>
+        		</dl>
+        		<dl>
         			<dt>所属公司：</dt>
         			<dd>
         				<select name="company_id" class="combox" id="selectCompany" ref="selectSubSidiary" refUrl="/manage/get_subsidiary_list/{value}" >
@@ -90,17 +105,13 @@
         </div>
         <div class="formBar">
     		<ul>
-    			<li><div class="buttonActive"><div class="buttonContent"><button type="submit" class="icon-save" onclick="save_broker();">保存</button></div></div></li>
+    			<li><div class="buttonActive"><div class="buttonContent"><button type="submit" class="icon-save">保存</button></div></div></li>
     			<li><div class="button"><div class="buttonContent"><button type="button" class="close icon-close">取消</button></div></div></li>
     		</ul>
         </div>
 	</form>
 </div>
 <script>
-function save_broker() {
-	
-}
-
 function click_manager(i,j) {
 	if($("#manager_" + i).prop("checked")) {
 		$("#manager_" + j).prop("checked", false);

@@ -541,7 +541,7 @@ class Manage_model extends MY_Model
 		return $data;
 	}
 
-	public function save_broker() {
+	public function save_broker($pic=NULL) {
 		$manager_group = 0;
 		if($this->input->post('manager_1')) {
 			$manager_group = 1;
@@ -560,6 +560,9 @@ class Manage_model extends MY_Model
 			'admin_group' => 2,
 			'manager_group' => $manager_group
 		);
+		if(!empty($pic)) {
+			$data['pic'] = $pic;
+		}
 		
 		$res = $this->db->select('house_count,broker_count')->from('subsidiary')->where('id',$this->input->post('subsidiary_id'))->get()->row();
 		$house_count = $res->house_count;
