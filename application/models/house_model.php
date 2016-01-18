@@ -1800,4 +1800,12 @@ class House_model extends MY_Model
 			$this->db->query("UPDATE house_track SET call_time = '".$now."' WHERE open_id = '{$open_id}' AND house_id = '{$house_id}'");
 		}
 	}
+	
+	public function get_login_info($user_id) {
+		$this->db->select('a.tel, a.rel_name, b.name as company_name');
+		$this->db->from('admin a');
+		$this->db->join('company b', 'a.company_id = b.id', 'inner');
+		$this->db->where('a.id', $user_id);
+		return $this->db->get()->row_array();
+	}
 }

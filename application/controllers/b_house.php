@@ -232,6 +232,13 @@ class B_house extends MY_Controller {
 				$house['tel'] = $bind_broker['tel'];
 				$house['company_name'] = $bind_broker['company_name'];
 			}
+		} else {
+			$userInfo = $this->house_model->get_login_info($login_broker_id);
+			if(!empty($userInfo)) {
+				$house['rel_name'] = $userInfo['rel_name'];
+				$house['tel'] = $userInfo['tel'];
+				$house['company_name'] = $userInfo['company_name'];
+			}
 		}
 		
 		$this->assign('house', $house);
