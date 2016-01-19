@@ -23,6 +23,7 @@
 	        </span>
         </a>
         <div class="all-icon">
+			<span class="eye-icon"></span>
             <span class="edit-btn" oid="{{$item['open_id']}}"></span>
             <span class="history-icon" oid="{{$item['open_id']}}"></span>
         </div>
@@ -196,22 +197,28 @@
         		}
         	}
         	$("#dialogue-right-body").html(html);
-        	
-        	$('#m-filter-mask').show();
-    		$('#m-filter-hisbrowse-leftPopup').show();
-    		$('#m-filter-hisbrowse').addClass("swipeLeft-block");
-    		$('#m-filter-mask').touches({ touchstart: function (ev) { ev.preventDefault(); }, touchmove: function (ev) { ev.preventDefault(); } });
-    		$('#m-filter-hisbrowse').touches({ touchstart: function (ev) { ev.stopPropagation(); }, touchmove: function (ev) { ev.preventDefault(); } });
-    		$('body').css('overflow','hidden');
-    		new iScroll($("#m-filter-hisbrowse")[0], {
-    			snap:'li',
-    			momentum: true,
-    			click: true,
-    			bounce: false
-    		});
+			rightPop();
         });
     });
-    
+	$(".eye-icon").bind("click",function(ev) {
+		rightPop();
+	})
+	}
+    function rightPop(){
+		$('#m-filter-mask').show();
+		$('#m-filter-hisbrowse-leftPopup').show();
+		$('#m-filter-hisbrowse').addClass("swipeLeft-block");
+		$('#m-filter-mask').touches({ touchstart: function (ev) { ev.preventDefault(); }, touchmove: function (ev) { ev.preventDefault(); } });
+		$('#m-filter-hisbrowse').touches({ touchstart: function (ev) { ev.stopPropagation(); }, touchmove: function (ev) { ev.preventDefault(); } });
+		$('body').css('overflow','hidden');
+		new iScroll($("#m-filter-hisbrowse")[0], {
+			snap:'li',
+			momentum: true,
+			click: true,
+			bounce: false
+		});
+	}
+
     $('#m-filter-mask').bind('touchstart',function () {
 		$(this).hide();
 		$(".swipeLeft").removeClass("swipeLeft-block");
