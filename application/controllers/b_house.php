@@ -349,7 +349,8 @@ class B_house extends MY_Controller {
 		}
 		$this->assign('headimgurl', $headimgurl);
 		
-		$brokerimgurl = $this->session->userdata('user_pic');
+		$user_info = $this->manage_model->get_user_info($broker_id);
+		$brokerimgurl = $user_info['pic'];
 		$this->assign('brokerimgurl', $brokerimgurl);
 		
 		$this->display('broker/chat.html');
