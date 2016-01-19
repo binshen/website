@@ -15,7 +15,8 @@ class Job extends MY_Controller {
 	
 	public function bind() {
 		$redis = new Redis();
-		$redis->connect('121.40.97.183', 6379);
+		$redis->connect(REDIS_HOST, REDIS_PORT);
+		$redis->auth(REDIS_AUTH);
 		
 		$results = $this->job_model->getWxUserKeys();
 		$keys = array_map(function($v) {

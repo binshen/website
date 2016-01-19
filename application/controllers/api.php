@@ -16,7 +16,8 @@ class Api extends MY_Controller {
 		$this->api_model->update_weixin_user($openid);
 		
 		$redis = new Redis();
-		$redis->connect('127.0.0.1', 6379);
+		$redis->connect(REDIS_HOST, REDIS_PORT);
+		$redis->auth(REDIS_AUTH);
 		
 		$key = "map:" . $broker_id;
 		$users = $redis->lrange($key, 0, -1);

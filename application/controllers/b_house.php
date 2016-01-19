@@ -314,7 +314,8 @@ class B_house extends MY_Controller {
 			
 			if($broker_id != $o_bid) {
 				$redis = new Redis();
-				$redis->connect('127.0.0.1', 6379);
+				$redis->connect(REDIS_HOST, REDIS_PORT);
+				$redis->auth(REDIS_AUTH);
 				if(!empty($o_bid)) {
 					$o_key = "map:" . $o_bid;
 					$redis->lrem($o_key, $open_id, 0);

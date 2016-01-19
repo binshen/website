@@ -31,7 +31,8 @@ class Test extends MY_Controller {
 	
 	public function test($id=2) {
 		$redis = new Redis();
-		$redis->connect('121.40.97.183', 6379);
+		$redis->connect(REDIS_HOST, REDIS_PORT);
+		$redis->auth(REDIS_AUTH);
 		
 		$key = "map:" . $id;
 		$users = $redis->lrange($key, 0, -1);
@@ -42,7 +43,8 @@ class Test extends MY_Controller {
 		//phpinfo();
 		
 		$redis = new Redis();
-		$redis->connect('127.0.0.1', 6379);
+		$redis->connect(REDIS_HOST, REDIS_PORT);
+		$redis->auth(REDIS_AUTH);
 		
 		$chat_data = $redis->lrange("chat:orFu-vgK-snskoQdDgMkBe-jFe1k:2", 0, -1);
 		var_dump($chat_data);
