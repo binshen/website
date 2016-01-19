@@ -1138,9 +1138,7 @@ class Manage extends MY_Controller {
 		
 		$user_id = $this->session->userdata('user_id');
 		$user_info = $this->manage_model->get_user_info($user_id);
-		if(!empty($user_info)) {
-			$data['user_pic'] = '/uploadfiles/profile/' . $user_info['pic'];
-		} else {
+		if(empty($user_info)) {
 			$data['user_pic'] = '/chat/images/touxiang2.jpg';
 		}
 		

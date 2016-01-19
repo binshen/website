@@ -561,7 +561,7 @@ class Manage_model extends MY_Model
 			'manager_group' => $manager_group
 		);
 		if(!empty($pic)) {
-			$data['pic'] = $pic;
+			$data['pic'] = '/uploadfiles/profile/' . $pic;
 		}
 		
 		$res = $this->db->select('house_count,broker_count')->from('subsidiary')->where('id',$this->input->post('subsidiary_id'))->get()->row();
