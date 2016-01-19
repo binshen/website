@@ -49,7 +49,11 @@ class Manage_model extends MY_Model
             $user_info['manager_group'] = $res->manager_group;
             $user_info['company_id'] = $res->company_id;
             $user_info['subsidiary_id'] = $res->subsidiary_id;
-            $user_info['user_pic'] = $res->pic;
+            if(empty($res->pic)) {
+            	$user_info['user_pic'] = "/static/images/touxiang2.jpg";
+            } else {
+            	$user_info['user_pic'] = $res->pic;
+            }
             if($brokerOnly) {
             	$user_info['login_broker_id'] = $res->id;
             }
