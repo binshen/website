@@ -1142,6 +1142,9 @@ class Manage extends MY_Controller {
 			$data['user_pic'] = '/chat/images/touxiang2.jpg';
 		}
 		
+		$brokerimgurl = $this->session->userdata('user_pic');
+		$this->assign('brokerimgurl', $brokerimgurl);
+		
 		$this->load->view('manage/list_client_chat.php', $data);
 	}
 	

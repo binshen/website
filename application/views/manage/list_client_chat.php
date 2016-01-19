@@ -61,6 +61,7 @@
 <script>
 var broker_id = '<?php echo $this->session->userdata('user_id'); ?>';
 var headimgurl = '';
+var brokerimgurl = '{{$brokerimgurl|default:"/static/images/touxiang2.jpg"}}';
 var socket = io.connect('http://121.40.97.183:4000');
 
 socket.on('disconnect',function(){
@@ -220,7 +221,7 @@ function getMessageText(data) {
 		html += '<div class="dialogue-chat-head"><img src="' + headimgurl + '" alt="" width="36" height="36" /></div>';
 	} else {
 		html += '<div class="dialogue-chat-div dialogue-chat-div-manage">';
-	    html += '<div class="dialogue-chat-head"><img src="/chat/images/touxiang2.jpg" alt="" width="36" height="36" /></div>';
+	    html += '<div class="dialogue-chat-head"><img src="' + brokerimgurl + '" alt="" width="36" height="36" /></div>';
 
 	}
 	html += '<div class="dialogue-chat-pop"><p>' + data.message + '</p></div>';
