@@ -65,5 +65,9 @@ $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
 
+define('REDIS_HOST', '127.0.0.1');
+define('REDIS_PORT', 6379);
+define('REDIS_AUTH', 'pass');
+
 /* End of file database.php */
 /* Location: ./application/config/database.php */
