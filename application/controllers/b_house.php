@@ -281,6 +281,12 @@ class B_house extends MY_Controller {
 		if(!empty($broker) && empty($broker['ticket'])) {
 			$broker['ticket'] = $this->api_model->get_or_create_ticket($broker['id']);
 		}
+		if(!empty($broker['pic'])) {
+			$broker['pic'] = '/uploadfiles/profile/' . $broker['pic'];
+		} else {
+			$broker['pic'] = '/chat/images/touxiang2.jpg';
+		}
+		
 		$this->assign('broker', $broker);
 		
 		$this->display('broker/card.html');
@@ -373,5 +379,13 @@ class B_house extends MY_Controller {
 			$this->house_model->update_call_time($open_id, $hid);
 		}
 		die;
+	}
+	
+	public function agent_list($subsidiary_id) {
+		
+		$subordinate_list = $this->house_model->get_subordinate_list($subsidiary_id);
+		$this->assign('subordinate_list', $subordinate_list);
+		
+		$this->display('broker/agent-list.html');
 	}
 }

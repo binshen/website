@@ -2,90 +2,40 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>城北学区房</title>
+<title>微店员工列表页</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
 <meta content="telephone=no" name="format-detection"/>
-<link rel="stylesheet" href="css/style2.css">
+<link rel="stylesheet" href="/static/css/style2.css">
 </head>
     <div class="g-head">
         <i class="am-icon-chevron-left"></i>
-        经纪人列表
+                经纪人列表
     </div>
     <ul class="dialogue-customer-list" id="dialogue-customer-list1">
-        <li>
-           <span class="cus-head">
-                <img src="images/dia-head.jpg" alt="" width="50" height="50" />
-            </span>
-            <div class="cus-txt">
-                <p class="p-txt2"><span class="s-name"><i class="fz16">姓名：</i>周小惠</span> <i class="fz16">电话：</i>13761126491</p>
-                <p class="p-txt2"><i class="fz16">公司：</i>顺达<br /><i class="fz16">分店：</i>青阳北路分店</p>
-            </div>
-        </li>
-        <li>
-           <span class="cus-head">
-                <img src="images/dia-head.jpg" alt="" width="50" height="50" />
-            </span>
-            <div class="cus-txt">
-                <p class="p-txt2"><span class="s-name"><i class="fz16">姓名：</i>周小惠</span> <i class="fz16">电话：</i>13761126491</p>
-                <p class="p-txt2"><i class="fz16">公司：</i>顺达<br /><i class="fz16">分店：</i>青阳北路分店</p>
-            </div>
-        </li>
-        <li>
-           <span class="cus-head">
-                <img src="images/dia-head.jpg" alt="" width="50" height="50" />
-            </span>
-            <div class="cus-txt">
-                <p class="p-txt2"><span class="s-name"><i class="fz16">姓名：</i>周小惠</span> <i class="fz16">电话：</i>13761126491</p>
-                <p class="p-txt2"><i class="fz16">公司：</i>顺达<br /><i class="fz16">分店：</i>青阳北路分店</p>
-            </div>
-        </li>
-        <li>
-           <span class="cus-head">
-                <img src="images/dia-head.jpg" alt="" width="50" height="50" />
-            </span>
-            <div class="cus-txt">
-                <p class="p-txt2"><span class="s-name"><i class="fz16">姓名：</i>周小惠</span> <i class="fz16">电话：</i>13761126491</p>
-                <p class="p-txt2"><i class="fz16">公司：</i>顺达<br /><i class="fz16">分店：</i>青阳北路分店</p>
-            </div>
-        </li>
-        <li>
-           <span class="cus-head">
-                <img src="images/dia-head.jpg" alt="" width="50" height="50" />
-            </span>
-            <div class="cus-txt">
-                <p class="p-txt2"><span class="s-name"><i class="fz16">姓名：</i>周小惠</span> <i class="fz16">电话：</i>13761126491</p>
-                <p class="p-txt2"><i class="fz16">公司：</i>顺达<br /><i class="fz16">分店：</i>青阳北路分店</p>
-            </div>
-        </li>
-        <li>
-           <span class="cus-head">
-                <img src="images/dia-head.jpg" alt="" width="50" height="50" />
-            </span>
-            <div class="cus-txt">
-                <p class="p-txt2"><span class="s-name"><i class="fz16">姓名：</i>周小惠</span> <i class="fz16">电话：</i>13761126491</p>
-                <p class="p-txt2"><i class="fz16">公司：</i>顺达<br /><i class="fz16">分店：</i>青阳北路分店</p>
-            </div>
-        </li>
-        <li>
-           <span class="cus-head">
-                <img src="images/dia-head.jpg" alt="" width="50" height="50" />
-            </span>
-            <div class="cus-txt">
-                <p class="p-txt2"><span class="s-name"><i class="fz16">姓名：</i>周小惠</span> <i class="fz16">电话：</i>13761126491</p>
-                <p class="p-txt2"><i class="fz16">公司：</i>顺达<br /><i class="fz16">分店：</i>青阳北路分店</p>
-            </div>
-        </li>
-        <li>
-           <span class="cus-head">
-                <img src="images/dia-head.jpg" alt="" width="50" height="50" />
-            </span>
-            <div class="cus-txt">
-                <p class="p-txt2"><span class="s-name"><i class="fz16">姓名：</i>周小惠</span> <i class="fz16">电话：</i>13761126491</p>
-                <p class="p-txt2"><i class="fz16">公司：</i>顺达<br /><i class="fz16">分店：</i>青阳北路分店</p>
-            </div>
-        </li>
+    	{{foreach from=$subordinate_list item=item}}
+    		<a href="/b_house/chat_list/{{$item.id}}">
+		        <li>
+		           <span class="cus-head">
+		                <img src="images/dia-head.jpg" alt="" width="50" height="50" />
+		            </span>
+		            <div class="cus-txt">
+		                <p class="p-txt2">
+		                	<span class="s-name">
+		                		<i class="fz16">姓名：</i>{{$item.rel_name}}
+		                	</span>
+		                	<i class="fz16">电话：</i>{{$item.tel}}
+		                </p>
+		                <p class="p-txt2">
+		                	<i class="fz16">公司：</i>{{$item.company_name}}
+							<br />
+							<i class="fz16">分店：</i>{{$item.subsidiary_name}}
+						</p>
+		            </div>
+		        </li>
+	        </a>
+        {{/foreach}}
     </ul>
 </body>
 </html>

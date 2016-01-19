@@ -2193,4 +2193,8 @@ class Manage_model extends MY_Model
 		$this->db->limit(20);
 		return $this->db->get()->result_array();
 	}
+	
+	public function get_user_info($user_id) {
+		return $this->db->get_where('admin', array('id' => $user_id))->row_array();
+	}
 }

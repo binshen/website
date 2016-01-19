@@ -45,7 +45,7 @@
                   <input id="showAllHistory" type="checkbox" value="1"><label for="showAllHistory" style="padding-right: 10px;">历史消息</label>
               </div>
               <div class="dialogue-chat-input-head">
-              		<img src="/chat/images/touxiang2.jpg" alt="" width="36" height="36" />
+              		<img src="<?php echo $user_pic; ?>" alt="" width="36" height="36" />
               </div>
           </div>
        </div>
