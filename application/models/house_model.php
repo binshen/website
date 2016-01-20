@@ -1818,18 +1818,20 @@ class House_model extends MY_Model
 		return $this->db->get()->result_array();
 	}
 	
-	public function get_viewed_house_list($subsidiary_id) {
-		$this->db->select('a.id, x.name AS xq_name, c.call_time, f.rel_name, f.tel');
+	public function get_viewed_house_list($open_id, $subsidiary_id) {
+		$this->db->select('a.id, a.room, a.total_price1, a.acreage, a.bg_pic, a.feature, g.name AS region_name, h.name AS xq_name, c.call_time, f.rel_name, f.tel');
 		$this->db->distinct();
 		$this->db->from('house a');
-		$this->db->join('xiaoqu x', 'a.xq_id = x.id', 'inner');
 		$this->db->join('admin b', 'a.broker_id = b.id', 'inner');
 		$this->db->join('house_track c', 'a.id = c.house_id', 'inner');
 		$this->db->join('wx_user d', 'c.open_id = d.open_id', 'inner');
 		$this->db->join('admin e', 'd.broker_id = e.id', 'inner');
 		$this->db->join('admin f', 'e.subsidiary_id = f.subsidiary_id and f.manager_group = 2', 'inner');
+		$this->db->join('house_region g', 'a.region_id = g.id', 'inner');
+		$this->db->join('xiaoqu h', 'a.xq_id = h.id', 'inner');
 		$this->db->group_by('a.id');
 		$this->db->where('b.subsidiary_id', $subsidiary_id);
+		$this->db->where('c.open_id', $open_id);
 		$this->db->where('c.call_time is not null');
 		$this->db->order_by('c.call_time', 'desc');
 		return $this->db->get()->result_array();

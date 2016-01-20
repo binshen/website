@@ -169,7 +169,7 @@
     $(".history-icon").bind("click",function(ev){
         var open_id = $(this).attr('oid');
         $.get('/b_house/list_house_tracks/' + open_id, function(data) {
-        	var html = '<li class="dialogue-right-tit">浏览记录</li>';
+        	var html = '<li class="dialogue-right-tit">所有浏览记录</li>';
         	var data = JSON.parse(data);
         	for(var i in data) {
         		var d = data[i];
@@ -201,7 +201,38 @@
         });
     });
 	$(".eye-icon").bind("click",function(ev) {
-		rightPop();
+		var open_id = 'orFu-vgK-snskoQdDgMkBe-jFe1k';//$(this).attr('oid');
+		$.get('/b_house/get_viewed_house_list/' + open_id, function(data) {
+			var html = '<li class="dialogue-right-tit">受关注的浏览记录</li>';
+        	var data = JSON.parse(data);
+        	for(var i in data) {
+        		var d = data[i];
+        		if(d.id) {
+        			html += '<li>';
+                	html += '  <a href="/b_house/view_detail/' + d.id + '" target="_self">';
+                	html += '    <div class="dialogue-history-list">';
+                	html += '      <div class="clearfix">';
+                	html += '        <span class="dialogue-s-img">';
+                	html += '          <img src="/uploadfiles/pics/' + d.bg_pic + '" alt="" width="70" height="50">';
+                	html += '        </span>';
+                	html += '        <p>';
+                	html += '          <span class="s01">' + d.xq_name + '</span>';
+                	html += '          <span class="s02">' + d.acreage + '㎡ | ' + d.room + '房 | ' + d.total_price + '万</span>';
+                	html += '          <span class="s03">' + d.region_name + '</span>';
+                	html += '        </p>';
+                	if(d.call_time != null) {
+                		html += '  <i class="iscall"></i>';
+                	}
+                	html += '      </div>';
+                	html += '    </div>';
+                	html += '  </a>';
+                	html += '  <p class="pulisher"><i>发布者：</i>' + d.rel_name + ' <i>电话：</i>' + d.tel + '</p>';
+                	html += '</li>';
+        		}
+        	}
+        	$("#dialogue-right-body").html(html);
+			rightPop();
+		});
 	})
 
     function rightPop(){
