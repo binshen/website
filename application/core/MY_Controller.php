@@ -34,7 +34,7 @@ class MY_Controller extends CI_Controller
         
         $group_id = $this->session->userdata('group_id');
         $manager_group = $this->session->userdata('manager_group');
-        $this->cismarty->assign('login_manager_flag', $group_id == 1 && $manager_group > 0 ? true : false);
+        $this->cismarty->assign('login_manager_flag', $group_id < 3 && $manager_group > 0 ? true : false);
         $this->cismarty->assign('login_company_id', $this->session->userdata('company_id'));
         $this->cismarty->assign('login_subsidiary_id', $this->session->userdata('subsidiary_id'));
     }
