@@ -45,7 +45,7 @@
                   <input id="showAllHistory" type="checkbox" value="1"><label for="showAllHistory" style="padding-right: 10px;">历史消息</label>
               </div>
               <div class="dialogue-chat-input-head">
-              		<img src="<?php echo $user_pic; ?>" alt="" width="36" height="36" />
+              		<img src="<?php echo $this->session->userdata('user_pic'); ?>" alt="" width="36" height="36" />
               </div>
           </div>
        </div>
@@ -61,6 +61,7 @@
 <script>
 var broker_id = '<?php echo $this->session->userdata('user_id'); ?>';
 var headimgurl = '';
+var brokerimgurl = '<?php echo $this->session->userdata('user_pic'); ?>';
 var socket = io.connect('http://121.40.97.183:4000');
 
 socket.on('disconnect',function(){
@@ -220,7 +221,7 @@ function getMessageText(data) {
 		html += '<div class="dialogue-chat-head"><img src="' + headimgurl + '" alt="" width="36" height="36" /></div>';
 	} else {
 		html += '<div class="dialogue-chat-div dialogue-chat-div-manage">';
-	    html += '<div class="dialogue-chat-head"><img src="/chat/images/touxiang2.jpg" alt="" width="36" height="36" /></div>';
+	    html += '<div class="dialogue-chat-head"><img src="' + brokerimgurl + '" alt="" width="36" height="36" /></div>';
 
 	}
 	html += '<div class="dialogue-chat-pop"><p>' + data.message + '</p></div>';

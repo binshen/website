@@ -34,6 +34,7 @@ public function __construct() {
 		$this->session->unset_userdata('manager_group');
 		$this->session->unset_userdata('company_id');
 		$this->session->unset_userdata('subsidiary_id');
+		$this->session->unset_userdata('user_pic');
 		redirect(site_url('/b_house/view_list'));
 	}
 }

@@ -281,9 +281,7 @@ class B_house extends MY_Controller {
 		if(!empty($broker) && empty($broker['ticket'])) {
 			$broker['ticket'] = $this->api_model->get_or_create_ticket($broker['id']);
 		}
-		if(!empty($broker['pic'])) {
-			$broker['pic'] = '/uploadfiles/profile/' . $broker['pic'];
-		} else {
+		if(empty($broker['pic'])) {
 			$broker['pic'] = '/chat/images/touxiang2.jpg';
 		}
 		
@@ -350,6 +348,10 @@ class B_house extends MY_Controller {
 			$headimgurl = '/static/images/touxiang1.jpg';
 		}
 		$this->assign('headimgurl', $headimgurl);
+		
+		$user_info = $this->manage_model->get_user_info($broker_id);
+		$brokerimgurl = $user_info['pic'];
+		$this->assign('brokerimgurl', $brokerimgurl);
 		
 		$this->display('broker/chat.html');
 	}

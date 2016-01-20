@@ -1136,13 +1136,16 @@ class Manage extends MY_Controller {
 		$data = array();
 		$data['wx_users_list'] = $this->manage_model->get_bind_wx_users();
 		
-		$user_id = $this->session->userdata('user_id');
-		$user_info = $this->manage_model->get_user_info($user_id);
-		if(!empty($user_info)) {
-			$data['user_pic'] = '/uploadfiles/profile/' . $user_info['pic'];
-		} else {
-			$data['user_pic'] = '/chat/images/touxiang2.jpg';
-		}
+// 		$user_id = $this->session->userdata('user_id');
+// 		$user_info = $this->manage_model->get_user_info($user_id);
+// 		if(empty($user_info['pic'])) {
+// 			$data['brokerimgurl'] = '/chat/images/touxiang2.jpg';
+// 		} else {
+// 			$data['brokerimgurl'] = $user_info['pic'];
+// 		}
+		
+		//$brokerimgurl = $this->session->userdata('user_pic');
+		//$this->assign('brokerimgurl', $brokerimgurl);
 		
 		$this->load->view('manage/list_client_chat.php', $data);
 	}

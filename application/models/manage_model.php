@@ -49,6 +49,11 @@ class Manage_model extends MY_Model
             $user_info['manager_group'] = $res->manager_group;
             $user_info['company_id'] = $res->company_id;
             $user_info['subsidiary_id'] = $res->subsidiary_id;
+            if(empty($res->pic)) {
+            	$user_info['user_pic'] = "/static/images/touxiang2.jpg";
+            } else {
+            	$user_info['user_pic'] = $res->pic;
+            }
             if($brokerOnly) {
             	$user_info['login_broker_id'] = $res->id;
             }
@@ -561,7 +566,7 @@ class Manage_model extends MY_Model
 			'manager_group' => $manager_group
 		);
 		if(!empty($pic)) {
-			$data['pic'] = $pic;
+			$data['pic'] = '/uploadfiles/profile/' . $pic;
 		}
 		
 		$res = $this->db->select('house_count,broker_count')->from('subsidiary')->where('id',$this->input->post('subsidiary_id'))->get()->row();
