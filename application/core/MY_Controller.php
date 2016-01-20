@@ -31,6 +31,12 @@ class MY_Controller extends CI_Controller
         $login_broker_id = $this->session->userdata('login_broker_id');
         $this->cismarty->assign('login_broker_id', $login_broker_id);
         $this->cismarty->assign('login_broker_id_flag', $login_broker_id > 0 ? true : false);
+        
+        $group_id = $this->session->userdata('group_id');
+        $manager_group = $this->session->userdata('manager_group');
+        $this->cismarty->assign('login_manager_flag', $group_id == 1 && $manager_group > 0 ? true : false);
+        $this->cismarty->assign('login_company_id', $this->session->userdata('company_id'));
+        $this->cismarty->assign('login_subsidiary_id', $this->session->userdata('subsidiary_id'));
     }
     
 	//重载smarty方法assign
