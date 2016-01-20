@@ -1837,14 +1837,14 @@ class House_model extends MY_Model
 		return $this->db->get()->result_array();
 	}
 	
-	public function get_viewed_client_list($open_id) {
+	public function get_viewed_client_list($subsidiary_id) {
 		$this->db->select('a.id, x.name AS xq_name, c.call_time');
 		$this->db->distinct();
 		$this->db->from('house a');
 		$this->db->join('xiaoqu x', 'a.xq_id = x.id', 'inner');
 		$this->db->join('admin b', 'a.broker_id = b.id', 'inner');
 		$this->db->join('house_track c', 'a.id = c.house_id', 'inner');
-		$this->db->where('c.open_id', $open_id);
+		$this->db->where('b.subsidiary_id', $subsidiary_id);
 		$this->db->where('c.call_time is not null');
 		$this->db->order_by('c.call_time', 'desc');
 		return $this->db->get()->result_array();
