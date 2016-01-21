@@ -595,6 +595,19 @@ class Manage_model extends MY_Model
 		
 		$this->db->trans_start();//--------开始事务
 		
+		if($manager_group == 1) {
+			$broker_data['manager_group'] = 0;
+			$this->db->where('company_id', $this->input->post('company_id'));
+			$this->db->where('manager_group', 1);
+			$this->db->update('admin', $broker_data);
+		} else if($manager_group == 2) {
+			$broker_data['manager_group'] = 0;
+			$this->db->where('company_id', $this->input->post('company_id'));
+			$this->db->where('subsidiary_id', $this->input->post('subsidiary_id'));
+			$this->db->where('manager_group', 2);
+			$this->db->update('admin', $broker_data);
+		}
+
 		if($this->input->post('id')){//修改
 			$this->db->where('id', $this->input->post('id'));
 			$this->db->update('admin', $data);
