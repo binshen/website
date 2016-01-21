@@ -393,8 +393,7 @@ class B_house extends MY_Controller {
 	}
 	
 	public function get_viewed_house_list($open_id) {
-		$subsidiary_id = $this->session->userdata('subsidiary_id');
-		$v_house_tracks = $this->house_model->get_viewed_house_list($open_id, $subsidiary_id);
+		$v_house_tracks = $this->house_model->get_viewed_house_list($open_id);
 		echo json_encode($v_house_tracks);
 	}
 	
