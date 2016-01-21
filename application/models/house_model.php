@@ -1838,13 +1838,14 @@ class House_model extends MY_Model
 	}
 	
 	public function get_viewed_client_list($subsidiary_id) {
-		$this->db->select('a.call_time, b.id, b.room, b.total_price, b.acreage, b.bg_pic, b.floor, b.total_floor, b.lounge, b.unit_price, c.rel_name, c.tel');
+		$this->db->select('a.call_time, b.id, b.room, b.total_price, b.acreage, b.bg_pic, b.floor, b.total_floor, b.lounge, b.unit_price, e.rel_name, e.tel');
 		$this->db->select('g.name AS region_name, h.name AS xq_name, i.name AS decoration_name, j.name AS orientation_name, d.name AS subsidiary_name, f.name AS company_name ');
 		$this->db->distinct();
 		$this->db->from('house_track a');
 		$this->db->join('house b', 'a.house_id = b.id', 'inner');
 		$this->db->join('admin c', 'b.broker_id = c.id', 'inner');
 		$this->db->join('subsidiary d', 'c.subsidiary_id = d.id', 'inner');
+		$this->db->join('admin e', 'd.manager_id = e.id', 'inner');
 		$this->db->join('company f', 'c.company_id = f.id', 'inner');
 		$this->db->join('house_region g', 'b.region_id = g.id', 'left');
 		$this->db->join('xiaoqu h', 'b.xq_id = h.id', 'left');
