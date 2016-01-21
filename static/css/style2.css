@@ -635,7 +635,7 @@ body{background-color:#fff;}
     position: absolute;left:0;top:0;}
 .dialogue-right-body .pulisher{font-size:12px; margin:0 10px 5px; line-height: 20px; }
 .dialogue-right-body .pulisher i{color:#999 ;}
-.dialogue-right-body .pulisher span{width:10rem; display:inline-block;}
+.dialogue-right-body .pulisher span{width:130px; display:inline-block;}
 .dialogue-s-img{padding:0;margin:0;width: 70px; float: left;}
 .dialogue-s-img img{border:none;width:auto\9;vertical-align:top;}
 .dialogue-history-list{margin:0 10px;padding-top:10px;border-top:1px solid #dcdcdc;}
@@ -652,4 +652,4 @@ body{background-color:#fff;}
     margin-right: 10px;}
 .eye-icon{ float:left;margin-right:5px; width:30px; height:30px;	display: block; background: url(../images/eye_icon.png) no-repeat; background-size:100%;}
 .p-other-infor{font-size:12px;margin:5px 0 0 20px; line-height: 20px;}
-.p-other-infor span{width:10rem; display:inline-block;}.p-other-infor  i{color:#999 ;}
+.p-other-infor span{width:150px; display:inline-block;}.p-other-infor  i{color:#999 ;}
