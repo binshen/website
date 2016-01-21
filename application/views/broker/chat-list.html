@@ -220,12 +220,13 @@
                 	html += '          <span class="s02">' + d.acreage + '㎡ | ' + d.room + '房 | ' + d.total_price + '万</span>';
                 	html += '          <span class="s03">' + d.region_name + '</span>';
                 	html += '        </p>';
-                	if(d.call_time != null) {
-                		html += '  <i class="iscall"></i>';
-                	}
+//                	if(d.call_time != null) {
+//                		html += '  <i class="iscall"></i>';
+//                	}
                 	html += '      </div>';
                 	html += '    </div>';
                 	html += '  </a>';
+                	html += '  <span><i>公司：</i>' + d.company_name + '</span> <span><i>分店：</i>' + d.subsidiary_name + '</span></p><br>';
                 	html += '  <p class="pulisher"><i>发布者：</i>' + d.rel_name + ' <i>电话：</i>' + d.tel + '</p>';
                 	html += '</li>';
         		}
