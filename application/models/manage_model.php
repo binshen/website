@@ -596,9 +596,21 @@ class Manage_model extends MY_Model
 		if($this->input->post('id')){//修改
 			$this->db->where('id', $this->input->post('id'));
 			$this->db->update('admin', $data);
+			$manager_id = $this->input->post('id');
 		} else {
 			$this->db->insert('admin', $data);
+			$manager_id = $this->db->insert_id();
 		}
+		
+		$manager_data['manager_id'] = $manager_id;
+		if($manager_group == 1) {
+			$this->db->where('id', $this->input->post('company_id'));
+			$this->db->update('company', $manager_data);
+		} else if($manager_group == 2) {
+			$this->db->where('id', $this->input->post('subsidiary_id'));
+			$this->db->update('subsidiary', $manager_data);
+		}
+		
 		$this->db->trans_complete();//------结束事务
     	if ($this->db->trans_status() === FALSE) {
     		return -1;
