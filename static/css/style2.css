@@ -57,8 +57,8 @@ body{background-color:#fff;}
 .am-icon-user{margin-bottom:0;}
 .am-icon-chevron-up{background-position: -90px -270px;}
 .am-icon-share{ background-position: 0 -270px;}
-.am-icon-house{ background-position:-270px -540px;}
-.am-icon-agent{background-position:-90px -360px;}
+.am-icon-house{ background-position:-135px -270px;}
+.am-icon-agent{background-position:-45px -180px;}
 .am-icon-history{background-position:-270px 0;}
 .am-icon-comments{background-position:-45px 0; position: relative;}
 .am-icon-comments .message-number{width: 26px; height: 26px; display: block; position: absolute;top:-10px;right:0; background: #c00; color: #fff; text-align: center; line-height: 26px; border-radius: 13px; font-size: 12px;}
