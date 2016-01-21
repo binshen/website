@@ -123,11 +123,11 @@ body{background-color:#fff;}
 .sort-clear{ overflow: hidden;}
 .sort-clear .btn-clear{float:left;padding:10px 0 5px 40px; color: #666;  background:url(../images/items_icon_3.png) no-repeat -180px -90px; background-size: 315px auto;}
 
-.leftPopup{width:25rem;height:100%;position:fixed;top:0;right:0;z-index:0;overflow:hidden;font-size:1.8rem;color:#333;
+.leftPopup{width:280px;height:100%;position:fixed;top:0;right:0;z-index:0;overflow:hidden;font-size:1.8rem;color:#333;
 }
 .leftPopup{ position:relative; min-height:100%;}
 
-.leftPopup .swipeLeft{position:relative;min-height:100%; width:25rem; background:#fff;	-webkit-transform:translate(25rem,0);transform:translate(25rem,0);-webkit-transition:-webkit-transform .4s;
+.leftPopup .swipeLeft{position:relative;min-height:100%; width:280px; background:#fff;	-webkit-transform:translate(25rem,0);transform:translate(25rem,0);-webkit-transition:-webkit-transform .4s;
     transition:transform .4s;-webkit-backface-visibility:hidden;-webkit-transform-style:preserve-3d;-webkit-transform-origin:0 0;}
 .leftPopup .swipeLeft-block{-webkit-transform:translate(0px,0px);transform:translate(0px,0px);
     -webkit-transition:-webkit-transform .5s;transition:transform .5s;
