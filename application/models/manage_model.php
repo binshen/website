@@ -513,6 +513,8 @@ class Manage_model extends MY_Model
 		} else if($this->session->userdata('manager_group') == 2) {
 			$this->db->where('company_id', $this->session->userdata('company_id'));
 			$this->db->where('subsidiary_id', $this->session->userdata('subsidiary_id'));
+		} else {
+			$this->db->where('id', $this->session->userdata('user_id'));
 		}
 		$this->db->where('id >', 1);
 	
@@ -536,6 +538,8 @@ class Manage_model extends MY_Model
 		} else if($this->session->userdata('manager_group') == 2) {
 			$this->db->where('a.company_id', $this->session->userdata('company_id'));
 			$this->db->where('a.subsidiary_id', $this->session->userdata('subsidiary_id'));
+		} else {
+			$this->db->where('a.id', $this->session->userdata('user_id'));
 		}
 		$this->db->where('a.id >', 1);
 		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );

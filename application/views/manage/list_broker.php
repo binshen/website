@@ -8,8 +8,10 @@
 <div class="pageContent">
 	<div class="panelBar">
 		<ul class="toolBar">
-			<li><a class="add" href="<?php echo site_url('manage/add_broker')?>" target="dialog" width="752" height="398" rel="add_broker" title="新建"><span>新建</span></a></li>
-			<li><a class="delete" href="<?php echo site_url('manage/delete_broker')?>/{id}" target="ajaxTodo"  title="确定要删除？" warn="请选择一条记录"><span>删除</span></a></li>
+			<?php if($this->session->userdata('manager_group') > 0): ?>
+				<li><a class="add" href="<?php echo site_url('manage/add_broker')?>" target="dialog" width="752" height="398" rel="add_broker" title="新建"><span>新建</span></a></li>
+				<li><a class="delete" href="<?php echo site_url('manage/delete_broker')?>/{id}" target="ajaxTodo"  title="确定要删除？" warn="请选择一条记录"><span>删除</span></a></li>
+			<?php endif; ?>
 			<li><a class="edit" href="<?php echo site_url('manage/edit_broker/{id}')?>" target="dialog"  width="732" height="398" rel="edit_broker" warn="请选择一条记录" title="查看"><span>查看</span></a></li>
 		</ul>
 	</div>
