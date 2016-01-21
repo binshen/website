@@ -1838,7 +1838,7 @@ class House_model extends MY_Model
 	}
 	
 	public function get_viewed_client_list($subsidiary_id) {
-		$this->db->select('a.call_time, b.id, b.room, b.total_price, b.acreage, b.bg_pic, b.floor, b.total_floor, b.lounge, b.unit_price');
+		$this->db->select('a.call_time, b.id, b.room, b.total_price, b.acreage, b.bg_pic, b.floor, b.total_floor, b.lounge, b.unit_price, c.rel_name, c.tel');
 		$this->db->select('g.name AS region_name, h.name AS xq_name, i.name AS decoration_name, j.name AS orientation_name, d.name AS subsidiary_name, f.name AS company_name ');
 		$this->db->distinct();
 		$this->db->from('house_track a');
