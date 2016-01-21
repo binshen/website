@@ -181,11 +181,9 @@
             <li><img data-url="/uploadfiles/pics/{{$item.bg_pic}}" src="/static/images/default1.gif" alt="'"
                      class="scrollLoading" width="85" height="77">
                 <div class="house-txt">
-                    <p class="h-t1">{{$item.region_name}} {{$item.xq_name}}
-                    <p class="h-t2">{{$item.room}}室{{$item.lounge}}厅   | {{$item.floor}}/{{$item.total_floor}}层
-                        | {{$item.acreage}}㎡</p>
-                    <p class="h-t3"><i>装修:</i> {{$item.decoration_name}} | <i>朝向:</i>
-                        {{$item.orientation_name}}</p>
+                    <p class="h-t1">{{$item.region_name}} {{$item.xq_name}}</p>
+                    <p class="h-t2">{{$item.room}}室{{$item.lounge}}厅   | {{$item.floor}}/{{$item.total_floor}}层 | {{$item.acreage}}㎡</p>
+                    <p class="h-t3"><i>装修:</i> {{$item.decoration_name}} | <i>朝向:</i>{{$item.orientation_name}}</p>
                     <p class="p-price">{{$item.total_price}}万<br /><i>{{$item.unit_price}}元/㎡</i></p>
                 </div>
             </li>

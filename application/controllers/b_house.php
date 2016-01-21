@@ -401,7 +401,7 @@ class B_house extends MY_Controller {
 	public function get_viewed_client_list() {
 		$subsidiary_id = $this->session->userdata('subsidiary_id');
 		$v_house_tracks = $this->house_model->get_viewed_client_list($subsidiary_id);
-		
+		$this->assign('v_house_tracks', $v_house_tracks);
 		$this->display('broker/v-list.html');
 	}
 }
