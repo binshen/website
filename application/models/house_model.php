@@ -1743,15 +1743,6 @@ class House_model extends MY_Model
 		return $results[0];
 	}
 	
-	public function get_bind_broker_id($open_id) {
-		$this->db->select('broker_id');
-		$this->db->from('wx_user');
-		$this->db->where('open_id', $open_id);
-		$this->db->order_by('updated DESC');
-		$this->db->limit(1);
-		return $this->db->get()->row_array();
-	}
-	
 	public function get_bind_broker_info($open_id) {
 		$this->db->select('b.rel_name, b.tel, b.company_name');
 		$this->db->from('wx_user a');
@@ -1856,5 +1847,19 @@ class House_model extends MY_Model
 		$this->db->order_by('a.call_time', 'desc');
 		$this->db->limit(50);
 		return $this->db->get()->result_array();
+	}
+	
+	public function get_bind_broker_id($open_id) {
+		$this->db->select('broker_id');
+		$this->db->from('wx_user');
+		$this->db->where('open_id', $open_id);
+		$this->db->order_by('updated DESC');
+		$this->db->limit(1);
+	
+		$result = $this->db->get()->row_array();
+		if(empty($result)) {
+			return array('broker_id' => 1);
+		}
+		return $result;
 	}
 }
