@@ -1858,13 +1858,13 @@ class House_model extends MY_Model
 	
 		$result = $this->db->get()->row_array();
 		if(empty($result)) {
-			$pic_data = array(
+			$data = array(
 				'open_id' => $open_id,
 				'broker_id' => 1,
 				'created' => date('Y-m-d H:i:s'),
 				'updated' => date('Y-m-d H:i:s')
 			);
-			$this->db->insert('house_img', $pic_data);
+			$this->db->insert('wx_user', $data);
 			return array('broker_id' => 1);
 		}
 		return $result;
