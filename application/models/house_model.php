@@ -1838,19 +1838,19 @@ class House_model extends MY_Model
 	}
 	
 	public function get_viewed_client_list($subsidiary_id) {
-		$this->db->select('a.id, a.room, a.total_price, a.acreage, a.bg_pic, a.floor, a.total_floor, a.lounge, a.unit_price');
-		$this->db->select('g.name AS region_name, h.name AS xq_name, i.name AS decoration_name, j.name AS orientation_name, c.call_time');
+		$this->db->select('a.call_time, b.id, b.room, b.total_price, b.acreage, b.bg_pic, b.floor, b.total_floor, b.lounge, b.unit_price');
+		$this->db->select('g.name AS region_name, h.name AS xq_name, i.name AS decoration_name, j.name AS orientation_name, ');
 		$this->db->distinct();
-		$this->db->from('house a');
-		$this->db->join('admin b', 'a.broker_id = b.id', 'inner');
-		$this->db->join('house_track c', 'a.id = c.house_id', 'inner');
-		$this->db->join('house_region g', 'a.region_id = g.id', 'left');
-		$this->db->join('xiaoqu h', 'a.xq_id = h.id', 'left');
-		$this->db->join('house_decoration i', 'a.decoration_id = i.id', 'left');
-		$this->db->join('house_orientation j', 'a.orientation_id = j.id', 'left');
-		$this->db->where('b.subsidiary_id', $subsidiary_id);
-		$this->db->where('c.call_time is not null');
-		$this->db->order_by('c.call_time', 'desc');
+		$this->db->from('house_track a');
+		$this->db->join('house b', 'a.house_id = b.id', 'inner');
+		$this->db->join('admin c', 'b.broker_id = c.id', 'inner');
+		$this->db->join('house_region g', 'b.region_id = g.id', 'left');
+		$this->db->join('xiaoqu h', 'b.xq_id = h.id', 'left');
+		$this->db->join('house_decoration i', 'b.decoration_id = i.id', 'left');
+		$this->db->join('house_orientation j', 'b.orientation_id = j.id', 'left');
+		$this->db->where('c.subsidiary_id', $subsidiary_id);
+		$this->db->where('a.call_time is not null');
+		$this->db->order_by('a.call_time', 'desc');
 		return $this->db->get()->result_array();
 	}
 }
