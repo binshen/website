@@ -648,3 +648,5 @@ body{background-color:#fff;}
 #dialogue-customer-list1 .p-txt2 .s-name{ display: inline-block;
     margin-right: 10px;}
 .eye-icon{ float:left;margin-right:5px; width:30px; height:30px;	display: block; background: url(../images/eye_icon.png) no-repeat; background-size:100%;}
+.p-other-infor{font-size:12px;margin:5px 0 0 20px; line-height: 20px;}
+.p-other-infor span{margin-right:15px;}.p-other-infor  i{color:#999 ;}
