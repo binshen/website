@@ -645,7 +645,6 @@ body{background-color:#fff;}
 .dialogue-right-body li .iscall{ width: 20px; margin-top:15px;
     height: 20px;
     float: right; background: url(../images/call_icon.png) no-repeat;}
-
 /*经纪人列表*/
 #dialogue-customer-list1 .p-txt2 .s-name{ display: inline-block;
     margin-right: 10px;}
