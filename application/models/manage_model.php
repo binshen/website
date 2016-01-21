@@ -513,6 +513,7 @@ class Manage_model extends MY_Model
 		} else if($this->session->userdata('manager_group') == 2) {
 			$this->db->where('company_id', $this->session->userdata('company_id'));
 			$this->db->where('subsidiary_id', $this->session->userdata('subsidiary_id'));
+			$this->db->where('manager_group <> 1');
 		} else {
 			$this->db->where('id', $this->session->userdata('user_id'));
 		}
@@ -538,6 +539,7 @@ class Manage_model extends MY_Model
 		} else if($this->session->userdata('manager_group') == 2) {
 			$this->db->where('a.company_id', $this->session->userdata('company_id'));
 			$this->db->where('a.subsidiary_id', $this->session->userdata('subsidiary_id'));
+			$this->db->where('manager_group <> 1');
 		} else {
 			$this->db->where('a.id', $this->session->userdata('user_id'));
 		}
