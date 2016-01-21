@@ -1851,6 +1851,7 @@ class House_model extends MY_Model
 		$this->db->where('c.subsidiary_id', $subsidiary_id);
 		$this->db->where('a.call_time is not null');
 		$this->db->order_by('a.call_time', 'desc');
+		$this->db->limit(50);
 		return $this->db->get()->result_array();
 	}
 }
