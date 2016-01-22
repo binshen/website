@@ -242,7 +242,7 @@ class B_house extends MY_Controller {
 				$house['rel_name'] = $userInfo['rel_name'];
 				$house['tel'] = $userInfo['tel'];
 				$house['company_name'] = $userInfo['company_name'];
-				$house['broker_pic'] = $bind_broker['broker_pic'];
+				$house['broker_pic'] = $userInfo['broker_pic'];
 			}
 		}
 		if(empty($house['broker_pic'])) {
