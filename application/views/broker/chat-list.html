@@ -201,7 +201,7 @@
         });
     });
 	$(".eye-icon").bind("click",function(ev) {
-		var open_id = 'orFu-vgK-snskoQdDgMkBe-jFe1k';//$(this).attr('oid');
+		var open_id = $(this).attr('oid');
 		$.get('/b_house/get_viewed_house_list/' + open_id, function(data) {
 			var html = '<li class="dialogue-right-tit">受关注的浏览记录</li>';
         	var data = JSON.parse(data);
