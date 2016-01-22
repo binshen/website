@@ -1744,7 +1744,7 @@ class House_model extends MY_Model
 	}
 	
 	public function get_bind_broker_info($open_id) {
-		$this->db->select('b.rel_name, b.tel, b.company_name');
+		$this->db->select('b.rel_name, b.tel, b.company_name, b.pic AS broker_pic');
 		$this->db->from('wx_user a');
 		$this->db->join('admin b', 'a.broker_id = b.id', 'inner');
 		$this->db->where('a.open_id', $open_id);
@@ -1793,7 +1793,7 @@ class House_model extends MY_Model
 	}
 	
 	public function get_login_info($user_id) {
-		$this->db->select('a.tel, a.rel_name, b.name as company_name');
+		$this->db->select('a.tel, a.rel_name, b.name as company_name, b.pic AS broker_pic');
 		$this->db->from('admin a');
 		$this->db->join('company b', 'a.company_id = b.id', 'inner');
 		$this->db->where('a.id', $user_id);

@@ -234,6 +234,7 @@ class B_house extends MY_Controller {
 				$house['rel_name'] = $bind_broker['rel_name'];
 				$house['tel'] = $bind_broker['tel'];
 				$house['company_name'] = $bind_broker['company_name'];
+				$house['broker_pic'] = $bind_broker['broker_pic'];
 			}
 		} else {
 			$userInfo = $this->house_model->get_login_info($login_broker_id);
@@ -241,7 +242,11 @@ class B_house extends MY_Controller {
 				$house['rel_name'] = $userInfo['rel_name'];
 				$house['tel'] = $userInfo['tel'];
 				$house['company_name'] = $userInfo['company_name'];
+				$house['broker_pic'] = $bind_broker['broker_pic'];
 			}
+		}
+		if(empty($house['broker_pic'])) {
+			$house['broker_pic'] = '/images/headpic.jpg';
 		}
 		
 		$this->assign('house', $house);
