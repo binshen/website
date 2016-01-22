@@ -62,8 +62,8 @@ class B_house extends MY_Controller {
 		if(!empty($login_broker_id)) {
 			$broker_id = $login_broker_id;
 			$open_id = "--BROKER--";
-			$company = $this->house_model->get_company_by_broker($broker_id);
-			$this->assign('company', $company);
+			//$company = $this->house_model->get_company_by_broker($broker_id);
+			//$this->assign('company', $company);
 		} else {
 			$open_id = $this->session->userdata('wx_open_id');
 			$broker_id = $this->session->userdata('wx_broker_id');
@@ -72,6 +72,9 @@ class B_house extends MY_Controller {
 			}
 			$broker = $this->house_model->get_bind_broker_id($open_id);
 			$this->assign('connected_broker_id', $broker['broker_id']);
+			
+			$company = $this->house_model->get_company_by_broker($broker['broker_id']);
+			$this->assign('company', $company);
 		}
 		$this->assign('open_id', $open_id);
 		$this->assign('wx_broker_id', $broker_id);
