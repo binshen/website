@@ -508,14 +508,16 @@ class Manage_model extends MY_Model
 		$this->db->from('admin');
 		if($this->input->post('rel_name'))
 			$this->db->like('rel_name',$this->input->post('rel_name'));
-		if($this->session->userdata('manager_group') == 1) {
-			$this->db->where('company_id', $this->session->userdata('company_id'));
-		} else if($this->session->userdata('manager_group') == 2) {
-			$this->db->where('company_id', $this->session->userdata('company_id'));
-			$this->db->where('subsidiary_id', $this->session->userdata('subsidiary_id'));
-			$this->db->where('manager_group <> 1');
-		} else {
-			$this->db->where('id', $this->session->userdata('user_id'));
+		if($this->session->userdata('group_id') <> 1) {
+			if($this->session->userdata('manager_group') == 1) {
+				$this->db->where('company_id', $this->session->userdata('company_id'));
+			} else if($this->session->userdata('manager_group') == 2) {
+				$this->db->where('company_id', $this->session->userdata('company_id'));
+				$this->db->where('subsidiary_id', $this->session->userdata('subsidiary_id'));
+				$this->db->where('manager_group <> 1');
+			} else {
+				$this->db->where('id', $this->session->userdata('user_id'));
+			}
 		}
 		$this->db->where('id >', 1);
 	
@@ -534,15 +536,18 @@ class Manage_model extends MY_Model
 			$this->db->like('a.rel_name',$this->input->post('rel_name'));
 			$data['rel_name'] = $this->input->post('rel_name');
 		}
-		if($this->session->userdata('manager_group') == 1) {
-			$this->db->where('a.company_id', $this->session->userdata('company_id'));
-		} else if($this->session->userdata('manager_group') == 2) {
-			$this->db->where('a.company_id', $this->session->userdata('company_id'));
-			$this->db->where('a.subsidiary_id', $this->session->userdata('subsidiary_id'));
-			$this->db->where('manager_group <> 1');
-		} else {
-			$this->db->where('a.id', $this->session->userdata('user_id'));
+		if($this->session->userdata('group_id') <> 1) {
+			if($this->session->userdata('manager_group') == 1) {
+				$this->db->where('a.company_id', $this->session->userdata('company_id'));
+			} else if($this->session->userdata('manager_group') == 2) {
+				$this->db->where('a.company_id', $this->session->userdata('company_id'));
+				$this->db->where('a.subsidiary_id', $this->session->userdata('subsidiary_id'));
+				$this->db->where('manager_group <> 1');
+			} else {
+				$this->db->where('a.id', $this->session->userdata('user_id'));
+			}
 		}
+		
 		$this->db->where('a.id >', 1);
 		$this->db->limit($numPerPage, ($pageNum - 1) * $numPerPage );
 		$this->db->order_by($this->input->post('orderField') ? $this->input->post('orderField') : 'id', $this->input->post('orderDirection') ? $this->input->post('orderDirection') : 'desc');
