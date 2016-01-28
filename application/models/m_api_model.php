@@ -13,14 +13,10 @@ class M_api_model extends MY_Model {
     }
     
     public function login($username, $password) {
+    	
     	$this->db->from('admin');
     	$this->db->where('username', $username);
     	$this->db->where('passwd', sha1($password));
-    	$rs = $this->db->get();
-    	if ($rs->num_rows() > 0) {
-    		return true;
-    	} else {
-    		return false;
-    	}
+    	return $this->db->get();
     }
 }

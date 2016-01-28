@@ -14,7 +14,7 @@ class M_api extends MY_Controller {
 		
 		$username = $this->input->post('username'); 
 		$password = $this->input->post('password');
-		$result = $this->m_api_model->login($username, $password);
-		echo json_encode(array('result' => $result));
+		$user_info = $this->m_api_model->login($username, $password);
+		echo json_encode($user_info);
 	}
 }
