@@ -7,7 +7,7 @@ class M_api extends MY_Controller {
 		
 		$this->load->model('m_api_model');
 		
-		header('Content-Type: application/json');
+		header('Content-Type: application/json; charset=utf-8');
 	}
 	
 	public function login() {
