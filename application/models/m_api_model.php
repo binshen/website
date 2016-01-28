@@ -18,9 +18,9 @@ class M_api_model extends MY_Model {
     	$this->db->where('passwd', sha1($password));
     	$rs = $this->db->get();
     	if ($rs->num_rows() > 0) {
-    		return json_encode(array('result' => true));
+    		return true;
     	} else {
-    		return json_encode(array('result' => false));
+    		return false;
     	}
     }
 }
