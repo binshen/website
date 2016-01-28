@@ -17,6 +17,6 @@ class M_api_model extends MY_Model {
     	$this->db->from('admin');
     	$this->db->where('username', $username);
     	$this->db->where('passwd', sha1($password));
-    	return $this->db->get();
+    	return $this->db->get()->row();
     }
 }
