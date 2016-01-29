@@ -18,4 +18,10 @@ class M_api extends MY_Controller {
 		//var_dump($user_info);
 		echo json_encode($user_info);
 	}
+	
+	public function list_client($id) {
+		
+		$client_list = $this->m_api_model->list_client($id);
+		echo json_encode($client_list);
+	}
 }
