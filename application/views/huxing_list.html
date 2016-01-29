@@ -52,7 +52,7 @@
                 <div class="model-ul-txt">
                    户型：{{$row->room}}室{{$row->lounge}}厅{{$row->toilet}}卫<br />
                    {{if $row->orientation_name != '未知'}}朝向：{{$row->orientation_name}}{{/if}}<br />
-                    面积大小：约{{$row->area}}平米<br />{{$row->title}}
+                    面积：约{{$row->area}}平米<br />{{$row->title}}
                 </div>
             </a></li>
             {{/foreach}}
