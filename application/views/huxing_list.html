@@ -51,7 +51,7 @@
                 <div class="model-pic"><img src="/uploadfiles/pics/{{$huxing_list['folder']}}/6/{{$row->pic_short}}" alt="" width="300" height="190" /></div>
                 <div class="model-ul-txt">
                    户型：{{$row->room}}室{{$row->lounge}}厅{{$row->toilet}}卫<br />
-                   {{if $row->orientation_name}}朝向：{{ $row->orientation_name}}{{/if}}<br />
+                   {{if $row->orientation_name!=11}}朝向：{{ $row->orientation_name}}{{/if}}<br />
                     面积大小：约{{$row->area}}平米<br />{{$row->title}}
                 </div>
             </a></li>
