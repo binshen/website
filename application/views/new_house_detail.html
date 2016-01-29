@@ -232,7 +232,7 @@ var mapCommAddress = "";
                     	{{foreach from=$huxing item=row key=k}}
                         <li {{if $k==2}}class="mr0"{{/if}}>
                             <img src="/uploadfiles/pics/{{$house['folder']}}/6/{{$row['pic_short']}}" alt="" width="300" height="190" />
-                            <p class="mt10">{{$row['room']}}室{{$row['lounge']}}厅{{$row['toilet']}}卫, 约{{$row['area']}}平米{{if $row['orientation_name']}}, {{$row['orientation_name']}}{{/if}}</p>
+                            <p class="mt10">{{$row['room']}}室{{$row['lounge']}}厅{{$row['toilet']}}卫, 约{{$row['area']}}平米{{if $row['orientation_name'!=11]}}, {{$row['orientation_name']}}{{/if}}</p>
                             <p class="fz12">{{$row['title']}}</p>
                         </li>
                         {{/foreach}}
