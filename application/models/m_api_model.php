@@ -27,5 +27,6 @@ class M_api_model extends MY_Model {
     	$this->db->join('weixin b', 'a.open_id = b.openid', 'inner');
     	$this->db->where('a.broker_id', $id);
     	$this->db->where('b.subscribe', 1);
+    	return $this->db->get()->result();
     }
 }
