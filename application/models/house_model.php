@@ -618,9 +618,10 @@ class House_model extends MY_Model
    	}
 
    	public function get_huxing_list($h_id,$count,$pageNum){
-   		$rs = $this->db->select('a.id,xq_id,b.name region_name,a.name,region_id,count(c.id) count_huxing')->from('house a')
+   		$rs = $this->db->select('a.id,xq_id,b.name region_name,a.name,region_id,count(c.id) count_huxing,d.name=orientation_name')->from('house a')
    		->join('house_region b','a.region_id=b.id','left')
    		->join('house_hold c','a.id=c.h_id','left')
+   		->join('house_orientation d','c.orientation_id=d.h_id','left')
    		->where('a.id',$h_id)
    		->group_by('c.h_id')
    		->get()->row_array();
