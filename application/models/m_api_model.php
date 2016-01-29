@@ -29,4 +29,12 @@ class M_api_model extends MY_Model {
     	$this->db->where('b.subscribe', 1);
     	return $this->db->get()->result();
     }
+    
+    public function list_house($id) {
+    	
+    	$this->db->from('house');
+    	$this->db->where('broker_id', $id);
+    	$this->db->order_by('id', 'desc');
+    	return $this->db->get()->result();
+    }
 }

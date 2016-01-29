@@ -24,4 +24,10 @@ class M_api extends MY_Controller {
 		$client_list = $this->m_api_model->list_client($id);
 		echo json_encode($client_list);
 	}
+	
+	public function list_house($id) {
+		
+		$house_list = $this->m_api_model->list_house($id);
+		echo json_encode($house_list);
+	}
 }
