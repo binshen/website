@@ -74,7 +74,7 @@
 .building-situation .house-tip{font-size: 18px; color: #6c6a6a; text-align: right;}
 .building-situation .model-ul{margin-top: 20px;}
 .building-situation .model-ul li{margin-right: 115px; float: left; width: 300px;}
-.building-situation .model-ul li p {text-indent: 0em; line-height:24px;}
+.building-situation .model-ul li p {text-indent: 0em; line-height:24px;padding-left:40px;}
 .building-situation .model-ul li p.fz12{font-size: 12px;}
 
 .check-more-link{margin:10px auto 0; width: 127px; height: 36px; line-height: 36px; }
