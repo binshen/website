@@ -647,7 +647,7 @@ class House_model extends MY_Model
    		//list
    		$this->db->select('a.*,b.name orientation_name');
    		$this->db->from('house_hold a');
-   		$this->db->join('house_orientation b','.orientation_id=b.id','left');
+   		$this->db->join('house_orientation b','a.orientation_id=b.id','left');
    		$this->db->where('h_id', $h_id);
    		if($count != 'all'){
    			$this->db->where('room',$count);
