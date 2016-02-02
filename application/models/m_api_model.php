@@ -32,9 +32,14 @@ class M_api_model extends MY_Model {
     
     public function list_house($id) {
     	
-    	$this->db->from('house');
-    	$this->db->where('broker_id', $id);
-    	$this->db->order_by('id', 'desc');
+    	$this->db->select('a.*, b.name AS region_name, c.name AS orientation_name, d.name AS xiaoqu_name, e.name AS decoration_name');
+    	$this->db->from('house a');
+   		$this->db->join('house_region b', 'a.region_id = b.id', 'left');
+   		$this->db->join('house_orientation c', 'a.orientation_id = c.id', 'left');
+   		$this->db->join('xiaoqu d', 'a.xq_id = d.id', 'left');
+   		$this->db->join('house_decoration e', 'a.decoration_id = e.id', 'left');
+    	$this->db->where('a.broker_id', $id);
+    	$this->db->order_by('a.id', 'desc');
     	return $this->db->get()->result();
     }
 }
