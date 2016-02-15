@@ -45,11 +45,17 @@ class M_api_model extends MY_Model {
     
     public function get_house_slide($id) {
     	
-    	$this->db->select('pic_short, is_bg');
+    	$this->db->select('type_id, pic_short, is_bg');
     	$this->db->from('house_img');
     	$this->db->where('h_id', $id);
     	$this->db->where('type_id', 1);
     	return $this->db->get()->result();
+    }
+    
+    public function get_house_detail($id) {
     	
+    	$this->db->from('house');
+    	$this->db->where('id', $id);
+    	return $this->db->get()->row();
     }
 }

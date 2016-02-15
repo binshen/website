@@ -34,8 +34,10 @@ class M_api extends MY_Controller {
 	public function get_house($id) {
 		
 		$slide = $this->m_api_model->get_house_slide($id);
+		$detail = $this->m_api_model->get_house_detail($id);
 		$result = array();
 		$result['slide'] = $slide;
+		$result['detail'] = $detail;
 		echo json_encode($result);
  	}
 }
