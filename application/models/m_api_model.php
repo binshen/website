@@ -54,7 +54,12 @@ class M_api_model extends MY_Model {
     
     public function get_house_detail($id) {
     	
-    	$this->db->from('house');
+    	$this->db->select('a.*, b.name AS region_name, c.name AS orientation_name, d.name AS xiaoqu_name, e.name AS decoration_name');
+    	$this->db->from('house a');
+    	$this->db->join('house_region b', 'a.region_id = b.id', 'left');
+    	$this->db->join('house_orientation c', 'a.orientation_id = c.id', 'left');
+    	$this->db->join('xiaoqu d', 'a.xq_id = d.id', 'left');
+    	$this->db->join('house_decoration e', 'a.decoration_id = e.id', 'left');
     	$this->db->where('id', $id);
     	return $this->db->get()->row();
     }
