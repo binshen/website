@@ -60,7 +60,7 @@ class M_api_model extends MY_Model {
     	$this->db->join('house_orientation c', 'a.orientation_id = c.id', 'left');
     	$this->db->join('xiaoqu d', 'a.xq_id = d.id', 'left');
     	$this->db->join('house_decoration e', 'a.decoration_id = e.id', 'left');
-    	$this->db->where('id', $id);
+    	$this->db->where('a.id', $id);
     	return $this->db->get()->row();
     }
 }
