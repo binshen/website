@@ -32,7 +32,7 @@ class M_api_model extends MY_Model {
     
     public function list_house($id) {
     	
-    	$this->db->select('a.*, b.name AS region_name, c.name AS orientation_name, d.name AS xiaoqu_name, e.name AS decoration_name');
+    	$this->db->select('a.*, b.name AS region_name, c.name AS orientation_name, d.name AS xiaoqu_name, d.address, d.latitude, d.longitude, e.name AS decoration_name');
     	$this->db->from('house a');
    		$this->db->join('house_region b', 'a.region_id = b.id', 'left');
    		$this->db->join('house_orientation c', 'a.orientation_id = c.id', 'left');
@@ -54,7 +54,7 @@ class M_api_model extends MY_Model {
     
     public function get_house_detail($id) {
     	
-    	$this->db->select('a.*, b.name AS region_name, c.name AS orientation_name, d.name AS xiaoqu_name, d.address, e.name AS decoration_name');
+    	$this->db->select('a.*, b.name AS region_name, c.name AS orientation_name, d.name AS xiaoqu_name, d.address, d.latitude, d.longitude, e.name AS decoration_name');
     	$this->db->from('house a');
     	$this->db->join('house_region b', 'a.region_id = b.id', 'left');
     	$this->db->join('house_orientation c', 'a.orientation_id = c.id', 'left');
