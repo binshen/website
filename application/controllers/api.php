@@ -110,4 +110,43 @@ class Api extends MY_Controller {
 		var_dump($jsonInfo);
 		header("Content-type: text/html; charset=utf-8");
 	}
+	
+	public function push_msg($msg) {
+		require_once (APPPATH . 'libraries/JPush/JPush.php');
+		$app_key = 'd6c00aaba4220737c096b0f5';
+		$master_secret = '6738878b5566b6a9275ac090';
+		
+		// 初始化
+		$client = new JPush($app_key, $master_secret);
+		
+		// 简单推送示例
+		$result = $client->push()
+			->setPlatform('all')
+			->addAllAudience()
+			->setNotificationAlert($msg)
+			->send();
+		echo 'Result=' . json_encode($result);
+		
+// 		// 完整的推送示例,包含指定Platform,指定Alias,Tag,指定iOS,Android notification,指定Message等
+// 		$result = $client->push()
+// 			->setPlatform(array('ios', 'android'))
+// 			->addAlias('alias1')
+// 			->addTag(array('tag1', 'tag2'))
+// 			->setNotificationAlert('Hi, JPush')
+// 			->addAndroidNotification('Hi, android notification', 'notification title', 1, array("key1"=>"value1", "key2"=>"value2"))
+// 			->addIosNotification("Hi, iOS notification", 'iOS sound', JPush::DISABLE_BADGE, true, 'iOS category', array("key1"=>"value1", "key2"=>"value2"))
+// 			->setMessage("msg content", 'msg title', 'type', array("key1"=>"value1", "key2"=>"value2"))
+// 			->setOptions(100000, 3600, null, false)
+// 			->send();
+// 		echo 'Result=' . json_encode($result);
+				
+// 		// 指定推送短信示例(推送未送达的情况下进行短信送达, 该功能需预付短信费用, 并调用Device API绑定设备与手机号)
+// 		$result = $client->push()
+// 			->setPlatform('all')
+// 			->addTag('tag1')
+// 			->setNotificationAlert("Hi, JPush SMS")
+// 			->setSmsMessage('Hi, JPush SMS', 60)
+// 			->send();	
+// 		echo 'Result=' . json_encode($result);
+	}
 }
