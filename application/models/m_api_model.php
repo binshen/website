@@ -14,9 +14,11 @@ class M_api_model extends MY_Model {
     
     public function login($username, $password) {
     	
-    	$this->db->from('admin');
-    	$this->db->where('username', $username);
-    	$this->db->where('passwd', sha1($password));
+    	$this->db->select('a.*, b.name AS company_name, b.address, b.tel AS company_tel');
+    	$this->db->from('admin a');
+    	$this->db->join('company b', 'a.company_id = b.id', 'left');
+    	$this->db->where('a.username', $username);
+    	$this->db->where('a.passwd', sha1($password));
     	return $this->db->get()->row();
     }
     
