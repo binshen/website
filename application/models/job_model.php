@@ -256,4 +256,11 @@ class Job_model extends MY_Model
     	$this->db->from('wx_user');
     	return $this->db->get()->result_array();
     }
+    
+    public function getWeixinUserList() {
+    	$this->db->select('openid');
+    	$this->db->from('weixin');
+    	$this->db->where('subscribe', 1);
+    	return $this->db->get()->result_array();
+    }
 }

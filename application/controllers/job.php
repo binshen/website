@@ -33,6 +33,19 @@ class Job extends MY_Controller {
 	}
 	
 	
+	public function update() {
+		$access_token = $this->api_model->get_or_create_token();
+		$users = $this->job_model->getWeixinUserList();
+		foreach ($users as $u) {
+			$open_id = $u["openid"];
+			$url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token={$access_token}&openid={$open_id}&lang=zh_CN";
+			$result = file_get_contents($url);
+			$data = json_decode($result, true);
+			$this->db->where('id', $open_id);
+			$this->db->update('weixin', $data);
+		}
+	}
+	
 	////////////////////////////////////////////////
 	public function test() {
 		$result = $this->api_model->search_house_by_name('昆山花园');
