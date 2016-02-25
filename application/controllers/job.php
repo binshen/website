@@ -34,15 +34,15 @@ class Job extends MY_Controller {
 	
 	
 	public function update() {
-		$access_token = $this->api_model->get_or_create_token();
+		$token = $this->api_model->get_or_create_token();
+		$access_token = $token["token"];
 		$users = $this->job_model->getWeixinUserList();
 		foreach ($users as $u) {
 			$open_id = $u["openid"];
 			$url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token={$access_token}&openid={$open_id}&lang=zh_CN";
 			$result = file_get_contents($url);
 			$data = json_decode($result, true);
-			$this->db->where('id', $open_id);
-			$this->db->update('weixin', $data);
+			$this->job_model->updateWeixinUser($open_id, $data);
 		}
 	}
 	

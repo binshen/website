@@ -263,4 +263,9 @@ class Job_model extends MY_Model
     	$this->db->where('subscribe', 1);
     	return $this->db->get()->result_array();
     }
+    
+    public function updateWeixinUser($id, $data) {
+    	$this->db->where('id', $id);
+    	$this->db->update('weixin', $data);
+    }
 }
