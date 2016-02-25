@@ -265,7 +265,7 @@ class Job_model extends MY_Model
     }
     
     public function updateWeixinUser($id, $data) {
-    	$this->db->where('id', $id);
+    	$this->db->where('openid', $id);
     	$this->db->update('weixin', $data);
     }
 }
