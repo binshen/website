@@ -601,7 +601,7 @@ body{background-color:#fff;}
     width: 45px;
     height: 20px;
     line-height: 20px; float: left;}
-.dialogue-customer-list .cus-txt .p-txt1{padding-left:65px;}
+.dialogue-customer-list .cus-txt .p-txt1{overflow:hidden;}
 .dialogue-customer-list .cus-txt .p-txt1 .leave-state{ background: #666;}
 .dialogue-customer-list .cus-txt .p-txt2{padding-left:65px; font-size:14px;color: #666;}
 .dialogue-customer-list .cus-txt .p-txt2 .fz16{ font-size: 16px; }
