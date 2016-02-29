@@ -613,7 +613,7 @@ body{background-color:#fff;}
 .cus-txt .tel-btn{ display: inline-block;  width: 40px;  height: 25px; text-align: center;background: #cc0000; color: #fff; border-radius: 3px;margin-left:10px;}
 .cus-txt .tel-btn .am-icon-phone:before{font-size:2.5rem; }
 .dialogue-customer-list  .all-icon{margin: 0 10px 0 0;float: right;padding-left:20px;border-left:1px solid #eee;}
-.all-tel{ color: #1878a5; font-size: 16px; float: right;}
+.all-tel{ color: #1878a5; font-size: 16px; float: right;width:130px; text-align: left;}
 .tel-icon{ width:30px; display: block; float: left; margin-top:-3px;}
 /*.dialogue-customer-list  .edit-btn{ float: left;width: 25px;height: 25px; margin-right: 15px; background: url(../images/edit_btn.png) no-repeat; background-size: 25px auto;
 }
