@@ -42,9 +42,8 @@
 			</div>
 			<div class="p-txt2">
 				<p style="float:left;"><i class="fz16">姓名：</i><span id="realname_{{$item['open_id']}}">{{if $item['realname'] }}{{$item['realname']}}{{else}}无{{/if}}</span></p>
-				<p class="all-tel"><span class="tel-icon"><img src="images/tel-icon.png" alt=""></span>{{if $item['user_tel'] }}
+				<p class="all-tel"><span class="tel-icon"><img src="/static/images/tel-icon.png" alt=""></span>{{if $item['user_tel'] }}
 					<span id="user_tel_{{$item['open_id']}}">{{$item['user_tel']}}</span>
-					<span id="user_tel_icon_{{$item['open_id']}}" class="tel-btn" onclick="makeCall('{{$item['user_tel']}}')"></span>
 					{{else}}
 					无
 					{{/if}}</p>
