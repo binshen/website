@@ -23,22 +23,22 @@
 	        </span>
         </a>
         <div class="all-icon">
-			<div class="all-tel"><span class="tel-icon"><img src="/static/images/tel-icon.png" alt=""></span>
+			<div class="all-tel"><span class="tel-icon"><img src="images/tel-icon.png" alt=""></span>
 				{{if $item['user_tel'] }}
 				<span id="user_tel_{{$item['open_id']}}">{{$item['user_tel']}}</span>
-				<span id="user_tel_icon_{{$item['open_id']}}" class="tel-btn" onclick="makeCall('{{$item['user_tel']}}')"><i class="am-icon-phone"></i></span>
+				<span id="user_tel_icon_{{$item['open_id']}}" class="tel-btn" onclick="makeCall('{{$item['user_tel']}}')"></span>
 				{{else}}
 				无
 				{{/if}}</div>
 			<div class="all-btns">
                     <span class="eye-icon" oid="{{$item['open_id']}}">
-                        <img src="/static/images/eye-icon.png" alt="">
+                        <img src="images/eye-icon.png" alt="">
                     </span>
                     <span class="edit-btn" oid="{{$item['open_id']}}">
-                        <img src="/static/images/edit-icon.png" alt="">
+                        <img src="images/edit-icon.png" alt="">
                     </span>
                     <span class="history-icon" oid="{{$item['open_id']}}">
-                        <img src="/static/images/his-icon.png" alt="">
+                        <img src="images/his-icon.png" alt="">
                     </span>
 			</div>
         </div>
