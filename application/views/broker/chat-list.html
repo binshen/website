@@ -18,33 +18,34 @@
 	<li>
 		<a href="#" onclick="go_chat('{{$item['open_id']}}')">
 	        <span class="cus-head">
-	            <img src="{{$item['headimgurl']}}" alt="" width="50" height="50" />
+	            <img src="{{$item['headimgurl']}}" alt="" width="70" height="70" />
 	            <i class="dialogue-messages" id="number_{{$item['open_id']}}"><!-- <em class="dialogue-messages-em">3</em> --></i>
 	        </span>
         </a>
         <div class="all-icon">
-			<span class="eye-icon" oid="{{$item['open_id']}}"></span>
-            <span class="edit-btn" oid="{{$item['open_id']}}"></span>
-            <span class="history-icon" oid="{{$item['open_id']}}"></span>
+			<div class="all-tel"><span class="tel-icon"><img src="images/tel-icon.png" alt=""></span>
+				{{if $item['user_tel'] }}
+				<span id="user_tel_{{$item['open_id']}}">{{$item['user_tel']}}</span>
+				<span id="user_tel_icon_{{$item['open_id']}}" class="tel-btn" onclick="makeCall('{{$item['user_tel']}}')"><i class="am-icon-phone"></i></span>
+				{{else}}
+				无
+				{{/if}}</div>
+			<div class="all-btns">
+                    <span class="eye-icon" oid="{{$item['open_id']}}">
+                        <img src="images/eye-icon.png" alt="">
+                    </span>
+                    <span class="edit-btn" oid="{{$item['open_id']}}">
+                        <img src="images/edit-icon.png" alt="">
+                    </span>
+                    <span class="history-icon" oid="{{$item['open_id']}}">
+                        <img src="images/his-icon.png" alt="">
+                    </span>
+			</div>
         </div>
         <div class="cus-txt">
-            <p class="p-txt1">
-            	<i class="name">{{$item['nickname']}}</i>
-            	<i class="sex">{{if $item['sex'] == 1}}男{{else}}女{{/if}}</i>
-            	<i class="state leave-state" id="status_{{$item['open_id']}}">离线</i>
-            	<input type="hidden" id="status_flag_{{$item['open_id']}}" value="0" />
-            </p>
-            <p class="p-txt2">
-            	<i class="fz16">姓名：</i><span id="realname_{{$item['open_id']}}">{{if $item['realname'] }}{{$item['realname']}}{{else}}无{{/if}}</span>
-            	<br />
-            	<i class="fz16">电话：</i>
-            	{{if $item['user_tel'] }}
-            		<span id="user_tel_{{$item['open_id']}}">{{$item['user_tel']}}</span>
-            		<span id="user_tel_icon_{{$item['open_id']}}" class="tel-btn" onclick="makeCall('{{$item['user_tel']}}')"><i class="am-icon-phone"></i></span>
-            	{{else}}
-            		无
-            	{{/if}}
-            </p>
+			<p class="p-txt1"><i class="name">{{$item['nickname']}}</i> <!-- <i class="sex">女</i>  --></p>
+			<p class="p-txt1"><i class="state leave-state" id="status_{{$item['open_id']}}">离线</i></p>
+			<p class="p-txt2"><i class="fz16">姓名：</i><span id="realname_{{$item['open_id']}}">{{if $item['realname'] }}{{$item['realname']}}{{else}}无{{/if}}</span></p>
         </div>
     </li>
 	{{/foreach}}
