@@ -655,3 +655,4 @@ body{background-color:#fff;}
 .dialogue-customer-list .eye-icon,.dialogue-customer-list .edit-btn,.dialogue-customer-list .history-icon{ width:32px;margin-left:15px; display: inline; float: left;}
 .p-other-infor{font-size:12px;margin:5px 0 0 20px; line-height: 20px;}
 .p-other-infor span{width:150px; display:inline-block;}.p-other-infor  i{color:#999 ;}
+.g-head  .am-icon-check-list{ width:26px; height:30px;position: absolute;right:15px;top:10px; background: url(../images/list-icon.png) no-repeat; }
