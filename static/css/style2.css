@@ -587,9 +587,10 @@ body{background-color:#fff;}
 
 /*选择我的客户源*/
 .dialogue-customer-list li{margin:0 10px;padding:10px 0; overflow: hidden; border-bottom: 1px solid #ccc;}
-.dialogue-customer-list .cus-head{width: 70px; height: 70px;	float: left;margin-right:10px;
+.dialogue-customer-list .cus-head{margin-top:15px;width: 70px; height: 70px;	float: left;margin-right:10px;
     position: relative;}
 .dialogue-customer-list .cus-head img{border-radius: 3px;}
+.dialogue-customer-list .cus-txt{padding-left:15px; float: left;}
 .dialogue-customer-list .cus-txt .p-txt1 .name {margin:0 3px; font-size:16px;display: inline-block; }
 .dialogue-customer-list .cus-txt .p-txt1 .sex{margin:0 3px;font-size:14px;
     display: inline-block;
@@ -604,7 +605,7 @@ body{background-color:#fff;}
     line-height: 20px; float: left;}
 .dialogue-customer-list .cus-txt .p-txt1{overflow:hidden;}
 .dialogue-customer-list .cus-txt .p-txt1 .leave-state{ background: #666;}
-.dialogue-customer-list .cus-txt .p-txt2{padding-left:65px; font-size:14px;color: #666;}
+.dialogue-customer-list .cus-txt .p-txt2{font-size:14px;color: #666;}
 .dialogue-customer-list .cus-txt .p-txt2 .fz16{ font-size: 16px; }
 /*.dialogue-customer-list .cus-date{*/
 /*font-size:12px;*/
