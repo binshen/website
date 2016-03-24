@@ -47,7 +47,7 @@
         <div class="model-s-tit">昆城景苑户型</div>
         <ul class="model-ul clearfix">
         	{{foreach from=$huxing_list['res_list'] item=row key=k}}
-            <li><a href="/uploadfiles/pics/{{$huxing_list['folder']}}/6/{{$row->pic_short}}" data-lightbox="example-2" data-title="A2户型：2室2厅1卫<br />面积大小：约102.00平米">
+            <li><a href="/uploadfiles/pics/{{$huxing_list['folder']}}/6/{{$row->pic}}" data-lightbox="example-2" data-title="户型：{{$row->room}}室{{$row->lounge}}厅{{$row->toilet}}卫<br />面积：约{{$row->area}}平米">
                 <div class="model-pic"><img src="/uploadfiles/pics/{{$huxing_list['folder']}}/6/{{$row->pic_short}}" alt="" width="300" height="190" /></div>
                 <div class="model-ul-txt">
                     <p>户型：{{$row->room}}室{{$row->lounge}}厅{{$row->toilet}}卫</p>
