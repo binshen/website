@@ -50,9 +50,10 @@
             <li><a href="/uploadfiles/pics/{{$huxing_list['folder']}}/6/{{$row->pic_short}}" data-lightbox="example-2" data-title="A2户型：2室2厅1卫<br />面积大小：约102.00平米">
                 <div class="model-pic"><img src="/uploadfiles/pics/{{$huxing_list['folder']}}/6/{{$row->pic_short}}" alt="" width="300" height="190" /></div>
                 <div class="model-ul-txt">
-                   户型：{{$row->room}}室{{$row->lounge}}厅{{$row->toilet}}卫<br />
-                   {{if $row->orientation_name != '未知'}}朝向：{{$row->orientation_name}}{{/if}}<br />
-                    面积：约{{$row->area}}平米<br />{{$row->title}}
+                    <p>户型：{{$row->room}}室{{$row->lounge}}厅{{$row->toilet}}卫</p>
+                    <p>{{if $row->orientation_name != '未知'}}朝向：{{$row->orientation_name}}{{/if}}</p>
+                    <p>面积：约{{$row->area}}平米</p>
+                    <p>{{$row->title}}</p>
                 </div>
             </a></li>
             {{/foreach}}
